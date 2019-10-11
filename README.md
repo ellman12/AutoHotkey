@@ -1,4 +1,2 @@
 # AutoHotkey
-All of my AutoHotkey scripts.
-
-Could use this README file for documenting changes...?
+All of my AutoHotkey scripts. Feel free to use and suggest changes and ideas.
