@@ -148,7 +148,7 @@ Sleep 125
 ;Creates the notifications
 Send, {Tab 18}
 Sleep 100
-Send, 10
+Send, 10 ;Seems to get messed up somewhere in between lines 121 and 193...?
 Sleep 100
 Send, {Tab}
 Sleep 100
