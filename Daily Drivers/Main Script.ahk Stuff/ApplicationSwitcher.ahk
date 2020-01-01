@@ -56,19 +56,9 @@ switchToChromeAndTabs()
 IfWinNotExist, ahk_class Chrome_WidgetWin_1
 	Run, chrome.exe
 if WinActive("ahk_exe chrome.exe")
-	{
-	WinGetClass, class, A
-if WinActive("ahk_exe chrome.exe")
 	Send ^{PGDN}
 else
-	{
-	WinActivateBottom ahk_exe chrome.exe
-	WinGet, hWnd, ID, ahk_class Chrome_WidgetWin_1
-	DllCall("SetForegroundWindow", UInt, hWnd)
-	}
-	
-  }	
-
+	WinActivate ahk_exe chrome.exe
 }
 
 F4::
@@ -87,6 +77,18 @@ Process, Exist, chrome.exe
 	}
 }
 
+;MR button on my keyboard
+^!F1::
+switchToExplorer(){
+IfWinNotExist, ahk_class CabinetWClass
+	Run, explorer.exe
+GroupAdd, taranexplorers, ahk_class CabinetWClass
+if WinActive("ahk_exe explorer.exe")
+	GroupActivate, taranexplorers, r
+else
+	WinActivate ahk_class CabinetWClass ;you have to use WinActivatebottom if you didn't create a window group.
+}
+
 F9::
 if WinActive("ahk_exe firefox.exe")
 	Send ^{PgUp}
@@ -98,102 +100,171 @@ return
 
 
 
-;*******************************CUSTOM GROUP STUFF*******************************
-;Credits for this F6 stuff goes to this guy on Reddit: 
+;****************************************************CUSTOM GROUP STUFF****************************************************
+;*************************************************F6 GROUP STUFF*************************************************
+;Credits for this F6 stuff goes to GroggyOtter from the AHK subreddit:
 ;https://www.reddit.com/r/AutoHotkey/comments/dbil7u/add_active_window_to_group_and_push_button_to/f241ak3?utm_source=share&utm_medium=web2x
 ;I don't really know how it works, but it's fantastic. Thanks m8.
+;I modified it a teeny tiny bit, plus added the F7 one. It's really nice having this for both F6 and F7.
 ^F6::
-AddWindow()
+AddWindowF6()
 return
 ^!F6::
-RemoveWindow()
-return
-F7::
-NextWindow()
+RemoveWindowF6()
 return
 F6::
-PrevWindow()
+NextWindowF6()
+return
++F6::
+PrevWindowF6()
 return
 
-
-AddWindow(){
-	ToolTip, Added to Group!
+AddWindowF6(){
+	ToolTip, Added to F6 Group!
 	Sleep, 200
 	ToolTip
 	
 	; Get the active window's ID
-	WinGet, thisID, ID, A
+	WinGet, thisIDF6, ID, A
 	; Value to track if ID was found in the group
-	found := False
+	foundF6 := False
 	; Loop through all the IDs
-	for index, value in WindowGroup
+	for indexF6, value in WindowGroupF6
 	{
 		; If the current ID was found inside the array
-		If (value = thisID){
+		If (valueF6 = thisIDF6){
 			; Then mark it as found and break the loop
-			found = True
+			foundF6 = True
 			Break
 		}
 	}
 	
 	; If the ID was never found in the array
-	If (found = False)
+	If (foundF6 = False)
 		; Add it to the array
-		WindowGroup.Push(thisID)
+		WindowGroupF6.Push(thisIDF6)
 	Return
 }
 
-RemoveWindow(){
-	ToolTip, Removed from Group!
+RemoveWindowF6(){
+	ToolTip, Removed from F6 Group!
 	Sleep, 200
 	ToolTip
 	
-	WinGet, thisID, ID, A
-	found := False
-	for index, value in WindowGroup
+	WinGet, thisIDF6, ID, A
+	foundF6 := False
+	for indexF6, value in WindowGroupF6
 	{
 		; Same as the AddWindow function except if a match is found, remove it from the array
-		If (value = thisID){
-			WindowGroup.RemoveAt(index)
+		If (valueF6 = thisIDF6){
+			WindowGroupF6.RemoveAt(indexF6)
 			Break
 		}
 	}
 	Return
 }
 
-NextWindow(){
+NextWindowF6(){
 	; Increment the current window by 1
-	CurrentWin++
+	CurrentWinF6++
 	; If the current window is greater than the number of entries in the array
-	If (CurrentWin > WindowGroup.MaxIndex())
+	If (CurrentWinF6 > WindowGroupF6.MaxIndex())
 		; Then reset it to the lowest index
-		CurrentWin := WindowGroup.MinIndex()
+		CurrentWinF6 := WindowGroupF6.MinIndex()
 	; Now activate the window based on CurrentWin
-	WinActivate, % "ahk_id " WindowGroup[CurrentWin]
+	WinActivate, % "ahk_id " WindowGroupF6[CurrentWinF6]
 	Return
 }
 
-PrevWindow(){
+PrevWindowF6(){
 	; Decrement the current window by 1
-	CurrentWin--
+	CurrentWinF6--
 	; If it's lower than the lowest index, set CurrentWindow to the maxindex
-	If (CurrentWin < WindowGroup.MinIndex())
-		CurrentWin := WindowGroup.MaxIndex()
+	If (CurrentWinF6 < WindowGroupF6.MinIndex())
+		CurrentWinF6 := WindowGroupF6.MaxIndex()
 	; Now activate that window based on CurrentWin
-	WinActivate, % "ahk_id " WindowGroup[CurrentWin]
+	WinActivate, % "ahk_id " WindowGroupF6[CurrentWinF6]
 	Return
 }
 
+;*************************************************F7 GROUP STUFF*************************************************
+^F7::
+AddWindowF7()
+return
+^!F7::
+RemoveWindowF7()
+return
+F7::
+NextWindowF7()
+return
++F7::
+PrevWindowF7()
+return
 
+AddWindowF7(){
+	ToolTip, Added to F7 Group!
+	Sleep, 200
+	ToolTip
+	
+	; Get the active window's ID
+	WinGet, thisIDF7, ID, A
+	; Value to track if ID was found in the group
+	foundF7 := False
+	; Loop through all the IDs
+	for indexF7, value in WindowGroupF7
+	{
+		; If the current ID was found inside the array
+		If (valueF7 = thisIDF7){
+			; Then mark it as found and break the loop
+			foundF7 = True
+			Break
+		}
+	}
+	
+	; If the ID was never found in the array
+	If (foundF7 = False)
+		; Add it to the array
+		WindowGroupF7.Push(thisIDF7)
+	Return
+}
 
-;*********************************************COMMENTED OUT GARBAGE***********************************************
-;~ F6::
-;~ switchToExplorer(){
-;~ IfWinNotExist, ahk_class CabinetWClass
-	;~ Run, explorer.exe
-;~ GroupAdd, taranexplorers, ahk_class CabinetWClass
-;~ if WinActive("ahk_exe explorer.exe")
-	;~ GroupActivate, taranexplorers, r
-;~ else
-	;~ WinActivate ahk_class CabinetWClass ;you have to use WinActivatebottom if you didn't create a window group.
-;~ }
+RemoveWindowF7(){
+	ToolTip, Removed from F7 Group!
+	Sleep, 200
+	ToolTip
+	
+	WinGet, thisIDF7, ID, A
+	foundF7 := False
+	for indexF7, value in WindowGroupF7
+	{
+		; Same as the AddWindow function except if a match is found, remove it from the array
+		If (valueF7 = thisIDF7){
+			WindowGroupF7.RemoveAt(indexF7)
+			Break
+		}
+	}
+	Return
+}
+
+NextWindowF7(){
+	; Increment the current window by 1
+	CurrentWinF7++
+	; If the current window is greater than the number of entries in the array
+	If (CurrentWinF7 > WindowGroupF7.MaxIndex())
+		; Then reset it to the lowest index
+		CurrentWinF7 := WindowGroupF7.MinIndex()
+	; Now activate the window based on CurrentWin
+	WinActivate, % "ahk_id " WindowGroupF7[CurrentWinF7]
+	Return
+}
+
+PrevWindowF7(){
+	; Decrement the current window by 1
+	CurrentWinF7--
+	; If it's lower than the lowest index, set CurrentWindow to the maxindex
+	If (CurrentWinF7 < WindowGroupF7.MinIndex())
+		CurrentWinF7 := WindowGroupF7.MaxIndex()
+	; Now activate that window based on CurrentWin
+	WinActivate, % "ahk_id " WindowGroupF7[CurrentWinF7]
+	Return
+}

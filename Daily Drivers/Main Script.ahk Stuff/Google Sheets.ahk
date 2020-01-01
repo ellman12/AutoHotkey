@@ -4,11 +4,16 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #SingleInstance force
 
-;This script is the profile to help me program in AHK in SciTE4AutoHotkey.
+/*
+;This script is Google Sheets for both Firefox and Chrome.
+;Since they would be almost the same, having two separate scripts would be pointless.
+;If an action is specific to only one browser, I will accommodate for that.
+;The Browser and Sheets scripts are like this too.
+*/
 
 ;****************************************MOUSE ACTIONS***************************************
 
-#If current_profile = "SciTE4AutoHotkey"
+#If current_profile = "Sheets"
 ;Mouse Profile Switch
 ;Left double click
 ^!F23::
@@ -20,11 +25,15 @@ return
 return
 
 ;Mouse G1
-;"Holds" down Shift for scroling horizontally
-F13::
-Send, {Shift down}
-KeyWait, F13
-Send, {Shift up}
+;For scroling horizontally
+F13 & WheelUp::  ; Scroll left.
+ControlGetFocus, fcontrol, A
+SendMessage, 0x114, 0, 0, %fcontrol%, A  ; 0x114 is WM_HSCROLL and the 0 after it is SB_LINELEFT.
+return
+
+F13 & WheelDown::  ; Scroll right.
+ControlGetFocus, fcontrol, A
+SendMessage, 0x114, 1, 0, %fcontrol%, A  ; 0x114 is WM_HSCROLL and the 1 after it is SB_LINERIGHT.
 return
 
 ;Mouse G2
@@ -43,7 +52,9 @@ DllCall("SystemParametersInfo", Int,113, Int,0, UInt,10, Int,1)
 return
 
 ;Mouse G4
+;New browser tab
 F16::
+Send, ^t
 return
 
 ;Mouse G5
@@ -53,11 +64,15 @@ Send, ^{PGDN}
 return
 
 ;Mouse G6
+;Next page in History
 F18::
+Send, !{Right}
 return
 
 ;Mouse G7
+;Close browser tab
 F19::
+Send, ^w
 return
 
 ;Mouse G8
@@ -67,64 +82,89 @@ Send, ^{PGUP}
 return
 
 ;Mouse G9
+;Previous page in History
 F21::
+Send, !{Left}
 return
 
 ;Mouse G10
+;Previous sheet
 F22::
+Send, ^+{PGUP}
 return
 
 ;Mouse G11
-;Pushing F23 (G11) minimizes the current active window
+;Next sheet
 F23::
-WinMinimize, A
+Send, ^+{PGDN}
 return
 
 ;Mouse G12
+;Reopen the last closed tab, and jump to it
 F24::
+Send, ^+t
 return
 
 ;****************************************KEYBOARD ACTIONS***************************************
 ;Keeb G1
-;Previous word part
+;Open delete menu
 ^F13::
-Send, ^/
+Send, ^!-
 return
 
 ;Keeb G2
-;Next word part
+;Reopen the last closed tab, and jump to it
 ^F14::
-Send, ^\
+Send, ^+t
 return
 
 ;Keeb G3
-;Copy
+;Improved Sleep Macro + Manual Enter
 ^F15::
-Send, ^c
+Send, #x
+Sleep, 250
+Send, {Up 2}
+Send, {Right}
+Send, {Down}
 return
 
 ;Keeb G4
-;Cut
+;Open Incognito Window and goes to Google
 ^F16::
-Send, ^x
+if InStr(activeWindowTitle, "Mozilla Firefox") {
+	Send, ^+p
+	Sleep 500
+	Send, google.com{Enter}
+	Send, #{Up}
+	return
+} else if InStr(activeWindowTitle, "Google Chrome") {
+	Send, ^+n
+	Sleep 500
+	Send, google.com{Enter}
+	Send, #{Up}
+	return
+}
 return
 
 ;Keeb G5
-;For switching between tabs
+;Paste without formatting
 ^F17::
-Send, ^{Tab}
+Send, ^+v
 return
 
 ;Keeb G6
-;Paste
+;Automatic Google Lookup
 ^F18::
-Send, ^v
+Send, ^c
+Sleep 80
+Send, ^t
+Send, ^v{Enter}
 return
 
 ;Keeb G7
-;Comment out line
+;Open insert menu
 ^F19::
-Send, ^q
+Send, ^!=
 return
 
 ;Keeb G8
@@ -140,39 +180,51 @@ Send, ^{PGDN}
 return
 
 ;Keeb G10
-;Open a new Incognito Chrome window/tab and goes to google.com
+;Automatic Google Lookup in Incognito
 ^F22::
-Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" -incognito http://www.google.com/
+if InStr(activeWindowTitle, "Mozilla Firefox") {
+	Send, ^c
+	Sleep 80
+	Send, ^+p
+	Sleep 200
+	Send, ^v{Enter}
+	return
+} else if InStr(activeWindowTitle, "Google Chrome") {
+	Send, ^c
+	Sleep 80
+	Send, ^+n
+	Sleep 200
+	Send, ^v{Enter}
+	return
+}
 return
 
 ;Keeb G11
-;Previous paragraph
+;Search the menus in Docs and Sheets
 ^F23::
-Send, ^[
+Send, !/
 return
 
 ;Keeb G12
-;Next paragraph
+;Open browser tab
 ^F24::
-Send, ^]
+Send, ^t
 return
 
 ;Keeb G13
-;Closes a virtual desktop
 !F13::
-Send, ^#{F4}
 return
 
 ;Keeb G14
-;Creates a virtual desktop
+;Previous sheet
 !F14::
-Send, ^#{d}
+Send, ^+{PGUP}
 return
 
 ;Keeb G15
-;Line transpose (switch) with previous
+;Next sheet
 !F15::
-Send, ^t
+Send, ^+{PGDN}
 return
 
 ;Keeb G16
@@ -191,22 +243,6 @@ return
 ;Goes to the virtual desktop to the right
 !F18::
 Send, ^#{Right}
-return
-
-;****************************************MISC SCITE4AUTOHOTKEY ACTIONS***************************************
-;(Ctrl + Backspace) Delete an entire word
-\::
-Send, ^{BackSpace}
-return
-
-;Get the mouse's current position, moves the mouse to the Run button in SciTE, and clicks it.
-;This works more reliably than the janky F5 keyboard shortcut in SciTE.
-;It does this so fast that if you blink, you'll miss it.
-F5::
-MouseGetPos, F5MouseX, F5MouseY 
-MouseMove, 395, 60, 0
-Send, {Click}
-MouseMove, %F5MouseX%, %F5MouseY%, 0
 return
 
 #If

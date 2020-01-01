@@ -4,11 +4,16 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #SingleInstance force
 
-;This script is the profile to help me program in AHK in SciTE4AutoHotkey.
+/*
+;This script is Google Docs for both Firefox and Chrome.
+;Since they would be almost the same, having two separate scripts would be pointless.
+;If an action is specific to only one browser, I will accommodate for that.
+;The Browser and Sheets scripts are like this too.
+*/
 
 ;****************************************MOUSE ACTIONS***************************************
 
-#If current_profile = "SciTE4AutoHotkey"
+#If current_profile = "Docs"
 ;Mouse Profile Switch
 ;Left double click
 ^!F23::
@@ -28,7 +33,9 @@ Send, {Shift up}
 return
 
 ;Mouse G2
+;(Ctrl + Tab) Jump to the Next Open Tab
 F14::
+Send, ^{Tab}
 return
 
 ;Mouse G3
@@ -43,7 +50,9 @@ DllCall("SystemParametersInfo", Int,113, Int,0, UInt,10, Int,1)
 return
 
 ;Mouse G4
+;New browser tab
 F16::
+Send, ^t
 return
 
 ;Mouse G5
@@ -53,11 +62,15 @@ Send, ^{PGDN}
 return
 
 ;Mouse G6
+;Next page in History
 F18::
+Send, !{Right}
 return
 
 ;Mouse G7
+;Close browser tab
 F19::
+Send, ^w
 return
 
 ;Mouse G8
@@ -67,7 +80,9 @@ Send, ^{PGUP}
 return
 
 ;Mouse G9
+;Previous page in History
 F21::
+Send, !{Left}
 return
 
 ;Mouse G10
@@ -81,50 +96,70 @@ WinMinimize, A
 return
 
 ;Mouse G12
+;Reopen the last closed tab, and jump to it
 F24::
+Send, ^+t
 return
 
 ;****************************************KEYBOARD ACTIONS***************************************
 ;Keeb G1
-;Previous word part
 ^F13::
-Send, ^/
 return
 
 ;Keeb G2
-;Next word part
+;Reopen the last closed tab, and jump to it
 ^F14::
-Send, ^\
+Send, ^+t
 return
 
 ;Keeb G3
-;Copy
+;Improved Sleep Macro + Manual Enter
 ^F15::
-Send, ^c
+Send, #x
+Sleep, 250
+Send, {Up 2}
+Send, {Right}
+Send, {Down}
 return
 
 ;Keeb G4
-;Cut
+;Open Incognito Window and goes to Google
 ^F16::
-Send, ^x
+if InStr(activeWindowTitle, "Mozilla Firefox") {
+	Send, ^+p
+	Sleep 500
+	Send, google.com{Enter}
+	Send, #{Up}
+	return
+} else if InStr(activeWindowTitle, "Google Chrome") {
+	Send, ^+n
+	Sleep 500
+	Send, google.com{Enter}
+	Send, #{Up}
+	return
+}
 return
 
 ;Keeb G5
-;For switching between tabs
+;Paste without formatting
 ^F17::
-Send, ^{Tab}
+Send, ^+v
 return
 
 ;Keeb G6
-;Paste
+;Automatic Google Lookup
 ^F18::
-Send, ^v
+Send, ^c
+Sleep 80
+Send, ^t
+Send, ^v{Enter}
 return
 
 ;Keeb G7
-;Comment out line
+;Open New Tab with Google
 ^F19::
-Send, ^q
+Send, ^t
+Send, google.com{Enter}
 return
 
 ;Keeb G8
@@ -140,39 +175,53 @@ Send, ^{PGDN}
 return
 
 ;Keeb G10
-;Open a new Incognito Chrome window/tab and goes to google.com
+;Automatic Google Lookup in Incognito
 ^F22::
-Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" -incognito http://www.google.com/
+if InStr(activeWindowTitle, "Mozilla Firefox") {
+	Send, ^c
+	Sleep 80
+	Send, ^+p
+	Sleep 200
+	Send, ^v{Enter}
+	return
+} else if InStr(activeWindowTitle, "Google Chrome") {
+	Send, ^c
+	Sleep 80
+	Send, ^+n
+	Sleep 200
+	Send, ^v{Enter}
+	return
+}
 return
 
 ;Keeb G11
-;Previous paragraph
+;Search the menus in Docs and Sheets
 ^F23::
-Send, ^[
+Send, !/
 return
 
 ;Keeb G12
-;Next paragraph
+;Open the Dictionary
 ^F24::
-Send, ^]
+Send, ^+y
+Sleep 80
+Send, {Tab 2}
 return
 
 ;Keeb G13
-;Closes a virtual desktop
+;Undo
 !F13::
-Send, ^#{F4}
+Send, ^z
 return
 
 ;Keeb G14
-;Creates a virtual desktop
+;Redo
 !F14::
-Send, ^#{d}
+Send, ^y
 return
 
 ;Keeb G15
-;Line transpose (switch) with previous
 !F15::
-Send, ^t
 return
 
 ;Keeb G16
@@ -193,20 +242,24 @@ return
 Send, ^#{Right}
 return
 
-;****************************************MISC SCITE4AUTOHOTKEY ACTIONS***************************************
+;****************************************MISC DOCS ACTIONS***************************************
 ;(Ctrl + Backspace) Delete an entire word
 \::
 Send, ^{BackSpace}
 return
 
-;Get the mouse's current position, moves the mouse to the Run button in SciTE, and clicks it.
-;This works more reliably than the janky F5 keyboard shortcut in SciTE.
-;It does this so fast that if you blink, you'll miss it.
-F5::
-MouseGetPos, F5MouseX, F5MouseY 
-MouseMove, 395, 60, 0
-Send, {Click}
-MouseMove, %F5MouseX%, %F5MouseY%, 0
+;Correct to
+RAlt::
+Send, {AppsKey}{Down}{Enter}
 return
 
+;Always correct to
+RWin::
+Send, {AppsKey}{Up 3}{Enter}
+return
+
+;Disabling these 2 annoying keyboard shortcuts: Ctrl + +/- (zooming in/out).
+^SC00D::return ;00D	is the scan code for the +/= key.
+^-::return
+=
 #If

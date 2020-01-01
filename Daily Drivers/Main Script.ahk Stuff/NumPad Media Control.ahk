@@ -12,27 +12,7 @@ iCUE and it keeps flipping profiles (modes) constantly, which is annoying as fuc
 as much of my stuff as possible from iCUE to AHK. Text programming is always better than GUI programming (like iCUE).
 */
 
-Loop {
-;The stuff in this loop needs to be running constantly.
-;The script checks if NumLock is enabled or not, so it can do different things depending on if it is enabled or not. The variable is either 1 or 0.
-global NumLockToggled := GetKeyState("NumLock", "T")
-
-;The script checks if ScrollLock is enabled or not, so it can do different things depending on if it is enabled or not. The variable is either 1 or 0.
-global ScrollLockToggled := GetKeyState("ScrollLock", "T")
-
-;This works so much better than having a bunch of ugly NumLockToggled = 1 and ScrollLockToggled = 0 things everywhere
-if (NumLockToggled = 1 and ScrollLockToggled = 0) {
-	NumPadMode := "iTunes"
-} else if (NumLockToggled = 1 and ScrollLockToggled = 1) {
-	NumPadMode := "YouTube"
-} else if (NumLockToggled = 0 and ScrollLockToggled = 0) {
-	NumPadMode := "Normal"
-} else {
-	NumPadMode := "Normal"
-}
-
-}
-
+global master_volume
 
 $Numpad0::
 if (NumPadMode = "iTunes" or NumPadMode = "YouTube") {
@@ -103,7 +83,7 @@ return
 
 $Numpad2::
 if (NumPadMode = "iTunes" or NumPadMode = "YouTube") {
-	SoundSet, -2
+	SoundSet, -%Num2And8Step%
 	return	
 } else if (NumPadMode = "Normal") {
 	Send, {Numpad2}
@@ -112,7 +92,7 @@ if (NumPadMode = "iTunes" or NumPadMode = "YouTube") {
 
 $NumpadDown::
 if (NumPadMode = "iTunes" or NumPadMode = "YouTube") {
-	SoundSet, -2
+	SoundSet, -3
 	return	
 } else if (NumPadMode = "Normal") {
 	Send, {Numpad2}
@@ -147,7 +127,7 @@ if (NumPadMode = "YouTube") {
 }
 return
 
-
+/*
 $NumpadEnter::
 if (NumLockToggled = 1) {
 	SoundSet, -2
@@ -156,6 +136,61 @@ if (NumLockToggled = 1) {
 	return
 }
 return
+*/
+
+/*
+;Some logarithmic volume scaling stuff I was trying. Idk if it really works all that well. Idk where I found it, too.
+NumpadAdd::changeVolume(1)
+NumpadEnter::changeVolume(-1)
+
+changeVolume(ud){
+	static p := 20
+	static lb := 1		; lower bound
+	SoundGet, vol
+	vol := vol * (1 + ud * p / 100)
+	if (vol <= lb && ud < 0)	; Mute if less than lower bound and ud is negative.
+		vol := 0
+	else if (vol == 0 && ud > 0)			; Unmute if vol is 0 and ud is positive.
+		vol := lb		
+	SoundSet, vol
+}
+
+*/
+
+
+
+
+
+f(x)
+{
+return exp(6.908*x)/1000.0
+}
+inv(y)
+{
+return ln(1000.0*y)/6.908
+}
+
+
+
+
+NumpadAdd::
+soundget, v
+p:=inv(v/100.0)+0.02
+nv:=f(p)*100.0
+soundset, nv
+return
+
+
+NumpadEnter::
+soundget, v
+p:=inv(v/100.0)-0.02
+nv:=f(p)*100.0
+soundset, nv
+return
+
+
+
+
 
 
 $Numpad4::
@@ -238,17 +273,17 @@ if (NumPadMode = "YouTube") {
 }
 return
 
-
+/*
 $NumpadAdd::
 if (NumPadMode = "iTunes" or NumPadMode = "YouTube") {
 	SoundSet, +2
 	return	
 } else if (NumPadMode = "Normal") {
-	Send, {NumpadAdd}
+	Send, {+}
 	return
 }
 return
-
+*/
 
 $Numpad7::
 if (NumPadMode = "YouTube") {
@@ -277,7 +312,7 @@ return
 
 $Numpad8::
 if (NumPadMode = "iTunes" or NumPadMode = "YouTube") {
-	SoundSet, +2
+	SoundSet, +%Num2And8Step%
 	return	
 } else if (NumPadMode = "Normal") {
 	Send, {Numpad8}
@@ -287,7 +322,7 @@ return
 
 $NumpadUp::
 if (NumPadMode = "iTunes" or NumPadMode = "YouTube") {
-	SoundSet, +2
+	SoundSet, +3
 	return	
 } else if (NumPadMode = "Normal") {
 	Send, {Numpad8}
@@ -358,4 +393,8 @@ return
 SoundGet, master_volume
 InputBox, master_volume , Input Custom Volume, Input a custom volume. Current volume: %master_volume%., , , , , , , , %master_volume%
 SoundSet, %master_volume%
+return
+
+!NumpadSub::
+InputBox, Num2And8Step, Input Num2 and Num8 step value, Input Num2 and Num8 step value. Current value: %Num2And8Step%., , , , , , , , %Num2And8Step%
 return

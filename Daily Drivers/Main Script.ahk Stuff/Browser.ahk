@@ -4,11 +4,16 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #SingleInstance force
 
-;This script is the profile to help me program in AHK in SciTE4AutoHotkey.
+/*
+;This script is for both Firefox and Chrome.
+;Since they're so similar, I just decided to combine them into one file.
+;If an action is specific to only one browser, I will accommodate for that.
+;The Docs profile is like this too.
+*/
 
 ;****************************************MOUSE ACTIONS***************************************
 
-#If current_profile = "SciTE4AutoHotkey"
+#If current_profile = "Firefox" or current_profile = "Chrome"
 ;Mouse Profile Switch
 ;Left double click
 ^!F23::
@@ -28,13 +33,15 @@ Send, {Shift up}
 return
 
 ;Mouse G2
+;(Ctrl + Tab) Jump to the Next Open Tab
 F14::
+Send, ^{Tab}
 return
 
 ;Mouse G3
-*F15::
 ;While G3 is held, make the mouse pointer faster.
 ;When it's not being held, it's normal speed.
+*F15::
 ;IDK how these things work, but the 17 and 10 are the mouse speeds.
 ;Found this stuff online somewhere.
 DllCall("SystemParametersInfo", Int,113, Int,0, UInt,17, Int,1)
@@ -44,6 +51,7 @@ return
 
 ;Mouse G4
 F16::
+Send, ^t
 return
 
 ;Mouse G5
@@ -53,11 +61,15 @@ Send, ^{PGDN}
 return
 
 ;Mouse G6
+;Next page in History
 F18::
+Send, !{Right}
 return
 
 ;Mouse G7
+;Close browser tab
 F19::
+Send, ^w
 return
 
 ;Mouse G8
@@ -67,7 +79,9 @@ Send, ^{PGUP}
 return
 
 ;Mouse G9
+;Previous page in History
 F21::
+Send, !{Left}
 return
 
 ;Mouse G10
@@ -81,50 +95,50 @@ WinMinimize, A
 return
 
 ;Mouse G12
+;Reopen the last closed tab, and jump to it
 F24::
+Send, ^+t
 return
 
 ;****************************************KEYBOARD ACTIONS***************************************
 ;Keeb G1
-;Previous word part
 ^F13::
-Send, ^/
 return
 
 ;Keeb G2
-;Next word part
+;Reopen the last closed tab, and jump to it
 ^F14::
-Send, ^\
+Send, ^+t
 return
 
 ;Keeb G3
-;Copy
+;Improved Sleep Macro + Manual Enter
 ^F15::
-Send, ^c
-return
-
-;Keeb G4
-;Cut
-^F16::
-Send, ^x
+Send, #x
+Sleep, 250
+Send, {Up 2}
+Send, {Right}
+Send, {Down}
 return
 
 ;Keeb G5
-;For switching between tabs
 ^F17::
-Send, ^{Tab}
 return
 
 ;Keeb G6
-;Paste
+;Automatic Google Lookup
 ^F18::
-Send, ^v
+Send, ^c
+Sleep 80
+Send, ^t
+Send, ^v{Enter}
 return
 
 ;Keeb G7
-;Comment out line
+;Open New Tab with Google
 ^F19::
-Send, ^q
+Send, ^t
+Send, google.com{Enter}
 return
 
 ;Keeb G8
@@ -139,22 +153,16 @@ return
 Send, ^{PGDN}
 return
 
-;Keeb G10
-;Open a new Incognito Chrome window/tab and goes to google.com
-^F22::
-Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" -incognito http://www.google.com/
-return
-
 ;Keeb G11
-;Previous paragraph
+;Close browser tab
 ^F23::
-Send, ^[
+Send, ^w
 return
 
 ;Keeb G12
-;Next paragraph
+;Open browser tab
 ^F24::
-Send, ^]
+Send, ^t
 return
 
 ;Keeb G13
@@ -170,9 +178,9 @@ Send, ^#{d}
 return
 
 ;Keeb G15
-;Line transpose (switch) with previous
+;Meaning + Enter (for defining words on Google)
 !F15::
-Send, ^t
+Send, {Space}meaning{Enter}
 return
 
 ;Keeb G16
@@ -193,20 +201,46 @@ return
 Send, ^#{Right}
 return
 
-;****************************************MISC SCITE4AUTOHOTKEY ACTIONS***************************************
-;(Ctrl + Backspace) Delete an entire word
-\::
-Send, ^{BackSpace}
+#If current_profile = "Firefox"
+
+;Keeb G4
+;Open Incognito Window and goes to Google (Firefox)
+^F16::
+Send, ^+p
+Sleep 500
+Send, google.com{Enter}
+Send, #{Up}
 return
 
-;Get the mouse's current position, moves the mouse to the Run button in SciTE, and clicks it.
-;This works more reliably than the janky F5 keyboard shortcut in SciTE.
-;It does this so fast that if you blink, you'll miss it.
-F5::
-MouseGetPos, F5MouseX, F5MouseY 
-MouseMove, 395, 60, 0
-Send, {Click}
-MouseMove, %F5MouseX%, %F5MouseY%, 0
+;Keeb G10 (Firefox)
+;Automatic Google Lookup in Incognito (Firefox)
+^F22::
+Send, ^c
+Sleep 80
+Send, ^+p
+Sleep 200
+Send, ^v{Enter}
+return
+
+#If current_profile = "Chrome"
+
+;Keeb G4 (Chrome)
+;Open Incognito Window and goes to Google (Chrome)
+^F16::
+Send, ^+n
+Sleep 500
+Send, google.com{Enter}
+Send, #{Up}
+return
+
+;Keeb G10 (Chrome)
+;Automatic Google Lookup in Incognito (Chrome)
+^F22::
+Send, ^c
+Sleep 80
+Send, ^+n
+Sleep 200
+Send, ^v{Enter}
 return
 
 #If
