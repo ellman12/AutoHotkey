@@ -4,6 +4,8 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #SingleInstance force
 
+SetTitleMatchMode, 2
+
 ;This script was made to automate putting when I work in Google Calendar.
 ;The only things the user has to do is input the data, and pick the color for each event they want (when each event is being made).
 
@@ -51,7 +53,7 @@ return
 
 ;Kills the script. Very, VERY useful.
 F6::
-ExitApp
+Reload
 return
 
 ;This is the Debug Box. It shows what values variables have. VERY useful when debugging.
@@ -98,6 +100,8 @@ Loop {
 		break
 }
 
+WinActivate, Google Calendar - December 2019 - Mozilla Firefox
+
 ;This while loop is used for creating the events, and the right amount of them
 while (currentArrayIndex < totalAmountOfArrayIndexes) {
 	
@@ -107,99 +111,101 @@ endTimeValue := endTimeArray[currentArrayIndex]
 
 ;The part of the script that takes the inputted data and makes the event
 
-;Goes to inputted date
-Send, G
-Sleep, 800
-Send, %dateValue%
-Sleep, 800
-Send, {Enter}
-Sleep 800
-Send, D
-Sleep 800
-
-;Starts creating the event
-Send, C
+; Starts creating the event
+Send, c
 Sleep, 1000
 Send, Working %startTimeValue% to %endTimeValue%
 Sleep 1000
-Send, {Tab 8}
+Send, {Tab 2}
 Sleep 1000
-Send, {Enter}
-Sleep 650
 
-;Names the event
-Send, ^a
-Sleep 75
-Send, Working %startTimeValue% to %endTimeValue%
-Sleep 125
+;Inserts the date and time into the event
+Send, %dateValue%
+Sleep 500
+Send, {Tab}
+Sleep 500
+Send, %startTimeValue%
+Sleep 500
+Send, {Tab}
+Sleep 500
+Send, %endTimeValue%
+Sleep 500
 
 ;Creates the notifications
-Send, {Tab 18}
-Sleep 100
+;~ Send, {Tab 14}
+Send, {Tab 30}
+Sleep 500
+
+;Commented out on 11/30/2019 at 11:24 AM because I discovered that Google Calendar can insert these notification times automatically
+/*
+;10 hours
 Send, 10
-Sleep 100
+Sleep 500
 Send, {Tab}
-Sleep 100
-Send, H
-Sleep 100
+Sleep 500
+Send, h
+Sleep 500
 Send, {Tab 2}
-Sleep 100
+Sleep 500
 Send, {Enter}
-Sleep 100
+Sleep 500
+
+;5 hours
 Send, {Tab}
-Sleep 100
+Sleep 500
 Send, 5
-Sleep 100
+Sleep 500
 Send, {Tab}
-Sleep 100
-Send, H
-Sleep 100
-Send, {Tab 2}
-Sleep 100
+Sleep 500
+Send, h ;;
+Sleep 500
+Send, {Tab 6}
+Sleep 500
 Send, {Enter}
-Sleep 100
+Sleep 500
+
+;2 hours
 Send, {Tab}
-Sleep 100
+Sleep 500
 Send, 2
-Sleep 100
+Sleep 500
 Send, {Tab}
-Sleep 100
-Send, H
-Sleep 100
-Send, {Tab 2}
-Sleep 100
+Sleep 500
+Send, h
+Sleep 500
+Send, {Tab 10}
+Sleep 500
 Send, {Enter}
-Sleep 100
+Sleep 500
+
+;40 minutes	
 Send, {Tab}
-Sleep 100
+Sleep 500
 Send, 40
-Sleep 100
+Sleep 500
 Send, {Tab}
-Sleep 100
-Send, M
-Sleep 100
+Sleep 500
+Send, m
+Sleep 500
+*/
 
-;Allowing the user to pick the event color they want
-Send, {Tab 3}
-Sleep 100
+; Allowing the user to pick the event color they want
+;~ Send, {Tab 15}
+;~ Sleep 500
 Send, {Space}
-Sleep 100
+Sleep 500
 
-;At this point, the script waits for the user to press down (what the "D" means) Enter, thus telling the script they have picked the event color they want.
+; At this point, the script waits for the user to press down (what the "D" means) Enter, thus telling the script they have picked the event color they want.
 KeyWait Enter, D
 
-;These 33 Shift+Tabs are to get the Save button selected, and the Enter "clicks" it, thus creating the event in Google Calendar.
+; These 33 Shift+Tabs are to get the Save button selected, and the Enter "clicks" it, thus creating the event in Google Calendar.
 Send, +{Tab 33}
 Sleep 2000
 Send, {Enter}
-Sleep 2000
-
-;Finishes up the script by returning back to month view; could possibly be removed...?
-Send, M
 Sleep 2000
 
 ;For the while loop
 currentArrayIndex++
 
 }
-return
+ExitApp

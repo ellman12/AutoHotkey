@@ -9,7 +9,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 ;****************************************MOUSE ACTIONS***************************************
 
-#If current_profile = "OSRS"
+#If current_profile = "RuneScape"
 ;Mouse Profile Switch
 ^!F23::
 return

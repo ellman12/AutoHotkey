@@ -27,7 +27,7 @@ MsgBox, 0, Press OK/Enter to start making the event, Scheduled Date: %Scheduled_
 ;The part of the script that takes the inputted data and makes the event
 
 ; Goes to inputted date
-Send, G
+Send, g
 Sleep, 800
 Send, %Scheduled_Date%
 Sleep, 800
@@ -37,7 +37,7 @@ Send, D
 Sleep 800
 
 ; Starts creating the event
-Send, C
+Send, c
 Sleep, 1000
 Send, Working %Starting_Time% to %Ending_Time%
 Sleep 1000
@@ -102,12 +102,15 @@ Send, {Enter}
 Sleep 2000
 
 ; Finishes up the script by returning back to month view; could possibly be removed...?
-Send, M
+Send, m
 
 ; End of script
 return
 
 
+F6::
+ExitApp
+return
 
 ;These 8 hotstrings are for making my life easier when inputting data; they make it so I don't have to type as much when inputting data. You only have to type either "a" or "p" and it does the rest for you.
 :*:a::

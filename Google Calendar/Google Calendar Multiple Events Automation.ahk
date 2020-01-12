@@ -28,35 +28,20 @@ currentArrayIndex = 1 ;Starting value.
 ;How many entries there are once the user finishes inputting data. Used when the script starts making the events so it knows when to stop.
 totalAmountOfArrayIndexes = 1 ;Starting value.
 
-;These 8 hotstrings are for making my life easier when inputting data; they make it so I don't have to type as much when inputting data. You only have to type either "a" or "p" and it does the rest for you.
-:*:a::
-Send, AM
-return
-:*:am::
-Send, AM
-return
-:*:A::
-Send, AM
-return
-:*:am::
-Send, AM
-return
-:*:p::
-Send, PM
-return
-:*:pm::
-Send, AM
-return
-:*:P::
-Send, PM
-return
-:*:pm::
-Send, PM
-return
+;These hotstrings are for making my life easier when inputting data.
+;They only work in the Starting and Ending Time InputBoxes
+#IfWinActive Starting Time
+:*:am::AM
+:*:p::PM
+
+#IfWinActive Ending Time
+:*:a::AM
+:*:p::PM
+#If
 
 ;Kills the script. Very, VERY useful.
 F6::
-ExitApp
+Reload
 return
 
 ;This is the Debug Box. It shows what values variables have. VERY useful when debugging.
@@ -83,20 +68,23 @@ Loop {
 	customNamesArray.Push(inputBoxEventName)
 	
 	;Brings up the thing that allows the user to input a date
-	InputBox, Scheduled_Date, Scheduled Date, Enter a month and a day. Previous entry was: %Scheduled_Date%., 200, 325
+	InputBox, Scheduled_Date, Scheduled Date, Enter a month and a day. Previous entry was: %Scheduled_Date%.
 
 	;Putting data in the array
 	dateArray.Push(Scheduled_Date)
 	
 	;Input the scheduled starting time for a single shift
-	InputBox, Starting_Time, Starting Time, Enter the starting time for "%inputBoxEventName%" on %Scheduled_Date%. Previous entry was: %Starting_Time%., 200, 430
+	InputBox, Starting_Time, Starting Time, Enter the starting time for "%inputBoxEventName%" on %Scheduled_Date%. Type "all day" to mark the event as all day. Previous entry was: %Starting_Time%., 200, 430
 	
 	;Putting data in the array
 	startTimeArray.Push(Starting_Time)
 
+	;If the event is marked as "all day", it won't bother bringing up the end time InputBox
+	if (Starting_Time != "All day") {
 	;Input the scheduled ending time for a single shift
 	InputBox, Ending_Time, Ending Time, Enter the ending time for "%inputBoxEventName%" on %Scheduled_Date%. Previous entry was: %Ending_Time%., 200, 430
-
+	}
+	
 	;Putting data in the array
 	endTimeArray.Push(Ending_Time)
 	
@@ -111,7 +99,8 @@ Loop {
 
 ;This while loop is used for creating the events, and the right amount of them
 while (currentArrayIndex < totalAmountOfArrayIndexes) {
-	
+
+;Used for each time this while loop goes through
 dateValue := dateArray[currentArrayIndex]
 startTimeValue := startTimeArray[currentArrayIndex]
 endTimeValue := endTimeArray[currentArrayIndex]
@@ -119,99 +108,123 @@ customNamesValue := customNamesArray[currentArrayIndex]
 
 ;The part of the script that takes the inputted data and makes the event
 
-;Goes to inputted date
-Send, G
-Sleep, 800
-Send, %dateValue%
-Sleep, 800
-Send, {Enter}
-Sleep 800
-Send, D
-Sleep 800
-
-;Starts creating the event
-Send, C
+; Starts creating the event
+Send, c
 Sleep, 1000
-Send, %customNamesValue% %startTimeValue% to %endTimeValue%
-Sleep 1000
-Send, {Tab 8}
-Sleep 1000
-Send, {Enter}
-Sleep 650
+if (startTimeValue = "all day") {
 
-;Names the event
-Send, ^a
-Sleep 75
+Send, %customNamesValue%
+Sleep 150
+Send, {Tab 2}
+Sleep 150
+Send, %dateValue%
+Sleep 150
+Send, {Tab 5}
+Sleep 150
+Send, {Space}
+Sleep 150
+
+} else {
+
 Send, %customNamesValue% %startTimeValue% to %endTimeValue%
-Sleep 125
+Sleep 1000
+Send, {Tab 2}
+Sleep 1000
+}
+
 
 ;Creates the notifications
-Send, {Tab 18}
-Sleep 100
-Send, 10
-Sleep 100
-Send, {Tab}
-Sleep 100
-Send, H
-Sleep 100
-Send, {Tab 2}
-Sleep 100
-Send, {Enter}
-Sleep 100
-Send, {Tab}
-Sleep 100
-Send, 5
-Sleep 100
-Send, {Tab}
-Sleep 100
-Send, H
-Sleep 100
-Send, {Tab 2}
-Sleep 100
-Send, {Enter}
-Sleep 100
-Send, {Tab}
-Sleep 100
-Send, 2
-Sleep 100
-Send, {Tab}
-Sleep 100
-Send, H
-Sleep 100
-Send, {Tab 2}
-Sleep 100
-Send, {Enter}
-Sleep 100
-Send, {Tab}
-Sleep 100
-Send, 40
-Sleep 100
-Send, {Tab}
-Sleep 100
-Send, M
-Sleep 100
+if (startTimeValue = "all day") {
 
-;Allowing the user to pick the event color they want
-Send, {Tab 3}
-Sleep 100
+Send, {Tab 10}
+Sleep 150
+Send, {Enter}
+Sleep 150
+Send, {Tab 6}
+Sleep 150
 Send, {Space}
-Sleep 100
-
-;At this point, the script waits for the user to press down (what the "D" means) Enter, thus telling the script they have picked the event color they want.
+ 
+; At this point, the script waits for the user to press down (what the "D" means) Enter, thus telling the script they have picked the event color they want.
 KeyWait Enter, D
 
-;These 33 Shift+Tabs are to get the Save button selected, and the Enter "clicks" it, thus creating the event in Google Calendar.
+; These 19 Shift+Tabs are to get the Save button selected, and the Enter "clicks" it, thus creating the event in Google Calendar.
+Send, +{Tab 19}
+Sleep 2000
+Send, {Enter}
+Sleep 2000
+
+} else {
+	
+;Inserts the date and time into the event
+Send, %dateValue%
+Sleep 150
+Send, {Tab}
+Sleep 150
+Send, %startTimeValue%
+Sleep 150
+Send, {Tab}
+Sleep 150
+Send, %endTimeValue%
+Sleep 150
+
+Send, {Tab 14}
+Sleep 150
+
+;10 hours
+Send, 10
+Sleep 150
+Send, {Tab}
+Sleep 150
+Send, h
+Sleep 150
+Send, {Tab 2}{Enter}
+Sleep 150
+
+;5 hours
+Send, {Tab}
+Sleep 150
+Send, 5{Tab}h
+Sleep 150
+Send, {Tab 2}
+Sleep 150
+Send, {Enter}
+Sleep 150
+
+;2 hours
+Send, {Tab}
+Sleep 150
+Send, 2
+Sleep 150
+Send, {Tab}
+Sleep 150
+Send, h
+Sleep 150
+Send, {Tab 2}{Enter}
+Sleep 150
+Send, {Tab}
+Sleep 150
+Send, 40{Tab}m
+Sleep 150
+
+; Allowing the user to pick the event color they want
+Send, {Tab 3}
+Sleep 150
+Send, {Space}
+Sleep 150
+
+; At this point, the script waits for the user to press down (what the "D" means) Enter, thus telling the script they have picked the event color they want.
+KeyWait Enter, D
+
+; These 33 Shift+Tabs are to get the Save button selected, and the Enter "clicks" it, thus creating the event in Google Calendar.
 Send, +{Tab 33}
 Sleep 2000
 Send, {Enter}
 Sleep 2000
+}
 
-;Finishes up the script by returning back to month view; could possibly be removed...?
-Send, M
-Sleep 2000
 
 ;For the while loop
 currentArrayIndex++
-
 }
+
 return

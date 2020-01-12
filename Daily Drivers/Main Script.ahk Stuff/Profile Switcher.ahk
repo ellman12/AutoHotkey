@@ -24,8 +24,8 @@ if InStr(activeWindowTitle, "Mozilla Firefox")
 		current_profile = Sheets
 	else
 		current_profile = Firefox
-else if InStr(activeWindowTitle, "iTunes") or InStr(activeWindowTitle, "MiniPlayer")
-	current_profile = iTunes
+;~ else if InStr(activeWindowTitle, "MusicBee")
+	;~ current_profile = MusicBee
 else if InStr(activeWindowTitle, "Google Chrome")
 	if InStr(activeWindowTitle, " - Google Docs")
 		current_profile = Docs
@@ -35,8 +35,8 @@ else if InStr(activeWindowTitle, "Google Chrome")
 		current_profile = Chrome
 else if InStr(activeWindowTitle, "SciTE4AutoHotkey")
 	current_profile = SciTE4AutoHotkey
-else if InStr(activeWindowTitle, "RuneLite")
-	current_profile = OSRS
+else if InStr(activeWindowTitle, "RuneLite") or InStr(activeWindowTitle, "RuneScape")
+	current_profile = RuneScape
 else
 	current_profile = Default
 return current_profile

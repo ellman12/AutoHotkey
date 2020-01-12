@@ -90,9 +90,7 @@ return
 return
 
 ;Keeb G2
-;Open iTunes
 ^F14::
-Run, C:\Program Files\iTunes\iTunes.exe
 return
 
 ;Keeb G3

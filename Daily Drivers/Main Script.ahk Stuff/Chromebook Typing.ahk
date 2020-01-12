@@ -23,9 +23,9 @@ Chromebook_Typing := false
 Chromebook_Typing := !Chromebook_Typing
 
 if (Chromebook_Typing = "1") {
-	MsgBox, 64, Chromebook Typing is ENABLED, Chromebook Typing is ENABLED, 0.5
+	MsgBox, 64, Chromebook Typing is ENABLED, Chromebook Typing is ENABLED, 0.3
 } else if (Chromebook_Typing = "0") {
-	MsgBox, 64, Chromebook Typing is DISABLED, Chromebook Typing is DISABLED, 0.5	
+	MsgBox, 64, Chromebook Typing is DISABLED, Chromebook Typing is DISABLED, 0.3
 } else {
 	MsgBox, 16, You shouldn't be seeing this., This is an else statement error MsgBox for Chromebook Typing. If you see this`, it's probably an error or something lol.
 }
@@ -164,6 +164,26 @@ return
 $z::
 MouseMove, -1920, 540, 0
 SendInput, z
+return
+
+$Space::
+MouseMove, -1920, 540, 0
+SendInput, {Space}
+return
+
+$BackSpace::
+MouseMove, -1920, 540, 0
+SendInput, {BackSpace}
+return
+
+$Delete::
+MouseMove, -1920, 540, 0
+SendInput, {Delete}
+return
+
+$Enter::
+MouseMove, -1920, 540, 0
+SendInput, {Enter}
 return
 
 #If

@@ -61,7 +61,7 @@ global ScrollLockToggled := GetKeyState("ScrollLock", "T")
 
 ;This works so much better than having a bunch of ugly NumLockToggled = 1 and ScrollLockToggled = 0 things everywhere
 if (NumLockToggled = 1 and ScrollLockToggled = 0) {
-	global NumPadMode = "iTunes"
+	global NumPadMode = "MusicBee"
 } else if (NumLockToggled = 1 and ScrollLockToggled = 1) {
 	global NumPadMode = "YouTube"
 } else if (NumLockToggled = 0 and ScrollLockToggled = 0) {
@@ -78,7 +78,7 @@ if (NumLockToggled = 1 and ScrollLockToggled = 0) {
 
 #Include, %A_ScriptDir%\ApplicationSwitcher.ahk
 #Include, %A_ScriptDir%\AutoCapitalize.ahk
-;~ #Include, %A_ScriptDir%\AutoCorrect.ahk
+#Include, %A_ScriptDir%\AutoCorrect.ahk
 #Include, %A_ScriptDir%\Browser.ahk
 #Include, %A_ScriptDir%\Chromebook Typing.ahk
 #Include, %A_ScriptDir%\Default.ahk
@@ -153,23 +153,25 @@ return
 Reload
 return
 
-;Saves the current file and saves and runs Main Script.ahk (or whatever the first file is in SciTE).
+;Saves the current file and saves and runs Main Script.ahk (or whatever the first file is in SciTE). Then it returns to the previous file.
 !#r::
 Send, ^s
-Sleep 500
+Sleep 100
 Send, !1
-Sleep 500
+Sleep 100
 Send, ^s
-Sleep 500
+Sleep 100
 Send, !t
-Sleep 500
+Sleep 100
 Send, r
-Sleep 500
+Sleep 150
 Send, {Enter}
+Sleep 50
+Send, ^{Tab}
 return
 
 ;Sends all 4 modifier keys, so I don't have to press them automatically if one gets stuck
-Pause::
+*Pause::
 Send, {Ctrl}
 Sleep 50
 Send, {Alt}
@@ -213,20 +215,25 @@ Run, C:\Program Files\AutoHotkey\WindowSpy.ahk
 return
 
 ;M1 copies
-^F1::
+^F2::
 Send, ^c
 return
 
 ;M2 cuts
-#F1::
+#F2::
 Send ^x
 return
 
 ;M3 pastes
-!F1::
+!F2::
 Send ^v
 return
 
+
+;Shows you what profile you're currently in. Can also be used for debugging.
+^#BackSpace::
+MsgBox, 0, Current Profile, Current profile: %current_profile%`n`nNumPadMode: %NumPadMode%
+return
 
 ;----------------------------------------------------------------------
 ;*****************************EXPERIMENTAL*****************************
@@ -327,3 +334,8 @@ return
 
 ::its::it's
 ::itss::its
+::git::Git
+:*:github::GitHub
+:*:frc::FRC
+:*:elliott::Elliott
+:*:ducharme::DuCharme
