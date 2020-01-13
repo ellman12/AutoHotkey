@@ -59,6 +59,8 @@ if (NumLockToggled = 1 and ScrollLockToggled = 0) {
 	global NumPadMode = "YouTube"
 } else if (NumLockToggled = 0 and ScrollLockToggled = 0) {
 	global NumPadMode = "Normal"
+} else if (NumLockToggled = 0 and ScrollLockToggled = 1) {
+	global NumPadMode = "Dumbed-Down"
 } else {
 	global NumPadMode = "Normal"
 }
@@ -258,6 +260,16 @@ KeyWait, RButton
 DllCall("SystemParametersInfo", Int,113, Int,0, UInt,10, Int,1)
 return
 
+;~ ;If Scroll Lock is on, Up and Down send Up and Down 10 times per each keystroke.
+;~ #If ScrollLockToggled = 1
+;~ Up::
+;~ Send, {Up 10}
+;~ return
+
+;~ Down::
+;~ Send, {Down 10}
+;~ return
+;~ #If
 
 ;-------------------------------------------------------------------------------------------
 ;Anything in this section is temporary, and was added in to perform a simple and quick task.

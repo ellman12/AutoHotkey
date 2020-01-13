@@ -14,7 +14,6 @@ as much of my stuff as possible from iCUE to AHK. Text programming is always bet
 
 global master_volume
 
-
 ;Log volume scaling stuff for NumpadAdd and NumpadEnter. IDK where I found this, nor do I know how it works.
 f(x) {
 return exp(6.908*x)/1000.0
@@ -465,6 +464,166 @@ return
 
 $NumpadSub::
 Send, {NumpadSub}
+return
+
+}
+
+;If NumLock = Off and ScrollLock = On. The brackets are for condensing the code.
+;This mode makes watching videos easier on sites other than YouTube
+; (and that don't have as many keyboard shortcuts like YouTube does).
+;Examples are on online education websites like D2L Brightspace, websites for
+;pirating movies, etc. These sites that have video players don't typically have video
+; players that are all that great. Thus, this NumPadMode was born.
+;The reason it's called "Dumbed-Down" is because, well, it's a dumbed-down version
+; of the YouTube NumPadMode.
+#If NumPadMode = "Dumbed-Down"
+{
+
+;No function.
+$Numpad0::
+return
+
+$NumpadIns::
+return
+
+
+;Toggle captions.
+$NumpadDot::
+Send, c
+return
+
+$NumpadDel::
+Send, c
+return
+
+
+;Mute.
+$Numpad1::
+Send, m
+return
+
+$NumpadEnd::
+Send, m
+return
+
+
+;Turns the volume down according to the "Num2And8Step" variable.
+$Numpad2::
+SoundSet, -%Num2And8Step%
+return
+
+$NumpadDown::
+SoundSet, -%Num2And8Step%
+return
+
+
+;Send f to make the YouTube video full screen
+$Numpad3::
+Send, f
+return
+
+$NumpadPgdn::
+Send, f
+return
+
+
+;Increase (Add) and decrease (Enter) the volume with some logarithmic volume scaling stuff.
+$NumpadAdd::
+soundget, v
+p:=inv(v/100.0)+0.02
+nv:=f(p)*100.0
+soundset, nv
+return
+
+
+$NumpadEnter::
+soundget, v
+p:=inv(v/100.0)-0.02
+nv:=f(p)*100.0
+soundset, nv
+return
+
+
+;Backwards five seconds.
+$Numpad4::
+Send, {Left}
+return
+
+$NumpadLeft::
+Send, {Left}
+return
+
+
+;Play/pause
+$Numpad5::
+Send, {Space}
+return
+
+;This weird key goes with Numpad5.
+;I never knew about this key until trying to figure out why Numpad5 wouldn't send "5" in Normal mode.
+;It doesn't appear to have any function (at least in Windows 10).
+$NumpadClear::
+Send, {Space}
+return
+
+
+;Forward five seconds.
+$Numpad6::
+Send, {Right}
+return
+
+$NumpadRight::
+Send, {Right}
+return
+
+
+;Backwards ten seconds.
+$Numpad7::
+Send, {Left 2}
+return
+
+$NumpadHome::
+Send, {Left 2}
+return
+
+
+;Turns the volume up according to the "Num2And8Step" variable.
+$Numpad8::
+SoundSet, +%Num2And8Step%
+return
+
+$NumpadUp::
+SoundSet, +%Num2And8Step%
+return
+
+
+;Forwards ten seconds.
+$Numpad9::
+Send, {Right 2}
+return
+
+$NumpadPgup::
+Send, {Right 2}
+return
+
+
+;Lower volume by 1
+$NumpadDiv::
+SoundSet, -1
+return
+
+
+;Raises volume by 1
+$NumpadMult::
+SoundSet, +1
+return
+
+
+;Shows the current and exact master volume.
+$NumpadSub::
+SoundGet, master_volume
+master_volume := Round(master_volume, 2)
+MsgBox, 0, Master Volume, Master volume is %master_volume% percent., 0.39
 return
 
 }

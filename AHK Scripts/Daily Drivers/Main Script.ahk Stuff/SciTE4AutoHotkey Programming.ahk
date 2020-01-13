@@ -57,7 +57,9 @@ F18::
 return
 
 ;Mouse G7
+;Close current tab.
 F19::
+Send, ^w
 return
 
 ;Mouse G8
