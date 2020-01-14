@@ -43,7 +43,9 @@ DllCall("SystemParametersInfo", Int,113, Int,0, UInt,10, Int,1)
 return
 
 ;Mouse G4
+;(Ctrl + O) Open a file(s)
 F16::
+Send, ^o
 return
 
 ;Mouse G5

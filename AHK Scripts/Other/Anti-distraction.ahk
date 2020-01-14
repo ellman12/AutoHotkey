@@ -1,33 +1,113 @@
-﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
-; #Warn  ; Enable warnings to assist with detecting common errors.
-SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
-SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
-#SingleInstance force
+;Credit for  this script: u/AutoHotYeet of the R/AutoHotkey subreddit
+;https://www.reddit.com/r/AutoHotkey/comments/eoay4f/need_help_with_antidistraction_script/feecalp?utm_source=share&utm_medium=web2x
+;I origianlly had the idea, but couldn't figure out how to do it.
+;This amazing person helped me out by making this whole script.
+;IDK how the Gui stuff works, but otherwise it's pretty simple.
+;I made some slight modifications: the ^w or !F4 stuff, and also
+; I added some comments.
 
 ;This script is for helping me to focus, and preventing me from getting distracted.
-;If it detects an active window title that is not in the group of accepted window
+;If it detects an active window title that is not in the list of accepted window
 ; titles, it smites it by sending ^w if it's a browser, or Alt + F4 otherwise.
 ;Thus keeping me off of and away from the distraction.
 
+#NoEnv
+SetBatchLines -1
+SendMode Input 
+SetWorkingDir %A_ScriptDir%
+#SingleInstance Force
 
-;According to the AHK documentation: "2: A window's title can contain WinTitle anywhere inside it to be a match."
+SafeWindows := []
+
+Gui, Font, S8, Verdana
+Gui, +AlwaysOnTop +HWNDGuiHWND +Delimiter`n
+Gui, Add, Text,  w200, Safe Windows (CTRL+F11)
+Gui, Add, Listbox, hwndSafeWindowsLB AltSubmit vSelectedSafeWindow h200 wp
+Gui, Add, Button, wp gDelete, Delete Selected Item from List
+Gui, Add, Button, wp hwndStartStop gStartStop, Enable Anti-Distraction
+
+Gui, Show, , Anti-Distraction
+
+Return
+
+
 SetTitleMatchMode, 2
 
-Loop {
-;Title of active window.
-WinGetActiveTitle, activeWindowTitle ;AD = Anti-distraction.
 
-GroupClose, ADGoodGroup, A
+StartStop:
+	SetTimer, AntiDistraction, % (Toggle := !Toggle) ? 1000 : "OFF"
+	GuiControl,, % StartStop, % (Toggle) ? "Disable Anti-Distraction" : "Enable Anti-Distraction"
+Return
+
+AntiDistraction:
+	WinGetTitle, Title, A
+	WinGet, HWND, ID, A
+
+	If !InArray(Title, SafeWindows) AND (HWND != GUIHwnd) {
+		;~ WinMinimize, A
+		if InStr(Title, "Mozilla Firefox") {
+			Send, ^w
+			return
+		} else if InStr(Title, "Google Chrome") {
+			Send, ^w
+			return
+		} else {
+			Send, !{F4}
+			return
+		}
+	}
+Return
+
+;Add items to the ListBox (list of windows that are OK).
+^F11::
+	WinGetTitle, Title, A
+
+	If InArray(Title, SafeWindows){
+		MessageBox("This item is already in the Safe Windows list")
+		Return
+	}
+
+	SafeWindows.Push(Title)
+
+	ArrayToLB(SafeWindows, SafeWindowsLB)
+Return
+
+;Checks if an item is already in an array
+InArray(Value, Array){
+	For k, v in Array
+		If (v == Value)
+			Return True
+	Return False
 }
 
-;ADGoodGroup is the window group of windows that are OK.
-^F10::
-GroupAdd, ADGoodGroup, %activeWindowTitle%
-return
+;Updates a ListBox to be set to the value of an array
+ArrayToLB(Array, LB){
+	For Key, Value in Array
+		LBItems .= Value "`n"
 
-;ADBadGroup is the window group of windows that are not OK
-; and that will be smote as soon as they are spotted by the script.
+	GuiControl,, % LB, % "`n"
+	GuiControl,, % LB, % LBItems
+}
 
-;~ ^!F10::
-;~ GroupClose, ADBadGroup, A
-;~ return
+;Delete items from the ListBox
+Delete:
+	Gui, Submit, NoHide
+
+	If !(SelectedSafeWindow){
+		MessageBox("Please select an item to Delete")
+		Return
+	}
+	
+	SafeWindows.Remove(SelectedSafeWindow)
+	ArrayToLB(SafeWindows, SafeWindowsLB)
+Return
+
+MessageBox(Message){
+	Gui -AlwaysOnTop +Disabled
+	MsgBox % Message
+	Gui +AlwaysOnTop -Disabled
+}
+
+GuiClose:
+	ExitApp
+Return
