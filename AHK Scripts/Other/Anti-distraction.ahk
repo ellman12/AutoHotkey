@@ -28,6 +28,9 @@ Gui, Add, Button, wp hwndStartStop gStartStop, Enable Anti-Distraction
 
 Gui, Show, , Anti-Distraction
 
+;Used for showing/hiding the GUI.
+GuiVisible := 1
+
 Return
 
 
@@ -70,7 +73,22 @@ Return
 	SafeWindows.Push(Title)
 
 	ArrayToLB(SafeWindows, SafeWindowsLB)
-Return
+return
+
+;Show/hide the GUI.
+!F11::
+
+;Toggle the variable.
+GuiVisible := !GuiVisible
+
+	if GuiVisible {
+		Gui, Hide
+		return
+	} else {
+		Gui, Show
+		return
+	}
+return
 
 ;Checks if an item is already in an array
 InArray(Value, Array){
