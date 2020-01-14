@@ -46,8 +46,10 @@ AntiDistraction:
 	WinGetTitle, Title, A
 	WinGet, HWND, ID, A
 
+	;If the window is not in the accepted list, close it.
+	;Either sends ^w or !F4, depepnding on if it's a browser tab or not.
 	If !InArray(Title, SafeWindows) AND (HWND != GUIHwnd) {
-		;~ WinMinimize, A
+		
 		if InStr(Title, "Mozilla Firefox") {
 			Send, ^w
 			return
