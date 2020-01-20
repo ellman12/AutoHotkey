@@ -37,7 +37,9 @@ SendMessage, 0x114, 1, 0, %fcontrol%, A  ; 0x114 is WM_HSCROLL and the 1 after i
 return
 
 ;Mouse G2
+;(Ctrl + Tab) Jump to the Next Open Tab
 F14::
+Send, ^{Tab}
 return
 
 ;Mouse G3

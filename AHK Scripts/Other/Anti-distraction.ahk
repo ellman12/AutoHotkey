@@ -1,8 +1,8 @@
-;Credit for  this script: u/AutoHotYeet of the R/AutoHotkey subreddit
+;Credit for  this script: u/AutoHotYeet of the r/AutoHotkey subreddit.
 ;https://www.reddit.com/r/AutoHotkey/comments/eoay4f/need_help_with_antidistraction_script/feecalp?utm_source=share&utm_medium=web2x
 ;I origianlly had the idea, but couldn't figure out how to do it.
 ;This amazing person helped me out by making this whole script.
-;IDK how the Gui stuff works, but otherwise it's pretty simple.
+;IDK how the GUI stuff works, but otherwise it's pretty simple.
 ;I made some slight modifications: the ^w or !F4 stuff, and also
 ; I added some comments.
 
@@ -21,7 +21,7 @@ SafeWindows := []
 
 Gui, Font, S8, Verdana
 Gui, +AlwaysOnTop +HWNDGuiHWND +Delimiter`n
-Gui, Add, Text,  w200, Safe Windows (CTRL+F11)
+Gui, Add, Text,  w225, Safe Windows (CTRL+F11)
 Gui, Add, Listbox, hwndSafeWindowsLB AltSubmit vSelectedSafeWindow h200 wp
 Gui, Add, Button, wp gDelete, Delete Selected Item from List
 Gui, Add, Button, wp hwndStartStop gStartStop, Enable Anti-Distraction
@@ -55,6 +55,9 @@ AntiDistraction:
 			return
 		} else if InStr(Title, "Google Chrome") {
 			Send, ^w
+			return
+		} else if InStr(Title, "Shut Down Windows") {
+			Send, {Escape}
 			return
 		} else {
 			Send, !{F4}
