@@ -5,17 +5,19 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #SingleInstance force
 
 ;This awesome little script allows me to show and hide windows.
+;I can't remember where I found this script; probably on the AHK forums.
+;I don't really know how it works, because comments are nonexistent.
 
 /*
 ******************************Hotkeys******************************
-* !F10:: Hide Current Window and add it to hidden window list.
-* ^F10:: Show and activate "previously" hidden window (the one at the top of the list).
-* +F10:: Show all hidden windows.
+* ^F10:: Hide Current Window and add it to hidden window list.
+* !F10:: Show and activate "previously" hidden window (the one at the top of the list).
+* +F10:: Show all hidden windows (unhide them).
 * #F10:: Display a list of hidden windows with their index next to it. If user presses 1-9, it will show and activate the window with that index.
 */
 
 
-!F10:: ;Hide current window - add to list
+^F10:: ;Hide current window - add to list
 	SetTitleMatchMode, 3 ;***
 	if (NumHiddenWindows = "")
 		NumHiddenWindows:=0
@@ -29,7 +31,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 	
 return ;*
 
-^F10:: ;bring back previously hidden window
+!F10:: ;bring back previously hidden window
 	SetTitleMatchMode, 3 ;***
 	;Msgbox %PrevMinimize%
 	if (PreviousHiddenWindow <> "")
