@@ -167,7 +167,7 @@ Escape() {
 	;If the user presses the Cancel button in the InputBox, or the Escape key (NOT typing CANCEL),
 	; the script will terminate itself.
 	if (ErrorLevel = 1) {
-		MsgBox, ,CANCEL/Escape was pressed., CANCEL/Escape was pressed., 0.95
+		MsgBox, ,CANCEL/Escape was pressed., CANCEL/Escape was pressed.`n`nThe script will now exit., 0.95
 		ExitApp
 	} else {
 		;Do nothing.

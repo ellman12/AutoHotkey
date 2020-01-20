@@ -62,7 +62,7 @@ F10::
 Loop {
 	
 	;Brings up the InputBox that allows the user to input the name of the event
-	InputBox, inputBoxEventName, Event name, Enter the name of the event. Type "cancel" (it's not case sensitive) to cancel inputting data and start making the events. Previous entry was: %inputBoxEventName%., 200, 325
+	InputBox, inputBoxEventName, Event Name, Enter the name of the event. Type "cancel" (it's not case sensitive) to cancel inputting data and start making the events. Previous entry was: %inputBoxEventName%., 200, 325
 	
 	Escape()
 	
@@ -234,7 +234,7 @@ Escape() {
 	;If the user presses the Cancel button in the InputBox, or the Escape key (NOT typing CANCEL),
 	; the script will terminate itself.
 	if (ErrorLevel = 1) {
-		MsgBox, ,CANCEL/Escape was pressed., CANCEL/Escape was pressed., 0.95
+		MsgBox, ,CANCEL/Escape was pressed., CANCEL/Escape was pressed.`n`nThe script will now exit., 0.95
 		ExitApp
 	} else {
 		;Do nothing.
