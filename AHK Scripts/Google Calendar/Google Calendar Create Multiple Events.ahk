@@ -125,7 +125,7 @@ Sleep, 1000
 ;else make a normal event.
 if (startTimeValue = "all day") {
 
-;Puts in the event name for the all day event, and marks it as "all day".
+;Puts in the event name and the event date for the all day event.
 Send, %customNamesValue%
 Sleep 485
 Send, {Tab 2}
@@ -134,18 +134,33 @@ Send, %dateValue%
 Sleep 485
 Send, {Tab 5}
 Sleep 550
+
+;Marks the event as "all day".
 Send, {Space}
 Sleep 550
 
-;Creates the single notification: 1 day before at 9 AM.
-;Could always be adjusted, or could insert more.
+;Creates the first notification: 1 day before at 9 AM.
 Send, {Tab 10}
 Sleep 485
 Send, {Enter}
 Sleep 485
 
+;Creates the second notification: 0 days before (the day of) at 8 AM.
+Send, {Tab 5}
+Sleep 485
+Send, {Enter} ;Create the notification.
+Sleep 485
+Send, {Tab}
+Sleep 485
+Send, 0 ;0 days before.
+Sleep 485
+Send, {Tab 2}
+Sleep 485
+Send, 8a ;8 AM.
+Sleep 485
+
 ;Tabbing over to where the user picks the event color they want.
-Send, {Tab 6}
+Send, {Tab 3}
 Sleep 485
 Send, {Space}
  
@@ -153,8 +168,8 @@ Send, {Space}
 ;This tells it that they have chosen their desired event color.
 KeyWait Enter, D
 
-;These 19 Shift+Tabs are to get the Save button selected, and the Enter "clicks" it, thus creating the event in Google Calendar.
-Send, +{Tab 19}
+;These 24 Shift+Tabs are to get the Save button selected, and the Enter "clicks" it, thus creating the event in Google Calendar.
+Send, +{Tab 24}
 Sleep 2000
 Send, {Enter}
 Sleep 2000
