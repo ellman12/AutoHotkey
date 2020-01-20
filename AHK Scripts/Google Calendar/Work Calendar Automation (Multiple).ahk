@@ -71,6 +71,8 @@ Loop {
 	;Brings up the thing that allows the user to input a date
 	InputBox, Scheduled_Date, Scheduled Date, Enter a month and a day. Type "cancel" (it's not case sensitive) to cancel inputting data and start making the events. Previous entry was: %Scheduled_Date%., 200, 325
 
+	Escape()
+
 	;Putting data in the array
 	dateArray.Push(Scheduled_Date)
 	
@@ -81,12 +83,16 @@ Loop {
 	
 	;Input the scheduled starting time for a single shift
 	InputBox, Starting_Time, Starting Time, Enter the starting time for the shift on %Scheduled_Date%. Previous entry was: %Starting_Time%., 200, 430
-	
+
+	Escape()
+
 	;Putting data in the array
 	startTimeArray.Push(Starting_Time)
 
 	;Input the scheduled ending time for a single shift
 	InputBox, Ending_Time, Ending Time, Enter the ending time for the shift on %Scheduled_Date%. Previous entry was: %Ending_Time%., 200, 430
+
+	Escape()
 
 	;Putting data in the array
 	endTimeArray.Push(Ending_Time)
@@ -136,62 +142,7 @@ Sleep 500
 Send, {Tab 30}
 Sleep 500
 
-;Commented out on 11/30/2019 at 11:24 AM because I discovered that Google Calendar can insert these notification times automatically
-/*
-;10 hours
-Send, 10
-Sleep 500
-Send, {Tab}
-Sleep 500
-Send, h
-Sleep 500
-Send, {Tab 2}
-Sleep 500
-Send, {Enter}
-Sleep 500
-
-;5 hours
-Send, {Tab}
-Sleep 500
-Send, 5
-Sleep 500
-Send, {Tab}
-Sleep 500
-Send, h ;;
-Sleep 500
-Send, {Tab 6}
-Sleep 500
-Send, {Enter}
-Sleep 500
-
-;2 hours
-Send, {Tab}
-Sleep 500
-Send, 2
-Sleep 500
-Send, {Tab}
-Sleep 500
-Send, h
-Sleep 500
-Send, {Tab 10}
-Sleep 500
-Send, {Enter}
-Sleep 500
-
-;40 minutes	
-Send, {Tab}
-Sleep 500
-Send, 40
-Sleep 500
-Send, {Tab}
-Sleep 500
-Send, m
-Sleep 500
-*/
-
-; Allowing the user to pick the event color they want
-;~ Send, {Tab 15}
-;~ Sleep 500
+;Allowing the user to pick the event color they want
 Send, {Space}
 Sleep 500
 
@@ -209,3 +160,16 @@ currentArrayIndex++
 
 }
 ExitApp
+
+;Function used for if the user presses Cancel or Escape, so the script can acutally terminate itself.
+;Some of this code was taken from my Run.ahk script.
+Escape() {
+	;If the user presses the Cancel button in the InputBox, or the Escape key (NOT typing CANCEL),
+	; the script will terminate itself.
+	if (ErrorLevel = 1) {
+		MsgBox, ,CANCEL/Escape was pressed., CANCEL/Escape was pressed., 0.95
+		ExitApp
+	} else {
+		;Do nothing.
+	}
+}

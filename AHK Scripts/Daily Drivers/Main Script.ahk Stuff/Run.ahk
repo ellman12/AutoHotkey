@@ -169,7 +169,7 @@ Case "exit script", "exitapp": ExitApp
 
 ;If the user presses Escape or Cancel
 Default:
-if ErrorLevel
+if ErrorLevel = 1
 	MsgBox, ,CANCEL/Escape was pressed., CANCEL/Escape was pressed., 0.95
 else
 	MsgBox, 16, Unknown Command, Command entered: "%RunInputBoxText%" does not exist

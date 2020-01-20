@@ -64,6 +64,8 @@ Loop {
 	;Brings up the InputBox that allows the user to input the name of the event
 	InputBox, inputBoxEventName, Event name, Enter the name of the event. Type "cancel" (it's not case sensitive) to cancel inputting data and start making the events. Previous entry was: %inputBoxEventName%., 200, 325
 	
+	Escape()
+	
 	;If the user types cancel (not case sensitive), it'll break out of this and start making the events. It warns the user before it does this.
 	if (inputBoxEventName = "CANCEl") {
 		break
@@ -75,11 +77,15 @@ Loop {
 	;Brings up the thing that allows the user to input a date.
 	InputBox, Scheduled_Date, Scheduled Date, Enter a month and a day. Previous entry was: %Scheduled_Date%.
 
+	Escape()
+	
 	;Putting data in the array.
 	dateArray.Push(Scheduled_Date)
 	
 	;Input the scheduled starting time for a single event.
 	InputBox, Starting_Time, Starting Time, Enter the starting time for "%inputBoxEventName%" on %Scheduled_Date%. Type "all day" to mark the event as all day. Previous entry was: %Starting_Time%., 200, 430
+	
+	Escape()
 	
 	;Putting data in the array.
 	startTimeArray.Push(Starting_Time)
@@ -88,6 +94,8 @@ Loop {
 	if (Starting_Time != "All day") {
 	;Input the scheduled ending time for a single event.
 	InputBox, Ending_Time, Ending Time, Enter the ending time for "%inputBoxEventName%" on %Scheduled_Date%. Previous entry was: %Ending_Time%., 200, 430
+	
+	Escape()
 	}
 	
 	;Putting data in the array
@@ -219,3 +227,16 @@ currentArrayIndex++
 
 return ;End of the F10 hotkey.
 ExitApp ;End of the script.
+
+;Function used for if the user presses Cancel or Escape, so the script can acutally terminate itself.
+;Some of this code was taken from my Run.ahk script.
+Escape() {
+	;If the user presses the Cancel button in the InputBox, or the Escape key (NOT typing CANCEL),
+	; the script will terminate itself.
+	if (ErrorLevel = 1) {
+		MsgBox, ,CANCEL/Escape was pressed., CANCEL/Escape was pressed., 0.95
+		ExitApp
+	} else {
+		;Do nothing.
+	}
+}

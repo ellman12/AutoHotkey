@@ -42,7 +42,7 @@ return ;*
 		NumHiddenWindows:=NumHiddenWindows - 1
 		PreviousHiddenWindow:=HiddenWindows%NumHiddenWindows%
 	}
-	
+
 return
 
 +F10::ShowAllHiddenWindows() ;Show All Hidden Windows

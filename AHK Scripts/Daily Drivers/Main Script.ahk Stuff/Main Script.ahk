@@ -144,7 +144,11 @@ WinSet, AlwaysOnTop, Toggle, A
 return
 
 ;Reloads the script. Useful for "recompiling" the script.
+;This hotkey also brings back any previously hidden windows.
+;This prevents windows from getting hidden indefinitely,
+; without being able to restore them.
 ^#r::
+ShowAllHiddenWindows()
 Reload
 return
 
