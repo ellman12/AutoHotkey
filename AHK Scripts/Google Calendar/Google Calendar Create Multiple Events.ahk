@@ -35,7 +35,8 @@ totalAmountOfArrayIndexes = 1 ;Starting value.
 ;These hotstrings are for making my life easier when inputting data.
 ;They only work in the Starting and Ending Time InputBoxes.
 #IfWinActive Starting Time
-:*:a::AM
+;~ :*:a::AM
+:*:am::AM
 :*:p::PM
 
 #IfWinActive Ending Time
@@ -140,11 +141,11 @@ if (startTimeValue = "all day") {
 
 ;Puts in the event name and the event date for the all day event.
 Send, %customNamesValue%
-Sleep 485
+Sleep 550
 Send, {Tab 2}
-Sleep 485
+Sleep 550
 Send, %dateValue%
-Sleep 485
+Sleep 550
 Send, {Tab 5}
 Sleep 550
 
@@ -198,15 +199,15 @@ Sleep 1000
 
 ;Inserts the date and time into the event
 Send, %dateValue%
-Sleep 485
+Sleep 550
 Send, {Tab}
-Sleep 485
+Sleep 550
 Send, %startTimeValue%
-Sleep 485
+Sleep 550
 Send, {Tab}
-Sleep 485
+Sleep 550
 Send, %endTimeValue%
-Sleep 485
+Sleep 550
 
 ;Tabbing over to where the user picks the event color they want.
 Send, {Tab 3}
