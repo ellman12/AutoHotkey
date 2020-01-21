@@ -61,14 +61,14 @@ F9::
 MsgBox, 0, Debug Box!, currentArrayIndex: %currentArrayIndex%`ntotalAmountOfArrayIndexes: %totalAmountOfArrayIndexes%`n`n
 return
 
-;********************************************************* ACTUAL START OF THE SCRIPT *********************************************************
+;*********************************************************ACTUAL START OF THE SCRIPT*********************************************************
 
-;Pushing F10 starts the script by having the user input all of the necessary data
+;Pushing F10 starts the script by having the user input all of the necessary data.
 F10::
 
 Loop {
 	
-	;Brings up the thing that allows the user to input a date
+	;Brings up the thing that allows the user to input a date.
 	InputBox, Scheduled_Date, Scheduled Date, Enter a month and a day. Type "cancel" (it's not case sensitive) to cancel inputting data and start making the events. Previous entry was: %Scheduled_Date%., 200, 325
 
 	Escape()

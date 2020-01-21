@@ -53,16 +53,21 @@ F9::
 MsgBox, 0, Debug Box!, currentArrayIndex: %currentArrayIndex%`ntotalAmountOfArrayIndexes: %totalAmountOfArrayIndexes%`n`n
 return
 
-;******************************************** VARIABLES ********************************************
+;********************************************ACTUAL START OF THE SCRIPT********************************************
 
 ;Pushing F10 starts the script by having the user input all of the necessary data.
 F10::
 
+;Has the user input a default value in the first InputBox, if they don't want anything, they either hit the CANCEL button,
+;or the Escape key on their keyboard.
+;The variable "IBDefaultValue" is the default value for the InputBoxes.
+InputBox, IBDefaultValue, Default Value, If you want`, type a value that you want the first InputBox (the event name) to have. If you don't want anything`, either click the CANCEL button`, or hit the Escape key on your keyboard.
+
 ;This Loop is run until the user is done inputting the data they want.
 Loop {
 	
-	;Brings up the InputBox that allows the user to input the name of the event
-	InputBox, inputBoxEventName, Event Name, Enter the name of the event. Type "cancel" (it's not case sensitive) to cancel inputting data and start making the events. Previous entry was: %inputBoxEventName%., 200, 325
+	;Brings up the InputBox that allows the user to input the name of the event.
+	InputBox, inputBoxEventName, Event Name, Enter the name of the event. Type "cancel" (it's not case sensitive) to cancel inputting data and start making the events. Previous entry was: %inputBoxEventName%., , 325, 200, , , , , %IBDefaultValue%
 	
 	Escape()
 	
