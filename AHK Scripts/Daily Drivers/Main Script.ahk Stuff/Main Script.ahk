@@ -242,15 +242,11 @@ return
 Send ^v
 return
 
-
 ;Shows you what profile you're currently in. Can also be used for debugging.
 ^#BackSpace::
-MsgBox, 0, Current Profile, Current profile: %current_profile%`n`nNumPadMode: %NumPadMode%
+MsgBox, 0, Current Profile and NumPad Mode, Current profile: %current_profile%`n`nNumPadMode: %NumPadMode%
 return
 
-;----------------------------------------------------------------------
-;*****************************EXPERIMENTAL*****************************
-;----------------------------------------------------------------------
 ;Scroll down faster
 F15 & WheelDown::
 Send, {WheelDown 8}
@@ -262,18 +258,28 @@ Send, {WheelUp 8}
 return
 
 ;A "sniper" button, more or less.
-RShift::
+;Pressing this key also sends out the normal RShift key, somehow. I added ~ to the hotkey after looking at this forum post:
+;https://www.autohotkey.com/boards/viewtopic.php?t=40770
+; and it somehow made it work perfectly.
+~$RShift::
+Send, {RShift}
 DllCall("SystemParametersInfo", Int,113, Int,0, UInt,1, Int,1)
 KeyWait, RShift
 DllCall("SystemParametersInfo", Int,113, Int,0, UInt,10, Int,1)
 return
 
-;A way to make the mouse move faster while Mouse G3 and the Right Button are held down
+;A way to make the mouse move faster while Mouse G3 and the Right Button are held down.
+;It's basically the complete opposite of the sniper button.
 F15 & RButton::
 DllCall("SystemParametersInfo", Int,113, Int,0, UInt,17, Int,1)
 KeyWait, RButton
 DllCall("SystemParametersInfo", Int,113, Int,0, UInt,10, Int,1)
 return
+
+
+;----------------------------------------------------------------------
+;*****************************EXPERIMENTAL*****************************
+;----------------------------------------------------------------------
 
 ;~ ;If Scroll Lock is on, Up and Down send Up and Down 10 times per each keystroke.
 ;~ #If ScrollLockToggled = 1
