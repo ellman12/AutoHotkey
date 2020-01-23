@@ -247,12 +247,12 @@ return
 MsgBox, 0, Current Profile and NumPad Mode, Current profile: %current_profile%`n`nNumPadMode: %NumPadMode%
 return
 
-;Scroll down faster
+;Scroll down faster by holding down the G3 key on Scimitar Pro RGB.
 F15 & WheelDown::
 Send, {WheelDown 8}
 return
 
-;Scroll up faster
+;Scroll up faster by holding down the G3 key on Scimitar Pro RGB.
 F15 & WheelUp::
 Send, {WheelUp 8}
 return
@@ -261,6 +261,7 @@ return
 ;Pressing this key also sends out the normal RShift key, somehow. I added ~ to the hotkey after looking at this forum post:
 ;https://www.autohotkey.com/boards/viewtopic.php?t=40770
 ; and it somehow made it work perfectly.
+;I have no idea how these DllCall functions work, nor do I know where I found this stuff.
 ~$RShift::
 Send, {RShift}
 DllCall("SystemParametersInfo", Int,113, Int,0, UInt,1, Int,1)
@@ -270,6 +271,7 @@ return
 
 ;A way to make the mouse move faster while Mouse G3 and the Right Button are held down.
 ;It's basically the complete opposite of the sniper button.
+;I have no idea how these DllCall functions work, nor do I know where I found this stuff.
 F15 & RButton::
 DllCall("SystemParametersInfo", Int,113, Int,0, UInt,17, Int,1)
 KeyWait, RButton
