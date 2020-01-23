@@ -278,8 +278,24 @@ return
 ;-------------------------------------------------------------------------------------------
 ;Anything in this section is temporary, and was added in to perform a simple and quick task.
 ;-------------------------------------------------------------------------------------------
+
+;English papers.
 :*:aai::artificial intelligence
 :*:AaI::Artificial Intelligence
+
+;For IntelliJ IDEA 2019.3.1
+#IfWinActive ahk_exe idea64.exe
+:*:sln::
+Send, System.out.println("");
+Sleep 20
+Send, {Left 3}
+return
+
+:*:spr::
+Send, System.out.print("");
+Sleep 20
+Send, {Left 3}
+#If
 
 ;Factorio mods
 ;~ #n::
