@@ -178,7 +178,7 @@ Sleep 50
 Send, ^{Tab}
 return
 
-;Sends all 4 modifier keys, so I don't have to press them automatically if one gets stuck
+;Sends all 4 modifier keys, so I don't have to press them automatically if one gets stuck.
 *Pause::
 Send, {Ctrl}
 Sleep 50
@@ -190,19 +190,19 @@ Send, {LWin}
 Sleep 50
 return
 
-;Sends the current date and time in this format: 10/31/2019 07:43 PM
+;Sends the current date and time in this format: 10/31/2019 07:43 PM.
 :*:datetime::
 FormatTime, CurrentDateTime,, M/dd/yyyy h:mm tt
 SendInput, %CurrentDateTime%
 return
 
-;Same thing, but just the date
+;Same thing, but just the date.
 :*:currdate::
 FormatTime, CurrentDateTime,, M/dd/yyyy
 SendInput, %CurrentDateTime%
 return
 
-;Same thing, but just the time
+;Same thing, but just the time.
 :*:currtime::
 FormatTime, CurrentDateTime,, h:mm tt
 SendInput, %CurrentDateTime%
@@ -217,6 +217,7 @@ Send, {LWin}
 return
 
 ;Sends a Space and "meaning" when the Windows 10 Search Bar window is active (Cortana).
+;Equivalent to G15 in Browser.
 !s::
 Send, {Space}meaning
 return
@@ -386,3 +387,4 @@ Send, {Left 3}
 :*:frc::FRC
 :*:elliott::Elliott
 :*:ducharme::DuCharme
+:*:gui::GUI
