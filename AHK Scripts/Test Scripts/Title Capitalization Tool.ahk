@@ -41,7 +41,7 @@ GUI, Color, Silver
 GUI, Font, s15, Arial ;Font settings for everything else.
 GUI, Add, Text, x16 y5, Enter Title to Modify:
 
-
+;TODO: FIGURE OUT RADIO BUTTONS.
 
 GUI, +AlwaysOnTop
 GUI, Color, Silver
