@@ -166,4 +166,9 @@ return
 Send, ^{BackSpace}
 return
 
+;(Ctrl + S) save document.
+F5::
+Send, ^s
+return
+
 #If

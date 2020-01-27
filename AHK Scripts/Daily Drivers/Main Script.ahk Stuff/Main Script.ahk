@@ -84,7 +84,7 @@ if (NumLockToggled = 1 and ScrollLockToggled = 0) {
 
 #Include, %A_ScriptDir%\ApplicationSwitcher.ahk
 #Include, %A_ScriptDir%\AutoCapitalize.ahk
-#Include, %A_ScriptDir%\AutoCorrect.ahk
+;~ #Include, %A_ScriptDir%\AutoCorrect.ahk
 #Include, %A_ScriptDir%\Browser.ahk
 #Include, %A_ScriptDir%\Chromebook Typing.ahk
 #Include, %A_ScriptDir%\Default.ahk
@@ -97,6 +97,8 @@ if (NumLockToggled = 1 and ScrollLockToggled = 0) {
 #Include, %A_ScriptDir%\Run.ahk
 #Include, %A_ScriptDir%\SciTE4AutoHotkey Programming.ahk
 ;~ #Include, %A_ScriptDir%\WindowHider.ahk
+
+;~ Run, Edit, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\AutoCorrect.ahk
 
 ;Sooo many #Includes... ;)
 
@@ -179,18 +181,6 @@ Sleep 50
 Send, ^{Tab}
 return
 
-;Sends all 4 modifier keys, so I don't have to press them automatically if one gets stuck.
-*Pause::
-Send, {Ctrl}
-Sleep 50
-Send, {Alt}
-Sleep 50
-Send, {Shift}
-Sleep 50
-Send, {LWin}
-Sleep 50
-return
-
 ;Sends the current date and time in this format: 10/31/2019 07:43 PM.
 :*:datetime::
 FormatTime, CurrentDateTime,, M/dd/yyyy h:mm tt
@@ -209,8 +199,8 @@ FormatTime, CurrentDateTime,, h:mm tt
 SendInput, %CurrentDateTime%
 return
 
-#IfWinActive Cortana
 ;When Cortana/Search is open, RWin does LWin twice.
+#IfWinActive Cortana
 RWin::
 Send, {LWin}
 Sleep 300
@@ -280,7 +270,6 @@ KeyWait, RButton
 DllCall("SystemParametersInfo", Int,113, Int,0, UInt,10, Int,1)
 return
 
-
 ;----------------------------------------------------------------------
 ;*****************************EXPERIMENTAL*****************************
 ;----------------------------------------------------------------------
@@ -318,61 +307,16 @@ Sleep 20
 Send, {Left 3}
 #If
 
-;Factorio mods
-;~ #n::
-;~ Send, ^c
-;~ Sleep 80
-;~ Send, ^t
-;~ Sleep 80
-;~ Send, Factorio ^v
-;~ Sleep 30
-;~ Send, {Enter}
-;~ return
-
-;~ #d::
-;~ Send, ^l
-;~ Sleep 80
-;~ Send, ^c
-;~ Sleep 200
-;~ Send, ^w
-;~ Sleep 80
-;~ Send, ^w
-;~ Sleep 80
-;~ Send, {Tab}
-;~ Sleep 80
-;~ Send, ^v
-;~ Sleep 80
-;~ Send, {Down}
-;~ return
 
 ;~ ;Uncommented only when necessary
 ;~ PrintScreen::
 ;~ Send, #{PrintScreen}
 ;~ return
 
-;~ ;For Sociology quizzes
-;~ #c::
-;~ Send, {Enter}
-;~ Sleep 800
-;~ Send, ^a
-;~ Sleep 800
-;~ Send, ^c
-;~ Sleep 800
-;~ Send, !{Tab}
-;~ Sleep 800
-;~ Send, ^v
-;~ Sleep 800
-;~ Send, !{Tab}
-;~ Sleep 800
-;~ Send, !{Left}
-;~ Sleep 800
-;~ Send, {Down}
-;~ return
 
 ;-----------------------------------------------------------------------------------
-;Anything below this point was added to the script by the user via the Win+H hotkey.
+;								Miscellaneous Hotstrings.
 ;-----------------------------------------------------------------------------------
-;~ ::am::AM
 ::pm::PM
 :*:ai::AI
 ::mathces::matches
