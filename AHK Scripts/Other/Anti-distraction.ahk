@@ -51,18 +51,15 @@ AntiDistraction:
 		
 		if InStr(Title, "Mozilla Firefox") {
 			Send, ^w
-			SoundPlay, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Nope Sound Effect.mp3
 			return
 		} else if InStr(Title, "Google Chrome") {
 			Send, ^w
-			SoundPlay, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Nope Sound Effect.mp3
 			return
 		} else if InStr(Title, "Shut Down Windows") {
 			Send, {Escape}
 			return
 		} else {
 			Send, !{F4}
-			SoundPlay, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Nope Sound Effect.mp3
 			return
 		}
 	}

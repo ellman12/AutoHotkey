@@ -243,17 +243,17 @@ Send, ^#{Right}
 return
 
 ;****************************************MISC DOCS ACTIONS***************************************
-;(Ctrl + Backspace) Delete an entire word
+;(Ctrl + Backspace) Delete an entire word.
 \::
 Send, ^{BackSpace}
 return
 
-;Correct to
+;Correct to.
 RAlt::
 Send, {AppsKey}{Down}{Enter}
 return
 
-;Always correct to
+;Always correct to.
 RWin::
 Send, {AppsKey}{Up 3}{Enter}
 return

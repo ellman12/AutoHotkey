@@ -90,12 +90,13 @@ if (NumLockToggled = 1 and ScrollLockToggled = 0) {
 #Include, %A_ScriptDir%\Default.ahk
 #Include, %A_ScriptDir%\Google Docs.ahk
 #Include, %A_ScriptDir%\Google Sheets.ahk
+#Include, %A_ScriptDir%\Microsoft Word.ahk
 #Include, %A_ScriptDir%\NumPad Media Control.ahk
 #Include, %A_ScriptDir%\OSRS (RuneLite).ahk
 #Include, %A_ScriptDir%\Profile Switcher.ahk
 #Include, %A_ScriptDir%\Run.ahk
 #Include, %A_ScriptDir%\SciTE4AutoHotkey Programming.ahk
-#Include, %A_ScriptDir%\WindowHider.ahk
+;~ #Include, %A_ScriptDir%\WindowHider.ahk
 
 ;Sooo many #Includes... ;)
 
@@ -159,7 +160,7 @@ return
 ;This prevents windows from getting hidden indefinitely,
 ; without being able to restore them.
 ^#r::
-ShowAllHiddenWindows()
+;~ ShowAllHiddenWindows()
 Reload
 return
 

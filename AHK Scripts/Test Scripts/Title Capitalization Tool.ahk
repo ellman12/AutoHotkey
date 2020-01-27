@@ -15,17 +15,62 @@ SendMode Input
 #SingleInstance force
 ;OPTIMIZATIONS END
 
-;GUI tutorial: https://www.youtube.com/watch?v=5pjRX5q7q2I&list=PLPI5C2_hIGGx1hqSvNzCLawaDvGF0k9-Y
+;GUI tutorial: https://www.youtube.com/watch?v=7GYGXNSpUds&list=PLPI5C2_hIGGx1hqSvNzCLawaDvGF0k9-Y&index=4
 
 ;Create the GUI
-GUI, Font, s15, Veranda,
-GUI, Add, Text, x27 y27,Enter title:
-GUI, +AlwaysOnTop
-GUI, Color, Silver
+;~ GUI, Font, s15, Veranda,
+;~ GUI, Add, Text, x27 y27,Enter title:
+;~ GUI, +AlwaysOnTop
+;~ GUI, Color, Silver
 ;~ GUI, Add, Edit
 
-GUI, Show, w400 h400 ,Title Capitalization Tool (TCT)
+;~ GUI, Show, w400 h400 ,Title Capitalization Tool (TCT)
+;~ return
+
+
+;GUI Layout
+;--------------
+;-------------------------
+
+GUI, Font, s14, Arial ;Font settings for the Text Box.
+GUI, Add, Edit, r3 HScroll x15 y200 w375 h50,The Title to Input ;Create the Text Box.
+
+GUI, Font, s15, Arial ;Font settings for everything else.
+;~ GUI, Add, Text, x27 y27, Enter Title to Modify:
+GUI, Add, Text, x27 y27, Push this chonky button lol
+
+GUI, Add, Button, x30 y100 w300 h75 gButton, Press Me!
+
+GUI, +AlwaysOnTop
+GUI, Color, Silver
+GUI, Show, x1300 y50 w600 h400,Title Capitalization Tool (TCT)
 return
+
+;Labels
+;---------------------
+;------------------------------
+
+;Activates when the GUI is closed. E.g., pressing the red x button,
+; manually exiting the script, etc.
+GuiClose:
+ExitApp
+return
+
+;Button I created.
+Button:
+a := 5
+b := 8
+c := add(a,b)
+MsgBox, a + b = %c%
+return
+
+;Functions
+;---------------
+;----------------------
+add(x,y) {
+return x + y
+}
+
 
 
 ;https://autohotkey.com/board/topic/123994-capitalize-a-title/
