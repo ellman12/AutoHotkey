@@ -111,6 +111,7 @@ RETURN
 
 ^!+f::                ; Convert Text To Title Capitalization
 Send, ^c
+Sleep 55
 StringUpper str, Clipboard, T
 head := SubStr( str, 1 , 1 )
 tail := SubStr( str, 2 )
