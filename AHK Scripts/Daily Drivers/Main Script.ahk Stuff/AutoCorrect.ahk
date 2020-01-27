@@ -5370,3 +5370,18 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::falacies::fallacies
 ::povertyl::poverty
 :*:hokah::Hokah
+::pm::PM
+:*:ai::AI
+::mathces::matches
+:*:asap::ASAP
+:*:caledonia::Caledonia
+:*:kt::KT
+:*:kwik trip::Kwik Trip
+::its::it's
+::itss::its
+::git::Git
+:*:github::GitHub
+:*:frc::FRC
+:*:elliott::Elliott
+:*:ducharme::DuCharme
+:*:gui::GUI
