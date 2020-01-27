@@ -1,6 +1,11 @@
 #SingleInstance force
 SendMode, Input
 
+#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\ApplicationSwitcher.ahk
+#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\AutoCorrect.ahk
+#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Run.AHK
+
+
 PrintScreen::
 Send, {AppsKey}
 return
@@ -9,13 +14,34 @@ return
 Send, ^{Esc}
 return
 
+
+
+
+;Log volume scaling stuff for NumpadAdd and NumpadEnter. IDK where I found this, nor do I know how it works.
+f(x) {
+return exp(6.908*x)/1000.0
+}
+inv(y) {
+return ln(1000.0*y)/6.908
+}
+
+
 !Up::
-SoundSet, +1
+;~ SoundSet, +1
+soundget, v
+p:=inv(v/100.0)+0.02
+nv:=f(p)*100.0
+soundset, nv
 return
 
 !Down::
-SoundSet, -1
+;~ SoundSet, -1
+soundget, v
+p:=inv(v/100.0)-0.02
+nv:=f(p)*100.0
+soundset, nv
 return
+
 
 :*:ai::AI
 :*:aai::artificial intelligence
@@ -66,11 +92,6 @@ return
 ^+Tab::
 Send, ^{PGUP}
 return
-
-
-:*:fll::FLL
-:*:endash::–
-:*:emdash::—
 
 
 ;Move mouse off screen...

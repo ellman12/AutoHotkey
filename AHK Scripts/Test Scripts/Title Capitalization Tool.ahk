@@ -47,16 +47,16 @@ GUI, +AlwaysOnTop
 GUI, Color, Silver
 GUI, Show, w600 h400,Title Capitalization Tool (TCT)
 return
-
+*/
 ;Labels
 ;---------------------
 ;------------------------------
 
 ;Activates when the GUI is closed. E.g., pressing the red x button,
 ; manually exiting the script, etc.
-GuiClose:
-ExitApp
-return
+;~ GuiClose:
+;~ ExitApp
+;~ return
 
 titleBoxLabel:
 GUI, Submit, NoHide
@@ -77,50 +77,39 @@ return
 ;So, I got to work on this script.
 ;It works exactly like it, but faster and runs offline.
 
-/*
-^u::                                                                 ; Convert text to upper
+
+
+
+
+^!+A::                ; Convert TEXT to UPPER
+ Send, ^x
+ sleep, 150
  StringUpper Clipboard, Clipboard
  Send %Clipboard%
 RETURN
 
-^l::                                                                 ; Convert text to lower
+^!+S::            ; Sentence case
+          ; but the ! disapears; have not foud solution for that
+  Send, ^x
+  sleep, 150
+  StringLower, Clipboard, Clipboard
+  Clipboard := RegExReplace(Clipboard, "((?:^|[.!?]\s+)[a-z])", "$u1")
+  Send %Clipboard%
+RETURN
+
+^!+D::                ; Convert text to lower
+ Send, ^x
+ sleep, 150
  StringLower Clipboard, Clipboard
  Send %Clipboard%
 RETURN
 
-+^k::                                                                ; Convert text to capitalized
- StringUpper Clipboard, Clipboard, T
- Send %Clipboard%
+^!+f::                ; Convert Text To Title Capitalization
+Send, ^c
+Sleep 55
+StringUpper str, Clipboard, T
+head := SubStr( str, 1 , 1 )
+tail := SubStr( str, 2 )
+Clipboard := head RegExReplace( tail , "i)\b(a|an|and|at|but|by|for|in|nor|of|on|or|so|the|to|up|with|yet)\b", "$L1")
+Send ^v
 RETURN
-
-^k::                                                                 ; Convert text to inverted
- Lab_Invert_Char_Out:= ""
- Loop % Strlen(Clipboard) {
-    Lab_Invert_Char:= Substr(Clipboard, A_Index, 1)
-    if Lab_Invert_Char is upper
-       Lab_Invert_Char_Out:= Lab_Invert_Char_Out Chr(Asc(Lab_Invert_Char) + 32)
-    else if Lab_Invert_Char is lower
-       Lab_Invert_Char_Out:= Lab_Invert_Char_Out Chr(Asc(Lab_Invert_Char) - 32)
-    else
-       Lab_Invert_Char_Out:= Lab_Invert_Char_Out Lab_Invert_Char
- }
- Send %Lab_Invert_Char_Out%
- 
-#w::
-Send ^c
-ClipWait ; Wait for the clipboard to contain text.
-SC := ChangeCase(Clipboard)
-
-ChangeCase(str) {
-    PrepList =
-    ( Join
-    \b(a|aboard|about|above|absent|across|after|against|along|alongside|amid|amidst|among|amongst|an|and|around|as|as|aslant|astride|at|athwart|atop|barring|be|before|behind|below|beneath|beside|besides|between|beyond|but|but|by|by|despite|down|during|except|failing|following|for|for|from|in|in|inside|into|like|mid|minus|near|next|nor|notwithstanding|of|of|off|on|on|onto|opposite|or|out|outside|over|past|per|plus|regarding|round|save|since|so|than|the|through|throughout|till|times|to|to|toward|towards|under|underneath|unlike|until|up|upon|via|vs.|when|with|within|without|worth|yet)\b
-    )
-
-    Return RegExReplace(RegExReplace(str,"\w+","$T0"),"i)(" PrepList ")","$L1")
-}
-
-Send %SC%
-return
-*/
-
