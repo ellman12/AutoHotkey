@@ -162,8 +162,8 @@ return
 WinMinimize, A
 return
 
-;Maximizes the active window.
-!+::
+;Maximizes the active window. It's supposed to be Alt + +, which gave me troubles before I realized the shortcut is technically !=.
+!=::
 WinMaximize, A
 return
 
