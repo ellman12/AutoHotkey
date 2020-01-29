@@ -20,7 +20,6 @@ InputBox, RunInputBoxText, Type a Command, Type a command`, and the script will 
 
 ;The script decides which command to run
 Switch (RunInputBoxText) {
-Default: MsgBox, 4096, Command does not exist, The command entered: "%RunInputBoxText%"`, doesn't exist m8. Try again.
 
 ;***********************************************INSERT***********************************************
 Case "en dash", "en": Send, –

@@ -27,7 +27,10 @@ return ln(1000.0*y)/6.908
 ^NumpadSub::
 SoundGet, master_volume
 InputBox, master_volume , Input Custom Volume, Input a custom volume. Current volume: %master_volume%., , , , , , , , %master_volume%
-SoundSet, %master_volume%
+if ErrorLevel = 1 ;If the user presses Escape or CANCEL.
+	MsgBox, ,CANCEL/Escape was pressed., CANCEL/Escape was pressed., 0.95
+else ;Else adjust set the volume to the inputted variable.
+	SoundSet, %master_volume%
 return
 
 ;Change the step value of NumPad 2 and NumPad 8.
