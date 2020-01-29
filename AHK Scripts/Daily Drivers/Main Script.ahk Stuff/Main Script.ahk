@@ -270,6 +270,16 @@ KeyWait, RButton
 DllCall("SystemParametersInfo", Int,113, Int,0, UInt,10, Int,1)
 return
 
+;Keyboard shortcut originally from Chrome OS; minimizes the active window.
+!-::
+WinMinimize, A
+return
+
+;Maximizes the active window. It's supposed to be Alt + +, which gave me troubles before I realized the shortcut is technically !=.
+!=::
+WinMaximize, A
+return
+
 ;----------------------------------------------------------------------
 ;*****************************EXPERIMENTAL*****************************
 ;----------------------------------------------------------------------

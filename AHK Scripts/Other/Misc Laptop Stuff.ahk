@@ -4,6 +4,7 @@ SendMode, Input
 #Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\ApplicationSwitcher.ahk
 #Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\AutoCorrect.ahk
 #Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Run.AHK
+#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\WindowHider.AHK
 
 
 PrintScreen::
@@ -105,7 +106,7 @@ return
 MouseMove, mousePosX, mousePosY, 0
 return
 
-;For use with my little red mouse
+;For use with my little red mouse.
 ;Wheel left
 XButton1::
 Send, ^+{Tab}
@@ -155,3 +156,24 @@ return
 
 CapsLock::
 return
+
+;Keyboard shortcut originally from Chrome OS; minimizes the active window.
+!-::
+WinMinimize, A
+return
+
+;Maximizes the active window. It's supposed to be Alt + +, which gave me troubles before I realized the shortcut is technically !=.
+!=::
+WinMaximize, A
+return
+
+
+
+;Test for seeing if I could possibly have my main PC functions on my laptop.
+;~ ^!#F1::
+;~ Send, ^!#{F13}
+;~ return
+
+;~ ^!#F13::
+;~ MsgBox hi
+;~ return
