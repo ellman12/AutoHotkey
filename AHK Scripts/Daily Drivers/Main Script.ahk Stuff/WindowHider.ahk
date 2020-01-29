@@ -19,13 +19,19 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 ^F10:: ;Hide current window - add to list
 	SetTitleMatchMode, 3 ;***
+	Sleep 40
 	if (NumHiddenWindows = "")
 		NumHiddenWindows:=0
 	NumHiddenWindows:=NumHiddenWindows+1
+	Sleep 40
 	WinGetTitle PreviousHiddenWindow, A
+	Sleep 40
 	HiddenWindows%NumHiddenWindows%:=PreviousHiddenWindow
+	Sleep 40
 	WinMinimize A
+	Sleep 40
 	WinHide %PreviousHiddenWindow%
+	Sleep 40
 	WinActivate
 	;msgbox _%NumHiddenWindows%_%PreviousHiddenWindow%
 	
