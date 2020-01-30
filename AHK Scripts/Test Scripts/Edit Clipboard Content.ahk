@@ -19,11 +19,11 @@ SendMode Input
 ;idk if this will actually be useful or not.
 
 GUI, Font, s14, Arial ;Font settings for the Text Box.
-GUI, Add, Edit, r3 HScroll x15 y40 w375 h50 vtitleBox gtitleBoxLabel,The Title to Input ;Create the Text Box, with 3 rows, located at x15, y40, width of 375 and height of 50. Has a variable named titleBox.
+GUI, Add, Edit, r3 HScroll x15 y40 w375 h50 vclipboardBoxText gclipboardBoxLabel,%Clipboard% ;Create the Text Box, with 3 rows, located at x15, y40, width of 375 and height of 50. Has a variable named clipboardBoxText.
 GUI, Color, Silver
 
 GUI, Font, s15, Arial ;Font settings for everything else.
-GUI, Add, Text, x16 y5, Enter Title to Modify:
+GUI, Add, Text, x16 y5, Current Clipboard contents. Type what you want to change it to.
 
 GUI, +AlwaysOnTop
 GUI, Color, Silver
@@ -31,5 +31,21 @@ GUI, Color, Silver
 
 ;Open GUI to edit Clipboard.
 #c::
-GUI, Show, w600 h400,Clipboard edit
+GUI, Show, w600 h400,Clipboard Edit
+return
+
+
+;GUI LABELS
+clipboardBoxLabel:
+GUI, Submit, NoHide
+
+isEnterPressed := GetKeyState("Enter")
+    if(isEnterPressed = true) {
+    Clipboard := clipboardBoxText
+    Reload
+    }
+return
+
+GuiClose:
+Reload
 return

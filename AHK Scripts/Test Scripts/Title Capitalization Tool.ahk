@@ -32,10 +32,10 @@ SendMode Input
 ;--------------
 ;-------------------------
 
-Title := ""
+
 
 GUI, Font, s14, Arial ;Font settings for the Text Box.
-GUI, Add, Edit, r3 HScroll x15 y40 w375 h50 vtitleBox gtitleBoxLabel,The Title to Input ;Create the Text Box, with 3 rows, located at x15, y40, width of 375 and height of 50. Has a variable named titleBox.
+GUI, Add, Edit, r3 HScroll x15 y40 w500 h10 vtitleBox gtitleBoxLabel,The Title to Input ;Create the Text Box, with 3 rows, located at x15, y40, width of 375 and height of 50. Has a variable named titleBox.
 GUI, Color, Silver
 
 GUI, Font, s15, Arial ;Font settings for everything else.
@@ -47,7 +47,7 @@ GUI, +AlwaysOnTop
 GUI, Color, Silver
 GUI, Show, w600 h400,Title Capitalization Tool (TCT)
 return
-*/
+
 ;Labels
 ;---------------------
 ;------------------------------
