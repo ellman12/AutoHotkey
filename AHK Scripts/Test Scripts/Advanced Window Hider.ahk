@@ -33,8 +33,9 @@ SendMode Input
 ;Declare array to track windows.
 F8WinHideArray := []
 
-;Decalre toggle as 1 so the first time you press F8, it hides everything.
-toggle := 1
+;Decalre showHideToggle as 1 so the first time you press F8, it hides everything.
+;If it's 1, hide windows; if it's 0, show windows.
+showHideToggle := 1
 return
 
 ;Add window to hide list.
@@ -89,19 +90,19 @@ ToolTip
 return
 
 ;Hide/show all the windows.
-F8::
-    
-    ;Change toggle to opposite of toggle
+F8::    
+    ;Change showHideToggle to opposite of showHideToggle
     ;1 becomes 0. 0 becomes 1.
-    toggle	:= !toggle
+    ;If it's 1, hide windows; if it's 0, it shows windows.
+    showHideToggle := !showHideToggle
     
-    ;If toggle = 1
-    if (toggle = 1)
+    ;If showHideToggle = 1
+    if (showHideToggle = 1)
         ;Loop through the array...
     for index, value in F8WinHideArray
         ;...and show everything
     WinShow, % "ahk_id " value
-    ;If toggle does not = 1
+    ;If showHideToggle does not = 1
     Else
         ;Loop through the array...
     for index, value in F8WinHideArray
@@ -109,16 +110,46 @@ F8::
     WinHide, % "ahk_id " value
 return
 
+
+
+
+
+
+
+
+
 ;Display a list of hidden windows with their index next to it. If user presses 1-9, it will show and activate the window with that index.
 #F8::
+
+;If showHideToggle is 1, hide windows; if it's 0, show windows.
+;If there aren't any hidden windows.
+if (showHideToggle = 1) {
+    MsgBox, There are no hidden windows.
+    return ;Get out of this hotkey, since there's nothing else to do.
+}
+
+;Create the GUI thing.
 Progress , m zh0 fs12 c00 WS550 W750
 		, %WindowList%
 		, 
 		, Window List - Select the number you want to unhide
-		
-	Input, VKey_Main, L1
+
+	Input, VKey_Main, L1 ;I think this means that if you push Escape, the thing will close.
 	progress , off
 return
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ;Close all windows in the list (array).
 ^!+#F8::
