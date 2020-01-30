@@ -110,7 +110,7 @@ F8::
 return
 
 ;Close all windows in the list (array).
-^!+F8::
+^!+#F8::
 
 ;For-loops through the array, closing each window along the way.
 for index, value in F8WinHideArray
@@ -120,5 +120,5 @@ return
 
 ; Remove all windows from the group, without closing them.
 ^!+F8::
-
+F8WinHideArray := 
 return
