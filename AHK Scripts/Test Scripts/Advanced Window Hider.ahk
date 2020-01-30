@@ -109,6 +109,17 @@ F8::
     WinHide, % "ahk_id " value
 return
 
+;Display a list of hidden windows with their index next to it. If user presses 1-9, it will show and activate the window with that index.
+#F8::
+Progress , m zh0 fs12 c00 WS550 W750
+		, %WindowList%
+		, 
+		, Window List - Select the number you want to unhide
+		
+	Input, VKey_Main, L1
+	progress , off
+return
+
 ;Close all windows in the list (array).
 ^!+#F8::
 
@@ -120,5 +131,8 @@ return
 
 ; Remove all windows from the group, without closing them.
 ^!+F8::
+
+;Blank out the array.
 F8WinHideArray := 
+
 return
