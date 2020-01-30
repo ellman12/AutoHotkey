@@ -1,16 +1,16 @@
 ;OPTIMIZATIONS START
 #NoEnv
-#MaxHotkeysPerInterval 99000000
-#HotkeyInterval 99000000
-#KeyHistory 0
-ListLines Off
-Process, Priority, , A
-SetBatchLines, -1
-SetKeyDelay, -1, -1
-SetMouseDelay, -1
-SetDefaultMouseSpeed, 0
-SetWinDelay, -1
-SetControlDelay, -1
+; #MaxHotkeysPerInterval 99000000
+; #HotkeyInterval 99000000
+; #KeyHistory 0
+; ListLines Off
+; Process, Priority, , A
+; SetBatchLines, -1
+; SetKeyDelay, -1, -1
+; SetMouseDelay, -1
+; SetDefaultMouseSpeed, 0
+; SetWinDelay, -1
+; SetControlDelay, -1
 SendMode Input
 #SingleInstance force
 ;OPTIMIZATIONS END
@@ -316,30 +316,3 @@ Send, System.out.print("");
 Sleep 20
 Send, {Left 3}
 #If
-
-
-;~ ;Uncommented only when necessary
-;~ PrintScreen::
-;~ Send, #{PrintScreen}
-;~ return
-
-
-;-----------------------------------------------------------------------------------
-;								Miscellaneous Hotstrings.
-;-----------------------------------------------------------------------------------
-::pm::PM
-:*:ai::AI
-::mathces::matches
-:*:asap::ASAP
-:*:caledonia::Caledonia
-:*:kt::KT
-:*:kwik trip::Kwik Trip
-
-::its::it's
-::itss::its
-::git::Git
-:*:github::GitHub
-:*:frc::FRC
-:*:elliott::Elliott
-:*:ducharme::DuCharme
-:*:gui::GUI

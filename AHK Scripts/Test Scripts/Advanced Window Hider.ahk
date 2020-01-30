@@ -26,13 +26,14 @@ SendMode Input
 ; ^+F8:: Remove the current window's ID from the list (array).
 ; F8:: Toggle to show/hide all windows.
 ; TODO #F8:: Display a list of hidden windows with their index next to it. If user presses 1-9, it will show and activate the window with that index.
-; TODO Close all windows in the group.
-; TODO Remove all windows in the group.
+; ^!+#F8:: Close all windows in the list (array).
+; Remove all windows from the group, without closing them.
+; TODO OnExit, restore all hidden windows
 
 ;Declare array to track windows.
 F8WinHideArray := []
 
-;Decalre toggle as 1 so the first time you press F5, it hides everything.
+;Decalre toggle as 1 so the first time you press F8, it hides everything.
 toggle := 1
 return
 
@@ -108,7 +109,16 @@ F8::
     WinHide, % "ahk_id " value
 return
 
+;Close all windows in the list (array).
+^!+F8::
 
+;For-loops through the array, closing each window along the way.
+for index, value in F8WinHideArray
+WinClose, % "ahk_id " value
 
+return
 
-;TODO OnExit, restore all hidden windows
+; Remove all windows from the group, without closing them.
+^!+F8::
+
+return
