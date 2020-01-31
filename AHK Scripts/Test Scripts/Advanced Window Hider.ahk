@@ -136,9 +136,49 @@ SetTitleMatchMode, 3 ;Set it so that a window's title must exactly match WinTitl
 		return
 	}
 
+    WindowList=
+	Loop %NumHiddenWindows%
+	{
+		if (A_Index >= 10)
+			WindowList:=WindowList . "...The Following windows cannot be reached directly through this...`n"
+		CurWindow:=HiddenWindows%A_Index%
+		;WinShow %CurWindow%
+		WindowList:=WindowList . A_Index . ") " . CurWindow . "`n"
+		
+	}
 
+    Progress , m zh0 fs12 c00 WS550 W750
+		, %WindowList%
+		, 
+		, Window List - Select the number you want to unhide
+		
+	Input, VKey_Main, L1
+	progress , off
 
-
+	
+	if (VKey_Main >= 1 and VKey_Main <= 9)
+	{
+		WinToShow:=HiddenWindows%VKey_Main%
+		WinShow %WinToShow%
+		WinActivate %WinToShow%
+		if (VKey_Main < NumHiddenWindows)
+		{
+			NumLoops:= NumHiddenWindows - VKey_Main
+			Loop %NumLoops%
+			{
+				IndexToEdit:=VKey_Main + A_Index - 1
+				IndexToCopy:=IndexToEdit + 1
+				HiddenWindows%IndexToEdit%:=HiddenWindows%IndexToCopy%
+			}
+			NumHiddenWindows:=NumHiddenWindows - 1		
+		}
+		else
+		{
+			NumHiddenWindows:=NumHiddenWindows - 1
+			PreviousHiddenWindow:=HiddenWindows%NumHiddenWindows%
+		}
+		
+	}
 
 
 
