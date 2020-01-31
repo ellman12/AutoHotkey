@@ -35,14 +35,14 @@ SendMode Input
 
 
 GUI, Font, s14, Arial ;Font settings for the Text Box.
-GUI, Add, Edit, r3 HScroll x15 y40 w500 h10 vtitleBox gtitleBoxLabel,The Title to Input ;Create the Text Box, with 3 rows, located at x15, y40, width of 375 and height of 50. Has a variable named titleBox.
+GUI, Add, Edit, r3 HScroll x15 y40 w500 h10 vTitleBoxEdit gTitleBoxLabel,The Title to Input ;Create the Text Box, with 3 rows, located at x15, y40, width of 375 and height of 50. Has a variable named titleBox.
 GUI, Color, Silver
 
 GUI, Font, s15, Arial ;Font settings for everything else.
 GUI, Add, Text, x16 y5, Enter Title to Modify:
 
-GUI, Add, Text, x15 y160, Choose a title type:
-GUI, Add, DropDownList, x15 y190 vTitleChoice, Title Case||UPPER CASE|lower case|Sentence case
+GUI, Add, Text, x15 y160, Choose a Title Type:
+GUI, Add, DropDownList, x15 y190 vTitleChoice gTitleChoiceLabel, Title Case||UPPER CASE|lower case|Sentence case
 
 
 
@@ -62,13 +62,21 @@ return
 ;~ ExitApp
 ;~ return
 
-titleBoxLabel:
+TitleBoxLabel:
   GUI, Submit, NoHide
   IsEnterPressed := GetKeyState("Enter")
   if(IsEnterPressed = true)
-  MsgBox, %vTitleChoice%
+  ; MsgBox, % TitleChoice
 return
 
+
+;Label for when the user picks the case they want.
+TitleChoiceLabel:
+MsgBox % TitleChoiceI
+
+;if or switch for modifying the case.
+
+return
 
 
 
