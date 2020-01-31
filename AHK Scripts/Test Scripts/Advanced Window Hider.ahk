@@ -136,6 +136,7 @@ SetTitleMatchMode, 3 ;Set it so that a window's title must exactly match WinTitl
 		return
 	}
 
+    ;Used for the Progress GUI thing.
     F8ProgressWindowList=
 	Loop %NumHiddenWindows%
 	{
@@ -146,18 +147,18 @@ SetTitleMatchMode, 3 ;Set it so that a window's title must exactly match WinTitl
 		F8ProgressWindowList := F8ProgressWindowList . A_Index . ") " . F8CurrentWindow . "`n"
 	}
 
-    Progress , m zh0 fs12 c00 WS550 W750
-		, %F8ProgressWindowList%
-		, 
-		, Window List - Select the number you want to unhide
-		
-	Input, VKey_Main, L1
-	progress , off
+    ;The GUI-type thing that appears when you press the hotkey.
+    ;IDK how it works.
+    Progress, m zh0 fs12 c00 WS550 W750, %F8ProgressWindowList%, , Window List - Select the number you want to unhide.
 
+	Input, VKey_Main, L1 ;Used for getting the user input for selecting 1–9 on the keyboard.
+	progress , off ;L1 is the character limit (can only type 1 character).
+
+    ;If the user inputs a number between 1 and 9, show that window.
 	if (VKey_Main >= 1 and VKey_Main <= 9)
 	{
 		F8WinToShow := F8WinTitleArray%VKey_Main%
-		WinShow %F8WinToShow%
+		WinShow %F8WinToShow% ;Show and activate the window.
 		WinActivate %F8WinToShow%
 		if (VKey_Main < NumHiddenWindows)
 		{
@@ -177,13 +178,6 @@ SetTitleMatchMode, 3 ;Set it so that a window's title must exactly match WinTitl
 		}
 		
 	}
-
-
-
-
-
-
-
 
 return ;End of #F8.
 
