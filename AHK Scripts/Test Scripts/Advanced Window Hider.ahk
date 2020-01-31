@@ -22,12 +22,13 @@ SendMode Input
 ;I copied that script, and improved it.
 
 ;******************************Hotkeys******************************
-; ^F8:: Add the current window's ID to the list (array).
+; ^F8:: Add the current window's title and ID to the list (array).
+; TODO !F8:: Add the current window's title and ID to the list (array), and hide it right away.
 ; ^+F8:: Remove the current window's ID from the list (array).
 ; F8:: Toggle to show/hide all windows.
-; TODO #F8:: Display a list of hidden windows with their index next to it. If the user presses 1-9, it will show and activate the window with that index.
+; #F8:: Display a list of hidden windows with their index next to it. If the user presses 1–9, it will show and activate the window with that index.
+; ^!+F8:: Remove all windows from the group, without closing them.
 ; ^!+#F8:: Close all windows in the list (array).
-; Remove all windows from the group, without closing them.
 ; TODO OnExit, restore all hidden windows
 
 ;Declare array to track window IDs.
@@ -41,17 +42,18 @@ F8WinTitleArray := []
 showHideToggle := 1
 return ;End of Auto-execute section.
 
-;Add active window title and ID to hide list.
+;Add the current window's title and ID to the list (array).
 ^F8::
+
     SetTitleMatchMode, 3 ;Set it so that a window's title must exactly match WinTitle to be a match.
     if (NumHiddenWindows = "") ;If the number of hidden windows doesn't exist?
-		NumHiddenWindows:=0 ;Set it to 0.
+		NumHiddenWindows := 0 ;Set it to 0.
 	NumHiddenWindows := NumHiddenWindows + 1 ;Add to total number of hidden windows to be used for later.
 
     WinGetTitle F8ActiveWinTitle, A ;Get active window title.
 
     ;Put the number of hidden windows in an array to be used for later.
-	F8WinTitleArray%NumHiddenWindows%:=F8ActiveWinTitle
+	F8WinTitleArray%NumHiddenWindows% := F8ActiveWinTitle
 
     ;Get ID of current active window.
     WinGet, F8WinID, ID, A
@@ -64,17 +66,44 @@ return ;End of Auto-execute section.
         ;...stop code flow because nothing needs to be added.
     return
 
-;If duplicate isn't found, add window to the array.
-F8WinIDArray.Push(F8WinID)
+    ;If duplicate isn't found, add window to the array.
+    F8WinIDArray.Push(F8WinID)
 
-;Get title of window for tray tip.
-WinGetActiveTitle, thisTitle
-
-;Notify user add was sucessful.
-ToolTip, Added to F8 Group!
-Sleep, 200
-ToolTip
+    ;Notify user add was sucessful.
+    ToolTip, Added to F8 Group!
+    Sleep, 200
+    ToolTip
 return ;End of ^F8.
+
+;Add the current window's title and ID to the list (array), and hide it right away.
+!F8::
+
+    SetTitleMatchMode, 3 ;Set it so that a window's title must exactly match WinTitle to be a match.
+    if (NumHiddenWindows = "") ;If the number of hidden windows doesn't exist?
+		NumHiddenWindows := 0 ;Set it to 0.
+	NumHiddenWindows := NumHiddenWindows + 1 ;Add to total number of hidden windows to be used for later.
+
+    WinGetTitle F8ActiveWinTitle, A ;Get active window title.
+
+    ;Put the number of hidden windows in an array to be used for later.
+	F8WinTitleArray%NumHiddenWindows% := F8ActiveWinTitle
+
+    ;Get ID of current active window.
+    WinGet, F8WinID, ID, A
+
+    ;Loop through list and make sure there's no duplicate IDs.
+    ;Index is array index, and value is the value at that index (I think).
+    for index, value in F8WinIDArray
+
+    if (F8WinID = value) ;If duplicate is found...
+        ;...stop code flow because nothing needs to be added.
+    return
+
+    ;If duplicate isn't found, add window to the array.
+    F8WinIDArray.Push(F8WinID)
+
+    WinHide, % "ahk_id " F8WinID
+return ;End of !F8.
 
 ;Remove window from hide list.
 ^+F8::
@@ -151,12 +180,17 @@ SetTitleMatchMode, 3 ;Set it so that a window's title must exactly match WinTitl
 		F8WinToShow := F8WinTitleArray%Prog1to9Var%
 		WinShow %F8WinToShow% ;Show and activate the window.
 		WinActivate %F8WinToShow%
+
+        ;If the inputted character (number) is less than the total number of hidden windows.
 		if (Prog1to9Var < NumHiddenWindows) {
-			NumLoops:= NumHiddenWindows - Prog1to9Var
-			Loop %NumLoops% {
-				IndexToEdit:=Prog1to9Var + A_Index - 1
-				IndexToCopy:=IndexToEdit + 1
-				F8WinTitleArray%IndexToEdit%:=F8WinTitleArray%IndexToCopy%
+			;The number of times to loop equals the total number of hidden windows, minus the inputted character (IDK why).
+            NumLoops := NumHiddenWindows - Prog1to9Var
+
+        ;Not sure about the following code; it works, which is all I care about.
+            Loop %NumLoops% {
+				IndexToEdit := Prog1to9Var + A_Index - 1
+				IndexToCopy := IndexToEdit + 1
+				F8WinTitleArray%IndexToEdit% := F8WinTitleArray%IndexToCopy%
 			}
 			NumHiddenWindows := NumHiddenWindows - 1		
 		}
@@ -166,8 +200,15 @@ SetTitleMatchMode, 3 ;Set it so that a window's title must exactly match WinTitl
 		}
 		
 	}
-
 return ;End of #F8.
+
+;Remove all windows from the group, without closing them.
+^!+F8::
+
+;Blank out the array.
+F8WinIDArray := 
+
+return ;End of ^!+F8.
 
 ;Close all windows in the list (array).
 ^!+#F8::
@@ -176,12 +217,4 @@ return ;End of #F8.
 for index, value in F8WinIDArray
 WinClose, % "ahk_id " value
 
-return
-
-;Remove all windows from the group, without closing them.
-^!+F8::
-
-;Blank out the array.
-F8WinIDArray := 
-
-return
+return ;End of ^!+#F8.
