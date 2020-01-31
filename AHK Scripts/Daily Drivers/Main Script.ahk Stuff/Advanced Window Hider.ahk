@@ -66,7 +66,7 @@ return ;End of Auto-execute section.
 
     if (F8ActiveWinID = value) ;If duplicate is found...
         ;...stop code flow because nothing needs to be added, and break out of the hotkey.
-        return
+    return
 
     ;If duplicate isn't found, add window to the array.
     F8WinIDArray.Push(F8ActiveWinID)
@@ -98,9 +98,8 @@ return ;End of ^F8.
     ;Index is array index, and value is the value at that index (I think).
     for index, value in F8WinIDArray
 
-    if (F8ActiveWinID = value) ;If duplicate is found...
+    if (F8ActiveWinID = value) ;IDK about this.
         WinHide, % "ahk_id " F8ActiveWinID
-        return
 
     ;If duplicate isn't found, add window ID to the array.
     F8WinIDArray.Push(F8ActiveWinID)
