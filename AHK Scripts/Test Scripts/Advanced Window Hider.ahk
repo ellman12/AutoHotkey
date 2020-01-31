@@ -21,15 +21,16 @@ SendMode Input
 ;Inspired by this script by GroggyOtter on r/AHK: https://www.reddit.com/r/AutoHotkey/comments/6fesyf/hide_windows/dii587h?utm_source=share&utm_medium=web2x
 ;I copied that script, and improved it.
 
-;******************************Hotkeys******************************
+;***********************************HOTKEYS***********************************
+; TODO FIX THE ORDER
 ; ^F8:: Add the current window's title and ID to the list (array).
-; TODO !F8:: Add the current window's title and ID to the list (array), and hide it right away.
-; ^+F8:: Remove the current window's ID from the list (array).
+; !F8:: Add the current window's title and ID to the list (array), and hide it right away.
+; TODO +F8:: Show previously hidden window.
 ; F8:: Toggle to show/hide all windows.
 ; #F8:: Display a list of hidden windows with their index next to it. If the user presses 1–9, it will show and activate the window with that index.
+; ^+F8:: Remove the current window's ID and title from the list (array).
 ; ^!+F8:: Remove all windows from the group, without closing them.
 ; ^!+#F8:: Close all windows in the list (array).
-; TODO OnExit, restore all hidden windows
 
 ;Declare array to track window IDs.
 F8WinIDArray := []
@@ -37,9 +38,9 @@ F8WinIDArray := []
 ;Declare array to track window titles.
 F8WinTitleArray := []
 
-;Decalre showHideToggle as 1 so the first time you press F8, it hides everything.
+;Decalre F8ShowHideToggle as 1 so the first time you press F8, it hides everything.
 ;If it's 1, hide windows; if it's 0, show windows.
-showHideToggle := 1
+F8ShowHideToggle := 1
 return ;End of Auto-execute section.
 
 ;Add the current window's title and ID to the list (array).
@@ -56,18 +57,18 @@ return ;End of Auto-execute section.
 	F8WinTitleArray%NumHiddenWindows% := F8ActiveWinTitle
 
     ;Get ID of current active window.
-    WinGet, F8WinID, ID, A
+    WinGet, F8ActiveWinID, ID, A
 
     ;Loop through list and make sure there's no duplicate IDs.
     ;Index is array index, and value is the value at that index (I think).
     for index, value in F8WinIDArray
 
-    if (F8WinID = value) ;If duplicate is found...
+    if (F8ActiveWinID = value) ;If duplicate is found...
         ;...stop code flow because nothing needs to be added.
     return
 
     ;If duplicate isn't found, add window to the array.
-    F8WinIDArray.Push(F8WinID)
+    F8WinIDArray.Push(F8ActiveWinID)
 
     ;Notify user add was sucessful.
     ToolTip, Added to F8 Group!
@@ -76,6 +77,7 @@ return ;End of Auto-execute section.
 return ;End of ^F8.
 
 ;Add the current window's title and ID to the list (array), and hide it right away.
+;If it's already in the list, hide it anyway (in case the user accidentally does ^F8 first).
 !F8::
 
     SetTitleMatchMode, 3 ;Set it so that a window's title must exactly match WinTitle to be a match.
@@ -89,57 +91,75 @@ return ;End of ^F8.
 	F8WinTitleArray%NumHiddenWindows% := F8ActiveWinTitle
 
     ;Get ID of current active window.
-    WinGet, F8WinID, ID, A
+    WinGet, F8ActiveWinID, ID, A
 
     ;Loop through list and make sure there's no duplicate IDs.
     ;Index is array index, and value is the value at that index (I think).
     for index, value in F8WinIDArray
 
-    if (F8WinID = value) ;If duplicate is found...
-        ;...stop code flow because nothing needs to be added.
+    if (F8ActiveWinID = value) ;If duplicate is found...
+        WinHide, % "ahk_id " F8ActiveWinID
     return
 
-    ;If duplicate isn't found, add window to the array.
-    F8WinIDArray.Push(F8WinID)
+    ;If duplicate isn't found, add window ID to the array.
+    F8WinIDArray.Push(F8ActiveWinID)
 
-    WinHide, % "ahk_id " F8WinID
+    ;Hide the window after putting it in the list (array).
+    WinHide, % "ahk_id " F8ActiveWinID
 return ;End of !F8.
 
-;Remove window from hide list.
+;Show previously hidden window.
++F8::
+    SetTitleMatchMode, 3
+    ;If the title of the last hidden window is NOT blank, show, restore, and activate the previously hidden window.
+    ;And also decrement the total number of windows by 1 each time.
+    if (F8ActiveWinTitle != "") {
+        WinShow, %F8ActiveWinTitle%
+        WinRestore %PreviousHiddenWindow%
+		WinActivate %PreviousHiddenWindow%
+		NumHiddenWindows := NumHiddenWindows - 1
+		PreviousHiddenWindow := HiddenWindows%NumHiddenWindows%
+    }
+return ;End of +F8.
+
+;Remove the active window from the list.
 ^+F8::
     ;Get ID of current active window.
-    WinGet, F8WinID, ID, A
+    WinGet, F8ActiveWinID, ID, A
     
     ;Loop through list and find the value to remove.
     for index, value in F8WinIDArray
 
-    if (value != F8WinID) ;If it's not found...
+    if (value != F8ActiveWinID) ;If it's not found...
         ;...stop code flow because nothing needs to be added
     return
 
-;Remove entry from array.
+;Remove the ID from array.
 F8WinIDArray.RemoveAt(index)
 
+;Remove the title from the array.
+F8WinTitleArray.RemoveAt(index)
+
 ;Notify user removal was sucessful.
-ToolTip, Added to F8 Group!
+ToolTip, Removed from F8 Group!
 Sleep, 200
 ToolTip
 return ;End of ^+F8.
 
 ;Hide/show all the windows.
 F8::    
-    ;Change showHideToggle to opposite of showHideToggle
+    ;Change F8ShowHideToggle to opposite of F8ShowHideToggle.
     ;1 becomes 0. 0 becomes 1.
     ;If it's 1, hide windows; if it's 0, it shows windows.
-    showHideToggle := !showHideToggle
+    F8ShowHideToggle := !F8ShowHideToggle
     
-    ;If showHideToggle = 1
-    if (showHideToggle = 1)
+    ;If F8ShowHideToggle = 1
+    if (F8ShowHideToggle = 1)
         ;Loop through the array...
     for index, value in F8WinIDArray
         ;...and show everything
     WinShow, % "ahk_id " value
-    ;If showHideToggle does not = 1
+    ;If F8ShowHideToggle does not = 1
     Else
         ;Loop through the array...
     for index, value in F8WinIDArray
@@ -149,7 +169,7 @@ return
 
 ;Display a list of hidden windows with their index next to it. If the user presses 1-9, it will show and activate the window with that index.
 #F8::
-;If showHideToggle is 1, hide windows; if it's 0, show windows.
+;If F8ShowHideToggle is 1, hide windows; if it's 0, show windows.
 ;If there aren't any hidden windows.
 SetTitleMatchMode, 3 ;Set it so that a window's title must exactly match WinTitle to be a match.
 	if (NumHiddenWindows = "" or NumHiddenWindows <= 0) {
@@ -205,8 +225,9 @@ return ;End of #F8.
 ;Remove all windows from the group, without closing them.
 ^!+F8::
 
-;Blank out the array.
+;Blank out the arrays.
 F8WinIDArray := 
+F8WinTitleArray := 
 
 return ;End of ^!+F8.
 
