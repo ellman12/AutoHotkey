@@ -4,7 +4,7 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #SingleInstance force
 
-;A lot of this code is taken from Taran Van Hemert from Linus Media Group
+;A lot of this code is taken from Taran Van Hemert from Linus Media Group.
 ;His video on this: https://www.youtube.com/watch?v=OqyQABySV8k
 ;As he calls it, this is his most useful script he's ever made
 ;It's quite simple, but extremely useful and powerful

@@ -15,24 +15,14 @@ SendMode Input
 #SingleInstance force
 ;OPTIMIZATIONS END
 
-;GUI tutorial: https://youtu.be/TFWDZ4FAETg?list=PLPI5C2_hIGGx1hqSvNzCLawaDvGF0k9-Y&t=1307
+;https://autohotkey.com/board/topic/123994-capitalize-a-title/
+;https://autohotkey.com/board/topic/57888-title-case/
 
-;Create the GUI
-;  GUI, Font, s15, Veranda,
-;  GUI, Add, Text, x27 y27,Enter title:
-;  GUI, +AlwaysOnTop
-;  GUI, Color, Silver
-; ~ GUI, Add, Edit
-
-;  GUI, Show, w400 h400 ,Title Capitalization Tool (TCT)
-;  return
-
-
-;GUI Layout
-;--------------
-;-------------------------
-
-
+;Script used for capitalizing and modifying titles (and other strings of text).
+;I used to use this website: https://capitalizemytitle.com/
+; but it takes way too long to load up every time I want to use it.
+;So, I got to work on this script.
+;It works exactly like it, but faster and runs offline.
 
 GUI, Font, s14, Arial ;Font settings for the Text Box.
 GUI, Add, Edit, r3 HScroll x15 y40 w500 h10 vTitleBoxEdit gTitleBoxLabel,The Title to Input ;Create the Text Box, with 3 rows, located at x15, y40, width of 375 and height of 50. Has a variable named titleBox.
@@ -52,15 +42,13 @@ GUI, Color, Silver
 GUI, Show, w600 h400,Title Capitalization Tool (TCT)
 return
 
-;Labels
-;---------------------
-;------------------------------
 
-;Activates when the GUI is closed. E.g., pressing the red x button,
-; manually exiting the script, etc.
-;~ GuiClose:
-;~ ExitApp
-;~ return
+
+;Activates when the GUI is closed. E.g., pressing the red x button, manually exiting the script, etc.
+GuiClose:
+GUI, Hide
+return
+
 
 TitleBoxLabel:
   GUI, Submit, NoHide
@@ -72,7 +60,27 @@ return
 
 ;Label for when the user picks the case they want.
 TitleChoiceLabel:
-MsgBox % TitleChoiceI
+MsgBox % TitleChoice
+
+Switch TitleChoice {
+
+  Case "Title Case":
+    MsgBox 1
+    return
+  
+  Case "UPPER CASE":
+    MsgBox 2
+    return
+
+  Case "lower case":
+    MsgBox 3
+    return
+
+  Case "Sentence case":
+    MsgBox 4
+    return
+
+}
 
 ;if or switch for modifying the case.
 
@@ -80,43 +88,45 @@ return
 
 
 
-;https://autohotkey.com/board/topic/123994-capitalize-a-title/
-;https://autohotkey.com/board/topic/57888-title-case/
-
-;Script used for capitalizing and modifying titles (and other strings of text).
-;I really like this website, 
-; but it takes way too long to load up every time I want to use it.
-;So, I got to work on this script.
-;It works exactly like it, but faster and runs offline.
 
 
 
+;make hotkeys labels, and if/switch calls them.
 
 
-^!+A::                ; Convert TEXT to UPPER
+; ^!+A::
+;Convert text to UPPER CASE.
+textToUpper:
  Send, ^x
  sleep, 150
  StringUpper Clipboard, Clipboard
  Send %Clipboard%
-RETURN
+return
 
-^!+S::            ; Sentence case
-          ; but the ! disapears; have not foud solution for that
+
+; but the ! disapears; have not foud solution for that
+;Sentence case
+; ^!+S::
+textToSentenceCase:
   Send, ^x
   sleep, 150
   StringLower, Clipboard, Clipboard
   Clipboard := RegExReplace(Clipboard, "((?:^|[.!?]\s+)[a-z])", "$u1")
   Send %Clipboard%
-RETURN
+return
 
-^!+D::                ; Convert text to lower
+; ^!+D::
+;Convert text to lower case.
+textToLowerCase:
  Send, ^x
  sleep, 150
  StringLower Clipboard, Clipboard
  Send %Clipboard%
-RETURN
+return
 
-^!+f::                ; Convert Text To Title Capitalization
+; ^!+f::
+;Convert Text To Title Case.
+textToTitleCase:
 Send, ^c
 Sleep 55
 StringUpper str, Clipboard, T
@@ -124,4 +134,4 @@ head := SubStr( str, 1 , 1 )
 tail := SubStr( str, 2 )
 Clipboard := head RegExReplace( tail , "i)\b(a|an|and|at|but|by|for|in|nor|of|on|or|so|the|to|up|with|yet)\b", "$L1")
 Send ^v
-RETURN
+return
