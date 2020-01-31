@@ -157,8 +157,8 @@ SetTitleMatchMode, 3 ;Set it so that a window's title must exactly match WinTitl
 	if (VKey_Main >= 1 and VKey_Main <= 9)
 	{
 		F8WinToShow := F8WinTitleArray%VKey_Main%
-		WinShow %WinToShow%
-		WinActivate %WinToShow%
+		WinShow %F8WinToShow%
+		WinActivate %F8WinToShow%
 		if (VKey_Main < NumHiddenWindows)
 		{
 			NumLoops:= NumHiddenWindows - VKey_Main
