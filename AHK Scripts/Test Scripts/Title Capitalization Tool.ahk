@@ -41,6 +41,10 @@ GUI, Color, Silver
 GUI, Font, s15, Arial ;Font settings for everything else.
 GUI, Add, Text, x16 y5, Enter Title to Modify:
 
+GUI, Add, Text, x15 y160, Choose a title type:
+GUI, Add, DropDownList, x15 y190 vTitleChoice, Title Case||UPPER CASE|lower case|Sentence case
+
+
 
 
 GUI, +AlwaysOnTop
@@ -59,10 +63,10 @@ return
 ;~ return
 
 titleBoxLabel:
-GUI, Submit, NoHide
-IsEnterPressed := GetKeyState("Enter")
-if(IsEnterPressed = true)
-MsgBox, %titleBox%
+  GUI, Submit, NoHide
+  IsEnterPressed := GetKeyState("Enter")
+  if(IsEnterPressed = true)
+  MsgBox, %vTitleChoice%
 return
 
 
