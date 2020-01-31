@@ -18,15 +18,16 @@ SendMode Input
 ;This script is a more advanced version of an old script called "WindowHider.ahk" script.
 ;That script kinda sucked, so I got inspired to make this improved version.
 ;It gives me incredible control over hiding and showing windows.
-;Inspired by this script by GroggyOtter on r/AHK: https://www.reddit.com/r/AutoHotkey/comments/6fesyf/hide_windows/dii587h?utm_source=share&utm_medium=web2x
+;Before I started writing this script, I did a Google search for any similar scripts that had what I was looking for.
+;I found this script on r/AHK by GroggyOtter: https://www.reddit.com/r/AutoHotkey/comments/6fesyf/hide_windows/dii587h?utm_source=share&utm_medium=web2x
 ;I copied that script, and improved it.
+;I also copied from the old "WindowHider.ahk" script, and I got a lot of the functionality of this script from there.
 
 ;***********************************HOTKEYS***********************************
-; TODO FIX THE ORDER
 ; ^F8:: Add the current window's title and ID to the list (array).
 ; !F8:: Add the current window's title and ID to the list (array), and hide it right away.
-; TODO +F8:: Show previously hidden window.
-; F8:: Toggle to show/hide all windows.
+; +F8:: Show previously hidden window.
+; F8:: Toggle between showing and hiding all the windows in the list (array).
 ; #F8:: Display a list of hidden windows with their index next to it. If the user presses 1–9, it will show and activate the window with that index.
 ; ^+F8:: Remove the current window's ID and title from the list (array).
 ; ^!+F8:: Remove all windows from the group, without closing them.
@@ -64,8 +65,8 @@ return ;End of Auto-execute section.
     for index, value in F8WinIDArray
 
     if (F8ActiveWinID = value) ;If duplicate is found...
-        ;...stop code flow because nothing needs to be added.
-    return
+        ;...stop code flow because nothing needs to be added, and break out of the hotkey.
+        return
 
     ;If duplicate isn't found, add window to the array.
     F8WinIDArray.Push(F8ActiveWinID)
@@ -77,7 +78,7 @@ return ;End of Auto-execute section.
 return ;End of ^F8.
 
 ;Add the current window's title and ID to the list (array), and hide it right away.
-;If it's already in the list, hide it anyway (in case the user accidentally does ^F8 first).
+;If it's already in the list, hide it anyway (in case the user accidentally does ^F8 first, or for any other reason).
 !F8::
 
     SetTitleMatchMode, 3 ;Set it so that a window's title must exactly match WinTitle to be a match.
@@ -99,7 +100,7 @@ return ;End of ^F8.
 
     if (F8ActiveWinID = value) ;If duplicate is found...
         WinHide, % "ahk_id " F8ActiveWinID
-    return
+        return
 
     ;If duplicate isn't found, add window ID to the array.
     F8WinIDArray.Push(F8ActiveWinID)
@@ -110,9 +111,10 @@ return ;End of !F8.
 
 ;Show previously hidden window.
 +F8::
+
     SetTitleMatchMode, 3
-    ;If the title of the last hidden window is NOT blank, show, restore, and activate the previously hidden window.
-    ;And also decrement the total number of windows by 1 each time.
+    ;If the title of the last hidden window is NOT blank: show, restore, and activate the previously hidden window.
+    ;Aso decrement the total number of windows by 1 each time.
     if (F8ActiveWinTitle != "") {
         WinShow, %F8ActiveWinTitle%
         WinRestore %PreviousHiddenWindow%
@@ -134,20 +136,20 @@ return ;End of +F8.
         ;...stop code flow because nothing needs to be added
     return
 
-;Remove the ID from array.
-F8WinIDArray.RemoveAt(index)
+    ;Remove the ID from array.
+    F8WinIDArray.RemoveAt(index)
 
-;Remove the title from the array.
-F8WinTitleArray.RemoveAt(index)
+    ;Remove the title from the array.
+    F8WinTitleArray.RemoveAt(index)
 
-;Notify user removal was sucessful.
-ToolTip, Removed from F8 Group!
-Sleep, 200
-ToolTip
+    ;Notify user removal was sucessful.
+    ToolTip, Removed from F8 Group!
+    Sleep, 200
+    ToolTip
 return ;End of ^+F8.
 
-;Hide/show all the windows.
-F8::    
+;Toggle between showing and hiding all the windows.
+F8::
     ;Change F8ShowHideToggle to opposite of F8ShowHideToggle.
     ;1 becomes 0. 0 becomes 1.
     ;If it's 1, hide windows; if it's 0, it shows windows.
@@ -160,7 +162,7 @@ F8::
         ;...and show everything
     WinShow, % "ahk_id " value
     ;If F8ShowHideToggle does not = 1
-    Else
+    else
         ;Loop through the array...
     for index, value in F8WinIDArray
         ;...and hide everything
@@ -169,9 +171,9 @@ return
 
 ;Display a list of hidden windows with their index next to it. If the user presses 1-9, it will show and activate the window with that index.
 #F8::
-;If F8ShowHideToggle is 1, hide windows; if it's 0, show windows.
-;If there aren't any hidden windows.
-SetTitleMatchMode, 3 ;Set it so that a window's title must exactly match WinTitle to be a match.
+    ;If F8ShowHideToggle is 1, hide windows; if it's 0, show windows.
+    ;If there aren't any hidden windows.
+    SetTitleMatchMode, 3 ;Set it so that a window's title must exactly match WinTitle to be a match.
 	if (NumHiddenWindows = "" or NumHiddenWindows <= 0) {
 		MsgBox, There are no hidden windows at this time.
 		return
@@ -206,7 +208,7 @@ SetTitleMatchMode, 3 ;Set it so that a window's title must exactly match WinTitl
 			;The number of times to loop equals the total number of hidden windows, minus the inputted character (IDK why).
             NumLoops := NumHiddenWindows - Prog1to9Var
 
-        ;Not sure about the following code; it works, which is all I care about.
+        ;Not sure about the following code; it was copied from the old script, which was kinda crappy.
             Loop %NumLoops% {
 				IndexToEdit := Prog1to9Var + A_Index - 1
 				IndexToCopy := IndexToEdit + 1
@@ -225,17 +227,17 @@ return ;End of #F8.
 ;Remove all windows from the group, without closing them.
 ^!+F8::
 
-;Blank out the arrays.
-F8WinIDArray := 
-F8WinTitleArray := 
+    ;Blank out the arrays.
+    F8WinIDArray := 
+    F8WinTitleArray := 
 
 return ;End of ^!+F8.
 
 ;Close all windows in the list (array).
 ^!+#F8::
 
-;For-loops through the array, closing each window along the way.
-for index, value in F8WinIDArray
-WinClose, % "ahk_id " value
+    ;For-loops through the array, closing each window along the way.
+    for index, value in F8WinIDArray
+    WinClose, % "ahk_id " value
 
 return ;End of ^!+#F8.
