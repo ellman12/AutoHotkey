@@ -25,7 +25,7 @@ SendMode Input
 ; ^F8:: Add the current window's ID to the list (array).
 ; ^+F8:: Remove the current window's ID from the list (array).
 ; F8:: Toggle to show/hide all windows.
-; TODO #F8:: Display a list of hidden windows with their index next to it. If user presses 1-9, it will show and activate the window with that index.
+; TODO #F8:: Display a list of hidden windows with their index next to it. If the user presses 1-9, it will show and activate the window with that index.
 ; ^!+#F8:: Close all windows in the list (array).
 ; Remove all windows from the group, without closing them.
 ; TODO OnExit, restore all hidden windows
@@ -118,28 +118,19 @@ F8::
     WinHide, % "ahk_id " value
 return
 
-
-
-
-
-
-
-
-
-;Display a list of hidden windows with their index next to it. If user presses 1-9, it will show and activate the window with that index.
+;Display a list of hidden windows with their index next to it. If the user presses 1-9, it will show and activate the window with that index.
 #F8::
 ;If showHideToggle is 1, hide windows; if it's 0, show windows.
 ;If there aren't any hidden windows.
 SetTitleMatchMode, 3 ;Set it so that a window's title must exactly match WinTitle to be a match.
-	if (NumHiddenWindows="" or NumHiddenWindows <= 0) {
+	if (NumHiddenWindows = "" or NumHiddenWindows <= 0) {
 		MsgBox, There are no hidden windows at this time.
 		return
 	}
 
     ;Used for the Progress GUI thing.
-    F8ProgressWindowList=
-	Loop %NumHiddenWindows%
-	{
+    F8ProgressWindowList = 
+	Loop %NumHiddenWindows% {
 		if (A_Index >= 10)
 			F8ProgressWindowList := F8ProgressWindowList . "...The Following windows cannot be reached directly through this...`n"
 		F8CurrentWindow := F8WinTitleArray%A_Index%
@@ -151,48 +142,32 @@ SetTitleMatchMode, 3 ;Set it so that a window's title must exactly match WinTitl
     ;IDK how it works.
     Progress, m zh0 fs12 c00 WS550 W750, %F8ProgressWindowList%, , Window List - Select the number you want to unhide.
 
-	Input, VKey_Main, L1 ;Used for getting the user input for selecting 1–9 on the keyboard.
-	progress , off ;L1 is the character limit (can only type 1 character).
+    ;Get the input from the user and store it in the variable Prog1to9Var. L1 is the character limit (can only type 1 character).
+	Input, Prog1to9Var, L1
+	progress, Off ;Turn off/remove the progress GUI.
 
     ;If the user inputs a number between 1 and 9, show that window.
-	if (VKey_Main >= 1 and VKey_Main <= 9)
-	{
-		F8WinToShow := F8WinTitleArray%VKey_Main%
+	if (Prog1to9Var >= 1 and Prog1to9Var <= 9) {
+		F8WinToShow := F8WinTitleArray%Prog1to9Var%
 		WinShow %F8WinToShow% ;Show and activate the window.
 		WinActivate %F8WinToShow%
-		if (VKey_Main < NumHiddenWindows)
-		{
-			NumLoops:= NumHiddenWindows - VKey_Main
-			Loop %NumLoops%
-			{
-				IndexToEdit:=VKey_Main + A_Index - 1
+		if (Prog1to9Var < NumHiddenWindows) {
+			NumLoops:= NumHiddenWindows - Prog1to9Var
+			Loop %NumLoops% {
+				IndexToEdit:=Prog1to9Var + A_Index - 1
 				IndexToCopy:=IndexToEdit + 1
 				F8WinTitleArray%IndexToEdit%:=F8WinTitleArray%IndexToCopy%
 			}
 			NumHiddenWindows := NumHiddenWindows - 1		
 		}
-		else
-		{
+		else {
 			NumHiddenWindows := NumHiddenWindows - 1
-			PreviousHiddenWindow := F8WinTitleArray%NumHiddenWindows%
+			F8ActiveWinTitle := F8WinTitleArray%NumHiddenWindows%
 		}
 		
 	}
 
 return ;End of #F8.
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ;Close all windows in the list (array).
 ^!+#F8::
