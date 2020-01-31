@@ -43,7 +43,7 @@ return ;End of Auto-execute section.
 
 ;Add active window title and ID to hide list.
 ^F8::
-
+    SetTitleMatchMode, 3 ;Set it so that a window's title must exactly match WinTitle to be a match.
     if (NumHiddenWindows = "") ;If the number of hidden windows doesn't exist?
 		NumHiddenWindows:=0 ;Set it to 0.
 	NumHiddenWindows := NumHiddenWindows + 1 ;Add to total number of hidden windows to be used for later.
@@ -62,7 +62,7 @@ return ;End of Auto-execute section.
 
     if (F8WinID = value) ;If duplicate is found...
         ;...stop code flow because nothing needs to be added.
-return
+    return
 
 ;If duplicate isn't found, add window to the array.
 F8WinIDArray.Push(F8WinID)
@@ -74,7 +74,7 @@ WinGetActiveTitle, thisTitle
 ToolTip, Added to F8 Group!
 Sleep, 200
 ToolTip
-return
+return ;End of ^F8.
 
 ;Remove window from hide list.
 ^+F8::
@@ -83,25 +83,19 @@ return
     
     ;Loop through list and find the value to remove.
     for index, value in F8WinIDArray
-        ;If it's not found
-    if (value != F8WinID)
-        ;Stop code flow because nothing needs to be added
-return
 
-;Remove entry from array
+    if (value != F8WinID) ;If it's not found...
+        ;...stop code flow because nothing needs to be added
+    return
+
+;Remove entry from array.
 F8WinIDArray.RemoveAt(index)
-
-;Get title of window for tray tip
-WinGetActiveTitle, thisTitle
-
-;Notify user remove was successful
-TrayTip, % "Window Removed", % thisTitle, 1
 
 ;Notify user removal was sucessful.
 ToolTip, Added to F8 Group!
 Sleep, 200
 ToolTip
-return
+return ;End of ^+F8.
 
 ;Hide/show all the windows.
 F8::    
@@ -137,53 +131,7 @@ return
 
 ;If showHideToggle is 1, hide windows; if it's 0, show windows.
 ;If there aren't any hidden windows.
-if (showHideToggle = 1) {
-    MsgBox, There are no hidden windows.
-    return ;Get out of this hotkey, since there's nothing else to do.
-}
 
-
-Loop %F8WinIDArray%
-	{
-		if (A_Index >= 10)
-			WindowList:=WindowList . "...The Following windows cannot be reached directly through this...`n"
-		CurWindow:=F8WinTitleArray%A_Index%
-		;WinShow %CurWindow%
-		WindowList:=WindowList . A_Index . ") " . CurWindow . "`n"
-		
-	}
-
-;Create the GUI thing.
-Progress , m zh0 fs12 c00 WS550 W750
-		, %WindowList%
-		, 
-		, Window List - Select the number you want to unhide
-
-	Input, VKey_Main, L1
-	progress , off
-
-    if (VKey_Main >= 1 and VKey_Main <= 9)
-	{
-		WinToShow:=F8WinTitleArray%VKey_Main%
-		WinShow %WinToShow%
-		WinActivate %WinToShow%
-		if (VKey_Main < NumHiddenWindows)
-		{
-			NumLoops:= NumHiddenWindows - VKey_Main
-			Loop %NumLoops%
-			{
-				IndexToEdit:=VKey_Main + A_Index - 1
-				IndexToCopy:=IndexToEdit + 1
-				F8WinTitleArray%IndexToEdit%:=F8WinTitleArray%IndexToCopy%
-			}
-			NumHiddenWindows:=NumHiddenWindows - 1		
-		}
-		else
-		{
-			NumHiddenWindows:=NumHiddenWindows - 1
-			F8ActiveWinTitle:=F8WinTitleArray%NumHiddenWindows%
-		}
-    }
 return
 
 
@@ -208,7 +156,7 @@ WinClose, % "ahk_id " value
 
 return
 
-; Remove all windows from the group, without closing them.
+;Remove all windows from the group, without closing them.
 ^!+F8::
 
 ;Blank out the array.
