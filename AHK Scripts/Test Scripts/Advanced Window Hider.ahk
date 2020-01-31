@@ -128,11 +128,26 @@ return
 
 ;Display a list of hidden windows with their index next to it. If user presses 1-9, it will show and activate the window with that index.
 #F8::
-
 ;If showHideToggle is 1, hide windows; if it's 0, show windows.
 ;If there aren't any hidden windows.
+SetTitleMatchMode, 3 ;Set it so that a window's title must exactly match WinTitle to be a match.
+	if (NumHiddenWindows="" or NumHiddenWindows <= 0) {
+		MsgBox, There are no hidden windows at this time.
+		return
+	}
 
-return
+
+
+
+
+
+
+
+
+
+
+
+return ;End of #F8.
 
 
 
