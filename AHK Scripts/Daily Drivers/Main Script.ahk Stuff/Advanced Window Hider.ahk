@@ -118,7 +118,7 @@ return ;End of !F8.
         WinShow, %F8ActiveWinTitle%
         WinRestore %PreviousHiddenWindow%
 		WinActivate %PreviousHiddenWindow%
-		NumHiddenWindows := NumHiddenWindows - 1
+		NumHiddenWindows := %NumHiddenWindows% - 1
 		PreviousHiddenWindow := HiddenWindows%NumHiddenWindows%
     }
 return ;End of +F8.
@@ -190,7 +190,7 @@ return
 
     ;The GUI-type thing that appears when you press the hotkey.
     ;IDK how it works.
-    Progress, m zh0 fs12 c00 WS550 W750, %F8ProgressWindowList%, , Window List - Select the number you want to unhide.
+    Progress, m zh0 fs12 c00 WS550 W750, %F8ProgressWindowList%, , Window List - Select the number (1 through 9) that you want to unhide.
 
     ;Get the input from the user and store it in the variable Prog1to9Var. L1 is the character limit (can only type 1 character).
 	Input, Prog1to9Var, L1
