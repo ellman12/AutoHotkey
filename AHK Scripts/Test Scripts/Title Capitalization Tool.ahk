@@ -67,7 +67,7 @@ TitleTextBoxLabel:
   }
 return
 
-;Label is run when the user picks the case they want, and after they hit Enter (when they are done inputting data).
+;This label is run when the user picks the case they want, and after they hit Enter (when they are done inputting data).
 ;Contains a Switch statement that modifys the text, depending on how the user wants it.
 TitleChoiceLabel:
 
@@ -83,14 +83,14 @@ Switch TitleChoice {
     ;~ showGUIToggle := 0
   return
   
-  ;Converts text to UPPER CASE.
+  ;Converts text to UPPER CASE, using a built-in AHK function.
   Case "UPPER CASE":
     StringUpper, NewTitle, TitleEditBoxText
     Clipboard := NewTitle
     ;~ showGUIToggle := 0
   return
 
-  ;Converts text to lower case.
+  ;Converts text to lower case, using a built-in AHK function.
   Case "lower case":
     StringLower, NewTitle, TitleEditBoxText
     Clipboard := NewTitle
