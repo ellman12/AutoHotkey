@@ -15,10 +15,11 @@ SendMode Input
 #SingleInstance force
 ;OPTIMIZATIONS END
 
+;TODO: First Letter, and AlT CaSe.
+
 ;Script used for capitalizing and modifying titles (and other strings of text).
 ;I used to use this website: https://capitalizemytitle.com/
-; but it takes way too long to load up every time I want to use it.
-;So, I got to work on this script.
+; but it takes way too long to load up every time I want to use it, so I got to work on this script.
 ;It works exactly like it, but faster and runs offline.
 ;TCT is shorthand for the script's name: Title Capitalization Tool.
 ;Inspiration and code for this script: https://autohotkey.com/board/topic/57888-title-case/ and https://autohotkey.com/board/topic/123994-capitalize-a-title/
