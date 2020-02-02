@@ -8,7 +8,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ;This script is Google Sheets for both Firefox and Chrome.
 ;Since they would be almost the same, having two separate scripts would be pointless.
 ;If an action is specific to only one browser, I will accommodate for that.
-;The Browser and Sheets scripts are like this too.
+;The Browser and Docs scripts are like this too.
 */
 
 ;****************************************MOUSE ACTIONS***************************************

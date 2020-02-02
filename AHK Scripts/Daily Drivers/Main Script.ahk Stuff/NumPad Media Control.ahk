@@ -14,7 +14,7 @@ as much of my stuff as possible from iCUE to AHK. Text programming is always bet
 
 global master_volume
 
-;Log volume scaling stuff for NumpadAdd and NumpadEnter. IDK where I found this, nor do I know how it works.
+;Log volume scaling stuff for NumpadAdd and NumpadEnter. IDK where I found this, nor do I understand/know how it works.
 f(x) {
 return exp(6.908*x)/1000.0
 }

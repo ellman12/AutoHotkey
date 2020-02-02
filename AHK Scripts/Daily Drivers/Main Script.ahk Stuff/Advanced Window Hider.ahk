@@ -21,7 +21,7 @@ SendMode Input
 ;Before I started writing this script, I did a Google search for any similar scripts that had what I was looking for.
 ;I found this script on r/AHK by GroggyOtter: https://www.reddit.com/r/AutoHotkey/comments/6fesyf/hide_windows/dii587h?utm_source=share&utm_medium=web2x
 ;I copied that script, and improved it.
-;I also copied from the old "WindowHider.ahk" script, and I got a lot of the functionality of this script from there.
+;I also paraphrased some code from the old "WindowHider.ahk" script, and I got a lot of the functionality of this script from there.
 
 ;***********************************HOTKEYS***********************************
 ; ^F8:: Add the current window's title and ID to the list (array).

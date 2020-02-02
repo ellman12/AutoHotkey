@@ -1,6 +1,8 @@
 #SingleInstance force
 SendMode, Input
 
+;Because I don't need the entire Main Script.ahk on my laptop, I made this script, with just the essentials.
+;It also #Includes a few other scripts that are really really useful on my laptop.
 #Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Advanced Window Hider.ahk
 #Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\ApplicationSwitcher.ahk
 #Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\AutoCorrect.ahk
@@ -18,7 +20,7 @@ return
 
 
 
-;Log volume scaling stuff for NumpadAdd and NumpadEnter. IDK where I found this, nor do I know how it works.
+;Log volume scaling stuff for NumpadAdd and NumpadEnter. IDK where I found this, nor do I understand/know how it works.
 f(x) {
 return exp(6.908*x)/1000.0
 }

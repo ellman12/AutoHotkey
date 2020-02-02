@@ -8,7 +8,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ;This script is for both Firefox and Chrome.
 ;Since they're so similar, I just decided to combine them into one file.
 ;If an action is specific to only one browser, I will accommodate for that.
-;The Docs profile is like this too.
+;The Docs and Sheets profiles are like this, too.
 */
 
 ;****************************************MOUSE ACTIONS***************************************
