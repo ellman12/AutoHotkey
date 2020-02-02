@@ -21,6 +21,7 @@ SendMode Input
 ;So, I got to work on this script.
 ;It works exactly like it, but faster and runs offline.
 ;TCT is shorthand for the script's name: Title Capitalization Tool.
+;Inspiration and code for this script: https://autohotkey.com/board/topic/57888-title-case/ and https://autohotkey.com/board/topic/123994-capitalize-a-title/
 
 ;Creating and designing the GUI.
 ;Creating the Title Box.
@@ -76,22 +77,30 @@ Switch TitleChoice {
     head := SubStr(NewTitle, 1, 1)
     tail := SubStr(NewTitle, 2)
     Clipboard := head RegExReplace( tail , "i)\b(a|an|and|at|but|by|for|in|nor|of|on|or|so|the|to|up|with|yet)\b", "$L1")
+    ;~ showGUIToggle := 0
   return
   
   ;Converts text to UPPER CASE.
   Case "UPPER CASE":
-    MsgBox 2
-    return
+    StringUpper, NewTitle, TitleEditBoxText
+    Clipboard := NewTitle
+    ;~ showGUIToggle := 0
+  return
 
   ;Converts text to lower case.
   Case "lower case":
-    MsgBox 3
-    return
+    StringLower, NewTitle, TitleEditBoxText
+    Clipboard := NewTitle
+    ;~ showGUIToggle := 0
+  return
 
   ;Converts text to Sentence case.
   Case "Sentence case":
-    MsgBox 4
-    return
+    StringLower, NewTitle, TitleEditBoxText
+    NewTitle := RegExReplace(Clipboard, "((?:^|[.!?]\s+)[a-z])", "$u1")
+    Clipboard := NewTitle
+    ;~ showGUIToggle := 0
+  return
 
 } ;End of Switch statement.
 return ;End of TitleChoiceLabel.
@@ -107,36 +116,7 @@ if (showGUIToggle = 1) {
   
 } else if (showGUIToggle = 0) {
   GUI, Hide
+  ;~ TitleEditBoxText := ;Blank out this out so the previous text isn't still stored in there.
   
 }
 return ;End of #t.
-
-
-
-textToUpper:
- Send, ^x
- sleep, 150
- StringUpper Clipboard, Clipboard
- Send %Clipboard%
-return
-
-
-; but the ! disapears; have not foud solution for that
-
-; ^!+S::
-textToSentenceCase:
-  Send, ^x
-  sleep, 150
-  StringLower, Clipboard, Clipboard
-  Clipboard := RegExReplace(Clipboard, "((?:^|[.!?]\s+)[a-z])", "$u1")
-  Send %Clipboard%
-return
-
-; ^!+D::
-
-textToLowerCase:
- Send, ^x
- sleep, 150
- StringLower Clipboard, Clipboard
- Send %Clipboard%
-return
