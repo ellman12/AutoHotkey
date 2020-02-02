@@ -74,10 +74,11 @@ TitleChoiceLabel:
 Switch TitleChoice {
 
   ;Converts text To Title Case.
-  Case "Title Case":
-    StringUpper, NewTitle, TitleEditBoxText, T ;I don't really know how this works.
-    head := SubStr(NewTitle, 1, 1)
-    tail := SubStr(NewTitle, 2)                       ;This is the list of words to NOT capitalize.
+  Case "Title Case": ;I don't understand, nor know, how this works at all.
+    StringUpper, NewTitle, TitleEditBoxText, T ;Makes the title in AHK's "Title Case", which in reality just capitalizes the first letter of each word.
+    head := SubStr(NewTitle, 1, 1) ;Manipulates and edits the String somehow.
+    tail := SubStr(NewTitle, 2)
+    ;Stores the NewTitle in the Clipboard.             This is the list of words to NOT capitalize.
     Clipboard := head RegExReplace( tail , "i)\b(a|an|and|at|but|by|for|in|nor|of|on|or|so|the|to|up|with|yet)\b", "$L1")
     ;~ showGUIToggle := 0
   return
