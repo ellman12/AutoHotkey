@@ -16,6 +16,7 @@ SendMode Input
 ;OPTIMIZATIONS END
 
 ;TODO First Letter, and AlT CaSe, like the Title Tool website has. Make sure the other 4 in this script work perfectly first.
+;TODO Add button below text box and above DDL, where it acts as "Enter", so when I hit Enter when the text gets highlighted, it doesn't erase it.
 
 ;Script used for capitalizing and modifying titles (and other strings of text).
 ;I used to use this website: https://capitalizemytitle.com/
