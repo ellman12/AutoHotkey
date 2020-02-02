@@ -15,7 +15,7 @@ SendMode Input
 #SingleInstance force
 ;OPTIMIZATIONS END
 
-;TODO: First Letter, and AlT CaSe.
+;TODO: First Letter, and AlT CaSe, like the Title Tool website has. Make sure the other 4 in this script work perfectly first.
 
 ;Script used for capitalizing and modifying titles (and other strings of text).
 ;I used to use this website: https://capitalizemytitle.com/
