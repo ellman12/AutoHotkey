@@ -15,7 +15,7 @@ SendMode Input
 #SingleInstance force
 ;OPTIMIZATIONS END
 
-;TODO: First Letter, and AlT CaSe, like the Title Tool website has. Make sure the other 4 in this script work perfectly first.
+;TODO First Letter, and AlT CaSe, like the Title Tool website has. Make sure the other 4 in this script work perfectly first.
 
 ;Script used for capitalizing and modifying titles (and other strings of text).
 ;I used to use this website: https://capitalizemytitle.com/
@@ -75,9 +75,9 @@ Switch TitleChoice {
 
   ;Converts text To Title Case.
   Case "Title Case":
-    StringUpper, NewTitle, TitleEditBoxText, T
+    StringUpper, NewTitle, TitleEditBoxText, T ;I don't really know how this works.
     head := SubStr(NewTitle, 1, 1)
-    tail := SubStr(NewTitle, 2)
+    tail := SubStr(NewTitle, 2)                       ;This is the list of words to NOT capitalize.
     Clipboard := head RegExReplace( tail , "i)\b(a|an|and|at|but|by|for|in|nor|of|on|or|so|the|to|up|with|yet)\b", "$L1")
     ;~ showGUIToggle := 0
   return
