@@ -79,7 +79,7 @@ Switch TitleChoice {
     head := SubStr(NewTitle, 1, 1) ;Manipulates and edits the String somehow.
     tail := SubStr(NewTitle, 2)
     ;Stores the NewTitle in the Clipboard.             This is the list of words to NOT capitalize.
-    Clipboard := head RegExReplace( tail , "i)\b(a|an|and|at|but|by|for|in|nor|of|on|or|so|the|to|up|with|yet)\b", "$L1")
+    Clipboard := head RegExReplace(tail, "i)\b(a|an|and|at|but|by|for|in|nor|of|on|or|so|the|to|up|with|yet)\b", "$L1")
     ;~ showGUIToggle := 0
   return
   
