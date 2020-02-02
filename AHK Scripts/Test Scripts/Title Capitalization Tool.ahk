@@ -52,6 +52,7 @@ return ;End of Auto-execute.
 
 ;Activates when the GUI is closed. E.g., pressing the red x button, manually exiting the script, etc.
 GuiClose:
+  Gosub, TitleChoiceLabel
   GUI, Hide
 return
 
@@ -116,7 +117,6 @@ if (showGUIToggle = 1) {
   
 } else if (showGUIToggle = 0) {
   GUI, Hide
-  ;~ TitleEditBoxText := ;Blank out this out so the previous text isn't still stored in there.
   
 }
 return ;End of #t.
