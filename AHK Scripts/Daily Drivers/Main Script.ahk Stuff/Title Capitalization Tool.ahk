@@ -57,11 +57,12 @@ return ;End of Auto-execute.
 ;***************************LABELS***************************
 
 ;Activates when the GUI is closed. E.g., pressing the red x button, manually exiting the script, Alt + F4, etc.
-GuiClose:
-  GUI, Submit, NoHide
-  GUI, Hide
-  showTitleGUIToggle := !showTitleGUIToggle
-return
+;Commented out because Main was complaining about this being a duplicate label. IDK why.
+; GuiClose:
+;   GUI, Submit, NoHide
+;   GUI, Hide
+;   showTitleGUIToggle := !showTitleGUIToggle
+; return
 
 ;Label used for when the user has finished inputting the title and the type of case.
 ;Activates when the "Finish" button is pressed.

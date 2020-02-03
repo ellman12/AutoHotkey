@@ -23,6 +23,8 @@ SendMode Input
 ;I copied that script, and improved it.
 ;I also paraphrased some code from the old "WindowHider.ahk" script, and I got a lot of the functionality of this script from there.
 
+;WARNING! BEFORE YOU EDIT THIS SCRIPT—AND THUS RELOAD IT—MAKE SURE ALL OF YOUR WINDOWS ARE UNHIDDEN! OR ELSE THEY'LL BE GONE FOREVER!
+
 ;***********************************HOTKEYS***********************************
 ; ^F8:: Add the current window's title and ID to the list (array).
 ; !F8:: Add the current window's title and ID to the list (array), and hide it right away.

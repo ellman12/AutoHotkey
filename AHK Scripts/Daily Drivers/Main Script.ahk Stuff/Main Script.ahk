@@ -89,6 +89,7 @@ if (NumLockToggled = 1 and ScrollLockToggled = 0) {
 #Include, %A_ScriptDir%\Browser.ahk
 #Include, %A_ScriptDir%\Chromebook Typing.ahk
 #Include, %A_ScriptDir%\Default.ahk
+; #Include, %A_ScriptDir%\Edit Clipboard Content.ahk
 #Include, %A_ScriptDir%\Google Docs.ahk
 #Include, %A_ScriptDir%\Google Sheets.ahk
 #Include, %A_ScriptDir%\Microsoft Word.ahk
@@ -97,8 +98,7 @@ if (NumLockToggled = 1 and ScrollLockToggled = 0) {
 #Include, %A_ScriptDir%\Profile Switcher.ahk
 #Include, %A_ScriptDir%\Run.ahk
 #Include, %A_ScriptDir%\SciTE4AutoHotkey Programming.ahk
-
-;~ Run, Edit, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\AutoCorrect.ahk
+; #Include, %A_ScriptDir%\Title Capitalization Tool.ahk
 
 ;Sooo many #Includes... ;)
 
@@ -158,27 +158,8 @@ WinSet, AlwaysOnTop, Toggle, A
 return
 
 ;Reloads the script. Useful for "recompiling" the script.
-;This hotkey also brings back any previously hidden windows.
-;This prevents windows from getting hidden indefinitely,
-; without being able to restore them.
 ^#r::
-;~ ShowAllHiddenWindows()
 Reload
-return
-
-;Saves the current file and saves and runs Main Script.ahk (or whatever the first file is in SciTE). Then it returns to the previous file.
-!#r::
-Send, ^s
-Sleep 100
-Send, !1
-Sleep 100
-Send, ^s
-Sleep 100
-Send, !t
-Sleep 100
-Send, r
-Sleep 50
-Send, ^{Tab}
 return
 
 ;Sends the current date and time in this format: 10/31/2019 07:43 PM.
@@ -214,22 +195,22 @@ Send, {Space}meaning
 return
 #If
 
-;Open Window Spy
+;Open Window Spy.
 ^#s::
 Run, C:\Program Files\AutoHotkey\WindowSpy.ahk
 return
 
-;M1 copies
+;M1 on K95 RGB copies to the clipboard.
 ^F2::
 Send, ^c
 return
 
-;M2 cuts
+;M2 on K95 RGB  cuts to the clipboard.
 #F2::
 Send ^x
 return
 
-;M3 pastes
+;M3 on K95 RGB pastes to the clipboard.
 !F2::
 Send ^v
 return
@@ -249,7 +230,7 @@ F15 & WheelUp::
 Send, {WheelUp 8}
 return
 
-;A "sniper" button, more or less.
+;A "sniper" button, more or less, that slows the mouse pointer speed down to a crawl.
 ;Pressing this key also sends out the normal RShift key, somehow. I added ~ to the hotkey after looking at this forum post:
 ;https://www.autohotkey.com/boards/viewtopic.php?t=40770
 ; and it somehow made it work perfectly.
@@ -280,6 +261,11 @@ return
 WinMaximize, A
 return
 
+;Open "AHK Scripts" folder in AutoHotkey GitHub repository folder on my PC.
+^+f::
+Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts
+return
+
 ;----------------------------------------------------------------------
 ;*****************************EXPERIMENTAL*****************************
 ;----------------------------------------------------------------------
@@ -297,7 +283,7 @@ return
 
 ;~ #IfWinActive "Calculator"
 ;~ WinSet, AlwaysOnTop, On, Calculator
-WinSet, AlwaysOnTop, Toggle, Calculator ; Toggle the always-on-top status of Calculator.
+; WinSet, AlwaysOnTop, Toggle, Calculator ; Toggle the always-on-top status of Calculator.
 ;~ return
 ;-------------------------------------------------------------------------------------------
 ;Anything in this section is temporary, and was added in to perform a simple and quick task.

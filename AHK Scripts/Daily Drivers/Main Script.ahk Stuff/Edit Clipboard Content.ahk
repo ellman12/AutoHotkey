@@ -39,7 +39,7 @@ showClipboardGUIToggle := 0
 return ;End of Auto-execute.
 
 
-;Opens (shows) GUI to edit Clipboard.
+;Toggles between showing and hiding the Clipboard GUI.
 #c::
 GUI, Show, w600 h400,Clipboard Edit
 return
@@ -47,12 +47,13 @@ return
 
 ;***************************LABELS***************************
 ;Activates when the GUI is closed. E.g., pressing the red x button, manually exiting the script, Alt + F4, etc.
-GuiClose:
-    GUI, Submit, NoHide
-    GuiControl, Focus, clipboardBoxText
-    GUI, Hide
-    showClipboardGUIToggle := !showClipboardGUIToggle
-return
+;Commented out because Main was complaining about this being a duplicate label. IDK why.
+; GuiClose:
+;     GUI, Submit, NoHide
+;     GuiControl, Focus, clipboardBoxText
+;     GUI, Hide
+;     showClipboardGUIToggle := !showClipboardGUIToggle
+; return
 
 ;Label for the text box.
 clipboardTextBoxLabel:
