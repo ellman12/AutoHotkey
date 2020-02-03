@@ -47,10 +47,10 @@ GUI, Add, Text, x15 y200, Choose a Title Type:
 GUI, Font, S14 Arial
 GUI, Add, DropDownList, x15 y230 vTitleChoice gTitleChoiceLabel, Title Case||UPPER CASE|lower case|Sentence case|First Letter ;Creates a DropDownList (DDL), with Title Case as the default value.
 
-;Toggle for showing or hiding the GUI.
+;Toggle for showing or hiding the title GUI.
 ;If it's 1, show the GUI; if it's 0, hide it.
 ;Starts out as 0, so it only appers when the user wants it.
-showGUIToggle := 0
+showTitleGUIToggle := 0
 
 return ;End of Auto-execute.
 
@@ -60,7 +60,7 @@ return ;End of Auto-execute.
 GuiClose:
   GUI, Submit, NoHide
   GUI, Hide
-  showGUIToggle := !showGUIToggle
+  showTitleGUIToggle := !showTitleGUIToggle
 return
 
 ;Label used for when the user has finished inputting the title and the type of case.
@@ -68,7 +68,7 @@ return
 TitleFinishButton:
   GUI, Hide
   Gosub, TitleChoiceLabel
-  showGUIToggle := !showGUIToggle
+  showTitleGUIToggle := !showTitleGUIToggle
 return
 
 ;Label for getting the text the user inputted.
@@ -138,13 +138,13 @@ return ;End of TitleChoiceLabel.
 ;Toggle between showing and hiding the TCT GUI.
 #t::
 
-showGUIToggle := !showGUIToggle
+showTitleGUIToggle := !showTitleGUIToggle
 
-if (showGUIToggle = 1) {
+if (showTitleGUIToggle = 1) {
   
   GUI, Show, w600 h400,Title Capitalization Tool (TCT)
   
-} else if (showGUIToggle = 0) {
+} else if (showTitleGUIToggle = 0) {
   GUI, Hide
   
 }
