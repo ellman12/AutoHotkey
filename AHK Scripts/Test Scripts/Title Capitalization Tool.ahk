@@ -99,13 +99,15 @@ Switch TitleChoice {
     tail := SubStr(NewTitle, 2)
     ;Stores the NewTitle in the Clipboard.             This is the list of words to NOT capitalize.
     Clipboard := head RegExReplace(tail, "i)\b(a|an|and|at|but|by|for|in|nor|of|on|or|so|the|to|up|with|yet)\b", "$L1")
-    ;~ showGUIToggle := 0
+    GuiControl,, TitleEditBoxText,The Title to Input
+    GuiControl, Focus, TitleEditBoxText
   return
   
   ;Converts text to UPPER CASE, using a built-in AHK function.
   Case "UPPER CASE":
     StringUpper, NewTitle, TitleEditBoxText
     Clipboard := NewTitle
+    NewTitle := 
     ;~ showGUIToggle := 0
   return
 
@@ -113,6 +115,7 @@ Switch TitleChoice {
   Case "lower case":
     StringLower, NewTitle, TitleEditBoxText
     Clipboard := NewTitle
+    NewTitle := 
     ;~ showGUIToggle := 0
   return
 
@@ -121,6 +124,7 @@ Switch TitleChoice {
     StringLower, NewTitle, TitleEditBoxText
     NewTitle := RegExReplace(Clipboard, "((?:^|[.!?]\s+)[a-z])", "$u1")
     Clipboard := NewTitle
+    NewTitle := 
     ;~ showGUIToggle := 0
   return
 
