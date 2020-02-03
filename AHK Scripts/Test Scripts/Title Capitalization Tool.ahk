@@ -17,6 +17,7 @@ SendMode Input
 
 ;TODO Add First Letter, and AlT CaSe, like the Title Tool website has. Make sure the other 4 in this script work perfectly first.
 ;TODO Get it so that each time the script is toggled to appear, the text in the text box is reset.
+;TODO Have it so if enter is not pressed, and the GUI is closed in some other way, the GUI retains the inputted text thus far.
 
 ;Script used for capitalizing and modifying titles (and other strings of text).
 ;I used to use this website: https://capitalizemytitle.com/
@@ -65,6 +66,7 @@ return ;End of Auto-execute.
 GuiClose:
   Gosub, TitleChoiceLabel
   GUI, Hide
+  showGUIToggle := !showGUIToggle
 return
 
 ;Label used for when the user has finished inputting the title and the type of case.
@@ -94,7 +96,7 @@ Switch TitleChoice {
 
   ;Converts text To Title Case.
   Case "Title Case": ;I don't understand, nor know, how this works at all.
-    StringUpper, NewTitle, TitleEditBoxText, T ;Makes the title in AHK's "Title Case", which in reality just capitalizes the first letter of each word.
+    StringUpper, NewTitle, TitleEditBoxText, T ;Makes the title in AHK's "Title Case", which in reality just capitalizes the first letter of each word. Not sure why this line needs to be here.
     head := SubStr(NewTitle, 1, 1) ;Manipulates and edits the String somehow.
     tail := SubStr(NewTitle, 2)
     ;Stores the NewTitle in the Clipboard.             This is the list of words to NOT capitalize.
@@ -107,16 +109,16 @@ Switch TitleChoice {
   Case "UPPER CASE":
     StringUpper, NewTitle, TitleEditBoxText
     Clipboard := NewTitle
-    NewTitle := 
-    ;~ showGUIToggle := 0
+    GuiControl,, TitleEditBoxText,The Title to Input
+    GuiControl, Focus, TitleEditBoxText
   return
 
   ;Converts text to lower case, using a built-in AHK function.
   Case "lower case":
     StringLower, NewTitle, TitleEditBoxText
     Clipboard := NewTitle
-    NewTitle := 
-    ;~ showGUIToggle := 0
+    GuiControl,, TitleEditBoxText,The Title to Input
+    GuiControl, Focus, TitleEditBoxText
   return
 
   ;Converts text to Sentence case.
@@ -124,8 +126,8 @@ Switch TitleChoice {
     StringLower, NewTitle, TitleEditBoxText
     NewTitle := RegExReplace(Clipboard, "((?:^|[.!?]\s+)[a-z])", "$u1")
     Clipboard := NewTitle
-    NewTitle := 
-    ;~ showGUIToggle := 0
+    GuiControl,, TitleEditBoxText,The Title to Input
+    GuiControl, Focus, TitleEditBoxText
   return
 
 } ;End of Switch statement.
