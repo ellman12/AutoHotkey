@@ -15,8 +15,8 @@ SendMode Input
 #SingleInstance force
 ;OPTIMIZATIONS END
 
-;TODO First Letter, and AlT CaSe, like the Title Tool website has. Make sure the other 4 in this script work perfectly first.
-;TODO Add button below text box and above DDL, where it acts as "Enter", so when I hit Enter when the text gets highlighted, it doesn't erase it.
+;TODO Add First Letter, and AlT CaSe, like the Title Tool website has. Make sure the other 4 in this script work perfectly first.
+;TODO Get it so that each time the script is toggled to appear, the text in the text box is reset.
 
 ;Script used for capitalizing and modifying titles (and other strings of text).
 ;I used to use this website: https://capitalizemytitle.com/
@@ -31,16 +31,25 @@ GUI, Font, s14, Arial ;Font settings for the Text Box. Size 14, Arial font.
 GUI, Add, Edit, r3 HScroll x15 y40 w500 h10 vTitleEditBoxText gTitleTextBoxLabel,The Title to Input ;This text box has 3 rows, allows scrolling horizontally, has a variable TitleEditBoxText, and a label TitleTextBoxLabel.
 
 ;Creating text telling the user to input the text.
-GUI, Font, s15, Arial ;Font settings for everything else.
+GUI, Font, s15, Arial ;Font settings.
 GUI, Add, Text, x16 y5, Enter Title to Modify:
 
 ;Making the GUI always on top, and giving it a Silver color.
 GUI, +AlwaysOnTop
 GUI, Color, Silver
 
+;Adding the Finish button below the text box and above the DDL.
+;The reason it's above the DDL is because 99.99% of the time, I will be using Title Case, which is obviously the default value.
+;That just makes it easier to do because I have to do less keystrokes.
+GUI, Add, Button, x15 y150 w80 h40 gTitleFinishButton,Finish
+
+;GUI stuff for text above DDL.
+GUI, Font, s15 Arial ;Font settings.
+GUI, Add, Text, x15 y200, Choose a Title Type:
+
 ;Creating GUI stuff for choosing the type of case (Title, UPPER, etc).
-GUI, Add, Text, x15 y160, Choose a Title Type:
-GUI, Add, DropDownList, x15 y190 vTitleChoice gTitleChoiceLabel, Title Case||UPPER CASE|lower case|Sentence case ;Creates a DropDownList (DDL), with Title Case as the default value.
+GUI, Font, S14 Arial
+GUI, Add, DropDownList, x15 y230 vTitleChoice gTitleChoiceLabel, Title Case||UPPER CASE|lower case|Sentence case ;Creates a DropDownList (DDL), with Title Case as the default value.
 
 
 ;Toggle for showing or hiding the GUI.
@@ -58,7 +67,16 @@ GuiClose:
   GUI, Hide
 return
 
+;Label used for when the user has finished inputting the title and the type of case.
+;Activates when the "Finish" button is pressed.
+TitleFinishButton:
+  GUI, Hide
+  Gosub, TitleChoiceLabel
+  showGUIToggle := !showGUIToggle
+return
+
 ;Label for getting the text the user inputted.
+;The user can either hit the Enter key on the keyboard—which unfortunately causes there to be an Enter in the final String—or they can Tab over to the Finish button (recommended).
 TitleTextBoxLabel:
   GUI, Submit, NoHide
   IsEnterPressed := GetKeyState("Enter")
