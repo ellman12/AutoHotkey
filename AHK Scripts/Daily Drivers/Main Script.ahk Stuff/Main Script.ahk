@@ -36,8 +36,6 @@ the set of actions that are done by the G keys depending on the current active w
 
 Menu, Tray, Icon, shell32.dll, 174 ;Changes the icon to a keyboard; perfect for the Main Script file. IDK where I found this...
 
-return ;End of Auto-execute section.
-
 ;****************************************MISCELLANEOUS VARIABLES AND STUFF****************************************
 ;Variables for F6 group stuff
 ;Tracks all windows you want as part of your custom group
@@ -91,7 +89,7 @@ if (NumLockToggled = 1 and ScrollLockToggled = 0) {
 #Include, %A_ScriptDir%\Browser.ahk
 #Include, %A_ScriptDir%\Chromebook Typing.ahk
 #Include, %A_ScriptDir%\Default.ahk
-#Include, %A_ScriptDir%\Edit Clipboard Content.ahk
+;~ #Include, %A_ScriptDir%\Edit Clipboard Content.ahk
 #Include, %A_ScriptDir%\Google Docs.ahk
 #Include, %A_ScriptDir%\Google Sheets.ahk
 #Include, %A_ScriptDir%\Microsoft Word.ahk
@@ -100,7 +98,7 @@ if (NumLockToggled = 1 and ScrollLockToggled = 0) {
 #Include, %A_ScriptDir%\Profile Switcher.ahk
 #Include, %A_ScriptDir%\Run.ahk
 #Include, %A_ScriptDir%\SciTE4AutoHotkey Programming.ahk
-#Include, %A_ScriptDir%\Title Capitalization Tool.ahk
+;~ #Include, %A_ScriptDir%\Title Capitalization Tool.ahk
 
 ;****************************************GLOBAL HOTKEYS***************************************
 ;These global hotkeys are hotkeys that are always running, regardless of the active window, class, or whatever
