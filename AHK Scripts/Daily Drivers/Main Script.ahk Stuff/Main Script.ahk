@@ -82,7 +82,7 @@ if (NumLockToggled = 1 and ScrollLockToggled = 0) {
 ;Similar to but not exactly like you would in something like Java.
 ;The variable %A_ScriptDir% is the full path of the directory where the script is located.
 
-#Include, %A_ScriptDir%\Advanced Window Hider.ahk
+;~ #Include, %A_ScriptDir%\Advanced Window Hider.ahk
 #Include, %A_ScriptDir%\ApplicationSwitcher.ahk
 #Include, %A_ScriptDir%\AutoCapitalize.ahk
 ;~ #Include, %A_ScriptDir%\AutoCorrect.ahk
@@ -97,7 +97,6 @@ if (NumLockToggled = 1 and ScrollLockToggled = 0) {
 #Include, %A_ScriptDir%\Profile Switcher.ahk
 #Include, %A_ScriptDir%\Run.ahk
 #Include, %A_ScriptDir%\SciTE4AutoHotkey Programming.ahk
-;~ #Include, %A_ScriptDir%\WindowHider.ahk
 
 ;~ Run, Edit, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\AutoCorrect.ahk
 
@@ -296,6 +295,10 @@ return
 ;~ return
 ;~ #If
 
+;~ #IfWinActive "Calculator"
+;~ WinSet, AlwaysOnTop, On, Calculator
+WinSet, AlwaysOnTop, Toggle, Calculator ; Toggle the always-on-top status of Calculator.
+;~ return
 ;-------------------------------------------------------------------------------------------
 ;Anything in this section is temporary, and was added in to perform a simple and quick task.
 ;-------------------------------------------------------------------------------------------
@@ -304,7 +307,7 @@ return
 :*:aai::artificial intelligence
 :*:AaI::Artificial Intelligence
 
-;For IntelliJ IDEA 2019.3.1
+;For IntelliJ IDEA 2019.3.1.
 #IfWinActive ahk_exe idea64.exe
 :*:sln::
 Send, System.out.println("");
@@ -316,4 +319,10 @@ return
 Send, System.out.print("");
 Sleep 20
 Send, {Left 3}
+
+F5::
+Send, ^+{F10}
+return
+
+:*:java::Java
 #If

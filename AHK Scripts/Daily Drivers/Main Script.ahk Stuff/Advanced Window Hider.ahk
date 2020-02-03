@@ -33,6 +33,11 @@ SendMode Input
 ; ^!+F8:: Remove all windows from the group, without closing them.
 ; ^!+#F8:: Close all windows in the list (array).
 
+;Suspend hotkeys.
++#p::
+Suspend
+return
+
 ;Declare array to track window IDs.
 F8WinIDArray := []
 

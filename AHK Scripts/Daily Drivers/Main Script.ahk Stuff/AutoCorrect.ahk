@@ -59,6 +59,11 @@
 #NoEnv ; For security
 #SingleInstance force
 
+;Suspend hotkeys.
+#!p::
+Suspend
+return
+
 ;------------------------------------------------------------------------------
 ; AUto-COrrect TWo COnsecutive CApitals.
 ; Disabled by default to prevent unwanted corrections such as IfEqual->Ifequal.
