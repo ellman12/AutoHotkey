@@ -15,21 +15,23 @@ SendMode Input
 #SingleInstance force
 ;OPTIMIZATIONS END
 
-;Script that shows a GUI containing the current clipboard contents, and allows me to edit it.
-;idk if this will actually be useful or not.
+;Script that shows a GUI containing the current clipboard contents, and allows the user to edit it.
+;Useful once in a blue moon.
 
-GUI, Font, s14, Arial ;Font settings for the Text Box.
-GUI, Add, Edit, HScroll wrap r9 x15 y40 w560 h200 vclipboardBoxText gclipboardTextBoxLabel,%Clipboard% ;Creates an edit box for inputting the clipboard. AHK GUI Documentation explains the r, x, etc. stuff.
+;The reason there is a 1: with each GUI command is because I #Include this script in "Main Script.ahk", and that helps keep the GUIs seperated.
+
+GUI, 1:Font, s14, Arial ;Font settings for the Text Box.
+GUI, 1:Add, Edit, HScroll wrap r9 x15 y40 w560 h200 vclipboardBoxText gclipboardTextBoxLabel,%Clipboard% ;Creates an edit box for inputting the clipboard. AHK GUI Documentation explains the r, x, etc. stuff.
 
 ;Creating the GUI button for the Finish button: when the user is done editing the clipboard contents.
-GUI, Add, Button, w100 gclipboardFinishButton,Finish
+GUI, 1:Add, Button, w100 gclipboardFinishButton,Finish
 
-GUI, Font, s15, Arial ;Font settings for everything else.
-GUI, Add, Text, x16 y5, Current Clipboard contents. Type what you want to change it to. ;Text instructing the user what to do.
+GUI, 1:Font, s15, Arial ;Font settings for everything else.
+GUI, 1:Add, Text, x16 y5, Current Clipboard contents. Type what you want to change it to. ;Text instructing the user what to do.
 
 ;Making the GUI always on top, and giving it a Silver color.
-GUI, +AlwaysOnTop
-GUI, Color, Silver
+GUI, 1:+AlwaysOnTop
+GUI, 1:Color, Silver
 
 ;Toggle for showing or hiding the Clipboard GUI.
 ;If it's 1, show the GUI; if it's 0, hide it.
@@ -41,23 +43,22 @@ return ;End of Auto-execute.
 
 ;Toggles between showing and hiding the Clipboard GUI.
 #c::
-GUI, Show, w600 h400,Clipboard Edit
+GUI, 1:Show, w600 h400,Clipboard Edit
 return
 
 
 ;***************************LABELS***************************
 ;Activates when the GUI is closed. E.g., pressing the red x button, manually exiting the script, Alt + F4, etc.
-;Commented out because Main was complaining about this being a duplicate label. IDK why.
-; GuiClose:
-;     GUI, Submit, NoHide
-;     GuiControl, Focus, clipboardBoxText
-;     GUI, Hide
-;     showClipboardGUIToggle := !showClipboardGUIToggle
-; return
+1GuiClose:
+    GUI, 1:Submit, NoHide
+    GuiControl, 1:Focus, clipboardBoxText
+    GUI, 1:Hide
+    showClipboardGUIToggle := !showClipboardGUIToggle
+return
 
 ;Label for the text box.
 clipboardTextBoxLabel:
-    GUI, Submit, NoHide
+    GUI, 1:Submit, NoHide
     Clipboard := clipboardBoxText
 return
 
@@ -65,6 +66,6 @@ return
 ;This button is exactly like the Finish button in TCT, where it stores the text in the Clipboard variable.
 clipboardFinishButton:
     Clipboard := clipboardBoxText
-    GUI, Hide
-    GuiControl, Focus, clipboardBoxText
+    GUI, 1:Hide
+    GuiControl, 1:Focus, clipboardBoxText
 return
