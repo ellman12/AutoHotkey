@@ -19,7 +19,7 @@ SendMode Input
 ;idk if this will actually be useful or not.
 
 GUI, Font, s14, Arial ;Font settings for the Text Box.
-GUI, Add, Edit, HScroll wrap r9 x15 y40 w560 h200 vclipboardBoxText gclipboardTextBoxLabel,%Clipboard%
+GUI, Add, Edit, HScroll wrap r9 x15 y40 w560 h200 vclipboardBoxText gclipboardTextBoxLabel,%Clipboard% ;Creates an edit box for inputting the clipboard. AHK GUI Documentation explains the r, x, etc. stuff.
 
 ;Creating the GUI button for the Finish button: when the user is done editing the clipboard contents.
 GUI, Add, Button, w100 gclipboardFinishButton,Finish
@@ -37,6 +37,7 @@ GUI, Color, Silver
 showClipboardGUIToggle := 0
 
 return ;End of Auto-execute.
+
 
 ;Opens (shows) GUI to edit Clipboard.
 #c::
@@ -63,6 +64,6 @@ return
 ;This button is exactly like the Finish button in TCT, where it stores the text in the Clipboard variable.
 clipboardFinishButton:
     Clipboard := clipboardBoxText
-    Gui, Hide
+    GUI, Hide
     GuiControl, Focus, clipboardBoxText
 return
