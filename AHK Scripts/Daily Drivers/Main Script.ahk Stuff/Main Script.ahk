@@ -447,6 +447,7 @@ Switch TitleChoice {
   return
   
   ;Converts text to UPPER CASE, using a built-in AHK function.
+  ;TODO FIX UPPER CASE. IT SEEMS TO ONLY WORK AFTER DOING ANOTHER CASE FIRST.
   Case "UPPER CASE":
     StringUpper, NewTitle, TitleEditBoxText
     Clipboard := NewTitle
