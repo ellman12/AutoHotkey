@@ -18,27 +18,29 @@ SendMode Input
 ;Script that shows a GUI containing the current clipboard contents, and allows the user to edit it.
 ;Useful once in a blue moon.
 
+;Commented out on 2/03/2020 at 8:11 PM because: https://www.reddit.com/r/AutoHotkey/comments/eyfvk8/after_including_2_other_files_guis_become_blank/
+
 ;The reason there is a 1: with each GUI command is because I #Include this script in "Main Script.ahk", and that helps keep the GUIs seperated.
 
-GUI, 1:Font, s14, Arial ;Font settings for the Text Box.
-GUI, 1:Add, Edit, HScroll wrap r9 x15 y40 w560 h200 vclipboardBoxText gclipboardTextBoxLabel,%Clipboard% ;Creates an edit box for inputting the clipboard. AHK GUI Documentation explains the r, x, etc. stuff.
+; GUI, 1:Font, s14, Arial ;Font settings for the Text Box.
+; GUI, 1:Add, Edit, HScroll wrap r9 x15 y40 w560 h200 vclipboardBoxText gclipboardTextBoxLabel,%Clipboard% ;Creates an edit box for inputting the clipboard. AHK GUI Documentation explains the r, x, etc. stuff.
 
-;Creating the GUI button for the Finish button: when the user is done editing the clipboard contents.
-GUI, 1:Add, Button, w100 gclipboardFinishButton,Finish
+; Creating the GUI button for the Finish button: when the user is done editing the clipboard contents.
+; GUI, 1:Add, Button, w100 gclipboardFinishButton,Finish
 
-GUI, 1:Font, s15, Arial ;Font settings for everything else.
-GUI, 1:Add, Text, x16 y5, Current Clipboard contents. Type what you want to change it to. ;Text instructing the user what to do.
+; GUI, 1:Font, s15, Arial ;Font settings for everything else.
+; GUI, 1:Add, Text, x16 y5, Current Clipboard contents. Type what you want to change it to. ;Text instructing the user what to do.
 
-;Making the GUI always on top, and giving it a Silver color.
-GUI, 1:+AlwaysOnTop
-GUI, 1:Color, Silver
+; Making the GUI always on top, and giving it a Silver color.
+; GUI, 1:+AlwaysOnTop
+; GUI, 1:Color, Silver
 
-;Toggle for showing or hiding the Clipboard GUI.
-;If it's 1, show the GUI; if it's 0, hide it.
-;Starts out as 0, so it only appers when the user wants it.
-showClipboardGUIToggle := 0
+; Toggle for showing or hiding the Clipboard GUI.
+; If it's 1, show the GUI; if it's 0, hide it.
+; Starts out as 0, so it only appers when the user wants it.
+; showClipboardGUIToggle := 0
 
-return ;End of Auto-execute.
+; return ;End of Auto-execute.
 
 
 ;Toggles between showing and hiding the Clipboard GUI.

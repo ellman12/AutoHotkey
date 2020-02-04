@@ -23,38 +23,40 @@ SendMode Input
 
 ;The reason there is a 2: with each GUI command is because I #Include this script in "Main Script.ahk", and that helps keep the GUIs seperated.
 
+;Commented out on 2/03/2020 at 8:11 PM because: https://www.reddit.com/r/AutoHotkey/comments/eyfvk8/after_including_2_other_files_guis_become_blank/
+
 ;Creating and designing the GUI.
 ;Creating the Title Box.
-GUI, 2:Font, s14, Arial ;Font settings for the Text Box. Size 14, Arial font.
-GUI, 2:Add, Edit, r3 HScroll x15 y40 w500 h10 vTitleEditBoxText gTitleTextBoxLabel,The Title to Input ;This text box has 3 rows, allows scrolling horizontally, has a variable TitleEditBoxText, and a label TitleTextBoxLabel.
+; GUI, 2:Font, s14, Arial ;Font settings for the Text Box. Size 14, Arial font.
+; GUI, 2:Add, Edit, r3 HScroll x15 y40 w500 h10 vTitleEditBoxText gTitleTextBoxLabel,The Title to Input ;This text box has 3 rows, allows scrolling horizontally, has a variable TitleEditBoxText, and a label TitleTextBoxLabel.
 
 ;Creating text telling the user to input the text.
-GUI, 2:Font, s15, Arial ;Font settings.
-GUI, 2:Add, Text, x16 y5, Enter Title to Modify:
+; GUI, 2:Font, s15, Arial ;Font settings.
+; GUI, 2:Add, Text, x16 y5, Enter Title to Modify:
 
 ;Making the GUI always on top, and giving it a Silver color.
-GUI, 2:+AlwaysOnTop
-GUI, 2:Color, Silver
+; GUI, 2:+AlwaysOnTop
+; GUI, 2:Color, Silver
 
 ;Adding the Finish button below the text box and above the DDL.
 ;The reason it's above the DDL is because 99.99% of the time, I will be using Title Case, which is obviously the default value.
 ;That just makes it easier to do because I have to do less keystrokes.
-GUI, 2:Add, Button, x15 y150 w80 h40 gTitleFinishButton,Finish
+; GUI, 2:Add, Button, x15 y150 w80 h40 gTitleFinishButton,Finish
 
 ;GUI stuff for text above DDL.
-GUI, 2:Font, s15 Arial ;Font settings.
-GUI, 2:Add, Text, x15 y200, Choose a Title Type:
+; GUI, 2:Font, s15 Arial ;Font settings.
+; GUI, 2:Add, Text, x15 y200, Choose a Title Type:
 
 ;Creating GUI stuff for choosing the type of case (Title, UPPER, etc).
-GUI, 2:Font, S14 Arial
-GUI, 2:Add, DropDownList, x15 y230 vTitleChoice gTitleChoiceLabel, Title Case||UPPER CASE|lower case|Sentence case|First Letter ;Creates a DropDownList (DDL), with Title Case as the default value.
+; GUI, 2:Font, S14 Arial
+; GUI, 2:Add, DropDownList, x15 y230 vTitleChoice gTitleChoiceLabel, Title Case||UPPER CASE|lower case|Sentence case|First Letter ;Creates a DropDownList (DDL), with Title Case as the default value.
 
 ;Toggle for showing or hiding the title GUI.
 ;If it's 1, show the GUI; if it's 0, hide it.
 ;Starts out as 0, so it only appers when the user wants it.
-showTitleGUIToggle := 0
+; showTitleGUIToggle := 0
 
-return ;End of Auto-execute.
+; return ;End of Auto-execute.
 
 ;***************************LABELS***************************
 

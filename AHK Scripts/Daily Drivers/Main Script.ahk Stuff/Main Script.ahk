@@ -36,7 +36,61 @@ the set of actions that are done by the G keys depending on the current active w
 
 Menu, Tray, Icon, shell32.dll, 174 ;Changes the icon to a keyboard; perfect for the Main Script file. IDK where I found this...
 
-;****************************************MISCELLANEOUS VARIABLES AND STUFF****************************************
+;******************************************AUTO-EXECUTE**************************************************
+;*********************************EDIT CLIPBOARD CONTENT INITIALIZATION****************************
+;Check the Reddit post in this script for an explanation as to why this code needs to be in Main.
+GUI, 1:Font, s14, Arial ;Font settings for the Text Box.
+GUI, 1:Add, Edit, HScroll wrap r9 x15 y40 w560 h200 vclipboardBoxText gclipboardTextBoxLabel,%Clipboard% ;Creates an edit box for inputting the clipboard. AHK GUI Documentation explains the r, x, etc. stuff.
+
+;Creating the GUI button for the Finish button: when the user is done editing the clipboard contents.
+GUI, 1:Add, Button, w100 gclipboardFinishButton,Finish
+
+GUI, 1:Font, s15, Arial ;Font settings for everything else.
+GUI, 1:Add, Text, x16 y5, Current Clipboard contents. Type what you want to change it to. ;Text instructing the user what to do.
+
+;Making the GUI always on top, and giving it a Silver color.
+GUI, 1:+AlwaysOnTop
+GUI, 1:Color, Silver
+
+;Toggle for showing or hiding the Clipboard GUI.
+;If it's 1, show the GUI; if it's 0, hide it.
+;Starts out as 0, so it only appers when the user wants it.
+showClipboardGUIToggle := 0
+
+;*******************************TITLE CAPITALIZATION TOOL INITIALIZATION**************************
+;Check the Reddit post in this script for an explanation as to why this code needs to be in Main.
+;Creating and designing the GUI.
+;Creating the Title Box.
+GUI, 2:Font, s14, Arial ;Font settings for the Text Box. Size 14, Arial font.
+GUI, 2:Add, Edit, r3 HScroll x15 y40 w500 h10 vTitleEditBoxText gTitleTextBoxLabel,The Title to Input ;This text box has 3 rows, allows scrolling horizontally, has a variable TitleEditBoxText, and a label TitleTextBoxLabel.
+
+;Creating text telling the user to input the text.
+GUI, 2:Font, s15, Arial ;Font settings.
+GUI, 2:Add, Text, x16 y5, Enter Title to Modify:
+
+;Making the GUI always on top, and giving it a Silver color.
+GUI, 2:+AlwaysOnTop
+GUI, 2:Color, Silver
+
+;Adding the Finish button below the text box and above the DDL.
+;The reason it's above the DDL is because 99.99% of the time, I will be using Title Case, which is obviously the default value.
+;That just makes it easier to do because I have to do less keystrokes.
+GUI, 2:Add, Button, x15 y150 w80 h40 gTitleFinishButton,Finish
+
+;GUI stuff for text above DDL.
+GUI, 2:Font, s15 Arial ;Font settings.
+GUI, 2:Add, Text, x15 y200, Choose a Title Type:
+
+;Creating GUI stuff for choosing the type of case (Title, UPPER, etc).
+GUI, 2:Font, S14 Arial
+GUI, 2:Add, DropDownList, x15 y230 vTitleChoice gTitleChoiceLabel, Title Case||UPPER CASE|lower case|Sentence case|First Letter ;Creates a DropDownList (DDL), with Title Case as the default value.
+
+;Toggle for showing or hiding the title GUI.
+;If it's 1, show the GUI; if it's 0, hide it.
+;Starts out as 0, so it only appers when the user wants it.
+showTitleGUIToggle := 0
+
+;****************************************MISC VARIABLES AND STUFF******************************
 ;Variables for F6 group stuff
 ;Tracks all windows you want as part of your custom group
 Global WindowGroupF6 := []
@@ -51,6 +105,9 @@ Global CurrentWinF7 := 1
 
 ;Used for the step values for NumPad2 and NumPad8 in NumPad Media Control
 global Num2And8Step := 3
+
+;******************************************END OF AUTO-EXECUTE*******************************************
+return
 
 ;The stuff in this loop needs to be running constantly.
 Loop {
@@ -89,7 +146,7 @@ if (NumLockToggled = 1 and ScrollLockToggled = 0) {
 #Include, %A_ScriptDir%\Browser.ahk
 #Include, %A_ScriptDir%\Chromebook Typing.ahk
 #Include, %A_ScriptDir%\Default.ahk
-;~ #Include, %A_ScriptDir%\Edit Clipboard Content.ahk
+#Include, %A_ScriptDir%\Edit Clipboard Content.ahk
 #Include, %A_ScriptDir%\Google Docs.ahk
 #Include, %A_ScriptDir%\Google Sheets.ahk
 #Include, %A_ScriptDir%\Microsoft Word.ahk
@@ -98,7 +155,7 @@ if (NumLockToggled = 1 and ScrollLockToggled = 0) {
 #Include, %A_ScriptDir%\Profile Switcher.ahk
 #Include, %A_ScriptDir%\Run.ahk
 #Include, %A_ScriptDir%\SciTE4AutoHotkey Programming.ahk
-;~ #Include, %A_ScriptDir%\Title Capitalization Tool.ahk
+#Include, %A_ScriptDir%\Title Capitalization Tool.ahk
 
 ;****************************************GLOBAL HOTKEYS***************************************
 ;These global hotkeys are hotkeys that are always running, regardless of the active window, class, or whatever
