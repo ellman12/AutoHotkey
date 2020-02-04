@@ -108,8 +108,8 @@ Switch TitleChoice {
   Case "UPPER CASE":
     StringUpper, NewTitle, TitleEditBoxText
     Clipboard := NewTitle
-    GuiControl,, 2:TitleEditBoxText,The Title to Input
-    GuiControl, 2:Focus, TitleEditBoxText
+    ; GuiControl,, 2:TitleEditBoxText,The Title to Input
+    ; GuiControl, 2:Focus, TitleEditBoxText
   return
 
   ;Converts text to lower case, using a built-in AHK function.

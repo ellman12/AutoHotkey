@@ -144,7 +144,7 @@ if (NumLockToggled = 1 and ScrollLockToggled = 0) {
 #Include, %A_ScriptDir%\Browser.ahk
 #Include, %A_ScriptDir%\Chromebook Typing.ahk
 #Include, %A_ScriptDir%\Default.ahk
-#Include, %A_ScriptDir%\Edit Clipboard Content.ahk
+; #Include, %A_ScriptDir%\Edit Clipboard Content.ahk
 #Include, %A_ScriptDir%\Google Docs.ahk
 #Include, %A_ScriptDir%\Google Sheets.ahk
 #Include, %A_ScriptDir%\Microsoft Word.ahk
@@ -153,7 +153,7 @@ if (NumLockToggled = 1 and ScrollLockToggled = 0) {
 #Include, %A_ScriptDir%\Profile Switcher.ahk
 #Include, %A_ScriptDir%\Run.ahk
 #Include, %A_ScriptDir%\SciTE4AutoHotkey Programming.ahk
-#Include, %A_ScriptDir%\Title Capitalization Tool.ahk
+; #Include, %A_ScriptDir%\Title Capitalization Tool.ahk
 
 ;****************************************GLOBAL HOTKEYS***************************************
 ;These global hotkeys are hotkeys that are always running, regardless of the active window, class, or whatever
@@ -199,7 +199,7 @@ CapsLock::
 return
 
 ^CapsLock::
-if state := GetKeyState("CapsLock", "T")
+if capsLockState := GetKeyState("CapsLock", "T")
     SetCapsLockState, Off
 else
     SetCapsLockState, On
@@ -365,3 +365,134 @@ return
 
 :*:java::Java
 #If
+
+
+;-------------------------------------------------------------------------------------------
+;*****************************STUFF FOR EDIT CLIPBOARD CONTENT******************************
+;-------------------------------------------------------------------------------------------
+;Toggles between showing and hiding the Clipboard GUI.
+#c::
+GUI, 1:Show, w600 h400,Clipboard Edit
+return
+
+
+;***************************LABELS***************************
+;Activates when the GUI is closed. E.g., pressing the red x button, manually exiting the script, Alt + F4, etc.
+1GuiClose:
+    GUI, 1:Submit, NoHide
+    GuiControl, 1:Focus, clipboardBoxText
+    GUI, 1:Hide
+    showClipboardGUIToggle := !showClipboardGUIToggle
+return
+
+;Label for the text box.
+clipboardTextBoxLabel:
+    GUI, 1:Submit, NoHide
+    Clipboard := clipboardBoxText
+return
+
+;Label for when the user presses the Done button.
+;This button is exactly like the Finish button in TCT, where it stores the text in the Clipboard variable.
+clipboardFinishButton:
+    Clipboard := clipboardBoxText
+    GUI, 1:Hide
+    GuiControl, 1:Focus, clipboardBoxText
+return
+
+
+;-------------------------------------------------------------------------------------------
+;******************************STUFF FOR TITLE CAPITALIZATION TOOL**************************
+;-------------------------------------------------------------------------------------------
+;Activates when the GUI is closed. E.g., pressing the red x button, manually exiting the script, Alt + F4, etc.
+2GuiClose:
+  GUI, 2:Submit, NoHide
+  GUI, 2:Hide
+  showTitleGUIToggle := !showTitleGUIToggle
+return
+
+;Label used for when the user has finished inputting the title and the type of case.
+;Activates when the "Finish" button is pressed.
+TitleFinishButton:
+  GUI, 2:Hide
+  Gosub, TitleChoiceLabel
+  showTitleGUIToggle := !showTitleGUIToggle
+return
+
+;Label for getting the text the user inputted.
+;The user can either hit the Enter key on the keyboard—which unfortunately causes there to be an Enter in the final String—or they can Tab over to the Finish button (recommended).
+TitleTextBoxLabel:
+  GUI, 2:Submit, NoHide ;NoHide prevents the GUI window from being hidden, even after pressing 1 single character key.
+  IsEnterPressed := GetKeyState("Enter")
+  if(IsEnterPressed = true) {
+    Gosub, TitleChoiceLabel
+    GUI, 2:Hide
+  }
+return
+
+;This label is run when the user picks the case they want, and after they hit Enter (when they are done inputting data).
+;Contains a Switch statement that modifys the text, depending on how the user wants it.
+TitleChoiceLabel:
+
+Switch TitleChoice {
+
+  ;Converts text To Title Case.
+  Case "Title Case": ;I don't understand, nor know, how this works at all.
+    StringUpper, NewTitle, TitleEditBoxText, T ;Makes the title in AHK's "Title Case", which in reality just capitalizes the first letter of each word. Not sure why this line needs to be here.
+    head := SubStr(NewTitle, 1, 1) ;Manipulates and edits the String somehow.
+    tail := SubStr(NewTitle, 2)
+    ;Stores the NewTitle in the Clipboard.             This is the list of words to NOT capitalize.
+    Clipboard := head RegExReplace(tail, "i)\b(a|an|and|at|but|by|for|in|nor|of|on|or|so|the|to|up|with|yet)\b", "$L1")
+    GuiControl,, 2:TitleEditBoxText,The Title to Input ;Resets the variable containing the inputted title, so that the next time you go to open the GUI, the text isn't the previous text.
+    GuiControl, 2:Focus, TitleEditBoxText ;Puts that GUI element in focus, so it's ready to edit the next time the user wants to use it.
+  return
+  
+  ;Converts text to UPPER CASE, using a built-in AHK function.
+  Case "UPPER CASE":
+    StringUpper, NewTitle, TitleEditBoxText
+    Clipboard := NewTitle
+    GuiControl,, 2:TitleEditBoxText,The Title to Input
+    GuiControl, 2:Focus, TitleEditBoxText
+  return
+
+  ;Converts text to lower case, using a built-in AHK function.
+  Case "lower case":
+    StringLower, NewTitle, TitleEditBoxText
+    Clipboard := NewTitle
+    GuiControl,, 2:TitleEditBoxText,The Title to Input
+    GuiControl, 2:Focus, TitleEditBoxText
+  return
+
+  ;Converts text to Sentence case.
+  Case "Sentence case":
+    StringLower, NewTitle, TitleEditBoxText
+    NewTitle := RegExReplace(Clipboard, "((?:^|[.!?]\s+)[a-z])", "$u1")
+    Clipboard := NewTitle
+    GuiControl,, 2:TitleEditBoxText,The Title to Input
+    GuiControl, 2:Focus, TitleEditBoxText
+  return
+
+  ;Converts text to First Letter.
+  Case "First Letter":
+    StringUpper, NewTitle, TitleEditBoxText, T
+    Clipboard := NewTitle
+    GuiControl,, 2:TitleEditBoxText,The Title to Input
+    GuiControl, 2:Focus, TitleEditBoxText
+  return
+
+} ;End of Switch statement.
+return ;End of TitleChoiceLabel.
+
+;Toggle between showing and hiding the TCT GUI.
+#t::
+
+showTitleGUIToggle := !showTitleGUIToggle
+
+if (showTitleGUIToggle = 1) {
+  
+  GUI, 2:Show, w600 h400,Title Capitalization Tool (TCT)
+  
+} else if (showTitleGUIToggle = 0) {
+  GUI, 2:Hide
+  
+}
+return ;End of #t.
