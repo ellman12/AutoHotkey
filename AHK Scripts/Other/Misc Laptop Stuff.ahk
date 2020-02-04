@@ -74,7 +74,10 @@ return
 ^\::
 SoundGet, master_volume
 InputBox, master_volume , Input Custom Volume, Input a custom volume. Current volume: %master_volume%., , , , , , , , %master_volume%
+if (ErrorLevel = 1) {
+} else if (ErrorLevel = 0) {
 SoundSet, %master_volume%
+}
 return
 
 ^Space::
