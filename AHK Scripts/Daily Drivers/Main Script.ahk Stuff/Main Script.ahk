@@ -450,6 +450,7 @@ Switch TitleChoice {
   ;TODO FIX UPPER CASE. IT SEEMS TO ONLY WORK AFTER DOING ANOTHER CASE FIRST.
   Case "UPPER CASE":
     StringUpper, NewTitle, TitleEditBoxText
+    Sleep, 800 ;TODO Try having a delay here!
     Clipboard := NewTitle
     GuiControl,, 2:TitleEditBoxText,The Title to Input
     GuiControl, 2:Focus, TitleEditBoxText
