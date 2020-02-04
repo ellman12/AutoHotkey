@@ -19,6 +19,7 @@ SendMode Input
 ;Useful once in a blue moon.
 
 ;Commented out on 2/03/2020 at 8:11 PM because: https://www.reddit.com/r/AutoHotkey/comments/eyfvk8/after_including_2_other_files_guis_become_blank/
+;The GUI stuff needs to be created in the Main Script for some weird reason.
 
 ;The reason there is a 1: with each GUI command is because I #Include this script in "Main Script.ahk", and that helps keep the GUIs seperated.
 
