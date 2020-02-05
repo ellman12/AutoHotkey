@@ -23,7 +23,7 @@ SendMode Input
 ;I copied that script, and improved it.
 ;I also paraphrased some code from the old "WindowHider.ahk" script, and I got a lot of the functionality of this script from there.
 
-;WARNING! BEFORE YOU EDIT THIS SCRIPT—AND THUS RELOAD IT—MAKE SURE ALL OF YOUR WINDOWS ARE UNHIDDEN! OR ELSE THEY'LL BE GONE FOREVER!
+;WARNING! BEFORE YOU EDIT THIS SCRIPT--AND THUS RELOAD IT--MAKE SURE ALL OF YOUR WINDOWS ARE UNHIDDEN! OR ELSE THEY'LL BE GONE FOREVER!
 
 ;***********************************HOTKEYS***********************************
 ; ^F8:: Add the current window's title and ID to the list (array).
@@ -35,11 +35,6 @@ SendMode Input
 ; ^!+F8:: Remove all windows from the group, without closing them.
 ; ^!+#F8:: Close all windows in the list (array).
 
-;Suspend hotkeys.
-+#p::
-Suspend
-return
-
 ;Declare array to track window IDs.
 F8WinIDArray := []
 
@@ -50,6 +45,11 @@ F8WinTitleArray := []
 ;If it's 1, hide windows; if it's 0, show windows.
 F8ShowHideToggle := 1
 return ;End of Auto-execute section.
+
+;Suspend hotkeys.
++#p::
+Suspend
+return
 
 ;Add the current window's title and ID to the list (array).
 ^F8::
@@ -162,18 +162,19 @@ F8::
     F8ShowHideToggle := !F8ShowHideToggle
     
     ;If F8ShowHideToggle = 1
-    if (F8ShowHideToggle = 1)
+    if (F8ShowHideToggle = 1) {
         ;Loop through the array...
-    for index, value in F8WinIDArray
+        for index, value in F8WinIDArray
         ;...and show everything
-    WinShow, % "ahk_id " value
+        WinShow, % "ahk_id " value
     ;If F8ShowHideToggle does not = 1
-    else
+    } else {
         ;Loop through the array...
-    for index, value in F8WinIDArray
+        for index, value in F8WinIDArray
         ;...and hide everything
-    WinHide, % "ahk_id " value
-return
+        WinHide, % "ahk_id " value
+    }
+return ;End of F8.
 
 ;Display a list of hidden windows with their index next to it. If the user presses 1-9, it will show and activate the window with that index.
 #F8::

@@ -60,7 +60,7 @@
 #SingleInstance force
 
 ;Suspend hotkeys.
-#!p::
+!#p::
 Suspend
 return
 
