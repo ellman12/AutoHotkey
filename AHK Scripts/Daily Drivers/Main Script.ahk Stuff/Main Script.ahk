@@ -104,11 +104,10 @@ Global CurrentWinF7 := 1
 ;Used for the step values for NumPad2 and NumPad8 in NumPad Media Control.
 global Num2And8Step := 3
 
-;******************************************END OF AUTO-EXECUTE*******************************************
-return
-
 ;The stuff in this loop needs to be running constantly.
 Loop {
+
+
 ;Constantly checking to see what profile you should be in.
 global current_profile := AutoSelectProfiles()
 
@@ -132,6 +131,9 @@ if (NumLockToggled = 1 and ScrollLockToggled = 0) {
 }
 
 }
+
+;******************************************END OF AUTO-EXECUTE*******************************************
+return
 
 ;Linking other scripts together.
 ;Similar to but not exactly like you would in something like Java.
