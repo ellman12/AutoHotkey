@@ -106,7 +106,8 @@ Switch TitleChoice {
   
   ;Converts text to UPPER CASE, using a built-in AHK function.
   Case "UPPER CASE":
-    StringUpper, NewTitle, TitleEditBoxText
+    StringUpper, NewTitle, TitleEditBoxText, T
+    ; StringUpper, NewTitle, NewTitle
     Clipboard := NewTitle
     ; GuiControl,, 2:TitleEditBoxText,The Title to Input
     ; GuiControl, 2:Focus, TitleEditBoxText

@@ -45,7 +45,9 @@ SendMode Input
 
 
 ;Toggles between showing and hiding the Clipboard GUI.
+;Also resets the GUI Text Box with the current clipboard contents.
 #c::
+GuiControl,, 1: %Clipboard% Clipboard Edit
 GUI, 1:Show, w600 h400,Clipboard Edit
 return
 
