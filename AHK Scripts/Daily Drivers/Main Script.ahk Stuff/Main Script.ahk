@@ -321,6 +321,89 @@ return
 Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts
 return
 
+;*****************************************HOTKEYS FOR TITLE STUFF*********************************
+;These hotkeys allow the user to adjust and modify text in whatever way they want.
+;Can be used for titles or whatever you want.
+
+;I used to use this website: https://capitalizemytitle.com/, but it takes way too long to
+; load up every time I want to use it, so I got to work on this script.
+;It works exactly like it, but faster and runs offline.
+;TCT is shorthand for Title Capitalization Tool.
+;Inspiration and code for this script: https://autohotkey.com/board/topic/57888-title-case/ and https://autohotkey.com/board/topic/123994-capitalize-a-title/
+
+;Converts text to Title Case, using a custom thing I found on r/AutoHotkey.
+^!+t::
+  ;Copy text, and wait a bit so it can actually process that.
+  Send, ^c
+  Sleep 45
+
+  ;Makes the title in AHK's "Title Case", which in reality just capitalizes the first letter of each word. Not sure why this line needs to be here.
+  StringUpper, NewTitle, Clipboard, T
+  head := SubStr(NewTitle, 1, 1) ;Manipulates and edits the String somehow.
+  tail := SubStr(NewTitle, 2)
+
+  ;Stores the NewTitle in the Clipboard.             This is the list of words to NOT capitalize.
+  Clipboard := head RegExReplace(tail, "i)\b(a|an|and|at|but|by|for|in|nor|of|on|or|so|the|to|up|with|yet)\b", "$L1")
+
+  Send ^v ;Paste the new title.
+return ;End of ^!+t.
+
+;Converts text to UPPER CASE, using a built-in AHK function.
+^!+u::
+  ;Copy text, and wait a bit so it can actually process that.
+  Send, ^c
+  Sleep 45
+
+  ;Make the title UPPER CASE, using a built-in AHK function.
+  StringUpper, NewTitle, Clipboard
+
+  Send, ^v ;Paste the new title.
+return ;End of ^!+u.
+
+;Converts text to lower case, using a built-in AHK function.
+^!+l::
+  ;Copy text, and wait a bit so it can actually process that.
+  Send, ^c
+  Sleep 45
+
+  ;Make the title lower case, using a built-in AHK function.
+  StringLower, NewTitle, Clipboard
+
+  Send, ^v ;Paste the new title.
+return ;End of ^!+l.
+
+;Converts text to Sentence case.
+;I don't really know how it works; I found this on r/AHK, too.
+^!+s::
+  ;Copy text, and wait a bit so it can actually process that.
+  Send, ^c
+  Sleep 45
+
+  ;I don't have a clue how this works.
+  StringLower, NewTitle, Clipboard
+  NewTitle := RegExReplace(Clipboard, "((?:^|[.!?]\s+)[a-z])", "$u1")
+  
+  Send, ^v ;Paste the new title.
+return ;End of ^!+s.
+
+;Converts text to First Letter Capitalization, using a built-in AHK function.
+^!+f::
+  StringUpper, NewTitle, Clipboard, T
+  
+  Send, ^v ;Paste the new title.
+return ;End of ^!+f.
+
+  Case "First Letter":
+    StringUpper, NewTitle, TitleEditBoxText, T
+    Clipboard := NewTitle
+    GuiControl,, 2:TitleEditBoxText,The Title to Input
+    GuiControl, 2:Focus, TitleEditBoxText
+  return
+  
+
+  ;*******************************HOTKEYS FOR EDITING CLIPBOARD CONTENT*****************************
+
+
 ;----------------------------------------------------------------------
 ;*****************************EXPERIMENTAL*****************************
 ;----------------------------------------------------------------------
@@ -449,10 +532,10 @@ Switch TitleChoice {
   return
   
   ;Converts text to UPPER CASE, using a built-in AHK function.
-  ;TODO FIX UPPER CASE. IT SEEMS TO ONLY WORK AFTER DOING ANOTHER CASE FIRST.
   Case "UPPER CASE":
+    Sleep, 800
     StringUpper, NewTitle, TitleEditBoxText
-    Sleep, 800 ;TODO Try having a delay here!
+    Sleep, 800
     Clipboard := NewTitle
     GuiControl,, 2:TitleEditBoxText,The Title to Input
     GuiControl, 2:Focus, TitleEditBoxText

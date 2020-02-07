@@ -103,10 +103,11 @@ Switch TitleChoice {
     GuiControl,, 2:TitleEditBoxText,The Title to Input ;Resets the variable containing the inputted title, so that the next time you go to open the GUI, the text isn't the previous text.
     GuiControl, 2:Focus, TitleEditBoxText ;Puts that GUI element in focus, so it's ready to edit the next time the user wants to use it.
   return
-  
+
   ;Converts text to UPPER CASE, using a built-in AHK function.
   Case "UPPER CASE":
-    StringUpper, NewTitle, TitleEditBoxText, T
+    Sleep, 50
+    StringUpper, NewTitle, TitleEditBoxText
     ; StringUpper, NewTitle, NewTitle
     Clipboard := NewTitle
     ; GuiControl,, 2:TitleEditBoxText,The Title to Input
