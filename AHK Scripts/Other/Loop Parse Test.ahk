@@ -32,18 +32,21 @@ return ;End of Auto-exe.
 Send, ^c
 Sleep 50
 
+;TODO if first time running, concatenate strLw.. and strLw..., then delete one of them, OR just not have it chop any of that off.
+;The reason the Clipboard gets fucked is because the final time it's run, it's the concatenation of the 2 vars.
+
 Loop, Parse, Clipboard
 {
-    if (altCaseToggle = "1") {
-        StringLower, idkvar, A_LoopField
-        Clipboard := . idkvar
+    if (altCaseToggle = 1) {
+        StringLower, strLwUpOutput, A_LoopField
+        Clipboard := strLwUpOutput . strLwUpOutput
         altCaseToggle := !altCaseToggle
-        MsgBox, 1 A_LoopField: %A_LoopField% + altCaseToggle: %altCaseToggle% + idkvar: %idkvar%
-    } else if (altCaseToggle = "0") {
-        StringUpper, idkvar, A_LoopField
-        Clipboard := . idkvar
+        MsgBox, 1 A_LoopField: %A_LoopField% + altCaseToggle: %altCaseToggle% + strLwUpOutput: %strLwUpOutput%
+    } else if (altCaseToggle = 0) {
+        StringUpper, strLwUpOutput, A_LoopField
+        Clipboard := strLwUpOutput . strLwUpOutput
         altCaseToggle := !altCaseToggle
-        MsgBox, 0 %A_LoopField% + %altCaseToggle% + idkvar: %idkvar%
+        MsgBox, 0 %A_LoopField% + %altCaseToggle% + strLwUpOutput: %strLwUpOutput%
     }
 }
 MsgBox, %Clipboard%
