@@ -19,8 +19,11 @@ SendMode Input
 ;Test for alt case, starting with lower case.
 
 ;Toggle for if the alt case starts lower or not.
-; 0 = do not start lower (start upper case); 1 = start lower.
-altCaseToggle := 1
+;0 = (start, if applicable) lower case, or else convert the char to lower
+;1 = do not start lower (start upper case), or else convert the char to upper.
+
+;TODO Have 2 different hotkeys for starting lower, and starting upper, and have it set the var accordingly.
+altCaseToggle := 0
 
 ;Array for piecing together chars.
 ; charArray := [1]
@@ -37,17 +40,17 @@ Sleep 50
 
 Loop, Parse, Clipboard
 {
-    if (altCaseToggle = 1) {
+    if (altCaseToggle = 0) {
         StringLower, strLwUpOutput, A_LoopField
-        Clipboard := strLwUpOutput . strLwUpOutput
+        finalString := finalString . strLwUpOutput
         altCaseToggle := !altCaseToggle
         MsgBox, 1 A_LoopField: %A_LoopField% + altCaseToggle: %altCaseToggle% + strLwUpOutput: %strLwUpOutput%
-    } else if (altCaseToggle = 0) {
+    } else if (altCaseToggle = 1) {
         StringUpper, strLwUpOutput, A_LoopField
-        Clipboard := strLwUpOutput . strLwUpOutput
+        finalString := finalString . strLwUpOutput
         altCaseToggle := !altCaseToggle
         MsgBox, 0 %A_LoopField% + %altCaseToggle% + strLwUpOutput: %strLwUpOutput%
     }
 }
-MsgBox, %Clipboard%
+MsgBox, %finalString%
 return
