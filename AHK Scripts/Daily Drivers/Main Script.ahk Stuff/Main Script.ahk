@@ -36,57 +36,23 @@ Menu, Tray, Icon, shell32.dll, 174 ;Changes the icon to a keyboard; perfect for 
 
 ;******************************************AUTO-EXECUTE**************************************************
 ;*******************************EDIT CLIPBOARD CONTENT INITIALIZATION******************************
-;Check the Reddit post in the script for an explanation as to why this code needs to be in Main.
-GUI, 1:Font, s14, Arial ;Font settings for the Text Box.
-GUI, 1:Add, Edit, HScroll wrap r9 x15 y40 w560 h200 vclipboardBoxText gclipboardTextBoxLabel,%Clipboard% ;Creates an edit box for inputting the clipboard. AHK GUI Documentation explains the r, x, etc. stuff.
+GUI, ECC:Font, s14, Arial ;Font settings for the Text Box.
+GUI, ECC:Add, Edit, HScroll wrap r9 x15 y40 w560 h200 vclipboardBoxText gclipboardTextBoxLabel,%Clipboard% ;Creates an edit box for inputting the clipboard. AHK GUI Documentation explains the r, x, etc. stuff.
 
 ;Creating the GUI button for the Finish button: when the user is done editing the clipboard contents.
-GUI, 1:Add, Button, w100 gclipboardFinishButton,Finish
+GUI, ECC:Add, Button, w100 gclipboardFinishButton,Finish
 
-GUI, 1:Font, s15, Arial ;Font settings for everything else.
-GUI, 1:Add, Text, x16 y5, Current Clipboard contents. Type what you want to change it to. ;Text instructing the user what to do.
+GUI, ECC:Font, s15, Arial ;Font settings for everything else.
+GUI, ECC:Add, Text, x16 y5, Current Clipboard contents. Type what you want to change it to. ;Text instructing the user what to do.
 
 ;Making the GUI always on top, and giving it a Silver color.
-GUI, 1:+AlwaysOnTop
-GUI, 1:Color, Silver
+GUI, ECC:+AlwaysOnTop
+GUI, ECC:Color, Silver
 
 ;Toggle for showing or hiding the Clipboard GUI.
 ;If it's 1, show the GUI; if it's 0, hide it.
 ;Starts out as 0, so it only appers when the user wants it.
 showClipboardGUIToggle := 0
-
-;*****************************TITLE CAPITALIZATION TOOL INITIALIZATION****************************
-;Check the Reddit post in the script for an explanation as to why this code needs to be in Main.
-;Creating and designing the GUI.
-;Creating the Title Box.
-GUI, 2:Font, s14, Arial ;Font settings for the Text Box. Size 14, Arial font.
-GUI, 2:Add, Edit, r3 HScroll x15 y40 w500 h10 vTitleEditBoxText gTitleTextBoxLabel,The Title to Input ;This text box has 3 rows, allows scrolling horizontally, has a variable TitleEditBoxText, and a label TitleTextBoxLabel.
-
-;Creating text telling the user to input the text.
-GUI, 2:Font, s15, Arial ;Font settings.
-GUI, 2:Add, Text, x16 y5, Enter Title to Modify:
-
-;Making the GUI always on top, and giving it a Silver color.
-GUI, 2:+AlwaysOnTop
-GUI, 2:Color, Silver
-
-;Adding the Finish button below the text box and above the DDL.
-;The reason it's above the DDL is because 99.99% of the time, I will be using Title Case, which is obviously the default value.
-;That just makes it easier to do because I have to do less keystrokes.
-GUI, 2:Add, Button, x15 y150 w80 h40 gTitleFinishButton,Finish
-
-;GUI stuff for text above DDL.
-GUI, 2:Font, s15 Arial ;Font settings.
-GUI, 2:Add, Text, x15 y200, Choose a Title Type:
-
-;Creating GUI stuff for choosing the type of case (Title, UPPER, etc).
-GUI, 2:Font, S14 Arial
-GUI, 2:Add, DropDownList, x15 y230 vTitleChoice gTitleChoiceLabel, Title Case||UPPER CASE|lower case|Sentence case|First Letter ;Creates a DropDownList (DDL), with Title Case as the default value.
-
-;Toggle for showing or hiding the title GUI.
-;If it's 1, show the GUI; if it's 0, hide it.
-;Starts out as 0, so it only appers when the user wants it.
-showTitleGUIToggle := 0
 
 ;****************************************MISC VARIABLES AND STUFF*********************************
 ;Variables for F6 group stuff.
@@ -106,7 +72,6 @@ global Num2And8Step := 3
 
 ;The stuff in this loop needs to be running constantly.
 Loop {
-
 
 ;Constantly checking to see what profile you should be in.
 global current_profile := AutoSelectProfiles()
@@ -131,9 +96,6 @@ if (NumLockToggled = 1 and ScrollLockToggled = 0) {
 }
 
 }
-
-;******************************************END OF AUTO-EXECUTE*******************************************
-return
 
 ;Linking other scripts together.
 ;Similar to but not exactly like you would in something like Java.
@@ -176,7 +138,6 @@ return
 ^+sc029::
 Send, ~
 return
-
 
 ;Moves mouse pointer as far off the screen as possible (on main display); usually either to A, get it out of the way, or B, so I can easily find it.
 Insert::
@@ -389,20 +350,39 @@ return ;End of ^!+s.
 ;Converts text to First Letter Capitalization, using a built-in AHK function.
 ^!+f::
   StringUpper, NewTitle, Clipboard, T
-  
   Send, ^v ;Paste the new title.
 return ;End of ^!+f.
 
-  Case "First Letter":
-    StringUpper, NewTitle, TitleEditBoxText, T
-    Clipboard := NewTitle
-    GuiControl,, 2:TitleEditBoxText,The Title to Input
-    GuiControl, 2:Focus, TitleEditBoxText
-  return
-  
+;-------------------------------------------------------------------------------------------
+;*****************************STUFF FOR EDIT CLIPBOARD CONTENT******************************
+;-------------------------------------------------------------------------------------------
+;Toggles between showing and hiding the Clipboard GUI.
+#c::
+GUI, ECC:Show, w600 h400,Clipboard Edit
+return
 
-  ;*******************************HOTKEYS FOR EDITING CLIPBOARD CONTENT*****************************
+;***************************LABELS***************************
+;Activates when the GUI is closed. E.g., pressing the red x button, manually exiting the script, Alt + F4, etc.
+1GuiClose:
+    GUI, ECC:Submit, NoHide
+    GuiControl, ECC:Focus, clipboardBoxText
+    GUI, ECC:Hide
+    showClipboardGUIToggle := !showClipboardGUIToggle
+return
 
+;Label for the text box.
+clipboardTextBoxLabel:
+    GUI, ECC:Submit, NoHide
+    Clipboard := clipboardBoxText
+return
+
+;Label for when the user presses the Done button.
+;This button is exactly like the Finish button in TCT, where it stores the text in the Clipboard variable.
+clipboardFinishButton:
+    Clipboard := clipboardBoxText
+    GUI, ECC:Hide
+    GuiControl, ECC:Focus, %clipboardBoxText%
+return
 
 ;----------------------------------------------------------------------
 ;*****************************EXPERIMENTAL*****************************
@@ -450,136 +430,3 @@ return
 
 :*:java::Java
 #If
-
-
-;-------------------------------------------------------------------------------------------
-;*****************************STUFF FOR EDIT CLIPBOARD CONTENT******************************
-;-------------------------------------------------------------------------------------------
-;Toggles between showing and hiding the Clipboard GUI.
-#c::
-GUI, 1:Show, w600 h400,Clipboard Edit
-return
-
-
-;***************************LABELS***************************
-;Activates when the GUI is closed. E.g., pressing the red x button, manually exiting the script, Alt + F4, etc.
-1GuiClose:
-    GUI, 1:Submit, NoHide
-    GuiControl, 1:Focus, clipboardBoxText
-    GUI, 1:Hide
-    showClipboardGUIToggle := !showClipboardGUIToggle
-return
-
-;Label for the text box.
-clipboardTextBoxLabel:
-    GUI, 1:Submit, NoHide
-    Clipboard := clipboardBoxText
-return
-
-;Label for when the user presses the Done button.
-;This button is exactly like the Finish button in TCT, where it stores the text in the Clipboard variable.
-clipboardFinishButton:
-    Clipboard := clipboardBoxText
-    GUI, 1:Hide
-    GuiControl, 1:Focus, clipboardBoxText
-return
-
-
-;-------------------------------------------------------------------------------------------
-;******************************STUFF FOR TITLE CAPITALIZATION TOOL**************************
-;-------------------------------------------------------------------------------------------
-;Activates when the GUI is closed. E.g., pressing the red x button, manually exiting the script, Alt + F4, etc.
-2GuiClose:
-  GUI, 2:Submit, NoHide
-  GUI, 2:Hide
-  showTitleGUIToggle := !showTitleGUIToggle
-return
-
-;Label used for when the user has finished inputting the title and the type of case.
-;Activates when the "Finish" button is pressed.
-TitleFinishButton:
-  GUI, 2:Hide
-  Gosub, TitleChoiceLabel
-  showTitleGUIToggle := !showTitleGUIToggle
-return
-
-;Label for getting the text the user inputted.
-;The user can either hit the Enter key on the keyboard—which unfortunately causes there to be an Enter in the final String—or they can Tab over to the Finish button (recommended).
-TitleTextBoxLabel:
-  GUI, 2:Submit, NoHide ;NoHide prevents the GUI window from being hidden, even after pressing 1 single character key.
-  IsEnterPressed := GetKeyState("Enter")
-  if(IsEnterPressed = true) {
-    Gosub, TitleChoiceLabel
-    GUI, 2:Hide
-  }
-return
-
-;This label is run when the user picks the case they want, and after they hit Enter (when they are done inputting data).
-;Contains a Switch statement that modifys the text, depending on how the user wants it.
-TitleChoiceLabel:
-
-Switch TitleChoice {
-
-  ;Converts text To Title Case.
-  Case "Title Case": ;I don't understand, nor know, how this works at all.
-    StringUpper, NewTitle, TitleEditBoxText, T ;Makes the title in AHK's "Title Case", which in reality just capitalizes the first letter of each word. Not sure why this line needs to be here.
-    head := SubStr(NewTitle, 1, 1) ;Manipulates and edits the String somehow.
-    tail := SubStr(NewTitle, 2)
-    ;Stores the NewTitle in the Clipboard.             This is the list of words to NOT capitalize.
-    Clipboard := head RegExReplace(tail, "i)\b(a|an|and|at|but|by|for|in|nor|of|on|or|so|the|to|up|with|yet)\b", "$L1")
-    GuiControl,, 2:TitleEditBoxText,The Title to Input ;Resets the variable containing the inputted title, so that the next time you go to open the GUI, the text isn't the previous text.
-    GuiControl, 2:Focus, TitleEditBoxText ;Puts that GUI element in focus, so it's ready to edit the next time the user wants to use it.
-  return
-  
-  ;Converts text to UPPER CASE, using a built-in AHK function.
-  Case "UPPER CASE":
-    Sleep, 800
-    StringUpper, NewTitle, TitleEditBoxText
-    Sleep, 800
-    Clipboard := NewTitle
-    GuiControl,, 2:TitleEditBoxText,The Title to Input
-    GuiControl, 2:Focus, TitleEditBoxText
-  return
-
-  ;Converts text to lower case, using a built-in AHK function.
-  Case "lower case":
-    StringLower, NewTitle, TitleEditBoxText
-    Clipboard := NewTitle
-    GuiControl,, 2:TitleEditBoxText,The Title to Input
-    GuiControl, 2:Focus, TitleEditBoxText
-  return
-
-  ;Converts text to Sentence case.
-  Case "Sentence case":
-    StringLower, NewTitle, TitleEditBoxText
-    NewTitle := RegExReplace(Clipboard, "((?:^|[.!?]\s+)[a-z])", "$u1")
-    Clipboard := NewTitle
-    GuiControl,, 2:TitleEditBoxText,The Title to Input
-    GuiControl, 2:Focus, TitleEditBoxText
-  return
-
-  ;Converts text to First Letter.
-  Case "First Letter":
-    StringUpper, NewTitle, TitleEditBoxText, T
-    Clipboard := NewTitle
-    GuiControl,, 2:TitleEditBoxText,The Title to Input
-    GuiControl, 2:Focus, TitleEditBoxText
-  return
-
-} ;End of Switch statement.
-return ;End of TitleChoiceLabel.
-
-;Toggle between showing and hiding the TCT GUI.
-#t::
-
-showTitleGUIToggle := !showTitleGUIToggle
-
-if (showTitleGUIToggle = 1) {
-  
-  GUI, 2:Show, w600 h400,Title Capitalization Tool (TCT)
-  
-} else if (showTitleGUIToggle = 0) {
-  GUI, 2:Hide
-  
-}
-return ;End of #t.

@@ -15,27 +15,36 @@ SendMode Input
 #SingleInstance force
 ;OPTIMIZATIONS END
 
-; testString = ishouldbeinallcaps
 
-; MsgBox, %testString%
+;Test for alt case, starting with lower case.
 
-; ;A_Index is the current loop index; A_LoopField is the char at that iteration.
+;Toggle for if the alt case starts lower or not.
+; 0 = do not start lower (start upper case); 1 = start lower.
+altCaseToggle := 1
 
-; Loop, parse, testString
-; {
-;     ;MsgBox, 4, , Iteration %A_Index% is %A_LoopField%.
-;     charToMakeUpperCase := %A_Index%
-;     StringUpper, upperCaseChar, charToMakeUpperCase
-; }
+;Array for piecing together chars.
+; charArray := [1]
 
-; MsgBox, %%
+return ;End of Auto-exe.
 
-;try alt case
+#e::
 
-^+f::
 Send, ^c
-Sleep 60
-testString := Clipboard
-StringUpper, testString, testString
-MsgBox %testString%
-Return
+Sleep 50
+
+Loop, Parse, Clipboard
+{
+    if (altCaseToggle = "1") {
+        StringLower, idkvar, A_LoopField
+        Clipboard := . idkvar
+        altCaseToggle := !altCaseToggle
+        MsgBox, 1 A_LoopField: %A_LoopField% + altCaseToggle: %altCaseToggle% + idkvar: %idkvar%
+    } else if (altCaseToggle = "0") {
+        StringUpper, idkvar, A_LoopField
+        Clipboard := . idkvar
+        altCaseToggle := !altCaseToggle
+        MsgBox, 0 %A_LoopField% + %altCaseToggle% + idkvar: %idkvar%
+    }
+}
+MsgBox, %Clipboard%
+return
