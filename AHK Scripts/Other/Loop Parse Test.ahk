@@ -25,9 +25,6 @@ SendMode Input
 ;TODO Have 2 different hotkeys for starting lower, and starting upper, and have it set the var accordingly.
 altCaseToggle := 0
 
-;Array for piecing together chars.
-; charArray := [1]
-
 return ;End of Auto-exe.
 
 #e::
