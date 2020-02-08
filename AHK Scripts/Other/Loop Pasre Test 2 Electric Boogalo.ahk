@@ -22,15 +22,11 @@ SendMode Input
 
 return ;End of Auto-execute.
 
-^#r::
-Reload
-return
-
-
 ;Convert text to aLt CaSe, with the first letter being lower case.
 ^!+a::
 
 ;Blank out this String.
+;Basically resetting it so it doesn't contain the old text as well as the new stuff.
 finalString := 
 
  ;Set it to 0 because it needs to start lower (see comment at the top of the script).
@@ -41,8 +37,6 @@ Send, ^c
 Sleep, 50
 
 ;Loop through the contents of the Clipboard, and toggle between cases.
-;TODO if A_LoopField is A_Space, toggle the bool var.
-
 Loop, Parse, Clipboard
 {
     if (altCaseToggle = 0) {
@@ -69,8 +63,6 @@ Loop, Parse, Clipboard
 Clipboard := finalString
 
 Send, ^v
-
-; MsgBox, %finalString% ;Temp for test.
 
 return ;End of ^!+a.
 
