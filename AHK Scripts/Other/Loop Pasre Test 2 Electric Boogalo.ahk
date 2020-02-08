@@ -30,6 +30,9 @@ return
 ;Convert text to aLt CaSe, with the first letter being lower case.
 ^!+a::
 
+;Blank out this String.
+finalString := 
+
  ;Set it to 0 because it needs to start lower (see comment at the top of the script).
 altCaseToggle := 0
 
@@ -38,18 +41,28 @@ Send, ^c
 Sleep, 50
 
 ;Loop through the contents of the Clipboard, and toggle between cases.
+;TODO if A_LoopField is A_Space, toggle the bool var.
+
 Loop, Parse, Clipboard
 {
     if (altCaseToggle = 0) {
-        IfNotInString, A_LoopField, {Space}
+        if (A_LoopField = A_Space) {
+            ; altCaseToggle := !altCaseToggle
+            finalString := finalString . A_Space
+        } else {
             StringLower, strLwUpOutput, A_LoopField
             finalString := finalString . strLwUpOutput
             altCaseToggle := !altCaseToggle
+        }
     } else if (altCaseToggle = 1) {
-        IfInString, A_LoopField, {Space}
+        if (A_LoopField = A_Space) {
+            ; altCaseToggle := !altCaseToggle
+            finalString := finalString . A_Space
+        } else {
             StringUpper, strLwUpOutput, A_LoopField
             finalString := finalString . strLwUpOutput
             altCaseToggle := !altCaseToggle
+        }
     }
 }
 
