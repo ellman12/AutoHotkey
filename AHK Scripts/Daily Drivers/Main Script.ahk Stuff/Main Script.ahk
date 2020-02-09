@@ -15,10 +15,8 @@ SendMode Input
 #SingleInstance force
 ;OPTIMIZATIONS END
 
-;This script is the main file that links all of my other scripts together, plus some other things.
-
 /*
-* Main Script.ahk and the rest are all a simple spell but quite unbreakable.
+* This script is the main file that links all of my other scripts together, plus some other things.
 * On my K95 keyboard and my Scimitar mouse, I have 18 and 12 G keys, respectively.
 * In the garbage iCUE software, I have assigned each of them some keeb shortcuts to send.
 * They all involve F13-F24, since 99.9% of keyboards don't have those physical keys, but Windows can still accept them as inputs.
@@ -36,24 +34,45 @@ the set of actions that are done by the G keys depending on the current active w
 
 Menu, Tray, Icon, shell32.dll, 174 ;Changes the icon to a keyboard; perfect for the Main Script file. IDK where I found this...
 
-;****************************************MISCELLANEOUS VARIABLES AND STUFF****************************************
-;Variables for F6 group stuff
-;Tracks all windows you want as part of your custom group
+;******************************************AUTO-EXECUTE**************************************************
+;*******************************EDIT CLIPBOARD CONTENT INITIALIZATION******************************
+GUI, ECC:Font, s14, Arial ;Font settings for the Text Box.
+GUI, ECC:Add, Edit, HScroll wrap r9 x15 y40 w560 h200 vclipboardBoxText gclipboardTextBoxLabel,%Clipboard% ;Creates an edit box for inputting the clipboard. AHK GUI Documentation explains the r, x, etc. stuff.
+
+;Creating the GUI button for the Finish button: when the user is done editing the clipboard contents.
+GUI, ECC:Add, Button, w100 gclipboardFinishButton,Finish
+
+GUI, ECC:Font, s15, Arial ;Font settings for everything else.
+GUI, ECC:Add, Text, x16 y5, Current Clipboard contents. Type what you want to change it to. ;Text instructing the user what to do.
+
+;Making the GUI always on top, and giving it a Silver color.
+GUI, ECC:+AlwaysOnTop
+GUI, ECC:Color, Silver
+
+;Toggle for showing or hiding the Clipboard GUI.
+;If it's 1, show the GUI; if it's 0, hide it.
+;Starts out as 0, so it only appers when the user wants it.
+showClipboardGUIToggle := 0
+
+;****************************************MISC VARIABLES AND STUFF*********************************
+;Variables for F6 group stuff.
+;Tracks all windows you want as part of your custom group.
 Global WindowGroupF6 := []
-;Tracks the current window you're on
+;Tracks the current window you're on.
 Global CurrentWinF6 := 1
 
-;Variables for F7 group stuff
-;Tracks all windows you want as part of your custom group
+;Variables for F7 group stuff.
+;Tracks all windows you want as part of your custom group.
 Global WindowGroupF7 := []
-;Tracks the current window you're on
+;Tracks the current window you're on.
 Global CurrentWinF7 := 1
 
-;Used for the step values for NumPad2 and NumPad8 in NumPad Media Control
+;Used for the step values for NumPad2 and NumPad8 in NumPad Media Control.
 global Num2And8Step := 3
 
 ;The stuff in this loop needs to be running constantly.
 Loop {
+
 ;Constantly checking to see what profile you should be in.
 global current_profile := AutoSelectProfiles()
 
@@ -63,7 +82,7 @@ global NumLockToggled := GetKeyState("NumLock", "T")
 ;The script checks if ScrollLock is enabled or not, so it can do different things depending on if it is enabled or not. The variable is either 1 or 0.
 global ScrollLockToggled := GetKeyState("ScrollLock", "T")
 
-;This works so much better than having a bunch of ugly NumLockToggled = 1 and ScrollLockToggled = 0 things everywhere
+;This works so much better than having a bunch of ugly NumLockToggled = 1 and ScrollLockToggled = 0 things everywhere.
 if (NumLockToggled = 1 and ScrollLockToggled = 0) {
 	global NumPadMode = "MusicBee"
 } else if (NumLockToggled = 1 and ScrollLockToggled = 1) {
@@ -89,7 +108,6 @@ if (NumLockToggled = 1 and ScrollLockToggled = 0) {
 #Include, %A_ScriptDir%\Browser.ahk
 #Include, %A_ScriptDir%\Chromebook Typing.ahk
 #Include, %A_ScriptDir%\Default.ahk
-;~ #Include, %A_ScriptDir%\Edit Clipboard Content.ahk
 #Include, %A_ScriptDir%\Google Docs.ahk
 #Include, %A_ScriptDir%\Google Sheets.ahk
 #Include, %A_ScriptDir%\Microsoft Word.ahk
@@ -98,7 +116,6 @@ if (NumLockToggled = 1 and ScrollLockToggled = 0) {
 #Include, %A_ScriptDir%\Profile Switcher.ahk
 #Include, %A_ScriptDir%\Run.ahk
 #Include, %A_ScriptDir%\SciTE4AutoHotkey Programming.ahk
-;~ #Include, %A_ScriptDir%\Title Capitalization Tool.ahk
 
 ;****************************************GLOBAL HOTKEYS***************************************
 ;These global hotkeys are hotkeys that are always running, regardless of the active window, class, or whatever
@@ -119,7 +136,6 @@ return
 ^+sc029::
 Send, ~
 return
-
 
 ;Moves mouse pointer as far off the screen as possible (on main display); usually either to A, get it out of the way, or B, so I can easily find it.
 Insert::
@@ -144,7 +160,7 @@ CapsLock::
 return
 
 ^CapsLock::
-if state := GetKeyState("CapsLock", "T")
+if capsLockState := GetKeyState("CapsLock", "T")
     SetCapsLockState, Off
 else
     SetCapsLockState, On
@@ -262,6 +278,202 @@ return
 ;Open "AHK Scripts" folder in AutoHotkey GitHub repository folder on my PC.
 ^+f::
 Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts
+return
+
+;*****************************************HOTKEYS FOR TITLE STUFF*********************************
+;These hotkeys allow the user to adjust and modify text in whatever way they want.
+;Can be used for titles or whatever you want.
+
+;I used to use this website: https://capitalizemytitle.com/, but it takes way too long to
+; load up every time I want to use it, so I got to work on this script.
+;It works exactly like it, but faster and runs offline.
+;TCT is shorthand for Title Capitalization Tool.
+;Inspiration and code for this script: https://autohotkey.com/board/topic/57888-title-case/ and https://autohotkey.com/board/topic/123994-capitalize-a-title/
+
+;Converts text to Title Case, using a custom thing I found on r/AutoHotkey.
+^!+t::
+  ;Copy text, and wait a bit so it can actually process that.
+  Send, ^c
+  Sleep 45
+
+  ;Makes the title in AHK's "Title Case", which in reality just capitalizes the first letter of each word. Not sure why this line needs to be here.
+  StringUpper, NewTitle, Clipboard, T
+  head := SubStr(NewTitle, 1, 1) ;Manipulates and edits the String somehow.
+  tail := SubStr(NewTitle, 2)
+
+  ;Stores the NewTitle in the Clipboard.             This is the list of words to NOT capitalize.
+  Clipboard := head RegExReplace(tail, "i)\b(a|an|and|at|but|by|for|in|nor|of|on|or|so|the|to|up|with|yet)\b", "$L1")
+
+  Send ^v ;Paste the new title.
+return ;End of ^!+t.
+
+;Converts text to UPPER CASE, using a built-in AHK function.
+^!+u::
+  ;Copy text, and wait a bit so it can actually process that.
+  Send, ^c
+  Sleep 45
+
+  ;Make the title UPPER CASE, using a built-in AHK function.
+  StringUpper, NewTitle, Clipboard
+
+  Send, ^v ;Paste the new title.
+return ;End of ^!+u.
+
+;Converts text to lower case, using a built-in AHK function.
+^!+l::
+  ;Copy text, and wait a bit so it can actually process that.
+  Send, ^c
+  Sleep 45
+
+  ;Make the title lower case, using a built-in AHK function.
+  StringLower, NewTitle, Clipboard
+
+  Send, ^v ;Paste the new title.
+return ;End of ^!+l.
+
+;Converts text to Sentence case.
+;I don't really know how it works; I found this on r/AHK, too.
+^!+s::
+  ;Copy text, and wait a bit so it can actually process that.
+  Send, ^c
+  Sleep 45
+
+  ;I don't have a clue how this works.
+  StringLower, NewTitle, Clipboard
+  NewTitle := RegExReplace(Clipboard, "((?:^|[.!?]\s+)[a-z])", "$u1")
+  
+  Send, ^v ;Paste the new title.
+return ;End of ^!+s.
+
+;Converts text to First Letter Capitalization, using a built-in AHK function.
+^!+f::
+  StringUpper, NewTitle, Clipboard, T
+  Send, ^v ;Paste the new title.
+return ;End of ^!+f.
+
+;altCaseToggle is a toggle for if the alt case starts in lower case or not.
+;A_LoopField is the single character at that point in the Parse Loop.
+;0 = convert the char (A_LoopField) to lower...
+;...1 = convert the char to UPPER.
+
+;Convert text to aLt CaSe, with the first letter being lower case.
+^!+a::
+
+;Blank out this String.
+;Basically resetting it so it doesn't contain the old text as well as the new stuff.
+finalString := 
+
+ ;Set it to 0 because it needs to start lower (see comment at the top of the script).
+altCaseToggle := 0
+
+;Copy the text, and wait a bit so it can actually get a change to store it in the Clipboard.
+Send, ^c
+Sleep, 50
+
+;Loop through the contents of the Clipboard, and toggle between cases.
+Loop, Parse, Clipboard
+{
+    if (altCaseToggle = 0) {
+        if (A_LoopField = A_Space) {
+            ;If the current char is a space, don't toggle the var and just concatenate it to the finalString.
+            finalString := finalString . A_Space
+        } else {
+            StringLower, strLwUpOutput, A_LoopField
+            finalString := finalString . strLwUpOutput
+            altCaseToggle := !altCaseToggle
+        }
+    } else if (altCaseToggle = 1) {
+        if (A_LoopField = A_Space) {
+            finalString := finalString . A_Space
+        } else {
+            StringUpper, strLwUpOutput, A_LoopField
+            finalString := finalString . strLwUpOutput
+            altCaseToggle := !altCaseToggle
+        }
+    }
+}
+
+;Store the final aLt CaSe String in the Clipboard.
+Clipboard := finalString
+
+;Paste the final String.
+Send, ^v
+
+return ;End of ^!+a.
+
+;Convert text to AlT cAsE, with the first letter being UPPER case.
+^!+#a::
+
+;Blank out this String.
+;Basically resetting it so it doesn't contain the old text as well as the new stuff.
+finalString := 
+
+ ;Set it to 0 because it needs to start lower (see comment at the top of the script).
+altCaseToggle := 1
+
+;Copy the text, and wait a bit so it can actually get a change to store it in the Clipboard.
+Send, ^c
+Sleep, 50
+
+;Loop through the contents of the Clipboard, and toggle between cases.
+Loop, Parse, Clipboard
+{
+    if (altCaseToggle = 0) {
+        if (A_LoopField = A_Space) {
+            finalString := finalString . A_Space
+        } else {
+            StringLower, strLwUpOutput, A_LoopField
+            finalString := finalString . strLwUpOutput
+            altCaseToggle := !altCaseToggle
+        }
+    } else if (altCaseToggle = 1) {
+        if (A_LoopField = A_Space) {
+            finalString := finalString . A_Space
+        } else {
+            StringUpper, strLwUpOutput, A_LoopField
+            finalString := finalString . strLwUpOutput
+            altCaseToggle := !altCaseToggle
+        }
+    }
+}
+
+;Store the final aLt CaSe String in the Clipboard.
+Clipboard := finalString
+
+;Paste the final String.
+Send, ^v
+
+return ;End of ^!+a.
+
+;-------------------------------------------------------------------------------------------
+;*****************************STUFF FOR EDIT CLIPBOARD CONTENT******************************
+;-------------------------------------------------------------------------------------------
+;Toggles between showing and hiding the Clipboard GUI.
+#c::
+GUI, ECC:Show, w600 h400,Clipboard Edit
+return
+
+;***************************LABELS***************************
+;Activates when the GUI is closed. E.g., pressing the red x button, manually exiting the script, Alt + F4, etc.
+1GuiClose:
+    GUI, ECC:Submit, NoHide
+    GuiControl, ECC:Focus, clipboardBoxText
+    GUI, ECC:Hide
+    showClipboardGUIToggle := !showClipboardGUIToggle
+return
+
+;Label for the text box.
+clipboardTextBoxLabel:
+    GUI, ECC:Submit, NoHide
+    Clipboard := clipboardBoxText
+return
+
+;Label for when the user presses the Done button.
+;This button is exactly like the Finish button in TCT, where it stores the text in the Clipboard variable.
+clipboardFinishButton:
+    Clipboard := clipboardBoxText
+    GUI, ECC:Hide
+    GuiControl, ECC:Focus, %clipboardBoxText%
 return
 
 ;----------------------------------------------------------------------
