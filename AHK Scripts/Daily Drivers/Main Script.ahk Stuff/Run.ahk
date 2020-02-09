@@ -14,18 +14,19 @@ SetWorkingDir "C:\Users\Elliott\Documents\AHK Scripts"  ; Ensures a consistent s
 ;NGl it's pretty sloppy and not very pretty so try your best to be able to read it.
 */
 
-;Alt + R opens the InputBox
+;Alt + R opens the InputBox, which allows the user to type a command. It also contains a cheat sheet of all of the commands, in alphabetical order.
+;This one single line is astronomically enormous, so Word Wrap is recommended.
 !r::
-InputBox, RunInputBoxText, Type a Command, Type a command`, and the script will attempt to run it. Type "help" to open this sheet in the AHK spreadsheet in Chrome.
+InputBox, RunInputBoxText, Type a command,Cheat sheet for all of the Run.ahk commands (can also be found online by entering the command "Help").`r`rRecommended Command`tWhat It Does`t`t`t`t`t`t`tCategory`n`nDocu FF/Chr`t`tOpens the AHK documentation in either Chrome or Firefox`t`tOpen`nEm/en`t`t`tInserts either of them`t`t`t`t`t`tInsert`nExitApp`t`t`tKills the current running script`t`t`t`t`tMisc`nHelp`t`t`tOpens the Run.ahk sheet in the AHK Google Sheets workbook`t`tOpen`nOp in FF/Chr`t`tOpens the current tab in the specified browser`t`t`t`tOpen`nThes FF/Chr`t`tOpen thesaurus.com in either browser and search for the inputted word`tOpen`nThesaurus FF/Chr`t`tOpen thesaurus.com in the chosen browser`t`t`t`tOpen`nUp/right/down/left arrow`tInserts an arrow symbol`t`t`t`t`t`tInsert`nYT FF/Chr`t`t`tOpens the YouTube homepage in FF/Chr`t`t`t`tOpen`nYT S FF/Chr`t`tOpens the YouTube homepage in FF/Chr and searches for the inputted text`tOpen`nYT SB FF/Chr`t`tOpens the YouTube homepage in FF/Chr and Tabs to the search bar`tOpen`n`nType a command`, and the script will run it.,, 700, 420
 
 ;The script decides which command to run
 Switch (RunInputBoxText) {
 
 ;***********************************************INSERT***********************************************
-Case "en dash", "en": Send, –
-Case "em dash", "em": Send, —
+;AHK can apparently send Unicode characters.
+Case "en": Send, {U+2013}
+Case "em": Send, {U+2014}
 
-;Apparently AHK can send Unicode characters.
 Case "up arrow": Send, {U+2191}
 Case "right arrow": Send, {U+2192}
 Case "down arrow": Send, {U+2193}
@@ -34,8 +35,9 @@ Case "left arrow": Send, {U+2190}
 ;***********************************************OPEN***********************************************
 Case "Help": Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://docs.google.com/spreadsheets/d/1vGHwAVQwkmzGGpM_xQJ86RGXfsBiBxDD089cu1u02eA/edit#gid=17759502
 
-;Opens the Google sheet for this
+;Opens the Google spreadsheet for this script, which contains all of the commands in a table.
 Case "Help": Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://docs.google.com/spreadsheets/d/1vGHwAVQwkmzGGpM_xQJ86RGXfsBiBxDD089cu1u02eA/edit#gid=17759502
+
 
 ;Open the documentation in either Firefox or Chrome
 Case "Docu FF", "Docu Firefox", "Documentation FF", "Documentation Firefox":
@@ -88,36 +90,11 @@ Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.thesaurus.com/br
 return
 
 
-;Open thesaurus.com in Chrome
+;Open thesaurus.com in Chrome.
 Case "Thesaurus Chr", "Thesaurus.com Chr": Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://www.thesaurus.com/
 
-;Open thesaurus.com in Firefox
+;Open thesaurus.com in Firefox.
 Case "Thesaurus FF", "Thesaurus.com FF": Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.thesaurus.com/
-
-;Open this website that capitalizes titles properly in Chrome
-Case "TT Chr": Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://capitalizemytitle.com/
-
-;Open this website that capitalizes titles properly in Firefox (https://capitalizemytitle.com/)
-Case "TT FF": Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://capitalizemytitle.com/
-
-;Opens the TT website in Chrome, but with this you can input what you want to auto-capitalize
-Case "ITT Chr":
-InputBox, ITTChrInputBox, Input Your Title, Input the title you want capitalized
-RunWait, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://capitalizemytitle.com/
-Sleep 2300
-Send, %ITTChrInputBox%
-Send, {Enter}
-return
-
-;Opens the TT website in Firefox, but with this you can input what you want to auto-capitalize
-Case "ITT FF":
-InputBox, ITTFFInputBox, Input Your Title, Input the title you want capitalized
-RunWait, "C:\Program Files\Mozilla Firefox\firefox.exe" https://capitalizemytitle.com/
-Sleep 2300
-Send, %ITTFFInputBox%
-Send, {Enter}
-return
-
 
 ;Opens the YouTube homepage in Chrome
 Case "YT Chr": Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://www.youtube.com

@@ -23,6 +23,8 @@ SendMode Input
 ;I copied that script, and improved it.
 ;I also paraphrased some code from the old "WindowHider.ahk" script, and I got a lot of the functionality of this script from there.
 
+;On 2/09/2020 I added an exact copy of the F8 hotkeys, albeit with F10. That way, I can have 2 sets of hidden windows, akin to F6 and F7.
+
 ;WARNING! BEFORE YOU EDIT THIS SCRIPT--AND THUS RELOAD IT--MAKE SURE ALL OF YOUR WINDOWS ARE UNHIDDEN! OR ELSE THEY'LL BE GONE FOREVER!
 
 ;***********************************HOTKEYS***********************************
@@ -34,6 +36,15 @@ SendMode Input
 ; ^+F8:: Remove the current window's ID and title from the list (array).
 ; ^!+F8:: Remove all windows from the group, without closing them.
 ; ^!+#F8:: Close all windows in the list (array).
+
+; ^F10:: Add the current window's title and ID to the list (array).
+; !F10:: Add the current window's title and ID to the list (array), and hide it right away.
+; +F10:: Show previously hidden window.
+; F10:: Toggle between showing and hiding all the windows in the list (array).
+; #F10:: Display a list of hidden windows with their index next to it. If the user presses 1–9, it will show and activate the window with that index.
+; ^+F10:: Remove the current window's ID and title from the list (array).
+; ^!+F10:: Remove all windows from the group, without closing them.
+; ^!+#F10:: Close all windows in the list (array).
 
 ;Declare array to track window IDs.
 F8WinIDArray := []
