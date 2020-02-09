@@ -15,10 +15,8 @@ SendMode Input
 #SingleInstance force
 ;OPTIMIZATIONS END
 
-;This script is the main file that links all of my other scripts together, plus some other things.
-
 /*
-* Main Script.ahk and the rest are all a simple spell but quite unbreakable.
+* This script is the main file that links all of my other scripts together, plus some other things.
 * On my K95 keyboard and my Scimitar mouse, I have 18 and 12 G keys, respectively.
 * In the garbage iCUE software, I have assigned each of them some keeb shortcuts to send.
 * They all involve F13-F24, since 99.9% of keyboards don't have those physical keys, but Windows can still accept them as inputs.
@@ -36,24 +34,45 @@ the set of actions that are done by the G keys depending on the current active w
 
 Menu, Tray, Icon, shell32.dll, 174 ;Changes the icon to a keyboard; perfect for the Main Script file. IDK where I found this...
 
-;****************************************MISCELLANEOUS VARIABLES AND STUFF****************************************
-;Variables for F6 group stuff
-;Tracks all windows you want as part of your custom group
+;******************************************AUTO-EXECUTE**************************************************
+;*******************************EDIT CLIPBOARD CONTENT INITIALIZATION******************************
+GUI, ECC:Font, s14, Arial ;Font settings for the Text Box.
+GUI, ECC:Add, Edit, HScroll wrap r9 x15 y40 w560 h200 vclipboardBoxText gclipboardTextBoxLabel,%Clipboard% ;Creates an edit box for inputting the clipboard. AHK GUI Documentation explains the r, x, etc. stuff.
+
+;Creating the GUI button for the Finish button: when the user is done editing the clipboard contents.
+GUI, ECC:Add, Button, w100 gclipboardFinishButton,Finish
+
+GUI, ECC:Font, s15, Arial ;Font settings for everything else.
+GUI, ECC:Add, Text, x16 y5, Current Clipboard contents. Type what you want to change it to. ;Text instructing the user what to do.
+
+;Making the GUI always on top, and giving it a Silver color.
+GUI, ECC:+AlwaysOnTop
+GUI, ECC:Color, Silver
+
+;Toggle for showing or hiding the Clipboard GUI.
+;If it's 1, show the GUI; if it's 0, hide it.
+;Starts out as 0, so it only appers when the user wants it.
+showClipboardGUIToggle := 0
+
+;****************************************MISC VARIABLES AND STUFF*********************************
+;Variables for F6 group stuff.
+;Tracks all windows you want as part of your custom group.
 Global WindowGroupF6 := []
-;Tracks the current window you're on
+;Tracks the current window you're on.
 Global CurrentWinF6 := 1
 
-;Variables for F7 group stuff
-;Tracks all windows you want as part of your custom group
+;Variables for F7 group stuff.
+;Tracks all windows you want as part of your custom group.
 Global WindowGroupF7 := []
-;Tracks the current window you're on
+;Tracks the current window you're on.
 Global CurrentWinF7 := 1
 
-;Used for the step values for NumPad2 and NumPad8 in NumPad Media Control
+;Used for the step values for NumPad2 and NumPad8 in NumPad Media Control.
 global Num2And8Step := 3
 
 ;The stuff in this loop needs to be running constantly.
 Loop {
+
 ;Constantly checking to see what profile you should be in.
 global current_profile := AutoSelectProfiles()
 
@@ -63,7 +82,7 @@ global NumLockToggled := GetKeyState("NumLock", "T")
 ;The script checks if ScrollLock is enabled or not, so it can do different things depending on if it is enabled or not. The variable is either 1 or 0.
 global ScrollLockToggled := GetKeyState("ScrollLock", "T")
 
-;This works so much better than having a bunch of ugly NumLockToggled = 1 and ScrollLockToggled = 0 things everywhere
+;This works so much better than having a bunch of ugly NumLockToggled = 1 and ScrollLockToggled = 0 things everywhere.
 if (NumLockToggled = 1 and ScrollLockToggled = 0) {
 	global NumPadMode = "MusicBee"
 } else if (NumLockToggled = 1 and ScrollLockToggled = 1) {
@@ -118,7 +137,6 @@ return
 Send, ~
 return
 
-
 ;Moves mouse pointer as far off the screen as possible (on main display); usually either to A, get it out of the way, or B, so I can easily find it.
 Insert::
 MouseGetPos, mousePosX, mousePosY
@@ -142,7 +160,7 @@ CapsLock::
 return
 
 ^CapsLock::
-if state := GetKeyState("CapsLock", "T")
+if capsLockState := GetKeyState("CapsLock", "T")
     SetCapsLockState, Off
 else
     SetCapsLockState, On
@@ -386,7 +404,6 @@ Clipboard := finalString
 Send, ^v
 
 return ;End of ^!+a.
-
 
 ;Convert text to AlT cAsE, with the first letter being UPPER case.
 ^!+#a::
