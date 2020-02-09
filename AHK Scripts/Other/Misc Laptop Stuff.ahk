@@ -27,7 +27,7 @@ Send, {AppsKey}
 return
 
 !PrintScreen::
-Send, RWin
+Send, ^{Esc}
 return
 
 
