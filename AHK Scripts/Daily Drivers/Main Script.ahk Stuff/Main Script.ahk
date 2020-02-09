@@ -89,7 +89,6 @@ if (NumLockToggled = 1 and ScrollLockToggled = 0) {
 #Include, %A_ScriptDir%\Browser.ahk
 #Include, %A_ScriptDir%\Chromebook Typing.ahk
 #Include, %A_ScriptDir%\Default.ahk
-;~ #Include, %A_ScriptDir%\Edit Clipboard Content.ahk
 #Include, %A_ScriptDir%\Google Docs.ahk
 #Include, %A_ScriptDir%\Google Sheets.ahk
 #Include, %A_ScriptDir%\Microsoft Word.ahk
@@ -98,7 +97,6 @@ if (NumLockToggled = 1 and ScrollLockToggled = 0) {
 #Include, %A_ScriptDir%\Profile Switcher.ahk
 #Include, %A_ScriptDir%\Run.ahk
 #Include, %A_ScriptDir%\SciTE4AutoHotkey Programming.ahk
-;~ #Include, %A_ScriptDir%\Title Capitalization Tool.ahk
 
 ;****************************************GLOBAL HOTKEYS***************************************
 ;These global hotkeys are hotkeys that are always running, regardless of the active window, class, or whatever
@@ -262,6 +260,206 @@ return
 ;Open "AHK Scripts" folder in AutoHotkey GitHub repository folder on my PC.
 ^+f::
 Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts
+return
+
+;*****************************************HOTKEYS FOR TITLE STUFF*********************************
+;These hotkeys allow the user to adjust and modify text in whatever way they want.
+;Can be used for titles or whatever you want.
+
+;I used to use this website: https://capitalizemytitle.com/, but it takes way too long to
+; load up every time I want to use it, so I got to work on this script.
+;It works exactly like it, but faster and runs offline.
+;TCT is shorthand for Title Capitalization Tool.
+;Inspiration and code for this script: https://autohotkey.com/board/topic/57888-title-case/ and https://autohotkey.com/board/topic/123994-capitalize-a-title/
+
+;Converts text to Title Case, using a custom thing I found on r/AutoHotkey.
+^!+t::
+  ;Copy text, and wait a bit so it can actually process that.
+  Send, ^c
+  Sleep 45
+
+  ;Makes the title in AHK's "Title Case", which in reality just capitalizes the first letter of each word. Not sure why this line needs to be here.
+  StringUpper, NewTitle, Clipboard, T
+  head := SubStr(NewTitle, 1, 1) ;Manipulates and edits the String somehow.
+  tail := SubStr(NewTitle, 2)
+
+  ;Stores the NewTitle in the Clipboard.             This is the list of words to NOT capitalize.
+  Clipboard := head RegExReplace(tail, "i)\b(a|an|and|at|but|by|for|in|nor|of|on|or|so|the|to|up|with|yet)\b", "$L1")
+
+  Send ^v ;Paste the new title.
+return ;End of ^!+t.
+
+;Converts text to UPPER CASE, using a built-in AHK function.
+^!+u::
+  ;Copy text, and wait a bit so it can actually process that.
+  Send, ^c
+  Sleep 45
+
+  ;Make the title UPPER CASE, using a built-in AHK function.
+  StringUpper, NewTitle, Clipboard
+
+  Send, ^v ;Paste the new title.
+return ;End of ^!+u.
+
+;Converts text to lower case, using a built-in AHK function.
+^!+l::
+  ;Copy text, and wait a bit so it can actually process that.
+  Send, ^c
+  Sleep 45
+
+  ;Make the title lower case, using a built-in AHK function.
+  StringLower, NewTitle, Clipboard
+
+  Send, ^v ;Paste the new title.
+return ;End of ^!+l.
+
+;Converts text to Sentence case.
+;I don't really know how it works; I found this on r/AHK, too.
+^!+s::
+  ;Copy text, and wait a bit so it can actually process that.
+  Send, ^c
+  Sleep 45
+
+  ;I don't have a clue how this works.
+  StringLower, NewTitle, Clipboard
+  NewTitle := RegExReplace(Clipboard, "((?:^|[.!?]\s+)[a-z])", "$u1")
+  
+  Send, ^v ;Paste the new title.
+return ;End of ^!+s.
+
+;Converts text to First Letter Capitalization, using a built-in AHK function.
+^!+f::
+
+  Send, ^c
+  Sleep 45
+  
+  StringUpper, NewTitle, Clipboard, T
+  Send, ^v ;Paste the new title.
+return ;End of ^!+f.
+
+;altCaseToggle is a toggle for if the alt case starts in lower case or not.
+;A_LoopField is the single character at that point in the Parse Loop.
+;0 = convert the char (A_LoopField) to lower...
+;...1 = convert the char to UPPER.
+
+;Convert text to aLt CaSe, with the first letter being lower case.
+^!+a::
+
+;Blank out this String.
+;Basically resetting it so it doesn't contain the old text as well as the new stuff.
+finalString := 
+
+ ;Set it to 0 because it needs to start lower (see comment at the top of the script).
+altCaseToggle := 0
+
+;Copy the text, and wait a bit so it can actually get a change to store it in the Clipboard.
+Send, ^c
+Sleep, 50
+
+;Loop through the contents of the Clipboard, and toggle between cases.
+Loop, Parse, Clipboard
+{
+    if (altCaseToggle = 0) {
+        if (A_LoopField = A_Space) {
+            ;If the current char is a space, don't toggle the var and just concatenate it to the finalString.
+            finalString := finalString . A_Space
+        } else {
+            StringLower, strLwUpOutput, A_LoopField
+            finalString := finalString . strLwUpOutput
+            altCaseToggle := !altCaseToggle
+        }
+    } else if (altCaseToggle = 1) {
+        if (A_LoopField = A_Space) {
+            finalString := finalString . A_Space
+        } else {
+            StringUpper, strLwUpOutput, A_LoopField
+            finalString := finalString . strLwUpOutput
+            altCaseToggle := !altCaseToggle
+        }
+    }
+}
+
+;Store the final aLt CaSe String in the Clipboard.
+Clipboard := finalString
+
+;Paste the final String.
+Send, ^v
+
+return ;End of ^!+a.
+
+;Convert text to AlT cAsE, with the first letter being UPPER case.
+^!+#a::
+
+;Blank out this String.
+;Basically resetting it so it doesn't contain the old text as well as the new stuff.
+finalString := 
+
+ ;Set it to 0 because it needs to start lower (see comment at the top of the script).
+altCaseToggle := 1
+
+;Copy the text, and wait a bit so it can actually get a change to store it in the Clipboard.
+Send, ^c
+Sleep, 50
+
+;Loop through the contents of the Clipboard, and toggle between cases.
+Loop, Parse, Clipboard
+{
+    if (altCaseToggle = 0) {
+        if (A_LoopField = A_Space) {
+            finalString := finalString . A_Space
+        } else {
+            StringLower, strLwUpOutput, A_LoopField
+            finalString := finalString . strLwUpOutput
+            altCaseToggle := !altCaseToggle
+        }
+    } else if (altCaseToggle = 1) {
+        if (A_LoopField = A_Space) {
+            finalString := finalString . A_Space
+        } else {
+            StringUpper, strLwUpOutput, A_LoopField
+            finalString := finalString . strLwUpOutput
+            altCaseToggle := !altCaseToggle
+        }
+    }
+}
+
+;Store the final aLt CaSe String in the Clipboard.
+Clipboard := finalString
+
+;Paste the final String.
+Send, ^v
+
+return ;End of ^!+a.
+
+;-------------------------------------------------------------------------------------------
+;*****************************STUFF FOR EDIT CLIPBOARD CONTENT******************************
+;-------------------------------------------------------------------------------------------
+;Toggles between showing and hiding the Clipboard GUI.
+#c::
+GUI, ECC:Show, w600 h400,Clipboard Edit
+return
+
+;***************************LABELS***************************
+;Activates when the GUI is closed. E.g., pressing the red x button, manually exiting the script, Alt + F4, etc.
+1GuiClose:
+    GUI, ECC:Submit, NoHide
+    GuiControl, ECC:Focus, clipboardBoxText
+    GUI, ECC:Hide
+    showClipboardGUIToggle := !showClipboardGUIToggle
+return
+
+;Label for the text box.
+clipboardTextBoxLabel:
+    GUI, ECC:Submit, NoHide
+    Clipboard := clipboardBoxText
+return
+
+;Label for when the user presses the Done button.
+;This button is exactly like the Finish button in TCT, where it stores the text in the Clipboard variable.
+clipboardFinishButton:
+    Clipboard := clipboardBoxText
+    GUI, ECC:Hide
+    GuiControl, ECC:Focus, %clipboardBoxText%
 return
 
 ;----------------------------------------------------------------------
