@@ -387,6 +387,7 @@ Send, ^v
 
 return ;End of ^!+a.
 
+
 ;Convert text to AlT cAsE, with the first letter being UPPER case.
 ^!+#a::
 
