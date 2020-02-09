@@ -36,6 +36,7 @@ Menu, Tray, Icon, shell32.dll, 174 ;Changes the icon to a keyboard; perfect for 
 
 ;******************************************AUTO-EXECUTE**************************************************
 ;*******************************EDIT CLIPBOARD CONTENT INITIALIZATION******************************
+;The ECC in the GUI commands helps differentiate these GUI things from any others.
 GUI, ECC:Font, s14, Arial ;Font settings for the Text Box.
 GUI, ECC:Add, Edit, HScroll wrap r9 x15 y40 w560 h200 vclipboardBoxText gclipboardTextBoxLabel,%Clipboard% ;Creates an edit box for inputting the clipboard. AHK GUI Documentation explains the r, x, etc. stuff.
 
@@ -99,6 +100,8 @@ if (NumLockToggled = 1 and ScrollLockToggled = 0) {
 
 ;Linking other scripts together.
 ;Similar to but not exactly like you would in something like Java.
+;#Include is lterally like pasting those script contents in that exact spot.
+;It just works ;)
 ;The variable %A_ScriptDir% is the full path of the directory where the script is located.
 
 ;~ #Include, %A_ScriptDir%\Advanced Window Hider.ahk
@@ -316,6 +319,9 @@ return ;End of ^!+t.
   ;Make the title UPPER CASE, using a built-in AHK function.
   StringUpper, NewTitle, Clipboard
 
+  ;Store the Clipboard as the NewTitle.
+  Clipboard := NewTitle
+
   Send, ^v ;Paste the new title.
 return ;End of ^!+u.
 
@@ -327,6 +333,9 @@ return ;End of ^!+u.
 
   ;Make the title lower case, using a built-in AHK function.
   StringLower, NewTitle, Clipboard
+
+  ;Store the Clipboard as the NewTitle.
+  Clipboard := NewTitle
 
   Send, ^v ;Paste the new title.
 return ;End of ^!+l.
@@ -341,6 +350,9 @@ return ;End of ^!+l.
   ;I don't have a clue how this works.
   StringLower, NewTitle, Clipboard
   NewTitle := RegExReplace(Clipboard, "((?:^|[.!?]\s+)[a-z])", "$u1")
+
+  ;Store the Clipboard as the NewTitle.
+  Clipboard := NewTitle
   
   Send, ^v ;Paste the new title.
 return ;End of ^!+s.
@@ -352,6 +364,10 @@ return ;End of ^!+s.
   Sleep 45
   
   StringUpper, NewTitle, Clipboard, T
+
+  ;Store the Clipboard as the NewTitle.
+  Clipboard := NewTitle
+
   Send, ^v ;Paste the new title.
 return ;End of ^!+f.
 
@@ -363,89 +379,89 @@ return ;End of ^!+f.
 ;Convert text to aLt CaSe, with the first letter being lower case.
 ^!+a::
 
-;Blank out this String.
-;Basically resetting it so it doesn't contain the old text as well as the new stuff.
-finalString := 
+	;Blank out this String.
+	;Basically resetting it so it doesn't contain the old text as well as the new stuff.
+	finalString := 
 
- ;Set it to 0 because it needs to start lower (see comment at the top of the script).
-altCaseToggle := 0
+	;Set it to 0 because it needs to start lower (see comment at the top of the script).
+	altCaseToggle := 0
 
-;Copy the text, and wait a bit so it can actually get a change to store it in the Clipboard.
-Send, ^c
-Sleep, 50
+	;Copy the text, and wait a bit so it can actually get a change to store it in the showoard.
+	Send, ^c
+	Sleep, 50
 
-;Loop through the contents of the Clipboard, and toggle between cases.
-Loop, Parse, Clipboard
-{
-    if (altCaseToggle = 0) {
-        if (A_LoopField = A_Space) {
-            ;If the current char is a space, don't toggle the var and just concatenate it to the finalString.
-            finalString := finalString . A_Space
-        } else {
-            StringLower, strLwUpOutput, A_LoopField
-            finalString := finalString . strLwUpOutput
-            altCaseToggle := !altCaseToggle
-        }
-    } else if (altCaseToggle = 1) {
-        if (A_LoopField = A_Space) {
-            finalString := finalString . A_Space
-        } else {
-            StringUpper, strLwUpOutput, A_LoopField
-            finalString := finalString . strLwUpOutput
-            altCaseToggle := !altCaseToggle
-        }
-    }
-}
+	;Loop through the contents of the Clipboard, and toggle between cases.
+	Loop, Parse, Clipboard
+	{
+		if (altCaseToggle = 0) {
+			if (A_LoopField = A_Space) {
+				;If the current char is a space, don't toggle the var and just concatenate it to the finalString.
+				finalString := finalString . A_Space
+			} else {
+				StringLower, strLwUpOutput, A_LoopField
+				finalString := finalString . strLwUpOutput
+				altCaseToggle := !altCaseToggle
+			}
+		} else if (altCaseToggle = 1) {
+			if (A_LoopField = A_Space) {
+				finalString := finalString . A_Space
+			} else {
+				StringUpper, strLwUpOutput, A_LoopField
+				finalString := finalString . strLwUpOutput
+				altCaseToggle := !altCaseToggle
+			}
+		}
+	}
 
-;Store the final aLt CaSe String in the Clipboard.
-Clipboard := finalString
+	;Store the final aLt CaSe String in the Clipboard.
+	Clipboard := finalString
 
-;Paste the final String.
-Send, ^v
+	;Paste the final String.
+	Send, ^v
 
 return ;End of ^!+a.
 
 ;Convert text to AlT cAsE, with the first letter being UPPER case.
 ^!+#a::
 
-;Blank out this String.
-;Basically resetting it so it doesn't contain the old text as well as the new stuff.
-finalString := 
+	;Blank out this String.
+	;Basically resetting it so it doesn't contain the old text as well as the new stuff.
+	finalString := 
 
- ;Set it to 0 because it needs to start lower (see comment at the top of the script).
-altCaseToggle := 1
+	;Set it to 0 because it needs to start lower (see comment at the top of the script).
+	altCaseToggle := 1
 
-;Copy the text, and wait a bit so it can actually get a change to store it in the Clipboard.
-Send, ^c
-Sleep, 50
+	;Copy the text, and wait a bit so it can actually get a change to store it in the Clipboard.
+	Send, ^c
+	Sleep, 50
 
-;Loop through the contents of the Clipboard, and toggle between cases.
-Loop, Parse, Clipboard
-{
-    if (altCaseToggle = 0) {
-        if (A_LoopField = A_Space) {
-            finalString := finalString . A_Space
-        } else {
-            StringLower, strLwUpOutput, A_LoopField
-            finalString := finalString . strLwUpOutput
-            altCaseToggle := !altCaseToggle
-        }
-    } else if (altCaseToggle = 1) {
-        if (A_LoopField = A_Space) {
-            finalString := finalString . A_Space
-        } else {
-            StringUpper, strLwUpOutput, A_LoopField
-            finalString := finalString . strLwUpOutput
-            altCaseToggle := !altCaseToggle
-        }
-    }
-}
+	;Loop through the contents of the Clipboard, and toggle between cases.
+	Loop, Parse, Clipboard
+	{
+		if (altCaseToggle = 0) {
+			if (A_LoopField = A_Space) {
+				finalString := finalString . A_Space
+			} else {
+				StringLower, strLwUpOutput, A_LoopField
+				finalString := finalString . strLwUpOutput
+				altCaseToggle := !altCaseToggle
+			}
+		} else if (altCaseToggle = 1) {
+			if (A_LoopField = A_Space) {
+				finalString := finalString . A_Space
+			} else {
+				StringUpper, strLwUpOutput, A_LoopField
+				finalString := finalString . strLwUpOutput
+				altCaseToggle := !altCaseToggle
+			}
+		}
+	}
 
-;Store the final aLt CaSe String in the Clipboard.
-Clipboard := finalString
+	;Store the final aLt CaSe String in the Clipboard.
+	Clipboard := finalString
 
-;Paste the final String.
-Send, ^v
+	;Paste the final String.
+	Send, ^v
 
 return ;End of ^!+a.
 
