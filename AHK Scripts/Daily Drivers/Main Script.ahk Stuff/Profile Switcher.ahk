@@ -51,6 +51,8 @@ else if InStr(activeWindowTitle, "RuneLite") or InStr(activeWindowTitle, "RuneSc
 	current_profile = RuneScape
 else if InStr(activeWindowTitle, " - Word")
 	current_profile = MSWord
+else if Instr(activeWindowTitle, " - Visual Studio Code")
+	current_profile = VSCode
 else
 	current_profile = Default
 return current_profile

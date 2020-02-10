@@ -15,15 +15,10 @@ SendMode Input
 #SingleInstance force
 ;OPTIMIZATIONS END
 
-/*
-;This script is for both Firefox and Chrome.
-;Since they're so similar, I just decided to combine them into one file.
-;If an action is specific to only one browser, I will accommodate for that.
-;The Docs and Sheets profiles are like this, too.
-*/
+;This script is the VSCode profile.
 
 ;****************************************MOUSE ACTIONS***************************************
-#If current_profile = "Firefox" or current_profile = "Chrome"
+#If current_profile = "VSCode"
 ;Mouse Profile Switch
 ;Left double click
 ^!F23::
@@ -60,25 +55,21 @@ DllCall("SystemParametersInfo", Int,113, Int,0, UInt,10, Int,1)
 return
 
 ;Mouse G4
-;Open new Browser tab.
 F16::
-Send, ^t
 return
 
 ;Mouse G5
-;Go one tab to the right.
+;Go one tab to the right
 F17::
 Send, ^{PGDN}
 return
 
 ;Mouse G6
-;Next page in History.
 F18::
-Send, !{Right}
 return
 
 ;Mouse G7
-;Close browser tab.
+;Close VSCode tab.
 F19::
 Send, ^w
 return
@@ -106,7 +97,7 @@ WinMinimize, A
 return
 
 ;Mouse G12
-;Reopen the last closed Browser tab, and jump to it.
+;Reopen the last closed VSCode tab (file), and jump to it.
 F24::
 Send, ^+t
 return
@@ -117,39 +108,31 @@ return
 return
 
 ;Keeb G2
-;Reopen the last closed tab, and jump to it
 ^F14::
-Send, ^+t
 return
 
 ;Keeb G3
-;Improved Sleep Macro + Manual Enter
 ^F15::
-Send, #x
-Sleep, 250
-Send, {Up 2}
-Send, {Right}
-Send, {Down}
+return
+
+;Keeb G4
+^F16::
 return
 
 ;Keeb G5
+;(Ctrl + Tab) For switching between VSCode tabs.
 ^F17::
+Send, ^{Tab}
 return
 
 ;Keeb G6
-;Automatic Google Lookup
 ^F18::
-Send, ^c
-Sleep 80
-Send, ^t
-Send, ^v{Enter}
 return
 
 ;Keeb G7
-;Open New Tab with Google
+;Comment out line in VSCode.
 ^F19::
-Send, ^t
-Send, google.com{Enter}
+Send, ^/
 return
 
 ;Keeb G8
@@ -164,16 +147,22 @@ return
 Send, ^{PGDN}
 return
 
+;Keeb G10
+;(Ctrl + Alt + K) Toggle bookmark on the current line
+^F22::
+Send, ^!k
+return
+
 ;Keeb G11
-;Close browser tab
+;(Ctrl + J) Jump to previous Bookmark.
 ^F23::
-Send, ^w
+Send, ^j
 return
 
 ;Keeb G12
-;Open browser tab
+;(Ctrl + L) Jump to next Bookmark.
 ^F24::
-Send, ^t
+Send, ^l
 return
 
 ;Keeb G13
@@ -189,69 +178,32 @@ Send, ^#{d}
 return
 
 ;Keeb G15
-;Meaning + Enter (for defining words on Google)
 !F15::
-Send, {Space}meaning{Enter}
 return
 
 ;Keeb G16
-;Does what Win + Tab does
+;Does what Win + Tab does.
 !F16::
 Send, #{Tab}
 return
 
 ;Keeb G17
-;Goes to the virtual desktop to the left
+;Goes to the virtual desktop to the left.
 !F17::
 Send, ^#{Left}
 return
 
 ;Keeb G18
-;Goes to the virtual desktop to the right
+;Goes to the virtual desktop to the right.
 !F18::
 Send, ^#{Right}
 return
 
-#If current_profile = "Firefox"
+;****************************************MISC DOCS ACTIONS***************************************
 
-;Keeb G4
-;Open Incognito Window and goes to Google (Firefox)
-^F16::
-Send, ^+p
-Sleep 500
-Send, google.com{Enter}
-Send, #{Up}
-return
-
-;Keeb G10 (Firefox)
-;Automatic Google Lookup in Incognito (Firefox)
-^F22::
-Send, ^c
-Sleep 80
-Send, ^+p
-Sleep 200
-Send, ^v{Enter}
-return
-
-#If current_profile = "Chrome"
-
-;Keeb G4 (Chrome)
-;Open Incognito Window and goes to Google (Chrome)
-^F16::
-Send, ^+n
-Sleep 500
-Send, google.com{Enter}
-Send, #{Up}
-return
-
-;Keeb G10 (Chrome)
-;Automatic Google Lookup in Incognito (Chrome)
-^F22::
-Send, ^c
-Sleep 80
-Send, ^+n
-Sleep 200
-Send, ^v{Enter}
+;(Ctrl + Backspace) Delete an entire word.
+\::
+Send, ^{BackSpace}
 return
 
 #If
