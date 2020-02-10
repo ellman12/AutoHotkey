@@ -107,7 +107,7 @@ if (NumLockToggled = 1 and ScrollLockToggled = 0) {
 ;~ #Include, %A_ScriptDir%\Advanced Window Hider.ahk
 #Include, %A_ScriptDir%\ApplicationSwitcher.ahk
 #Include, %A_ScriptDir%\AutoCapitalize.ahk
-;~ #Include, %A_ScriptDir%\AutoCorrect.ahk
+#Include, %A_ScriptDir%\AutoCorrect.ahk
 #Include, %A_ScriptDir%\Browser.ahk
 #Include, %A_ScriptDir%\Chromebook Typing.ahk
 #Include, %A_ScriptDir%\Default.ahk
