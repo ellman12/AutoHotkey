@@ -261,5 +261,5 @@ return
 ;Disabling these 2 annoying keyboard shortcuts: Ctrl + +/- (zooming in/out).
 ^SC00D::return ;00D	is the scan code for the +/= key.
 ^-::return
-=
+
 #If

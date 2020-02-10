@@ -1,16 +1,16 @@
 ;OPTIMIZATIONS START
 #NoEnv
-; #MaxHotkeysPerInterval 99000000
-; #HotkeyInterval 99000000
-; #KeyHistory 0
-; ListLines Off
-; Process, Priority, , A
-; SetBatchLines, -1
-; SetKeyDelay, -1, -1
-; SetMouseDelay, -1
-; SetDefaultMouseSpeed, 0
-; SetWinDelay, -1
-; SetControlDelay, -1
+#MaxHotkeysPerInterval 99000000
+#HotkeyInterval 99000000
+#KeyHistory 0
+ListLines Off
+Process, Priority, , A
+SetBatchLines, -1
+SetKeyDelay, -1, -1
+SetMouseDelay, -1
+SetDefaultMouseSpeed, 0
+SetWinDelay, -1
+SetControlDelay, -1
 SendMode Input
 #SingleInstance force
 ;OPTIMIZATIONS END
@@ -119,6 +119,7 @@ if (NumLockToggled = 1 and ScrollLockToggled = 0) {
 #Include, %A_ScriptDir%\Profile Switcher.ahk
 #Include, %A_ScriptDir%\Run.ahk
 #Include, %A_ScriptDir%\SciTE4AutoHotkey Programming.ahk
+#Include, %A_ScriptDir%\VSCode.ahk
 
 ;****************************************GLOBAL HOTKEYS***************************************
 ;These global hotkeys are hotkeys that are always running, regardless of the active window, class, or whatever
