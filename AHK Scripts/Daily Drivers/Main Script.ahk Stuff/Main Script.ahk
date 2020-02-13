@@ -96,6 +96,9 @@ if (NumLockToggled = 1 and ScrollLockToggled = 0) {
 	global NumPadMode = "Normal"
 }
 
+;This sleep statement DRASTICALLY helps reduce the power usage of the Main Script.
+Sleep 100
+
 }
 
 ;Linking other scripts together.
