@@ -7,7 +7,7 @@ SendMode, Input
 
 /*
 ;Chromebook Typing.
-;If you've never typed on a Chromebook before, basically, it hides the mouse pointer.
+;If you've never typed on a Chromebook before, basically, it hides the mouse pointer when you start typing.
 ;Sometimes that's helpful, most of the time it's annoying.
 ;I had a shower thought one day, and this is what I came up with. I knew I had to try this.
 ;It seems to work pretty well.
