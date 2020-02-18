@@ -36,7 +36,7 @@ else
 }
 
 F2::
-switchToOtherFirefoxWindows(){
+switchToOtherFirefoxWindows() {
 Process, Exist, firefox.exe
 	If errorLevel = 0
 		Run, firefox.exe
@@ -79,7 +79,7 @@ Process, Exist, chrome.exe
 
 ;MR button on my keyboard
 ^!F1::
-switchToExplorer(){
+switchToExplorer() {
 IfWinNotExist, ahk_class CabinetWClass
 	Run, explorer.exe
 GroupAdd, taranexplorers, ahk_class CabinetWClass
@@ -123,7 +123,7 @@ RemoveNonexistentWindowsF6()
 return
 
 ;Add the current window to the array.
-AddWindowF6(){
+AddWindowF6() {
 	ToolTip, Added to F6 Group!
 	Sleep, 200
 	ToolTip
@@ -151,7 +151,7 @@ AddWindowF6(){
 }
 
 ;Remove the curent window from the array.
-RemoveWindowF6(){
+RemoveWindowF6() {
 	ToolTip, Removed from F6 Group!
 	Sleep, 200
 	ToolTip
@@ -170,7 +170,7 @@ RemoveWindowF6(){
 }
 
 ;Activates the next window.
-NextWindowF6(){
+NextWindowF6() {
 	; Increment the current window by 1
 	CurrentWinF6++
 	; If the current window is greater than the number of entries in the array
@@ -183,7 +183,7 @@ NextWindowF6(){
 }
 
 ;Activate previous window.
-PrevWindowF6(){
+PrevWindowF6() {
 	; Decrement the current window by 1
 	CurrentWinF6--
 	; If it's lower than the lowest index, set CurrentWindow to the maxindex
@@ -229,7 +229,7 @@ return
 RemoveNonexistentWindowsF7()
 return
 
-AddWindowF7(){
+AddWindowF7() {
 	ToolTip, Added to F7 Group!
 	Sleep, 200
 	ToolTip
@@ -256,7 +256,7 @@ AddWindowF7(){
 	return
 }
 
-RemoveWindowF7(){
+RemoveWindowF7() {
 	ToolTip, Removed from F7 Group!
 	Sleep, 200
 	ToolTip
@@ -274,7 +274,7 @@ RemoveWindowF7(){
 	return
 }
 
-NextWindowF7(){
+NextWindowF7() {
 	; Increment the current window by 1
 	CurrentWinF7++
 	; If the current window is greater than the number of entries in the array
@@ -286,7 +286,7 @@ NextWindowF7(){
 	return
 }
 
-PrevWindowF7(){
+PrevWindowF7() {
 	; Decrement the current window by 1
 	CurrentWinF7--
 	; If it's lower than the lowest index, set CurrentWindow to the maxindex
