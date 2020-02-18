@@ -21,6 +21,9 @@ Global CurrentWinF7 := 1
 #Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\AutoCorrect.ahk
 #Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Run.AHK
 
+^#r::
+Reload
+return
 
 PrintScreen::
 Send, {AppsKey}
