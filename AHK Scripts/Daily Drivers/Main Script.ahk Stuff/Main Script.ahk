@@ -58,12 +58,14 @@ showClipboardGUIToggle := 0
 ;****************************************MISC VARIABLES AND STUFF*********************************
 ;Variables for F6 group stuff.
 ;Tracks all windows you want as part of your custom group.
+;Stores Window IDs.
 global WindowGroupF6 := []
 ;Tracks the current window you're on.
 global CurrentWinF6 := 1
 
 ;Variables for F7 group stuff.
 ;Tracks all windows you want as part of your custom group.
+;Stores Window IDs.
 global WindowGroupF7 := []
 ;Tracks the current window you're on.
 global CurrentWinF7 := 1
