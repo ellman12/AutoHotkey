@@ -58,15 +58,15 @@ showClipboardGUIToggle := 0
 ;****************************************MISC VARIABLES AND STUFF*********************************
 ;Variables for F6 group stuff.
 ;Tracks all windows you want as part of your custom group.
-Global WindowGroupF6 := []
+global WindowGroupF6 := []
 ;Tracks the current window you're on.
-Global CurrentWinF6 := 1
+global CurrentWinF6 := 1
 
 ;Variables for F7 group stuff.
 ;Tracks all windows you want as part of your custom group.
-Global WindowGroupF7 := []
+global WindowGroupF7 := []
 ;Tracks the current window you're on.
-Global CurrentWinF7 := 1
+global CurrentWinF7 := 1
 
 ;Used for the step values for NumPad2 and NumPad8 in NumPad Media Control.
 global Num2And8Step := 3
@@ -101,6 +101,8 @@ Sleep 100
 
 }
 
+
+
 ;Linking other scripts together.
 ;Similar to but not exactly like you would in something like Java.
 ;#Include is lterally like pasting those script contents in that exact spot.
@@ -125,7 +127,7 @@ Sleep 100
 #Include, %A_ScriptDir%\VSCode.ahk
 
 ;****************************************GLOBAL HOTKEYS***************************************
-;These global hotkeys are hotkeys that are always running, regardless of the active window, class, or whatever
+;These global hotkeys are hotkeys that are always running, regardless of the active window, class, or whatever.
 ;Pushing Windows Key + P suspends all hotkeys, thus "pausing" the script. Useful for when I'm playing games or something.
 #p::Suspend
 
