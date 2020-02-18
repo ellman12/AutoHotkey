@@ -70,7 +70,9 @@ F22::
 return
 
 ;Mouse G11
+;Pushing F23 (G11) minimizes the current active window
 F23::
+WinMinimize, A
 return
 
 ;Mouse G12

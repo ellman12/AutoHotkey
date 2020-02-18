@@ -50,16 +50,19 @@ AntiDistraction:
 	If !InArray(Title, SafeWindows) AND (HWND != GUIHwnd) {
 		
 		if InStr(Title, "Mozilla Firefox") {
-			Send, ^w
+			;~ Send, ^w
+			WinMinimize, A
 			return
 		} else if InStr(Title, "Google Chrome") {
-			Send, ^w
+			;~ Send, ^w
+			WinMinimize, A
 			return
 		} else if InStr(Title, "Shut Down Windows") {
 			Send, {Escape}
 			return
 		} else {
-			Send, !{F4}
+			;~ Send, !{F4}
+			WinMinimize, A
 			return
 		}
 	}
