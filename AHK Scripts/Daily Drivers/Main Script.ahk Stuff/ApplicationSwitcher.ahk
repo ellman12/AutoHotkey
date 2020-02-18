@@ -194,7 +194,7 @@ PrevWindowF6(){
 	return
 }
 
-;Removes windows and their IDs from the IDs from the array.
+;Removes windows that don't exist anymore—and their IDs—from the array.
 ;E.g., if you close a window, and its ID is still in the array,
 ;loop through the array and remove any IDs for windows that don't exist.
 RemoveNonexistentWindowsF6() {
