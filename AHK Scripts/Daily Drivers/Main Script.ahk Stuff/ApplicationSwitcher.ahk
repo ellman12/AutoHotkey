@@ -336,7 +336,8 @@ ActivateBothF6AndF7Windows() {
 }
 
 ;Activate windows NOT in the F6 and F7 window groups.
-#F6::
 ActivateNeitherF6NorF7Windows() {
+
+	; https://autohotkey.com/board/topic/54584-how-to-complie-a-list-of-all-window-names/ ????
 
 }
