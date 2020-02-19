@@ -31,7 +31,7 @@ else
 	;sometimes winactivate is not enough. the window is brought to the foreground, but not put into FOCUS.
 	;the below code should fix that.
 	WinGet, hWnd, ID, ahk_class MozillaWindowClass
-	DllCall("SetForegroundWindow", UInt, hWnd) 
+	DllCall("SetForegroundWindow", UInt, hWnd)
 	}
 }
 
@@ -130,7 +130,7 @@ AddWindowF6() {
 	ToolTip, Added to F6 Group!
 	Sleep, 200
 	ToolTip
-	
+
 	; Get the active window's ID
 	WinGet, thisIDF6, ID, A
 	; Value to track if ID was found in the group
@@ -145,7 +145,7 @@ AddWindowF6() {
 			Break
 		}
 	}
-	
+
 	; If the ID was never found in the array
 	if (foundF6 = False)
 		; Add it to the array
@@ -159,7 +159,7 @@ RemoveWindowF6() {
 	ToolTip, Removed from F6 Group!
 	Sleep, 200
 	ToolTip
-	
+
 	WinGet, thisIDF6, ID, A
 	foundF6 := False
 	for indexF6, value in WindowGroupF6
@@ -183,7 +183,7 @@ NextWindowF6() {
 		;Then reset it to the lowest index.
 		CurrentWinF6 := WindowGroupF6.MinIndex()
 	;Now activate the window based on CurrentWin.
-	WinActivate, % "ahk_id " WindowGroupF6[CurrentWinF6]
+	WinActivate, % "ahk_id" WindowGroupF6[CurrentWinF6]
 	return
 }
 
@@ -195,7 +195,7 @@ PrevWindowF6() {
 	if (CurrentWinF6 < WindowGroupF6.MinIndex())
 		CurrentWinF6 := WindowGroupF6.MaxIndex()
 	; Now activate that window based on CurrentWin.
-	WinActivate, % "ahk_id " WindowGroupF6[CurrentWinF6]
+	WinActivate, % "ahk_id" WindowGroupF6[CurrentWinF6]
 	return
 }
 
@@ -239,7 +239,7 @@ AddWindowF7() {
 	ToolTip, Added to F7 Group!
 	Sleep, 200
 	ToolTip
-	
+
 	; Get the active window's ID
 	WinGet, thisIDF7, ID, A
 	; Value to track if ID was found in the group
@@ -254,7 +254,7 @@ AddWindowF7() {
 			Break
 		}
 	}
-	
+
 	; If the ID was never found in the array.
 	if (foundF7 = False)
 		; Add it to the array.
@@ -267,7 +267,7 @@ RemoveWindowF7() {
 	ToolTip, Removed from F7 Group!
 	Sleep, 200
 	ToolTip
-	
+
 	WinGet, thisIDF7, ID, A
 	foundF7 := False
 	for indexF7, value in WindowGroupF7
@@ -290,7 +290,7 @@ NextWindowF7() {
 		; Then reset it to the lowest index
 		CurrentWinF7 := WindowGroupF7.MinIndex()
 	; Now activate the window based on CurrentWin
-	WinActivate, % "ahk_id " WindowGroupF7[CurrentWinF7]
+	WinActivate, % "ahk_id" WindowGroupF7[CurrentWinF7]
 	return
 }
 
@@ -301,7 +301,7 @@ PrevWindowF7() {
 	if (CurrentWinF7 < WindowGroupF7.MinIndex())
 		CurrentWinF7 := WindowGroupF7.MaxIndex()
 	; Now activate that window based on CurrentWin
-	WinActivate, % "ahk_id " WindowGroupF7[CurrentWinF7]
+	WinActivate, % "ahk_id" WindowGroupF7[CurrentWinF7]
 	return
 }
 
@@ -331,4 +331,18 @@ ActivateBothF6AndF7Windows() {
 	;Now activate the window based on CurrentWinF6AndF7.
 	WinActivate, % "ahk_id" F6andF7WinIDArray[CurrentWinF6AndF7]
 	return
+}
+
+ActivateNeitherF6NorF7Windows() {
+
+	;Increment the current window by 1.
+	CurrentWinF6AndF7++
+	;If the current window value is greater than the number of entries in the array.
+	if (CurrentWinF6AndF7 > F6andF7WinIDArray.MaxIndex())
+		;Then reset it to the lowest index.
+		CurrentWinF6AndF7 := F6andF7WinIDArray.MinIndex()
+	;Now activate the window based on CurrentWinF6AndF7.
+	WinActivate, % "ahk_id" F6andF7WinIDArray[CurrentWinF6AndF7]
+	return
+
 }
