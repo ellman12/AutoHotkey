@@ -340,4 +340,7 @@ ActivateNeitherF6NorF7Windows() {
 
 	; https://autohotkey.com/board/topic/54584-how-to-complie-a-list-of-all-window-names/ ????
 
+	;Get active window's PID
+	WinGet, F6AndF7WinID, ID, A
+
 }
