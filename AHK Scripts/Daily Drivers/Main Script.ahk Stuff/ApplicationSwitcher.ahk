@@ -38,7 +38,7 @@ else
 F2::
 switchToOtherFirefoxWindows() {
 Process, Exist, firefox.exe
-	If errorLevel = 0
+	if errorLevel = 0
 		Run, firefox.exe
 	else
 	{
@@ -65,7 +65,7 @@ F4::
 switchToOtherChromeWindows()
 {
 Process, Exist, chrome.exe
-	If errorLevel = 0
+	if errorLevel = 0
 		Run, chrome.exe
 	else
 	{
@@ -109,6 +109,9 @@ return
 ^F6::
 AddWindowF6()
 return
+!F6::
+ActivateNeitherF6NorF7Windows()
+return
 ^!F6::
 RemoveWindowF6()
 return
@@ -136,7 +139,7 @@ AddWindowF6() {
 	for indexF6, value in WindowGroupF6
 	{
 		; If the current ID was found inside the array
-		If (value = thisIDF6){
+		if (value = thisIDF6) {
 			; Then mark it as found and break the loop
 			foundF6 = True
 			Break
@@ -144,7 +147,7 @@ AddWindowF6() {
 	}
 	
 	; If the ID was never found in the array
-	If (foundF6 = False)
+	if (foundF6 = False)
 		; Add it to the array
 		WindowGroupF6.Push(thisIDF6)
 	return
@@ -161,7 +164,7 @@ RemoveWindowF6() {
 	for indexF6, value in WindowGroupF6
 	{
 		; Same as the AddWindow function except if a match is found, remove it from the array
-		If (value = thisIDF6){
+		if (value = thisIDF6) {
 			WindowGroupF6.RemoveAt(indexF6)
 			Break
 		}
@@ -171,25 +174,25 @@ RemoveWindowF6() {
 
 ;Activates the next window.
 NextWindowF6() {
-	; Increment the current window by 1
+	;Increment the current window by 1.
 	CurrentWinF6++
-	; If the current window is greater than the number of entries in the array
-	If (CurrentWinF6 > WindowGroupF6.MaxIndex())
-		; Then reset it to the lowest index
+	;If the current window is greater than the number of entries in the array.
+	if (CurrentWinF6 > WindowGroupF6.MaxIndex())
+		;Then reset it to the lowest index.
 		CurrentWinF6 := WindowGroupF6.MinIndex()
-	; Now activate the window based on CurrentWin
+	;Now activate the window based on CurrentWin.
 	WinActivate, % "ahk_id " WindowGroupF6[CurrentWinF6]
 	return
 }
 
 ;Activate previous window.
 PrevWindowF6() {
-	; Decrement the current window by 1
+	; Decrement the current window by 1.
 	CurrentWinF6--
-	; If it's lower than the lowest index, set CurrentWindow to the maxindex
-	If (CurrentWinF6 < WindowGroupF6.MinIndex())
+	; If it's lower than the lowest index, set CurrentWindow to the maxindex.
+	if (CurrentWinF6 < WindowGroupF6.MinIndex())
 		CurrentWinF6 := WindowGroupF6.MaxIndex()
-	; Now activate that window based on CurrentWin
+	; Now activate that window based on CurrentWin.
 	WinActivate, % "ahk_id " WindowGroupF6[CurrentWinF6]
 	return
 }
@@ -202,7 +205,7 @@ RemoveNonexistentWindowsF6() {
 	for indexF6, value in WindowGroupF6
 	{
 		;If the window with the ID of "value" at the current index doesn't exist...
-		If !WinExist("ahk_id" value)
+		if !WinExist("ahk_id" value)
 		{
 			;Remove it from the array.
 			WindowGroupF6.RemoveAt(indexF6)	
@@ -242,7 +245,7 @@ AddWindowF7() {
 	for indexF7, value in WindowGroupF7
 	{
 		; If the current ID was found inside the array
-		If (value = thisIDF7){
+		if (value = thisIDF7) {
 			; Then mark it as found and break the loop
 			foundF7 = True
 			Break
@@ -250,7 +253,7 @@ AddWindowF7() {
 	}
 	
 	; If the ID was never found in the array
-	If (foundF7 = False)
+	if (foundF7 = False)
 		; Add it to the array
 		WindowGroupF7.Push(thisIDF7)
 	return
@@ -266,7 +269,7 @@ RemoveWindowF7() {
 	for indexF7, value in WindowGroupF7
 	{
 		; Same as the AddWindow function except if a match is found, remove it from the array
-		If (value = thisIDF7){
+		if (value = thisIDF7) {
 			WindowGroupF7.RemoveAt(indexF7)
 			Break
 		}
@@ -278,7 +281,7 @@ NextWindowF7() {
 	; Increment the current window by 1
 	CurrentWinF7++
 	; If the current window is greater than the number of entries in the array
-	If (CurrentWinF7 > WindowGroupF7.MaxIndex())
+	if (CurrentWinF7 > WindowGroupF7.MaxIndex())
 		; Then reset it to the lowest index
 		CurrentWinF7 := WindowGroupF7.MinIndex()
 	; Now activate the window based on CurrentWin
@@ -290,7 +293,7 @@ PrevWindowF7() {
 	; Decrement the current window by 1
 	CurrentWinF7--
 	; If it's lower than the lowest index, set CurrentWindow to the maxindex
-	If (CurrentWinF7 < WindowGroupF7.MinIndex())
+	if (CurrentWinF7 < WindowGroupF7.MinIndex())
 		CurrentWinF7 := WindowGroupF7.MaxIndex()
 	; Now activate that window based on CurrentWin
 	WinActivate, % "ahk_id " WindowGroupF7[CurrentWinF7]
@@ -302,7 +305,7 @@ RemoveNonexistentWindowsF7() {
 	for indexF7, value in WindowGroupF7
 	{
 		;If the window with the ID of "value" at the current index doesn't exist...
-		If !WinExist("ahk_id" value)
+		if !WinExist("ahk_id" value)
 		{
 			;Remove it from the array.
 			WindowGroupF7.RemoveAt(indexF7)	
