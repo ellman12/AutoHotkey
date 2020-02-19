@@ -70,10 +70,15 @@ global WindowGroupF7 := []
 ;Tracks the current window you're on.
 global CurrentWinF7 := 1
 
-;Holds the F6 and F7 Window IDs.
-global F6andF7WinIDArray := []
+;Holds the F6 and F7 Window IDs for ActivateBothF6AndF7Windows() in ApplicationSwitcher.ahk.
+global F6andF7WinIDArrayActBoth := []
 ;Tracks the current window for the previous array.
-global CurrentWinF6AndF7 := 1
+global CurrentWinF6AndF7ActBoth := 1
+
+;Holds the F6 and F7 Window IDs for ActivateBothF6AndF7Windows() in ApplicationSwitcher.ahk.
+; global F6andF7WinIDArrayActBoth := []
+; ;Tracks the current window for the previous array.
+; global CurrentWinF6AndF7ActBoth := 1
 
 ;Used for the step values for NumPad2 and NumPad8 in NumPad Media Control.
 global Num2And8Step := 3
@@ -235,7 +240,7 @@ return
 Send, ^c
 return
 
-;M2 on K95 RGB  cuts to the clipboard.
+;M2 on K95 RGB cuts to the clipboard.
 #F2::
 Send ^x
 return
@@ -366,7 +371,7 @@ return ;End of ^!+l.
 
   ;Store the Clipboard as the NewTitle.
   Clipboard := NewTitle
-  
+
   Send, ^v ;Paste the new title.
 return ;End of ^!+s.
 
@@ -375,7 +380,7 @@ return ;End of ^!+s.
 
   Send, ^c
   Sleep 45
-  
+
   StringUpper, NewTitle, Clipboard, T
 
   ;Store the Clipboard as the NewTitle.
@@ -394,7 +399,7 @@ return ;End of ^!+f.
 
 	;Blank out this String.
 	;Basically resetting it so it doesn't contain the old text as well as the new stuff.
-	finalString := 
+	finalString :=
 
 	;Set it to 0 because it needs to start lower (see comment at the top of the script).
 	altCaseToggle := 0
@@ -439,7 +444,7 @@ return ;End of ^!+a.
 
 	;Blank out this String.
 	;Basically resetting it so it doesn't contain the old text as well as the new stuff.
-	finalString := 
+	finalString :=
 
 	;Set it to 0 because it needs to start lower (see comment at the top of the script).
 	altCaseToggle := 1

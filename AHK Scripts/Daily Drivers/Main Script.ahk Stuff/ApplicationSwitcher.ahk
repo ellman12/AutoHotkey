@@ -77,7 +77,7 @@ Process, Exist, chrome.exe
 	}
 }
 
-;MR button on my keyboard
+;MR button on my keyboard.
 ^!F1::
 switchToExplorer() {
 IfWinNotExist, ahk_class CabinetWClass
@@ -150,7 +150,7 @@ AddWindowF6() {
 	if (foundF6 = False)
 		; Add it to the array
 		WindowGroupF6.Push(thisIDF6)
-		F6andF7WinIDArray.Push(thisIDF6)
+		F6andF7WinIDArrayActBoth.Push(thisIDF6)
 	return
 }
 
@@ -167,7 +167,7 @@ RemoveWindowF6() {
 		; Same as the AddWindow function except if a match is found, remove it from the array
 		if (value = thisIDF6) {
 			WindowGroupF6.RemoveAt(indexF6)
-			F6andF7WinIDArray.RemoveAt(thisIDF6)
+			F6andF7WinIDArrayActBoth.RemoveAt(thisIDF6)
 			Break
 		}
 	}
@@ -211,7 +211,7 @@ RemoveNonexistentWindowsF6() {
 		{
 			;Remove it from the array.
 			WindowGroupF6.RemoveAt(indexF6)
-			F6andF7WinIDArray.RemoveAt(thisIDF6)
+			F6andF7WinIDArrayActBoth.RemoveAt(thisIDF6)
 		}
 	}
 	return
@@ -259,7 +259,7 @@ AddWindowF7() {
 	if (foundF7 = False)
 		; Add it to the array.
 		WindowGroupF7.Push(thisIDF7)
-		F6andF7WinIDArray.Push(thisIDF7)
+		F6andF7WinIDArrayActBoth.Push(thisIDF7)
 	return
 }
 
@@ -275,7 +275,7 @@ RemoveWindowF7() {
 		; Same as the AddWindow function except if a match is found, remove it from the array
 		if (value = thisIDF7) {
 			WindowGroupF7.RemoveAt(indexF7)
-			F6andF7WinIDArray.RemoveAt(thisIDF7)
+			F6andF7WinIDArrayActBoth.RemoveAt(thisIDF7)
 			Break
 		}
 	}
@@ -314,35 +314,29 @@ RemoveNonexistentWindowsF7() {
 		{
 			;Remove it from the array.
 			WindowGroupF7.RemoveAt(indexF7)
-			F6andF7WinIDArray.RemoveAt(thisIDF7)
+			F6andF7WinIDArrayActBoth.RemoveAt(thisIDF7)
 		}
 	}
 	return
 
 }
 
+;*************************************************MISC F6 AND F7*************************************************
+;Loop through the F6 AND F7 window arrays.
 ActivateBothF6AndF7Windows() {
 	;Increment the current window by 1.
-	CurrentWinF6AndF7++
+	CurrentWinF6AndF7ActBoth++
 	;If the current window value is greater than the number of entries in the array.
-	if (CurrentWinF6AndF7 > F6andF7WinIDArray.MaxIndex())
+	if (CurrentWinF6AndF7ActBoth > F6andF7WinIDArrayActBoth.MaxIndex())
 		;Then reset it to the lowest index.
-		CurrentWinF6AndF7 := F6andF7WinIDArray.MinIndex()
-	;Now activate the window based on CurrentWinF6AndF7.
-	WinActivate, % "ahk_id" F6andF7WinIDArray[CurrentWinF6AndF7]
+		CurrentWinF6AndF7ActBoth := F6andF7WinIDArrayActBoth.MinIndex()
+	;Now activate the window based on CurrentWinF6AndF7ActBoth.
+	WinActivate, % "ahk_id" F6andF7WinIDArrayActBoth[CurrentWinF6AndF7ActBoth]
 	return
 }
 
+;Activate windows NOT in the F6 and F7 window groups.
+#F6::
 ActivateNeitherF6NorF7Windows() {
-
-	;Increment the current window by 1.
-	CurrentWinF6AndF7++
-	;If the current window value is greater than the number of entries in the array.
-	if (CurrentWinF6AndF7 > F6andF7WinIDArray.MaxIndex())
-		;Then reset it to the lowest index.
-		CurrentWinF6AndF7 := F6andF7WinIDArray.MinIndex()
-	;Now activate the window based on CurrentWinF6AndF7.
-	WinActivate, % "ahk_id" F6andF7WinIDArray[CurrentWinF6AndF7]
-	return
 
 }

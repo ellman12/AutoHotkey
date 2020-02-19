@@ -15,9 +15,9 @@ global WindowGroupF7 := []
 global CurrentWinF7 := 1
 
 ;Holds the F6 and F7 Window IDs.
-global F6andF7WinIDArray := []
+global F6andF7WinIDArrayActBoth := []
 ;Tracks the current window for the previous array.
-global CurrentWinF6AndF7 := 1
+global CurrentWinF6AndF7ActBoth := 1
 
 ;Because I don't need the entire Main Script.ahk on my laptop, I made this script, with just the essentials.
 ;It also #Includes a few other scripts that are really really useful on my laptop.
