@@ -6,11 +6,11 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 ;A lot of this code is taken from Taran Van Hemert from Linus Media Group.
 ;His video on this: https://www.youtube.com/watch?v=OqyQABySV8k
-;As he calls it, this is his most useful script he's ever made
-;It's quite simple, but extremely useful and powerful
-;I took his code for the window saver thing, which only saves one window, and made it able to do multiple windows
-;All of this stuff works beautifully
-;The code is stupid simple and it was incredibly easy to do
+;As he calls it, this is his most useful script he's ever made.
+;It's quite simple, but extremely useful and powerful.
+;I took his code for the window saver thing, which only saves one window, and made it able to do multiple windows.
+;All of this stuff works beautifully.
+;The code is stupid simple and it was incredibly easy to do.
 
 F1::
 SwitchToFirefoxAndTabs() {
@@ -110,7 +110,7 @@ return
 AddWindowF6()
 return
 !F6::
-ActivateNeitherF6NorF7Windows()
+ActivateBothF6AndF7Windows()
 return
 ^!F6::
 RemoveWindowF6()
@@ -150,6 +150,7 @@ AddWindowF6() {
 	if (foundF6 = False)
 		; Add it to the array
 		WindowGroupF6.Push(thisIDF6)
+		F6andF7WinIDArray.Push(thisIDF6)
 	return
 }
 
@@ -166,6 +167,7 @@ RemoveWindowF6() {
 		; Same as the AddWindow function except if a match is found, remove it from the array
 		if (value = thisIDF6) {
 			WindowGroupF6.RemoveAt(indexF6)
+			F6andF7WinIDArray.RemoveAt(thisIDF6)
 			Break
 		}
 	}
@@ -208,7 +210,8 @@ RemoveNonexistentWindowsF6() {
 		if !WinExist("ahk_id" value)
 		{
 			;Remove it from the array.
-			WindowGroupF6.RemoveAt(indexF6)	
+			WindowGroupF6.RemoveAt(indexF6)
+			F6andF7WinIDArray.RemoveAt(thisIDF6)
 		}
 	}
 	return
@@ -252,10 +255,11 @@ AddWindowF7() {
 		}
 	}
 	
-	; If the ID was never found in the array
+	; If the ID was never found in the array.
 	if (foundF7 = False)
-		; Add it to the array
+		; Add it to the array.
 		WindowGroupF7.Push(thisIDF7)
+		F6andF7WinIDArray.Push(thisIDF7)
 	return
 }
 
@@ -271,6 +275,7 @@ RemoveWindowF7() {
 		; Same as the AddWindow function except if a match is found, remove it from the array
 		if (value = thisIDF7) {
 			WindowGroupF7.RemoveAt(indexF7)
+			F6andF7WinIDArray.RemoveAt(thisIDF7)
 			Break
 		}
 	}
@@ -308,9 +313,22 @@ RemoveNonexistentWindowsF7() {
 		if !WinExist("ahk_id" value)
 		{
 			;Remove it from the array.
-			WindowGroupF7.RemoveAt(indexF7)	
+			WindowGroupF7.RemoveAt(indexF7)
+			F6andF7WinIDArray.RemoveAt(thisIDF7)
 		}
 	}
 	return
 
+}
+
+ActivateBothF6AndF7Windows() {
+	;Increment the current window by 1.
+	CurrentWinF6AndF7++
+	;If the current window value is greater than the number of entries in the array.
+	if (CurrentWinF6AndF7 > F6andF7WinIDArray.MaxIndex())
+		;Then reset it to the lowest index.
+		CurrentWinF6AndF7 := F6andF7WinIDArray.MinIndex()
+	;Now activate the window based on CurrentWinF6AndF7.
+	WinActivate, % "ahk_id" F6andF7WinIDArray[CurrentWinF6AndF7]
+	return
 }

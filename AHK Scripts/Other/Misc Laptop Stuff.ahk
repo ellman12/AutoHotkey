@@ -4,15 +4,20 @@ SendMode, Input
 ;****************************************MISC VARIABLES AND STUFF*********************************
 ;Variables for F6 group stuff.
 ;Tracks all windows you want as part of your custom group.
-Global WindowGroupF6 := []
+global WindowGroupF6 := []
 ;Tracks the current window you're on.
-Global CurrentWinF6 := 1
+global CurrentWinF6 := 1
 
 ;Variables for F7 group stuff.
 ;Tracks all windows you want as part of your custom group.
-Global WindowGroupF7 := []
+global WindowGroupF7 := []
 ;Tracks the current window you're on.
-Global CurrentWinF7 := 1
+global CurrentWinF7 := 1
+
+;Holds the F6 and F7 Window IDs.
+global F6andF7WinIDArray := []
+;Tracks the current window for the previous array.
+global CurrentWinF6AndF7 := 1
 
 ;Because I don't need the entire Main Script.ahk on my laptop, I made this script, with just the essentials.
 ;It also #Includes a few other scripts that are really really useful on my laptop.
