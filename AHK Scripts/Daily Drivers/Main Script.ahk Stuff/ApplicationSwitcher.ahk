@@ -110,7 +110,7 @@ return
 AddWindowF6()
 return
 !F6::
-ActivateBothF6AndF7Windows()
+ActivateBothF6AndF7Windows() ;Activate windows in both the F6 and F7 array.
 return
 ^!F6::
 RemoveWindowF6()
