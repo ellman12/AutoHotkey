@@ -114,7 +114,6 @@ Sleep 100
 }
 
 
-
 ;Linking other scripts together.
 ;Similar to but not exactly like you would in something like Java.
 ;#Include is lterally like pasting those script contents in that exact spot.
@@ -142,6 +141,17 @@ Sleep 100
 ;These global hotkeys are hotkeys that are always running, regardless of the active window, class, or whatever.
 ;Pushing Windows Key + P suspends all hotkeys, thus "pausing" the script. Useful for when I'm playing games or something.
 #p::Suspend
+
+;Pushing Win + Alt + p suspends all hotkeys for the specified number in milliseconds (in this case, 2500).
+#!p::
+SetTimer, setTimerLabel, 2500, On
+Suspend
+return
+
+setTimerLabel:
+Suspend
+SetTimer, setTimerLabel, Off
+return
 
 ;The grave accent key (that weird thing under the Tilde ~ symbol) sends Alt + Tab. This scan code is for the grave accent key.
 sc029::

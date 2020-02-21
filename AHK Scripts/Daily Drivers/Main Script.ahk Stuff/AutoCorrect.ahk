@@ -60,9 +60,9 @@
 #SingleInstance force
 
 ;Suspend hotkeys.
-!#p::
-Suspend
-return
+; !#p::
+; Suspend
+; return
 
 ;------------------------------------------------------------------------------
 ; AUto-COrrect TWo COnsecutive CApitals.
