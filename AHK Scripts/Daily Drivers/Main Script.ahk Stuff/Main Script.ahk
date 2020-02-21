@@ -140,18 +140,18 @@ Sleep 100
 ;****************************************GLOBAL HOTKEYS***************************************
 ;These global hotkeys are hotkeys that are always running, regardless of the active window, class, or whatever.
 ;Pushing Windows Key + P suspends all hotkeys, thus "pausing" the script. Useful for when I'm playing games or something.
-#p::Suspend
+#!p::Suspend, Toggle
 
 ;Pushing Win + Alt + p suspends all hotkeys for the specified number in milliseconds (in this case, 2500).
-#!p::
+#p::
 SetTimer, setTimerLabel, 2500, On
-Suspend
+Suspend, On
 return
 
 ;Label for #!p. The timer calls this label, suspends the hotkeys, sets the timer to off,
 ;and then goes back to the original hotkey that then unsuspends the script hotkeys.
 setTimerLabel:
-Suspend
+Suspend, Off
 SetTimer, setTimerLabel, Off
 return
 

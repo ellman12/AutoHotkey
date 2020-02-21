@@ -26,6 +26,24 @@ global CurrentWinF6AndF7ActBoth := 1
 #Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\AutoCorrect.ahk
 #Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Run.AHK
 
+
+#p::
+Suspend
+return
+
+;Pushing Win + Alt + p suspends all hotkeys for the specified number in milliseconds (in this case, 2500).
+#!p::
+SetTimer, setTimerLabel, 2500, On
+Suspend
+return
+
+;Label for #!p. The timer calls this label, suspends the hotkeys, sets the timer to off,
+;and then goes back to the original hotkey that then unsuspends the script hotkeys.
+setTimerLabel:
+Suspend
+SetTimer, setTimerLabel, Off
+return
+
 ^#r::
 Reload
 return
@@ -169,10 +187,6 @@ return
 ;Holding Ctrl and pushing the grave accent key inserts the grave accent symbol: `. This scan code is for the grave accent key.
 ^sc029::
 Send, ``
-return
-
-#p::
-Suspend
 return
 
 :*:itss::it's
