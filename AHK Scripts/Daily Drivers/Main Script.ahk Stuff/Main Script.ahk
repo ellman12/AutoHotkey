@@ -71,12 +71,12 @@ global WindowGroupF7 := []
 global CurrentWinF7 := 1
 
 ;Holds the F6 and F7 Window IDs for ActivateBothF6AndF7Windows() in ApplicationSwitcher.ahk.
-global F6andF7WinIDArrayActBoth := []
+global F6andF7WinIDArray := []
 ;Tracks the current window for the previous array.
 global CurrentWinF6AndF7ActBoth := 1
 
 ;Holds the F6 and F7 Window IDs for ActivateBothF6AndF7Windows() in ApplicationSwitcher.ahk.
-; global F6andF7WinIDArrayActBoth := []
+; global F6andF7WinIDArray := []
 ; ;Tracks the current window for the previous array.
 ; global CurrentWinF6AndF7ActBoth := 1
 
