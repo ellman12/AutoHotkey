@@ -109,9 +109,16 @@ return
 ^F6::
 AddWindowF6()
 return
+
+
 !F6::
 ActivateBothF6AndF7Windows() ;Activate windows in both the F6 and F7 array.
 return
+
+#+F6::
+ActivateNeitherF6NorF7Windows()
+return
+
 ^!F6::
 RemoveWindowF6()
 return
@@ -134,20 +141,20 @@ AddWindowF6() {
 	; Get the active window's ID
 	WinGet, thisIDF6, ID, A
 	; Value to track if ID was found in the group
-	foundF6 := False
+	foundF6 := false
 	; Loop through all the IDs
 	for indexF6, value in WindowGroupF6
 	{
 		; If the current ID was found inside the array
 		if (value = thisIDF6) {
 			; Then mark it as found and break the loop
-			foundF6 = True
-			Break
+			foundF6 = true
+			break
 		}
 	}
 
 	; If the ID was never found in the array
-	if (foundF6 = False)
+	if (foundF6 = false)
 		; Add it to the array
 		WindowGroupF6.Push(thisIDF6)
 		F6andF7WinIDArrayActBoth.Push(thisIDF6)
@@ -161,14 +168,14 @@ RemoveWindowF6() {
 	ToolTip
 
 	WinGet, thisIDF6, ID, A
-	foundF6 := False
+	foundF6 := false
 	for indexF6, value in WindowGroupF6
 	{
 		; Same as the AddWindow function except if a match is found, remove it from the array
 		if (value = thisIDF6) {
 			WindowGroupF6.RemoveAt(indexF6)
 			F6andF7WinIDArrayActBoth.RemoveAt(thisIDF6)
-			Break
+			break
 		}
 	}
 	return
@@ -243,20 +250,20 @@ AddWindowF7() {
 	; Get the active window's ID
 	WinGet, thisIDF7, ID, A
 	; Value to track if ID was found in the group
-	foundF7 := False
+	foundF7 := false
 	; Loop through all the IDs
 	for indexF7, value in WindowGroupF7
 	{
 		; If the current ID was found inside the array
 		if (value = thisIDF7) {
 			; Then mark it as found and break the loop
-			foundF7 = True
-			Break
+			foundF7 = true
+			break
 		}
 	}
 
 	; If the ID was never found in the array.
-	if (foundF7 = False)
+	if (foundF7 = false)
 		; Add it to the array.
 		WindowGroupF7.Push(thisIDF7)
 		F6andF7WinIDArrayActBoth.Push(thisIDF7)
@@ -269,14 +276,14 @@ RemoveWindowF7() {
 	ToolTip
 
 	WinGet, thisIDF7, ID, A
-	foundF7 := False
+	foundF7 := false
 	for indexF7, value in WindowGroupF7
 	{
 		; Same as the AddWindow function except if a match is found, remove it from the array
 		if (value = thisIDF7) {
 			WindowGroupF7.RemoveAt(indexF7)
 			F6andF7WinIDArrayActBoth.RemoveAt(thisIDF7)
-			Break
+			break
 		}
 	}
 	return
@@ -340,7 +347,19 @@ ActivateNeitherF6NorF7Windows() {
 
 	; https://autohotkey.com/board/topic/54584-how-to-complie-a-list-of-all-window-names/ ????
 
+	Send, !{Escape}
+
 	;Get active window's PID
 	WinGet, F6AndF7WinID, ID, A
+
+	for indexF6AndF7, value in F6andF7WinIDArrayActBoth
+	{
+		
+		if (value = F6AndF7WinID) {
+			Send, !{Escape}
+			break
+		}
+	}
+	return
 
 }

@@ -38,9 +38,6 @@ return
 Send, ^{Esc}
 return
 
-
-
-
 ;Log volume scaling stuff for NumpadAdd and NumpadEnter. IDK where I found this, nor do I understand/know how it works.
 f(x) {
 return exp(6.908*x)/1000.0
