@@ -19,18 +19,18 @@ SendMode Input
 
 ;****************************************MOUSE ACTIONS***************************************
 #If current_profile = "Default"
-;Mouse Profile Switch
-;Left double click
+;Mouse Profile Switch.
+;Left double click.
 ^!F23::
 Send, {Click 2}
 return
 
-;Mouse DPI Toggle
+;Mouse DPI Toggle.
 ^!F24::
 return
 
 ;Mouse G1
-;"Holds" down Shift for scroling horizontally
+;"Holds" down Shift for scroling horizontally.
 F13::
 Send, {Shift down}
 KeyWait, F13
@@ -38,7 +38,9 @@ Send, {Shift up}
 return
 
 ;Mouse G2
+;(Alt + Up) Go up one folder in File Explorer.
 F14::
+Send, !{Up}
 return
 
 ;Mouse G3
