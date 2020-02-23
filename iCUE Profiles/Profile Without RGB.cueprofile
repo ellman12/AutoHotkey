@@ -917,7 +917,7 @@
 								<ptr_wrapper>
 									<valid>1</valid>
 									<data>
-										<cereal_class_version>201</cereal_class_version>
+										<cereal_class_version>300</cereal_class_version>
 										<base/>
 										<m1Color>#ffff7900</m1Color>
 										<m2Color>#ffaf1900</m2Color>
@@ -1236,7 +1236,7 @@
 									<data>
 										<base/>
 										<m1Color>#ffffffff</m1Color>
-										<m2Color>#ffffffff</m2Color>
+										<m2Color>#ff000000</m2Color>
 										<m3Color>#ffffffff</m3Color>
 										<profileIndicatorColor size="dynamic"/>
 									</data>
@@ -1258,7 +1258,7 @@
 													<ptr_wrapper>
 														<valid>1</valid>
 														<data>
-															<cereal_class_version>200</cereal_class_version>
+															<cereal_class_version>300</cereal_class_version>
 															<base/>
 															<enabledIndicatorColor size="dynamic"/>
 															<disabledIndicatorColor size="dynamic"/>
@@ -1599,14 +1599,99 @@
 										<actions size="dynamic">
 											<value0>
 												<first>
-													<polymorphic_id>2147483669</polymorphic_id>
-													<polymorphic_name>TimerAction</polymorphic_name>
+													<polymorphic_id>8</polymorphic_id>
 													<ptr_wrapper>
 														<id>2147483658</id>
 														<data>
+															<base>
+																<name>Go to Normal Profile (Used for Timers, Too)</name>
+																<id>{c51bb8bd-efdf-4257-8560-835b33b1868d}</id>
+																<repeatOptions>
+																	<repeatCount>1</repeatCount>
+																	<repeatMode>NoRepeat</repeatMode>
+																	<delay>0</delay>
+																	<delayMode>Constant</delayMode>
+																	<randomDelayFrom>0</randomDelayFrom>
+																	<randomDelayTo>0</randomDelayTo>
+																</repeatOptions>
+																<executionHints>
+																	<terminateOnSecondExec>false</terminateOnSecondExec>
+																	<restartOnSecondExec>false</restartOnSecondExec>
+																	<execHint>OnPress</execHint>
+																	<retainOriginalKeyOutput>false</retainOriginalKeyOutput>
+																</executionHints>
+																<actionLighting>{00000000-0000-0000-0000-000000000000}</actionLighting>
+																<actionSoundPath></actionSoundPath>
+																<attachedActions size="dynamic"/>
+															</base>
+															<switchType>Direct</switchType>
+															<loop>true</loop>
+															<profiles size="dynamic">
+																<value0>{0e6993f4-8346-4461-a6b1-334a905f237a}</value0>
+															</profiles>
+															<direction>Forward</direction>
+															<folderOnlyVisible>false</folderOnlyVisible>
+														</data>
+													</ptr_wrapper>
+												</first>
+												<second>
+													<first>Brightness</first>
+													<second>Click</second>
+												</second>
+											</value0>
+											<value1>
+												<first>
+													<polymorphic_id>9</polymorphic_id>
+													<ptr_wrapper>
+														<id>2147483659</id>
+														<data>
+															<base>
+																<name>NumLock for Timer</name>
+																<id>{2ff20e7c-5d65-4225-88ac-1296616117da}</id>
+																<repeatOptions>
+																	<repeatCount>1</repeatCount>
+																	<repeatMode>NoRepeat</repeatMode>
+																	<delay>0</delay>
+																	<delayMode>Constant</delayMode>
+																	<randomDelayFrom>0</randomDelayFrom>
+																	<randomDelayTo>0</randomDelayTo>
+																</repeatOptions>
+																<executionHints>
+																	<terminateOnSecondExec>false</terminateOnSecondExec>
+																	<restartOnSecondExec>false</restartOnSecondExec>
+																	<execHint>OnBoth</execHint>
+																	<retainOriginalKeyOutput>false</retainOriginalKeyOutput>
+																</executionHints>
+																<actionLighting>{00000000-0000-0000-0000-000000000000}</actionLighting>
+																<actionSoundPath></actionSoundPath>
+																<attachedActions size="dynamic"/>
+															</base>
+															<keyName></keyName>
+															<keyStroke size="dynamic">
+																<value0>NumLock</value0>
+															</keyStroke>
+															<holdingKeyEnabled>false</holdingKeyEnabled>
+															<holdingKeyType>OnPress</holdingKeyType>
+															<holdingKeyOnPressInterval>100</holdingKeyOnPressInterval>
+															<sniperSwitchMode>WhilePressed</sniperSwitchMode>
+														</data>
+													</ptr_wrapper>
+												</first>
+												<second>
+													<first></first>
+													<second>Click</second>
+												</second>
+											</value1>
+											<value2>
+												<first>
+													<polymorphic_id>2147483669</polymorphic_id>
+													<polymorphic_name>TimerAction</polymorphic_name>
+													<ptr_wrapper>
+														<id>2147483660</id>
+														<data>
 															<cereal_class_version>201</cereal_class_version>
 															<base>
-																<name>Go to No Default Profile 2 Timer</name>
+																<name>Go to Normal Profile Timer (NumLock)</name>
 																<id>{fab09b7e-56af-495e-bbba-9273fcc2c7b7}</id>
 																<repeatOptions>
 																	<repeatCount>1</repeatCount>
@@ -1631,37 +1716,7 @@
 																			<locked_ptr>
 																				<polymorphic_id>8</polymorphic_id>
 																				<ptr_wrapper>
-																					<id>2147483659</id>
-																					<data>
-																						<base>
-																							<name>Go to Default Profile 2</name>
-																							<id>{c51bb8bd-efdf-4257-8560-835b33b1868d}</id>
-																							<repeatOptions>
-																								<repeatCount>1</repeatCount>
-																								<repeatMode>NoRepeat</repeatMode>
-																								<delay>0</delay>
-																								<delayMode>Constant</delayMode>
-																								<randomDelayFrom>0</randomDelayFrom>
-																								<randomDelayTo>0</randomDelayTo>
-																							</repeatOptions>
-																							<executionHints>
-																								<terminateOnSecondExec>false</terminateOnSecondExec>
-																								<restartOnSecondExec>false</restartOnSecondExec>
-																								<execHint>OnPress</execHint>
-																								<retainOriginalKeyOutput>false</retainOriginalKeyOutput>
-																							</executionHints>
-																							<actionLighting>{00000000-0000-0000-0000-000000000000}</actionLighting>
-																							<actionSoundPath></actionSoundPath>
-																							<attachedActions size="dynamic"/>
-																						</base>
-																						<switchType>Direct</switchType>
-																						<loop>true</loop>
-																						<profiles size="dynamic">
-																							<value0>{0e6993f4-8346-4461-a6b1-334a905f237a}</value0>
-																						</profiles>
-																						<direction>Forward</direction>
-																						<folderOnlyVisible>false</folderOnlyVisible>
-																					</data>
+																					<id>10</id>
 																				</ptr_wrapper>
 																			</locked_ptr>
 																		</value>
@@ -1672,38 +1727,7 @@
 																			<locked_ptr>
 																				<polymorphic_id>9</polymorphic_id>
 																				<ptr_wrapper>
-																					<id>2147483660</id>
-																					<data>
-																						<base>
-																							<name>NumLock for Timer</name>
-																							<id>{2ff20e7c-5d65-4225-88ac-1296616117da}</id>
-																							<repeatOptions>
-																								<repeatCount>1</repeatCount>
-																								<repeatMode>NoRepeat</repeatMode>
-																								<delay>0</delay>
-																								<delayMode>Constant</delayMode>
-																								<randomDelayFrom>0</randomDelayFrom>
-																								<randomDelayTo>0</randomDelayTo>
-																							</repeatOptions>
-																							<executionHints>
-																								<terminateOnSecondExec>false</terminateOnSecondExec>
-																								<restartOnSecondExec>false</restartOnSecondExec>
-																								<execHint>OnBoth</execHint>
-																								<retainOriginalKeyOutput>false</retainOriginalKeyOutput>
-																							</executionHints>
-																							<actionLighting>{00000000-0000-0000-0000-000000000000}</actionLighting>
-																							<actionSoundPath></actionSoundPath>
-																							<attachedActions size="dynamic"/>
-																						</base>
-																						<keyName></keyName>
-																						<keyStroke size="dynamic">
-																							<value0>NumLock</value0>
-																						</keyStroke>
-																						<holdingKeyEnabled>false</holdingKeyEnabled>
-																						<holdingKeyType>OnPress</holdingKeyType>
-																						<holdingKeyOnPressInterval>100</holdingKeyOnPressInterval>
-																						<sniperSwitchMode>WhilePressed</sniperSwitchMode>
-																					</data>
+																					<id>11</id>
 																				</ptr_wrapper>
 																			</locked_ptr>
 																		</value>
@@ -1725,39 +1749,274 @@
 													<first>NumLock</first>
 													<second>Click</second>
 												</second>
-											</value0>
-											<value1>
+											</value2>
+											<value3>
 												<first>
 													<polymorphic_id>9</polymorphic_id>
 													<ptr_wrapper>
-														<id>12</id>
+														<id>2147483661</id>
+														<data>
+															<base>
+																<name>ScrollLock for Timer</name>
+																<id>{2ff20e7c-5d65-4225-88ac-1296616117da}</id>
+																<repeatOptions>
+																	<repeatCount>1</repeatCount>
+																	<repeatMode>NoRepeat</repeatMode>
+																	<delay>0</delay>
+																	<delayMode>Constant</delayMode>
+																	<randomDelayFrom>0</randomDelayFrom>
+																	<randomDelayTo>0</randomDelayTo>
+																</repeatOptions>
+																<executionHints>
+																	<terminateOnSecondExec>false</terminateOnSecondExec>
+																	<restartOnSecondExec>false</restartOnSecondExec>
+																	<execHint>OnBoth</execHint>
+																	<retainOriginalKeyOutput>false</retainOriginalKeyOutput>
+																</executionHints>
+																<actionLighting>{00000000-0000-0000-0000-000000000000}</actionLighting>
+																<actionSoundPath></actionSoundPath>
+																<attachedActions size="dynamic"/>
+															</base>
+															<keyName></keyName>
+															<keyStroke size="dynamic">
+																<value0>ScrollLock</value0>
+															</keyStroke>
+															<holdingKeyEnabled>false</holdingKeyEnabled>
+															<holdingKeyType>OnPress</holdingKeyType>
+															<holdingKeyOnPressInterval>100</holdingKeyOnPressInterval>
+															<sniperSwitchMode>WhilePressed</sniperSwitchMode>
+														</data>
 													</ptr_wrapper>
 												</first>
 												<second>
 													<first></first>
 													<second>Click</second>
 												</second>
-											</value1>
-											<value2>
+											</value3>
+											<value4>
 												<first>
-													<polymorphic_id>8</polymorphic_id>
+													<polymorphic_id>21</polymorphic_id>
 													<ptr_wrapper>
-														<id>11</id>
+														<id>2147483662</id>
+														<data>
+															<base>
+																<name>Go to Normal Profile Timer (ScrollLock)</name>
+																<id>{fab09b7e-56af-495e-bbba-9273fcc2c7b7}</id>
+																<repeatOptions>
+																	<repeatCount>1</repeatCount>
+																	<repeatMode>NoRepeat</repeatMode>
+																	<delay>0</delay>
+																	<delayMode>Random</delayMode>
+																	<randomDelayFrom>0</randomDelayFrom>
+																	<randomDelayTo>0</randomDelayTo>
+																</repeatOptions>
+																<executionHints>
+																	<terminateOnSecondExec>false</terminateOnSecondExec>
+																	<restartOnSecondExec>false</restartOnSecondExec>
+																	<execHint>OnPress</execHint>
+																	<retainOriginalKeyOutput>false</retainOriginalKeyOutput>
+																</executionHints>
+																<actionLighting>{00000000-0000-0000-0000-000000000000}</actionLighting>
+																<actionSoundPath></actionSoundPath>
+																<attachedActions size="dynamic">
+																	<value0>
+																		<key>StopAction</key>
+																		<value>
+																			<locked_ptr>
+																				<polymorphic_id>8</polymorphic_id>
+																				<ptr_wrapper>
+																					<id>10</id>
+																				</ptr_wrapper>
+																			</locked_ptr>
+																		</value>
+																	</value0>
+																	<value1>
+																		<key>StartAction</key>
+																		<value>
+																			<locked_ptr>
+																				<polymorphic_id>9</polymorphic_id>
+																				<ptr_wrapper>
+																					<id>13</id>
+																				</ptr_wrapper>
+																			</locked_ptr>
+																		</value>
+																	</value1>
+																</attachedActions>
+															</base>
+															<stopActionLighting>{00000000-0000-0000-0000-000000000000}</stopActionLighting>
+															<stopSoundPath></stopSoundPath>
+															<countdown>
+																<hour>0</hour>
+																<minute>0</minute>
+																<second>0</second>
+																<msec>0</msec>
+															</countdown>
+														</data>
 													</ptr_wrapper>
 												</first>
 												<second>
-													<first>Brightness</first>
+													<first>PauseBreak</first>
 													<second>Click</second>
 												</second>
-											</value2>
+											</value4>
+											<value5>
+												<first>
+													<polymorphic_id>2147483670</polymorphic_id>
+													<polymorphic_name>MacroAction</polymorphic_name>
+													<ptr_wrapper>
+														<id>2147483663</id>
+														<data>
+															<cereal_class_version>201</cereal_class_version>
+															<base>
+																<name>NumLock and ScrollLock for Timer</name>
+																<id>{bf0d0836-1967-4d9d-bbba-be282ea6fa2c}</id>
+																<repeatOptions>
+																	<repeatCount>1</repeatCount>
+																	<repeatMode>NoRepeat</repeatMode>
+																	<delay>0</delay>
+																	<delayMode>Constant</delayMode>
+																	<randomDelayFrom>0</randomDelayFrom>
+																	<randomDelayTo>0</randomDelayTo>
+																</repeatOptions>
+																<executionHints>
+																	<terminateOnSecondExec>false</terminateOnSecondExec>
+																	<restartOnSecondExec>true</restartOnSecondExec>
+																	<execHint>OnPress</execHint>
+																	<retainOriginalKeyOutput>false</retainOriginalKeyOutput>
+																</executionHints>
+																<actionLighting>{00000000-0000-0000-0000-000000000000}</actionLighting>
+																<actionSoundPath></actionSoundPath>
+																<attachedActions size="dynamic"/>
+															</base>
+															<terminationMethod>Interrupt</terminationMethod>
+															<highPriority>false</highPriority>
+															<events size="dynamic">
+																<value0>
+																	<polymorphic_id>2147483671</polymorphic_id>
+																	<polymorphic_name>KeyboardMacroActionEvent</polymorphic_name>
+																	<ptr_wrapper>
+																		<id>2147483664</id>
+																		<data>
+																			<cereal_class_version>200</cereal_class_version>
+																			<base>
+																				<cereal_class_version>200</cereal_class_version>
+																			</base>
+																			<keys size="dynamic">
+																				<value0>NumLock</value0>
+																			</keys>
+																			<sub>KeyStroke</sub>
+																		</data>
+																	</ptr_wrapper>
+																</value0>
+																<value1>
+																	<polymorphic_id>2147483672</polymorphic_id>
+																	<polymorphic_name>DelayMacroActionEvent</polymorphic_name>
+																	<ptr_wrapper>
+																		<id>2147483665</id>
+																		<data>
+																			<cereal_class_version>200</cereal_class_version>
+																			<base/>
+																			<useRandom>false</useRandom>
+																			<delay>50</delay>
+																		</data>
+																	</ptr_wrapper>
+																</value1>
+																<value2>
+																	<polymorphic_id>23</polymorphic_id>
+																	<ptr_wrapper>
+																		<id>2147483666</id>
+																		<data>
+																			<base/>
+																			<keys size="dynamic">
+																				<value0>ScrollLock</value0>
+																			</keys>
+																			<sub>KeyStroke</sub>
+																		</data>
+																	</ptr_wrapper>
+																</value2>
+															</events>
+														</data>
+													</ptr_wrapper>
+												</first>
+												<second>
+													<first></first>
+													<second>Click</second>
+												</second>
+											</value5>
+											<value6>
+												<first>
+													<polymorphic_id>21</polymorphic_id>
+													<ptr_wrapper>
+														<id>2147483667</id>
+														<data>
+															<base>
+																<name>Go to Normal Profile Timer (NumLock and ScrollLock)</name>
+																<id>{fab09b7e-56af-495e-bbba-9273fcc2c7b7}</id>
+																<repeatOptions>
+																	<repeatCount>1</repeatCount>
+																	<repeatMode>NoRepeat</repeatMode>
+																	<delay>0</delay>
+																	<delayMode>Random</delayMode>
+																	<randomDelayFrom>0</randomDelayFrom>
+																	<randomDelayTo>0</randomDelayTo>
+																</repeatOptions>
+																<executionHints>
+																	<terminateOnSecondExec>false</terminateOnSecondExec>
+																	<restartOnSecondExec>false</restartOnSecondExec>
+																	<execHint>OnPress</execHint>
+																	<retainOriginalKeyOutput>false</retainOriginalKeyOutput>
+																</executionHints>
+																<actionLighting>{00000000-0000-0000-0000-000000000000}</actionLighting>
+																<actionSoundPath></actionSoundPath>
+																<attachedActions size="dynamic">
+																	<value0>
+																		<key>StopAction</key>
+																		<value>
+																			<locked_ptr>
+																				<polymorphic_id>8</polymorphic_id>
+																				<ptr_wrapper>
+																					<id>10</id>
+																				</ptr_wrapper>
+																			</locked_ptr>
+																		</value>
+																	</value0>
+																	<value1>
+																		<key>StartAction</key>
+																		<value>
+																			<locked_ptr>
+																				<polymorphic_id>22</polymorphic_id>
+																				<ptr_wrapper>
+																					<id>15</id>
+																				</ptr_wrapper>
+																			</locked_ptr>
+																		</value>
+																	</value1>
+																</attachedActions>
+															</base>
+															<stopActionLighting>{00000000-0000-0000-0000-000000000000}</stopActionLighting>
+															<stopSoundPath></stopSoundPath>
+															<countdown>
+																<hour>0</hour>
+																<minute>0</minute>
+																<second>0</second>
+																<msec>0</msec>
+															</countdown>
+														</data>
+													</ptr_wrapper>
+												</first>
+												<second>
+													<first>ScrollLock</first>
+													<second>Click</second>
+												</second>
+											</value6>
 										</actions>
 										<default_actions size="dynamic">
 											<value0>
 												<first>
-													<polymorphic_id>2147483670</polymorphic_id>
+													<polymorphic_id>2147483673</polymorphic_id>
 													<polymorphic_name>WinLockAction</polymorphic_name>
 													<ptr_wrapper>
-														<id>2147483661</id>
+														<id>2147483668</id>
 														<data>
 															<cereal_class_version>200</cereal_class_version>
 															<base>
@@ -1793,7 +2052,7 @@
 												<first>
 													<polymorphic_id>8</polymorphic_id>
 													<ptr_wrapper>
-														<id>2147483662</id>
+														<id>2147483669</id>
 														<data>
 															<base>
 																<name>Profile Switch M1</name>
@@ -1833,7 +2092,7 @@
 												<first>
 													<polymorphic_id>8</polymorphic_id>
 													<ptr_wrapper>
-														<id>2147483663</id>
+														<id>2147483670</id>
 														<data>
 															<base>
 																<name>Profile Switch M2</name>
@@ -1873,7 +2132,7 @@
 												<first>
 													<polymorphic_id>8</polymorphic_id>
 													<ptr_wrapper>
-														<id>2147483664</id>
+														<id>2147483671</id>
 														<data>
 															<base>
 																<name>Profile Switch M3</name>
@@ -1911,10 +2170,10 @@
 											</value3>
 											<value4>
 												<first>
-													<polymorphic_id>2147483671</polymorphic_id>
+													<polymorphic_id>2147483674</polymorphic_id>
 													<polymorphic_name>BrightnessAction</polymorphic_name>
 													<ptr_wrapper>
-														<id>2147483665</id>
+														<id>2147483672</id>
 														<data>
 															<cereal_class_version>200</cereal_class_version>
 															<base>
@@ -1949,10 +2208,10 @@
 											</value4>
 											<value5>
 												<first>
-													<polymorphic_id>2147483672</polymorphic_id>
+													<polymorphic_id>2147483675</polymorphic_id>
 													<polymorphic_name>MacroRecordingAction</polymorphic_name>
 													<ptr_wrapper>
-														<id>2147483666</id>
+														<id>2147483673</id>
 														<data>
 															<cereal_class_version>200</cereal_class_version>
 															<base>
@@ -1988,7 +2247,7 @@
 												<first>
 													<polymorphic_id>8</polymorphic_id>
 													<ptr_wrapper>
-														<id>2147483667</id>
+														<id>2147483674</id>
 														<data>
 															<base>
 																<name>Profile Switch Next</name>
@@ -2029,7 +2288,7 @@
 								</ptr_wrapper>
 							</value9>
 							<value10>
-								<polymorphic_id>2147483673</polymorphic_id>
+								<polymorphic_id>2147483676</polymorphic_id>
 								<polymorphic_name>DialControlProperty</polymorphic_name>
 								<ptr_wrapper>
 									<valid>1</valid>
@@ -2042,7 +2301,7 @@
 								</ptr_wrapper>
 							</value10>
 							<value11>
-								<polymorphic_id>2147483674</polymorphic_id>
+								<polymorphic_id>2147483677</polymorphic_id>
 								<polymorphic_name>MacroRecordingProperty</polymorphic_name>
 								<ptr_wrapper>
 									<valid>1</valid>
@@ -2055,7 +2314,7 @@
 								</ptr_wrapper>
 							</value11>
 							<value12>
-								<polymorphic_id>2147483675</polymorphic_id>
+								<polymorphic_id>2147483678</polymorphic_id>
 								<polymorphic_name>GesturesProperty</polymorphic_name>
 								<ptr_wrapper>
 									<valid>1</valid>
@@ -2068,15 +2327,15 @@
 												<value>
 													<first>Enabled</first>
 													<second>
-														<polymorphic_id>2147483676</polymorphic_id>
+														<polymorphic_id>2147483679</polymorphic_id>
 														<polymorphic_name>GestureAction</polymorphic_name>
 														<ptr_wrapper>
-															<id>2147483668</id>
+															<id>2147483675</id>
 															<data>
 																<cereal_class_version>301</cereal_class_version>
 																<base>
 																	<name></name>
-																	<id>{69c4a482-a1e1-4a56-8335-9a088fd497c5}</id>
+																	<id>{3b543ce5-dcf9-436e-b291-29aa3132ff61}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -2105,13 +2364,13 @@
 												<value>
 													<first>Enabled</first>
 													<second>
-														<polymorphic_id>28</polymorphic_id>
+														<polymorphic_id>31</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483669</id>
+															<id>2147483676</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{42ff31c5-deff-4e4c-bc61-2afad84b46aa}</id>
+																	<id>{1fe0f371-1e9c-4424-bc9c-f547d94b9b34}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -2140,13 +2399,13 @@
 												<value>
 													<first>Enabled</first>
 													<second>
-														<polymorphic_id>28</polymorphic_id>
+														<polymorphic_id>31</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483670</id>
+															<id>2147483677</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{7ed83170-4221-473a-a0c9-2ae0cb7fabf2}</id>
+																	<id>{1b3d51b5-7f8c-43fb-ba06-1d1050551d55}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -2175,13 +2434,13 @@
 												<value>
 													<first>Enabled</first>
 													<second>
-														<polymorphic_id>28</polymorphic_id>
+														<polymorphic_id>31</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483671</id>
+															<id>2147483678</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{e27a03c7-5f0b-4e79-a0ea-7875cfb259a8}</id>
+																	<id>{11b994f1-ecd7-4085-abae-34aa45c1d63a}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -2210,13 +2469,13 @@
 												<value>
 													<first>Enabled</first>
 													<second>
-														<polymorphic_id>28</polymorphic_id>
+														<polymorphic_id>31</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483672</id>
+															<id>2147483679</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{927a844a-4b70-47fa-a267-1efacc585a03}</id>
+																	<id>{fb541874-cd1e-4ca3-96ba-adaa267961ea}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -2245,13 +2504,13 @@
 												<value>
 													<first>Enabled</first>
 													<second>
-														<polymorphic_id>28</polymorphic_id>
+														<polymorphic_id>31</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483673</id>
+															<id>2147483680</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{ae252e9e-e28a-476b-bc78-f358927fd942}</id>
+																	<id>{56dc11d1-1e68-4672-840b-a3800b05105a}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -2280,13 +2539,13 @@
 												<value>
 													<first>Enabled</first>
 													<second>
-														<polymorphic_id>28</polymorphic_id>
+														<polymorphic_id>31</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483674</id>
+															<id>2147483681</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{baa45694-48ce-42d7-82f4-1bc88f21f769}</id>
+																	<id>{b25c7d63-9c31-499d-8552-2dabbacfbfef}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -2315,13 +2574,13 @@
 												<value>
 													<first>Enabled</first>
 													<second>
-														<polymorphic_id>28</polymorphic_id>
+														<polymorphic_id>31</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483675</id>
+															<id>2147483682</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{c8b4dd69-7e33-44c4-99fc-82ccce355945}</id>
+																	<id>{8c530aff-e61f-44e2-b1a2-6314d76d595f}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -2350,13 +2609,13 @@
 												<value>
 													<first>Enabled</first>
 													<second>
-														<polymorphic_id>28</polymorphic_id>
+														<polymorphic_id>31</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483676</id>
+															<id>2147483683</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{4d465592-9d4a-48ec-8b23-8b1b4fa63ed8}</id>
+																	<id>{9869784a-2d80-4e3c-8e73-2d81360574bc}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -2385,13 +2644,13 @@
 												<value>
 													<first>Enabled</first>
 													<second>
-														<polymorphic_id>28</polymorphic_id>
+														<polymorphic_id>31</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483677</id>
+															<id>2147483684</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{173b2689-9213-4d48-8410-b2779a9494f9}</id>
+																	<id>{4938a266-6efc-4fb9-914d-c2c5e62406e1}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -2420,13 +2679,13 @@
 												<value>
 													<first>Enabled</first>
 													<second>
-														<polymorphic_id>28</polymorphic_id>
+														<polymorphic_id>31</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483678</id>
+															<id>2147483685</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{c4ba0806-71f0-47ec-a7b0-5d12b82dda0a}</id>
+																	<id>{75c48f81-3e6d-4f5d-a7ea-0e64f3580883}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -2455,13 +2714,13 @@
 												<value>
 													<first>Enabled</first>
 													<second>
-														<polymorphic_id>28</polymorphic_id>
+														<polymorphic_id>31</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483679</id>
+															<id>2147483686</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{e5c7c784-a7fa-49c7-9417-28fbbe1198eb}</id>
+																	<id>{7732a81f-596e-464a-abee-d5ef41d89e1d}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -2490,13 +2749,13 @@
 												<value>
 													<first>Enabled</first>
 													<second>
-														<polymorphic_id>28</polymorphic_id>
+														<polymorphic_id>31</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483680</id>
+															<id>2147483687</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{0a77085f-8e3b-4ec3-928a-a469d9663b80}</id>
+																	<id>{66499b06-dfb1-4c63-a23b-4d2b43eb25b8}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -2525,13 +2784,13 @@
 												<value>
 													<first>Enabled</first>
 													<second>
-														<polymorphic_id>28</polymorphic_id>
+														<polymorphic_id>31</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483681</id>
+															<id>2147483688</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{9c8e1194-1a7d-4e82-b740-1b19fc9d14f0}</id>
+																	<id>{b25a57f2-322e-4e7b-af12-24f71c522867}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -2560,13 +2819,13 @@
 												<value>
 													<first>Enabled</first>
 													<second>
-														<polymorphic_id>28</polymorphic_id>
+														<polymorphic_id>31</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483682</id>
+															<id>2147483689</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{cb2ad8f7-2e09-4633-b91d-c7a2d0bb29c7}</id>
+																	<id>{bfdc4f16-fcad-48bb-bdfe-296439f01d29}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -2595,13 +2854,13 @@
 												<value>
 													<first>Enabled</first>
 													<second>
-														<polymorphic_id>28</polymorphic_id>
+														<polymorphic_id>31</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483683</id>
+															<id>2147483690</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{56a82b6e-afaa-440a-871a-3b73b7d7e2e0}</id>
+																	<id>{5fa0cdf0-018c-4056-88de-7a5b2968336d}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -2630,13 +2889,13 @@
 												<value>
 													<first>Enabled</first>
 													<second>
-														<polymorphic_id>28</polymorphic_id>
+														<polymorphic_id>31</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483684</id>
+															<id>2147483691</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{f5af6bfa-ba09-4737-9dfb-97b1221506f9}</id>
+																	<id>{f9b2e2bd-01eb-4eae-ab73-8734c108deda}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -2665,13 +2924,13 @@
 												<value>
 													<first>Enabled</first>
 													<second>
-														<polymorphic_id>28</polymorphic_id>
+														<polymorphic_id>31</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483685</id>
+															<id>2147483692</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{8592e523-2ec9-430e-a445-f706750b667d}</id>
+																	<id>{72dda078-00f9-4853-9b59-56abafa4e290}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -2700,13 +2959,13 @@
 												<value>
 													<first>Enabled</first>
 													<second>
-														<polymorphic_id>28</polymorphic_id>
+														<polymorphic_id>31</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483686</id>
+															<id>2147483693</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{36684030-a4d3-44ea-a165-977081da62fc}</id>
+																	<id>{f3a85dcd-73f8-4369-b714-cff6503ea571}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -2735,13 +2994,13 @@
 												<value>
 													<first>Enabled</first>
 													<second>
-														<polymorphic_id>28</polymorphic_id>
+														<polymorphic_id>31</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483687</id>
+															<id>2147483694</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{a360666f-d512-43dd-828c-f6c6214b4b5c}</id>
+																	<id>{fd5bd8a1-d1fa-4b01-bcd7-23dade92f3f4}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -2770,13 +3029,13 @@
 												<value>
 													<first>Enabled</first>
 													<second>
-														<polymorphic_id>28</polymorphic_id>
+														<polymorphic_id>31</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483688</id>
+															<id>2147483695</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{f72f6560-733f-467c-aab8-312b0cf5be53}</id>
+																	<id>{09dfa26c-3eb1-4ca3-9d41-c61bfb2a2092}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -2805,7 +3064,7 @@
 								</ptr_wrapper>
 							</value12>
 							<value13>
-								<polymorphic_id>2147483677</polymorphic_id>
+								<polymorphic_id>2147483680</polymorphic_id>
 								<polymorphic_name>TouchpadPerformanceProperty</polymorphic_name>
 								<ptr_wrapper>
 									<valid>1</valid>
@@ -2818,7 +3077,7 @@
 								</ptr_wrapper>
 							</value13>
 							<value14>
-								<polymorphic_id>2147483678</polymorphic_id>
+								<polymorphic_id>2147483681</polymorphic_id>
 								<polymorphic_name>JoystickPerformanceProperty</polymorphic_name>
 								<ptr_wrapper>
 									<valid>1</valid>
@@ -2842,7 +3101,7 @@
 					<value>
 						<properties size="dynamic">
 							<value0>
-								<polymorphic_id>2147483679</polymorphic_id>
+								<polymorphic_id>2147483682</polymorphic_id>
 								<polymorphic_name>PresetsProperty::Proxy</polymorphic_name>
 								<ptr_wrapper>
 									<valid>1</valid>
@@ -2864,7 +3123,7 @@
 															<presets size="dynamic">
 																<value0>
 																	<ptr_wrapper>
-																		<id>2147483689</id>
+																		<id>2147483696</id>
 																		<data>
 																			<cereal_class_version>201</cereal_class_version>
 																			<id>{df65cb3e-f06b-49e4-9376-adba2c0caf6e}</id>
@@ -2888,7 +3147,7 @@
 																</value0>
 																<value1>
 																	<ptr_wrapper>
-																		<id>2147483690</id>
+																		<id>2147483697</id>
 																		<data>
 																			<id>{c1d3947b-493e-42c6-9503-dd63d6c40012}</id>
 																			<name>Movie Theater</name>
@@ -2911,7 +3170,7 @@
 																</value1>
 																<value2>
 																	<ptr_wrapper>
-																		<id>2147483691</id>
+																		<id>2147483698</id>
 																		<data>
 																			<id>{138c0b33-bc2c-42ff-96c8-190328221a5a}</id>
 																			<name>FPS Competition</name>
@@ -2934,7 +3193,7 @@
 																</value2>
 																<value3>
 																	<ptr_wrapper>
-																		<id>2147483692</id>
+																		<id>2147483699</id>
 																		<data>
 																			<id>{861c1fd2-fafa-485c-ae46-64fe006e583f}</id>
 																			<name>Clear Chat</name>
@@ -2957,7 +3216,7 @@
 																</value3>
 																<value4>
 																	<ptr_wrapper>
-																		<id>2147483693</id>
+																		<id>2147483700</id>
 																		<data>
 																			<id>{ace12c08-a7e1-4a87-8110-555e383ce327}</id>
 																			<name>Bass Boost</name>
@@ -2993,7 +3252,7 @@
 											<value1>
 												<key>2</key>
 												<value>
-													<polymorphic_id>2147483680</polymorphic_id>
+													<polymorphic_id>2147483683</polymorphic_id>
 													<polymorphic_name>PresetsPropertyUnlimited</polymorphic_name>
 													<ptr_wrapper>
 														<valid>1</valid>
@@ -3050,10 +3309,10 @@
 																						<base/>
 																						<layers size="dynamic">
 																							<value0>
-																								<polymorphic_id>2147483681</polymorphic_id>
+																								<polymorphic_id>2147483684</polymorphic_id>
 																								<polymorphic_name>AdvancedLightingLayer</polymorphic_name>
 																								<ptr_wrapper>
-																									<id>2147483694</id>
+																									<id>2147483701</id>
 																									<data>
 																										<cereal_class_version>200</cereal_class_version>
 																										<base>
@@ -3073,10 +3332,10 @@
 																											<option>AllLeds</option>
 																										</base>
 																										<lighting>
-																											<polymorphic_id>2147483682</polymorphic_id>
+																											<polymorphic_id>2147483685</polymorphic_id>
 																											<polymorphic_name>BlinkLighting</polymorphic_name>
 																											<ptr_wrapper>
-																												<id>2147483695</id>
+																												<id>2147483702</id>
 																												<data>
 																													<cereal_class_version>300</cereal_class_version>
 																													<base>
@@ -3112,7 +3371,7 @@
 								</ptr_wrapper>
 							</value1>
 							<value2>
-								<polymorphic_id>2147483683</polymorphic_id>
+								<polymorphic_id>2147483686</polymorphic_id>
 								<polymorphic_name>DolbyProperty</polymorphic_name>
 								<ptr_wrapper>
 									<valid>1</valid>
@@ -3355,7 +3614,7 @@
 								</ptr_wrapper>
 							</value3>
 							<value4>
-								<polymorphic_id>2147483684</polymorphic_id>
+								<polymorphic_id>2147483687</polymorphic_id>
 								<polymorphic_name>IndicatorBrightnessProperty</polymorphic_name>
 								<ptr_wrapper>
 									<valid>1</valid>
@@ -3376,10 +3635,10 @@
 										<default_actions size="dynamic">
 											<value0>
 												<first>
-													<polymorphic_id>2147483685</polymorphic_id>
+													<polymorphic_id>2147483688</polymorphic_id>
 													<polymorphic_name>EqPresetSwitchingAction</polymorphic_name>
 													<ptr_wrapper>
-														<id>2147483696</id>
+														<id>2147483703</id>
 														<data>
 															<cereal_class_version>200</cereal_class_version>
 															<base>
@@ -3413,10 +3672,10 @@
 											</value0>
 											<value1>
 												<first>
-													<polymorphic_id>2147483686</polymorphic_id>
+													<polymorphic_id>2147483689</polymorphic_id>
 													<polymorphic_name>DolbyStateChangeAction</polymorphic_name>
 													<ptr_wrapper>
-														<id>2147483697</id>
+														<id>2147483704</id>
 														<data>
 															<cereal_class_version>200</cereal_class_version>
 															<base>
@@ -3450,10 +3709,10 @@
 											</value1>
 											<value2>
 												<first>
-													<polymorphic_id>2147483687</polymorphic_id>
+													<polymorphic_id>2147483690</polymorphic_id>
 													<polymorphic_name>MicMuteAction</polymorphic_name>
 													<ptr_wrapper>
-														<id>2147483698</id>
+														<id>2147483705</id>
 														<data>
 															<cereal_class_version>200</cereal_class_version>
 															<base>
@@ -3487,10 +3746,10 @@
 											</value2>
 											<value3>
 												<first>
-													<polymorphic_id>2147483688</polymorphic_id>
+													<polymorphic_id>2147483691</polymorphic_id>
 													<polymorphic_name>SidetoneMuteAction</polymorphic_name>
 													<ptr_wrapper>
-														<id>2147483699</id>
+														<id>2147483706</id>
 														<data>
 															<cereal_class_version>200</cereal_class_version>
 															<base>
@@ -3527,7 +3786,7 @@
 								</ptr_wrapper>
 							</value5>
 							<value6>
-								<polymorphic_id>2147483689</polymorphic_id>
+								<polymorphic_id>2147483692</polymorphic_id>
 								<polymorphic_name>SidetoneProperty</polymorphic_name>
 								<ptr_wrapper>
 									<valid>1</valid>
@@ -3540,7 +3799,7 @@
 								</ptr_wrapper>
 							</value6>
 							<value7>
-								<polymorphic_id>2147483690</polymorphic_id>
+								<polymorphic_id>2147483693</polymorphic_id>
 								<polymorphic_name>BatteryProperty</polymorphic_name>
 								<ptr_wrapper>
 									<valid>1</valid>
@@ -3552,7 +3811,7 @@
 								</ptr_wrapper>
 							</value7>
 							<value8>
-								<polymorphic_id>2147483691</polymorphic_id>
+								<polymorphic_id>2147483694</polymorphic_id>
 								<polymorphic_name>MicrophoneProperty</polymorphic_name>
 								<ptr_wrapper>
 									<valid>1</valid>
@@ -3934,7 +4193,7 @@
 								</ptr_wrapper>
 							</value0>
 							<value1>
-								<polymorphic_id>31</polymorphic_id>
+								<polymorphic_id>34</polymorphic_id>
 								<ptr_wrapper>
 									<valid>1</valid>
 									<data>
@@ -3953,7 +4212,7 @@
 															<presets size="dynamic">
 																<value0>
 																	<ptr_wrapper>
-																		<id>2147483700</id>
+																		<id>2147483707</id>
 																		<data>
 																			<id>{df65cb3e-f06b-49e4-9376-adba2c0caf6e}</id>
 																			<name>Pure Direct</name>
@@ -3976,7 +4235,7 @@
 																</value0>
 																<value1>
 																	<ptr_wrapper>
-																		<id>2147483701</id>
+																		<id>2147483708</id>
 																		<data>
 																			<id>{c1d3947b-493e-42c6-9503-dd63d6c40012}</id>
 																			<name>Movie Theater</name>
@@ -3999,7 +4258,7 @@
 																</value1>
 																<value2>
 																	<ptr_wrapper>
-																		<id>2147483702</id>
+																		<id>2147483709</id>
 																		<data>
 																			<id>{138c0b33-bc2c-42ff-96c8-190328221a5a}</id>
 																			<name>FPS Competition</name>
@@ -4022,7 +4281,7 @@
 																</value2>
 																<value3>
 																	<ptr_wrapper>
-																		<id>2147483703</id>
+																		<id>2147483710</id>
 																		<data>
 																			<id>{861c1fd2-fafa-485c-ae46-64fe006e583f}</id>
 																			<name>Clear Chat</name>
@@ -4045,7 +4304,7 @@
 																</value3>
 																<value4>
 																	<ptr_wrapper>
-																		<id>2147483704</id>
+																		<id>2147483711</id>
 																		<data>
 																			<id>{ace12c08-a7e1-4a87-8110-555e383ce327}</id>
 																			<name>Bass Boost</name>
@@ -4081,7 +4340,7 @@
 											<value1>
 												<key>2</key>
 												<value>
-													<polymorphic_id>32</polymorphic_id>
+													<polymorphic_id>35</polymorphic_id>
 													<ptr_wrapper>
 														<valid>1</valid>
 														<data>
@@ -4101,7 +4360,7 @@
 								</ptr_wrapper>
 							</value1>
 							<value2>
-								<polymorphic_id>35</polymorphic_id>
+								<polymorphic_id>38</polymorphic_id>
 								<ptr_wrapper>
 									<valid>1</valid>
 									<data>
@@ -4111,7 +4370,7 @@
 								</ptr_wrapper>
 							</value2>
 							<value3>
-								<polymorphic_id>41</polymorphic_id>
+								<polymorphic_id>44</polymorphic_id>
 								<ptr_wrapper>
 									<valid>1</valid>
 									<data>
@@ -4163,7 +4422,7 @@
 								</ptr_wrapper>
 							</value4>
 							<value5>
-								<polymorphic_id>43</polymorphic_id>
+								<polymorphic_id>46</polymorphic_id>
 								<ptr_wrapper>
 									<valid>1</valid>
 									<data>
@@ -4342,7 +4601,7 @@
 					<value>
 						<properties size="dynamic">
 							<value0>
-								<polymorphic_id>2147483692</polymorphic_id>
+								<polymorphic_id>2147483695</polymorphic_id>
 								<polymorphic_name>TemperatureAlertProperty</polymorphic_name>
 								<ptr_wrapper>
 									<valid>1</valid>
@@ -4356,7 +4615,7 @@
 								</ptr_wrapper>
 							</value0>
 							<value1>
-								<polymorphic_id>2147483693</polymorphic_id>
+								<polymorphic_id>2147483696</polymorphic_id>
 								<polymorphic_name>OSDProperty</polymorphic_name>
 								<ptr_wrapper>
 									<valid>1</valid>
@@ -4370,7 +4629,7 @@
 								</ptr_wrapper>
 							</value1>
 							<value2>
-								<polymorphic_id>2147483694</polymorphic_id>
+								<polymorphic_id>2147483697</polymorphic_id>
 								<polymorphic_name>AllDevicesCoolingProperty</polymorphic_name>
 								<ptr_wrapper>
 									<valid>1</valid>
@@ -4384,7 +4643,7 @@
 								</ptr_wrapper>
 							</value2>
 							<value3>
-								<polymorphic_id>2147483695</polymorphic_id>
+								<polymorphic_id>2147483698</polymorphic_id>
 								<polymorphic_name>LightingLinkProperty</polymorphic_name>
 								<ptr_wrapper>
 									<valid>1</valid>
@@ -4396,7 +4655,7 @@
 								</ptr_wrapper>
 							</value3>
 							<value4>
-								<polymorphic_id>2147483696</polymorphic_id>
+								<polymorphic_id>2147483699</polymorphic_id>
 								<polymorphic_name>XDLProfileProperty</polymorphic_name>
 								<ptr_wrapper>
 									<valid>1</valid>
@@ -4410,7 +4669,7 @@
 										<layer>
 											<polymorphic_id>1073741824</polymorphic_id>
 											<ptr_wrapper>
-												<id>2147483705</id>
+												<id>2147483712</id>
 												<data>
 													<cereal_class_version>300</cereal_class_version>
 													<base>
@@ -4443,7 +4702,7 @@
 					<value>
 						<properties size="dynamic">
 							<value0>
-								<polymorphic_id>2147483697</polymorphic_id>
+								<polymorphic_id>2147483700</polymorphic_id>
 								<polymorphic_name>CoolingConfigurationProperty::Proxy</polymorphic_name>
 								<ptr_wrapper>
 									<valid>1</valid>
@@ -4615,7 +4874,7 @@
 					<value>
 						<properties size="dynamic">
 							<value0>
-								<polymorphic_id>49</polymorphic_id>
+								<polymorphic_id>52</polymorphic_id>
 								<ptr_wrapper>
 									<valid>1</valid>
 									<data>
@@ -4673,7 +4932,7 @@
 								</ptr_wrapper>
 							</value0>
 							<value1>
-								<polymorphic_id>49</polymorphic_id>
+								<polymorphic_id>52</polymorphic_id>
 								<ptr_wrapper>
 									<valid>1</valid>
 									<data>
@@ -4756,8 +5015,8 @@
 			</properties>
 			<isHardware>false</isHardware>
 			<RGBShareMeta>
-				<CueVersion>3.24.52</CueVersion>
-				<ProfileVersion>3.24.14</ProfileVersion>
+				<CueVersion>3.25.60</CueVersion>
+				<ProfileVersion>3.25.30</ProfileVersion>
 				<KeyboardModel>K95 RGB</KeyboardModel>
 				<MouseModel>SCIMITAR PRO RGB</MouseModel>
 				<HeadsetModel>none</HeadsetModel>
@@ -4781,7 +5040,7 @@
 					<value>
 						<polymorphic_id>1073741824</polymorphic_id>
 						<ptr_wrapper>
-							<id>2147483706</id>
+							<id>2147483713</id>
 							<data>
 								<cereal_class_version>201</cereal_class_version>
 								<enabled>false</enabled>
@@ -4798,7 +5057,7 @@
 					<value>
 						<polymorphic_id>1073741824</polymorphic_id>
 						<ptr_wrapper>
-							<id>2147483707</id>
+							<id>2147483714</id>
 							<data>
 								<enabled>false</enabled>
 								<independent>false</independent>
@@ -4814,7 +5073,7 @@
 					<value>
 						<polymorphic_id>1073741824</polymorphic_id>
 						<ptr_wrapper>
-							<id>2147483708</id>
+							<id>2147483715</id>
 							<data>
 								<enabled>true</enabled>
 								<independent>false</independent>
@@ -4830,7 +5089,7 @@
 					<value>
 						<polymorphic_id>1073741824</polymorphic_id>
 						<ptr_wrapper>
-							<id>2147483709</id>
+							<id>2147483716</id>
 							<data>
 								<enabled>false</enabled>
 								<independent>false</independent>
@@ -4846,7 +5105,7 @@
 					<value>
 						<polymorphic_id>1073741824</polymorphic_id>
 						<ptr_wrapper>
-							<id>2147483710</id>
+							<id>2147483717</id>
 							<data>
 								<enabled>false</enabled>
 								<independent>false</independent>
@@ -4862,7 +5121,7 @@
 					<value>
 						<polymorphic_id>1073741824</polymorphic_id>
 						<ptr_wrapper>
-							<id>2147483711</id>
+							<id>2147483718</id>
 							<data>
 								<enabled>true</enabled>
 								<independent>false</independent>
@@ -4880,7 +5139,7 @@
 			<isDefault>false</isDefault>
 		</dpiMode>
 		<dpiModeAdditional>
-			<id>{74756803-631f-4323-880f-dc8209ee3189}</id>
+			<id>{55c7f6da-eb65-4a47-9a23-79f4cf20bd37}</id>
 			<name></name>
 			<settings size="dynamic"/>
 			<active>false</active>

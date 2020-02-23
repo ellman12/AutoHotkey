@@ -1556,7 +1556,7 @@
 														<data>
 															<cereal_class_version>200</cereal_class_version>
 															<base/>
-															<id>{7ffc2018-2ec9-4cf6-8c4f-c3a9c07c98d9}</id>
+															<id>{7cfed156-b1d9-43bf-ace5-4f6a7f3bec4d}</id>
 														</data>
 													</ptr_wrapper>
 												</value>
@@ -1831,7 +1831,7 @@
 								<ptr_wrapper>
 									<valid>1</valid>
 									<data>
-										<cereal_class_version>201</cereal_class_version>
+										<cereal_class_version>300</cereal_class_version>
 										<base/>
 										<m1Color>#ffff7900</m1Color>
 										<m2Color>#ffaf1900</m2Color>
@@ -2690,7 +2690,7 @@
 													<ptr_wrapper>
 														<valid>1</valid>
 														<data>
-															<cereal_class_version>200</cereal_class_version>
+															<cereal_class_version>300</cereal_class_version>
 															<base/>
 															<enabledIndicatorColor size="dynamic"/>
 															<disabledIndicatorColor size="dynamic"/>
@@ -5340,7 +5340,7 @@
 																<actionSoundPath></actionSoundPath>
 																<attachedActions size="dynamic">
 																	<value0>
-																		<key>ReleaseAction</key>
+																		<key>StopAction</key>
 																		<value>
 																			<locked_ptr>
 																				<polymorphic_id>0</polymorphic_id>
@@ -5348,7 +5348,7 @@
 																		</value>
 																	</value0>
 																	<value1>
-																		<key>StartAction</key>
+																		<key>ReleaseAction</key>
 																		<value>
 																			<locked_ptr>
 																				<polymorphic_id>0</polymorphic_id>
@@ -5356,7 +5356,7 @@
 																		</value>
 																	</value1>
 																	<value2>
-																		<key>StopAction</key>
+																		<key>StartAction</key>
 																		<value>
 																			<locked_ptr>
 																				<polymorphic_id>0</polymorphic_id>
@@ -5736,7 +5736,7 @@
 																<cereal_class_version>301</cereal_class_version>
 																<base>
 																	<name></name>
-																	<id>{bef57c49-6800-4eb5-81a7-18214e0da5d6}</id>
+																	<id>{005398c1-e487-4557-85d7-3703bc116375}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -5771,7 +5771,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{e17b3a1e-e4fa-435f-b8b7-72c23cc84e53}</id>
+																	<id>{529cd4b2-a8bf-42b5-88ba-897e29367c84}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -5806,7 +5806,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{1e444fb7-0486-46e6-9480-6b5a5b9ebc02}</id>
+																	<id>{eb5e72c6-7fd1-4703-bd2a-4a8b5fcdde9f}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -5841,7 +5841,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{870e6554-e21f-4c9a-b4eb-3d54bbeff6c7}</id>
+																	<id>{4151498f-ce46-43b6-9ee1-6ba90dab2c7a}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -5876,7 +5876,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{32d9bd8e-a0aa-455f-8057-4049b0dcff53}</id>
+																	<id>{464d173b-4824-4c51-9765-6b858fdde208}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -5911,7 +5911,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{e9ea428a-b605-469e-b5b2-b4aeb7cab5c1}</id>
+																	<id>{94df3abd-bfc6-48a4-a919-b45aea3762e9}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -5946,7 +5946,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{e14b5c6a-a1a4-4113-9274-1d93b58e509b}</id>
+																	<id>{210bf97d-7004-430a-8475-aeca2139c8e2}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -5981,7 +5981,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{71f89386-fa25-4eb0-a7ee-df95b7120454}</id>
+																	<id>{4dc08d56-1862-4c23-b3ee-1dfdf2f93ae5}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -6016,7 +6016,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{a4a9e6a0-4f9e-4b41-a028-f2e1c8b75fd5}</id>
+																	<id>{44b765aa-0e3d-416a-aaf6-a9ffefb8e261}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -6051,7 +6051,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{9c8baf26-813f-4ef5-8c4a-bfc65b3e81af}</id>
+																	<id>{93a352f4-30b7-401e-8ac0-f2a4a21fc96b}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -6086,7 +6086,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{922fbaf3-6f7b-4e47-ad26-91f523806512}</id>
+																	<id>{7d0b18c3-29b1-4a60-a0c4-9a1d75c1c331}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -6121,7 +6121,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{ccd8ee95-be11-44bd-8030-cf53f3800093}</id>
+																	<id>{8cdba9a2-51b8-45a9-aff9-7d372dd6ce72}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -6156,7 +6156,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{7428be60-3326-41e5-a85f-4079ba85832a}</id>
+																	<id>{9df7308b-9585-4974-9a21-2f37e5c936f1}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -6191,7 +6191,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{f72d4ad0-d5f3-4e5f-a3fd-38acf9ba921b}</id>
+																	<id>{920d34e5-fb0b-40cc-bd48-dc34d26ed70c}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -6226,7 +6226,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{c35797bd-6df9-4523-9de2-ad821fbae592}</id>
+																	<id>{3177cc49-92bd-41e2-a8b6-a22b3839d645}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -6261,7 +6261,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{eb7ce693-e90f-4536-8efe-3f1e0b9b4d2a}</id>
+																	<id>{0a620a0e-9b99-4da4-b275-ff6a55c1ba75}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -6296,7 +6296,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{66429b6f-8c70-4cd4-9f96-ba595f1d5a39}</id>
+																	<id>{606238f5-c8ba-4f63-91b6-ea86ab77b391}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -6331,7 +6331,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{caeef761-28c6-4bb0-bd9d-3c2ebe32c6a3}</id>
+																	<id>{401366c7-608b-4bac-8380-f774ed082b06}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -6366,7 +6366,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{e80203b9-8532-48f1-b1fb-ae8aaf4b47b1}</id>
+																	<id>{6c3b9d21-54a4-4a88-85e1-8d23c399e843}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -6401,7 +6401,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{03d1e00c-ef56-4eb5-a0f3-7bfe16b04a54}</id>
+																	<id>{9510eed9-533b-4fcf-8924-c97ede2c178d}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -6436,7 +6436,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{f52baf4d-fe8f-4187-8073-08a1cb573d97}</id>
+																	<id>{37a3992b-8ec1-480b-ac02-60901b619bbf}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -8381,8 +8381,8 @@
 			</properties>
 			<isHardware>false</isHardware>
 			<RGBShareMeta>
-				<CueVersion>3.24.52</CueVersion>
-				<ProfileVersion>3.24.14</ProfileVersion>
+				<CueVersion>3.25.60</CueVersion>
+				<ProfileVersion>3.25.30</ProfileVersion>
 				<KeyboardModel>K95 RGB</KeyboardModel>
 				<MouseModel>SCIMITAR PRO RGB</MouseModel>
 				<HeadsetModel>none</HeadsetModel>
@@ -8398,8 +8398,8 @@
 		</profile>
 		<dpiMode>
 			<cereal_class_version>201</cereal_class_version>
-			<id>{7ffc2018-2ec9-4cf6-8c4f-c3a9c07c98d9}</id>
-			<name>Default 2</name>
+			<id>{7cfed156-b1d9-43bf-ace5-4f6a7f3bec4d}</id>
+			<name>Profile Without RGB 2</name>
 			<settings size="dynamic">
 				<value0>
 					<key>Dpi1</key>
@@ -8445,7 +8445,7 @@
 								<independent>false</independent>
 								<dpiX>1800</dpiX>
 								<dpiY>1800</dpiY>
-								<color>#ffffffff</color>
+								<color>#ff000000</color>
 							</data>
 						</ptr_wrapper>
 					</value>
@@ -8491,8 +8491,8 @@
 							<data>
 								<enabled>true</enabled>
 								<independent>false</independent>
-								<dpiX>6000</dpiX>
-								<dpiY>6000</dpiY>
+								<dpiX>400</dpiX>
+								<dpiY>400</dpiY>
 								<color>#ff008080</color>
 							</data>
 						</ptr_wrapper>
@@ -8505,7 +8505,7 @@
 			<isDefault>false</isDefault>
 		</dpiMode>
 		<dpiModeAdditional>
-			<id>{95f3cc52-14d9-4bcb-9c14-7aab5ff0adc9}</id>
+			<id>{9f03fb82-aeee-4f91-bda1-f766571c2611}</id>
 			<name></name>
 			<settings size="dynamic"/>
 			<active>false</active>
