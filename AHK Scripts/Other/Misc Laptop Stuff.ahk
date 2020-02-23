@@ -27,12 +27,11 @@ global CurrentWinF6AndF7ActBoth := 1
 #Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Run.AHK
 
 
-#p::
-Suspend
-return
+;Pushing Windows Key + P suspends all hotkeys, thus "pausing" the script. Useful for when I'm playing games or something.
+#!p::Suspend, Toggle
 
 ;Pushing Win + Alt + p suspends all hotkeys for the specified number in milliseconds (in this case, 2500).
-#!p::
+#P::
 SetTimer, setTimerLabel, 2500, On
 Suspend
 return
@@ -46,6 +45,12 @@ return
 
 ^#r::
 Reload
+return
+
+#b::
+MouseMove, 1432, 885, 0
+Sleep 300
+Send, {Click}
 return
 
 PrintScreen::
