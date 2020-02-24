@@ -6,8 +6,7 @@ SetWorkingDir "C:\Users\Elliott\Documents\AHK Scripts"  ; Ensures a consistent s
 
 /*
 ;This script allows me to run and do miscellaneous things that don't deserve their own (hot)key.
-;It's like the #r thing that Windows already has, but better(?). IDK it's more stuff that would
-;be too impractically difficult to do in the Windows Run thing.
+;It's like the #r thing that Windows already has.
 ;E.g., I /could/ type www.google.com and do a bunch of other crap with that, or I could be more specific and say:
 ;"google Firefox incognito (or private); tomato tomato or whatever.
 ;This script is essentially a single hotkey, and a bigass Switch statement.
@@ -17,10 +16,10 @@ SetWorkingDir "C:\Users\Elliott\Documents\AHK Scripts"  ; Ensures a consistent s
 ;Alt + R opens the InputBox, which allows the user to type a command. It also contains a cheat sheet of all of the commands, in alphabetical order.
 ;This one single line is astronomically enormous, so Word Wrap is recommended.
 !r::
-InputBox, RunInputBoxText, Type a command,Cheat sheet for all of the Run.ahk commands (can also be found online by entering the command "Help").`r`rRecommended Command`tWhat It Does`t`t`t`t`t`t`tCategory`n`nDocu FF/Chr`t`tOpens the AHK documentation in either Chrome or Firefox`t`tOpen`nEm/en`t`t`tInserts either of them`t`t`t`t`t`tInsert`nExitApp`t`t`tKills the current running script`t`t`t`t`tMisc`nHelp`t`t`tOpens the Run.ahk sheet in the AHK Google Sheets workbook`t`tOpen`nOp in FF/Chr`t`tOpens the current tab in the specified browser`t`t`t`tOpen`nThes FF/Chr`t`tOpen thesaurus.com in either browser and search for the inputted word`tOpen`nThesaurus FF/Chr`t`tOpen thesaurus.com in the chosen browser`t`t`t`tOpen`nUp/right/down/left arrow`tInserts an arrow symbol`t`t`t`t`t`tInsert`nYT FF/Chr`t`t`tOpens the YouTube homepage in FF/Chr`t`t`t`tOpen`nYT S FF/Chr`t`tOpens the YouTube homepage in FF/Chr and searches for the inputted text`tOpen`nYT SB FF/Chr`t`tOpens the YouTube homepage in FF/Chr and Tabs to the search bar`tOpen`n`nType a command`, and the script will run it.,, 700, 420
+InputBox, runInputBoxText, Type a command,Cheat sheet for all of the Run.ahk commands (can also be found online by entering the command "Help").`r`rRecommended Command`tWhat It Does`t`t`t`t`t`t`tCategory`n`nDocu FF/Chr`t`tOpens the AHK documentation in either Chrome or Firefox`t`tOpen`nEm/en`t`t`tInserts either of them`t`t`t`t`t`tInsert`nExitApp`t`t`tKills the current running script`t`t`t`t`tMisc`nHelp`t`t`tOpens the Run.ahk sheet in the AHK Google Sheets workbook`t`tOpen`nOp in FF/Chr`t`tOpens the current tab in the specified browser`t`t`t`tOpen`nThes FF/Chr`t`tOpen thesaurus.com in either browser and search for the inputted word`tOpen`nThesaurus FF/Chr`t`tOpen thesaurus.com in the chosen browser`t`t`t`tOpen`nUp/right/down/left arrow`tInserts an arrow symbol`t`t`t`t`t`tInsert`nYT FF/Chr`t`t`tOpens the YouTube homepage in FF/Chr`t`t`t`tOpen`nYT S FF/Chr`t`tOpens the YouTube homepage in FF/Chr and searches for the inputted text`tOpen`nYT SB FF/Chr`t`tOpens the YouTube homepage in FF/Chr and Tabs to the search bar`tOpen`n`nType a command`, and the script will run it.,, 700, 420
 
-;The script decides which command to run
-Switch (RunInputBoxText) {
+;The script decides which command to run.
+Switch (runInputBoxText) {
 
 ;***********************************************INSERT***********************************************
 ;AHK can apparently send Unicode characters.
@@ -143,12 +142,12 @@ return
 ;***********************************************MISC***********************************************
 Case "exit script", "exitapp": ExitApp
 
-;If the user presses Escape or Cancel
+;If the user presses Escape or Cancel.
 Default:
 if ErrorLevel = 1
-	MsgBox, ,CANCEL/Escape was pressed., CANCEL/Escape was pressed., 0.95
+	MsgBox, ,CANCEL/Escape was pressed., CANCEL/Escape was pressed., 0.3
 else
-	MsgBox, 16, Unknown Command, Command entered: "%RunInputBoxText%" does not exist
+	MsgBox, 16, Unknown command, Command entered: "%runInputBoxText%" does not exist.
 
 
 }

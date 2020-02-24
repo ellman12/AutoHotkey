@@ -187,7 +187,9 @@ Send, ^#{d}
 return
 
 ;Keeb G15
+;(Ctrl + Shift + K) Delete line
 !F15::
+Send, ^+k
 return
 
 ;Keeb G16
