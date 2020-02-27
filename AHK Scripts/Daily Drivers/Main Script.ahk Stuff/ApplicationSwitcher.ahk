@@ -98,6 +98,14 @@ if WinActive("ahk_exe explorer.exe")
 	Send !{left} ;alt left is the explorer shortcut to go "back" or "down" one folder level.
 return
 
+F12::
+GroupAdd, taranwords, ahk_class OpusApp
+if WinActive("ahk_class OpusApp")
+	GroupActivate, taranwords, r
+else
+	WinActivate ahk_class OpusApp
+return
+
 
 
 ;****************************************************CUSTOM GROUP STUFF****************************************************
@@ -115,9 +123,9 @@ return
 ActivateBothF6AndF7Windows() ;Activate windows in both the F6 and F7 array.
 return
 
-; #+F6::
-; ActivateNeitherF6NorF7Windows()
-; return
+#+F6::
+ActivateNeitherF6NorF7Windows()
+return
 
 ^!F6::
 RemoveWindowF6()
@@ -377,5 +385,10 @@ ActivateNeitherF6NorF7Windows() {
 	; }
 
 	; MsgBox %winList%
+
+
+
+	; GroupAdd, tempGroup, "ahk_class"
+	; GroupActivate, tempGroup
 
 }
