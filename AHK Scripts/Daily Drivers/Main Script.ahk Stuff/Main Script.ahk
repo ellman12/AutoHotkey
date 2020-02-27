@@ -566,8 +566,20 @@ Send, System.out.print("");
 Sleep 20
 Send, {Left 3}
 
+:*:sys::
+Send, System.out.print("");
+Sleep 20
+Send, {Left 3}
+
+;Get the mouse's current position, moves the mouse to the Run button, and clicks it.
+;It does this so fast that if you blink, you'll miss it.
 F5::
-Send, ^+{F10}
+MouseGetPos, F5MouseX, F5MouseY 
+MouseMove, 1572, 41, 0 ;X, Y, speed (0 = instant).
+;~ Sleep 1000
+Send, {Click}
+;~ Sleep 1000
+MouseMove, %F5MouseX%, %F5MouseY%, 0
 return
 
 :*:java::Java
