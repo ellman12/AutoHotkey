@@ -78,6 +78,7 @@ Process, Exist, chrome.exe
 }
 
 ;MR button on my keyboard.
+;Used for activating and switching to File Explorer windows.
 ^!F1::
 switchToExplorer() {
 IfWinNotExist, ahk_class CabinetWClass
@@ -89,6 +90,7 @@ else
 	WinActivate ahk_class CabinetWClass ;you have to use WinActivatebottom if you didn't create a window group.
 }
 
+;Back button.
 F9::
 if WinActive("ahk_exe firefox.exe")
 	Send ^{PgUp}
@@ -98,6 +100,7 @@ if WinActive("ahk_exe explorer.exe")
 	Send !{left} ;alt left is the explorer shortcut to go "back" or "down" one folder level.
 return
 
+;Switch between MS Word windows.
 F12::
 GroupAdd, taranwords, ahk_class OpusApp
 if WinActive("ahk_class OpusApp")
