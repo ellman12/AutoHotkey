@@ -393,7 +393,25 @@ return ;End of ^!+a.
 
 return ;End of ^!+a.
 
-
+;Used for mass copying-and-pasting stuff from Kepe to MS To-Do.
+;~ #t::
+;~ Loop {
+;~ Send, ^a
+;~ Sleep 35
+;~ Send, ^c
+;~ Sleep 45
+;~ Send, !{Tab}
+;~ Sleep 250
+;~ Send, ^v
+;~ Sleep 200
+;~ Send, {Enter}
+;~ Sleep 200
+;~ Send, !{Tab}
+;~ Sleep 250
+;~ Send, {Down 2}
+;~ Sleep 260
+;~ }
+;~ return
 
 ;Test for seeing if I could possibly have my main PC functions on my laptop.
 ;~ ^!#F1::
