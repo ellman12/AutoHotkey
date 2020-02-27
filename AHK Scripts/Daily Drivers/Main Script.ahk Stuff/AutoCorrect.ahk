@@ -5392,3 +5392,5 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:gui::GUI
 ::custoemr::customer
 ::ed::Elliott DuCharme
+:*:iphone::iPhone
+:*:android::Android
