@@ -546,7 +546,7 @@ return
 ; WinSet, AlwaysOnTop, Toggle, Calculator ; Toggle the always-on-top status of Calculator.
 ;~ return
 ;-------------------------------------------------------------------------------------------
-;Anything in this section is temporary, and was added in to perform a simple and quick task.
+;Anything in this section is temporary.
 ;-------------------------------------------------------------------------------------------
 
 ;English papers.
@@ -570,6 +570,17 @@ Send, {Left 3}
 Send, System.out.print("");
 Sleep 20
 Send, {Left 3}
+return
+
+;Comment out a line, but not the intelli-gay way.
+$^/::
+Send, {Home}//{Space}
+return
+
+;Comment out normally.
+^!/::
+Send, ^/
+return
 
 ;Get the mouse's current position, moves the mouse to the Run button, and clicks it.
 ;It does this so fast that if you blink, you'll miss it.
