@@ -53,6 +53,8 @@ else if InStr(activeWindowTitle, " - Word")
 	current_profile = MSWord
 else if Instr(activeWindowTitle, " - Visual Studio Code")
 	current_profile = VSCode
+else if Instr(activeWindowTitle, "DOOM") ;TODO Switch to Any Game or something...
+	current_profile = DOOM
 else
 	current_profile = Default
 return current_profile

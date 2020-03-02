@@ -121,6 +121,7 @@ Sleep 100
 ;The variable %A_ScriptDir% is the full path of the directory where the script is located.
 
 ;~ #Include, %A_ScriptDir%\Advanced Window Hider.ahk
+#Include, %A_ScriptDir%\Games\Any Game.ahk
 #Include, %A_ScriptDir%\ApplicationSwitcher.ahk
 #Include, %A_ScriptDir%\AutoCapitalize.ahk
 #Include, %A_ScriptDir%\AutoCorrect.ahk
