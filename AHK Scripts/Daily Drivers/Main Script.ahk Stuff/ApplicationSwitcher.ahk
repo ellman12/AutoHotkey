@@ -12,6 +12,11 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ;All of this stuff works beautifully.
 ;The code is stupid simple and it was incredibly easy to do.
 
+;3/2/2020: something I've noticed is this example:
+;Say you have 2 virtual desktops, and you have a window on each one. If you have both in the same group, and you try to
+; activate the other window on the other virtual desktop, it will not activate. It never used to do this, but this is
+; actually pretty awesome.
+
 F1::
 SwitchToFirefoxAndTabs() {
 IfWinNotExist, ahk_class MozillaWindowClass
