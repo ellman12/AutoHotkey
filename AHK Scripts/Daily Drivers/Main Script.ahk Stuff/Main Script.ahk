@@ -536,6 +536,12 @@ return
 Send, ^{BackSpace}
 return
 
+;Help to prevernt fat-fingering keys.
+; :*: ::
+:*:fg::f
+:*:gf::g
+:*:rt::r
+
 ;~ ;If Scroll Lock is on, Up and Down send Up and Down 10 times per each keystroke.
 ;~ #If ScrollLockToggled = 1
 ;~ Up::
@@ -551,6 +557,7 @@ return
 ;~ WinSet, AlwaysOnTop, On, Calculator
 ; WinSet, AlwaysOnTop, Toggle, Calculator ; Toggle the always-on-top status of Calculator.
 ;~ return
+
 ;-------------------------------------------------------------------------------------------
 ;Anything in this section is temporary.
 ;-------------------------------------------------------------------------------------------
