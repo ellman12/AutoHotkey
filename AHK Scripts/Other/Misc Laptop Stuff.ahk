@@ -47,6 +47,12 @@ return
 Reload
 return
 
+;Because Ctrl + Backspace in MSWord is kinda quirky doe.
+\::
+Send, ^+{Left}
+Send, {BackSpace}
+return
+
 #b::
 MouseMove, 1432, 885, 0
 Sleep 300
@@ -421,14 +427,3 @@ return ;End of ^!+a.
 ;~ ^!#F13::
 ;~ MsgBox hi
 ;~ return
-
-SetTitleMatchMode, 2
-#IfWinActive, "- Word"
-
-\::
-Send, ^{BackSpace}
-return
-
-
-
-#If
