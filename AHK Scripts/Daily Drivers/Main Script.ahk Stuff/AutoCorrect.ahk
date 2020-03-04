@@ -5371,7 +5371,6 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:gf::g
 :*:rt::r
 
-; ::ahk::AHK
 ::american::American
 ::americans::Americans
 ::consqeuences::consequences
@@ -5404,3 +5403,5 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:android::Android
 :*:gov't::government
 :*:govt::government
+:*:ibm::IBM
+:*:watson::Watson
