@@ -5313,6 +5313,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::havent::haven't
 ::hed::he'd
 ::hell::he'll
+::heres::here's
 ::hes::he's
 ::howd::how'd
 ::Id::I'd
