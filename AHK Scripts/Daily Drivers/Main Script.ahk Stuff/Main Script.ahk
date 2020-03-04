@@ -531,6 +531,11 @@ return
 ;*****************************EXPERIMENTAL*****************************
 ;----------------------------------------------------------------------
 
+;^Backspace delete word
+\::
+Send, ^{BackSpace}
+return
+
 ;~ ;If Scroll Lock is on, Up and Down send Up and Down 10 times per each keystroke.
 ;~ #If ScrollLockToggled = 1
 ;~ Up::
