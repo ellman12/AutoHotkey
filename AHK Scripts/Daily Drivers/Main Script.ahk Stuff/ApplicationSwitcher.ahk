@@ -8,27 +8,40 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ;His video on this: https://www.youtube.com/watch?v=OqyQABySV8k
 ;As he calls it, this is his most useful script he's ever made.
 ;It's quite simple, but extremely useful and powerful.
-;I took his code for the window saver thing, which only saves one window, and made it able to do multiple windows.
 ;All of this stuff works beautifully.
-;The code is stupid simple and it was incredibly easy to do.
 
 ;3/2/2020: something I've noticed is this example:
 ;Say you have 2 virtual desktops, and you have a window on each one. If you have both in the same group, and you try to
 ; activate the other window on the other virtual desktop, it will not activate. It never used to do this, but this is
 ; actually pretty awesome.
 
+
+
+;TODO!!!!!!!!!!!!!!!!!!!
+
+; +Fx, reverse order
+
+; ^Fx new normal window, if applicable
+
+; ^!Fx (except F1) new private window, or whatever
+
+
+
+;If a Firefox window doesn't exist, run Firefox.
+;If a Firefox window does exist, switch to Chrome.
+;If Firefox is active, send ^PGDN (switch between tabs).
 F1::
-SwitchToFirefoxAndTabs() {
+switchToFirefoxAndTabs() {
 IfWinNotExist, ahk_class MozillaWindowClass
 	Run, firefox.exe
-if WinActive("ahk_exe firefox.exe")
-	{
-	WinGetClass, class, A
-	if (class = "Mozillawindowclass1")
-		msgbox, this is a notification
-	}
-if WinActive("ahk_exe firefox.exe")
-	Send ^{PGDN}
+	if WinActive("ahk_exe firefox.exe")
+		{
+		WinGetClass, class, A
+		if (class = "Mozillawindowclass1")
+			msgbox, this is a notification
+		}
+	if WinActive("ahk_exe firefox.exe")
+		Send ^{PGDN}
 else
 	{
 	;WinRestore ahk_exe firefox.exe
@@ -40,6 +53,34 @@ else
 	}
 }
 
+;Same thing as F1, but reverse order.
++F1::
+switchToFirefoxAndTabsReverse() {
+IfWinNotExist, ahk_class MozillaWindowClass
+	Run, firefox.exe
+if WinActive("ahk_exe firefox.exe")
+	{
+	WinGetClass, class, A
+	if (class = "Mozillawindowclass1")
+		msgbox, this is a notification
+	}
+if WinActive("ahk_exe firefox.exe")
+	Send ^{PGUP}
+else
+	{
+	;WinRestore ahk_exe firefox.exe
+	WinActivatebottom ahk_exe firefox.exe
+	;sometimes winactivate is not enough. the window is brought to the foreground, but not put into FOCUS.
+	;the below code should fix that.
+	WinGet, hWnd, ID, ahk_class MozillaWindowClass
+	DllCall("SetForegroundWindow", UInt, hWnd)
+	}
+}
+return
+
+
+;If a Firefox window doesn't exist, run Firefox.
+;If Firefox windows do exist, switch between them.
 F2::
 switchToOtherFirefoxWindows() {
 Process, Exist, firefox.exe
@@ -47,14 +88,37 @@ Process, Exist, firefox.exe
 		Run, firefox.exe
 	else
 	{
-	GroupAdd, taranfirefoxes, ahk_class MozillaWindowClass
-	if WinActive("ahk_class MozillaWindowClass")
-		GroupActivate, taranfirefoxes, r
-	else
-		WinActivate ahk_class MozillaWindowClass
+		GroupAdd, taranfirefoxes, ahk_class MozillaWindowClass
+		if WinActive("ahk_class MozillaWindowClass")
+			GroupActivate, taranfirefoxes, r
+		else
+			WinActivate ahk_class MozillaWindowClass
 	}
 }
+return
 
+;Same thing as F2, but reverse order.
++F2::
+switchToOtherFirefoxWindowsReverse() {
+Process, Exist, firefox.exe
+	if errorLevel = 0
+		Run, firefox.exe
+	else
+	{
+		GroupAdd, taranfirefoxes, ahk_class MozillaWindowClass
+		; if WinActive("ahk_class MozillaWindowClass")
+		; 	WinActivate ahk_group taranfirefoxes
+		; else
+		; 	WinActivate ahk_class MozillaWindowClass
+		WinActivate ahk_group taranfirefoxes
+	}
+}
+return
+
+
+;If a Chrome window doesn't exist, run Chrome.
+;If a Chrome window does exist, switch to Chrome.
+;If Chrome is active, send ^PGDN (switch between tabs).
 F3::
 switchToChromeAndTabs()
 {
@@ -66,6 +130,13 @@ else
 	WinActivate ahk_exe chrome.exe
 }
 
+
+
+
+
+
+;If a Chrome window doesn't exist, run Chrome.
+;If Chrome windows do exist, switch between them.
 F4::
 switchToOtherChromeWindows()
 {

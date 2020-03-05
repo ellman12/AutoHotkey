@@ -5405,3 +5405,6 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:govt::government
 :*:ibm::IBM
 :*:watson::Watson
+::ff::Firefox
+:*:chr::Chrome
+:*:gchr::Google Chrome
