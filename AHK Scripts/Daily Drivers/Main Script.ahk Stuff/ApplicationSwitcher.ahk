@@ -430,42 +430,7 @@ ActivateBothF6AndF7Windows() {
 ;Activate windows NOT in the F6 and F7 window groups.
 ActivateNeitherF6NorF7Windows() {
 
-	; Send, !{Escape}
+	; GroupAdd, allWindows, AllWindows
+	; GroupDeactivate, AllWindows, R
 
-	; ;Get active window's PID
-	; WinGet, F6AndF7WinID, ID, A
-
-	; for indexF6AndF7, value in F6andF7WinIDArray
-	; {
-	; 	if (value = F6AndF7WinID) {
-	; 		Send, !{Escape}
-	; 		break
-	; 	}
-	; }
-	; return
-
-	; Send, !{Escape}
-
-	; WinGet, winList, List
-
-	; Loop %winList%
-	; {
-
-	; Id:=winList%A_Index%
-
-	; ; WinGetTitle, TVar , % "ahk_id " Id
-
-	; winList%A_Index%:=winList ;use this if you want an array
-
-	; winList.=winList "`n" ;use this if you just want the list
-
-	; }
-
-	; MsgBox %winList%
-
-
-
-	; GroupAdd, tempGroup, "ahk_class"
-	; GroupActivate, tempGroup
-
-}
+	}
