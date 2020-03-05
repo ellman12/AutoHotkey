@@ -15,18 +15,6 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ; activate the other window on the other virtual desktop, it will not activate. It never used to do this, but this is
 ; actually pretty awesome.
 
-
-
-;TODO!!!!!!!!!!!!!!!!!!!
-
-; +Fx, reverse order
-
-; ^Fx new normal window, if applicable
-
-; ^!Fx (except F1) new private window, or whatever
-
-
-
 ;If a Firefox window doesn't exist, run Firefox.
 ;If a Firefox window does exist, switch to Chrome.
 ;If Firefox is active, send ^PGDN (switch between tabs).
@@ -53,7 +41,7 @@ else
 	}
 }
 
-;Same thing as F1, but reverse order.
+;Same thing as F1, but reverse order (PGUP instead of PGDN).
 +F1::
 switchToFirefoxAndTabsReverse() {
 IfWinNotExist, ahk_class MozillaWindowClass
@@ -78,7 +66,6 @@ else
 }
 return
 
-
 ;If a Firefox window doesn't exist, run Firefox.
 ;If Firefox windows do exist, switch between them.
 F2::
@@ -97,24 +84,20 @@ Process, Exist, firefox.exe
 }
 return
 
-;Same thing as F2, but reverse order.
-+F2::
-switchToOtherFirefoxWindowsReverse() {
-Process, Exist, firefox.exe
-	if errorLevel = 0
-		Run, firefox.exe
-	else
-	{
-		GroupAdd, taranfirefoxes, ahk_class MozillaWindowClass
-		; if WinActive("ahk_class MozillaWindowClass")
-		; 	WinActivate ahk_group taranfirefoxes
-		; else
-		; 	WinActivate ahk_class MozillaWindowClass
-		WinActivate ahk_group taranfirefoxes
-	}
-}
+;Create a new normal Firefox window.
+^F1::
+Run, firefox.exe
 return
 
+;Create a new normal Firefox window.
+^F2::
+Run, firefox.exe
+return
+
+;Create a new Private Firefox window.
+^!F2::
+Run, firefox.exe -private-window
+return
 
 ;If a Chrome window doesn't exist, run Chrome.
 ;If a Chrome window does exist, switch to Chrome.
@@ -129,11 +112,6 @@ if WinActive("ahk_exe chrome.exe")
 else
 	WinActivate ahk_exe chrome.exe
 }
-
-
-
-
-
 
 ;If a Chrome window doesn't exist, run Chrome.
 ;If Chrome windows do exist, switch between them.
@@ -153,7 +131,28 @@ Process, Exist, chrome.exe
 	}
 }
 
-;MR button on my keyboard.
+;Create a new normal Chrome window.
+^F3::
+Run, chrome.exe
+return
+
+;Create a new normal Chrome window.
+^F4::
+Run, chrome.exe
+return
+
+;Create a new incognito Chrome window.
+^!F3::
+Run, chrome.exe -incognito
+return
+
+;Create a new incognito Chrome window.
+^!F4::
+Run, chrome.exe -incognito
+return
+
+
+;MR button on my K95 RGB keyboard.
 ;Used for activating and switching to File Explorer windows.
 ^!F1::
 switchToExplorer() {
