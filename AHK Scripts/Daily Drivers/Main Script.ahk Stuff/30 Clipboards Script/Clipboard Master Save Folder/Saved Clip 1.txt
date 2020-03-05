@@ -1,0 +1,5 @@
+@Test
+    void test2_i2GreaterThani1() {
+        Ex2gSample obj2 = new Ex2gSample(0, 2, 3.0, 4.0, "Aaaa", "Bbbb");
+        assertFalse(obj2.test2(), "Testing i2 > i1.");
+    }
