@@ -113,6 +113,19 @@ else
 	WinActivate ahk_exe chrome.exe
 }
 
+;Same thing as F3, but reverse order (PGUP instead of PGDN).
++F3::
+switchToChromeAndTabsReverse()
+{
+IfWinNotExist, ahk_class Chrome_WidgetWin_1
+	Run, chrome.exe
+if WinActive("ahk_exe chrome.exe")
+	Send ^{PGUP}
+else
+	WinActivate ahk_exe chrome.exe
+}
+return
+
 ;If a Chrome window doesn't exist, run Chrome.
 ;If Chrome windows do exist, switch between them.
 F4::
