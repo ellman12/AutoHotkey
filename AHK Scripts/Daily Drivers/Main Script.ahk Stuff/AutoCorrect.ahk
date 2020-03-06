@@ -5371,6 +5371,32 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:gf::g
 :*:rt::r
 
+;Automatically change things like f1 to F1; makes life easier.
+:*:f1::F1
+:*:f2::F2
+:*:f3::F3
+:*:f4::F4
+:*:f5::F5
+:*:f6::F6
+:*:f7::F7
+:*:f8::F8
+:*:f9::F9
+:*:f10::F10
+:*:f11::F11
+:*:f12::F12
+:*:f13::F13
+:*:f14::F14
+:*:f15::F15
+:*:f16::F16
+:*:f17::F17
+:*:f18::F18
+:*:f19::F19
+:*:f20::F20
+:*:f21::F21
+:*:f22::F22
+:*:f23::F23
+:*:f24::F24
+
 ::american::American
 ::americans::Americans
 ::consqeuences::consequences
