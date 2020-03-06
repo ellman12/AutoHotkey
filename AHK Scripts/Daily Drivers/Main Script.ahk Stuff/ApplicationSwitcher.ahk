@@ -11,9 +11,9 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ;All of this stuff works beautifully.
 
 ;3/2/2020: something I've noticed is this example:
-;Say you have 2 virtual desktops, and you have a window on each one. If you have both in the same group, and you try to
-; activate the other window on the other virtual desktop, it will not activate. It never used to do this, but this is
-; actually pretty awesome.
+;Say you have 2 virtual desktops, and you have a window on each virtual desktop. If you have both in the same group, and you try to
+; activate the other window on the other virtual desktop, it will not activate. It never used to do this, but now it does.
+;This is actually pretty awesome.
 
 ;If a Firefox window doesn't exist, run Firefox.
 ;If a Firefox window does exist, switch to Chrome.
