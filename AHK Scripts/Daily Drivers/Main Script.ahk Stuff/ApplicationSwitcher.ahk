@@ -2,7 +2,6 @@
 ; #Warn ;Enable warnings to assist with detecting common errors.
 SendMode Input ;Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir% ;Ensures a consistent starting directory.
-#SingleInstance force
 
 ;A lot of this code is taken from Taran Van Hemert from Linus Media Group.
 ;His video on this: https://www.youtube.com/watch?v=OqyQABySV8k
@@ -11,15 +10,19 @@ SetWorkingDir %A_ScriptDir% ;Ensures a consistent starting directory.
 ;All of this stuff works beautifully.
 
 ;3/2/2020: something I've noticed is this example:
-;Say you have 2 virtual desktops, and you have a window on each one. If you have both in the same group, and you try to
-; activate the other window on the other virtual desktop, it will not activate. It never used to do this, but this is
-; actually pretty awesome.
+;Say you have 2 virtual desktops, and you have a window on each virtual desktop. If you have both in the same group, and you try to
+; activate the other window on the other virtual desktop, it will not activate. It never used to do this, but now it does.
+;This is actually pretty awesome.
 
 ;If a Firefox window doesn't exist, run Firefox.
 ;If a Firefox window does exist, switch to Chrome.
 ;If Firefox is active, send ^PGDN (switch between tabs).
+
+;Array for !F2; stores all Firefox window IDs.
+allFirefoxWindowIDs := []
+
 F1::
-switchToFirefoxAndTabs() {
+switchToFirefoxAndBetweenTabs() {
 IfWinNotExist, ahk_class MozillaWindowClass
 	Run, firefox.exe
 	if WinActive("ahk_exe firefox.exe")
@@ -43,7 +46,7 @@ else
 
 ;Same thing as F1, but reverse order (PGUP instead of PGDN).
 +F1::
-switchToFirefoxAndTabsReverse() {
+switchToFirefoxAndBetweenTabsReverse() {
 IfWinNotExist, ahk_class MozillaWindowClass
 	Run, firefox.exe
 if WinActive("ahk_exe firefox.exe")
@@ -67,7 +70,8 @@ else
 return
 
 ;If a Firefox window doesn't exist, run Firefox.
-;If Firefox windows do exist, switch between them.
+;If Firefox windows do exist, add them to a window
+; group and switch between them.
 F2::
 switchToOtherFirefoxWindows() {
 Process, Exist, firefox.exe
@@ -82,6 +86,74 @@ Process, Exist, firefox.exe
 			WinActivate ahk_class MozillaWindowClass
 	}
 }
+return
+
+;Same as F2, but reverse.
+!F2::
+switchToOtherFirefoxWindowsReverse() {
+
+Process, Exist, firefox.exe
+	if errorLevel = 0 ;If a Firefox process doesn't exist, run it.
+		Run, firefox.exe
+	else
+	{
+		;Get a list of all the Firefox windows.
+		WinGet, firefoxWinList, List, ahk_class MozillaWindowClass
+
+		;Loop through the pseudo-array window list, and add the Firefox window IDs to the object array.
+		Loop %firefoxWinList%
+		{
+			WinActivate, % "ahk_id" firefoxWinList%A_Index%
+
+			;3/6/2020 5:35 PM: Before my laptop dies...
+			;This !F2 thing works pretty good. Now, I just need
+			;to get it so it goes through a single window at a time.
+			;Then, obviously, have it do it backwards.
+
+		}
+
+
+
+
+		; foundFF := false
+		
+		; ;Loop through the pseudo-array window list, and add the Firefox window IDs to the object array.
+		; ; Loop %firefoxWinList%
+		; ; {
+		; ; }
+
+		;TODO probs have something like this...
+		; for indexFF, value in firefoxWinList
+
+
+		;Activating Firefox windows.
+		;Increment the current window by 1.
+		currentFFIndex++
+		;If the current window is greater than the number of entries in the array.
+		if (currentFFIndex > allFirefoxWindowIDs.MaxIndex())
+			;Then reset it to the lowest index.
+			currentFFIndex := allFirefoxWindowIDs.MinIndex()
+		;Now activate the corresponding Firefox window.
+		WinActivate, % "ahk_id" allFirefoxWindowIDs[currentFFIndex]
+	}
+}
+return
+
+;TODO temp
+!+F2::
+; currentFFIndex := 0
+currentFFIndex := 1
+
+		;Activating Firefox windows.
+		;Increment the current window by 1.
+		; currentFFIndex++
+		;If the current window is greater than the number of entries in the array.
+		; if (currentFFIndex > allFirefoxWindowIDs.MaxIndex())
+			;Then reset it to the lowest index.
+			; currentFFIndex := allFirefoxWindowIDs.MinIndex()
+		;Now activate the corresponding Firefox window.
+		; WinActivate, % "ahk_id" allFirefoxWindowIDs[currentFFIndex]
+		WinActivate, % "ahK_id" firefoxWinList%currentFFIndex%
 return
 
 ;Create a new normal Firefox window.
@@ -178,7 +250,8 @@ else
 	WinActivate ahk_class CabinetWClass ;you have to use WinActivatebottom if you didn't create a window group.
 }
 
-;Back button.
+;Back button; does stuff in reverse.
+;Ex. F9 in Firefox does the opposite of F1.
 F9::
 if WinActive("ahk_exe firefox.exe")
 	Send ^{PgUp}
@@ -232,28 +305,30 @@ return
 
 ;Add the current window to the array.
 AddWindowF6() {
+
+	;Quick little prompt telling the user the window was added.
 	ToolTip, Added to F6 Group!
 	Sleep, 200
 	ToolTip
 
-	; Get the active window's ID
+	;Get the active window's ID
 	WinGet, thisIDF6, ID, A
-	; Value to track if ID was found in the group
+	;Value to track if ID was found in the group
 	foundF6 := false
-	; Loop through all the IDs
+	;Loop through all the IDs
 	for indexF6, value in WindowGroupF6
 	{
-		; If the current ID was found inside the array
+		;If the current ID was found inside the array
 		if (value = thisIDF6) {
-			; Then mark it as found and break the loop
+			;Then mark it as found and break the loop
 			foundF6 = true
 			break
 		}
 	}
 
-	; If the ID was never found in the array
+	;If the ID was never found in the array
 	if (foundF6 = false)
-		; Add it to the array
+		;Add it to the array
 		WindowGroupF6.Push(thisIDF6)
 		F6andF7WinIDArray.Push(thisIDF6)
 	return
@@ -269,7 +344,7 @@ RemoveWindowF6() {
 	foundF6 := false
 	for indexF6, value in WindowGroupF6
 	{
-		; Same as the AddWindow function except if a match is found, remove it from the array
+		;Same as the AddWindow function except if a match is found, remove it from the array
 		if (value = thisIDF6) {
 			WindowGroupF6.RemoveAt(indexF6)
 			F6andF7WinIDArray.RemoveAt(thisIDF6)
@@ -294,12 +369,12 @@ NextWindowF6() {
 
 ;Activate previous window.
 PrevWindowF6() {
-	; Decrement the current window by 1.
+	;Decrement the current window by 1.
 	CurrentWinF6--
-	; If it's lower than the lowest index, set CurrentWindow to the maxindex.
+	;If it's lower than the lowest index, set CurrentWindow to the maxindex.
 	if (CurrentWinF6 < WindowGroupF6.MinIndex())
 		CurrentWinF6 := WindowGroupF6.MaxIndex()
-	; Now activate that window based on CurrentWin.
+	;Now activate that window based on CurrentWin.
 	WinActivate, % "ahk_id" WindowGroupF6[CurrentWinF6]
 	return
 }
@@ -345,24 +420,24 @@ AddWindowF7() {
 	Sleep, 200
 	ToolTip
 
-	; Get the active window's ID
+	;Get the active window's ID
 	WinGet, thisIDF7, ID, A
-	; Value to track if ID was found in the group
+	;Value to track if ID was found in the group
 	foundF7 := false
-	; Loop through all the IDs
+	;Loop through all the IDs
 	for indexF7, value in WindowGroupF7
 	{
-		; If the current ID was found inside the array
+		;If the current ID was found inside the array
 		if (value = thisIDF7) {
-			; Then mark it as found and break the loop
+			;Then mark it as found and break the loop
 			foundF7 = true
 			break
 		}
 	}
 
-	; If the ID was never found in the array.
+	;If the ID was never found in the array.
 	if (foundF7 = false)
-		; Add it to the array.
+		;Add it to the array.
 		WindowGroupF7.Push(thisIDF7)
 		F6andF7WinIDArray.Push(thisIDF7)
 	return
@@ -377,7 +452,7 @@ RemoveWindowF7() {
 	foundF7 := false
 	for indexF7, value in WindowGroupF7
 	{
-		; Same as the AddWindow function except if a match is found, remove it from the array
+		;Same as the AddWindow function except if a match is found, remove it from the array
 		if (value = thisIDF7) {
 			WindowGroupF7.RemoveAt(indexF7)
 			F6andF7WinIDArray.RemoveAt(thisIDF7)
@@ -388,24 +463,24 @@ RemoveWindowF7() {
 }
 
 NextWindowF7() {
-	; Increment the current window by 1
+	;Increment the current window by 1
 	CurrentWinF7++
-	; If the current window is greater than the number of entries in the array
+	;If the current window is greater than the number of entries in the array
 	if (CurrentWinF7 > WindowGroupF7.MaxIndex())
-		; Then reset it to the lowest index
+		;Then reset it to the lowest index
 		CurrentWinF7 := WindowGroupF7.MinIndex()
-	; Now activate the window based on CurrentWin
+	;Now activate the window based on CurrentWin
 	WinActivate, % "ahk_id" WindowGroupF7[CurrentWinF7]
 	return
 }
 
 PrevWindowF7() {
-	; Decrement the current window by 1
+	;Decrement the current window by 1
 	CurrentWinF7--
-	; If it's lower than the lowest index, set CurrentWindow to the maxindex
+	;If it's lower than the lowest index, set CurrentWindow to the maxindex
 	if (CurrentWinF7 < WindowGroupF7.MinIndex())
 		CurrentWinF7 := WindowGroupF7.MaxIndex()
-	; Now activate that window based on CurrentWin
+	;Now activate that window based on CurrentWin
 	WinActivate, % "ahk_id" WindowGroupF7[CurrentWinF7]
 	return
 }
@@ -443,7 +518,7 @@ ActivateBothF6AndF7Windows() {
 ;Activate windows NOT in the F6 and F7 window groups.
 ActivateNeitherF6NorF7Windows() {
 
-	; GroupAdd, allWindows, AllWindows
-	; GroupDeactivate, AllWindows, R
+	;GroupAdd, allWindows, AllWindows
+	;GroupDeactivate, AllWindows, R
 
 	}

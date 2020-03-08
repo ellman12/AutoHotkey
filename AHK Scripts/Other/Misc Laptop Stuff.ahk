@@ -47,6 +47,16 @@ return
 Reload
 return
 
+;Copy.
+CapsLock::
+Send, ^c
+return
+
+;Paste.
+F11::
+Send, ^v
+return
+
 ;Because Ctrl + Backspace in MSWord is kinda quirky doe.
 \::
 Send, ^+{Left}
@@ -202,8 +212,8 @@ return
 
 :*:itss::it's
 
-CapsLock::
-return
+;~ CapsLock::
+;~ return
 
 ;Keyboard shortcut originally from Chrome OS; minimizes the active window.
 !-::
