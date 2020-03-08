@@ -433,7 +433,6 @@ ActivateBothF6AndF7Windows() {
 ;Activate windows NOT in the F6 and F7 window groups.
 ActivateNeitherF6NorF7Windows() {
 
-	;GroupAdd, allWindows, AllWindows
-	;GroupDeactivate, AllWindows, R
-
-	}
+	GroupAdd, allWindows, AllWindows
+	GroupDeactivate, AllWindows, R
+}
