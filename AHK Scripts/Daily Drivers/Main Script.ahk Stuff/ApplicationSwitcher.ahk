@@ -18,53 +18,37 @@ SetWorkingDir %A_ScriptDir% ;Ensures a consistent starting directory.
 ;If a Firefox window does exist, switch to Chrome.
 ;If Firefox is active, send ^PGDN (switch between tabs).
 
-;Array for !F2; stores all Firefox window IDs.
-allFirefoxWindowIDs := []
-
 F1::
 switchToFirefoxAndBetweenTabs() {
-IfWinNotExist, ahk_class MozillaWindowClass
-	Run, firefox.exe
+	IfWinNotExist, ahk_class MozillaWindowClass
+		Run, firefox.exe
 	if WinActive("ahk_exe firefox.exe")
-		{
-		WinGetClass, class, A
-		if (class = "Mozillawindowclass1")
-			msgbox, this is a notification
-		}
-	if WinActive("ahk_exe firefox.exe")
-		Send ^{PGDN}
-else
-	{
-	;WinRestore ahk_exe firefox.exe
-	WinActivatebottom ahk_exe firefox.exe
-	;sometimes winactivate is not enough. the window is brought to the foreground, but not put into FOCUS.
-	;the below code should fix that.
-	WinGet, hWnd, ID, ahk_class MozillaWindowClass
-	DllCall("SetForegroundWindow", UInt, hWnd)
+			Send ^{PGDN}
+	else {
+		;WinRestore ahk_exe firefox.exe
+		WinActivatebottom ahk_exe firefox.exe
+		;sometimes winactivate is not enough. the window is brought to the foreground, but not put into FOCUS.
+		;the below code should fix that.
+		WinGet, hWnd, ID, ahk_class MozillaWindowClass
+		DllCall("SetForegroundWindow", UInt, hWnd)
 	}
 }
+return
 
 ;Same thing as F1, but reverse order (PGUP instead of PGDN).
 +F1::
 switchToFirefoxAndBetweenTabsReverse() {
-IfWinNotExist, ahk_class MozillaWindowClass
-	Run, firefox.exe
-if WinActive("ahk_exe firefox.exe")
-	{
-	WinGetClass, class, A
-	if (class = "Mozillawindowclass1")
-		msgbox, this is a notification
-	}
-if WinActive("ahk_exe firefox.exe")
-	Send ^{PGUP}
-else
-	{
-	;WinRestore ahk_exe firefox.exe
-	WinActivatebottom ahk_exe firefox.exe
-	;sometimes winactivate is not enough. the window is brought to the foreground, but not put into FOCUS.
-	;the below code should fix that.
-	WinGet, hWnd, ID, ahk_class MozillaWindowClass
-	DllCall("SetForegroundWindow", UInt, hWnd)
+	IfWinNotExist, ahk_class MozillaWindowClass
+		Run, firefox.exe
+	if WinActive("ahk_exe firefox.exe")
+			Send ^{PGUP}
+	else {
+		;WinRestore ahk_exe firefox.exe
+		WinActivatebottom ahk_exe firefox.exe
+		;sometimes winactivate is not enough. the window is brought to the foreground, but not put into FOCUS.
+		;the below code should fix that.
+		WinGet, hWnd, ID, ahk_class MozillaWindowClass
+		DllCall("SetForegroundWindow", UInt, hWnd)
 	}
 }
 return
@@ -74,8 +58,7 @@ return
 ; group and switch between them.
 F2::
 switchToOtherFirefoxWindows() {
-Process, Exist, firefox.exe
-	if errorLevel = 0
+	If WinNotExist, ahk_class MozillaWindowClass
 		Run, firefox.exe
 	else
 	{
@@ -86,74 +69,6 @@ Process, Exist, firefox.exe
 			WinActivate ahk_class MozillaWindowClass
 	}
 }
-return
-
-;Same as F2, but reverse.
-!F2::
-switchToOtherFirefoxWindowsReverse() {
-
-Process, Exist, firefox.exe
-	if errorLevel = 0 ;If a Firefox process doesn't exist, run it.
-		Run, firefox.exe
-	else
-	{
-		;Get a list of all the Firefox windows.
-		WinGet, firefoxWinList, List, ahk_class MozillaWindowClass
-
-		;Loop through the pseudo-array window list, and add the Firefox window IDs to the object array.
-		Loop %firefoxWinList%
-		{
-			WinActivate, % "ahk_id" firefoxWinList%A_Index%
-
-			;3/6/2020 5:35 PM: Before my laptop dies...
-			;This !F2 thing works pretty good. Now, I just need
-			;to get it so it goes through a single window at a time.
-			;Then, obviously, have it do it backwards.
-
-		}
-
-
-
-
-		; foundFF := false
-		
-		; ;Loop through the pseudo-array window list, and add the Firefox window IDs to the object array.
-		; ; Loop %firefoxWinList%
-		; ; {
-		; ; }
-
-		;TODO probs have something like this...
-		; for indexFF, value in firefoxWinList
-
-
-		;Activating Firefox windows.
-		;Increment the current window by 1.
-		currentFFIndex++
-		;If the current window is greater than the number of entries in the array.
-		if (currentFFIndex > allFirefoxWindowIDs.MaxIndex())
-			;Then reset it to the lowest index.
-			currentFFIndex := allFirefoxWindowIDs.MinIndex()
-		;Now activate the corresponding Firefox window.
-		WinActivate, % "ahk_id" allFirefoxWindowIDs[currentFFIndex]
-	}
-}
-return
-
-;TODO temp
-!+F2::
-; currentFFIndex := 0
-currentFFIndex := 1
-
-		;Activating Firefox windows.
-		;Increment the current window by 1.
-		; currentFFIndex++
-		;If the current window is greater than the number of entries in the array.
-		; if (currentFFIndex > allFirefoxWindowIDs.MaxIndex())
-			;Then reset it to the lowest index.
-			; currentFFIndex := allFirefoxWindowIDs.MinIndex()
-		;Now activate the corresponding Firefox window.
-		; WinActivate, % "ahk_id" allFirefoxWindowIDs[currentFFIndex]
-		WinActivate, % "ahK_id" firefoxWinList%currentFFIndex%
 return
 
 ;Create a new normal Firefox window.
