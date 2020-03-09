@@ -602,3 +602,56 @@ return
 
 :*:java::Java
 #If
+
+
+;~ ;Temp for moving single tracks to new folder
+;~ #y::
+;~ MsgBox, Alt Tab stupid ass! Make sure pointer is in the right spot dummy!
+;~ Sleep 1000
+;~ Loop 54 {
+;~ Send, {Enter}
+;~ Sleep 400
+;~ Send, ^a
+;~ Sleep 80
+;~ Send, ^c
+;~ Sleep 80
+;~ Send, !{Tab}
+;~ Sleep 705
+;~ Send, ^v
+;~ Sleep 470
+;~ Send, !{Tab}
+;~ Sleep 460
+;~ Send, !{Up}
+;~ Sleep 600
+;~ Send, {Delete}
+;~ Sleep 450
+
+;~ ;Get cursor to the next folder
+;~ Send, {Down}
+;~ Sleep 700
+;~ Send, {Up}
+;~ Sleep 700
+
+
+;~ Send, {Click}
+;~ SLeep 550
+;~ }
+;~ return
+
+;Temp for mass renaming in MusicBee
+;~ #y::
+
+;~ Loop 28 {
+;~ Send, {End}
+;~ Sleep 300
+;~ Send, ^+{Left 5}
+;~ Sleep 36
+;~ Send, +{Left}
+;~ Sleep 500
+;~ Send, {Delete}
+;~ Sleep 500
+;~ Send, {Click}
+;~ Sleep 400
+;~ }
+
+;~ return

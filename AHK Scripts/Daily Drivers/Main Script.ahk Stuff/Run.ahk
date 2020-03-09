@@ -59,7 +59,7 @@ Run, edit %openScriptFunctionText%
 return
 
 ;Opens the current tab in Chrome
-Case "Open in Chrome", "op in chr":
+Case "Open in Chrome", "op in chr", "op in Chrome":
 Send, ^l
 Sleep, 80
 Send, ^c
@@ -68,7 +68,7 @@ Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" %Clipboard%
 return
 
 ;Opens the current tab in Firefox
-Case "Open in Firefox", "op in ff":
+Case "Open in Firefox", "op in ff", "op in Firefox":
 Send, ^l
 Sleep, 80
 Send, ^c
