@@ -27,7 +27,7 @@ global CurrentWinF6AndF7ActBoth := 1
 #Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Run.AHK
 
 
-;Pushing Windows Key + P suspends all hotkeys, thus "pausing" the script. Useful for when I'm playing games or something.
+;Pushing Windows Key + P suspends all hotkeys, thus "pausing" the script.
 #!p::Suspend, Toggle
 
 ;Pushing Win + Alt + p suspends all hotkeys for the specified number in milliseconds (in this case, 2500).
@@ -76,6 +76,10 @@ return
 !PrintScreen::
 Send, ^{Esc}
 return
+
+;Disables these ANNOYING things.
+^WheelDown::return
+^WheelUp::return
 
 ;Log volume scaling stuff for NumpadAdd and NumpadEnter. IDK where I found this, nor do I understand/know how it works.
 f(x) {
