@@ -225,7 +225,13 @@ return
 WinMaximize, A
 return
 
-
+;Used for auto-clicking discussion questions in D2L Grid View, to mark them as "Read".
+#r::
+Send, {Click}
+Sleep 150
+MouseMove, 0, 64, 0, R
+Sleep 150
+return
 
 ;*****************************************HOTKEYS FOR TITLE STUFF*********************************
 ;These hotkeys allow the user to adjust and modify text in whatever way they want.
