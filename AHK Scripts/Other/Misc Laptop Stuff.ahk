@@ -63,6 +63,27 @@ Send, ^+{Left}
 Send, {BackSpace}
 return
 
+;~ #IfWinActive, "ahk_exe WINWORD.exe"
+;Bring up the Thesaurus in Word.
+!PGUP::
+Send, {AppsKey}
+Sleep 160
+Send, {Up 5}
+Sleep 110
+Send, {Right}
+return
+
+;Bring up the Smart Lookup thing in Word.
+!PGDN::
+Send, {AppsKey}
+Sleep 160
+Send, {Up 6}
+Sleep 110
+Send, {Enter}
+return
+
+#If
+
 #b::
 MouseMove, 1432, 885, 0
 Sleep 300
