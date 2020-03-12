@@ -57,20 +57,23 @@ F11::
 Send, ^v
 return
 
+
 ;Because Ctrl + Backspace in MSWord is kinda quirky doe.
 \::
 Send, ^+{Left}
 Send, {BackSpace}
 return
 
-;~ #IfWinActive, "ahk_exe WINWORD.exe"
 ;Bring up the Thesaurus in Word.
+;~ #IfWinActive "ahk_exe WINWORD.EXE"
 !PGUP::
 Send, {AppsKey}
 Sleep 160
 Send, {Up 5}
 Sleep 110
 Send, {Right}
+Sleep 300
+Send, {Down} ;Get the first word selected.
 return
 
 ;Bring up the Smart Lookup thing in Word.
@@ -82,7 +85,13 @@ Sleep 110
 Send, {Enter}
 return
 
-#If
+$^+v::
+MsgBox
+Send, ^v
+return
+
+;~ #If
+
 
 #b::
 MouseMove, 1432, 885, 0
