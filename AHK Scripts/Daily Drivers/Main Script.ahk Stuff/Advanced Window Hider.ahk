@@ -182,6 +182,7 @@ F8::
         for index, value in F8WinIDArray
         ;...and show everything
         WinShow, % "ahk_id " value
+        WinActivate, , % "ahk_id " value
     ;If F8ShowHideToggle does not = 1
     } else {
         ;Loop through the array...
@@ -382,6 +383,7 @@ F10::
         for index, value in F10WinIDArray
         ;...and show everything
         WinShow, % "ahk_id " value
+        WinActivate, , % "ahk_id " value
     ;If F10ShowHideToggle does not = 1
     } else {
         ;Loop through the array...
