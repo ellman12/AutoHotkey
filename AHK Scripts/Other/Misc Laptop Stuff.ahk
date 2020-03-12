@@ -1,6 +1,8 @@
 #SingleInstance force
 SendMode, Input
 
+;Misc stuff for my Lenovo T430 laptop.
+
 ;****************************************MISC VARIABLES AND STUFF*********************************
 ;Variables for F6 group stuff.
 ;Tracks all windows you want as part of your custom group.

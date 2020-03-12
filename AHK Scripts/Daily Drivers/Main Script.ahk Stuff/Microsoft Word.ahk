@@ -165,7 +165,8 @@ return
 ;****************************************MISC MSWORD ACTIONS***************************************
 ;(Ctrl + Backspace) Delete an entire word.
 \::
-Send, ^{BackSpace}
+Send, ^+{Left}
+Send, {BackSpace}
 return
 
 ;(Ctrl + S) save document.

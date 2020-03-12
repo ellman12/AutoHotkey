@@ -140,7 +140,7 @@ Sleep 100
 
 ;****************************************GLOBAL HOTKEYS***************************************
 ;These global hotkeys are hotkeys that are always running, regardless of the active window, class, or whatever.
-;Pushing Windows Key + P suspends all hotkeys, thus "pausing" the script. Useful for when I'm playing games or something.
+;Pushing Windows Key + P suspends all hotkeys, thus "pausing" the script.
 #!p::Suspend, Toggle
 
 ;Pushing Win + Alt + p suspends all hotkeys for the specified number in milliseconds (in this case, 2500).
@@ -531,9 +531,25 @@ return
 ;*****************************EXPERIMENTAL*****************************
 ;----------------------------------------------------------------------
 
-;^Backspace delete word
 \::
-Send, ^{BackSpace}
+Send, ^+{Left}
+Send, {BackSpace}
+return
+
+^!Up::
+Send, {Click up}
+return
+
+^!Down::
+Send, {Click down}
+return
+
+^!Left::
+MouseMove, -10, 0, 0, R
+return
+
+^!Right::
+MouseMove, 10, 0, 0, R
 return
 
 ;~ ;If Scroll Lock is on, Up and Down send Up and Down 10 times per each keystroke.
@@ -641,17 +657,15 @@ return
 ;Temp for mass renaming in MusicBee
 ;~ #y::
 
-;~ Loop 28 {
+;~ Loop 15 {
 ;~ Send, {End}
-;~ Sleep 300
-;~ Send, ^+{Left 5}
-;~ Sleep 36
-;~ Send, +{Left}
-;~ Sleep 500
-;~ Send, {Delete}
-;~ Sleep 500
+;~ Sleep 200
+;~ Send, {BackSpace 4}
 ;~ Send, {Click}
-;~ Sleep 400
+;~ Sleep 240
+
+;~ Send,  - Mario Kart Wii
+
 ;~ }
 
 ;~ return

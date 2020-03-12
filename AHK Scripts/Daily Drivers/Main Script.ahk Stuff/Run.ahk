@@ -77,13 +77,13 @@ Run, "C:\Program Files\Mozilla Firefox\firefox.exe" %Clipboard%
 return
 
 ;Open thesaurus.com in Chrome and search for the inputted word
-Case "Thes Chr":
+Case "Thes Chr", "Thes Chrome":
 InputBox, Thes_ChrInputBox, Search for This Word on Thesaurus.com, Type the word you want to search on Thesaurus.com in Chrome.
 Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://www.thesaurus.com/browse/%Thes_ChrInputBox%
 return
 
 ;Open thesaurus.com in Firefox and search for the inputted word
-Case "Thes Ff":
+Case "Thes ff", "Thes Firefox":
 InputBox, Thes_FFInputBox, Search for This Word on Thesaurus.com, Type the word you want to search on Thesaurus.com in Firefox.
 Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.thesaurus.com/browse/%Thes_FFInputBox%
 return
