@@ -29,7 +29,7 @@ global CurrentWinF6AndF7ActBoth := 1
 #Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Run.AHK
 
 
-;Pushing Windows Key + P suspends all hotkeys, thus "pausing" the script. Useful for when I'm playing games or something.
+;Pushing Windows Key + P suspends all hotkeys, thus "pausing" the script.
 #!p::Suspend, Toggle
 
 ;Pushing Win + Alt + p suspends all hotkeys for the specified number in milliseconds (in this case, 2500).
@@ -65,6 +65,27 @@ Send, ^+{Left}
 Send, {BackSpace}
 return
 
+;~ #IfWinActive, "ahk_exe WINWORD.exe"
+;Bring up the Thesaurus in Word.
+!PGUP::
+Send, {AppsKey}
+Sleep 160
+Send, {Up 5}
+Sleep 110
+Send, {Right}
+return
+
+;Bring up the Smart Lookup thing in Word.
+!PGDN::
+Send, {AppsKey}
+Sleep 160
+Send, {Up 6}
+Sleep 110
+Send, {Enter}
+return
+
+#If
+
 #b::
 MouseMove, 1432, 885, 0
 Sleep 300
@@ -78,6 +99,10 @@ return
 !PrintScreen::
 Send, ^{Esc}
 return
+
+;Disables these ANNOYING things.
+^WheelDown::return
+^WheelUp::return
 
 ;Log volume scaling stuff for NumpadAdd and NumpadEnter. IDK where I found this, nor do I understand/know how it works.
 f(x) {
@@ -227,7 +252,13 @@ return
 WinMaximize, A
 return
 
-
+;Used for auto-clicking discussion questions in D2L Grid View, to mark them as "Read".
+#r::
+Send, {Click}
+Sleep 150
+MouseMove, 0, 64, 0, R
+Sleep 150
+return
 
 ;*****************************************HOTKEYS FOR TITLE STUFF*********************************
 ;These hotkeys allow the user to adjust and modify text in whatever way they want.
