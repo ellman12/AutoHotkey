@@ -88,7 +88,6 @@ Send, {Enter}
 return
 
 $^+v::
-MsgBox
 Send, ^v
 return
 
