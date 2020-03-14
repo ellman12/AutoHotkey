@@ -59,9 +59,7 @@ F16::
 return
 
 ;Mouse G5
-;Temporarily remapped to F; used for Glory Kills in DOOM.
 F17::
-Send, f
 return
 
 ;Mouse G6
