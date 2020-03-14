@@ -11,20 +11,20 @@ SendMode, Input
 ;Sometimes that's helpful, most of the time it's annoying.
 ;I had a shower thought one day, and this is what I came up with. I knew I had to try this.
 ;It seems to work pretty well.
-;Essentially, when the Chromebook_Typing variable is set to true, when you type a letter A-Z, it moves the mouse to the
-;2nd display, thus getting the annoying pointer out of the view of the document.
+;Essentially, when the chromebookTypingToggle variable is set to true, when you type a letter A-Z, Delete, Backspace, etc., it moves the mouse to the
+;2nd display, thus getting the annoying pointer out of the way.
 */
 
-Chromebook_Typing := false
+chromebookTypingToggle := false
 
 
 ;Toggle the variable, and inform the user of the mode they're in.
 ^+Insert::
-Chromebook_Typing := !Chromebook_Typing
+chromebookTypingToggle := !chromebookTypingToggle
 
-if (Chromebook_Typing = "1") {
+if (chromebookTypingToggle = "1") {
 	MsgBox, 64, Chromebook Typing is ENABLED, Chromebook Typing is ENABLED, 0.3
-} else if (Chromebook_Typing = "0") {
+} else if (chromebookTypingToggle = "0") {
 	MsgBox, 64, Chromebook Typing is DISABLED, Chromebook Typing is DISABLED, 0.3
 } else {
 	MsgBox, 16, You shouldn't be seeing this., This is an else statement error MsgBox for Chromebook Typing. If you see this`, it's probably an error or something lol.
@@ -33,8 +33,8 @@ if (Chromebook_Typing = "1") {
 return
 
 
-;Keys that move the pointer when the variable is set to true (1)
-#If Chromebook_Typing = "1"
+;Keys that move the mouse pointer when the variable is set to true (1)
+#If chromebookTypingToggle = "1"
 
 $a::
 MouseMove, -1920, 540, 0

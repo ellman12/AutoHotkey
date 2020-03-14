@@ -4,33 +4,28 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #SingleInstance force
 
-/*
-This is the script that allows me to control media stuff with the NumPad. It has several modes, which all cause it to different things.
-Originally I was going to have it do the NumPad modes automatically, but applying what I learned from my experience with iCUE, I decided against it.
-For two reasons: 1) more control, and 2) so the script doesn't try to act smart and switch between modes automatically (like trying to edit a profile in
-iCUE and it keeps flipping profiles (modes) constantly, which is EXTREMELY ANNOYING when trying to work on something). That's also one of the reasons I moved
-as much of my stuff as possible from iCUE to AHK. Text programming is always better than GUI programming (like iCUE).
-*/
+;This is the script that allows me to control media stuff with the NumPad. It has several modes, which all cause it to different things.
 
-global master_volume
+global systemMasterVolume
 
 ;Log volume scaling stuff for NumpadAdd and NumpadEnter. IDK where I found this, nor do I understand/know how it works.
 f(x) {
-return exp(6.908*x)/1000.0
+	return exp(6.908*x)/1000.0
 }
+
 inv(y) {
-return ln(1000.0*y)/6.908
+	return ln(1000.0*y)/6.908
 }
 
 
 ;Gets the master volume, displays it, and allows the user to input their own exact and custom volume.
 ^NumpadSub::
-SoundGet, master_volume
-InputBox, master_volume , Input Custom Volume, Input a custom volume. Current volume: %master_volume%., , , , , , , , %master_volume%
+SoundGet, systemMasterVolume
+InputBox, systemMasterVolume , Input Custom Volume, Input a custom volume. Current volume: %systemMasterVolume%., , , , , , , , %systemMasterVolume%
 if ErrorLevel = 1 ;If the user presses Escape or CANCEL.
 	MsgBox, ,CANCEL/Escape was pressed., CANCEL/Escape was pressed., 0.95
 else ;Else adjust set the volume to the inputted variable.
-	SoundSet, %master_volume%
+	SoundSet, %systemMasterVolume%
 return
 
 ;Change the step value of NumPad 2 and NumPad 8.
@@ -38,10 +33,26 @@ return
 InputBox, Num2And8Step, Input Num2 and Num8 step value, Input Num2 and Num8 step value. Current value: %Num2And8Step%., , , , , , , , %Num2And8Step%
 return
 
+;Toggles the autoNumPadModeToggle, and informs the user what mode they're in.
+;According to the documentation https://www.autohotkey.com/docs/KeyList.htm...
+;"While the Ctrl key is held down, the NumLock key produces the key code of Pause, so use ^Pause in hotkeys instead of ^NumLock."
+;That explains why ^Numlock wasn't working; rather strange.
+^Pause::
+
+autoNumPadModeToggle := !autoNumPadModeToggle
+
+	if (autoNumPadModeToggle = "1") {
+		MsgBox, 0, autoNumPadModeToggle is ENABLED, autoNumPadModeToggle is ENABLED, 0.3
+	} else if (autoNumPadModeToggle = "0") {
+		MsgBox, 0, autoNumPadModeToggle is DISABLED, autoNumPadModeToggle is DISABLED, 0.3
+	}
+
+return
+
 
 ;If NumLock = On and ScrollLock = Off. The brackets are for condensing the code.
 ;This mode makes listening to music much easier and thus much more enjoyable.
-#If NumPadMode = "MusicBee"
+#If numPadMode = "MusicBee"
 {
 
 ;No function.
@@ -176,16 +187,16 @@ return
 
 ;Shows the current and exact master volume.
 $NumpadSub::
-SoundGet, master_volume
-master_volume := Round(master_volume, 2)
-MsgBox, 0, Master Volume, Master volume is %master_volume% percent., 0.39
+SoundGet, systemMasterVolume
+systemMasterVolume := Round(systemMasterVolume, 2)
+MsgBox, 0, Master Volume, Master volume is %systemMasterVolume% percent., 0.39
 return
 
 }
 
 ;If NumLock = On and ScrollLock = On.
 ;This mode makes watching YouTube videos easier.
-#If NumPadMode = "YouTube"
+#If numPadMode = "YouTube"
 {
 
 ;No function.
@@ -330,9 +341,9 @@ return
 
 ;Shows the current and exact master volume.
 $NumpadSub::
-SoundGet, master_volume
-master_volume := Round(master_volume, 2)
-MsgBox, 0, Master Volume, Master volume is %master_volume% percent., 0.39
+SoundGet, systemMasterVolume
+systemMasterVolume := Round(systemMasterVolume, 2)
+MsgBox, 0, Master Volume, Master volume is %systemMasterVolume% percent., 0.39
 return
 
 }
@@ -342,7 +353,7 @@ return
 ;Hotkeys with one space between them are a pair.
 ;E.g., 0 and Ins are a pair, because 0 and Ins are on the same physical key.
 ;Two spaces separate each pair.
-#If NumPadMode = "Normal"
+#If numPadMode = "Normal"
 {
 
 $Numpad0::
@@ -476,10 +487,10 @@ return
 ; (and that don't have as many keyboard shortcuts like YouTube does).
 ;Examples are on online education websites like D2L Brightspace, websites for
 ;pirating movies, etc. These sites that have video players don't typically have video
-; players that are all that great. Thus, this NumPadMode was born.
+; players that are all that great. Thus, this numPadMode was born.
 ;The reason it's called "Dumbed-Down" is because, well, it's a dumbed-down version
-; of the YouTube NumPadMode.
-#If NumPadMode = "Dumbed-Down"
+; of the YouTube numPadMode.
+#If numPadMode = "Dumbed-Down"
 {
 
 ;No function.
@@ -624,9 +635,9 @@ return
 
 ;Shows the current and exact master volume.
 $NumpadSub::
-SoundGet, master_volume
-master_volume := Round(master_volume, 2)
-MsgBox, 0, Master Volume, Master volume is %master_volume% percent., 0.39
+SoundGet, systemMasterVolume
+systemMasterVolume := Round(systemMasterVolume, 2)
+MsgBox, 0, Master Volume, Master volume is %systemMasterVolume% percent., 0.39
 return
 
 }

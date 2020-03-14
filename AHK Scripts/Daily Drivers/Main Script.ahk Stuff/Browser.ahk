@@ -23,7 +23,7 @@ SendMode Input
 */
 
 ;****************************************MOUSE ACTIONS***************************************
-#If current_profile = "Firefox" or current_profile = "Chrome"
+#If currentProfile = "Firefox" or currentProfile = "Chrome"
 ;Mouse Profile Switch
 ;Left double click
 ^!F23::
@@ -212,7 +212,7 @@ return
 Send, ^#{Right}
 return
 
-#If current_profile = "Firefox"
+#If currentProfile = "Firefox"
 
 ;Keeb G4
 ;Open Incognito Window and goes to Google (Firefox)
@@ -233,7 +233,7 @@ Sleep 200
 Send, ^v{Enter}
 return
 
-#If current_profile = "Chrome"
+#If currentProfile = "Chrome"
 
 ;Keeb G4 (Chrome)
 ;Open Incognito Window and goes to Google (Chrome)

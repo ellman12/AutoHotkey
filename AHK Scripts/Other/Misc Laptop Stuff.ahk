@@ -145,30 +145,30 @@ return
 /*
 ;Shows the current and exact master volume.
 !\::
-SoundGet, master_volume
-master_volume := Round(master_volume, 2)
-MsgBox, 0, Master Volume, Master volume is %master_volume% percent., 0.39
+SoundGet, systemMasterVolume
+systemMasterVolume := Round(systemMasterVolume, 2)
+MsgBox, 0, Master Volume, Master volume is %systemMasterVolume% percent., 0.39
 return
 */
 
 ;Get the current master volume, and add the inputted value to the current master volume.
 !\::
-SoundGet, master_volume
-InputBox, master_volume_alt , Add/subtract to the master volume, Input a number to add/subtract to the current master volume. Current volume: %master_volume%., , , , , , , , %master_volume%
+SoundGet, systemMasterVolume
+InputBox, masterVolumeAlt , Add/subtract to the master volume, Input a number to add/subtract to the current master volume. Current volume: %systemMasterVolume%., , , , , , , , %systemMasterVolume%
 if (ErrorLevel = 1) {
 } else if (ErrorLevel = 0) {
-	master_volume += master_volume_alt
-    SoundSet, %master_volume%
+	systemMasterVolume += masterVolumeAlt
+    SoundSet, %systemMasterVolume%
 }
 return
 
 ;Gets the aforementioned master volume, displays it, and allows the user to input their own exact and custom volume.
 ^\::
-SoundGet, master_volume
-InputBox, master_volume , Input Custom Volume, Input a custom volume. Current volume: %master_volume%., , , , , , , , %master_volume%
+SoundGet, systemMasterVolume
+InputBox, systemMasterVolume , Input Custom Volume, Input a custom volume. Current volume: %systemMasterVolume%., , , , , , , , %systemMasterVolume%
 if (ErrorLevel = 1) {
 } else if (ErrorLevel = 0) {
-SoundSet, %master_volume%
+SoundSet, %systemMasterVolume%
 }
 return
 

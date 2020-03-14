@@ -20,7 +20,7 @@ SendMode Input
 
 ;****************************************MOUSE ACTIONS***************************************
 
-#If current_profile = ""
+#If currentProfile = ""
 ;Mouse Profile Switch
 ^!F23::
 return

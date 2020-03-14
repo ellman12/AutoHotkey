@@ -20,7 +20,7 @@ SendMode Input
 
 ;****************************************MOUSE ACTIONS***************************************
 
-#If current_profile = "MSWord"
+#If currentProfile = "MSWord"
 ;Mouse Profile Switch
 ^!F23::
 return

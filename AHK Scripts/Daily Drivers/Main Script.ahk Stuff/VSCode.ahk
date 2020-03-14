@@ -18,7 +18,7 @@ SendMode Input
 ;This script is the VSCode profile.
 
 ;****************************************MOUSE ACTIONS***************************************
-#If current_profile = "VSCode"
+#If currentProfile = "VSCode"
 ;Mouse Profile Switch
 ;Left double click
 ^!F23::

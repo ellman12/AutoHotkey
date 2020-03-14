@@ -8,7 +8,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 ;****************************************MOUSE ACTIONS***************************************
 
-#If current_profile = "SciTE4AutoHotkey"
+#If currentProfile = "SciTE4AutoHotkey"
 ;Mouse Profile Switch
 ;Left double click
 ^!F23::

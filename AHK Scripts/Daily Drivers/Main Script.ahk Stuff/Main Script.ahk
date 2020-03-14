@@ -83,41 +83,64 @@ global CurrentWinF6AndF7ActBoth := 1
 ;Used for the step values for NumPad2 and NumPad8 in NumPad Media Control.
 global Num2And8Step := 3
 
+;Toggle for if the NumPad switches modes automatically or not; starts out at true, for convenience.
+global autoNumPadModeToggle := true
+
 ;The stuff in this loop needs to be running constantly.
 Loop {
 
-;Constantly checking to see what profile you should be in.
-global current_profile := AutoSelectProfiles()
+	;Constantly checking to see what profile the script should put the user in.
+	global currentProfile := autoSelectProfiles()
 
-;The script checks if NumLock is enabled or not, so it can do different things depending on if it is enabled or not. The variable is either 1 or 0.
-global NumLockToggled := GetKeyState("NumLock", "T")
+	;For the NumPad stuff.
+	global numLockToggled := GetKeyState("NumLock", "T")
+	global scrollLockToggled := GetKeyState("ScrollLock", "T")
 
-;The script checks if ScrollLock is enabled or not, so it can do different things depending on if it is enabled or not. The variable is either 1 or 0.
-global ScrollLockToggled := GetKeyState("ScrollLock", "T")
+	;Get the active window title; used only in this Loop for the numPadMode stuff.
+	WinGetActiveTitle, mainLoopActWinTitle
 
-;This works so much better than having a bunch of ugly NumLockToggled = 1 and ScrollLockToggled = 0 things everywhere.
-if (NumLockToggled = 1 and ScrollLockToggled = 0) {
-	global NumPadMode = "MusicBee"
-} else if (NumLockToggled = 1 and ScrollLockToggled = 1) {
-	global NumPadMode = "YouTube"
-} else if (NumLockToggled = 0 and ScrollLockToggled = 0) {
-	global NumPadMode = "Normal"
-} else if (NumLockToggled = 0 and ScrollLockToggled = 1) {
-	global NumPadMode = "Dumbed-Down"
-} else {
-	global NumPadMode = "Normal"
+	;If the auto-numpad toggle is true, sets the numPadMode automatically.
+	;Else, leave it to the user to do it manually.
+	if (autoNumPadModeToggle = true) {
+
+		if InStr(mainLoopActWinTitle, "- YouTube") {
+			SetNumLockState, On
+			SetScrollLockState, On
+			global numPadMode = "YouTube"
+		} else {
+			SetNumLockState, On
+			SetScrollLockState, Off
+			global numPadMode = "MusicBee"
+		}
+
+	} else {
+
+		;This works so much better than having a bunch of ugly numLockToggled = 1 and scrollLockToggled = 0 things everywhere.
+		;These variables are used in NumPad Media Control.ahk.
+		if (numLockToggled = 1 and scrollLockToggled = 0) {
+			global numPadMode = "MusicBee"
+		} else if (numLockToggled = 1 and scrollLockToggled = 1) {
+			global numPadMode = "YouTube"
+		} else if (numLockToggled = 0 and scrollLockToggled = 0) {
+			global numPadMode = "Normal"
+		} else if (numLockToggled = 0 and scrollLockToggled = 1) {
+			global numPadMode = "Dumbed-Down"
+		} else {
+			global numPadMode = "Normal"
+		}
+
+	}
+
+
+
+	;This sleep statement DRASTICALLY helps reduce the power usage of the Main Script.
+	Sleep 100
+
 }
-
-;This sleep statement DRASTICALLY helps reduce the power usage of the Main Script.
-Sleep 100
-
-}
-
 
 ;Linking other scripts together.
-;Similar to but not exactly like you would in something like Java.
+;Kind of similar to but not exactly like how you would in an OOP language like Java.
 ;#Include is lterally like pasting those script contents in that exact spot.
-;It just works ;)
 ;The variable %A_ScriptDir% is the full path of the directory where the script is located.
 
 ;~ #Include, %A_ScriptDir%\Advanced Window Hider.ahk
@@ -190,8 +213,7 @@ return
 
 
 ;Disables it. Use Ctrl + CapsLock to enable/disable it. This prevents accidentally pressing it.
-CapsLock::
-return
+CapsLock::return
 
 ^CapsLock::
 if capsLockState := GetKeyState("CapsLock", "T")
@@ -263,10 +285,12 @@ return
 Send ^v
 return
 
-;Shows you what profile you're currently in. Can also be used for debugging.
+;Shows you miscellaneous variables, toggles, etc.
 ^#BackSpace::
-MsgBox, 0, Current Profile and NumPad Mode, Current profile: %current_profile%`n`nNumPadMode: %NumPadMode%
+MsgBox, 0, Misc. Variables`, Toggles`, etc.,Current Main Script.ahk profile:  %currentProfile%`n`nNumPadMode: %numPadMode%`n`nChromebook Typing Toggled: %chromebookTypingToggle%`n`nautoNumPadModeToggle: %autoNumPadModeToggle%
 return
+
+
 
 ;Scroll down faster by holding down the G3 key on Scimitar Pro RGB.
 F15 & WheelDown::
@@ -536,24 +560,25 @@ Send, ^+{Left}
 Send, {BackSpace}
 return
 
-^!Up::
-Send, {Click up}
-return
+;For drawing straight lines in MS Word.
+; ^!Up::
+; Send, {Click up}
+; return
 
-^!Down::
-Send, {Click down}
-return
+; ^!Down::
+; Send, {Click down}
+; return
 
-^!Left::
-MouseMove, -10, 0, 0, R
-return
+; ^!Left::
+; MouseMove, -10, 0, 0, R
+; return
 
-^!Right::
-MouseMove, 10, 0, 0, R
-return
+; ^!Right::
+; MouseMove, 10, 0, 0, R
+; return
 
 ;~ ;If Scroll Lock is on, Up and Down send Up and Down 10 times per each keystroke.
-;~ #If ScrollLockToggled = 1
+;~ #If scrollLockToggled = 1
 ;~ Up::
 ;~ Send, {Up 10}
 ;~ return

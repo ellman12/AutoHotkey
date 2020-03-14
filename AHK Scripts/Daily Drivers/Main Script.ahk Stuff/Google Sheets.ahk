@@ -13,7 +13,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 ;****************************************MOUSE ACTIONS***************************************
 
-#If current_profile = "Sheets"
+#If currentProfile = "Sheets"
 ;Mouse Profile Switch
 ;Left double click
 ^!F23::

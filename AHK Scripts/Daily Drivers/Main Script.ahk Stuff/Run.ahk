@@ -52,12 +52,6 @@ Sleep 1000
 Send, !s
 return
 
-;Allows you to open any Daily Driver script. Other scripts won't work :( *shrug*
-Case "open script", "edit script", "os":
-InputBox, openScriptFunctionText, Open Script to Edit, What script do you want to open?
-Run, edit %openScriptFunctionText%
-return
-
 ;Opens the current tab in Chrome
 Case "Open in Chrome", "op in chr", "op in Chrome":
 Send, ^l

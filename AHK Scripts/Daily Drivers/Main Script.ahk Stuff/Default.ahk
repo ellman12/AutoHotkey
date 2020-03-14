@@ -18,7 +18,7 @@ SendMode Input
 ;This script is the Default profile.
 
 ;****************************************MOUSE ACTIONS***************************************
-#If current_profile = "Default"
+#If currentProfile = "Default"
 ;Mouse Profile Switch.
 ;Left double click.
 ^!F23::
