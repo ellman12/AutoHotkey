@@ -147,6 +147,7 @@ Loop {
 #Include, %A_ScriptDir%\AutoCapitalize.ahk
 #Include, %A_ScriptDir%\AutoCorrect.ahk
 #Include, %A_ScriptDir%\Browser.ahk
+#Include, %A_ScriptDir%\CapsLock Hotkeys.ahk
 #Include, %A_ScriptDir%\Chromebook Typing.ahk
 #Include, %A_ScriptDir%\Default.ahk
 #Include, %A_ScriptDir%\Google Docs.ahk
@@ -209,16 +210,19 @@ return
 MouseMove, mousePosX, mousePosY, 0
 return
 
+#f::
+SetCapsLockState, Off
+return
 
 ;Disables it. Use Ctrl + CapsLock to enable/disable it. This prevents accidentally pressing it.
-CapsLock::return
+; CapsLock::return
 
-^CapsLock::
-if capsLockState := GetKeyState("CapsLock", "T")
-    SetCapsLockState, Off
-else
-    SetCapsLockState, On
-return
+; ^CapsLock::
+; if capsLockState := GetKeyState("CapsLock", "T")
+;     SetCapsLockState, Off
+; else
+;     SetCapsLockState, On
+; return
 
 ;Keyboard shortcut that either enables or disables the active window as AlwaysOnTop
 ^Space::
@@ -347,7 +351,7 @@ return
 ;Inspiration and code for this script: https://autohotkey.com/board/topic/57888-title-case/ and https://autohotkey.com/board/topic/123994-capitalize-a-title/
 
 ;Converts text to Title Case, using a custom thing I found on r/AutoHotkey.
-^!+t::
+^!t::
   ;Copy text, and wait a bit so it can actually process that.
   Send, ^c
   Sleep 45
@@ -361,10 +365,10 @@ return
   Clipboard := head RegExReplace(tail, "i)\b(a|an|and|at|but|by|for|in|nor|of|on|or|so|the|to|up|with|yet)\b", "$L1")
 
   Send ^v ;Paste the new title.
-return ;End of ^!+t.
+return ;End of ^!t.
 
 ;Converts text to UPPER CASE, using a built-in AHK function.
-^!+u::
+^!u::
   ;Copy text, and wait a bit so it can actually process that.
   Send, ^c
   Sleep 45
@@ -376,10 +380,10 @@ return ;End of ^!+t.
   Clipboard := NewTitle
 
   Send, ^v ;Paste the new title.
-return ;End of ^!+u.
+return ;End of ^!u.
 
 ;Converts text to lower case, using a built-in AHK function.
-^!+l::
+^!l::
   ;Copy text, and wait a bit so it can actually process that.
   Send, ^c
   Sleep 45
@@ -391,11 +395,11 @@ return ;End of ^!+u.
   Clipboard := NewTitle
 
   Send, ^v ;Paste the new title.
-return ;End of ^!+l.
+return ;End of ^!l.
 
 ;Converts text to Sentence case.
 ;I don't really know how it works; I found this on r/AHK, too.
-^!+s::
+^!s::
   ;Copy text, and wait a bit so it can actually process that.
   Send, ^c
   Sleep 45
@@ -408,10 +412,10 @@ return ;End of ^!+l.
   Clipboard := NewTitle
 
   Send, ^v ;Paste the new title.
-return ;End of ^!+s.
+return ;End of ^!s.
 
 ;Converts text to First Letter Capitalization, using a built-in AHK function.
-^!+f::
+^!f::
 
   Send, ^c
   Sleep 45
@@ -422,7 +426,7 @@ return ;End of ^!+s.
   Clipboard := NewTitle
 
   Send, ^v ;Paste the new title.
-return ;End of ^!+f.
+return ;End of ^!f.
 
 ;altCaseToggle is a toggle for if the alt case starts in lower case or not.
 ;A_LoopField is the single character at that point in the Parse Loop.
@@ -430,7 +434,7 @@ return ;End of ^!+f.
 ;...1 = convert the char to UPPER.
 
 ;Convert text to aLt CaSe, with the first letter being lower case.
-^!+a::
+^!a::
 
 	;Blank out this String.
 	;Basically resetting it so it doesn't contain the old text as well as the new stuff.
@@ -472,10 +476,10 @@ return ;End of ^!+f.
 	;Paste the final String.
 	Send, ^v
 
-return ;End of ^!+a.
+return ;End of ^!a.
 
 ;Convert text to AlT cAsE, with the first letter being UPPER case.
-^!+#a::
+^!+a::
 
 	;Blank out this String.
 	;Basically resetting it so it doesn't contain the old text as well as the new stuff.
@@ -516,7 +520,7 @@ return ;End of ^!+a.
 	;Paste the final String.
 	Send, ^v
 
-return ;End of ^!+a.
+return ;End of ^!a.
 
 ;-------------------------------------------------------------------------------------------
 ;*****************************STUFF FOR EDIT CLIPBOARD CONTENT******************************
