@@ -18,14 +18,6 @@ SendMode Input
 ;This script is for Main Script.ahk.
 ;It is used for getting the active window title and putting you in the right profile
 
-;According to the documentation: "2: A window's title can contain WinTitle anywhere inside it to be a match."
-;I don't know when, nor why, I put this here.
-SetTitleMatchMode, 2
-
-;This needs to be global so other scripts can see it and access it.
-;Doing this is how I was able to do the Sheets/Docs G4 and G10 stuff.
-global activeWindowTitle
-
 autoSelectProfiles() {
 	WinGetActiveTitle, activeWindowTitle
 	;What this does: If this string contains the thing in quotes, set the current profile to that. Else, go to Default (hence the Else).
