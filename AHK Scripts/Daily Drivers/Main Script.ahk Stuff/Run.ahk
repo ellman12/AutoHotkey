@@ -16,7 +16,7 @@ SetWorkingDir "C:\Users\Elliott\Documents\AHK Scripts"  ; Ensures a consistent s
 ;Alt + R opens the InputBox, which allows the user to type a command. It also contains a cheat sheet of all of the commands, in alphabetical order.
 ;This one single line is astronomically enormous, so Word Wrap is recommended.
 !r::
-InputBox, runInputBoxText, Type a command,Cheat sheet for all of the Run.ahk commands (can also be found online by entering the command "Help").`r`rRecommended Command`tWhat It Does`t`t`t`t`t`t`tCategory`n`nDocu FF/Chr`t`tOpens the AHK documentation in either Chrome or Firefox`t`tOpen`nEm/en`t`t`tInserts either of them`t`t`t`t`t`tInsert`nExitApp`t`t`tKills the current running script`t`t`t`t`tMisc`nHelp`t`t`tOpens the Run.ahk sheet in the AHK Google Sheets workbook`t`tOpen`nOp in FF/Chr`t`tOpens the current tab in the specified browser`t`t`t`tOpen`nSec`t`t`tInserts the section symbol`t`t`t`t`t`tInsert`nThes FF/Chr`t`tOpen thesaurus.com in either browser and search for the inputted word`tOpen`nThesaurus FF/Chr`t`tOpen thesaurus.com in the chosen browser`t`t`t`tOpen`nUp/right/down/left`t`tInserts the corresponding arrow symbol`t`t`t`tInsert`nYT FF/Chr`t`t`tOpens the YouTube homepage in FF/Chr`t`t`t`tOpen`nYT S FF/Chr`t`tOpens the YouTube homepage in FF/Chr and searches for the inputted text`tOpen`nYT SB FF/Chr`t`tOpens the YouTube homepage in FF/Chr and Tabs to the search bar`tOpen`n`nType a command`, and the script will attempt to run it.,, 700, 430
+InputBox, runInputBoxText, Type a command,Cheat sheet for all of the Run.ahk commands (can also be found online by entering the command "Help").`r`rRecommended Command`tWhat It Does`t`t`t`t`t`t`tCategory`n`nDocu FF/Chr`t`tOpens the AHK documentation in either Chrome or Firefox`t`tOpen`nEm/en`t`t`tInserts either of them`t`t`t`t`t`tInsert`nExitApp`t`t`tKills the current running script`t`t`t`t`tMisc`nHelp`t`t`tOpens the Run.ahk sheet in the AHK Google Sheets workbook`t`tOpen`nOp in FF/Chr`t`tOpens the current tab in the specified browser`t`t`t`tOpen`nThes FF/Chr`t`tOpen thesaurus.com in either browser and search for the inputted word`tOpen`nThesaurus FF/Chr`t`tOpen thesaurus.com in the chosen browser`t`t`t`tOpen`nUp/right/down/left arrow`tInserts an arrow symbol`t`t`t`t`t`tInsert`nYT FF/Chr`t`t`tOpens the YouTube homepage in FF/Chr`t`t`t`tOpen`nYT S FF/Chr`t`tOpens the YouTube homepage in FF/Chr and searches for the inputted text`tOpen`nYT SB FF/Chr`t`tOpens the YouTube homepage in FF/Chr and Tabs to the search bar`tOpen`n`nType a command`, and the script will run it.,, 700, 420
 
 ;The script decides which command to run.
 Switch (runInputBoxText) {
@@ -26,12 +26,10 @@ Switch (runInputBoxText) {
 Case "en": Send, {U+2013}
 Case "em": Send, {U+2014}
 
-Case "Sec", "Section": Send, {U+00A7}
-
-Case "up": Send, {U+2191}
-Case "right": Send, {U+2192}
-Case "down": Send, {U+2193}
-Case "left": Send, {U+2190}
+Case "up arrow": Send, {U+2191}
+Case "right arrow": Send, {U+2192}
+Case "down arrow": Send, {U+2193}
+Case "left arrow": Send, {U+2190}
 
 ;***********************************************OPEN***********************************************
 Case "Help": Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://docs.google.com/spreadsheets/d/1vGHwAVQwkmzGGpM_xQJ86RGXfsBiBxDD089cu1u02eA/edit#gid=17759502

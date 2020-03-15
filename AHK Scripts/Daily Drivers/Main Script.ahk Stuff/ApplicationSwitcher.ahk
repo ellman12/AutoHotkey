@@ -190,6 +190,7 @@ return
 ;*************************************************F6 GROUP STUFF*************************************************
 ;Credits for this F6 stuff goes to GroggyOtter from the AHK subreddit:
 ;https://www.reddit.com/r/AutoHotkey/comments/dbil7u/add_active_window_to_group_and_push_button_to/f241ak3?utm_source=share&utm_medium=web2x
+;I don't really know how it works, but it's fantastic. Thanks m8.
 ;I modified it a teeny tiny bit, plus added the F7 one. It's really nice having this for both F6 and F7.
 ^F6::
 AddWindowF6()
@@ -313,7 +314,6 @@ RemoveNonexistentWindowsF6() {
 }
 
 ;*************************************************F7 GROUP STUFF*************************************************
-;Identical to F6 Group Stuff, but for the F7 key. Thus, allowing me to have 2 custom window groups.
 ^F7::
 AddWindowF7()
 return

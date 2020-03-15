@@ -96,14 +96,14 @@ Loop {
 	global numLockToggled := GetKeyState("NumLock", "T")
 	global scrollLockToggled := GetKeyState("ScrollLock", "T")
 
-	;This needs to be global so other scripts can see it and access it.
-	global WinGetActiveTitle, activeWindowTitle
+	;Get the active window title; used only in this Loop for the numPadMode stuff.
+	WinGetActiveTitle, mainLoopActWinTitle
 
 	;If the auto-numpad toggle is true, sets the numPadMode automatically.
 	;Else, leave it to the user to do it manually.
 	if (autoNumPadModeToggle = true) {
 
-		if InStr(activeWinTitle, "- YouTube") {
+		if InStr(mainLoopActWinTitle, "- YouTube") {
 			SetNumLockState, On
 			SetScrollLockState, On
 			global numPadMode = "YouTube"
@@ -130,6 +130,8 @@ Loop {
 		}
 
 	}
+
+
 
 	;This sleep statement DRASTICALLY helps reduce the power usage of the Main Script.
 	Sleep 100
@@ -159,7 +161,8 @@ Loop {
 #Include, %A_ScriptDir%\SciTE4AutoHotkey Programming.ahk
 #Include, %A_ScriptDir%\VSCode.ahk
 
-;****************************************MISCELLANEOUS GLOBAL HOTKEYS***************************************
+;****************************************GLOBAL HOTKEYS***************************************
+;These global hotkeys are hotkeys that are always running, regardless of the active window, class, or whatever.
 ;Pushing Windows Key + P suspends all hotkeys, thus "pausing" the script.
 #!p::Suspend, Toggle
 
@@ -208,6 +211,7 @@ return
 MouseMove, mousePosX, mousePosY, 0
 return
 
+
 ;Disables it. Use Ctrl + CapsLock to enable/disable it. This prevents accidentally pressing it.
 CapsLock::return
 
@@ -223,7 +227,7 @@ return
 WinSet, AlwaysOnTop, Toggle, A
 return
 
-;Reloads the script.
+;Reloads the script. Useful for "recompiling" the script.
 ^#r::
 Reload
 return
@@ -345,7 +349,7 @@ return
 ;Inspiration and code for this script: https://autohotkey.com/board/topic/57888-title-case/ and https://autohotkey.com/board/topic/123994-capitalize-a-title/
 
 ;Converts text to Title Case, using a custom thing I found on r/AutoHotkey.
-^!t::
+^!+t::
   ;Copy text, and wait a bit so it can actually process that.
   Send, ^c
   Sleep 45
@@ -359,10 +363,10 @@ return
   Clipboard := head RegExReplace(tail, "i)\b(a|an|and|at|but|by|for|in|nor|of|on|or|so|the|to|up|with|yet)\b", "$L1")
 
   Send ^v ;Paste the new title.
-return ;End of ^!t.
+return ;End of ^!+t.
 
 ;Converts text to UPPER CASE, using a built-in AHK function.
-^!u::
+^!+u::
   ;Copy text, and wait a bit so it can actually process that.
   Send, ^c
   Sleep 45
@@ -374,10 +378,10 @@ return ;End of ^!t.
   Clipboard := NewTitle
 
   Send, ^v ;Paste the new title.
-return ;End of ^!u.
+return ;End of ^!+u.
 
 ;Converts text to lower case, using a built-in AHK function.
-^!l::
+^!+l::
   ;Copy text, and wait a bit so it can actually process that.
   Send, ^c
   Sleep 45
@@ -389,11 +393,11 @@ return ;End of ^!u.
   Clipboard := NewTitle
 
   Send, ^v ;Paste the new title.
-return ;End of ^!l.
+return ;End of ^!+l.
 
 ;Converts text to Sentence case.
 ;I don't really know how it works; I found this on r/AHK, too.
-^!s::
+^!+s::
   ;Copy text, and wait a bit so it can actually process that.
   Send, ^c
   Sleep 45
@@ -406,10 +410,10 @@ return ;End of ^!l.
   Clipboard := NewTitle
 
   Send, ^v ;Paste the new title.
-return ;End of ^!s.
+return ;End of ^!+s.
 
 ;Converts text to First Letter Capitalization, using a built-in AHK function.
-^!f::
+^!+f::
 
   Send, ^c
   Sleep 45
@@ -420,7 +424,7 @@ return ;End of ^!s.
   Clipboard := NewTitle
 
   Send, ^v ;Paste the new title.
-return ;End of ^!f.
+return ;End of ^!+f.
 
 ;altCaseToggle is a toggle for if the alt case starts in lower case or not.
 ;A_LoopField is the single character at that point in the Parse Loop.
@@ -428,7 +432,7 @@ return ;End of ^!f.
 ;...1 = convert the char to UPPER.
 
 ;Convert text to aLt CaSe, with the first letter being lower case.
-^!a::
+^!+a::
 
 	;Blank out this String.
 	;Basically resetting it so it doesn't contain the old text as well as the new stuff.
@@ -470,10 +474,10 @@ return ;End of ^!f.
 	;Paste the final String.
 	Send, ^v
 
-return ;End of ^!a.
+return ;End of ^!+a.
 
 ;Convert text to AlT cAsE, with the first letter being UPPER case.
-^!+a::
+^!+#a::
 
 	;Blank out this String.
 	;Basically resetting it so it doesn't contain the old text as well as the new stuff.
@@ -514,9 +518,11 @@ return ;End of ^!a.
 	;Paste the final String.
 	Send, ^v
 
-return ;End of ^!a.
+return ;End of ^!+a.
 
-;************************************STUFF FOR EDIT CLIPBOARD CONTENT*********************************
+;-------------------------------------------------------------------------------------------
+;*****************************STUFF FOR EDIT CLIPBOARD CONTENT******************************
+;-------------------------------------------------------------------------------------------
 ;Toggles between showing and hiding the Clipboard GUI.
 #c::
 GUI, ECC:Show, w600 h400,Clipboard Edit
@@ -627,7 +633,7 @@ return
 ;Get the mouse's current position, moves the mouse to the Run button, and clicks it.
 ;It does this so fast that if you blink, you'll miss it.
 F5::
-MouseGetPos, F5MouseX, F5MouseY
+MouseGetPos, F5MouseX, F5MouseY 
 MouseMove, 1572, 41, 0 ;X, Y, speed (0 = instant).
 ;~ Sleep 1000
 Send, {Click}
