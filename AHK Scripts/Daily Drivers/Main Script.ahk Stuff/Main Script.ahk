@@ -131,8 +131,6 @@ Loop {
 
 	}
 
-
-
 	;This sleep statement DRASTICALLY helps reduce the power usage of the Main Script.
 	Sleep 100
 
