@@ -107,6 +107,10 @@ Loop {
 			SetNumLockState, On
 			SetScrollLockState, On
 			global numPadMode = "YouTube"
+		} else if InStr(mainLoopActWinTitle, "- MediaSpace") {
+			SetNumLockState, Off
+			SetScrollLockState, On
+			global numPadMode = "Dumbed-Down"
 		} else {
 			SetNumLockState, On
 			SetScrollLockState, Off
@@ -640,7 +644,7 @@ return
 ;Get the mouse's current position, moves the mouse to the Run button, and clicks it.
 ;It does this so fast that if you blink, you'll miss it.
 F5::
-MouseGetPos, F5MouseX, F5MouseY 
+MouseGetPos, F5MouseX, F5MouseY
 MouseMove, 1572, 41, 0 ;X, Y, speed (0 = instant).
 ;~ Sleep 1000
 Send, {Click}
