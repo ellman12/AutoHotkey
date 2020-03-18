@@ -210,6 +210,7 @@ return
 MouseMove, mousePosX, mousePosY, 0
 return
 
+;TODO temp
 #f::
 SetCapsLockState, Off
 return
@@ -595,6 +596,10 @@ return
 ; WinSet, AlwaysOnTop, Toggle, Calculator ; Toggle the always-on-top status of Calculator.
 ;~ return
 
+^BackSpace::
+Send, ^+{Left}{BackSpace}
+return
+
 ;-------------------------------------------------------------------------------------------
 ;Anything in this section is temporary.
 ;-------------------------------------------------------------------------------------------
@@ -696,3 +701,4 @@ return
 ;~ }
 
 ;~ return
+::compter::computer
