@@ -34,22 +34,22 @@ return
 
 ;Open Firefox and Google the selected text
 CapsLock & g::
-ClipboardGet()
+clipboardGet()
 Run, http://www.google.com/search?q=%Clipboard%
-ClipboardRestore()
+clipboardRestore()
 return
 
 ;Open Firefox and Google Images search for the selected text.
 CapsLock & i::
-ClipboardGet()
+clipboardGet()
 Run, http://www.images.google.com/search?q=%Clipboard%
-ClipboardRestore()
+clipboardRestore()
 return
 
 ;*******************************CAPSLOCK FUNCTIONS*******************************
-ClipboardGet() {
+clipboardGet() {
     ;Save existing Clipboard, to be restored later.
-    OldClipboard:= ClipboardAll
+    oldClipboard := ClipboardAll
     Clipboard:= ""
 
     ;Copy selected text to Clipboard.
@@ -63,6 +63,6 @@ ClipboardGet() {
 }
 
 ;Restores the Clipboard to what it originally was.
-ClipboardRestore() {
-    Clipboard:= OldClipboard
+clipboardRestore() {
+    Clipboard := oldClipboard
 }
