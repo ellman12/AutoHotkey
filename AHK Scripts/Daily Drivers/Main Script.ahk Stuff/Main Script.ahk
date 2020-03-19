@@ -55,7 +55,7 @@ GUI, ECC:Color, Silver
 ;Starts out as 0, so it only appers when the user wants it.
 showClipboardGUIToggle := 0
 
-;****************************************MISC VARIABLES AND STUFF*********************************
+;****************************************MISC VARIABLES, INITIALIZATION, ETC*********************************
 ;Variables for F6 group stuff.
 ;Tracks all windows you want as part of your custom group.
 ;Stores Window IDs.
@@ -85,6 +85,23 @@ global Num2And8Step := 3
 
 ;Toggle for if the NumPad switches modes automatically or not; starts out at true, for convenience.
 global autoNumPadModeToggle := true
+
+;*************Screen Clipper.ahk Initialization Stuff************
+;************************************************
+Hotkey, #s , CreateCapWindow , On ;Take a screen clip with the Screen Clipper script.
+;************************************************
+SaveToFile := 1 ;Set this to 1 to save all clips with a unique name , Set it to 0 to overwrite the saved clip every time a new clip is made.
+;************************************************
+ShowCloseButton := 1 ;Set this to 1 to show a small close button in the top right corner of the clip. Set this to 0 to keep the close button, but not show it.
+;************************************************
+
+CoordMode, Mouse , Screen ;Use the screen as the refrence to get positions from.
+
+IfNotExist, %A_ScriptDir%\Screen Clipper Script\Saved Clips ; if there is no folder for saved clips
+	FileCreateDir, %A_ScriptDir%\Screen Clipper Script\Saved Clips ; create the folder.
+SetWorkingDir, %A_ScriptDir%\Screen Clipper Script\Saved Clips ;Set the saved clips folder as the working dir.
+Handles := [] ; Create an array to hold the name of the different gui's.
+Index := 0 ;Used as the name of the current gui cap window.
 
 ;The stuff in this loop needs to be running constantly.
 Loop {
@@ -141,28 +158,28 @@ Loop {
 }
 
 ;Linking other scripts together.
-;Kind of similar to but not exactly like how you would in an OOP language like Java.
 ;#Include is lterally like pasting those script contents in that exact spot.
-;The variable %A_ScriptDir% is the full path of the directory where the script is located.
+;The variable %A_ScriptDir% is the full path of the directory where the script is located; makes code neater and simpler.
 
-;~ #Include, %A_ScriptDir%\Advanced Window Hider.ahk
-#Include, %A_ScriptDir%\Games\Any Game.ahk
-#Include, %A_ScriptDir%\ApplicationSwitcher.ahk
-#Include, %A_ScriptDir%\AutoCapitalize.ahk
-#Include, %A_ScriptDir%\AutoCorrect.ahk
-#Include, %A_ScriptDir%\Browser.ahk
-#Include, %A_ScriptDir%\CapsLock Hotkeys.ahk
-#Include, %A_ScriptDir%\Chromebook Typing.ahk
-#Include, %A_ScriptDir%\Default.ahk
-#Include, %A_ScriptDir%\Google Docs.ahk
-#Include, %A_ScriptDir%\Google Sheets.ahk
-#Include, %A_ScriptDir%\Microsoft Word.ahk
-#Include, %A_ScriptDir%\NumPad Media Control.ahk
-#Include, %A_ScriptDir%\OSRS (RuneLite).ahk
-#Include, %A_ScriptDir%\Profile Switcher.ahk
-#Include, %A_ScriptDir%\Run.ahk
-#Include, %A_ScriptDir%\SciTE4AutoHotkey Programming.ahk
-#Include, %A_ScriptDir%\VSCode.ahk
+#Include, %A_ScriptDir%\Main Script.ahk Profiles\Browser.ahk
+#Include, %A_ScriptDir%\Main Script.ahk Profiles\Default.ahk
+#Include, %A_ScriptDir%\Main Script.ahk Profiles\Google Docs.ahk
+#Include, %A_ScriptDir%\Main Script.ahk Profiles\Google Sheets.ahk
+#Include, %A_ScriptDir%\Main Script.ahk Profiles\Microsoft Word.ahk
+#Include, %A_ScriptDir%\Main Script.ahk Profiles\OSRS (RuneLite).ahk
+#Include, %A_ScriptDir%\Main Script.ahk Profiles\Profile Switcher.ahk
+#Include, %A_ScriptDir%\Main Script.ahk Profiles\SciTE4AutoHotkey Programming.ahk
+#Include, %A_ScriptDir%\Main Script.ahk Profiles\VSCode.ahk
+#Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Advanced Window Hider.ahk
+#Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\ApplicationSwitcher.ahk
+#Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\AutoCapitalize.ahk
+#Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\AutoCorrect.ahk
+#Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\CapsLock Hotkeys.ahk
+#Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Chromebook Typing.ahk
+#Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\NumPad Media Control.ahk
+#Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Run.ahk
+#Include, %A_ScriptDir%\Screen Clipper Script\Screen Clipper.ahk
+#Include, %A_ScriptDir%\Video Game Stuff\Any Game.ahk
 
 ;****************************************GLOBAL HOTKEYS***************************************
 ;These global hotkeys are hotkeys that are always running, regardless of the active window, class, or whatever.
