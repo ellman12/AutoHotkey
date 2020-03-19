@@ -705,4 +705,26 @@ return
 ;~ }
 
 ;~ return
-::compter::computer
+
+;Used for mass-deleting 2,904 videos from Watch later on YouTube.
+#y::
+
+Loop 2879 {
+
+	IfWinActive, Watch later - YouTube - Mozilla Firefox
+	{
+	MouseMove, 1483, 244, 0
+
+	Sleep 500
+
+	Send, {Click}
+
+	MouseMove, 1481, 381, 0
+
+	Sleep 500
+
+	Send, {Click}
+	}
+
+}
+return

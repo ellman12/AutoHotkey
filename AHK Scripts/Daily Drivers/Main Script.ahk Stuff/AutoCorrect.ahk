@@ -5436,3 +5436,4 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:gchr::Google Chrome
 :*:youtube::YouTube
 :*:pc::PC
+::compter::computer
