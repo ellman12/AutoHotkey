@@ -26,6 +26,11 @@ CapsLock::
 
 return
 
+;If CapsLock somehow gets stuck in the On state, this forces it off.
+#f::
+SetCapsLockState, Off
+return
+
 ;*******************************CAPSLOCK HOTKEYS*******************************
 ;Template:
 ;CapsLock & x::

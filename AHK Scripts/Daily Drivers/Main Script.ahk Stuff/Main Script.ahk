@@ -231,11 +231,6 @@ return
 MouseMove, mousePosX, mousePosY, 0
 return
 
-;TODO temp
-#f::
-SetCapsLockState, Off
-return
-
 ;Disables it. Use Ctrl + CapsLock to enable/disable it. This prevents accidentally pressing it.
 ; CapsLock::return
 
