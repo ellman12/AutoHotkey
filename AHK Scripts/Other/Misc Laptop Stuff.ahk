@@ -23,10 +23,13 @@ global CurrentWinF6AndF7ActBoth := 1
 
 ;Because I don't need the entire Main Script.ahk on my laptop, I made this script, with just the essentials.
 ;It also #Includes a few other scripts that are really really useful on my laptop.
-#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Advanced Window Hider.ahk
-#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\ApplicationSwitcher.ahk
-#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\AutoCorrect.ahk
-#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Run.AHK
+#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Misc. Main Script.ahk Scripts\Advanced Window Hider.ahk
+#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Misc. Main Script.ahk Scripts\ApplicationSwitcher.ahk
+#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Misc. Main Script.ahk Scripts\AutoCapitalize.ahk
+#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Misc. Main Script.ahk Scripts\AutoCorrect.ahk
+#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Misc. Main Script.ahk Scripts\CapsLock Hotkeys.ahk
+#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Misc. Main Script.ahk Scripts\Run.ahk
+#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Screen Clipper Script\Screen Clipper.ahk
 
 
 ;Pushing Windows Key + P suspends all hotkeys, thus "pausing" the script.
@@ -50,14 +53,14 @@ Reload
 return
 
 ;Copy.
-CapsLock::
-Send, ^c
-return
+; CapsLock::
+; Send, ^c
+; return
 
-;Paste.
-F11::
-Send, ^v
-return
+; ;Paste.
+; F11::
+; Send, ^v
+; return
 
 
 ;Because Ctrl + Backspace in MSWord is kinda quirky doe.
