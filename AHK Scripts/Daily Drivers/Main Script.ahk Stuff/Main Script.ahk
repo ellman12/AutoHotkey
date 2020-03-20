@@ -32,7 +32,7 @@ the set of actions that are done by the G keys depending on the current active w
 * Hopefully this explains it well enough.
 */
 
-Menu, Tray, Icon, shell32.dll, 174 ;Changes the icon to a keyboard; perfect for the Main Script file. IDK where I found this...
+Menu, Tray, Icon, shell32.dll, 174 ;Changes the icon to a keyboard.
 
 ;******************************************AUTO-EXECUTE**************************************************
 ;*******************************EDIT CLIPBOARD CONTENT INITIALIZATION******************************
@@ -170,7 +170,7 @@ Loop {
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\Profile Switcher.ahk
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\SciTE4AutoHotkey Programming.ahk
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\VSCode.ahk
-#Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Advanced Window Hider.ahk
+; #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Advanced Window Hider.ahk
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\ApplicationSwitcher.ahk
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\AutoCapitalize.ahk
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\AutoCorrect.ahk

@@ -50,12 +50,12 @@ CreateCapWindow: ;Create a gui to used for setting the screen cap area and to di
 	WinSet, TransColor , 123456 ;Set only this color as transparent
 	Gui, %Index% : Font, cMaroon s10 Bold Q5 , Segoe UI ;Set this gui's font. (Used for the close button)
 	Active := 1
-	ToolTip, Click and drag to set capture area. Click without dragging to cancel. ;Display a tooltip that tells the user what to do.
+	ToolTip, Click and drag to capture a screenshot.  Click without dragging (or right click) to cancel. ;Display a tooltip that tells the user what to do.
 	SetTimer, Tooltips , 30 ;Set a timer to move the tooltip around with the users cursor.
 	return
 
 Tooltips:
-	ToolTip, Click and drag to set capture area. Click without dragging to cancel. ;Display a tooltip that tells the user what to do.
+	ToolTip, Click and drag to capture a screenshot. Click without dragging (or right click) to cancel. ;Display a tooltip that tells the user what to do.
 	return
 
 DrawCapArea:
