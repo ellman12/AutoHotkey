@@ -342,7 +342,7 @@ KeyWait, RButton
 DllCall("SystemParametersInfo", Int,113, Int,0, UInt,10, Int,1)
 return
 
-;Keyboard shortcut originally from Chrome OS; minimizes the active window.
+;Keyboard shortcut originally inspired by Chrome OS; minimizes the active window.
 !-::
 WinMinimize, A
 return
@@ -355,6 +355,16 @@ return
 ;Open "AHK Scripts" folder in AutoHotkey GitHub repository folder on my PC.
 ^+f::
 Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts
+return
+
+;Moves the active window to the primary display (first monitor).
+#Home::
+WinMove, %mainLoopActWinTitle%,, 500, 300
+return
+
+;Moves the active window to the secondary display (second monitor).
+#End::
+WinMove, %mainLoopActWinTitle%,, -1400, 300
 return
 
 ;*****************************************HOTKEYS FOR TITLE STUFF*********************************
