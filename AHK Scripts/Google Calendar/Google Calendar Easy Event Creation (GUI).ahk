@@ -13,6 +13,7 @@ SetWinDelay, -1
 SetControlDelay, -1
 SendMode Input
 #SingleInstance force
+#Persistent
 ;OPTIMIZATIONS END
 
 /*
@@ -40,8 +41,64 @@ eventDescriptionArray := []
 ;Starts at 1, to line up with the page numbers in the GUI.
 currentArrayIndex := 1
 
+;************CONSTANTS************
 ;So AHK and the programmer don't get confused.
 GCALGUI := "Google Calendar Script GUI"
+
+;The following are all the x and y values, control widths, etc.
+PIXELS_BETWEEN_CONTROL_AND_NEXT_SECTION := 35
+PIXELS_BETWEEN_SECTION_TITLE_AND_FIRST_CONTROL := 50
+
+EVENT_NAME_TEXT_X := 5
+EVENT_NAME_TEXT_Y := 5
+EVENT_NAME_EDIT_X := 5
+EVENT_NAME_EDIT_Y := 40
+EVENT_NAME_EDIT_WIDTH := 425
+
+ALL_DAY_EVENT_CHECKBOX_X := 5
+ALL_DAY_EVENT_CHECKBOX_Y := 85
+
+WORKING_THIS_DAY_X := 5
+WORKING_THIS_DAY_Y := 115
+
+START_DATE_AND_TIME_TEXT_X := 5
+START_DATE_AND_TIME_TEXT_Y := 160
+START_DATE_AND_TIME_DATETIME_X := 3
+START_DATE_AND_TIME_DATETIME_Y := 195
+
+END_DATE_AND_TIME_TEXT_X := 5
+END_DATE_AND_TIME_TEXT_Y := 245
+END_DATE_AND_TIME_DATETIME_X := 3
+END_DATE_AND_TIME_DATETIME_Y := 280
+
+START_END_DATETIME_WIDTH := 425
+
+EVENT_COLOR_TEXT_X := 5
+EVENT_COLOR_TEXT_Y := 325
+EVENT_COLOR_COMBOBOX_X := 3
+EVENT_COLOR_COMBOBOX_Y := 360
+EVENT_COLOR_COMBOBOX_WIDTH := 127
+
+DESCRIPTION_TEXT_X := 5
+DESCRIPTION_TEXT_Y := 405
+DESCRIPTION_EDIT_BOX_X := 5
+DESCRIPTION_EDIT_BOX_Y := 440
+DESCRIPTION_EDIT_BOX_ROW_NUM := 3
+DESCRIPTION_EDIT_BOX_WIDTH := 425
+
+NEXT_PREV_UPDOWN_WIDTH := 70
+NEXT_PREV_UPDOWN_X := 130
+NEXT_PREV_UPDOWN_Y := 570
+
+CURRENT_PAGE_TEXT_X := 5
+CURRENT_PAGE_TEXT_Y := NEXT_PREV_UPDOWN_Y + 1 ;This makes them line up just right.
+
+FINISH_BUTTON_X := 340
+FINISH_BUTTON_Y := 580
+FINISH_BUTTON_WIDTH := 100
+
+GCALGUI_HEIGHT := 625
+GCALGUI_WIDTH := 445
 
 ;**************GUI INITIALIZATION**************
 ;************MISC GUI STUFF************
@@ -50,73 +107,72 @@ GUI, GCALGUI:Color, Silver
 
 ;************EVENT NAME STUFF************
 GUI, GCALGUI:Font, underline s18
-GUI, GCALGUI:Add, Text, x5 y5, Event Name
+GUI, GCALGUI:Add, Text, x%EVENT_NAME_TEXT_X% y%EVENT_NAME_TEXT_Y%, Event Name
 
 GUI, GCALGUI:Font, norm s14
-GUI, GCALGUI:Add, Edit, w425 x5 y40
+GUI, GCALGUI:Add, Edit, w%EVENT_NAME_EDIT_WIDTH% x%EVENT_NAME_EDIT_X% y%EVENT_NAME_EDIT_Y%
 
 ;************ALL DAY EVENT STUFF************
 GUI, GCALGUI:Font, s14
-GUI, GCALGUI:Add, Checkbox, x5 y85 vAllDayCheckBoxVar, All day event?
+GUI, GCALGUI:Add, Checkbox, x%ALL_DAY_EVENT_CHECKBOX_X% y%ALL_DAY_EVENT_CHECKBOX_Y% vAllDayCheckBoxVar, All day event?
 
 ;************WORKING THIS DAY STUFF************
 GUI, GCALGUI:Font, s14
-GUI, GCALGUI:Add, Checkbox, x5 y115 vScheduledToWorkVar, Working this day?
+GUI, GCALGUI:Add, Checkbox, x%WORKING_THIS_DAY_X% y%WORKING_THIS_DAY_Y% vScheduledToWorkVar, Working this day?
 
 ;************START DATE AND TIME STUFF************
 GUI, GCALGUI:Font, underline s18
-GUI, GCALGUI:Add, Text, x5 y160, Start Date and Time
+GUI, GCALGUI:Add, Text, x%START_DATE_AND_TIME_TEXT_X% y%START_DATE_AND_TIME_TEXT_Y%, Start Date and Time
 
 GUI, GCALGUI:Font, norm s14
-GUI, GCALGUI:Add, DateTime, x3 y195 w425 vStartDateAndTime, dddd MMMM d, yyyy h:mm:ss tt
+GUI, GCALGUI:Add, DateTime, x%START_DATE_AND_TIME_DATETIME_X% y%START_DATE_AND_TIME_DATETIME_Y% w%START_END_DATETIME_WIDTH% vStartDateAndTime, dddd MMMM d, yyyy h:mm:ss tt
 
 ;************END DATE AND TIME STUFF************
 GUI, GCALGUI:Font, underline s18
-GUI, GCALGUI:Add, Text, x5 y245, End Date and Time
+GUI, GCALGUI:Add, Text, x%END_DATE_AND_TIME_TEXT_X% y%END_DATE_AND_TIME_TEXT_Y%, End Date and Time
 
 GUI, GCALGUI:Font, norm s14
-GUI, GCALGUI:Add, DateTime, x3 y280 w425 vEndDateAndTime, dddd MMMM d, yyyy h:mm:ss tt
+GUI, GCALGUI:Add, DateTime, x%END_DATE_AND_TIME_DATETIME_X% y%END_DATE_AND_TIME_DATETIME_Y% w%START_END_DATETIME_WIDTH% vEndDateAndTime, dddd MMMM d, yyyy h:mm:ss tt
+
+;************EVENT COLOR STUFF************
+GUI, GCALGUI:Font, underline s18
+GUI, GCALGUI:Add, Text, x%EVENT_COLOR_TEXT_X% y%EVENT_COLOR_TEXT_Y%, Event Color
+
+GUI, GCALGUI:Font, norm s14
+GUI, GCALGUI:Add, DropDownList, x%EVENT_COLOR_COMBOBOX_X% y%EVENT_COLOR_COMBOBOX_Y% w%EVENT_COLOR_COMBOBOX_WIDTH% vEventColorChoice, Red|Pink|Orange|Yellow|Light Green|Dark Green|Light Blue|Dark Blue|Lavender|Purple|Gray
 
 ;************DESCRIPTION STUFF************
 GUI, GCALGUI:Font, underline s18
-GUI, GCALGUI:Add, Text, x5 y325, Event Description (Optional)
+GUI, GCALGUI:Add, Text, x%DESCRIPTION_TEXT_X% y%DESCRIPTION_TEXT_Y%, Event Description (Optional)
 
 GUI, GCALGUI:Font, norm s14
-GUI, GCALGUI:Add, Edit, r3 w425 x5 y360 +Wrap
+GUI, GCALGUI:Add, Edit, r%DESCRIPTION_EDIT_BOX_ROW_NUM% w%DESCRIPTION_EDIT_BOX_WIDTH% x%DESCRIPTION_EDIT_BOX_X% y%DESCRIPTION_EDIT_BOX_Y% +Wrap
 
 ;************NEXT/PREV PAGE STUFF************
-;The & allows the user to push something like
-; Alt + __ (the first letter), and it acts as a shortcut key.
-GUI, GCALGUI:Add, Button, x333 y460 w100 gNextButtonLabel, &Next Page
-GUI, GCALGUI:Add, Button, x230 y460 w100 gPrevButtonLabel, &Prev Page
+GUI, GCALGUI:Font, s14
+GUI, GCALGUI:Add, Edit, x%NEXT_PREV_UPDOWN_X% y%NEXT_PREV_UPDOWN_Y% w%NEXT_PREV_UPDOWN_WIDTH%
+GUI, GCALGUI:Add, UpDown, x%NEXT_PREV_UPDOWN_X% y%NEXT_PREV_UPDOWN_Y% w%NEXT_PREV_UPDOWN_WIDTH% vNextPrevPageVar
 
 ;************CURRENT PAGE (INDEX) TEXT************
-GUI, GCALGUI:Add, Text, x5 y460, Current Page: %currentArrayIndex%
+GUI, GCALGUI:Add, Text, x%CURRENT_PAGE_TEXT_X% y%CURRENT_PAGE_TEXT_Y%, Current Page: %NextPrevPageVar%
 
 ;************FINISH BUTTON STUFF************
-GUI, GCALGUI:Add, Button, x333 y505 w100 gFinishButtonLabel, &Finish
+GUI, GCALGUI:Add, Button, x%FINISH_BUTTON_X% y%FINISH_BUTTON_Y% w%FINISH_BUTTON_WIDTH% gFinishButtonLabel, &Finish
 
-;After the GUI initialization stuff, show the GUI and define its height and width.
-GUI, GCALGUI:Show, h580 w445, Google Calendar Easy Event Creation GUI
+;************SHOW THE GUI STUFF************
+GUI, GCALGUI:Show, x1600 y100 h%GCALGUI_HEIGHT% w%GCALGUI_WIDTH%, Google Calendar Easy Event Creation GUI
 return ;End of auto-execute.
 
 ;************LABELS************
-;Takes you to the next page (increments array index by 1).
-NextButtonLabel:
-currentArrayIndex++
-GUI, GCALGUI:Add, Text, x5 y460, Current Page: %currentArrayIndex%
-return
-
-;Takes you to the previous page (decrements array index by 1).
-PrevButtonLabel:
-currentArrayIndex--
-GUI, GCALGUI:Add, Text, x5 y460, Current Page: %currentArrayIndex%
+;When the GUI is closed (Red x button, etc).
+GuiClose:
+ExitApp
 return
 
 ;For when the user is done entering data and is ready to
 ; start creating the events in Google Calendar.
 FinishButtonLabel:
-MsgBox hello
+GUI, GCALGUI:Submit, NoHide
 return
 
 ;TEMP
