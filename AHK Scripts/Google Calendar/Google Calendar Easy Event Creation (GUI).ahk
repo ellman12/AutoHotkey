@@ -43,6 +43,9 @@ eventDescriptionArray := []
 ;Starts at 1, to line up with the page numbers in the GUI.
 currentArrayIndex := 1
 
+;Used when creating the events in GCal for looping through the arrays, so the script knows when to stop.
+totalNumOfArrayIndexes := 1
+
 ;************CONSTANTS************
 ;So AHK and the programmer don't get confused.
 GCALGUI := "Google Calendar Script GUI"
@@ -112,7 +115,7 @@ GUI, GCALGUI:Font, underline s18
 GUI, GCALGUI:Add, Text, x%EVENT_NAME_TEXT_X% y%EVENT_NAME_TEXT_Y%, Event Name
 
 GUI, GCALGUI:Font, norm s14
-GUI, GCALGUI:Add, Edit, w%EVENT_NAME_EDIT_WIDTH% x%EVENT_NAME_EDIT_X% y%EVENT_NAME_EDIT_Y%
+GUI, GCALGUI:Add, Edit, w%EVENT_NAME_EDIT_WIDTH% x%EVENT_NAME_EDIT_X% y%EVENT_NAME_EDIT_Y% vEventNameVar
 
 ;************ALL DAY EVENT STUFF************
 GUI, GCALGUI:Font, s14
@@ -148,12 +151,12 @@ GUI, GCALGUI:Font, underline s18
 GUI, GCALGUI:Add, Text, x%DESCRIPTION_TEXT_X% y%DESCRIPTION_TEXT_Y%, Event Description (Optional)
 
 GUI, GCALGUI:Font, norm s14
-GUI, GCALGUI:Add, Edit, r%DESCRIPTION_EDIT_BOX_ROW_NUM% w%DESCRIPTION_EDIT_BOX_WIDTH% x%DESCRIPTION_EDIT_BOX_X% y%DESCRIPTION_EDIT_BOX_Y% +Wrap
+GUI, GCALGUI:Add, Edit, r%DESCRIPTION_EDIT_BOX_ROW_NUM% w%DESCRIPTION_EDIT_BOX_WIDTH% x%DESCRIPTION_EDIT_BOX_X% y%DESCRIPTION_EDIT_BOX_Y% vDescriptionEditBoxVar +Wrap
 
 ;************NEXT/PREV PAGE STUFF************
 GUI, GCALGUI:Font, s14
 GUI, GCALGUI:Add, Edit, x%NEXT_PREV_UPDOWN_X% y%NEXT_PREV_UPDOWN_Y% w%NEXT_PREV_UPDOWN_WIDTH%
-GUI, GCALGUI:Add, UpDown, x%NEXT_PREV_UPDOWN_X% y%NEXT_PREV_UPDOWN_Y% w%NEXT_PREV_UPDOWN_WIDTH% vNextPrevPageVar
+GUI, GCALGUI:Add, UpDown, x%NEXT_PREV_UPDOWN_X% y%NEXT_PREV_UPDOWN_Y% w%NEXT_PREV_UPDOWN_WIDTH% gPrevNextPageLabel currentArrayIndex
 
 ;************CURRENT PAGE (INDEX) TEXT************
 GUI, GCALGUI:Add, Text, x%CURRENT_PAGE_TEXT_X% y%CURRENT_PAGE_TEXT_Y%, Current Page: %NextPrevPageVar%
@@ -166,25 +169,45 @@ GUI, GCALGUI:Add, Button, x%FINISH_BUTTON_X% y%FINISH_BUTTON_Y% w%FINISH_BUTTON_
 GUI, GCALGUI:Show, x1300 y100 h%GCALGUI_HEIGHT% w%GCALGUI_WIDTH%, Google Calendar Easy Event Creation GUI
 return ;End of auto-execute.
 
-;************LABELS************
+;************LABELS AND LOGIC************
 ;When the GUI is closed (Red x button, etc).
 GuiClose:
 ExitApp
 return
 
+PrevNextPageLabel:
+
+    GUI, GCALGUI:Submit
+    
+    
+
+
+
+return
+
 ;For when the user is done entering data and is ready to
 ; start creating the events in Google Calendar.
 FinishButtonLabel:
-GUI, GCALGUI:Submit, NoHide
+
+    GUI, GCALGUI:Submit
+
+    if (ScheduledToWorkVar = 1) {
+        MsgBox helloooooo
+    }
+
 return
 
-;TEMP
-F10::
-Send, GUI, GCALGUI:
-Return
-F11::
-Send, ************
-Return
-^F11::
-Send, ******
-Return
+;Read the values at the specified index.
+readGUIArrayValues(param) {
+
+    
+}
+
+;After getting the values from the user, write to the arrays at the specified index.
+setGUIArrayValues(index) {
+    
+    ;Insert the entered event name at the current arryay index.
+    eventNameArray.insertAt(currentArrayIndex, EventNameVar)
+
+    
+}
