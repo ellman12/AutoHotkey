@@ -27,14 +27,16 @@ SendMode Input
 ;Big green FINISH button with a check mark symbol or something, and it either destroys the GUI, or grays out parts of it.
 ;Have a button/Hotkey to pause the script, and maybe tell the user what part it's on, and allow the user to restart that part?
 ;Default to working event checked?
-;GroupBoxes? https://www.autohotkey.com/docs/commands/GuiControls.htm#GroupBox
 
 ;Arrays for tracking all of the user-inputted data.
-startDateArray := []
-endDateArray := []
-startTimeArray := []
-endTimeArray := []
+eventNameArray := []
 eventAllDayBoolArray := []
+scheduledToWorkBoolArray := []
+startDateArray := []
+startTimeArray := []
+endDateArray := []
+endTimeArray := []
+eventColorArray := []
 eventDescriptionArray := []
 
 ;Index for the array "pages" (individual array indices).
@@ -51,7 +53,7 @@ PIXELS_BETWEEN_SECTION_TITLE_AND_FIRST_CONTROL := 50
 
 EVENT_NAME_TEXT_X := 5
 EVENT_NAME_TEXT_Y := 5
-EVENT_NAME_EDIT_X := 5
+EVENT_NAME_EDIT_X := 3
 EVENT_NAME_EDIT_Y := 40
 EVENT_NAME_EDIT_WIDTH := 425
 
@@ -88,16 +90,16 @@ DESCRIPTION_EDIT_BOX_WIDTH := 425
 
 NEXT_PREV_UPDOWN_WIDTH := 70
 NEXT_PREV_UPDOWN_X := 130
-NEXT_PREV_UPDOWN_Y := 570
+NEXT_PREV_UPDOWN_Y := 542
 
 CURRENT_PAGE_TEXT_X := 5
 CURRENT_PAGE_TEXT_Y := NEXT_PREV_UPDOWN_Y + 1 ;This makes them line up just right.
 
 FINISH_BUTTON_X := 340
-FINISH_BUTTON_Y := 580
+FINISH_BUTTON_Y := 535
 FINISH_BUTTON_WIDTH := 100
 
-GCALGUI_HEIGHT := 625
+GCALGUI_HEIGHT := 580
 GCALGUI_WIDTH := 445
 
 ;**************GUI INITIALIZATION**************
@@ -139,7 +141,7 @@ GUI, GCALGUI:Font, underline s18
 GUI, GCALGUI:Add, Text, x%EVENT_COLOR_TEXT_X% y%EVENT_COLOR_TEXT_Y%, Event Color
 
 GUI, GCALGUI:Font, norm s14
-GUI, GCALGUI:Add, DropDownList, x%EVENT_COLOR_COMBOBOX_X% y%EVENT_COLOR_COMBOBOX_Y% w%EVENT_COLOR_COMBOBOX_WIDTH% vEventColorChoice, Red|Pink|Orange|Yellow|Light Green|Dark Green|Light Blue|Dark Blue|Lavender|Purple|Gray
+GUI, GCALGUI:Add, DropDownList, x%EVENT_COLOR_COMBOBOX_X% y%EVENT_COLOR_COMBOBOX_Y% w%EVENT_COLOR_COMBOBOX_WIDTH% vEventColorChoice Sort, Red||Pink|Orange|Yellow|Light Green|Dark Green|Light Blue|Dark Blue|Lavender|Purple|Gray
 
 ;************DESCRIPTION STUFF************
 GUI, GCALGUI:Font, underline s18
@@ -157,10 +159,11 @@ GUI, GCALGUI:Add, UpDown, x%NEXT_PREV_UPDOWN_X% y%NEXT_PREV_UPDOWN_Y% w%NEXT_PRE
 GUI, GCALGUI:Add, Text, x%CURRENT_PAGE_TEXT_X% y%CURRENT_PAGE_TEXT_Y%, Current Page: %NextPrevPageVar%
 
 ;************FINISH BUTTON STUFF************
+GUI, GCALGUI:Font, s14 c008000
 GUI, GCALGUI:Add, Button, x%FINISH_BUTTON_X% y%FINISH_BUTTON_Y% w%FINISH_BUTTON_WIDTH% gFinishButtonLabel, &Finish
 
 ;************SHOW THE GUI STUFF************
-GUI, GCALGUI:Show, x1600 y100 h%GCALGUI_HEIGHT% w%GCALGUI_WIDTH%, Google Calendar Easy Event Creation GUI
+GUI, GCALGUI:Show, x1300 y100 h%GCALGUI_HEIGHT% w%GCALGUI_WIDTH%, Google Calendar Easy Event Creation GUI
 return ;End of auto-execute.
 
 ;************LABELS************
