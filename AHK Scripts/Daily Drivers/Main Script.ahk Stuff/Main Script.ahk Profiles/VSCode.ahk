@@ -104,15 +104,15 @@ return
 
 ;****************************************KEYBOARD ACTIONS***************************************
 ;Keeb G1
-;(Ctrl + F) Find.
+; Comment out line in VSCode.
 ^F13::
-Send, ^f
+Send, ^/
 return
 
 ;Keeb G2
-;(Ctrl + H) Find and Replace.
+;(Ctrl + Shift + K) Delete line
 ^F14::
-Send, ^h
+Send, ^+k
 return
 
 ;Keeb G3
@@ -139,9 +139,7 @@ Send, ^+]
 return
 
 ;Keeb G7
-;Comment out line in VSCode.
 ^F19::
-Send, ^/
 return
 
 ;Keeb G8
@@ -187,9 +185,7 @@ Send, ^#{d}
 return
 
 ;Keeb G15
-;(Ctrl + Shift + K) Delete line
 !F15::
-Send, ^+k
 return
 
 ;Keeb G16

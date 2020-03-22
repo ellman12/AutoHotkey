@@ -51,7 +51,7 @@ return
 Send, PM
 return
 
-;Kills the script. Very, VERY useful.
+;Reloads the script. Very, VERY useful.
 F6::
 Reload
 return

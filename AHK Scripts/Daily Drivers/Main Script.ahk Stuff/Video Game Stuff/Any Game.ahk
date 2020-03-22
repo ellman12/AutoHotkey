@@ -17,6 +17,7 @@ SendMode Input
 
 ;This script is the profile used for games.
 ;As of right now, it's just used for DOOM.
+;TODO https://www.autohotkey.com/docs/commands/GuiControls.htm#Hotkey
 
 ;****************************************MOUSE ACTIONS***************************************
 
