@@ -90,6 +90,9 @@ GUI, GCALGUI:Add, Edit, r3 w425 x5 y360 +Wrap
 GUI, GCALGUI:Add, Button, x333 y460 w100 gNextButtonLabel, &Next Page
 GUI, GCALGUI:Add, Button, x230 y460 w100 gPrevButtonLabel, &Prev Page
 
+;************CURRENT PAGE (INDEX) TEXT************
+GUI, GCALGUI:Add, Text, x5 y460, Current Page: %currentArrayIndex%
+
 ;************FINISH BUTTON STUFF************
 GUI, GCALGUI:Add, Button, x333 y505 w100 gFinishButtonLabel, &Finish
 
@@ -100,12 +103,14 @@ return ;End of auto-execute.
 ;************LABELS************
 ;Takes you to the next page (increments array index by 1).
 NextButtonLabel:
-MsgBox, hi
+currentArrayIndex++
+GUI, GCALGUI:Add, Text, x5 y460, Current Page: %currentArrayIndex%
 return
 
 ;Takes you to the previous page (decrements array index by 1).
 PrevButtonLabel:
-MsgBox hi 2
+currentArrayIndex--
+GUI, GCALGUI:Add, Text, x5 y460, Current Page: %currentArrayIndex%
 return
 
 ;For when the user is done entering data and is ready to
