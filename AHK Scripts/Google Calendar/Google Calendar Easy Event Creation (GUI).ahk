@@ -139,7 +139,7 @@ GUI, GCALGUI:Add, DateTime, x%START_DATE_DATETIME_X% y%START_DATE_DATETIME_Y% w%
 
 ;************START TIME STUFF************
 GUI, GCALGUI:Font, norm s14
-GUI, GCALGUI:Add, DateTime, x%START_TIME_DATETIME_X% y%START_TIME_DATETIME_Y% w%START_END_TIME_WIDTH%, h:mm:ss tt
+GUI, GCALGUI:Add, DateTime, x%START_TIME_DATETIME_X% y%START_TIME_DATETIME_Y% w%START_END_TIME_WIDTH% vStartTimeVar, h:mm:ss tt
 
 ;************END DATE STUFF************
 GUI, GCALGUI:Font, underline s18
@@ -150,7 +150,7 @@ GUI, GCALGUI:Add, DateTime, x%END_DATE_DATETIME_X% y%END_DATE_DATETIME_Y% w%STAR
 
 ;************END TIME STUFF************
 GUI, GCALGUI:Font, norm s14
-GUI, GCALGUI:Add, DateTime, x%END_TIME_DATETIME_X% y%END_TIME_DATETIME_Y% w%START_END_TIME_WIDTH%, h:mm:ss tt
+GUI, GCALGUI:Add, DateTime, x%END_TIME_DATETIME_X% y%END_TIME_DATETIME_Y% w%START_END_TIME_WIDTH% vEndTimeVar, h:mm:ss tt
 
 ;************EVENT COLOR STUFF************
 GUI, GCALGUI:Font, underline s18
@@ -211,16 +211,30 @@ FinishButtonLabel:
 return
 
 ;Read the values at the specified index.
-readGUIArrayValues(param) {
+readGUIArrayValues(index) {
 
-
+    currentEventName := eventNameArray[index]
+    currentAllDayBoolValue := eventAllDayBoolArray[index]
+    currentScheduledToWorkBoolValue := scheduledToWorkBoolArray[index]
+    currentStartDate := startDateArray[index]
+    currentStartTime := startTimeArray[index]
+    currentEndDate := endDateArray[index]
+    currentEndTime := endTimeArray[index]
+    currentEventColor := eventColorArray[index]
+    currentEventDescription := eventDescriptionArray[index]
 }
 
 ;After getting the values from the user, write to the arrays at the specified index.
 setGUIArrayValues(index) {
 
-    ;Insert the entered event name at the current arryay index.
-    eventNameArray.insertAt(currentArrayIndex, EventNameVar)
-
-
+    ;Store the corresponding values in the arrays.
+    eventNameArray.insertAt(index, EventNameVar)
+    eventAllDayBoolArray.insertAt(index, AllDayCheckBoxVar)
+    scheduledToWorkBoolArray.insertAt(index, ScheduledToWorkVar)
+    startDateArray.insertAt(index, StartDateVar)
+    startTimeArray.insertAt(index, StartTimeVar)
+    endDateArray.insertAt(index, EndDateVar)
+    endTimeArray.insertAt(index, EndTimeVar)
+    eventColorArray.insertAt(index, EventColorChoice)
+    eventDescriptionArray.insertAt(index, DescriptionEditBoxVar)
 }
