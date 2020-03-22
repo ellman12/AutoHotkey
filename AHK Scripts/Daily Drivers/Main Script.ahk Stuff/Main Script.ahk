@@ -600,6 +600,10 @@ Send, ^+{Left}
 Send, {BackSpace}
 return
 
+^BackSpace::
+Send, ^+{Left}{BackSpace}
+return
+
 ;For drawing straight lines in MS Word.
 ; ^!Up::
 ; Send, {Click up}
@@ -632,10 +636,6 @@ return
 ;~ WinSet, AlwaysOnTop, On, Calculator
 ; WinSet, AlwaysOnTop, Toggle, Calculator ; Toggle the always-on-top status of Calculator.
 ;~ return
-
-^BackSpace::
-Send, ^+{Left}{BackSpace}
-return
 
 ;-------------------------------------------------------------------------------------------
 ;Anything in this section is temporary.

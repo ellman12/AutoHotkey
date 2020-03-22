@@ -128,7 +128,7 @@ GUI, GCALGUI:Add, Checkbox, x%ALL_DAY_EVENT_CHECKBOX_X% y%ALL_DAY_EVENT_CHECKBOX
 
 ;************WORKING THIS DAY STUFF************
 GUI, GCALGUI:Font, s14
-GUI, GCALGUI:Add, Checkbox, x%WORKING_THIS_DAY_X% y%WORKING_THIS_DAY_Y% vScheduledToWorkVar, Working this day?
+GUI, GCALGUI:Add, Checkbox, x%WORKING_THIS_DAY_X% y%WORKING_THIS_DAY_Y% gScheduledToWorkLabel vScheduledToWorkVar, Working this day?
 
 ;************START DATE STUFF************
 GUI, GCALGUI:Font, underline s18
@@ -188,12 +188,22 @@ GuiClose:
 ExitApp
 return
 
+ScheduledToWorkLabel:
+
+;Kinda works...
+if (ScheduledToWorkVar = 1) {
+    GuiControl, Enable, AllDayCheckBoxVar
+    ; GUIoco
+} else {
+    GuiControl, Disable, AllDayCheckBoxVar
+}
+return
+
 PrevNextPageLabel:
 
+
+
     GUI, GCALGUI:Submit
-
-
-
 
 
 return

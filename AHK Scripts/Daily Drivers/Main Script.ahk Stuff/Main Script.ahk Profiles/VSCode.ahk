@@ -20,12 +20,12 @@ SendMode Input
 ;****************************************MOUSE ACTIONS***************************************
 #If currentProfile = "VSCode"
 ;Mouse Profile Switch
-;Left double click
+;Left double click (front button on top of mouse).
 ^!F23::
 Send, {Click 2}
 return
 
-;Mouse DPI Toggle
+;Mouse DPI Toggle (back button on top of mouse).
 ^!F24::
 return
 
@@ -81,13 +81,15 @@ Send, ^{PGUP}
 return
 
 ;Mouse G9
-;Previous page in History.
+;(Ctrl + Shift + K) Delete line.
 F21::
-Send, !{Left}
+Send, ^+k
 return
 
 ;Mouse G10
+;(Ctrl + /) Comment Out Line.
 F22::
+Send, ^/
 return
 
 ;Mouse G11
