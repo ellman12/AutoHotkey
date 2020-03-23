@@ -139,7 +139,7 @@ GUI, GCALGUI:Add, DateTime, x%START_DATE_DATETIME_X% y%START_DATE_DATETIME_Y% w%
 
 ;************START TIME STUFF************
 GUI, GCALGUI:Font, norm s14
-GUI, GCALGUI:Add, DateTime, x%START_TIME_DATETIME_X% y%START_TIME_DATETIME_Y% w%START_END_TIME_WIDTH% vStartTimeVar, h:mm:ss tt
+GUI, GCALGUI:Add, DateTime, x%START_TIME_DATETIME_X% y%START_TIME_DATETIME_Y% w%START_END_TIME_WIDTH% vStartTimeVar, h:mm tt
 
 ;************END DATE STUFF************
 GUI, GCALGUI:Font, underline s18
@@ -150,7 +150,7 @@ GUI, GCALGUI:Add, DateTime, x%END_DATE_DATETIME_X% y%END_DATE_DATETIME_Y% w%STAR
 
 ;************END TIME STUFF************
 GUI, GCALGUI:Font, norm s14
-GUI, GCALGUI:Add, DateTime, x%END_TIME_DATETIME_X% y%END_TIME_DATETIME_Y% w%START_END_TIME_WIDTH% vEndTimeVar, h:mm:ss tt
+GUI, GCALGUI:Add, DateTime, x%END_TIME_DATETIME_X% y%END_TIME_DATETIME_Y% w%START_END_TIME_WIDTH% vEndTimeVar, h:mm tt
 
 ;************EVENT COLOR STUFF************
 GUI, GCALGUI:Font, underline s18
@@ -169,7 +169,7 @@ GUI, GCALGUI:Add, Edit, r%DESCRIPTION_EDIT_BOX_ROW_NUM% w%DESCRIPTION_EDIT_BOX_W
 ;************NEXT/PREV PAGE STUFF************
 GUI, GCALGUI:Font, s14
 GUI, GCALGUI:Add, Edit, x%NEXT_PREV_UPDOWN_X% y%NEXT_PREV_UPDOWN_Y% w%NEXT_PREV_UPDOWN_WIDTH%
-GUI, GCALGUI:Add, UpDown, x%NEXT_PREV_UPDOWN_X% y%NEXT_PREV_UPDOWN_Y% w%NEXT_PREV_UPDOWN_WIDTH% gPrevNextPageLabel currentArrayIndex
+GUI, GCALGUI:Add, UpDown, x%NEXT_PREV_UPDOWN_X% y%NEXT_PREV_UPDOWN_Y% w%NEXT_PREV_UPDOWN_WIDTH% gPrevNextPageLabel vcurrentArrayIndex
 
 ;************CURRENT PAGE (INDEX) TEXT************
 GUI, GCALGUI:Add, Text, x%CURRENT_PAGE_TEXT_X% y%CURRENT_PAGE_TEXT_Y%, Current Page: %NextPrevPageVar%
@@ -206,9 +206,9 @@ ScheduledToWorkLabel:
     } else if (ScheduledToWorkVar = 1) {
         GuiControl, Disable, AllDayCheckBoxVar
         
-        ;Get the time variables formatted properly so they're not some useless garbled mess.
-        FormatTime, formattedStartTime, StartTimeVar, h:mm:ss tt
-        FormatTime, formattedEndTime, EndTimeVar, h:mm:ss tt
+        ;Get the time variables formatted properly (like this: 7:12 PM) so they're not some useless garbled mess.
+        FormatTime, formattedStartTime, StartTimeVar, h:mm tt
+        FormatTime, formattedEndTime, EndTimeVar, h:mm tt
 
         GuiControl,, EventNameVar, Working %formattedStartTime% to %formattedEndTime%
     }
@@ -231,6 +231,10 @@ PrevNextPageLabel:
 
     GUI, GCALGUI:Submit, NoHide
 
+    setGUIArrayValues(currentArrayIndex)
+
+    getGUIArrayValues(currentArrayIndex)
+
 return
 
 ;For when the user is done entering data and is ready to
@@ -239,14 +243,14 @@ FinishButtonLabel:
 
     GUI, GCALGUI:Submit, NoHide
 
-    if (ScheduledToWorkVar = 1) {
-        MsgBox helloooooo
-    }
+    setGUIArrayValues(currentArrayIndex)
+
+    MsgBox, 0, Title, % eventNameArray[currentArrayIndex]
 
 return
 
 ;Read the values at the specified index.
-readGUIArrayValues(index) {
+getGUIArrayValues(index) {
 
     currentEventName := eventNameArray[index]
     currentAllDayBoolValue := eventAllDayBoolArray[index]
