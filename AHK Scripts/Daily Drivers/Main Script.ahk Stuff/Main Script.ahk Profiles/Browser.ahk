@@ -60,7 +60,7 @@ DllCall("SystemParametersInfo", Int,113, Int,0, UInt,10, Int,1)
 return
 
 ;Mouse G4
-;Open new Browser tab.
+;Open new tab.
 F16::
 Send, ^t
 return
@@ -78,7 +78,7 @@ Send, !{Right}
 return
 
 ;Mouse G7
-;Close browser tab.
+;Close tab.
 F19::
 Send, ^w
 return

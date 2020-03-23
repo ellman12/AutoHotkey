@@ -55,29 +55,37 @@ DllCall("SystemParametersInfo", Int,113, Int,0, UInt,10, Int,1)
 return
 
 ;Mouse G4
+;Open new tab.
 F16::
+Send, ^t
 return
 
 ;Mouse G5
+;Go one tab to the right.
 F17::
+Send, ^{PGDN}
 return
 
 ;Mouse G6
-;Next page in History
+;Next page in History.
 F18::
 Send, !{Right}
 return
 
 ;Mouse G7
+;Close tab.
 F19::
+Send, ^w
 return
 
 ;Mouse G8
+;Go one tab to the left.
 F20::
+Send, ^{PGUP}
 return
 
 ;Mouse G9
-;Previous page in History
+;Previous page in History.
 F21::
 Send, !{Left}
 return
@@ -93,7 +101,9 @@ WinMinimize, A
 return
 
 ;Mouse G12
+;Reopen the last closed Browser tab, and jump to it.
 F24::
+Send, ^+t
 return
 
 ;****************************************KEYBOARD ACTIONS***************************************
