@@ -124,11 +124,11 @@ GUI, GCALGUI:Add, Edit, w%EVENT_NAME_EDIT_WIDTH% x%EVENT_NAME_EDIT_X% y%EVENT_NA
 
 ;************ALL DAY EVENT STUFF************
 GUI, GCALGUI:Font, s14
-GUI, GCALGUI:Add, Checkbox, x%ALL_DAY_EVENT_CHECKBOX_X% y%ALL_DAY_EVENT_CHECKBOX_Y% vAllDayCheckBoxVar, All day event?
+GUI, GCALGUI:Add, Checkbox, x%ALL_DAY_EVENT_CHECKBOX_X% y%ALL_DAY_EVENT_CHECKBOX_Y% gAllDayCheckBoxLabel vAllDayCheckBoxVar Disabled, All day event?
 
 ;************WORKING THIS DAY STUFF************
 GUI, GCALGUI:Font, s14
-GUI, GCALGUI:Add, Checkbox, x%WORKING_THIS_DAY_X% y%WORKING_THIS_DAY_Y% gScheduledToWorkLabel vScheduledToWorkVar, Working this day?
+GUI, GCALGUI:Add, Checkbox, x%WORKING_THIS_DAY_X% y%WORKING_THIS_DAY_Y% gScheduledToWorkLabel vScheduledToWorkVar Checked, Working this day?
 
 ;************START DATE STUFF************
 GUI, GCALGUI:Font, underline s18
@@ -180,6 +180,8 @@ GUI, GCALGUI:Add, Button, x%FINISH_BUTTON_X% y%FINISH_BUTTON_Y% w%FINISH_BUTTON_
 
 ;************SHOW THE GUI STUFF************
 GUI, GCALGUI:Show, x1300 y100 h%GCALGUI_HEIGHT% w%GCALGUI_WIDTH%, Google Calendar Easy Event Creation GUI
+
+GUI, GCALGUI:Submit, NoHide
 return ;End of auto-execute.
 
 ;************LABELS AND LOGIC************
@@ -188,23 +190,46 @@ GuiClose:
 ExitApp
 return
 
+;Label for the "Working this day?" CheckBox.
+;When it's checked, it disables the "All day event?" CheckBox,
+;because that would mess with everything, and because it make the UI better.
 ScheduledToWorkLabel:
+    ;Get the checkbox's value.
+    GUI, GCALGUI:Submit, NoHide
 
-;Kinda works...
-if (ScheduledToWorkVar = 1) {
-    GuiControl, Enable, AllDayCheckBoxVar
-    ; GUIoco
-} else {
-    GuiControl, Disable, AllDayCheckBoxVar
-}
+    ;If it is not checked, enable the All Day CheckBox.
+    if (ScheduledToWorkVar = 0) {
+
+        GuiControl, Enable, AllDayCheckBoxVar
+
+    ;Else if it is checked, disable the All Day CheckBox.
+    } else if (ScheduledToWorkVar = 1) {
+        GuiControl, Disable, AllDayCheckBoxVar
+        
+        ;Get the time variables formatted properly so they're not some useless garbled mess.
+        FormatTime, formattedStartTime, StartTimeVar, h:mm:ss tt
+        FormatTime, formattedEndTime, EndTimeVar, h:mm:ss tt
+
+        GuiControl,, EventNameVar, Working %formattedStartTime% to %formattedEndTime%
+    }
+return
+
+AllDayCheckBoxLabel:
+    ;Get the CheckBox's value.
+    GUI, GCALGUI:Submit, NoHide
+
+    ;If it is not checked, enable the Work CheckBox.
+    if (AllDayCheckBoxVar = 0) {
+        GuiControl, Enable, ScheduledToWorkVar
+    ;Else if it is checked, disable the Work CheckBox.
+    } else if (AllDayCheckBoxVar = 1) {
+        GuiControl, Disable, ScheduledToWorkVar
+    }
 return
 
 PrevNextPageLabel:
 
-
-
-    GUI, GCALGUI:Submit
-
+    GUI, GCALGUI:Submit, NoHide
 
 return
 
@@ -212,7 +237,7 @@ return
 ; start creating the events in Google Calendar.
 FinishButtonLabel:
 
-    GUI, GCALGUI:Submit
+    GUI, GCALGUI:Submit, NoHide
 
     if (ScheduledToWorkVar = 1) {
         MsgBox helloooooo

@@ -81,15 +81,15 @@ Send, ^{PGUP}
 return
 
 ;Mouse G9
-;(Ctrl + Shift + K) Delete line.
+;(Ctrl + /) Comment Out Line.
 F21::
-Send, ^+k
+Send, ^/
 return
 
 ;Mouse G10
-;(Ctrl + /) Comment Out Line.
+;(Ctrl + Shift + K) Delete line.
 F22::
-Send, ^/
+Send, ^+k
 return
 
 ;Mouse G11
