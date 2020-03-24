@@ -5503,7 +5503,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:caledonia::Caledonia
 :*:kt::KT
 :*:kwik trip::Kwik Trip
-:*:ktt::Kwik Trip
+:*:kkt::Kwik Trip
 ::its::it's
 ::itss::its
 ::git::Git
