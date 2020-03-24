@@ -5365,7 +5365,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ; Anything below this point was added to the script by the user via the Win+H hotkey (or by me, by hand).
 ;--------------------------------------------------------------------------------------------------------
 
-;Stuff that I took from an old file called AutoCapitalize.ahk, and combined it into this script.
+;Stuff that I took from an old file called "AutoCapitalize.ahk", and combined it into this script.
 ;There was no need for it to be in its own file; it was small and wasn't doing that much.
 ;It capitalizes the first word of a sentence.
 ;E.g., when you type "Hello. this is a test.", it'll come out as "Hello. This is a test."
