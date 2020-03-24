@@ -172,7 +172,6 @@ Loop {
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\VSCode.ahk
 ; #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Advanced Window Hider.ahk
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\ApplicationSwitcher.ahk
-#Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\AutoCapitalize.ahk
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\AutoCorrect.ahk
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\CapsLock Hotkeys.ahk
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Chromebook Typing.ahk
@@ -401,6 +400,7 @@ return
 
   ;Stores the NewTitle in the Clipboard.             This is the list of words to NOT capitalize.
   Clipboard := head RegExReplace(tail, "i)\b(a|an|and|at|but|by|for|in|nor|of|on|or|so|the|to|up|with|yet)\b", "$L1")
+  Clipboard := head RegExReplace(tail, "i)\b(KT|HELLO)\b", "$L1")
 
   Send ^v ;Paste the new title.
 return ;End of ^!t.
