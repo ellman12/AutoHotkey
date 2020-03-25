@@ -27,7 +27,6 @@ global CurrentWinF6AndF7ActBoth := 1
 #Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Misc. Main Script.ahk Scripts\ApplicationSwitcher.ahk
 ; #Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Misc. Main Script.ahk Scripts\AutoCapitalize.ahk
 #Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Misc. Main Script.ahk Scripts\AutoCorrect.ahk
-#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Misc. Main Script.ahk Scripts\CapsLock Hotkeys.ahk
 #Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Misc. Main Script.ahk Scripts\Run.ahk
 #Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Screen Clipper Script\Screen Clipper.ahk
 
