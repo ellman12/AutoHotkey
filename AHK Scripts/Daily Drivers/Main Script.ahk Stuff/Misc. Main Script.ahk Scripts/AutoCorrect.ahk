@@ -5458,6 +5458,9 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:fg::f
 :*:gf::g
 :*:rt::r
+:*:io::o
+:*:kl::l
+:*:opportuniuties::opportunities
 
 ;Automatically change things like f1 to F1; makes life easier.
 :*:f1::F1
@@ -5527,3 +5530,4 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:youtube::YouTube
 :*:pc::PC
 ::compter::computer
+:*:tio::to
