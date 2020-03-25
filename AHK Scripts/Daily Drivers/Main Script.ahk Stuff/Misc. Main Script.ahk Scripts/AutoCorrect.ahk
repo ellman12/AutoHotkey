@@ -5454,14 +5454,6 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*c?:! y::! Y
 :*c?:! z::! Z
 
-;Help to prevernt fat-fingering keys.
-:*:fg::f
-:*:gf::g
-:*:rt::r
-:*:io::o
-:*:kl::l
-:*:opportuniuties::opportunities
-
 ;Automatically change things like f1 to F1; makes life easier.
 :*:f1::F1
 :*:f2::F2
@@ -5488,6 +5480,16 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:f23::F23
 :*:f24::F24
 
+;Help to prevernt fat-fingering keys.
+:*:fg::f
+:*:gf::g
+:*:rt::r
+:*:io::o
+:*:kl::l
+:*:opportuniuties::opportunities
+
+:*:alkso::also
+:*:aklso::also
 ::american::American
 ::americans::Americans
 ::consqeuences::consequences
