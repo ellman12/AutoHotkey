@@ -47,16 +47,6 @@ GUI, AdvWinHider:Font, norm s11.5
 GUI, AdvWinHider:Add, Text, x5 y40,Alt + w`t`tToggles between showing and hiding this help GUI.`nAlt + F10`tAdd the window to F8 the array and hide.`nAlt + F8`t`tAdd the window to F8 the array and hide.`n^!+F10`t`tRemove all windows from the F10 group, without closing them.`n^!+F8`t`tRemove all windows from the F8 group, without closing them.`n^!+#F10`tClose all windows in the F10 list (array).`n^!+#F8`t`tClose all windows in the F8 list (array).`nCtrl + F10`tAdd the current window's title and ID to the F10 list (array).`nCtrl + F8`tAdd the current window's title and ID to the F8 list (array).`nShift + F10`tRemove the current window from F10 group.`nShift + F8`tRemove the current window from F10 group.`nF10`t`tShow/hide F10 windows.`nF8`t`thow/hide F10 windows.`nShift + Pause`tHotkey for suspending AWH hotkeys.`nWin + F10`tShows hidden F10 wins list. 1-9 to unhide that window.`nWin + F8`tShows hidden F8 wins list. 1-9 to unhide that window.
 
 ;***********************************HOTKEYS***********************************
-;Toggles between showing and hiding the help GUI for Advanced Window Hider.ahk
-!w::
-showAdvWinHiderGUIToggle := !showAdvWinHiderGUIToggle
-
-if (showAdvWinHiderGUIToggle = 1)
-	GUI, AdvWinHider:Show, x600 y90 w560 h370, Advanced Window Hider.ahk Hotkey Help Window
-else
-	GUI, AdvWinHider:Hide
-return
-
 ; ^F8:: Add the current window's title and ID to the list (array).
 ; !F8:: Add the current window's title and ID to the list (array), and hide it right away.
 ; F8:: Toggle between showing and hiding all the windows in the list (array).
@@ -90,6 +80,16 @@ return ;End of Auto-execute section.
 ;Suspend hotkeys.
 +Pause::
 Suspend, Toggle
+return
+
+;Toggles between showing and hiding the help GUI for Advanced Window Hider.ahk
+!w::
+showAdvWinHiderGUIToggle := !showAdvWinHiderGUIToggle
+
+if (showAdvWinHiderGUIToggle = 1)
+	GUI, AdvWinHider:Show, x600 y90 w560 h370, Advanced Window Hider.ahk Hotkey Help Window
+else
+	GUI, AdvWinHider:Hide
 return
 
 ;***************************************F8 HOTKEYS***************************************

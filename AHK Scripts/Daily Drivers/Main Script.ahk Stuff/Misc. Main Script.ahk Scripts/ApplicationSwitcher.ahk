@@ -220,11 +220,6 @@ return
 !F6::
 ActivateBothF6AndF7Windows() ;Activate windows in both the F6 and F7 array.
 return
-
-#+F6::
-ActivateNeitherF6NorF7Windows()
-return
-
 ^!F6::
 RemoveWindowF6()
 return
@@ -449,11 +444,4 @@ ActivateBothF6AndF7Windows() {
 	;Now activate the window based on CurrentWinF6AndF7ActBoth.
 	WinActivate, % "ahk_id" F6andF7WinIDArray[CurrentWinF6AndF7ActBoth]
 	return
-}
-
-;Activate windows NOT in the F6 and F7 window groups.
-ActivateNeitherF6NorF7Windows() {
-
-	GroupAdd, allWindows, AllWindows
-	GroupDeactivate, AllWindows, R
 }
