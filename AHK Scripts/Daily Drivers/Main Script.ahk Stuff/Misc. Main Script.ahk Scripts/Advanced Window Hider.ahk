@@ -27,22 +27,49 @@ SendMode Input
 
 ;WARNING! BEFORE YOU EDIT THIS SCRIPT--AND THUS RELOAD IT--MAKE SURE ALL OF YOUR WINDOWS ARE UNHIDDEN! OR ELSE THEY'LL BE GONE FOREVER!
 
+;*******************************ADVANCED WINDOW HIDER HELP GUI INITIALIZATION******************************
+AdvWinHider := "Advanced Window Hider Help Box GUI"
+
+;Toggle for the hotkey to show/hide the help.
+showAdvWinHiderGUIToggle := 0
+
+;Basic GUI setup.
+GUI, AdvWinHider:+AlwaysOnTop
+GUI, AdvWinHider:Color, Silver
+
+;Adding the title text.
+GUI, AdvWinHider:Font, underline s14
+GUI, AdvWinHider:Add, Text, x5 y5, Hotkey
+GUI, AdvWinHider:Add, Text, x115 y5, What It Does
+
+;Adding the text for all the hotkeys and what they do.
+GUI, AdvWinHider:Font, norm s11.5
+GUI, AdvWinHider:Add, Text, x5 y40,Alt + w`t`tToggles between showing and hiding this help GUI.`nAlt + F10`tAdd the window to F8 the array and hide.`nAlt + F8`t`tAdd the window to F8 the array and hide.`n^!+F10`t`tRemove all windows from the F10 group, without closing them.`n^!+F8`t`tRemove all windows from the F8 group, without closing them.`n^!+#F10`tClose all windows in the F10 list (array).`n^!+#F8`t`tClose all windows in the F8 list (array).`nCtrl + F10`tAdd the current window's title and ID to the F10 list (array).`nCtrl + F8`tAdd the current window's title and ID to the F8 list (array).`nShift + F10`tRemove the current window from F10 group.`nShift + F8`tRemove the current window from F10 group.`nF10`t`tShow/hide F10 windows.`nF8`t`thow/hide F10 windows.`nShift + Pause`tHotkey for suspending AWH hotkeys.`nWin + F10`tShows hidden F10 wins list. 1-9 to unhide that window.`nWin + F8`tShows hidden F8 wins list. 1-9 to unhide that window.
+
 ;***********************************HOTKEYS***********************************
+;Toggles between showing and hiding the help GUI for Advanced Window Hider.ahk
+!w::
+showAdvWinHiderGUIToggle := !showAdvWinHiderGUIToggle
+
+if (showAdvWinHiderGUIToggle = 1)
+	GUI, AdvWinHider:Show, x600 y90 w560 h370, Advanced Window Hider.ahk Hotkey Help Window
+else
+	GUI, AdvWinHider:Hide
+return
+
 ; ^F8:: Add the current window's title and ID to the list (array).
 ; !F8:: Add the current window's title and ID to the list (array), and hide it right away.
-; +F8:: Show previously hidden window.
 ; F8:: Toggle between showing and hiding all the windows in the list (array).
 ; #F8:: Display a list of hidden windows with their index next to it. If the user presses 1–9, it will show and activate the window with that index.
-; ^+F8:: Remove the current window's ID and title from the list (array).
+; +F8:: Remove the current window's ID and title from the list (array).
 ; ^!+F8:: Remove all windows from the group, without closing them.
 ; ^!+#F8:: Close all windows in the list (array).
 
 ; ^F10:: Add the current window's title and ID to the list (array).
 ; !F10:: Add the current window's title and ID to the list (array), and hide it right away.
-; +F10:: Show previously hidden window.
 ; F10:: Toggle between showing and hiding all the windows in the list (array).
 ; #F10:: Display a list of hidden windows with their index next to it. If the user presses 1–9, it will show and activate the window with that index.
-; ^+F10:: Remove the current window's ID and title from the list (array).
+; +F10:: Remove the current window's ID and title from the list (array).
 ; ^!+F10:: Remove all windows from the group, without closing them.
 ; ^!+#F10:: Close all windows in the list (array).
 
@@ -130,23 +157,8 @@ return ;End of ^F8.
     WinHide, % "ahk_id " F8ActiveWinID
 return ;End of !F8.
 
-;Show previously hidden window.
-+F8::
-
-    SetTitleMatchMode, 3
-    ;If the title of the last hidden window is NOT blank: show, restore, and activate the previously hidden window.
-    ;Aso decrement the total number of windows by 1 each time.
-    if (F8ActiveWinTitle != "") {
-        WinShow, %F8ActiveWinTitle%
-        WinRestore %PreviousHiddenWindow%
-		WinActivate %PreviousHiddenWindow%
-		NumHiddenWindowsF8 := %NumHiddenWindowsF8% - 1
-		PreviousHiddenWindow := HiddenWindows%NumHiddenWindowsF8%
-    }
-return ;End of +F8.
-
 ;Remove the active window from the list.
-^+F8::
++F8::
     ;Get ID of current active window.
     WinGet, F8ActiveWinID, ID, A
     
@@ -167,7 +179,7 @@ return ;End of +F8.
     ToolTip, Removed from F8 Group!
     Sleep, 200
     ToolTip
-return ;End of ^+F8.
+return ;End of +F8.
 
 ;Toggle between showing and hiding all the windows.
 F8::
@@ -331,23 +343,8 @@ return ;End of ^F10.
     WinHide, % "ahk_id " F10ActiveWinID
 return ;End of !F10.
 
-;Show previously hidden window.
-+F10::
-
-    SetTitleMatchMode, 3
-    ;If the title of the last hidden window is NOT blank: show, restore, and activate the previously hidden window.
-    ;Aso decrement the total number of windows by 1 each time.
-    if (F10ActiveWinTitle != "") {
-        WinShow, %F10ActiveWinTitle%
-        WinRestore %PreviousHiddenWindow%
-		WinActivate %PreviousHiddenWindow%
-		NumHiddenWindowsF10 := %NumHiddenWindowsF10% - 1
-		PreviousHiddenWindow := HiddenWindows%NumHiddenWindowsF10%
-    }
-return ;End of +F10.
-
 ;Remove the active window from the list.
-^+F10::
++F10::
     ;Get ID of current active window.
     WinGet, F10ActiveWinID, ID, A
     
@@ -368,7 +365,7 @@ return ;End of +F10.
     ToolTip, Removed from F10 Group!
     Sleep, 200
     ToolTip
-return ;End of ^+F10.
+return ;End of +F10.
 
 ;Toggle between showing and hiding all the windows.
 F10::
