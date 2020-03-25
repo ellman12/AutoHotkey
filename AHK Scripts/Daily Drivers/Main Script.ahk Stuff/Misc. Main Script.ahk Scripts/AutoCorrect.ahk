@@ -5488,6 +5488,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:kl::l
 :*:opportuniuties::opportunities
 
+:*:comp sci::computer science
 :*:alkso::also
 :*:aklso::also
 ::american::American
