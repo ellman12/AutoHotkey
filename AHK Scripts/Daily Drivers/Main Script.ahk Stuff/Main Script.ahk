@@ -183,7 +183,7 @@ Loop {
 ;These global hotkeys are hotkeys that are always running, regardless of the active window, profile, or whatever.
 
 ;Pushing Ctrl + Pause suspends all hotkeys, thus "pausing" the script.
-;The reason it's ^CtrlBreak instead of ^Pause is because, according to the documentation: "While the Ctrl key is held down,
+;The reason it's ^CtrlBreak instead of ^Pause is because, according to the documentation, "While the Ctrl key is held down,
 ;the Pause key produces the key code of CtrlBreak and NumLock produces Pause, so use ^CtrlBreak in hotkeys instead of ^Pause."
 ^CtrlBreak::Suspend, Toggle
 
@@ -232,15 +232,15 @@ return
 MouseMove, mousePosX, mousePosY, 0
 return
 
-;Disables it. Use Ctrl + CapsLock to enable/disable it. This prevents accidentally pressing it.
-; CapsLock::return
+; Disables it. Use Ctrl + CapsLock to enable/disable it. This prevents accidentally pressing it.
+CapsLock::return
 
-; ^CapsLock::
-; if capsLockState := GetKeyState("CapsLock", "T")
-;     SetCapsLockState, Off
-; else
-;     SetCapsLockState, On
-; return
+^CapsLock::
+if capsLockState := GetKeyState("CapsLock", "T")
+    SetCapsLockState, Off
+else
+    SetCapsLockState, On
+return
 
 ;Keyboard shortcut that either enables or disables the active window as AlwaysOnTop
 ^Space::
