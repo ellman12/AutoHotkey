@@ -20,7 +20,7 @@ SetWorkingDir %A_ScriptDir% ;Ensures a consistent starting directory.
 showApplSwitchGUIToggle := !showApplSwitchGUIToggle
 
 if (showApplSwitchGUIToggle = 1)
-	GUI, ApplSwitchGUI:Show, x600 y90 w510 h570, ApplicationSwitcher.ahk Hotkey Help Window
+	GUI, ApplSwitchGUI:Show, x600 y90 w510 h580, ApplicationSwitcher.ahk Hotkey Help Window
 else
 	GUI, ApplSwitchGUI:Hide
 return
