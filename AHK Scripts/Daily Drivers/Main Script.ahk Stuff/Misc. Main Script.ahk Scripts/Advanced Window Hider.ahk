@@ -61,8 +61,8 @@ F10ShowHideToggle := 1
 return ;End of Auto-execute section.
 
 ;Suspend hotkeys.
-+#p::
-Suspend
++Pause::
+Suspend, Toggle
 return
 
 ;***************************************F8 HOTKEYS***************************************
