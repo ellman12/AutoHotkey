@@ -180,28 +180,20 @@ Loop {
 #Include, %A_ScriptDir%\Video Game Stuff\Any Game.ahk
 
 ;****************************************GLOBAL HOTKEYS***************************************
-;These global hotkeys are hotkeys that are always running, regardless of the active window, class, or whatever.
-;Pushing Windows Key + P suspends all hotkeys, thus "pausing" the script.
-#!p::Suspend, Toggle
+;These global hotkeys are hotkeys that are always running, regardless of the active window, profile, or whatever.
 
-;TODO TEMP
-F10::
-Send, GUI, GCALGUI:
-Return
-F11::
-Send, ************
-Return
-^F11::
-Send, ******
-Return
+;Pushing Ctrl + Pause suspends all hotkeys, thus "pausing" the script.
+;The reason it's ^CtrlBreak instead of ^Pause is because, according to the documentation: "While the Ctrl key is held down,
+;the Pause key produces the key code of CtrlBreak and NumLock produces Pause, so use ^CtrlBreak in hotkeys instead of ^Pause."
+^CtrlBreak::Suspend, Toggle
 
-;Pushing Win + Alt + p suspends all hotkeys for the specified number in milliseconds (in this case, 2500).
-#p::
+;Pushing the Pause key suspends all hotkeys for the specified number in milliseconds (in this case, 2500).
+Pause::
 SetTimer, setTimerLabel, 2500, On
 Suspend, On
 return
 
-;Label for #!p. The timer calls this label, suspends the hotkeys, sets the timer to off,
+;Label for ^CtrlBreak. The timer calls this label, suspends the hotkeys, sets the timer to off,
 ;and then goes back to the original hotkey that then unsuspends the script hotkeys.
 setTimerLabel:
 Suspend, Off
@@ -317,8 +309,6 @@ return
 ^#BackSpace::
 MsgBox, 0, Misc. Variables`, Toggles`, etc.,Current Main Script.ahk profile:  %currentProfile%`n`nNumPadMode: %numPadMode%`n`nChromebook Typing Toggled: %chromebookTypingToggle%`n`nautoNumPadModeToggle: %autoNumPadModeToggle%
 return
-
-
 
 ;Scroll down faster by holding down the G3 key on Scimitar Pro RGB.
 F15 & WheelDown::

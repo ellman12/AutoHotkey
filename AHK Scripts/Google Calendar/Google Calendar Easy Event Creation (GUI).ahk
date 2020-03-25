@@ -277,3 +277,14 @@ setGUIArrayValues(index) {
     eventColorArray.insertAt(index, EventColorChoice)
     eventDescriptionArray.insertAt(index, DescriptionEditBoxVar)
 }
+
+;TODO TEMP
+F10::
+Send, GUI, GCALGUI:
+Return
+F11::
+Send, ************
+Return
+^F11::
+Send, ******
+Return

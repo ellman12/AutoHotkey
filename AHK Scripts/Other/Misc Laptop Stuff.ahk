@@ -31,19 +31,21 @@ global CurrentWinF6AndF7ActBoth := 1
 #Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Screen Clipper Script\Screen Clipper.ahk
 
 
-;Pushing Windows Key + P suspends all hotkeys, thus "pausing" the script.
-#!p::Suspend, Toggle
+;Pushing Ctrl + Pause suspends all hotkeys, thus "pausing" the script.
+;The reason it's ^CtrlBreak instead of ^Pause is because, according to the documentation: "While the Ctrl key is held down,
+;the Pause key produces the key code of CtrlBreak and NumLock produces Pause, so use ^CtrlBreak in hotkeys instead of ^Pause."
+^CtrlBreak::Suspend, Toggle
 
-;Pushing Win + Alt + p suspends all hotkeys for the specified number in milliseconds (in this case, 2500).
-#P::
+;Pushing the Pause key suspends all hotkeys for the specified number in milliseconds (in this case, 2500).
+Pause::
 SetTimer, setTimerLabel, 2500, On
-Suspend
+Suspend, On
 return
 
-;Label for #!p. The timer calls this label, suspends the hotkeys, sets the timer to off,
+;Label for ^CtrlBreak. The timer calls this label, suspends the hotkeys, sets the timer to off,
 ;and then goes back to the original hotkey that then unsuspends the script hotkeys.
 setTimerLabel:
-Suspend
+Suspend, Off
 SetTimer, setTimerLabel, Off
 return
 
