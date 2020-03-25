@@ -14,10 +14,20 @@ SetWorkingDir %A_ScriptDir% ;Ensures a consistent starting directory.
 ; activate the other window on the other virtual desktop, it will not activate. It never used to do this, but now it does.
 ;This is actually pretty awesome.
 
+;Toggles between showing and hiding the help GUI for ApplicationSwitcher.ahk
+!a::
+
+showApplSwitchGUIToggle := !showApplSwitchGUIToggle
+
+if (showApplSwitchGUIToggle = 1)
+	GUI, ApplSwitchGUI:Show, x600 y90 w510 h570, ApplicationSwitcher.ahk Hotkey Help Window
+else
+	GUI, ApplSwitchGUI:Hide
+return
+
 ;If a Firefox window doesn't exist, run Firefox.
 ;If a Firefox window does exist, switch to Chrome.
 ;If Firefox is active, send ^PGDN (switch between tabs).
-
 F1::
 switchToFirefoxAndBetweenTabs() {
 	IfWinNotExist, ahk_class MozillaWindowClass

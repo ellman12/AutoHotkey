@@ -35,6 +35,25 @@ the set of actions that are done by the G keys depending on the current active w
 Menu, Tray, Icon, shell32.dll, 174 ;Changes the icon to a keyboard.
 
 ;******************************************AUTO-EXECUTE**************************************************
+;*******************************APPLICATIONSWITCHER HELP GUI INITIALIZATION******************************
+ApplSwitchGUI := "ApplicationSwitcher Help Box GUI"
+
+;Toggle for the hotkey to show/hide the help.
+showApplSwitchGUIToggle := 0
+
+;Basic GUI setup.
+GUI, ApplSwitchGUI:+AlwaysOnTop
+GUI, ApplSwitchGUI:Color, Silver
+
+;Adding the title text.
+GUI, ApplSwitchGUI:Font, underline s14
+GUI, ApplSwitchGUI:Add, Text, x5 y5, Hotkey
+GUI, ApplSwitchGUI:Add, Text, x115 y5, What It Does
+
+;Adding the text for all the hotkeys and what they do.
+GUI, ApplSwitchGUI:Font, norm s11.5
+GUI, ApplSwitchGUI:Add, Text, x5 y40,Alt + F6`t`tActivate windows in both the F6 and F7 array.`nCtrl + Alt + F1`tRun File Explorer and switch between wins.`nCtrl + Alt + F2`tCreate a new Private Firefox window.`nCtrl + Alt + F3`tCreate a new incognito Chrome window.`nCtrl + Alt + F6`tRemoves active window from the F6 group`nCtrl + Alt + F7`tRemoves active window from the F7 group`nCtrl + F1`tCreate a new normal Firefox window.`nCtrl + F2`tCreate a new normal Firefox window.`nCtrl + F3`tCreate a new normal Chrome window.`nCtrl + F4`tCreate a new normal Chrome window.`nCtrl + F6`tAdds active window to the F6 group`nCtrl + F7`tAdds active window to the F7 group`nCtrl + Shift + F6`tRemoves nonexistent wins from the F6 array.`nCtrl + Shift + F7`tRemoves nonexistent wins from the F7 array.`nF1`t`tRuns Firefox; switches to a FF win and between tabs.`nF12`t`tActivates MS Word windows, one at a time.`nF2`t`tRuns Firefox; switches between windows.`nF3`t`tRuns Chrome; switches to a Chr win and between tabs.`nF4`t`tRuns Chrome; switches between windows.`nF6`t`tNext window in the F6 group.`nF7`t`tNext window in the F7 group.`nF9`t`tThe Back button.`nShift + F1`tSame thing as F1, but reverse order.`nShift + F3`tSame thing as F3, but reverse order.`nShift + F6`tPrevious window in the F6 group.`nShift + F7`tPrevious window in the F7 group.
+
 ;*******************************EDIT CLIPBOARD CONTENT INITIALIZATION******************************
 ;The ECC in the GUI commands helps differentiate these GUI things from any others.
 GUI, ECC:Font, s14, Arial ;Font settings for the Text Box.
@@ -579,9 +598,9 @@ clipboardFinishButton:
     GuiControl, ECC:Focus, %clipboardBoxText%
 return
 
-;----------------------------------------------------------------------
-;*****************************EXPERIMENTAL*****************************
-;----------------------------------------------------------------------
+;-------------------------------------------------------------------------------------------
+;*****************************************EXPERIMENTAL*****************************************
+;-------------------------------------------------------------------------------------------
 
 \::
 Send, ^+{Left}
@@ -592,7 +611,7 @@ return
 Send, ^+{Left}{BackSpace}
 return
 
-;For drawing straight lines in MS Word.
+;For drawing straight lines with the pen tool in MS Word.
 ; ^!Up::
 ; Send, {Click up}
 ; return
@@ -626,7 +645,7 @@ return
 ;~ return
 
 ;-------------------------------------------------------------------------------------------
-;Anything in this section is temporary.
+;*****************************************TEMPORARY*****************************************
 ;-------------------------------------------------------------------------------------------
 
 ;English papers.
@@ -650,16 +669,6 @@ Send, {Left 3}
 Send, System.out.print("");
 Sleep 20
 Send, {Left 3}
-return
-
-;Comment out a line, but not the intelli-gay way.
-$^/::
-Send, {Home}//{Space}
-return
-
-;Comment out normally.
-^!/::
-Send, ^/
 return
 
 ;Get the mouse's current position, moves the mouse to the Run button, and clicks it.
