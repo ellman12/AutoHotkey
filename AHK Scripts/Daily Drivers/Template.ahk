@@ -26,7 +26,7 @@ SendMode Input
 return
 
 ;Mouse DPI Toggle
-^!F24::
+^+F23::
 return
 
 ;Mouse G1
@@ -74,7 +74,7 @@ F23::
 return
 
 ;Mouse G12
-F24::
++F23::
 return
 
 ;****************************************KEYBOARD ACTIONS***************************************
@@ -123,7 +123,7 @@ return
 return
 
 ;Keeb G12
-^F24::
+!F23::
 return
 
 ;Keeb G13

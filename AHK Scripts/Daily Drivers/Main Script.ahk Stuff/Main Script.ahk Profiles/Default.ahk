@@ -26,7 +26,7 @@ Send, {Click 2}
 return
 
 ;Mouse DPI Toggle.
-^!F24::
+^+F23::
 return
 
 ;Mouse G1
@@ -102,7 +102,7 @@ return
 
 ;Mouse G12
 ;Reopen the last closed Browser tab, and jump to it.
-F24::
++F23::
 Send, ^+t
 return
 
@@ -178,7 +178,7 @@ Send, #a
 return
 
 ;Keeb G12
-^F24::
+!F23::
 return
 
 ;Keeb G13

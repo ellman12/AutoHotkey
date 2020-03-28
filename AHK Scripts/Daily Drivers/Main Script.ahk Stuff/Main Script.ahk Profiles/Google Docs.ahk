@@ -21,7 +21,7 @@ Send, {Click 2}
 return
 
 ;Mouse DPI Toggle
-^!F24::
+^+F23::
 return
 
 ;Mouse G1
@@ -97,7 +97,7 @@ return
 
 ;Mouse G12
 ;Reopen the last closed tab, and jump to it
-F24::
++F23::
 Send, ^+t
 return
 
@@ -202,7 +202,7 @@ return
 
 ;Keeb G12
 ;Open the Dictionary
-^F24::
+!F23::
 Send, ^+y
 Sleep 80
 Send, {Tab 2}

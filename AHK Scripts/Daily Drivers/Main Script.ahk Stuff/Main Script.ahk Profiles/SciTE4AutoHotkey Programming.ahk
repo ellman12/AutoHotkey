@@ -16,7 +16,7 @@ Send, {Click 2}
 return
 
 ;Mouse DPI Toggle
-^!F24::
+^+F23::
 return
 
 ;Mouse G1
@@ -85,7 +85,7 @@ WinMinimize, A
 return
 
 ;Mouse G12
-F24::
++F23::
 return
 
 ;****************************************KEYBOARD ACTIONS***************************************
@@ -157,7 +157,7 @@ return
 
 ;Keeb G12
 ;Next paragraph
-^F24::
+!F23::
 Send, ^]
 return
 
