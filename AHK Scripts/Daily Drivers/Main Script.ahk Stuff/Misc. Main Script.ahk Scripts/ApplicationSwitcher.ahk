@@ -321,7 +321,7 @@ RemoveNonexistentWindowsF6() {
 		{
 			;Remove it from the array.
 			WindowGroupF6.RemoveAt(indexF6)
-			F6andF7WinIDArray.RemoveAt(thisIDF6)
+			F6andF7WinIDArray.RemoveAt(indexF6)
 		}
 	}
 	return
@@ -386,7 +386,7 @@ RemoveWindowF7() {
 		;Same as the AddWindow function except if a match is found, remove it from the array
 		if (value = thisIDF7) {
 			WindowGroupF7.RemoveAt(indexF7)
-			F6andF7WinIDArray.RemoveAt(thisIDF7)
+			F6andF7WinIDArray.RemoveAt(indexF7)
 			break
 		}
 	}
@@ -425,7 +425,7 @@ RemoveNonexistentWindowsF7() {
 		{
 			;Remove it from the array.
 			WindowGroupF7.RemoveAt(indexF7)
-			F6andF7WinIDArray.RemoveAt(thisIDF7)
+			F6andF7WinIDArray.RemoveAt(indexF7)
 		}
 	}
 	return
