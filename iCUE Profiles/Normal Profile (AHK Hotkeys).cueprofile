@@ -4168,7 +4168,7 @@
 																		<data>
 																			<base/>
 																			<keys size="dynamic">
-																				<value0>F23</value0>
+																				<value0>F24</value0>
 																			</keys>
 																			<sub>KeyPress</sub>
 																		</data>
@@ -4205,7 +4205,7 @@
 																		<data>
 																			<base/>
 																			<keys size="dynamic">
-																				<value0>F23</value0>
+																				<value0>F24</value0>
 																			</keys>
 																			<sub>KeyRelease</sub>
 																		</data>
@@ -4270,7 +4270,7 @@
 																		<data>
 																			<base/>
 																			<keys size="dynamic">
-																				<value0>F23</value0>
+																				<value0>F24</value0>
 																			</keys>
 																			<sub>KeyPress</sub>
 																		</data>
@@ -4307,7 +4307,7 @@
 																		<data>
 																			<base/>
 																			<keys size="dynamic">
-																				<value0>F23</value0>
+																				<value0>F24</value0>
 																			</keys>
 																			<sub>KeyRelease</sub>
 																		</data>
@@ -4381,7 +4381,7 @@
 																		<data>
 																			<base/>
 																			<keys size="dynamic">
-																				<value0>F23</value0>
+																				<value0>F24</value0>
 																			</keys>
 																			<sub>KeyPress</sub>
 																		</data>
@@ -4418,7 +4418,7 @@
 																		<data>
 																			<base/>
 																			<keys size="dynamic">
-																				<value0>F23</value0>
+																				<value0>F24</value0>
 																			</keys>
 																			<sub>KeyRelease</sub>
 																		</data>
@@ -6701,7 +6701,7 @@
 																<cereal_class_version>301</cereal_class_version>
 																<base>
 																	<name></name>
-																	<id>{8715d905-0a0f-477e-94eb-d9236081450c}</id>
+																	<id>{03b1a59d-e503-4910-86cd-43dd4058155a}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -6736,7 +6736,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{fcb52c39-c6c8-45ea-895d-ab7c46eaed29}</id>
+																	<id>{519b56db-18aa-4168-b01c-7652902d56ad}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -6771,7 +6771,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{d581d7b6-94c6-4e68-8d89-a39b49ab548e}</id>
+																	<id>{e2bf281d-a3e9-489f-b6c0-da1e035fcb42}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -6806,7 +6806,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{59b8ce03-7c22-419d-8380-d6654c00c8be}</id>
+																	<id>{3d626d15-8729-4e6f-a8f7-4501acf94454}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -6841,7 +6841,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{34b3ed39-7c9e-4429-8537-1a72247ed6fe}</id>
+																	<id>{ff6461ad-7afa-47df-a40f-673edcfbd4f0}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -6876,7 +6876,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{b965333b-88f4-4c0a-923a-a2b766ffd6ad}</id>
+																	<id>{fc5b4e99-282f-4052-8b80-ce01f09d0e24}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -6911,7 +6911,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{9f74482e-fa82-4e08-8664-b9060a92685a}</id>
+																	<id>{041a01e0-4327-48ea-9b39-b603f1f3342f}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -6946,7 +6946,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{8eee0592-41e5-43b9-aa6b-0ada292e49a1}</id>
+																	<id>{f5d0243c-c8a3-4816-a168-20b26a78da1c}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -6981,7 +6981,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{44c1acf5-edc4-4302-bd0e-7d7ef8891260}</id>
+																	<id>{89b18172-dd9d-4605-ae09-83ca02606762}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -7016,7 +7016,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{cdfe1191-207d-47fc-ba1e-3bc218bc921b}</id>
+																	<id>{b1923a58-8c46-4f76-b6f0-94962ae8b835}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -7051,7 +7051,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{d56a096d-9495-4ad6-828f-73b37eaa2f3f}</id>
+																	<id>{ca8a576a-17a4-4bb9-9c93-9bcec8a41bd2}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -7086,7 +7086,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{ca20845c-2b2d-4968-b690-55d1d3b60403}</id>
+																	<id>{9857e218-668a-4244-a0de-19f8cf399ce0}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -7121,7 +7121,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{c6370446-d88d-42cd-99dd-0b6cb2acf5c2}</id>
+																	<id>{7b3a11e2-97e8-46dd-bdff-9885a1034b9c}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -7156,7 +7156,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{9600cb1e-bac4-4ea0-9b33-769405be38ae}</id>
+																	<id>{1e1881a9-1572-4f44-b3a2-0787caf9f292}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -7191,7 +7191,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{69461e4b-cceb-4a71-96e1-92cbe1c0f79a}</id>
+																	<id>{11405b50-c00a-44ec-a55f-c78ec71d0d37}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -7226,7 +7226,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{26f69fd4-3c5e-437e-b9e0-073b81df7f7e}</id>
+																	<id>{21d322f1-e9ad-48d4-8e40-319a0828fd33}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -7261,7 +7261,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{3a7935ef-14d6-413e-a711-1d37f3a0b213}</id>
+																	<id>{22de1eb4-430d-4362-9f14-d1acfb584f4c}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -7296,7 +7296,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{7ced0c5a-a383-4470-8aa7-8f4949136366}</id>
+																	<id>{0250ec2b-125b-4248-a9fd-e269d647c537}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -7331,7 +7331,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{e02fe8b7-8c2d-4ff4-b7a4-d3ed7fa341a6}</id>
+																	<id>{016bf6fd-5656-4b8a-8069-32aa8c30c831}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -7366,7 +7366,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{43d5d72b-e6ce-4e02-b373-40054777f2f8}</id>
+																	<id>{5fb5403d-2afe-4d74-9c7b-6cdfd3f6c2ea}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -7401,7 +7401,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{a71e3b3b-3d8f-4586-a8f7-69b90426b6be}</id>
+																	<id>{4a49a72e-936e-4e0b-8165-dc65791b6529}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -10434,7 +10434,7 @@
 			<isDefault>false</isDefault>
 		</dpiMode>
 		<dpiModeAdditional>
-			<id>{087dde30-1676-4c0f-b401-22db4fc3be2a}</id>
+			<id>{6266a912-3b6e-4688-b56c-1946fa7add15}</id>
 			<name></name>
 			<settings size="dynamic"/>
 			<active>false</active>

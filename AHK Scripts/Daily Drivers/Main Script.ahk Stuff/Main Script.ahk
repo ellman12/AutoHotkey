@@ -310,18 +310,18 @@ Run, C:\Program Files\AutoHotkey\WindowSpy.ahk
 return
 
 ;M1 on K95 RGB copies to the clipboard.
-+F23::
++F24::
 Send, ^c
 return
 
 ;M2 on K95 RGB cuts to the clipboard.
-#F23::
-Send ^x
+#F24::
+Send, ^x
 return
 
 ;M3 on K95 RGB pastes to the clipboard.
-!F23::
-Send ^v
+!F24::
+Send, ^v
 return
 
 ;Shows you miscellaneous variables, toggles, etc.
