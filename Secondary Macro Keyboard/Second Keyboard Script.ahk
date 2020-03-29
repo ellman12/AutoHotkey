@@ -7,57 +7,38 @@ Menu, Tray, Icon, shell32.dll, 283 ;Changes the tray icon to a little keyboard.
 #MaxHotkeysPerInterval 2000
 
 ;This is my custom, modified version of this script: https://github.com/TaranVH/2nd-keyboard/tree/master/LUAMACROS
+;It has been heavily improved and customized to work with my needs, and my secondary macro keyboard.
 
+;Get this virtual key press from LuaMacros, and read the file that it wrote text to.
 ~F24::
 FileRead, pressedKey, C:\Users\Elliott\Documents\keypressed.txt
 
-MsgBox %pressedKey%
-
+;See which key was pressed, and act on that.
 Switch (pressedKey) {
 
-    Case "o":
+    Case "a":
 
-    Case "p":
+    Case "b":
 
-    Case "i":
-
-    Case "leftbracket":
-
-    Case "rightbracket":
-
-    Case "y":
-
-    Case "u":
-
-    Case "m":
-
-    Case "j":
-
-    Case "n":
+    Case "c":
 
     Case "comma":
 
-    Case "h":
+    Case "d":
 
-    Case "k":
+    Case "delete":
 
-    Case "period":
+    Case "down":
 
-    Case "slash":
+    Case "e":
 
-    Case "singlequote":
+    Case "end":
 
-    Case "semicolon":
+    Case "enter":
 
-    Case "l":
+    Case "equals":
 
-    Case "F6":
-
-    Case "F7":
-
-    Case "F8":
-
-    Case "F9":
+    Case "f":
 
     Case "F10":
 
@@ -67,61 +48,39 @@ Switch (pressedKey) {
 
     Case "F5":
 
-    Case "insert":
+    Case "F6":
 
-    Case "home": 
+    Case "F7":
 
-    Case "pageup":
+    Case "F8":
 
-    Case "delete":
-
-    Case "end":
-
-    Case "pagedown":
-
-    Case "q":
-
-    Case "w":
-
-    Case "e":
-
-    Case "a":
-
-    Case "s":
-
-    Case "d":
-
-    Case "z":
-
-    Case "x":
-
-    Case "c":
-
-    Case "minus":
-
-    Case "equals":
-
-    Case "r":
-
-    Case "f":
-
-    Case "v":
-
-    Case "t":
+    Case "F9":
 
     Case "g":
 
-    Case "b":
+    Case "h":
 
-    Case "up":
+    Case "home": 
+
+    Case "i":
+
+    Case "insert":
+
+    Case "j":
+
+    Case "k":
+
+    Case "l":
 
     Case "left":
 
-    Case "down":
+    Case "leftbracket":
 
-    Case "right":
+    Case "m":
 
-    Case "enter":
+    Case "minus":
+
+    Case "n":
 
     Case "num0": 
 
@@ -147,8 +106,52 @@ Switch (pressedKey) {
 
     Case "numMult":
 
+    Case "o":
+
+    Case "p":
+
+    Case "pagedown":
+
+    Case "pageup":
+
+    Case "period":
+
+    Case "q":
+
+    Case "r":
+
+    Case "right":
+
+    Case "rightbracket":
+
+    Case "s":
+
+    Case "semicolon":
+
+    Case "singlequote":
+
+    Case "space":
+
+    Case "slash":
+
+    Case "t":
+
+    Case "u":
+
+    Case "up":
+
+    Case "v":
+
+    Case "w":
+
+    Case "x":
+
+    Case "y":
+
+    Case "z":
+
     Default:
-        MsgBox, 262160, Error. Unknown Key., Unknown key pressed. It's probably not programmed in the AHK Script.
+        MsgBox, 262160, Error. Unknown Key., %pressedKey% is an unknown key. It's probably not programmed in the AHK Script.
 
 } ;End of the Switch statement.
 return

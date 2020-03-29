@@ -1,49 +1,49 @@
--- video explanation is HERE: https://www.youtube.com/watch?v=Arn8ExQ2Gjg
--- note that some of the code has changed since then (it works better now!)
--- Though, I have since abandoned luamacros, in favor of Interception... which i will abandon in favor of QMK.
--- get luamacros HERE: http://www.hidmacros.eu/forum/viewtopic.php?f=10&t=241#p794
--- plug in your 2nd keyboard, load this script into LUAmacros, and press the triangle PLAY button.
--- Then, press any key on that keyboard to assign logical name ('MACROS') to macro keyboard
-clear() --clear the console from last run
+--This is a really janky and weird LuaMacros script for my 2nd keyboard. It somehow works. Original code by Taran of LTT.
+--(Lua is kind of janky to begin with).
+--These (--) denote a comment.
+--Here's the process of how all this works: 1, open LuaMacros. 2, Open this file, and click the play button; shouldn't have to change anything in the code.
+--3, run the corresponding AHK script: "Second Keyboard Script.ahk". 4, you should be good to go from here.
+--Video explanation: https://www.youtube.com/watch?v=Arn8ExQ2Gjg
+clear() --Clear the console from last run.
+
+--This is used to differentiate the secondary keyboard from my main K95 RGB keyboard.
+--Every input device has some sort of unique identifier like this. My 2nd keeb's just happened to be this.
 local keyboardIdentifier = '7D7BCAF'
 
+--You might need to get the identifier code for the keyboard with name "MACROS" (every other human input device (HID) will not have the name "MACROS").
+--This appears about halfway through the SystemID item and looks like 1BB382AF or some other alphanumeric combo.
+--It's usually 7 or 8 characters long.
+--Once you have this identifier, replace the value of keyboardIdentifier with it.
 
-
---You need to get the identifier code for the keyboard with name "MACROS"
---This appears about halfway through the SystemID item and looks like 1BB382AF or some other alphanumeric combo. 
--- It's usually 7 or 8 characters long.
---Once you have this identifier, replace the value of keyboardIdentifier with it
-
---Don't ask for keyboard assignment help if the user has manually entered a keyboard identifier
+--Don't ask for keyboard assignment help in LuaMacros if the user has manually entered a keyboard identifier
 if keyboardIdentifier == '0000AAA' then
 	lmc_assign_keyboard('MACROS');
 else lmc_device_set_name('MACROS', keyboardIdentifier);
 end
---This lists connected keyboards
+--This lists connected keyboards and other HIDs.
 dev = lmc_get_devices()
 for key,value in pairs(dev) do
   print(key..':')
   for key2,value2 in pairs(value) do print('  '..key2..' = '..value2) end
-end   
+end
 print('You need to get the identifier code for the keyboard with name "MACROS"')
 print('Then replace the first 0000AAA value in the code with it. This will prevent having to manually identify keyboard every time.')
--- Hide window to tray to keep taskbar tidy  
+--Hide window to tray to keep taskbar tidy.
 lmc.minimizeToTray = true
---lmc_minimize()
 
---Start Script
+--Start the Lua script.
 sendToAHK = function (key)
-      --print('It was assigned string:    ' .. key)
-      local file = io.open("C:\\Users\\Elliott\\Documents\\keypressed.txt", "w") -- writing this string to a text file on disk is probably NOT the best method. Feel free to program something better!
-      --If you didn't put your AutoHotKey scripts into C:/AHK, Make sure to substitute the path that leads to your own "keypressed.txt" file, using the double backslashes.
-	  --print("we are inside the text file")
+	  --Writing the pressed key to a file on my C: drive (creating the file if necessary).
+	  --There's probably a better way, but this just works.	  
+      local file = io.open("C:\\Users\\Elliott\\Documents\\keypressed.txt", "w")
       file:write(key)
       file:flush() --"flush" means "save." Lol.
       file:close()
-      lmc_send_keys('{F24}')  -- This presses F24. Using the F24 key to trigger AutoHotKey is probably NOT the best method. Feel free to program something better!
+      lmc_send_keys('{F24}')  --This presses F24. Using the F24 key to trigger AutoHotKey is probably NOT the best method.
 end
 
-local config = {
+--This is an array containing like "scan codes" or something for every key on the 2nd keyboard. Again, it just works.
+local keyCodeArray = {
 	[45]  = "insert",
 	[36]  = "home",
 	[33]  = "pageup",
@@ -100,13 +100,13 @@ local config = {
     [110] = "numDelete",
 	[111] = "numDiv",
     [144] = "numLock", --probably it is best to avoid this key. I keep numlock ON, or it has unexpected effects
-      
+
     [192] = "`",  --this is the tilde key just before the number row
     [9]   = "tab",
     [20]  = "capslock",
     [18]  = "alt",
 
-
+	--No clue what this is for.
 	[string.byte('Q')] = "q",
 	[string.byte('W')] = "w",
 	[string.byte('E')] = "e",
@@ -148,15 +148,15 @@ local config = {
 	--[255] = "printscreen" --these keys do not work
 }
 
--- define callback for whole device
+--define callback for whole device
 lmc_set_handler('MACROS', function(button, direction)
 	--Ignoring upstrokes ensures keystrokes are not registered twice, but activates faster than ignoring downstrokes. It also allows press and hold behaviour
-        if (direction == 0) then return end -- ignore key upstrokes. 
-	if type(config[button]) == "string" then
+        if (direction == 0) then return end --ignore key upstrokes.
+	if type(keyCodeArray[button]) == "string" then
                 print(' ')
                 print('Your key ID number is:   ' .. button)
-				print('It was assigned string:    ' .. config[button])
-				sendToAHK(config[button])
+				print('It was assigned string:    ' .. keyCodeArray[button])
+				sendToAHK(keyCodeArray[button])
 	else
                 print(' ')
                 print('Not yet assigned: ' .. button)
