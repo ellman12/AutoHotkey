@@ -16,7 +16,7 @@ SendMode Input
 ;OPTIMIZATIONS END
 
 ;Pic of all these icons: https://diymediahome.org/wp-content/uploads/shell32_icons.jpg
-Menu, Tray, Icon, shell32.dll, 233 ;Changes the icon to a little keyboard.
+Menu, Tray, Icon, shell32.dll, 175 ;Changes the icon to a keyboard.
 
 ;This script is a more advanced version of an old script called "WindowHider.ahk" script.
 ;That script kinda sucked, so I got inspired to make this improved version.

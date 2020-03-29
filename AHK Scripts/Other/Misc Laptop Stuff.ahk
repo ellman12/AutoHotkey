@@ -1,7 +1,39 @@
+;OPTIMIZATIONS START
+#NoEnv
+#MaxHotkeysPerInterval 99000000
+#HotkeyInterval 99000000
+#KeyHistory 0
+ListLines Off
+Process, Priority, , A
+SetBatchLines, -1
+SetKeyDelay, -1, -1
+SetMouseDelay, -1
+SetDefaultMouseSpeed, 0
+SetWinDelay, -1
+SetControlDelay, -1
+SendMode Input
 #SingleInstance force
-SendMode, Input
+;OPTIMIZATIONS END
 
-;Misc stuff for my Lenovo T430 laptop.
+/*
+* This script is the main file that links all of my other scripts together, plus some other things.
+* On my K95 keyboard and my Scimitar mouse, I have 18 and 12 G keys, respectively.
+* In the garbage iCUE software, I have assigned each of them some keeb shortcuts to send.
+* They all involve F13-F24, since 99.9% of keyboards don't have those physical keys, but Windows can still accept them as inputs.
+* Keeb G keys 1-12 send ^F13-F24; 13-18 send !F13-F18; and Scimitar G1-12 sends F13-F18 (no modifiers, since there's no need).
+* This surprisingly works perfectly.
+* I tried doing some stuff with iCUE sending weird language key things, and AHK trying to detect those scan codes, but I couldn't get
+it working. *Shrug*
+* This file is mainly for generic keeb shortcuts and things that are used everywhere, and to house the iCUE keeb shortcuts (look at the
+bottom of the file). Changed on 10/27/2019. Now, all the respective files house their respective actions and stuff. It makes way more sense
+to do it this way.
+* Some of the others like Browser, Docs, Sheets, are used to house the actions that pertain to that current profile (which I define as
+the set of actions that are done by the G keys depending on the current active window/program).
+* Hopefully this explains it well enough.
+*/
+
+;Pic of all these icons: https://diymediahome.org/wp-content/uploads/shell32_icons.jpg
+Menu, Tray, Icon, shell32.dll, 174 ;Changes the icon to a little computer.
 
 ;****************************************MISC VARIABLES AND STUFF*********************************
 ;Variables for F6 group stuff.

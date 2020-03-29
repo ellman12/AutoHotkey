@@ -10,13 +10,18 @@ Menu, Tray, Icon, shell32.dll, 283 ;Changes the tray icon to a little keyboard.
 ;It has been heavily improved and customized to work with my needs, and my secondary macro keyboard.
 
 ;Get this virtual key press from LuaMacros, and read the file that it wrote text to.
-~F24::
+Suspend, Permit
 
-FileRead, pressedKey, C:\Users\Elliott\Documents\keypressed.txt
+F24::
+
+FileRead, pressedKey, %keypressedTxtFileDir%
+
+; MsgBox %pressedKey%
 
 ;See which key was pressed, and act on that.
 Switch (pressedKey) {
 
+    /*
     Case "a":
 
     Case "b":
@@ -99,9 +104,7 @@ Switch (pressedKey) {
     Case "num3":
 
     ;Shift + Left.
-    Case "num4":
-    
-    Send, +{Left}
+    Case "num4":Send, +{Left}
 
     Case "num5":
 
@@ -130,13 +133,16 @@ Switch (pressedKey) {
     Case "period":
 
     Case "q":
+    */
 
     ;Reload either the Main Script or this Script.
-    Case "r":Reload
+    Case "r":
+    blankOutTxtFile()
+    Reload
+    return
 
     ;Ctrl + Right. Common keeb shortcut for moving between words in text.
-    Case "right":
-    Send, ^{Right}
+    ; Case "right":Send, ^{Right}
 
     Case "rightbracket":
 
@@ -147,31 +153,28 @@ Switch (pressedKey) {
     Case "singlequote":
 
     ;Suspends the hotkeys of the Main Script and Advanced Window Hider. Hopefully won't/shouldn't do anything if they aren't running. Press space again to un-suspend.
-    ;Source: https://autohotkey.com/board/topic/94199-using-a-script-to-pauseunpause-another-script/ & https://www.autohotkey.com/docs/FAQ.htm#close
+    ;This is taken care of in Main Script.ahk
     Case "space":
-    Send, ^{CtrlBreak}
-    Send, +{Pause}
 
     Case "slash":
 
     ;Open the Documents folder.
     Case "t":Run, explore %A_MyDocuments%
 
-    Case "u":
+    ; Case "u":
 
     ;Sends the normal up key, to be used in conjunction with Left and Right.
-    Case "up":
-    Send, {Up}
+    ; Case "up":Send, {Up}
 
-    Case "v":
+    ; Case "v":
 
-    Case "w":
+    ; Case "w":
 
-    Case "x":
+    ; Case "x":
 
-    Case "y":
+    ; Case "y":
 
-    Case "z":
+    ; Case "z":
 
     ;Error message if a key isn't in this Switch statement block.
     Default:
@@ -181,3 +184,8 @@ Switch (pressedKey) {
 return
 
 ;***************FUNCTIONS FOR THE 2ND KEEB***************
+;This resets the txt file after each key press on the 2nd keeb.
+blankOutTxtFile() {
+    FileDelete, %keypressedTxtFileDir%
+    FileAppend, , %keypressedTxtFileDir%
+}

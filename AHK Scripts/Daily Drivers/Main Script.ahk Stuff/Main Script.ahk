@@ -33,7 +33,7 @@ the set of actions that are done by the G keys depending on the current active w
 */
 
 ;Pic of all these icons: https://diymediahome.org/wp-content/uploads/shell32_icons.jpg
-Menu, Tray, Icon, shell32.dll, 174 ;Changes the icon to a little blue keyboard.
+Menu, Tray, Icon, shell32.dll, 233 ;Changes the icon to a cute little computer.
 
 ;******************************************AUTO-EXECUTE**************************************************
 ;*******************************APPLICATIONSWITCHER HELP GUI INITIALIZATION******************************
@@ -123,6 +123,12 @@ SetWorkingDir, %A_ScriptDir%\Screen Clipper Script\Saved Clips ;Set the saved cl
 Handles := [] ; Create an array to hold the name of the different gui's.
 Index := 0 ;Used as the name of the current gui cap window.
 
+;Directory where the "keypressed.txt" file is.
+global keypressedTxtFileDir := "C:\Users\Elliott\Documents\keypressed.txt"
+
+FileDelete, %keypressedTxtFileDir%
+FileAppend, , %keypressedTxtFileDir%
+
 ;The stuff in this loop needs to be running constantly.
 Loop {
 
@@ -172,8 +178,30 @@ Loop {
 
 	}
 
-	;This sleep statement DRASTICALLY helps reduce the power usage of the Main Script.
-	Sleep 100
+	FileRead, pressedKey, %keypressedTxtFileDir%
+
+	if (A_IsSuspended and pressedKey = "space") {
+		; MsgBox Off
+		; Send, +{Pause}
+		PostMessage, 0x111, 65305,,, Advanced Window Hider.ahk - AutoHotkey  ; Pause.
+		Suspend, Off
+		; FileDelete, %keypressedTxtFileDir%
+    	; FileAppend, , %keypressedTxtFileDir%
+		blankOutTxtFile()
+		; return
+	} else if (!A_IsSuspended and pressedKey = "space") {
+		; MsgBox On
+		; Send, +{Pause}
+		PostMessage, 0x111, 65305,,, Advanced Window Hider.ahk - AutoHotkey  ; Pause.
+		Suspend, On
+		; FileDelete, %keypressedTxtFileDir%
+		; FileAppend, , %keypressedTxtFileDir%
+		blankOutTxtFile()
+		; return
+	}
+
+	;This sleep statement DRASTICALLY helps reduce the power and CPU usage of the Main Script.
+	Sleep 50
 
 }
 
