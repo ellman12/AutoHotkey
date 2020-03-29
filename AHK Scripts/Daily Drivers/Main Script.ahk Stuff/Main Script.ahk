@@ -123,11 +123,12 @@ SetWorkingDir, %A_ScriptDir%\Screen Clipper Script\Saved Clips ;Set the saved cl
 Handles := [] ; Create an array to hold the name of the different gui's.
 Index := 0 ;Used as the name of the current gui cap window.
 
+;***************SECOND KEEB STUFF***************
 ;Directory where the "keypressed.txt" file is.
 global keypressedTxtFileDir := "C:\Users\Elliott\Documents\keypressed.txt"
 
-FileDelete, %keypressedTxtFileDir%
-FileAppend, , %keypressedTxtFileDir%
+;Probs don't need to blank out the keypressed.txt file on startup, but whatever.
+blankOutTxtFile()
 
 ;The stuff in this loop needs to be running constantly.
 Loop {
@@ -188,7 +189,7 @@ Loop {
 
 	;Space Bar. Used for suspending the hotkeys of this script and AWH simultaneously.
 	if (A_IsSuspended and pressedKey = "space") {
-		;Un-suspend AWH.
+		;Un-suspends AWH.
 		PostMessage, 0x111, 65305,,, Advanced Window Hider.ahk - AutoHotkey
 		Suspend, Off
 

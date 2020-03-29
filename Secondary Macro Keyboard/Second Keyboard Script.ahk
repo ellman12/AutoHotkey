@@ -17,7 +17,6 @@ FileRead, pressedKey, %keypressedTxtFileDir%
 ;See which key was pressed, and act on that.
 Switch (pressedKey) {
 
-    /*
     Case "a":
 
     Case "b":
@@ -129,7 +128,6 @@ Switch (pressedKey) {
     Case "period":
 
     Case "q":
-    */
 
     ;Reload either the Main Script or this Script.
     Case "r":
@@ -160,17 +158,17 @@ Switch (pressedKey) {
     ; Case "u":
 
     ;Sends the normal up key, to be used in conjunction with Left and Right.
-    ; Case "up":Send, {Up}
+    Case "up":Send, {Up}
 
-    ; Case "v":
+    Case "v":
 
-    ; Case "w":
+    Case "w":
 
-    ; Case "x":
+    Case "x":
 
-    ; Case "y":
+    Case "y":
 
-    ; Case "z":
+    Case "z":
 
     ;Error message if a key isn't in this Switch statement block.
     Default:
