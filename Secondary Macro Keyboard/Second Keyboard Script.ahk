@@ -14,8 +14,6 @@ Menu, Tray, Icon, shell32.dll, 283 ;Changes the tray icon to a little keyboard.
 
 FileRead, pressedKey, C:\Users\Elliott\Documents\keypressed.txt
 
-Send, ^{CtrlBreak}
-
 ;See which key was pressed, and act on that.
 Switch (pressedKey) {
 
