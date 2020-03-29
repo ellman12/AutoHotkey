@@ -2,7 +2,7 @@
 SendMode Input
 #InstallKeybdHook
 #UseHook On
-Menu, Tray, Icon, shell32.dll, 283 ;Changes the tray icon to a little keyboard.
+; Menu, Tray, Icon, shell32.dll, 283 ;Changes the tray icon to a little keyboard.
 #SingleInstance force
 #MaxHotkeysPerInterval 2000
 
@@ -10,13 +10,9 @@ Menu, Tray, Icon, shell32.dll, 283 ;Changes the tray icon to a little keyboard.
 ;It has been heavily improved and customized to work with my needs, and my secondary macro keyboard.
 
 ;Get this virtual key press from LuaMacros, and read the file that it wrote text to.
-Suspend, Permit
-
 F24::
 
 FileRead, pressedKey, %keypressedTxtFileDir%
-
-; MsgBox %pressedKey%
 
 ;See which key was pressed, and act on that.
 Switch (pressedKey) {

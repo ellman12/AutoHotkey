@@ -178,31 +178,32 @@ Loop {
 
 	}
 
+	;****************MACRO KEYBOARD STUFF BELOW****************
+	;Used for suspending the hotkeys of Advanced Window Hider.ahk.
+	DetectHiddenWindows, On
+	SetTitleMatchMode, 2
+
+	;Get this value every loop.
 	FileRead, pressedKey, %keypressedTxtFileDir%
 
+	;Space Bar. Used for suspending the hotkeys of this script and AWH simultaneously.
 	if (A_IsSuspended and pressedKey = "space") {
-		; MsgBox Off
-		; Send, +{Pause}
-		PostMessage, 0x111, 65305,,, Advanced Window Hider.ahk - AutoHotkey  ; Pause.
+		;Un-suspend AWH.
+		PostMessage, 0x111, 65305,,, Advanced Window Hider.ahk - AutoHotkey
 		Suspend, Off
-		; FileDelete, %keypressedTxtFileDir%
-    	; FileAppend, , %keypressedTxtFileDir%
+
+		;Blank out/delete this file so it doesn't keep switching
+		;back and forth from suspended to not suspended.
 		blankOutTxtFile()
-		; return
 	} else if (!A_IsSuspended and pressedKey = "space") {
-		; MsgBox On
-		; Send, +{Pause}
-		PostMessage, 0x111, 65305,,, Advanced Window Hider.ahk - AutoHotkey  ; Pause.
+		;Suspend AWH.
+		PostMessage, 0x111, 65305,,, Advanced Window Hider.ahk - AutoHotkey
 		Suspend, On
-		; FileDelete, %keypressedTxtFileDir%
-		; FileAppend, , %keypressedTxtFileDir%
 		blankOutTxtFile()
-		; return
 	}
 
 	;This sleep statement DRASTICALLY helps reduce the power and CPU usage of the Main Script.
 	Sleep 50
-
 }
 
 ;Linking other scripts together.

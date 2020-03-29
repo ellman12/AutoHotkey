@@ -94,17 +94,17 @@ local keyCodeArray = {
 	[105] = "num9",
 
 	[106] = "numMult",
-    [107] = "numPlus",
-    [108] = "numEnter", --sometimes this is different, check your keyboard
+        [107] = "numPlus",
+        [108] = "numEnter", --sometimes this is different, check your keyboard
 	[109] = "numMinus",
-    [110] = "numDelete",
+        [110] = "numDelete",
 	[111] = "numDiv",
-    [144] = "numLock", --probably it is best to avoid this key. I keep numlock ON, or it has unexpected effects
+        [144] = "numLock", --probably it is best to avoid this key. I keep numlock ON, or it has unexpected effects
 
-    [192] = "`",  --this is the tilde key just before the number row
-    [9]   = "tab",
-    [20]  = "capslock",
-    [18]  = "alt",
+        [192] = "`",  --this is the tilde key just before the number row
+        [9]   = "tab",
+        [20]  = "capslock",
+        [18]  = "alt",
 
 	--No clue what this is for.
 	[string.byte('Q')] = "q",
