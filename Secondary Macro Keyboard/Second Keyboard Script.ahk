@@ -11,7 +11,10 @@ Menu, Tray, Icon, shell32.dll, 283 ;Changes the tray icon to a little keyboard.
 
 ;Get this virtual key press from LuaMacros, and read the file that it wrote text to.
 ~F24::
+
 FileRead, pressedKey, C:\Users\Elliott\Documents\keypressed.txt
+
+Send, ^{CtrlBreak}
 
 ;See which key was pressed, and act on that.
 Switch (pressedKey) {
@@ -24,11 +27,13 @@ Switch (pressedKey) {
 
     Case "comma":
 
-    Case "d":
+    ;Open the Desktop folder.
+    Case "d":Run, explore %A_Desktop%
 
     Case "delete":
 
-    Case "down":
+    ;Sends the normal down key, to be used in conjunction with Left and Right.
+    Case "down":Send, {Down}
 
     Case "e":
 
@@ -38,7 +43,8 @@ Switch (pressedKey) {
 
     Case "equals":
 
-    Case "f":
+    ;Open the AHK repo folder.
+    Case "f":Run, explore C:\Users\Elliott\Documents\GitHub\AutoHotkey
 
     Case "F10":
 
@@ -60,7 +66,7 @@ Switch (pressedKey) {
 
     Case "h":
 
-    Case "home": 
+    Case "home":
 
     Case "i":
 
@@ -72,7 +78,8 @@ Switch (pressedKey) {
 
     Case "l":
 
-    Case "left":
+    ;Ctrl + Left. Common keeb shortcut for moving between words in text.
+    Case "left":Send, ^{Left}
 
     Case "leftbracket":
 
@@ -82,21 +89,29 @@ Switch (pressedKey) {
 
     Case "n":
 
-    Case "num0": 
+    Case "num0":
 
+    ;Shift + End.
     Case "num1":
+    MsgBox num1 lol
+    Send, +{End}
 
     Case "num2":
 
     Case "num3":
 
+    ;Shift + Left.
     Case "num4":
+    
+    Send, +{Left}
 
     Case "num5":
 
-    Case "num6":
+    ;Shift + Right.
+    Case "num6":Send, +{Right}
 
-    Case "num7":
+    ;Shift + Home.
+    Case "num7":Send, +{Home}
 
     Case "num8":
 
@@ -118,9 +133,12 @@ Switch (pressedKey) {
 
     Case "q":
 
-    Case "r":
+    ;Reload either the Main Script or this Script.
+    Case "r":Reload
 
+    ;Ctrl + Right. Common keeb shortcut for moving between words in text.
     Case "right":
+    Send, ^{Right}
 
     Case "rightbracket":
 
@@ -130,15 +148,22 @@ Switch (pressedKey) {
 
     Case "singlequote":
 
+    ;Suspends the hotkeys of the Main Script and Advanced Window Hider. Hopefully won't/shouldn't do anything if they aren't running. Press space again to un-suspend.
+    ;Source: https://autohotkey.com/board/topic/94199-using-a-script-to-pauseunpause-another-script/ & https://www.autohotkey.com/docs/FAQ.htm#close
     Case "space":
+    Send, ^{CtrlBreak}
+    Send, +{Pause}
 
     Case "slash":
 
-    Case "t":
+    ;Open the Documents folder.
+    Case "t":Run, explore %A_MyDocuments%
 
     Case "u":
 
+    ;Sends the normal up key, to be used in conjunction with Left and Right.
     Case "up":
+    Send, {Up}
 
     Case "v":
 
@@ -150,8 +175,11 @@ Switch (pressedKey) {
 
     Case "z":
 
+    ;Error message if a key isn't in this Switch statement block.
     Default:
         MsgBox, 262160, Error. Unknown Key., %pressedKey% is an unknown key. It's probably not programmed in the AHK Script.
 
 } ;End of the Switch statement.
 return
+
+;***************FUNCTIONS FOR THE 2ND KEEB***************

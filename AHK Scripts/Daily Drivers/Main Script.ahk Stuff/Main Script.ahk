@@ -32,7 +32,8 @@ the set of actions that are done by the G keys depending on the current active w
 * Hopefully this explains it well enough.
 */
 
-Menu, Tray, Icon, shell32.dll, 174 ;Changes the icon to a keyboard.
+;Pic of all these icons: https://diymediahome.org/wp-content/uploads/shell32_icons.jpg
+Menu, Tray, Icon, shell32.dll, 174 ;Changes the icon to a little blue keyboard.
 
 ;******************************************AUTO-EXECUTE**************************************************
 ;*******************************APPLICATIONSWITCHER HELP GUI INITIALIZATION******************************
@@ -197,6 +198,9 @@ Loop {
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Run.ahk
 #Include, %A_ScriptDir%\Screen Clipper Script\Screen Clipper.ahk
 #Include, %A_ScriptDir%\Video Game Stuff\Any Game.ahk
+
+;#Include the script for my Secondary Macro Keyboard.
+#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\Secondary Macro Keyboard\Second Keyboard Script.ahk
 
 ;****************************************GLOBAL HOTKEYS***************************************
 ;These global hotkeys are hotkeys that are always running, regardless of the active window, profile, or whatever.

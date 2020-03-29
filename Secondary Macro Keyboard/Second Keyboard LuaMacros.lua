@@ -134,16 +134,16 @@ local keyCodeArray = {
 	[string.byte('N')] = "n",
 	[string.byte('M')] = "m",
 
-    [string.byte('0')] = "0",
+        [string.byte('0')] = "0",
 	[string.byte('1')] = "1",
 	[string.byte('2')] = "2",
 	[string.byte('3')] = "3",
 	[string.byte('4')] = "4",
 	[string.byte('5')] = "5",
-    [string.byte('6')] = "6",
-    [string.byte('7')] = "7",
-    [string.byte('8')] = "8",
-    [string.byte('9')] = "9",
+        [string.byte('6')] = "6",
+        [string.byte('7')] = "7",
+        [string.byte('8')] = "8",
+        [string.byte('9')] = "9",
 
 	--[255] = "printscreen" --these keys do not work
 }
