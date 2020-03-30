@@ -36,6 +36,26 @@ the set of actions that are done by the G keys depending on the current active w
 ; Menu, Tray, Icon, shell32.dll, 175 ;Changes the icon to a black computer monitor.
 Menu, Tray, Icon, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Other\Misc Laptop Stuff Icon.png
 
+;*******************************EDIT CLIPBOARD CONTENT INITIALIZATION******************************
+;The ECC in the GUI commands helps differentiate these GUI things from any others.
+GUI, ECC:Font, s14, Arial ;Font settings for the Text Box.
+GUI, ECC:Add, Edit, HScroll wrap r9 x15 y40 w560 h200 vclipboardBoxText gclipboardTextBoxLabel,%Clipboard% ;Creates an edit box for inputting the clipboard. AHK GUI Documentation explains the r, x, etc. stuff.
+
+;Creating the GUI button for the Finish button: when the user is done editing the clipboard contents.
+GUI, ECC:Add, Button, w100 gclipboardFinishButton,Finish
+
+GUI, ECC:Font, s15, Arial ;Font settings for everything else.
+GUI, ECC:Add, Text, x16 y5, Current Clipboard contents. Type what you want to change it to. ;Text instructing the user what to do.
+
+;Making the GUI always on top, and giving it a Silver color.
+GUI, ECC:+AlwaysOnTop
+GUI, ECC:Color, Silver
+
+;Toggle for showing or hiding the Clipboard GUI.
+;If it's 1, show the GUI; if it's 0, hide it.
+;Starts out as 0, so it only appers when the user wants it.
+showClipboardGUIToggle := 0
+
 ;****************************************MISC VARIABLES AND STUFF*********************************
 ;Variables for F6 group stuff.
 ;Tracks all windows you want as part of your custom group.
@@ -333,7 +353,7 @@ return
 ;Inspiration and code for this script: https://autohotkey.com/board/topic/57888-title-case/ and https://autohotkey.com/board/topic/123994-capitalize-a-title/
 
 ;Converts text to Title Case, using a custom thing I found on r/AutoHotkey.
-^!+t::
+^!t::
   ;Copy text, and wait a bit so it can actually process that.
   Send, ^c
   Sleep 45
@@ -347,10 +367,10 @@ return
   Clipboard := head RegExReplace(tail, "i)\b(a|an|and|at|but|by|for|in|nor|of|on|or|so|the|to|up|with|yet)\b", "$L1")
 
   Send ^v ;Paste the new title.
-return ;End of ^!+t.
+return ;End of ^!t.
 
 ;Converts text to UPPER CASE, using a built-in AHK function.
-^!+u::
+^!u::
   ;Copy text, and wait a bit so it can actually process that.
   Send, ^c
   Sleep 45
@@ -362,10 +382,10 @@ return ;End of ^!+t.
   Clipboard := NewTitle
 
   Send, ^v ;Paste the new title.
-return ;End of ^!+u.
+return ;End of ^!u.
 
 ;Converts text to lower case, using a built-in AHK function.
-^!+l::
+^!l::
   ;Copy text, and wait a bit so it can actually process that.
   Send, ^c
   Sleep 45
@@ -377,11 +397,11 @@ return ;End of ^!+u.
   Clipboard := NewTitle
 
   Send, ^v ;Paste the new title.
-return ;End of ^!+l.
+return ;End of ^!l.
 
 ;Converts text to Sentence case.
 ;I don't really know how it works; I found this on r/AHK, too.
-^!+s::
+^!s::
   ;Copy text, and wait a bit so it can actually process that.
   Send, ^c
   Sleep 45
@@ -392,23 +412,23 @@ return ;End of ^!+l.
 
   ;Store the Clipboard as the NewTitle.
   Clipboard := NewTitle
-  
+
   Send, ^v ;Paste the new title.
-return ;End of ^!+s.
+return ;End of ^!s.
 
 ;Converts text to First Letter Capitalization, using a built-in AHK function.
-^!+f::
+^!f::
 
   Send, ^c
   Sleep 45
-  
+
   StringUpper, NewTitle, Clipboard, T
 
   ;Store the Clipboard as the NewTitle.
   Clipboard := NewTitle
 
   Send, ^v ;Paste the new title.
-return ;End of ^!+f.
+return ;End of ^!f.
 
 ;altCaseToggle is a toggle for if the alt case starts in lower case or not.
 ;A_LoopField is the single character at that point in the Parse Loop.
@@ -416,11 +436,11 @@ return ;End of ^!+f.
 ;...1 = convert the char to UPPER.
 
 ;Convert text to aLt CaSe, with the first letter being lower case.
-^!+a::
+^!a::
 
 	;Blank out this String.
 	;Basically resetting it so it doesn't contain the old text as well as the new stuff.
-	finalString := 
+	finalString :=
 
 	;Set it to 0 because it needs to start lower (see comment at the top of the script).
 	altCaseToggle := 0
@@ -458,14 +478,14 @@ return ;End of ^!+f.
 	;Paste the final String.
 	Send, ^v
 
-return ;End of ^!+a.
+return ;End of ^!a.
 
 ;Convert text to AlT cAsE, with the first letter being UPPER case.
-^!+#a::
+^!+a::
 
 	;Blank out this String.
 	;Basically resetting it so it doesn't contain the old text as well as the new stuff.
-	finalString := 
+	finalString :=
 
 	;Set it to 0 because it needs to start lower (see comment at the top of the script).
 	altCaseToggle := 1
@@ -502,7 +522,38 @@ return ;End of ^!+a.
 	;Paste the final String.
 	Send, ^v
 
-return ;End of ^!+a.
+return ;End of ^!a.
+
+;-------------------------------------------------------------------------------------------
+;*****************************STUFF FOR EDIT CLIPBOARD CONTENT******************************
+;-------------------------------------------------------------------------------------------
+;Toggles between showing and hiding the Clipboard GUI.
+#c::
+GUI, ECC:Show, w600 h400,Clipboard Edit
+return
+
+;***************************LABELS***************************
+;Activates when the GUI is closed. E.g., pressing the red x button, manually exiting the script, Alt + F4, etc.
+1GuiClose:
+    GUI, ECC:Submit, NoHide
+    GuiControl, ECC:Focus, clipboardBoxText
+    GUI, ECC:Hide
+    showClipboardGUIToggle := !showClipboardGUIToggle
+return
+
+;Label for the text box.
+clipboardTextBoxLabel:
+    GUI, ECC:Submit, NoHide
+    Clipboard := clipboardBoxText
+return
+
+;Label for when the user presses the Done button.
+;This button is exactly like the Finish button in TCT, where it stores the text in the Clipboard variable.
+clipboardFinishButton:
+    Clipboard := clipboardBoxText
+    GUI, ECC:Hide
+    GuiControl, ECC:Focus, %clipboardBoxText%
+return
 
 ;Used for mass copying-and-pasting stuff from Kepe to MS To-Do.
 ;~ #t::
