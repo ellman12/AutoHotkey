@@ -46,6 +46,7 @@ end
 
 --This is an array containing like "scan codes" or something for every key on the 2nd keyboard. Again, it just works.
 local keyCodeArray = {
+        [93]  = "appskey",
 	[45]  = "insert",
 	[36]  = "home",
 	[33]  = "pageup",

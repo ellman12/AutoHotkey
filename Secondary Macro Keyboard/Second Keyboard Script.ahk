@@ -58,10 +58,12 @@ Switch (pressedKey) {
 
     Case "a":
 
+    ;Sends Alt + F4.
+    Case "appskey":Send, !{F4}
+
     Case "b":
 
-    ;Sends Alt + F4.
-    Case "backspace":Send, !{F4}
+    Case "backspace":
 
     Case "c":
 
@@ -82,6 +84,9 @@ Switch (pressedKey) {
 
     ;Kind Regards Macro.
     Case "enter":Send, Kind regards`,{Enter 2}Elliott DuCharme
+
+    ;Open the spreadsheet.
+    Case "escape":Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://docs.google.com/spreadsheets/d/1vGHwAVQwkmzGGpM_xQJ86RGXfsBiBxDD089cu1u02eA/edit#gid=711563356
 
     Case "equals":
 
