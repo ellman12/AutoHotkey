@@ -1,15 +1,14 @@
---This is a really janky and weird LuaMacros script for my 2nd keyboard. It somehow works. Original code by Taran of LTT.
+  --This is a really janky and weird LuaMacros script for my 2nd keyboard. It somehow works. Original code by Taran of LTT.
 --(Lua is kind of janky to begin with).
 --These (--) denote a comment.
 --Here's the process of how all this works: 1, open LuaMacros. 2, Open this file, and click the play button; shouldn't have to change anything in the code.
 --3, run the corresponding AHK script: "Second Keyboard Script.ahk". 4, you should be good to go from here.
 --Video explanation: https://www.youtube.com/watch?v=Arn8ExQ2Gjg
---https://github.com/TaranVH/2nd-keyboard/tree/master/LUAMACROS
 clear() --Clear the console from last run.
 
 --This is used to differentiate the secondary keyboard from my main K95 RGB keyboard.
 --Every input device has some sort of unique identifier like this. My 2nd keeb's just happened to be this.
-local keyboardIdentifier = '7D7BCAF'
+local keyboardIdentifier = '7743BDE'
 
 --You might need to get the identifier code for the keyboard with name "MACROS" (every other human input device (HID) will not have the name "MACROS").
 --This appears about halfway through the SystemID item and looks like 1BB382AF or some other alphanumeric combo.
