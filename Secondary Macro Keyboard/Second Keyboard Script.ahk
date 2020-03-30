@@ -77,7 +77,18 @@ Switch (pressedKey) {
     ;Sends the normal down key, to be used in conjunction with Left and Right.
     Case "down":Send, {Down}
 
+    ;Ejects the First Item in the Eject List on the Taskbar.
     Case "e":
+    Send, #b
+    Sleep 700
+    Send, {Right}
+    Sleep 700
+    Send, {Enter}
+    Sleep 700
+    Send, {Down 2}
+    Sleep 700
+    Send, {Enter}
+    return
 
     ;Normal End.
     Case "end":Send, {End}
