@@ -60,6 +60,9 @@ Switch (pressedKey) {
 
     Case "b":
 
+    ;Sends Alt + F4.
+    Case "backspace":Send, !{F4}
+
     Case "c":
 
     Case "comma":
