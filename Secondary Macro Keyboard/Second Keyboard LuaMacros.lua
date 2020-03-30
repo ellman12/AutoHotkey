@@ -35,10 +35,12 @@ lmc.minimizeToTray = true
 sendToAHK = function (key)
 	  --Writing the pressed key to a file on my C: drive (creating the file if necessary).
 	  --There's probably a better way, but this just works.	  
-      local file = io.open("C:\\Users\\Elliott\\Documents\\keypressed.txt", "w")
-      file:write(key)
-      file:flush() --"flush" means "save." Lol.
-      file:close()
+
+      --Write to a txt file what key was pressed.
+      local keyPressedFile = io.open("C:\\Users\\Elliott\\Documents\\keypressed.txt", "w")
+      keyPressedFile:write(key)
+      keyPressedFile:flush() --"flush" means "save." Lol.
+      keyPressedFile:close()
       lmc_send_keys('{F24}')  --This presses F24. Using the F24 key to trigger AutoHotKey is probably NOT the best method.
 end
 
@@ -88,23 +90,24 @@ local keyCodeArray = {
 	[99]  = "num3",
 	[100] = "num4",
 	[101] = "num5",
+	[12]  = "numClear",
 	[102] = "num6",
 	[103] = "num7",
 	[104] = "num8",
 	[105] = "num9",
 
 	[106] = "numMult",
-        [107] = "numPlus",
-        [108] = "numEnter", --sometimes this is different, check your keyboard
+	[107] = "numPlus",
+	[108] = "numEnter", --sometimes this is different, check your keyboard
 	[109] = "numMinus",
-        [110] = "numDelete",
+	[110] = "numDelete",
 	[111] = "numDiv",
-        [144] = "numLock", --probably it is best to avoid this key. I keep numlock ON, or it has unexpected effects
+	[144] = "numLock", --probably it is best to avoid this key. I keep numlock ON, or it has unexpected effects
 
-        [192] = "`",  --this is the tilde key just before the number row
-        [9]   = "tab",
-        [20]  = "capslock",
-        [18]  = "alt",
+	[192] = "`",  --this is the tilde key just before the number row
+	[9]   = "tab",
+	[20]  = "capslock",
+	[18]  = "alt",
 
 	--No clue what this is for.
 	[string.byte('Q')] = "q",

@@ -14,6 +14,8 @@ F24::
 
 FileRead, pressedKey, %keypressedTxtFileDir%
 
+; MsgBox %pressedKey%
+
 ;See which key was pressed, and act on that.
 Switch (pressedKey) {
 
@@ -103,6 +105,8 @@ Switch (pressedKey) {
 
     Case "num5":
 
+    Case "numClear":MsgBox numClear lol
+
     ;Shift + Right.
     Case "num6":Send, +{Right}
 
@@ -131,7 +135,7 @@ Switch (pressedKey) {
 
     ;Reload either the Main Script or this Script.
     Case "r":
-    blankOutTxtFile()
+    blankOutKeyTxtFile()
     Reload
     return
 
@@ -179,7 +183,12 @@ return
 
 ;***************FUNCTIONS FOR THE 2ND KEEB***************
 ;This resets the txt file after each key press on the 2nd keeb.
-blankOutTxtFile() {
+blankOutKeyTxtFile() {
     FileDelete, %keypressedTxtFileDir%
     FileAppend, , %keypressedTxtFileDir%
+}
+
+blankOutNumPadTxtFile() {
+    FileDelete, %numPadToggleFileDir%
+    FileAppend, , %numPadToggleFileDir%
 }

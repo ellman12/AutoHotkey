@@ -126,9 +126,10 @@ Index := 0 ;Used as the name of the current gui cap window.
 ;***************SECOND KEEB STUFF***************
 ;Directory where the "keypressed.txt" file is.
 global keypressedTxtFileDir := "C:\Users\Elliott\Documents\keypressed.txt"
+global numPadToggleFileDir := "C:\Users\Elliott\Documents\numPad Toggle.txt"
 
 ;Probs don't need to blank out the keypressed.txt file on startup, but whatever.
-blankOutTxtFile()
+blankOutKeyTxtFile()
 
 ;The stuff in this loop needs to be running constantly.
 Loop {
@@ -195,12 +196,12 @@ Loop {
 
 		;Blank out/delete this file so it doesn't keep switching
 		;back and forth from suspended to not suspended.
-		blankOutTxtFile()
+		blankOutKeyTxtFile()
 	} else if (!A_IsSuspended and pressedKey = "space") {
 		;Suspend AWH.
 		PostMessage, 0x111, 65305,,, Advanced Window Hider.ahk - AutoHotkey
 		Suspend, On
-		blankOutTxtFile()
+		blankOutKeyTxtFile()
 	}
 
 	;This sleep statement DRASTICALLY helps reduce the power and CPU usage of the Main Script.
@@ -210,7 +211,6 @@ Loop {
 ;Linking other scripts together.
 ;#Include is lterally like pasting those script contents in that exact spot.
 ;The variable %A_ScriptDir% is the full path of the directory where the script is located; makes code neater and simpler.
-
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\Browser.ahk
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\Default.ahk
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\Google Docs.ahk
@@ -230,7 +230,7 @@ Loop {
 #Include, %A_ScriptDir%\Video Game Stuff\Any Game.ahk
 
 ;#Include the script for my Secondary Macro Keyboard.
-#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\Secondary Macro Keyboard\Second Keyboard Script.ahk
+#Include, %A_MyDocuments%\GitHub\AutoHotkey\Secondary Macro Keyboard\Second Keyboard Script.ahk
 
 ;****************************************GLOBAL HOTKEYS***************************************
 ;These global hotkeys are hotkeys that are always running, regardless of the active window, profile, or whatever.
