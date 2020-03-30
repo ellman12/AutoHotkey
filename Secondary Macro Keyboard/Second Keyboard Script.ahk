@@ -19,6 +19,39 @@ FileRead, pressedKey, %keypressedTxtFileDir%
 ;See which key was pressed, and act on that.
 Switch (pressedKey) {
 
+    ;In File Explorer, size all columns to fit.
+    Case "1":
+    Send, !v ;Open View menu.
+    Send, sf ;Alt code for sizing columns.
+    return
+
+    ;In File Explorer, sort by name.
+    Case "2":
+    Send, !v ;Open View menu.
+    Send, o ;Alt code for opening sort by menu.
+    Send, {Enter} ;Select it (cursor is on this one by default).
+    return
+
+    ;In File Explorer, sort by date modified.
+    Case "3":
+    Send, !v ;Open View menu.
+    Send, o ;Alt code for opening sort by menu.
+    Send, {Down} ;Go to this menu item.
+    Send, {Enter} ;Select it.
+    return
+
+    ;In File Explorer, invert selection.
+    Case "4":
+    Send, !h ;Open the Home menu.
+    Send, si ;Alt code for invert selection.
+    return
+
+    ;Rename an item in File Explorer.
+    Case "5":
+    Send, !h
+    Send, r
+    return
+
     Case "a":
 
     Case "b":
@@ -83,7 +116,8 @@ Switch (pressedKey) {
 
     Case "leftbracket":
 
-    Case "m":
+    ;Open Music folder.
+    Case "m":Run, explore C:\Users\Elliott\Music
 
     Case "minus":
 
