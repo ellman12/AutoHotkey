@@ -4,6 +4,7 @@
 --Here's the process of how all this works: 1, open LuaMacros. 2, Open this file, and click the play button; shouldn't have to change anything in the code.
 --3, run the corresponding AHK script: "Second Keyboard Script.ahk". 4, you should be good to go from here.
 --Video explanation: https://www.youtube.com/watch?v=Arn8ExQ2Gjg
+--https://github.com/TaranVH/2nd-keyboard/tree/master/LUAMACROS
 clear() --Clear the console from last run.
 
 --This is used to differentiate the secondary keyboard from my main K95 RGB keyboard.

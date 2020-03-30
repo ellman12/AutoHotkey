@@ -74,7 +74,8 @@ Switch (pressedKey) {
 
     Case "e":
 
-    Case "end":
+    ;Normal End.
+    Case "end":Send, {End}
 
     Case "enter":
 
@@ -103,9 +104,10 @@ Switch (pressedKey) {
     Case "g":Run, explore %A_MyDocuments%
 
     ;Open my user folder.
-    Case "h":Run, explore %C:\Users\Elliott\%
+    Case "h":Run, explore C:\Users\Elliott\
 
-    Case "home":
+    ;Normal Home.
+    Case "home":Send, {Home}
 
     Case "i":
 
@@ -179,7 +181,7 @@ Switch (pressedKey) {
     return
 
     ;Ctrl + Right. Common keeb shortcut for moving between words in text.
-    ; Case "right":Send, ^{Right}
+    Case "right":Send, ^{Right}
 
     Case "rightbracket":
 
