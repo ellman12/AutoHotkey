@@ -80,7 +80,8 @@ Switch (pressedKey) {
     ;Normal End.
     Case "end":Send, {End}
 
-    Case "enter":
+    ;Kind Regards Macro.
+    Case "enter":Send, Kind regards`,{Enter 2}Elliott DuCharme
 
     Case "equals":
 
@@ -131,7 +132,8 @@ Switch (pressedKey) {
 
     Case "minus":
 
-    Case "n":
+    ;Open Notepad.
+    Case "n":Run, notepad.exe
 
     Case "num0":
 
@@ -212,11 +214,13 @@ Switch (pressedKey) {
 
     Case "w":
 
-    Case "x":
+    ;Redo.
+    Case "x":Send, ^y
 
     Case "y":
 
-    Case "z":
+    ;Undo.
+    Case "z":Send, ^z
 
     ;Error message if a key isn't in this Switch statement block.
     Default:
