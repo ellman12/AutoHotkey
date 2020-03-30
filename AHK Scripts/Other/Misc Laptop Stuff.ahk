@@ -33,7 +33,8 @@ the set of actions that are done by the G keys depending on the current active w
 */
 
 ;Pic of all these icons: https://diymediahome.org/wp-content/uploads/shell32_icons.jpg
-Menu, Tray, Icon, shell32.dll, 174 ;Changes the icon to a little computer.
+; Menu, Tray, Icon, shell32.dll, 175 ;Changes the icon to a black computer monitor.
+Menu, Tray, Icon, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Other\Misc Laptop Stuff Icon.png
 
 ;****************************************MISC VARIABLES AND STUFF*********************************
 ;Variables for F6 group stuff.
@@ -85,10 +86,10 @@ GUI, ApplSwitchGUI:Add, Text, x5 y40,Alt + a`t`tToggles between showing and hidi
 ;Pushing Ctrl + Pause suspends all hotkeys, thus "pausing" the script.
 ;The reason it's ^CtrlBreak instead of ^Pause is because, according to the documentation: "While the Ctrl key is held down,
 ;the Pause key produces the key code of CtrlBreak and NumLock produces Pause, so use ^CtrlBreak in hotkeys instead of ^Pause."
-^CtrlBreak::Suspend, Toggle
+!#p::Suspend, Toggle
 
 ;Pushing the Pause key suspends all hotkeys for the specified number in milliseconds (in this case, 2500).
-Pause::
+#p::
 SetTimer, setTimerLabel, 2500, On
 Suspend, On
 return
@@ -100,9 +101,7 @@ Suspend, Off
 SetTimer, setTimerLabel, Off
 return
 
-^#r::
-Reload
-return
+^#r::Reload
 
 ;Copy.
 ; CapsLock::

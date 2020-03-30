@@ -99,9 +99,11 @@ Switch (pressedKey) {
 
     Case "F9":
 
-    Case "g":
+    ;Open the Documents folder.
+    Case "g":Run, explore %A_MyDocuments%
 
-    Case "h":
+    ;Open my user folder.
+    Case "h":Run, explore %C:\Users\Elliott\%
 
     Case "home":
 
@@ -120,8 +122,7 @@ Switch (pressedKey) {
 
     Case "leftbracket":
 
-    ;Open Music folder.
-    Case "m":Run, explore C:\Users\Elliott\Music
+    Case "m":
 
     Case "minus":
 
@@ -130,9 +131,7 @@ Switch (pressedKey) {
     Case "num0":
 
     ;Shift + End.
-    Case "num1":
-    MsgBox num1 lol
-    Send, +{End}
+    Case "num1":Send, +{End}
 
     Case "num2":
 
@@ -143,7 +142,7 @@ Switch (pressedKey) {
 
     Case "num5":
 
-    Case "numClear":MsgBox numClear lol
+    Case "numClear":
 
     ;Shift + Right.
     Case "num6":Send, +{Right}
@@ -155,9 +154,11 @@ Switch (pressedKey) {
 
     Case "num9":
 
-    Case "numDiv":
+    ;Ctrl + Shift + Left.
+    Case "numDiv":Send, ^+{Left}
 
-    Case "numMult":
+    ;Ctrl + Shift + Right.
+    Case "numMult":Send, ^+{Right}
 
     Case "o":
 
@@ -182,7 +183,8 @@ Switch (pressedKey) {
 
     Case "rightbracket":
 
-    Case "s":
+    ;Open Music folder.
+    Case "s":Run, explore C:\Users\Elliott\Music
 
     Case "semicolon":
 
@@ -194,8 +196,7 @@ Switch (pressedKey) {
 
     Case "slash":
 
-    ;Open the Documents folder.
-    Case "t":Run, explore %A_MyDocuments%
+    Case "t":
 
     ; Case "u":
 
