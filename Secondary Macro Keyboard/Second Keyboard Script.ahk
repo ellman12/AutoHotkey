@@ -19,6 +19,8 @@ FileRead, pressedKey, %keypressedTxtFileDir%
 ;See which key was pressed, and act on that.
 Switch (pressedKey) {
 
+    ;These macros are File Explorer specific; don't want them activating in other programs.
+    #IfWinActive, ahk_exe Explorer.EXE
     ;In File Explorer, size all columns to fit.
     Case "1":
     Send, !v ;Open View menu.
@@ -51,6 +53,8 @@ Switch (pressedKey) {
     Send, !h
     Send, r
     return
+
+    #If
 
     Case "a":
 
