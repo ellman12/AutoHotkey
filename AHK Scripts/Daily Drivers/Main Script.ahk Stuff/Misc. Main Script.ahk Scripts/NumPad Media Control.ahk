@@ -109,6 +109,7 @@ soundget, v
 p:=inv(v/100.0)+0.02
 nv:=f(p)*100.0
 soundset, nv
+return
 
 $^NumpadEnter::
 soundget, v

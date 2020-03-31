@@ -58,7 +58,12 @@ Switch (pressedKey) {
 
     Case "a":
 
+    ;Sends Alt + F4.
+    Case "appskey":Send, !{F4}
+
     Case "b":
+
+    Case "backspace":
 
     Case "c":
 
@@ -72,12 +77,27 @@ Switch (pressedKey) {
     ;Sends the normal down key, to be used in conjunction with Left and Right.
     Case "down":Send, {Down}
 
+    ;Ejects the First Item in the Eject List on the Taskbar.
     Case "e":
+    Send, #b
+    Sleep 700
+    Send, {Right}
+    Sleep 700
+    Send, {Enter}
+    Sleep 700
+    Send, {Down 2}
+    Sleep 700
+    Send, {Enter}
+    return
 
     ;Normal End.
     Case "end":Send, {End}
 
-    Case "enter":
+    ;Kind Regards Macro.
+    Case "enter":Send, Kind regards`,{Enter 2}Elliott DuCharme
+
+    ;Open the spreadsheet.
+    Case "escape":Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://docs.google.com/spreadsheets/d/1vGHwAVQwkmzGGpM_xQJ86RGXfsBiBxDD089cu1u02eA/edit#gid=711563356
 
     Case "equals":
 
@@ -128,7 +148,8 @@ Switch (pressedKey) {
 
     Case "minus":
 
-    Case "n":
+    ;Open Notepad.
+    Case "n":Run, notepad.exe
 
     Case "num0":
 
@@ -209,11 +230,13 @@ Switch (pressedKey) {
 
     Case "w":
 
-    Case "x":
+    ;Redo.
+    Case "x":Send, ^y
 
     Case "y":
 
-    Case "z":
+    ;Undo.
+    Case "z":Send, ^z
 
     ;Error message if a key isn't in this Switch statement block.
     Default:
