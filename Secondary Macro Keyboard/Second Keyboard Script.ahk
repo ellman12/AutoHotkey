@@ -80,13 +80,13 @@ Switch (pressedKey) {
     ;Ejects the First Item in the Eject List on the Taskbar.
     Case "e":
     Send, #b
-    Sleep 700
+    Sleep 200
     Send, {Right}
-    Sleep 700
+    Sleep 200
     Send, {Enter}
-    Sleep 700
+    Sleep 200
     Send, {Down 2}
-    Sleep 700
+    Sleep 200
     Send, {Enter}
     return
 
