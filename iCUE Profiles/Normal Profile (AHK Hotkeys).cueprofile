@@ -6313,7 +6313,7 @@
 																		</value>
 																	</value0>
 																	<value1>
-																		<key>StartAction</key>
+																		<key>ReleaseAction</key>
 																		<value>
 																			<locked_ptr>
 																				<polymorphic_id>0</polymorphic_id>
@@ -6321,7 +6321,7 @@
 																		</value>
 																	</value1>
 																	<value2>
-																		<key>ReleaseAction</key>
+																		<key>StartAction</key>
 																		<value>
 																			<locked_ptr>
 																				<polymorphic_id>0</polymorphic_id>
@@ -7005,50 +7005,6 @@
 													<second>Click</second>
 												</second>
 											</value37>
-											<value38>
-												<first>
-													<polymorphic_id>13</polymorphic_id>
-													<ptr_wrapper>
-														<id>2147483881</id>
-														<data>
-															<base>
-																<name>^NumSub</name>
-																<id>{3b2fdfec-2a36-453e-bbeb-71fa668567a2}</id>
-																<repeatOptions>
-																	<repeatCount>1</repeatCount>
-																	<repeatMode>NoRepeat</repeatMode>
-																	<delay>0</delay>
-																	<delayMode>Constant</delayMode>
-																	<randomDelayFrom>0</randomDelayFrom>
-																	<randomDelayTo>0</randomDelayTo>
-																</repeatOptions>
-																<executionHints>
-																	<terminateOnSecondExec>false</terminateOnSecondExec>
-																	<restartOnSecondExec>false</restartOnSecondExec>
-																	<execHint>OnBoth</execHint>
-																	<retainOriginalKeyOutput>false</retainOriginalKeyOutput>
-																</executionHints>
-																<actionLighting>{00000000-0000-0000-0000-000000000000}</actionLighting>
-																<actionSoundPath></actionSoundPath>
-																<attachedActions size="dynamic"/>
-															</base>
-															<keyName></keyName>
-															<keyStroke size="dynamic">
-																<value0>LeftCtrl</value0>
-																<value1>KeypadMinus</value1>
-															</keyStroke>
-															<holdingKeyEnabled>false</holdingKeyEnabled>
-															<holdingKeyType>OnPress</holdingKeyType>
-															<holdingKeyOnPressInterval>100</holdingKeyOnPressInterval>
-															<sniperSwitchMode>WhilePressed</sniperSwitchMode>
-														</data>
-													</ptr_wrapper>
-												</first>
-												<second>
-													<first>KeypadMinus</first>
-													<second>Click</second>
-												</second>
-											</value38>
 										</actions>
 										<default_actions size="dynamic">
 											<value0>
@@ -7056,7 +7012,7 @@
 													<polymorphic_id>2147483678</polymorphic_id>
 													<polymorphic_name>WinLockAction</polymorphic_name>
 													<ptr_wrapper>
-														<id>2147483882</id>
+														<id>2147483881</id>
 														<data>
 															<cereal_class_version>200</cereal_class_version>
 															<base>
@@ -7092,7 +7048,7 @@
 												<first>
 													<polymorphic_id>17</polymorphic_id>
 													<ptr_wrapper>
-														<id>2147483883</id>
+														<id>2147483882</id>
 														<data>
 															<base>
 																<name>Profile Switch M1</name>
@@ -7132,7 +7088,7 @@
 												<first>
 													<polymorphic_id>17</polymorphic_id>
 													<ptr_wrapper>
-														<id>2147483884</id>
+														<id>2147483883</id>
 														<data>
 															<base>
 																<name>Profile Switch M2</name>
@@ -7172,7 +7128,7 @@
 												<first>
 													<polymorphic_id>17</polymorphic_id>
 													<ptr_wrapper>
-														<id>2147483885</id>
+														<id>2147483884</id>
 														<data>
 															<base>
 																<name>Profile Switch M3</name>
@@ -7213,7 +7169,7 @@
 													<polymorphic_id>2147483679</polymorphic_id>
 													<polymorphic_name>BrightnessAction</polymorphic_name>
 													<ptr_wrapper>
-														<id>2147483886</id>
+														<id>2147483885</id>
 														<data>
 															<cereal_class_version>200</cereal_class_version>
 															<base>
@@ -7251,7 +7207,7 @@
 													<polymorphic_id>2147483680</polymorphic_id>
 													<polymorphic_name>MacroRecordingAction</polymorphic_name>
 													<ptr_wrapper>
-														<id>2147483887</id>
+														<id>2147483886</id>
 														<data>
 															<cereal_class_version>200</cereal_class_version>
 															<base>
@@ -7287,7 +7243,7 @@
 												<first>
 													<polymorphic_id>17</polymorphic_id>
 													<ptr_wrapper>
-														<id>2147483888</id>
+														<id>2147483887</id>
 														<data>
 															<base>
 																<name>Profile Switch Next</name>
@@ -7400,12 +7356,12 @@
 														<polymorphic_id>2147483686</polymorphic_id>
 														<polymorphic_name>GestureAction</polymorphic_name>
 														<ptr_wrapper>
-															<id>2147483889</id>
+															<id>2147483888</id>
 															<data>
 																<cereal_class_version>301</cereal_class_version>
 																<base>
 																	<name></name>
-																	<id>{89d8ced9-efca-4b43-ab30-fe115a34c26f}</id>
+																	<id>{070a3ed9-d31b-4640-bb32-d579131a9c4f}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -7436,11 +7392,11 @@
 													<second>
 														<polymorphic_id>38</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483890</id>
+															<id>2147483889</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{5fe2966c-52b1-4983-9f28-84e91997a6ba}</id>
+																	<id>{f9f8a279-5f5c-42c0-a452-dc63efd604c3}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -7471,11 +7427,11 @@
 													<second>
 														<polymorphic_id>38</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483891</id>
+															<id>2147483890</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{e275d7c9-4e5e-47cf-af81-7fbbff23b94f}</id>
+																	<id>{e97c6881-db39-40c2-b138-731ac4ca7628}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -7506,11 +7462,11 @@
 													<second>
 														<polymorphic_id>38</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483892</id>
+															<id>2147483891</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{51f13cf2-44c4-4132-b108-08d2db96213a}</id>
+																	<id>{bcebcfff-8310-4e8a-8f79-024c25140736}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -7541,11 +7497,11 @@
 													<second>
 														<polymorphic_id>38</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483893</id>
+															<id>2147483892</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{efb3b408-3dd3-426d-9b93-be0bb28ca259}</id>
+																	<id>{e79ce745-e6ba-4a59-8deb-55de625da0eb}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -7576,11 +7532,11 @@
 													<second>
 														<polymorphic_id>38</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483894</id>
+															<id>2147483893</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{4812a83d-4545-4ada-b7cb-d972912c7235}</id>
+																	<id>{57547883-dc6d-4fa3-beb5-a0b32e431b1a}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -7611,11 +7567,11 @@
 													<second>
 														<polymorphic_id>38</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483895</id>
+															<id>2147483894</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{0760bc52-e4b9-4dd0-98e1-396199d01589}</id>
+																	<id>{8d6526ef-aeac-452c-a66d-2f7764801403}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -7646,11 +7602,11 @@
 													<second>
 														<polymorphic_id>38</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483896</id>
+															<id>2147483895</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{08ab138b-4152-4409-84c5-9102b983f084}</id>
+																	<id>{dcee1fe7-101f-4fb9-ae78-4316b29c8391}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -7681,11 +7637,11 @@
 													<second>
 														<polymorphic_id>38</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483897</id>
+															<id>2147483896</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{5688cb82-e9da-43fb-a282-86afafa3d6e4}</id>
+																	<id>{5d20353e-bcec-4065-a5da-3bd014062100}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -7716,11 +7672,11 @@
 													<second>
 														<polymorphic_id>38</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483898</id>
+															<id>2147483897</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{5611cd19-2005-4d60-a678-630779efc2ff}</id>
+																	<id>{8ec32f18-c456-43ba-a84c-457fceec207b}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -7751,11 +7707,11 @@
 													<second>
 														<polymorphic_id>38</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483899</id>
+															<id>2147483898</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{6e3f3ffb-e638-4a7a-abd8-93e19719bd0c}</id>
+																	<id>{d820ca3a-bbc8-4517-a30a-685a6f1f01bc}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -7786,11 +7742,11 @@
 													<second>
 														<polymorphic_id>38</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483900</id>
+															<id>2147483899</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{f80d3a0f-9987-43d3-9199-1a97f01479c6}</id>
+																	<id>{983ed84c-ee19-46b2-9e4a-24caa8032dab}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -7821,11 +7777,11 @@
 													<second>
 														<polymorphic_id>38</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483901</id>
+															<id>2147483900</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{4177e62d-5f15-4d8a-bfea-313a7f559c35}</id>
+																	<id>{3e72c809-7693-45ee-afd6-8107331fd9b9}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -7856,11 +7812,11 @@
 													<second>
 														<polymorphic_id>38</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483902</id>
+															<id>2147483901</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{195b0a2e-a581-4aef-b2f6-309453df2bf3}</id>
+																	<id>{14c8a914-1774-4a9e-9868-158095dddc02}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -7891,11 +7847,11 @@
 													<second>
 														<polymorphic_id>38</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483903</id>
+															<id>2147483902</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{e5762c7d-6704-4e93-a502-8a3525ac9e09}</id>
+																	<id>{e1028022-a982-41ac-8f55-67613c2d3aea}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -7926,11 +7882,11 @@
 													<second>
 														<polymorphic_id>38</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483904</id>
+															<id>2147483903</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{37c8a031-ce4d-4930-9004-cc606e39e44f}</id>
+																	<id>{5ed005fc-2392-46a5-a8bb-bdb9a0b963cf}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -7961,11 +7917,11 @@
 													<second>
 														<polymorphic_id>38</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483905</id>
+															<id>2147483904</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{5d81fbb4-316f-47fb-b32d-369f6acdc2ca}</id>
+																	<id>{afbd57e9-53d3-4214-8d77-c1e7b86ce014}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -7996,11 +7952,11 @@
 													<second>
 														<polymorphic_id>38</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483906</id>
+															<id>2147483905</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{1e237f00-60e0-4dbf-bedf-e2b5cfd775de}</id>
+																	<id>{d45fbe2a-4db6-401c-9602-134a21ad6fc8}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -8031,11 +7987,11 @@
 													<second>
 														<polymorphic_id>38</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483907</id>
+															<id>2147483906</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{eb9da3e3-dc68-4674-9421-46912583e04a}</id>
+																	<id>{7622a47d-d228-406a-ac0e-f551891b587c}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -8066,11 +8022,11 @@
 													<second>
 														<polymorphic_id>38</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483908</id>
+															<id>2147483907</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{3651b0e3-b748-43f4-92e4-617958312908}</id>
+																	<id>{5cd43df9-c8b5-4d1e-9a25-368d39b2b763}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -8101,11 +8057,11 @@
 													<second>
 														<polymorphic_id>38</polymorphic_id>
 														<ptr_wrapper>
-															<id>2147483909</id>
+															<id>2147483908</id>
 															<data>
 																<base>
 																	<name></name>
-																	<id>{a6679d14-9b52-41c0-92e9-31aac4cdf232}</id>
+																	<id>{0a75994e-783c-4b32-b373-ca94a3c6c4a7}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -8155,7 +8111,7 @@
 																		<first>
 																			<polymorphic_id>30</polymorphic_id>
 																			<ptr_wrapper>
-																				<id>2147483910</id>
+																				<id>2147483909</id>
 																				<data>
 																					<base>
 																						<name>WinLock</name>
@@ -8190,7 +8146,7 @@
 																		<first>
 																			<polymorphic_id>17</polymorphic_id>
 																			<ptr_wrapper>
-																				<id>2147483911</id>
+																				<id>2147483910</id>
 																				<data>
 																					<base>
 																						<name>Profile Switch M1</name>
@@ -8230,7 +8186,7 @@
 																		<first>
 																			<polymorphic_id>17</polymorphic_id>
 																			<ptr_wrapper>
-																				<id>2147483912</id>
+																				<id>2147483911</id>
 																				<data>
 																					<base>
 																						<name>Profile Switch M2</name>
@@ -8270,7 +8226,7 @@
 																		<first>
 																			<polymorphic_id>17</polymorphic_id>
 																			<ptr_wrapper>
-																				<id>2147483913</id>
+																				<id>2147483912</id>
 																				<data>
 																					<base>
 																						<name>Profile Switch M3</name>
@@ -8310,7 +8266,7 @@
 																		<first>
 																			<polymorphic_id>31</polymorphic_id>
 																			<ptr_wrapper>
-																				<id>2147483914</id>
+																				<id>2147483913</id>
 																				<data>
 																					<base>
 																						<name>Brightness</name>
@@ -8346,7 +8302,7 @@
 																		<first>
 																			<polymorphic_id>32</polymorphic_id>
 																			<ptr_wrapper>
-																				<id>2147483915</id>
+																				<id>2147483914</id>
 																				<data>
 																					<base>
 																						<name>Macro Recording</name>
@@ -8381,7 +8337,7 @@
 																		<first>
 																			<polymorphic_id>17</polymorphic_id>
 																			<ptr_wrapper>
-																				<id>2147483916</id>
+																				<id>2147483915</id>
 																				<data>
 																					<base>
 																						<name>Profile Switch Next</name>
@@ -8439,7 +8395,7 @@
 																		<first>
 																			<polymorphic_id>30</polymorphic_id>
 																			<ptr_wrapper>
-																				<id>2147483917</id>
+																				<id>2147483916</id>
 																				<data>
 																					<base>
 																						<name>WinLock</name>
@@ -8474,7 +8430,7 @@
 																		<first>
 																			<polymorphic_id>17</polymorphic_id>
 																			<ptr_wrapper>
-																				<id>2147483918</id>
+																				<id>2147483917</id>
 																				<data>
 																					<base>
 																						<name>Profile Switch M1</name>
@@ -8514,7 +8470,7 @@
 																		<first>
 																			<polymorphic_id>17</polymorphic_id>
 																			<ptr_wrapper>
-																				<id>2147483919</id>
+																				<id>2147483918</id>
 																				<data>
 																					<base>
 																						<name>Profile Switch M2</name>
@@ -8554,7 +8510,7 @@
 																		<first>
 																			<polymorphic_id>17</polymorphic_id>
 																			<ptr_wrapper>
-																				<id>2147483920</id>
+																				<id>2147483919</id>
 																				<data>
 																					<base>
 																						<name>Profile Switch M3</name>
@@ -8594,7 +8550,7 @@
 																		<first>
 																			<polymorphic_id>31</polymorphic_id>
 																			<ptr_wrapper>
-																				<id>2147483921</id>
+																				<id>2147483920</id>
 																				<data>
 																					<base>
 																						<name>Brightness</name>
@@ -8630,7 +8586,7 @@
 																		<first>
 																			<polymorphic_id>32</polymorphic_id>
 																			<ptr_wrapper>
-																				<id>2147483922</id>
+																				<id>2147483921</id>
 																				<data>
 																					<base>
 																						<name>Macro Recording</name>
@@ -8665,7 +8621,7 @@
 																		<first>
 																			<polymorphic_id>17</polymorphic_id>
 																			<ptr_wrapper>
-																				<id>2147483923</id>
+																				<id>2147483922</id>
 																				<data>
 																					<base>
 																						<name>Profile Switch Next</name>
@@ -8801,7 +8757,7 @@
 															<presets size="dynamic">
 																<value0>
 																	<ptr_wrapper>
-																		<id>2147483924</id>
+																		<id>2147483923</id>
 																		<data>
 																			<cereal_class_version>201</cereal_class_version>
 																			<id>{df65cb3e-f06b-49e4-9376-adba2c0caf6e}</id>
@@ -8825,7 +8781,7 @@
 																</value0>
 																<value1>
 																	<ptr_wrapper>
-																		<id>2147483925</id>
+																		<id>2147483924</id>
 																		<data>
 																			<id>{c1d3947b-493e-42c6-9503-dd63d6c40012}</id>
 																			<name>Movie Theater</name>
@@ -8848,7 +8804,7 @@
 																</value1>
 																<value2>
 																	<ptr_wrapper>
-																		<id>2147483926</id>
+																		<id>2147483925</id>
 																		<data>
 																			<id>{138c0b33-bc2c-42ff-96c8-190328221a5a}</id>
 																			<name>FPS Competition</name>
@@ -8871,7 +8827,7 @@
 																</value2>
 																<value3>
 																	<ptr_wrapper>
-																		<id>2147483927</id>
+																		<id>2147483926</id>
 																		<data>
 																			<id>{861c1fd2-fafa-485c-ae46-64fe006e583f}</id>
 																			<name>Clear Chat</name>
@@ -8894,7 +8850,7 @@
 																</value3>
 																<value4>
 																	<ptr_wrapper>
-																		<id>2147483928</id>
+																		<id>2147483927</id>
 																		<data>
 																			<id>{ace12c08-a7e1-4a87-8110-555e383ce327}</id>
 																			<name>Bass Boost</name>
@@ -8989,7 +8945,7 @@
 																							<value0>
 																								<polymorphic_id>2</polymorphic_id>
 																								<ptr_wrapper>
-																									<id>2147483929</id>
+																									<id>2147483928</id>
 																									<data>
 																										<base>
 																											<name>Blink</name>
@@ -9009,7 +8965,7 @@
 																											<polymorphic_id>2147483689</polymorphic_id>
 																											<polymorphic_name>BlinkLighting</polymorphic_name>
 																											<ptr_wrapper>
-																												<id>2147483930</id>
+																												<id>2147483929</id>
 																												<data>
 																													<cereal_class_version>300</cereal_class_version>
 																													<base>
@@ -9311,7 +9267,7 @@
 													<polymorphic_id>2147483692</polymorphic_id>
 													<polymorphic_name>EqPresetSwitchingAction</polymorphic_name>
 													<ptr_wrapper>
-														<id>2147483931</id>
+														<id>2147483930</id>
 														<data>
 															<cereal_class_version>200</cereal_class_version>
 															<base>
@@ -9348,7 +9304,7 @@
 													<polymorphic_id>2147483693</polymorphic_id>
 													<polymorphic_name>DolbyStateChangeAction</polymorphic_name>
 													<ptr_wrapper>
-														<id>2147483932</id>
+														<id>2147483931</id>
 														<data>
 															<cereal_class_version>200</cereal_class_version>
 															<base>
@@ -9385,7 +9341,7 @@
 													<polymorphic_id>2147483694</polymorphic_id>
 													<polymorphic_name>MicMuteAction</polymorphic_name>
 													<ptr_wrapper>
-														<id>2147483933</id>
+														<id>2147483932</id>
 														<data>
 															<cereal_class_version>200</cereal_class_version>
 															<base>
@@ -9422,7 +9378,7 @@
 													<polymorphic_id>2147483695</polymorphic_id>
 													<polymorphic_name>SidetoneMuteAction</polymorphic_name>
 													<ptr_wrapper>
-														<id>2147483934</id>
+														<id>2147483933</id>
 														<data>
 															<cereal_class_version>200</cereal_class_version>
 															<base>
@@ -9519,7 +9475,7 @@
 																		<first>
 																			<polymorphic_id>44</polymorphic_id>
 																			<ptr_wrapper>
-																				<id>2147483935</id>
+																				<id>2147483934</id>
 																				<data>
 																					<base>
 																						<name>Preset Switch</name>
@@ -9554,7 +9510,7 @@
 																		<first>
 																			<polymorphic_id>45</polymorphic_id>
 																			<ptr_wrapper>
-																				<id>2147483936</id>
+																				<id>2147483935</id>
 																				<data>
 																					<base>
 																						<name>Surround Switch</name>
@@ -9589,7 +9545,7 @@
 																		<first>
 																			<polymorphic_id>46</polymorphic_id>
 																			<ptr_wrapper>
-																				<id>2147483937</id>
+																				<id>2147483936</id>
 																				<data>
 																					<base>
 																						<name>Surround Switch</name>
@@ -9624,7 +9580,7 @@
 																		<first>
 																			<polymorphic_id>47</polymorphic_id>
 																			<ptr_wrapper>
-																				<id>2147483938</id>
+																				<id>2147483937</id>
 																				<data>
 																					<base>
 																						<name>Surround Switch</name>
@@ -9677,7 +9633,7 @@
 																		<first>
 																			<polymorphic_id>44</polymorphic_id>
 																			<ptr_wrapper>
-																				<id>2147483939</id>
+																				<id>2147483938</id>
 																				<data>
 																					<base>
 																						<name>Preset Switch</name>
@@ -9712,7 +9668,7 @@
 																		<first>
 																			<polymorphic_id>45</polymorphic_id>
 																			<ptr_wrapper>
-																				<id>2147483940</id>
+																				<id>2147483939</id>
 																				<data>
 																					<base>
 																						<name>Surround Switch</name>
@@ -9747,7 +9703,7 @@
 																		<first>
 																			<polymorphic_id>46</polymorphic_id>
 																			<ptr_wrapper>
-																				<id>2147483941</id>
+																				<id>2147483940</id>
 																				<data>
 																					<base>
 																						<name>Surround Switch</name>
@@ -9782,7 +9738,7 @@
 																		<first>
 																			<polymorphic_id>47</polymorphic_id>
 																			<ptr_wrapper>
-																				<id>2147483942</id>
+																				<id>2147483941</id>
 																				<data>
 																					<base>
 																						<name>Surround Switch</name>
@@ -10212,7 +10168,7 @@
 															<presets size="dynamic">
 																<value0>
 																	<ptr_wrapper>
-																		<id>2147483943</id>
+																		<id>2147483942</id>
 																		<data>
 																			<id>{df65cb3e-f06b-49e4-9376-adba2c0caf6e}</id>
 																			<name>Pure Direct</name>
@@ -10235,7 +10191,7 @@
 																</value0>
 																<value1>
 																	<ptr_wrapper>
-																		<id>2147483944</id>
+																		<id>2147483943</id>
 																		<data>
 																			<id>{c1d3947b-493e-42c6-9503-dd63d6c40012}</id>
 																			<name>Movie Theater</name>
@@ -10258,7 +10214,7 @@
 																</value1>
 																<value2>
 																	<ptr_wrapper>
-																		<id>2147483945</id>
+																		<id>2147483944</id>
 																		<data>
 																			<id>{138c0b33-bc2c-42ff-96c8-190328221a5a}</id>
 																			<name>FPS Competition</name>
@@ -10281,7 +10237,7 @@
 																</value2>
 																<value3>
 																	<ptr_wrapper>
-																		<id>2147483946</id>
+																		<id>2147483945</id>
 																		<data>
 																			<id>{861c1fd2-fafa-485c-ae46-64fe006e583f}</id>
 																			<name>Clear Chat</name>
@@ -10304,7 +10260,7 @@
 																</value3>
 																<value4>
 																	<ptr_wrapper>
-																		<id>2147483947</id>
+																		<id>2147483946</id>
 																		<data>
 																			<id>{ace12c08-a7e1-4a87-8110-555e383ce327}</id>
 																			<name>Bass Boost</name>
@@ -10509,7 +10465,7 @@
 										<layer>
 											<polymorphic_id>1073741824</polymorphic_id>
 											<ptr_wrapper>
-												<id>2147483948</id>
+												<id>2147483947</id>
 												<data>
 													<cereal_class_version>300</cereal_class_version>
 													<base>
@@ -11039,7 +10995,7 @@
 					<value>
 						<polymorphic_id>1073741824</polymorphic_id>
 						<ptr_wrapper>
-							<id>2147483949</id>
+							<id>2147483948</id>
 							<data>
 								<cereal_class_version>201</cereal_class_version>
 								<enabled>false</enabled>
@@ -11056,7 +11012,7 @@
 					<value>
 						<polymorphic_id>1073741824</polymorphic_id>
 						<ptr_wrapper>
-							<id>2147483950</id>
+							<id>2147483949</id>
 							<data>
 								<enabled>false</enabled>
 								<independent>false</independent>
@@ -11072,7 +11028,7 @@
 					<value>
 						<polymorphic_id>1073741824</polymorphic_id>
 						<ptr_wrapper>
-							<id>2147483951</id>
+							<id>2147483950</id>
 							<data>
 								<enabled>true</enabled>
 								<independent>false</independent>
@@ -11088,7 +11044,7 @@
 					<value>
 						<polymorphic_id>1073741824</polymorphic_id>
 						<ptr_wrapper>
-							<id>2147483952</id>
+							<id>2147483951</id>
 							<data>
 								<enabled>false</enabled>
 								<independent>false</independent>
@@ -11104,7 +11060,7 @@
 					<value>
 						<polymorphic_id>1073741824</polymorphic_id>
 						<ptr_wrapper>
-							<id>2147483953</id>
+							<id>2147483952</id>
 							<data>
 								<enabled>false</enabled>
 								<independent>false</independent>
@@ -11120,7 +11076,7 @@
 					<value>
 						<polymorphic_id>1073741824</polymorphic_id>
 						<ptr_wrapper>
-							<id>2147483954</id>
+							<id>2147483953</id>
 							<data>
 								<enabled>true</enabled>
 								<independent>false</independent>
@@ -11132,13 +11088,13 @@
 					</value>
 				</value5>
 			</settings>
-			<active>true</active>
+			<active>false</active>
 			<defaultIndex>Dpi3</defaultIndex>
 			<defaultModeIndex>0</defaultModeIndex>
 			<isDefault>false</isDefault>
 		</dpiMode>
 		<dpiModeAdditional>
-			<id>{96052ac2-3c30-440e-82b7-e55927ded196}</id>
+			<id>{c1a4dcd4-0f28-4337-bd68-db1d35182ac5}</id>
 			<name></name>
 			<settings size="dynamic"/>
 			<active>false</active>

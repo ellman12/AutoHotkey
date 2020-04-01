@@ -166,7 +166,7 @@ $^NumpadMult::SoundSet, +1
 
 
 ;Shows the current rounded master volume.
-$^NumpadSub::
+$NumPadSub::
 SoundGet, systemMasterVolume
 systemMasterVolume := Round(systemMasterVolume, 2)
 MsgBox, 0, Master Volume, Master volume is %systemMasterVolume% percent., 0.39
@@ -273,7 +273,7 @@ SoundSet, +1
 
 
 ;Shows the current and exact master volume.
-$^NumpadSub::
+$NumPadSub::
 SoundGet, systemMasterVolume
 systemMasterVolume := Round(systemMasterVolume, 2)
 MsgBox, 0, Master Volume, Master volume is %systemMasterVolume% percent., 0.39
@@ -357,7 +357,7 @@ $^NumpadDiv::Send, {NumpadDiv}
 $^NumpadMult::Send, {NumpadMult}
 
 
-$^NumpadSub::Send, {NumpadSub}
+$NumPadSub::Send, {NumpadSub}
 
 }
 
@@ -466,7 +466,7 @@ $^NumpadMult::SoundSet, +1
 
 
 ;Shows the current and exact master volume.
-$^NumpadSub::
+$NumPadSub::
 SoundGet, systemMasterVolume
 systemMasterVolume := Round(systemMasterVolume, 2)
 MsgBox, 0, Master Volume, Master volume is %systemMasterVolume% percent., 0.39
