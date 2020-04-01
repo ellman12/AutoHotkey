@@ -215,7 +215,7 @@ Switch (pressedKey) {
 
     ;Suspends the hotkeys of the Main Script and Advanced Window Hider. Hopefully won't/shouldn't do anything if they aren't running. Press space again to un-suspend.
     ;This is taken care of in Main Script.ahk
-    Case "space":MsgBox, %pressedKey% is unassigned.
+    Case "space":
 
     Case "slash":MsgBox, %pressedKey% is unassigned.
 
