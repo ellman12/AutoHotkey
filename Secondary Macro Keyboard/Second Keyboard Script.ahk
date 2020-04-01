@@ -56,7 +56,8 @@ Switch (pressedKey) {
 
     #If
 
-    Case "a":MsgBox, %key% is unassigned.MsgBox, %key% is unassigned.
+    ;Open the B: drive.
+    Case "a":Run, explorer.exe "B:\"
 
     ;Sends Alt + F4.
     Case "appskey":Send, !{F4}
@@ -70,7 +71,7 @@ Switch (pressedKey) {
     Case "comma":MsgBox, %key% is unassigned.
 
     ;Open the Desktop folder.
-    Case "d":Run, explore %A_Desktop%
+    Case "d":Run, explorer %A_Desktop%
 
     Case "delete":MsgBox, %key% is unassigned.
 
@@ -102,7 +103,7 @@ Switch (pressedKey) {
     Case "equals":MsgBox, %pressedKey% is unassigned.
 
     ;Open the AHK repo folder.
-    Case "f":Run, explore C:\Users\Elliott\Documents\GitHub\AutoHotkey
+    Case "f":Run, explorer C:\Users\Elliott\Documents\GitHub\AutoHotkey
 
     Case "F10":MsgBox, %pressedKey% is unassigned.
 
@@ -121,10 +122,10 @@ Switch (pressedKey) {
     Case "F9":MsgBox, %pressedKey% is unassigned.
 
     ;Open the Documents folder.
-    Case "g":Run, explore %A_MyDocuments%
+    Case "g":Run, explorer %A_MyDocuments%
 
     ;Open my user folder.
-    Case "h":Run, explore C:\Users\Elliott\
+    Case "h":Run, explorer C:\Users\Elliott\
 
     ;Normal Home.
     Case "home":Send, {Home}
@@ -133,11 +134,14 @@ Switch (pressedKey) {
 
     Case "insert":MsgBox, %pressedKey% is unassigned.
 
-    Case "j":MsgBox, %pressedKey% is unassigned.
+    ;Open the C: drive.
+    Case "j":Run, explorer.exe "C:\"
 
-    Case "k":MsgBox, %pressedKey% is unassigned.
+    ;Open the D: drive.
+    Case "k":Run, explorer.exe "D:\"
 
-    Case "l":MsgBox, %pressedKey% is unassigned.
+    ;Open the G: drive.
+    Case "l":Run, explorer.exe "G:\"
 
     ;Ctrl + Left. Common keeb shortcut for moving between words in text.
     Case "left":Send, ^{Left}
@@ -207,7 +211,7 @@ Switch (pressedKey) {
     Case "rightbracket":MsgBox, %pressedKey% is unassigned.
 
     ;Open Music folder.
-    Case "s":Run, explore C:\Users\Elliott\Music
+    Case "s":Run, explorer C:\Users\Elliott\Music
 
     Case "semicolon":MsgBox, %pressedKey% is unassigned.
 
