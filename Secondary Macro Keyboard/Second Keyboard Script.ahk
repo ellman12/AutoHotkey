@@ -59,12 +59,9 @@ Switch (pressedKey) {
     ;Open the B: drive.
     Case "a":Run, explorer.exe "B:\"
 
-    ;Sends Alt + F4.
-    Case "appskey":Send, !{F4}
-
     Case "b":MsgBox, %key% is unassigned.
 
-    Case "backspace":MsgBox, %key% is unassigned.
+    ; Case "backspace":MsgBox, %key% is unassigned.
 
     Case "c":MsgBox, %key% is unassigned.
 
@@ -209,6 +206,9 @@ Switch (pressedKey) {
     Case "right":Send, ^{Right}
 
     Case "rightbracket":MsgBox, %pressedKey% is unassigned.
+
+    ;Sends Alt + F4.
+    Case "backspace":Send, !{F4}
 
     ;Open Music folder.
     Case "s":Run, explorer C:\Users\Elliott\Music
