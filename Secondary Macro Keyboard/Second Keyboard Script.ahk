@@ -59,18 +59,21 @@ Switch (pressedKey) {
     ;Open the B: drive.
     Case "a":Run, explorer.exe "B:\"
 
-    Case "b":MsgBox, %key% is unassigned.
+    Case "appskey":MsgBox, %pressedKey% is unassigned.
 
-    ; Case "backspace":MsgBox, %key% is unassigned.
+    Case "b":MsgBox, %pressedKey% is unassigned.
 
-    Case "c":MsgBox, %key% is unassigned.
+    ;Sends Alt + F4.
+    Case "backspace":Send, !{F4}
 
-    Case "comma":MsgBox, %key% is unassigned.
+    Case "c":MsgBox, %kpressedKey% is unassigned.
+
+    Case "comma":MsgBox, %pressedKey% is unassigned.
 
     ;Open the Desktop folder.
     Case "d":Run, explorer %A_Desktop%
 
-    Case "delete":MsgBox, %key% is unassigned.
+    Case "delete":MsgBox, %pressedKey% is unassigned.
 
     ;Sends the normal down key, to be used in conjunction with Left and Right.
     Case "down":Send, {Down}
@@ -206,9 +209,6 @@ Switch (pressedKey) {
     Case "right":Send, ^{Right}
 
     Case "rightbracket":MsgBox, %pressedKey% is unassigned.
-
-    ;Sends Alt + F4.
-    Case "backspace":Send, !{F4}
 
     ;Open Music folder.
     Case "s":Run, explorer C:\Users\Elliott\Music
