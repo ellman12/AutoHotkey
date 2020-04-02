@@ -133,7 +133,19 @@ Send, {Down}
 return
 
 ;Keeb G5
+;Pin/unpin Firefox tabs.
 ^F17::
+if WinActive("ahk_exe firefox.exe") {
+    Send, !d
+    Sleep 100
+    Send, +{Tab 3}
+    Sleep 100
+    Send, {AppsKey}
+    Sleep 100
+    Send, p
+} else {
+    MsgBox, G5 only works with Firefox.
+}
 return
 
 ;Keeb G6
