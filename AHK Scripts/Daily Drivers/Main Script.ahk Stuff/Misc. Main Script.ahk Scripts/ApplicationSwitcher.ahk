@@ -1,21 +1,4 @@
-﻿;OPTIMIZATIONS START
-#NoEnv
-#MaxHotkeysPerInterval 99000000
-#HotkeyInterval 99000000
-#KeyHistory 0
-ListLines Off
-Process, Priority, , A
-SetBatchLines, -1
-SetKeyDelay, -1, -1
-SetMouseDelay, -1
-SetDefaultMouseSpeed, 0
-SetWinDelay, -1
-SetControlDelay, -1
-SendMode Input
-#SingleInstance force
-;OPTIMIZATIONS END
-
-;A lot of this code is taken from Taran Van Hemert from Linus Media Group.
+﻿;A lot of this code is taken from Taran Van Hemert from Linus Media Group.
 ;His video on this: https://www.youtube.com/watch?v=OqyQABySV8k
 ;As he calls it, this is his most useful script he's ever made.
 ;It's quite simple, but extremely useful and powerful.

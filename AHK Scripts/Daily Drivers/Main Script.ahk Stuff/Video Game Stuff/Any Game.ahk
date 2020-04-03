@@ -15,6 +15,8 @@ SendMode Input
 #SingleInstance force
 ;OPTIMIZATIONS END
 
+;consider removing these optimizations, but only if this thing is used in Main.
+
 ;This script is the profile used for games.
 ;As of right now, it's just used for DOOM.
 ;TODO https://www.autohotkey.com/docs/commands/GuiControls.htm#Hotkey

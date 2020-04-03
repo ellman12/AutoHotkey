@@ -1,9 +1,3 @@
-#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
-; #Warn  ; Enable warnings to assist with detecting common errors.
-SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
-SetWorkingDir "C:\Users\Elliott\Documents\AHK Scripts"  ; Ensures a consistent starting directory.
-#SingleInstance force
-
 /*
 ;This script allows me to run and do miscellaneous things that don't deserve their own (hot)key.
 ;It's like the #r thing that Windows already has.

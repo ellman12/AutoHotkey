@@ -12,6 +12,7 @@ SetDefaultMouseSpeed, 0
 SetWinDelay, -1
 SetControlDelay, -1
 SendMode Input
+DetectHiddenWindows, On
 #SingleInstance force
 ;OPTIMIZATIONS END
 
