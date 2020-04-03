@@ -324,6 +324,12 @@ MouseMove, 0, 64, 0, R
 Sleep 150
 return
 
+#IfWinActive, ahk_exe Zoom.exe
+$PrintScreen::
+Send, #{PrintScreen}
+return
+#If
+
 ;*****************************************HOTKEYS FOR TITLE STUFF*********************************
 ;These hotkeys allow the user to adjust and modify text in whatever way they want.
 ;Can be used for titles or whatever you want.

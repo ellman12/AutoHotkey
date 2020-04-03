@@ -164,15 +164,15 @@ Switch (pressedKey) {
 
     Case "num3":MsgBox, %pressedKey% is unassigned.
 
-    ;Shift + Left.
-    Case "num4":Send, +{Left}
+    ;Ctrl + Shift + Left.
+    Case "num4":Send, ^+{Left}
 
     Case "num5":MsgBox, %pressedKey% is unassigned.
 
     Case "numClear":MsgBox, %pressedKey% is unassigned.
 
-    ;Shift + Right.
-    Case "num6":Send, +{Right}
+    ;Ctrl + Shift + Right.
+    Case "num6":Send, ^+{Right}
 
     ;Shift + Home.
     Case "num7":Send, +{Home}
@@ -181,11 +181,11 @@ Switch (pressedKey) {
 
     Case "num9":MsgBox, %pressedKey% is unassigned.
 
-    ;Ctrl + Shift + Left.
-    Case "numDiv":Send, ^+{Left}
+    ;Shift + Left.
+    Case "numDiv":Send, +{Left}
 
-    ;Ctrl + Shift + Right.
-    Case "numMult":Send, ^+{Right}
+    ;Shift + Right.
+    Case "numMult":Send, +{Right}
 
     Case "o":MsgBox, %pressedKey% is unassigned.
 
