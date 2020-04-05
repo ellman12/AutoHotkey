@@ -37,7 +37,7 @@
 														<data>
 															<cereal_class_version>200</cereal_class_version>
 															<base/>
-															<id>{7cfed156-b1d9-43bf-ace5-4f6a7f3bec4d}</id>
+															<id>{5f8be314-83cc-4c87-8d5e-9d0d85151e09}</id>
 														</data>
 													</ptr_wrapper>
 												</value>
@@ -1282,7 +1282,7 @@
 														<data>
 															<cereal_class_version>300</cereal_class_version>
 															<base/>
-															<cookie>6</cookie>
+															<cookie>8</cookie>
 														</data>
 													</ptr_wrapper>
 												</value>
@@ -1302,7 +1302,7 @@
 														<valid>1</valid>
 														<data>
 															<base/>
-															<cookie>6</cookie>
+															<cookie>8</cookie>
 														</data>
 													</ptr_wrapper>
 												</value>
@@ -1322,7 +1322,7 @@
 														<valid>1</valid>
 														<data>
 															<base/>
-															<cookie>6</cookie>
+															<cookie>8</cookie>
 														</data>
 													</ptr_wrapper>
 												</value>
@@ -1342,7 +1342,7 @@
 														<valid>1</valid>
 														<data>
 															<base/>
-															<cookie>6</cookie>
+															<cookie>8</cookie>
 														</data>
 													</ptr_wrapper>
 												</value>
@@ -1362,7 +1362,7 @@
 														<valid>1</valid>
 														<data>
 															<base/>
-															<cookie>6</cookie>
+															<cookie>8</cookie>
 														</data>
 													</ptr_wrapper>
 												</value>
@@ -1382,7 +1382,7 @@
 														<valid>1</valid>
 														<data>
 															<base/>
-															<cookie>6</cookie>
+															<cookie>8</cookie>
 														</data>
 													</ptr_wrapper>
 												</value>
@@ -1402,7 +1402,7 @@
 														<valid>1</valid>
 														<data>
 															<base/>
-															<cookie>6</cookie>
+															<cookie>8</cookie>
 														</data>
 													</ptr_wrapper>
 												</value>
@@ -1422,7 +1422,7 @@
 														<valid>1</valid>
 														<data>
 															<base/>
-															<cookie>6</cookie>
+															<cookie>8</cookie>
 														</data>
 													</ptr_wrapper>
 												</value>
@@ -1442,7 +1442,7 @@
 														<valid>1</valid>
 														<data>
 															<base/>
-															<cookie>6</cookie>
+															<cookie>8</cookie>
 														</data>
 													</ptr_wrapper>
 												</value>
@@ -1462,7 +1462,7 @@
 														<valid>1</valid>
 														<data>
 															<base/>
-															<cookie>6</cookie>
+															<cookie>8</cookie>
 														</data>
 													</ptr_wrapper>
 												</value>
@@ -1482,7 +1482,7 @@
 														<valid>1</valid>
 														<data>
 															<base/>
-															<cookie>6</cookie>
+															<cookie>8</cookie>
 														</data>
 													</ptr_wrapper>
 												</value>
@@ -3935,7 +3935,7 @@
 																<cereal_class_version>301</cereal_class_version>
 																<base>
 																	<name></name>
-																	<id>{e369d278-41ef-41f5-b91a-45e438bd6a20}</id>
+																	<id>{7bfa6172-acd7-430a-8f73-c091aaa98e7d}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -3970,7 +3970,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{2c6bea03-6920-40d8-9d35-9bbc7bd542f1}</id>
+																	<id>{5489d8ec-9396-4436-92a4-6ce3c518c171}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -4005,7 +4005,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{99fe8b33-a21a-4013-9d4e-77233d3932e4}</id>
+																	<id>{97e68993-51ce-474d-b0c2-5842679dcaf2}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -4040,7 +4040,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{09dfb9c1-dbff-410b-ad10-a3f357ca4911}</id>
+																	<id>{e1d1a1a1-ee11-4424-9a00-93cf0e8a4dc4}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -4075,7 +4075,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{c780a73b-bf2c-4e59-bf76-2d30d9bebafa}</id>
+																	<id>{1c0fe505-1106-4378-bc27-de1e4be2b09e}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -4110,7 +4110,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{56518728-5c89-4f01-98e2-71d0f71a6796}</id>
+																	<id>{6f205ed3-4f82-4f51-bcbe-d23ce105fa6a}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -4145,7 +4145,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{ee1e1982-22c7-48ee-a04d-039d6002e42b}</id>
+																	<id>{acb72636-bb9c-4a1a-ae28-7ab58b8cfd8b}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -4180,7 +4180,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{75508091-bcbb-4ca3-95c3-4335f717d39a}</id>
+																	<id>{d326b15a-29b0-428d-9c8c-fea73c3bd752}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -4215,7 +4215,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{1f414181-f394-41ab-9420-22379d8acb84}</id>
+																	<id>{14f16115-f964-493a-89c0-4f51d76be190}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -4250,7 +4250,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{c778ecfd-6628-4e8f-adbf-f5ce0ff2e1c7}</id>
+																	<id>{e314db10-329f-4e53-a2d7-326874367b4c}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -4285,7 +4285,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{8353f99e-bbda-4067-b40a-509446f065bd}</id>
+																	<id>{3b5576c1-9b30-44f0-a04e-5705c4845309}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -4320,7 +4320,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{bf0bfe30-c365-4f93-9d87-55cb0c6ab594}</id>
+																	<id>{cc7a2197-5f1b-41ef-90ed-d718d9451b3a}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -4355,7 +4355,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{ac7706a1-3482-4d7c-94ce-93615cd69a3f}</id>
+																	<id>{9cf3cdcc-a4b8-497b-937c-f4ce4ead8a70}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -4390,7 +4390,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{9f053a7a-8e75-422b-8dae-d1d3bed369d8}</id>
+																	<id>{453e2aff-e248-4138-9f40-94d54c49bad2}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -4425,7 +4425,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{3d57deae-a2ac-492f-8226-98051a977dd2}</id>
+																	<id>{0aabf09d-e11c-42dc-94f5-bec64bb73051}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -4460,7 +4460,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{b1ed57c7-1216-4c18-a434-8e4f03c0c384}</id>
+																	<id>{08f6a8d8-0571-4acc-9bf0-5a98259c8afa}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -4495,7 +4495,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{ed80cb71-98eb-4c9e-956f-dae816ce6516}</id>
+																	<id>{997b1c38-f411-4c19-bb70-c757d81dcac7}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -4530,7 +4530,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{a2d840f3-ef8f-4cda-bfc5-0f771be7fa9d}</id>
+																	<id>{5712cdb3-43c2-4593-add2-9b7c78b65e36}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -4565,7 +4565,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{cfbe30f6-1b27-4a1e-8c0b-186ce57372dd}</id>
+																	<id>{64e616d7-399c-4a51-91e7-e7a62312f0a9}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -4600,7 +4600,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{460461f4-bb86-4fee-b998-e310b45b9d60}</id>
+																	<id>{7019f01c-5701-46e1-b7a4-db2660f2cd53}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -4635,7 +4635,7 @@
 															<data>
 																<base>
 																	<name></name>
-																	<id>{333c3b2c-6604-49f8-86a6-8e04260b16cb}</id>
+																	<id>{4f2370ab-75f0-4d07-871b-619b61ac67fb}</id>
 																	<repeatOptions>
 																		<repeatCount>1</repeatCount>
 																		<repeatMode>NoRepeat</repeatMode>
@@ -7561,8 +7561,8 @@
 		</profile>
 		<dpiMode>
 			<cereal_class_version>201</cereal_class_version>
-			<id>{7cfed156-b1d9-43bf-ace5-4f6a7f3bec4d}</id>
-			<name>Profile Without RGB 2</name>
+			<id>{5f8be314-83cc-4c87-8d5e-9d0d85151e09}</id>
+			<name>DOOM</name>
 			<settings size="dynamic">
 				<value0>
 					<key>Dpi1</key>
@@ -7608,7 +7608,7 @@
 								<independent>false</independent>
 								<dpiX>1800</dpiX>
 								<dpiY>1800</dpiY>
-								<color>#ff000000</color>
+								<color>#ffffffff</color>
 							</data>
 						</ptr_wrapper>
 					</value>
@@ -7620,10 +7620,10 @@
 						<ptr_wrapper>
 							<id>2147483781</id>
 							<data>
-								<enabled>false</enabled>
+								<enabled>true</enabled>
 								<independent>false</independent>
-								<dpiX>1800</dpiX>
-								<dpiY>1800</dpiY>
+								<dpiX>2895</dpiX>
+								<dpiY>2895</dpiY>
 								<color>#ffffff00</color>
 							</data>
 						</ptr_wrapper>
@@ -7636,10 +7636,10 @@
 						<ptr_wrapper>
 							<id>2147483782</id>
 							<data>
-								<enabled>false</enabled>
+								<enabled>true</enabled>
 								<independent>false</independent>
-								<dpiX>1800</dpiX>
-								<dpiY>1800</dpiY>
+								<dpiX>4256</dpiX>
+								<dpiY>4256</dpiY>
 								<color>#ff00ffff</color>
 							</data>
 						</ptr_wrapper>
@@ -7663,12 +7663,12 @@
 				</value5>
 			</settings>
 			<active>true</active>
-			<defaultIndex>Dpi3</defaultIndex>
+			<defaultIndex>Dpi5</defaultIndex>
 			<defaultModeIndex>0</defaultModeIndex>
 			<isDefault>false</isDefault>
 		</dpiMode>
 		<dpiModeAdditional>
-			<id>{cd21b360-652e-4295-b2b8-1038137a3a07}</id>
+			<id>{8ad77caa-87d2-4faa-93fc-087f98bf4abb}</id>
 			<name></name>
 			<settings size="dynamic"/>
 			<active>false</active>
