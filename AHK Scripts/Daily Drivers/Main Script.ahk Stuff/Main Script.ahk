@@ -314,13 +314,13 @@ return
 
 ;Sends the current date and time in this format: 10/31/2019 07:43 PM.
 :*:datetime::
-FormatTime, CurrentDateTime,, M/dd/yyyy h:mm tt
+FormatTime, CurrentDateTime,, M/d/yyyy h:mm tt
 SendInput, %CurrentDateTime%
 return
 
 ;Same thing, but just the date.
 :*:currdate::
-FormatTime, CurrentDateTime,, M/dd/yyyy
+FormatTime, CurrentDateTime,, M/d/yyyy
 SendInput, %CurrentDateTime%
 return
 
