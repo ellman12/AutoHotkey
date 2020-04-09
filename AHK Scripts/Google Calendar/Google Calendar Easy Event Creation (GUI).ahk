@@ -24,11 +24,15 @@ DetectHiddenWindows, On
 * Development started 3/21/2020 5:10 PM.
 */
 
+;HUGE thanks to u/Curpee89 of r/AutoHotkey for helping me with the UpDown stuff, and some other stuff.
+;https://www.reddit.com/r/AutoHotkey/comments/fxu9gk/help_with_two_gui_problems/
+
 ;TODO:
 ;Big green FINISH button with a check mark symbol or something, and it either destroys the GUI, or grays out parts of it.
 ;Have a button/Hotkey to pause the script, and maybe tell the user what part it's on, and allow the user to restart that part?
 ;Default to working event checked?
 ;If an index is missing any value besides color and description, ignore it when actually creating the events.
+;After clicking the UpDown, focus the event name thing.
 
 ;Arrays for tracking all of the user-inputted data.
 eventNameArray := []
@@ -181,7 +185,7 @@ GUI, GCALGUI:Font, s14 c008000
 GUI, GCALGUI:Add, Button, x%FINISH_BUTTON_X% y%FINISH_BUTTON_Y% w%FINISH_BUTTON_WIDTH% gFinishButtonLabel, &Finish
 
 ;************SHOW THE GUI STUFF************
-GUI, GCALGUI:Show, x1300 y100 h%GCALGUI_HEIGHT% w%GCALGUI_WIDTH%, Google Calendar Easy Event Creation GUI
+GUI, GCALGUI:Show, h%GCALGUI_HEIGHT% w%GCALGUI_WIDTH%, Google Calendar Easy Event Creation GUI
 
 GUI, GCALGUI:Submit, NoHide
 return ;End of auto-execute.
@@ -216,6 +220,7 @@ ScheduledToWorkLabel:
     }
 return
 
+;When you toggle the All Day checkbox, this stuff is run.
 AllDayCheckBoxLabel:
     ;Get the CheckBox's value.
     GUI, GCALGUI:Submit, NoHide
@@ -230,47 +235,41 @@ AllDayCheckBoxLabel:
 return
 
 ;Label for the UpDown.
-;This is what is giving me problems.
-;It does go to the different array indices (I think?), but it can't put those values in the GUI.
 PrevNextPageLabel:
-
-    GUI, GCALGUI:Submit, NoHide
-
+;If this variable doesn't exist/is null, initialize it to 1.
+;This variable's purpose is explained in the Reddit post at the top of the file.
+    if (prevCurrentArrayIndex = "")
+        prevCurrentArrayIndex := 1
+    GUI, GCALGUI:Submit, NoHide ;Store the contrl contents in their variables.
     setAllArrayValues()
-
     setGUIControlValues()
-
+    prevCurrentArrayIndex := currentArrayIndex ;Also explained in the Reddit post.
 return
 
-;Not really used right now.
+;When this is pressed, start creating the Google Calendar events.
 FinishButtonLabel:
 
-    GUI, GCALGUI:Submit, NoHide
+    GUI, GCALGUI:Submit
 
 return
 
+;Retrieves the array contents at the current array index, and puts them in the controls.
 setGUIControlValues() {
-
-    ; GuiControl,, EventNameVar, %EventNameVar%
-
-    ;Get this value from the array at the index, and try to put it in the GUI control (but it doesn't work).
+	global ;So the arrays can be seen in this function.
     currEventName := eventNameArray[currentArrayIndex]
     GuiControl,, EventNameVar, %currEventName%
 }
 
+;At the current array index (the current page number), store the control's contents.
 setAllArrayValues() {
-
-    eventNameArray[currentArrayIndex] := EventNameVar
-    ; eventAllDayBoolArray[currentArrayIndex] := AllDayCheckBoxVar
-    ; scheduledToWorkBoolArray[currentArrayIndex] := ScheduledToWorkVar
-    ; startDateArray[currentArrayIndex] := StartDateVar
-    ; startTimeArray[currentArrayIndex] := StartTimeVar
-    ; endDateArray[currentArrayIndex] := EndDateVar
-    ; endTimeArray[currentArrayIndex] := EndTimeVar
-    ; eventColorArray[currentArrayIndex] := EventColorChoice
-    ; eventDescriptionArray[currentArrayIndex] := DescriptionEditBoxVar
+	global ;So the arrays can be seen in this function.
+    eventNameArray[prevcurrentArrayIndex] := EventNameVar
+     ;~ eventAllDayBoolArray[prevcurrentArrayIndex] := AllDayCheckBoxVar
+     ;~ scheduledToWorkBoolArray[prevcurrentArrayIndex] := ScheduledToWorkVar
+     ;~ startDateArray[prevcurrentArrayIndex] := StartDateVar
+     ;~ startTimeArray[prevcurrentArrayIndex] := StartTimeVar
+     ;~ endDateArray[prevcurrentArrayIndex] := EndDateVar
+     ;~ endTimeArray[prevcurrentArrayIndex] := EndTimeVar
+     ;~ eventColorArray[prevcurrentArrayIndex] := EventColorChoice
+     ;~ eventDescriptionArray[prevcurrentArrayIndex] := DescriptionEditBoxVar
 }
-
-^F9::
-MsgBox, 0, Debug Box, EventNameVar at %currentArrayIndex%: %EventNameVar%
-return
