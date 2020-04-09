@@ -56,23 +56,24 @@ Switch (pressedKey) {
 
     #If
 
-    Case "a":
+    ;Open the B: drive.
+    Case "a":Run, explorer.exe "B:\"
+
+    Case "appskey":MsgBox, %pressedKey% is unassigned.
+
+    Case "b":MsgBox, %pressedKey% is unassigned.
 
     ;Sends Alt + F4.
-    Case "appskey":Send, !{F4}
+    Case "backspace":Send, !{F4}
 
-    Case "b":
+    Case "c":MsgBox, %kpressedKey% is unassigned.
 
-    Case "backspace":
-
-    Case "c":
-
-    Case "comma":
+    Case "comma":MsgBox, %pressedKey% is unassigned.
 
     ;Open the Desktop folder.
-    Case "d":Run, explore %A_Desktop%
+    Case "d":Run, explorer %A_Desktop%
 
-    Case "delete":
+    Case "delete":MsgBox, %pressedKey% is unassigned.
 
     ;Sends the normal down key, to be used in conjunction with Left and Right.
     Case "down":Send, {Down}
@@ -80,13 +81,13 @@ Switch (pressedKey) {
     ;Ejects the First Item in the Eject List on the Taskbar.
     Case "e":
     Send, #b
-    Sleep 700
+    Sleep 200
     Send, {Right}
-    Sleep 700
+    Sleep 200
     Send, {Enter}
-    Sleep 700
+    Sleep 200
     Send, {Down 2}
-    Sleep 700
+    Sleep 200
     Send, {Enter}
     return
 
@@ -99,101 +100,104 @@ Switch (pressedKey) {
     ;Open the spreadsheet.
     Case "escape":Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://docs.google.com/spreadsheets/d/1vGHwAVQwkmzGGpM_xQJ86RGXfsBiBxDD089cu1u02eA/edit#gid=711563356
 
-    Case "equals":
+    Case "equals":MsgBox, %pressedKey% is unassigned.
 
     ;Open the AHK repo folder.
-    Case "f":Run, explore C:\Users\Elliott\Documents\GitHub\AutoHotkey
+    Case "f":Run, explorer C:\Users\Elliott\Documents\GitHub\AutoHotkey
 
-    Case "F10":
+    Case "F10":MsgBox, %pressedKey% is unassigned.
 
-    Case "F11":
+    Case "F11":MsgBox, %pressedKey% is unassigned.
 
-    Case "F12":
+    Case "F12":MsgBox, %pressedKey% is unassigned.
 
-    Case "F5":
+    Case "F5":MsgBox, %pressedKey% is unassigned.
 
-    Case "F6":
+    Case "F6":MsgBox, %pressedKey% is unassigned.
 
-    Case "F7":
+    Case "F7":MsgBox, %pressedKey% is unassigned.
 
-    Case "F8":
+    Case "F8":MsgBox, %pressedKey% is unassigned.
 
-    Case "F9":
+    Case "F9":MsgBox, %pressedKey% is unassigned.
 
     ;Open the Documents folder.
-    Case "g":Run, explore %A_MyDocuments%
+    Case "g":Run, explorer %A_MyDocuments%
 
     ;Open my user folder.
-    Case "h":Run, explore C:\Users\Elliott\
+    Case "h":Run, explorer C:\Users\Elliott\
 
     ;Normal Home.
     Case "home":Send, {Home}
 
-    Case "i":
+    Case "i":MsgBox, %pressedKey% is unassigned.
 
-    Case "insert":
+    Case "insert":MsgBox, %pressedKey% is unassigned.
 
-    Case "j":
+    ;Open the C: drive.
+    Case "j":Run, explorer.exe "C:\"
 
-    Case "k":
+    ;Open the D: drive.
+    Case "k":Run, explorer.exe "D:\"
 
-    Case "l":
+    ;Open the G: drive.
+    Case "l":Run, explorer.exe "G:\"
 
     ;Ctrl + Left. Common keeb shortcut for moving between words in text.
     Case "left":Send, ^{Left}
 
-    Case "leftbracket":
+    Case "leftbracket":MsgBox, %pressedKey% is unassigned.
 
-    Case "m":
+    Case "m":MsgBox, %pressedKey% is unassigned.
 
-    Case "minus":
+    Case "minus":MsgBox, %pressedKey% is unassigned.
 
     ;Open Notepad.
     Case "n":Run, notepad.exe
 
-    Case "num0":
+    Case "num0":MsgBox, %pressedKey% is unassigned.
 
     ;Shift + End.
     Case "num1":Send, +{End}
 
-    Case "num2":
+    Case "num2":MsgBox, %pressedKey% is unassigned.
 
-    Case "num3":
+    Case "num3":MsgBox, %pressedKey% is unassigned.
 
-    ;Shift + Left.
-    Case "num4":Send, +{Left}
+    ;Ctrl + Shift + Left.
+    Case "num4":Send, ^+{Left}
 
-    Case "num5":
+    Case "num5":MsgBox, %pressedKey% is unassigned.
 
-    Case "numClear":
+    Case "numClear":MsgBox, %pressedKey% is unassigned.
 
-    ;Shift + Right.
-    Case "num6":Send, +{Right}
+    ;Ctrl + Shift + Right.
+    Case "num6":Send, ^+{Right}
 
     ;Shift + Home.
     Case "num7":Send, +{Home}
 
-    Case "num8":
+    Case "num8":MsgBox, %pressedKey% is unassigned.
 
-    Case "num9":
+    Case "num9":MsgBox, %pressedKey% is unassigned.
 
-    ;Ctrl + Shift + Left.
-    Case "numDiv":Send, ^+{Left}
+    ;Shift + Left.
+    Case "numDiv":Send, +{Left}
 
-    ;Ctrl + Shift + Right.
-    Case "numMult":Send, ^+{Right}
+    ;Shift + Right.
+    Case "numMult":Send, +{Right}
 
-    Case "o":
+    Case "o":MsgBox, %pressedKey% is unassigned.
 
-    Case "p":
+    Case "p":MsgBox, %pressedKey% is unassigned.
 
-    Case "pagedown":
+    Case "pagedown":MsgBox, %pressedKey% is unassigned.
 
-    Case "pageup":
+    Case "pageup":MsgBox, %pressedKey% is unassigned.
 
-    Case "period":
+    Case "period":MsgBox, %pressedKey% is unassigned.
 
-    Case "q":
+    Case "q":MsgBox, %pressedKey% is unassigned.
 
     ;Reload either the Main Script or this Script.
     Case "r":
@@ -204,36 +208,36 @@ Switch (pressedKey) {
     ;Ctrl + Right. Common keeb shortcut for moving between words in text.
     Case "right":Send, ^{Right}
 
-    Case "rightbracket":
+    Case "rightbracket":MsgBox, %pressedKey% is unassigned.
 
     ;Open Music folder.
-    Case "s":Run, explore C:\Users\Elliott\Music
+    Case "s":Run, explorer C:\Users\Elliott\Music
 
-    Case "semicolon":
+    Case "semicolon":MsgBox, %pressedKey% is unassigned.
 
-    Case "singlequote":
+    Case "singlequote":MsgBox, %pressedKey% is unassigned.
 
     ;Suspends the hotkeys of the Main Script and Advanced Window Hider. Hopefully won't/shouldn't do anything if they aren't running. Press space again to un-suspend.
     ;This is taken care of in Main Script.ahk
     Case "space":
 
-    Case "slash":
+    Case "slash":MsgBox, %pressedKey% is unassigned.
 
-    Case "t":
+    Case "t":MsgBox, %pressedKey% is unassigned.
 
-    ; Case "u":
+    Case "u":MsgBox, %pressedKey% is unassigned.
 
     ;Sends the normal up key, to be used in conjunction with Left and Right.
     Case "up":Send, {Up}
 
-    Case "v":
+    Case "v":MsgBox, %pressedKey% is unassigned.
 
-    Case "w":
+    Case "w":MsgBox, %pressedKey% is unassigned.
 
     ;Redo.
     Case "x":Send, ^y
 
-    Case "y":
+    Case "y":MsgBox, %pressedKey% is unassigned.
 
     ;Undo.
     Case "z":Send, ^z

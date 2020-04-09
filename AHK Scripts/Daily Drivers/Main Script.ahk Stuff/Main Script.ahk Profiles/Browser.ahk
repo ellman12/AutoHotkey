@@ -1,20 +1,3 @@
-;OPTIMIZATIONS START
-#NoEnv
-#MaxHotkeysPerInterval 99000000
-#HotkeyInterval 99000000
-#KeyHistory 0
-ListLines Off
-Process, Priority, , A
-SetBatchLines, -1
-SetKeyDelay, -1, -1
-SetMouseDelay, -1
-SetDefaultMouseSpeed, 0
-SetWinDelay, -1
-SetControlDelay, -1
-SendMode Input
-#SingleInstance force
-;OPTIMIZATIONS END
-
 /*
 ;This script is for both Firefox and Chrome.
 ;Since they're so similar, I just decided to combine them into one file.
@@ -133,7 +116,19 @@ Send, {Down}
 return
 
 ;Keeb G5
+;Pin/unpin Firefox tabs.
 ^F17::
+if WinActive("ahk_exe firefox.exe") {
+    Send, !d
+    Sleep 100
+    Send, +{Tab 3}
+    Sleep 100
+    Send, {AppsKey}
+    Sleep 100
+    Send, p
+} else {
+    MsgBox, G5 only works with Firefox.
+}
 return
 
 ;Keeb G6

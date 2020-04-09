@@ -1,20 +1,3 @@
-;OPTIMIZATIONS START
-#NoEnv
-#MaxHotkeysPerInterval 99000000
-#HotkeyInterval 99000000
-#KeyHistory 0
-ListLines Off
-Process, Priority, , A
-SetBatchLines, -1
-SetKeyDelay, -1, -1
-SetMouseDelay, -1
-SetDefaultMouseSpeed, 0
-SetWinDelay, -1
-SetControlDelay, -1
-SendMode Input
-#SingleInstance force
-;OPTIMIZATIONS END
-
 ;This is the script that allows me to control media stuff with the NumPad.
 ;It has several modes, which all cause it to different things.
 
@@ -166,7 +149,7 @@ $^NumpadMult::SoundSet, +1
 
 
 ;Shows the current rounded master volume.
-$^NumpadSub::
+$NumPadSub::
 SoundGet, systemMasterVolume
 systemMasterVolume := Round(systemMasterVolume, 2)
 MsgBox, 0, Master Volume, Master volume is %systemMasterVolume% percent., 0.39
@@ -273,7 +256,7 @@ SoundSet, +1
 
 
 ;Shows the current and exact master volume.
-$^NumpadSub::
+$NumPadSub::
 SoundGet, systemMasterVolume
 systemMasterVolume := Round(systemMasterVolume, 2)
 MsgBox, 0, Master Volume, Master volume is %systemMasterVolume% percent., 0.39
@@ -357,7 +340,7 @@ $^NumpadDiv::Send, {NumpadDiv}
 $^NumpadMult::Send, {NumpadMult}
 
 
-$^NumpadSub::Send, {NumpadSub}
+$NumPadSub::Send, {NumpadSub}
 
 }
 
@@ -466,7 +449,7 @@ $^NumpadMult::SoundSet, +1
 
 
 ;Shows the current and exact master volume.
-$^NumpadSub::
+$NumPadSub::
 SoundGet, systemMasterVolume
 systemMasterVolume := Round(systemMasterVolume, 2)
 MsgBox, 0, Master Volume, Master volume is %systemMasterVolume% percent., 0.39

@@ -12,6 +12,7 @@ SetDefaultMouseSpeed, 0
 SetWinDelay, -1
 SetControlDelay, -1
 SendMode Input
+DetectHiddenWindows, Off
 #SingleInstance force
 ;OPTIMIZATIONS END
 
@@ -182,7 +183,7 @@ Loop {
 
 	;****************MACRO KEYBOARD STUFF BELOW****************
 	;Used for suspending the hotkeys of Advanced Window Hider.ahk.
-	DetectHiddenWindows, On
+	DetectHiddenWindows, On ;Temporarily on for the Space bar thing below.
 	SetTitleMatchMode, 2
 
 	;Get this value every loop.
@@ -203,6 +204,12 @@ Loop {
 		Suspend, On
 		blankOutKeyTxtFile()
 	}
+
+	;Then it's turned off again because it causes F1, F2, F3, F4, etc. to activate
+	;windows on other virtual desktops. This is NOT useful, nor is it intended.
+	;It's honestly pretty annoying. I'd imagine that those windows are "hidden",
+	;because you can't see them: they're on the other (virtual) desktop.
+	DetectHiddenWindows, Off
 
 	;This sleep statement DRASTICALLY helps reduce the power and CPU usage of the Main Script.
 	Sleep 50
@@ -307,13 +314,13 @@ return
 
 ;Sends the current date and time in this format: 10/31/2019 07:43 PM.
 :*:datetime::
-FormatTime, CurrentDateTime,, M/dd/yyyy h:mm tt
+FormatTime, CurrentDateTime,, M/d/yyyy h:mm tt
 SendInput, %CurrentDateTime%
 return
 
 ;Same thing, but just the date.
 :*:currdate::
-FormatTime, CurrentDateTime,, M/dd/yyyy
+FormatTime, CurrentDateTime,, M/d/yyyy
 SendInput, %CurrentDateTime%
 return
 

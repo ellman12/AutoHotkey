@@ -12,6 +12,7 @@ SetDefaultMouseSpeed, 0
 SetWinDelay, -1
 SetControlDelay, -1
 SendMode Input
+DetectHiddenWindows, On
 #SingleInstance force
 #Persistent
 ;OPTIMIZATIONS END
@@ -169,7 +170,7 @@ GUI, GCALGUI:Add, Edit, r%DESCRIPTION_EDIT_BOX_ROW_NUM% w%DESCRIPTION_EDIT_BOX_W
 ;************NEXT/PREV PAGE STUFF************
 GUI, GCALGUI:Font, s14
 GUI, GCALGUI:Add, Edit, x%NEXT_PREV_UPDOWN_X% y%NEXT_PREV_UPDOWN_Y% w%NEXT_PREV_UPDOWN_WIDTH%
-GUI, GCALGUI:Add, UpDown, x%NEXT_PREV_UPDOWN_X% y%NEXT_PREV_UPDOWN_Y% w%NEXT_PREV_UPDOWN_WIDTH% gPrevNextPageLabel vcurrentArrayIndex
+GUI, GCALGUI:Add, UpDown, x%NEXT_PREV_UPDOWN_X% y%NEXT_PREV_UPDOWN_Y% w%NEXT_PREV_UPDOWN_WIDTH% gPrevNextPageLabel vcurrentArrayIndex Range1-100, 1
 
 ;************CURRENT PAGE (INDEX) TEXT************
 GUI, GCALGUI:Add, Text, x%CURRENT_PAGE_TEXT_X% y%CURRENT_PAGE_TEXT_Y%, Current Page: %NextPrevPageVar%
@@ -231,60 +232,36 @@ PrevNextPageLabel:
 
     GUI, GCALGUI:Submit, NoHide
 
-    setGUIArrayValues(currentArrayIndex)
+    setAllArrayValues()
 
-    getGUIArrayValues(currentArrayIndex)
+    setGUIControlValues()
 
 return
 
-;For when the user is done entering data and is ready to
-; start creating the events in Google Calendar.
 FinishButtonLabel:
 
     GUI, GCALGUI:Submit, NoHide
 
-    setGUIArrayValues(currentArrayIndex)
-
-    MsgBox, 0, Title, % eventNameArray[currentArrayIndex]
-
 return
 
-;Read the values at the specified index.
-getGUIArrayValues(index) {
+setGUIControlValues() {
 
-    currentEventName := eventNameArray[index]
-    currentAllDayBoolValue := eventAllDayBoolArray[index]
-    currentScheduledToWorkBoolValue := scheduledToWorkBoolArray[index]
-    currentStartDate := startDateArray[index]
-    currentStartTime := startTimeArray[index]
-    currentEndDate := endDateArray[index]
-    currentEndTime := endTimeArray[index]
-    currentEventColor := eventColorArray[index]
-    currentEventDescription := eventDescriptionArray[index]
+    GuiControl,, EventNameVar, %EventNameVar%
 }
 
-;After getting the values from the user, write to the arrays at the specified index.
-setGUIArrayValues(index) {
+setAllArrayValues() {
 
-    ;Store the corresponding values in the arrays.
-    eventNameArray.insertAt(index, EventNameVar)
-    eventAllDayBoolArray.insertAt(index, AllDayCheckBoxVar)
-    scheduledToWorkBoolArray.insertAt(index, ScheduledToWorkVar)
-    startDateArray.insertAt(index, StartDateVar)
-    startTimeArray.insertAt(index, StartTimeVar)
-    endDateArray.insertAt(index, EndDateVar)
-    endTimeArray.insertAt(index, EndTimeVar)
-    eventColorArray.insertAt(index, EventColorChoice)
-    eventDescriptionArray.insertAt(index, DescriptionEditBoxVar)
+    eventNameArray[currentArrayIndex] := EventNameVar
+    ; eventAllDayBoolArray[currentArrayIndex] := AllDayCheckBoxVar
+    ; scheduledToWorkBoolArray[currentArrayIndex] := ScheduledToWorkVar
+    ; startDateArray[currentArrayIndex] := StartDateVar
+    ; startTimeArray[currentArrayIndex] := StartTimeVar
+    ; endDateArray[currentArrayIndex] := EndDateVar
+    ; endTimeArray[currentArrayIndex] := EndTimeVar
+    ; eventColorArray[currentArrayIndex] := EventColorChoice
+    ; eventDescriptionArray[currentArrayIndex] := DescriptionEditBoxVar
 }
 
-;TODO TEMP
-F10::
-Send, GUI, GCALGUI:
-Return
-F11::
-Send, ************
-Return
-^F11::
-Send, ******
-Return
+^F9::
+MsgBox, 0, Debug Box, EventNameVar at %currentArrayIndex%: %EventNameVar%
+return
