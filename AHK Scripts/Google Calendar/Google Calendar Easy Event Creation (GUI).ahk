@@ -28,6 +28,7 @@ DetectHiddenWindows, On
 ;Big green FINISH button with a check mark symbol or something, and it either destroys the GUI, or grays out parts of it.
 ;Have a button/Hotkey to pause the script, and maybe tell the user what part it's on, and allow the user to restart that part?
 ;Default to working event checked?
+;If an index is missing any value besides color and description, ignore it when actually creating the events.
 
 ;Arrays for tracking all of the user-inputted data.
 eventNameArray := []
@@ -41,10 +42,10 @@ eventColorArray := []
 eventDescriptionArray := []
 
 ;Index for the array "pages" (individual array indices).
-;Starts at 1, to line up with the page numbers in the GUI.
 currentArrayIndex := 1
 
 ;Used when creating the events in GCal for looping through the arrays, so the script knows when to stop.
+;Not used at the moment.
 totalNumOfArrayIndexes := 1
 
 ;************CONSTANTS************
@@ -228,6 +229,9 @@ AllDayCheckBoxLabel:
     }
 return
 
+;Label for the UpDown.
+;This is what is giving me problems.
+;It does go to the different array indices (I think?), but it can't put those values in the GUI.
 PrevNextPageLabel:
 
     GUI, GCALGUI:Submit, NoHide
@@ -238,6 +242,7 @@ PrevNextPageLabel:
 
 return
 
+;Not really used right now.
 FinishButtonLabel:
 
     GUI, GCALGUI:Submit, NoHide
@@ -246,7 +251,11 @@ return
 
 setGUIControlValues() {
 
-    GuiControl,, EventNameVar, %EventNameVar%
+    ; GuiControl,, EventNameVar, %EventNameVar%
+
+    ;Get this value from the array at the index, and try to put it in the GUI control (but it doesn't work).
+    currEventName := eventNameArray[currentArrayIndex]
+    GuiControl,, EventNameVar, %currEventName%
 }
 
 setAllArrayValues() {
