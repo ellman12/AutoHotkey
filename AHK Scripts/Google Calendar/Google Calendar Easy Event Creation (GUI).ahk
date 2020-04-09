@@ -46,7 +46,7 @@ eventColorArray := []
 eventDescriptionArray := []
 
 ;Index for the array "pages" (individual array indices).
-currentArrayIndex := 1
+currentPageIndex := 1
 
 ;Used when creating the events in GCal for looping through the arrays, so the script knows when to stop.
 ;Not used at the moment.
@@ -175,7 +175,7 @@ GUI, GCALGUI:Add, Edit, r%DESCRIPTION_EDIT_BOX_ROW_NUM% w%DESCRIPTION_EDIT_BOX_W
 ;************NEXT/PREV PAGE STUFF************
 GUI, GCALGUI:Font, s14
 GUI, GCALGUI:Add, Edit, x%NEXT_PREV_UPDOWN_X% y%NEXT_PREV_UPDOWN_Y% w%NEXT_PREV_UPDOWN_WIDTH%
-GUI, GCALGUI:Add, UpDown, x%NEXT_PREV_UPDOWN_X% y%NEXT_PREV_UPDOWN_Y% w%NEXT_PREV_UPDOWN_WIDTH% gPrevNextPageLabel vcurrentArrayIndex Range1-100, 1
+GUI, GCALGUI:Add, UpDown, x%NEXT_PREV_UPDOWN_X% y%NEXT_PREV_UPDOWN_Y% w%NEXT_PREV_UPDOWN_WIDTH% gPrevNextPageLabel vcurrentPageIndex Range1-100, 1
 
 ;************CURRENT PAGE (INDEX) TEXT************
 GUI, GCALGUI:Add, Text, x%CURRENT_PAGE_TEXT_X% y%CURRENT_PAGE_TEXT_Y%, Current Page: %NextPrevPageVar%
@@ -237,13 +237,14 @@ return
 ;Label for the UpDown.
 PrevNextPageLabel:
 ;If this variable doesn't exist/is null, initialize it to 1.
-;This variable's purpose is explained in the Reddit post at the top of the file.
-    if (prevCurrentArrayIndex = "")
-        prevCurrentArrayIndex := 1
-    GUI, GCALGUI:Submit, NoHide ;Store the contrl contents in their variables.
+;Basically the array and page index variables are separate because the page index is changed
+;by +/- 1 before this label stuff is run.
+    if (currentArrayIndex = "")
+        currentArrayIndex := 1
+    GUI, GCALGUI:Submit, NoHide ;Store the control contents in their variables.
     setAllArrayValues()
     setGUIControlValues()
-    prevCurrentArrayIndex := currentArrayIndex ;Also explained in the Reddit post.
+    currentArrayIndex := currentPageIndex
 return
 
 ;When this is pressed, start creating the Google Calendar events.
@@ -256,20 +257,27 @@ return
 ;Retrieves the array contents at the current array index, and puts them in the controls.
 setGUIControlValues() {
 	global ;So the arrays can be seen in this function.
-    currEventName := eventNameArray[currentArrayIndex]
-    GuiControl,, EventNameVar, %currEventName%
+    GuiControl,, EventNameVar, % eventNameArray[currentPageIndex]
+    GuiControl,, AllDayCheckBoxVar, % eventAllDayBoolArray[currentPageIndex]
+    GuiControl,, ScheduledToWorkVar, % scheduledToWorkBoolArray[currentPageIndex]
+    GuiControl,, StartDateVar, % startDateArray[currentPageIndex]
+    GuiControl,, StartTimeVar, % startTimeArray[currentPageIndex]
+    GuiControl,, EndDateVar, % endDateArray[currentPageIndex]
+    GuiControl,, EndTimeVar, % endTimeArray[currentPageIndex]
+    GuiControl,, EventColorChoice, % eventColorArray[currentPageIndex]
+    GuiControl,, DescriptionEditBoxVar, % eventDescriptionArray[currentPageIndex]
 }
 
 ;At the current array index (the current page number), store the control's contents.
 setAllArrayValues() {
 	global ;So the arrays can be seen in this function.
-    eventNameArray[prevcurrentArrayIndex] := EventNameVar
-     ;~ eventAllDayBoolArray[prevcurrentArrayIndex] := AllDayCheckBoxVar
-     ;~ scheduledToWorkBoolArray[prevcurrentArrayIndex] := ScheduledToWorkVar
-     ;~ startDateArray[prevcurrentArrayIndex] := StartDateVar
-     ;~ startTimeArray[prevcurrentArrayIndex] := StartTimeVar
-     ;~ endDateArray[prevcurrentArrayIndex] := EndDateVar
-     ;~ endTimeArray[prevcurrentArrayIndex] := EndTimeVar
-     ;~ eventColorArray[prevcurrentArrayIndex] := EventColorChoice
-     ;~ eventDescriptionArray[prevcurrentArrayIndex] := DescriptionEditBoxVar
+    eventNameArray[currentArrayIndex] := EventNameVar
+    eventAllDayBoolArray[currentArrayIndex] := AllDayCheckBoxVar
+    scheduledToWorkBoolArray[currentArrayIndex] := ScheduledToWorkVar
+    startDateArray[currentArrayIndex] := StartDateVar
+    startTimeArray[currentArrayIndex] := StartTimeVar
+    endDateArray[currentArrayIndex] := EndDateVar
+    endTimeArray[currentArrayIndex] := EndTimeVar
+    eventColorArray[currentArrayIndex] := EventColorChoice
+    eventDescriptionArray[currentArrayIndex] := DescriptionEditBoxVar
 }
