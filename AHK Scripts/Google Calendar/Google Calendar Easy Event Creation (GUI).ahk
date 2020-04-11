@@ -24,11 +24,15 @@ DetectHiddenWindows, On
 * Development started 3/21/2020 5:10 PM.
 */
 
+;HUGE thanks to u/Curpee89 of r/AutoHotkey for helping me with the UpDown stuff, and some other stuff.
+;https://www.reddit.com/r/AutoHotkey/comments/fxu9gk/help_with_two_gui_problems/
+
 ;TODO:
 ;Big green FINISH button with a check mark symbol or something, and it either destroys the GUI, or grays out parts of it.
 ;Have a button/Hotkey to pause the script, and maybe tell the user what part it's on, and allow the user to restart that part?
 ;Default to working event checked?
 ;If an index is missing any value besides color and description, ignore it when actually creating the events.
+;After clicking the UpDown, focus the event name thing.
 
 ;Arrays for tracking all of the user-inputted data.
 eventNameArray := []
@@ -42,7 +46,7 @@ eventColorArray := []
 eventDescriptionArray := []
 
 ;Index for the array "pages" (individual array indices).
-currentArrayIndex := 1
+currentPageIndex := 1
 
 ;Used when creating the events in GCal for looping through the arrays, so the script knows when to stop.
 ;Not used at the moment.
@@ -171,7 +175,7 @@ GUI, GCALGUI:Add, Edit, r%DESCRIPTION_EDIT_BOX_ROW_NUM% w%DESCRIPTION_EDIT_BOX_W
 ;************NEXT/PREV PAGE STUFF************
 GUI, GCALGUI:Font, s14
 GUI, GCALGUI:Add, Edit, x%NEXT_PREV_UPDOWN_X% y%NEXT_PREV_UPDOWN_Y% w%NEXT_PREV_UPDOWN_WIDTH%
-GUI, GCALGUI:Add, UpDown, x%NEXT_PREV_UPDOWN_X% y%NEXT_PREV_UPDOWN_Y% w%NEXT_PREV_UPDOWN_WIDTH% gPrevNextPageLabel vcurrentArrayIndex Range1-100, 1
+GUI, GCALGUI:Add, UpDown, x%NEXT_PREV_UPDOWN_X% y%NEXT_PREV_UPDOWN_Y% w%NEXT_PREV_UPDOWN_WIDTH% gPrevNextPageLabel vcurrentPageIndex Range1-100, 1
 
 ;************CURRENT PAGE (INDEX) TEXT************
 GUI, GCALGUI:Add, Text, x%CURRENT_PAGE_TEXT_X% y%CURRENT_PAGE_TEXT_Y%, Current Page: %NextPrevPageVar%
@@ -181,7 +185,7 @@ GUI, GCALGUI:Font, s14 c008000
 GUI, GCALGUI:Add, Button, x%FINISH_BUTTON_X% y%FINISH_BUTTON_Y% w%FINISH_BUTTON_WIDTH% gFinishButtonLabel, &Finish
 
 ;************SHOW THE GUI STUFF************
-GUI, GCALGUI:Show, x1300 y100 h%GCALGUI_HEIGHT% w%GCALGUI_WIDTH%, Google Calendar Easy Event Creation GUI
+GUI, GCALGUI:Show, h%GCALGUI_HEIGHT% w%GCALGUI_WIDTH%, Google Calendar Easy Event Creation GUI
 
 GUI, GCALGUI:Submit, NoHide
 return ;End of auto-execute.
@@ -216,6 +220,7 @@ ScheduledToWorkLabel:
     }
 return
 
+;When you toggle the All Day checkbox, this stuff is run.
 AllDayCheckBoxLabel:
     ;Get the CheckBox's value.
     GUI, GCALGUI:Submit, NoHide
@@ -230,47 +235,49 @@ AllDayCheckBoxLabel:
 return
 
 ;Label for the UpDown.
-;This is what is giving me problems.
-;It does go to the different array indices (I think?), but it can't put those values in the GUI.
 PrevNextPageLabel:
-
-    GUI, GCALGUI:Submit, NoHide
-
+;If this variable doesn't exist/is null, initialize it to 1.
+;Basically the array and page index variables are separate because the page index is changed
+;by +/- 1 before this label stuff is run.
+    if (currentArrayIndex = "")
+        currentArrayIndex := 1
+    GUI, GCALGUI:Submit, NoHide ;Store the control contents in their variables.
     setAllArrayValues()
-
     setGUIControlValues()
-
+    currentArrayIndex := currentPageIndex
 return
 
-;Not really used right now.
+;When this is pressed, start creating the Google Calendar events.
 FinishButtonLabel:
 
-    GUI, GCALGUI:Submit, NoHide
+    GUI, GCALGUI:Submit
 
 return
 
+;Retrieves the array contents at the current array index, and puts them in the controls.
 setGUIControlValues() {
-
-    ; GuiControl,, EventNameVar, %EventNameVar%
-
-    ;Get this value from the array at the index, and try to put it in the GUI control (but it doesn't work).
-    currEventName := eventNameArray[currentArrayIndex]
-    GuiControl,, EventNameVar, %currEventName%
+	global ;So the arrays can be seen in this function.
+    GuiControl,, EventNameVar, % eventNameArray[currentPageIndex]
+    GuiControl,, AllDayCheckBoxVar, % eventAllDayBoolArray[currentPageIndex]
+    GuiControl,, ScheduledToWorkVar, % scheduledToWorkBoolArray[currentPageIndex]
+    GuiControl,, StartDateVar, % startDateArray[currentPageIndex]
+    GuiControl,, StartTimeVar, % startTimeArray[currentPageIndex]
+    GuiControl,, EndDateVar, % endDateArray[currentPageIndex]
+    GuiControl,, EndTimeVar, % endTimeArray[currentPageIndex]
+    GuiControl,, EventColorChoice, % eventColorArray[currentPageIndex]
+    GuiControl,, DescriptionEditBoxVar, % eventDescriptionArray[currentPageIndex]
 }
 
+;At the current array index (the current page number), store the control's contents.
 setAllArrayValues() {
-
+	global ;So the arrays can be seen in this function.
     eventNameArray[currentArrayIndex] := EventNameVar
-    ; eventAllDayBoolArray[currentArrayIndex] := AllDayCheckBoxVar
-    ; scheduledToWorkBoolArray[currentArrayIndex] := ScheduledToWorkVar
-    ; startDateArray[currentArrayIndex] := StartDateVar
-    ; startTimeArray[currentArrayIndex] := StartTimeVar
-    ; endDateArray[currentArrayIndex] := EndDateVar
-    ; endTimeArray[currentArrayIndex] := EndTimeVar
-    ; eventColorArray[currentArrayIndex] := EventColorChoice
-    ; eventDescriptionArray[currentArrayIndex] := DescriptionEditBoxVar
+    eventAllDayBoolArray[currentArrayIndex] := AllDayCheckBoxVar
+    scheduledToWorkBoolArray[currentArrayIndex] := ScheduledToWorkVar
+    startDateArray[currentArrayIndex] := StartDateVar
+    startTimeArray[currentArrayIndex] := StartTimeVar
+    endDateArray[currentArrayIndex] := EndDateVar
+    endTimeArray[currentArrayIndex] := EndTimeVar
+    eventColorArray[currentArrayIndex] := EventColorChoice
+    eventDescriptionArray[currentArrayIndex] := DescriptionEditBoxVar
 }
-
-^F9::
-MsgBox, 0, Debug Box, EventNameVar at %currentArrayIndex%: %EventNameVar%
-return
