@@ -24,7 +24,7 @@ DetectHiddenWindows, On
 * Development started 3/21/2020 5:10 PM.
 */
 
-;HUGE thanks to u/Curpee89 of r/AutoHotkey for helping me with the UpDown stuff, and some other stuff.
+;HUGE thanks to u/Curpee89 of r/AutoHotkey for helping me with many problems I had while making this script.
 ;https://www.reddit.com/r/AutoHotkey/comments/fxu9gk/help_with_two_gui_problems/
 
 ;TODO:
@@ -224,14 +224,6 @@ return
 AllDayCheckBoxLabel:
     ;Get the CheckBox's value.
     GUI, GCALGUI:Submit, NoHide
-
-    ;If it is not checked, enable the Work CheckBox.
-    if (AllDayCheckBoxVar = 0) {
-        GuiControl, Enable, ScheduledToWorkVar
-    ;Else if it is checked, disable the Work CheckBox.
-    } else if (AllDayCheckBoxVar = 1) {
-        GuiControl, Disable, ScheduledToWorkVar
-    }
 return
 
 ;Label for the UpDown.
@@ -241,7 +233,7 @@ PrevNextPageLabel:
 ;by +/- 1 before this label stuff is run.
     if (currentArrayIndex = "")
         currentArrayIndex := 1
-    GUI, GCALGUI:Submit, NoHide ;Store the control contents in their variables.
+    GUI, GCALGUI:Submit, NoHide ;Store the control contents in their variables, and don't hide the GUI.
     setAllArrayValues()
     setGUIControlValues()
     currentArrayIndex := currentPageIndex
@@ -257,15 +249,23 @@ return
 ;Retrieves the array contents at the current array index, and puts them in the controls.
 setGUIControlValues() {
 	global ;So the arrays can be seen in this function.
-    GuiControl,, EventNameVar, % eventNameArray[currentPageIndex]
-    GuiControl,, AllDayCheckBoxVar, % eventAllDayBoolArray[currentPageIndex]
-    GuiControl,, ScheduledToWorkVar, % scheduledToWorkBoolArray[currentPageIndex]
-    GuiControl,, StartDateVar, % startDateArray[currentPageIndex]
-    GuiControl,, StartTimeVar, % startTimeArray[currentPageIndex]
-    GuiControl,, EndDateVar, % endDateArray[currentPageIndex]
-    GuiControl,, EndTimeVar, % endTimeArray[currentPageIndex]
-    GuiControl,, EventColorChoice, % eventColorArray[currentPageIndex]
-    GuiControl,, DescriptionEditBoxVar, % eventDescriptionArray[currentPageIndex]
+
+    if (eventNameArray[currentPageIndex] = "") ;Check if this index has already been defined.
+    {
+	;Initialize any of the objects that need default values here.
+	eventAllDayBoolArray[currentPageIndex] := 0 ;defaults to unchecked
+	scheduledToWorkBoolArray[currentPageIndex] := 1 ;defaults to checked
+    }
+
+    GuiControl,GCALGUI:,EventNameVar, % eventNameArray[currentPageIndex]
+    GuiControl,GCALGUI:,AllDayCheckBoxVar, % eventAllDayBoolArray[currentPageIndex]
+    GuiControl,GCALGUI:,ScheduledToWorkVar, % scheduledToWorkBoolArray[currentPageIndex]
+    GuiControl,GCALGUI:,StartDateVar, % startDateArray[currentPageIndex]
+    GuiControl,GCALGUI:,StartTimeVar, % startTimeArray[currentPageIndex]
+    GuiControl,GCALGUI:,EndDateVar, % endDateArray[currentPageIndex]
+    GuiControl,GCALGUI:,EndTimeVar, % endTimeArray[currentPageIndex]
+    GuiControl,GCALGUI:,EventColorChoice, % eventColorArray[currentPageIndex]
+    GuiControl,GCALGUI:,DescriptionEditBoxVar, % eventDescriptionArray[currentPageIndex]
 }
 
 ;At the current array index (the current page number), store the control's contents.
