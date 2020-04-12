@@ -130,7 +130,7 @@ GUI, GCALGUI:Add, Edit, w%EVENT_NAME_EDIT_WIDTH% x%EVENT_NAME_EDIT_X% y%EVENT_NA
 
 ;************ALL DAY EVENT STUFF************
 GUI, GCALGUI:Font, s14
-GUI, GCALGUI:Add, Checkbox, x%ALL_DAY_EVENT_CHECKBOX_X% y%ALL_DAY_EVENT_CHECKBOX_Y% gAllDayCheckBoxLabel vAllDayCheckBoxVar Disabled, All day event?
+GUI, GCALGUI:Add, Checkbox, x%ALL_DAY_EVENT_CHECKBOX_X% y%ALL_DAY_EVENT_CHECKBOX_Y% gAllDayCheckBoxLabel vAllDayCheckBoxVar, All day event?
 
 ;************WORKING THIS DAY STUFF************
 GUI, GCALGUI:Font, s14
@@ -196,34 +196,42 @@ GuiClose:
 ExitApp
 return
 
+;When you toggle the All Day checkbox, this stuff is run.
+AllDayCheckBoxLabel:
+    ;Get the checkbox's value.
+    GUI, GCALGUI:Submit, NoHide
+
+    if (AllDayCheckBoxVar = 0) {
+
+        ; GuiControl,GCALGUI: Enable, ScheduledToWorkVar
+        GuiControl,GCALGUI:, ScheduledToWorkVar, 1
+
+    } else if (AllDayCheckBoxVar = 1) {
+        ; GuiControl,GCALGUI: Disable, ScheduledToWorkVar
+        GuiControl,GCALGUI:, ScheduledToWorkVar, 0
+
+    }
+return
+
 ;Label for the "Working this day?" CheckBox.
-;When it's checked, it disables the "All day event?" CheckBox,
-;because that would mess with everything, and because it make the UI better.
 ScheduledToWorkLabel:
     ;Get the checkbox's value.
     GUI, GCALGUI:Submit, NoHide
 
-    ;If it is not checked, enable the All Day CheckBox.
     if (ScheduledToWorkVar = 0) {
 
-        GuiControl, Enable, AllDayCheckBoxVar
+        ; GuiControl, Enable, AllDayCheckBoxVar
+        GuiControl,GCALGUI:, AllDayCheckBoxVar, 1
 
-    ;Else if it is checked, disable the All Day CheckBox.
     } else if (ScheduledToWorkVar = 1) {
-        GuiControl, Disable, AllDayCheckBoxVar
+        GuiControl,GCALGUI:, AllDayCheckBoxVar, 0
         
         ;Get the time variables formatted properly (like this: 7:12 PM) so they're not some useless garbled mess.
-        FormatTime, formattedStartTime, StartTimeVar, h:mm tt
-        FormatTime, formattedEndTime, EndTimeVar, h:mm tt
+        ; FormatTime, formattedStartTime, StartTimeVar, h:mm tt
+        ; FormatTime, formattedEndTime, EndTimeVar, h:mm tt
 
-        GuiControl,, EventNameVar, Working %formattedStartTime% to %formattedEndTime%
+        ; GuiControl,, EventNameVar, Working %formattedStartTime% to %formattedEndTime%
     }
-return
-
-;When you toggle the All Day checkbox, this stuff is run.
-AllDayCheckBoxLabel:
-    ;Get the CheckBox's value.
-    GUI, GCALGUI:Submit, NoHide
 return
 
 ;Label for the UpDown.
@@ -250,7 +258,10 @@ return
 setGUIControlValues() {
 	global ;So the arrays can be seen in this function.
 
-    if (eventNameArray[currentPageIndex] = "") ;Check if this index has already been defined.
+    ;Check if this index has already been defined.
+    ;Basically, if the page doesn't have an event name, you can't do anything.
+    ;In Google Calendar, every event needs an event name.
+    if (eventNameArray[currentPageIndex] = "")
     {
 	;Initialize any of the objects that need default values here.
 	eventAllDayBoolArray[currentPageIndex] := 0 ;defaults to unchecked
@@ -264,7 +275,7 @@ setGUIControlValues() {
     GuiControl,GCALGUI:,StartTimeVar, % startTimeArray[currentPageIndex]
     GuiControl,GCALGUI:,EndDateVar, % endDateArray[currentPageIndex]
     GuiControl,GCALGUI:,EndTimeVar, % endTimeArray[currentPageIndex]
-    GuiControl,GCALGUI:,EventColorChoice, % eventColorArray[currentPageIndex]
+    GuiControl,GCALGUI: ChooseString,EventColorChoice, % eventColorArray[currentPageIndex]
     GuiControl,GCALGUI:,DescriptionEditBoxVar, % eventDescriptionArray[currentPageIndex]
 }
 
