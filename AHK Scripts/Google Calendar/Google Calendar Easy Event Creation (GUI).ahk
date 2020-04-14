@@ -301,7 +301,7 @@ createEvents() {
         ; Send, c
         ; Sleep, 1000
 
-        if (event)
+        if ()
 
 
 
