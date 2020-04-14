@@ -206,7 +206,7 @@ AllDayCheckBoxLabel:
     if (AllDayCheckBoxVar = 1 && ScheduledToWorkVar = 1) {
         GuiControl, GCALGUI:,ScheduledToWorkVar, 0
     }
-    
+
 return
 
 ;Label for the "Working this day?" CheckBox.
@@ -220,7 +220,6 @@ ScheduledToWorkLabel:
         GuiControl, GCALGUI:,AllDayCheckBoxVar, 0
     }
 
-    
 return
 
 ;Label for the UpDown.
