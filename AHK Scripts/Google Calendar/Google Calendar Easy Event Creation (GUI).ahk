@@ -260,7 +260,7 @@ setGUIControlValues() {
         ;The ChooseString thing is only for the event color, and that also somehow works.
         GuiControl, GCALGUI:,%var%, % EventDataMatrix[currentGUIPage][var]
         GuiControl, ChooseString,%var%, % EventDataMatrix[currentGUIPage][var]
-    }	
+    }
 }
 
 ;At the current array index (the current page number), store the control's contents.
@@ -277,11 +277,9 @@ setAllArrayValues() {
 ;This is what actually takes the user data at each index and makes the GCal events.
 createEvents() {
 
-    ;Start at the beginning index.
+    ;For obvious reasons; we'll be incrementing this throughout.
     currentArrayIndex := 1
 
-    ;Variables that are only used in here.
-    
-    
+    while ()
 
 }
