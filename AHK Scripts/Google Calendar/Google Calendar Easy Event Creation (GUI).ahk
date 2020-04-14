@@ -317,9 +317,9 @@ createEvents() {
     totalArrayIndices := eventNameArray.MaxIndex()
 
     ;If null, make 1.
-    ;~ if (totalArrayIndices = "") {
-        ;~ totalArrayIndices := 1
-    ;~ }
+    if (totalArrayIndices = "") {
+        totalArrayIndices := 1
+    }
 
     ;This while loop is used for creating the events, and the right amount of them.
     ;While the current index for the arrays is less than the total number of events.
@@ -364,6 +364,8 @@ createEvents() {
 
         ;If it's not marked as a working event.
         } else {
+            
+            MsgBox hi
 
             Send, % eventNameArray[currentArrayIndex]
             Sleep 600
@@ -455,10 +457,5 @@ createEvents() {
 
 ;TODO TEMP Emergency stop.
 F10::
-; Reload
-MsgBox %EndTimeVar%
-
-FormatTime, newEndTimeVar, endTimeArray[currentArrayIndex], h:mm tt
-
-        MsgBox %newEndTimeVar%
+Reload
 return
