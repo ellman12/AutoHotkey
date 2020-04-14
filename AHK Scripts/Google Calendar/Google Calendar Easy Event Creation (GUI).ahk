@@ -46,7 +46,7 @@ eventColorArray := []
 eventDescriptionArray := []
 
 ;Index for the array "pages" (individual array indices).
-currentPageIndex := 1
+currentGUIPage := 1
 
 ;Used when creating the events in GCal for looping through the arrays, so the script knows when to stop.
 ;Not used at the moment.
@@ -134,7 +134,7 @@ GUI, GCALGUI:Add, Checkbox, x%ALL_DAY_EVENT_CHECKBOX_X% y%ALL_DAY_EVENT_CHECKBOX
 
 ;************WORKING THIS DAY STUFF************
 GUI, GCALGUI:Font, s14
-GUI, GCALGUI:Add, Checkbox, x%WORKING_THIS_DAY_X% y%WORKING_THIS_DAY_Y% gScheduledToWorkLabel vScheduledToWorkVar Checked, Working this day?
+GUI, GCALGUI:Add, Checkbox, x%WORKING_THIS_DAY_X% y%WORKING_THIS_DAY_Y% gScheduledToWorkLabel vScheduledToWorkVar, Working this day?
 
 ;************START DATE STUFF************
 GUI, GCALGUI:Font, underline s18
@@ -175,7 +175,7 @@ GUI, GCALGUI:Add, Edit, r%DESCRIPTION_EDIT_BOX_ROW_NUM% w%DESCRIPTION_EDIT_BOX_W
 ;************NEXT/PREV PAGE STUFF************
 GUI, GCALGUI:Font, s14
 GUI, GCALGUI:Add, Edit, x%NEXT_PREV_UPDOWN_X% y%NEXT_PREV_UPDOWN_Y% w%NEXT_PREV_UPDOWN_WIDTH%
-GUI, GCALGUI:Add, UpDown, x%NEXT_PREV_UPDOWN_X% y%NEXT_PREV_UPDOWN_Y% w%NEXT_PREV_UPDOWN_WIDTH% gPrevNextPageLabel vcurrentPageIndex Range1-100, 1
+GUI, GCALGUI:Add, UpDown, x%NEXT_PREV_UPDOWN_X% y%NEXT_PREV_UPDOWN_Y% w%NEXT_PREV_UPDOWN_WIDTH% gPrevNextPageLabel vcurrentGUIPage Range1-100, 1
 
 ;************CURRENT PAGE (INDEX) TEXT************
 GUI, GCALGUI:Add, Text, x%CURRENT_PAGE_TEXT_X% y%CURRENT_PAGE_TEXT_Y%, Current Page: %NextPrevPageVar%
@@ -201,16 +201,12 @@ AllDayCheckBoxLabel:
     ;Get the checkbox's value.
     GUI, GCALGUI:Submit, NoHide
 
-    if (AllDayCheckBoxVar = 0) {
-
-        ; GuiControl,GCALGUI: Enable, ScheduledToWorkVar
-        GuiControl,GCALGUI:, ScheduledToWorkVar, 1
-
-    } else if (AllDayCheckBoxVar = 1) {
-        ; GuiControl,GCALGUI: Disable, ScheduledToWorkVar
-        GuiControl,GCALGUI:, ScheduledToWorkVar, 0
-
+    ;This prevents both checkboxes from being selected at the same time.
+    ;This would obviously cause problems.
+    if (AllDayCheckBoxVar = 1 && ScheduledToWorkVar = 1) {
+        GuiControl, GCALGUI:,ScheduledToWorkVar, 0
     }
+    
 return
 
 ;Label for the "Working this day?" CheckBox.
@@ -218,33 +214,26 @@ ScheduledToWorkLabel:
     ;Get the checkbox's value.
     GUI, GCALGUI:Submit, NoHide
 
-    if (ScheduledToWorkVar = 0) {
-
-        ; GuiControl, Enable, AllDayCheckBoxVar
-        GuiControl,GCALGUI:, AllDayCheckBoxVar, 1
-
-    } else if (ScheduledToWorkVar = 1) {
-        GuiControl,GCALGUI:, AllDayCheckBoxVar, 0
-        
-        ;Get the time variables formatted properly (like this: 7:12 PM) so they're not some useless garbled mess.
-        ; FormatTime, formattedStartTime, StartTimeVar, h:mm tt
-        ; FormatTime, formattedEndTime, EndTimeVar, h:mm tt
-
-        ; GuiControl,, EventNameVar, Working %formattedStartTime% to %formattedEndTime%
+    ;This prevents both checkboxes from being selected at the same time.
+    ;This would obviously cause problems.
+    if (ScheduledToWorkVar = 1 && AllDayCheckBoxVar = 1) {
+        GuiControl, GCALGUI:,AllDayCheckBoxVar, 0
     }
+
+    
 return
 
 ;Label for the UpDown.
 PrevNextPageLabel:
 ;If this variable doesn't exist/is null, initialize it to 1.
 ;Basically the array and page index variables are separate because the page index is changed
-;by +/- 1 before this label stuff is run.
+;by +/- 1 before this label stuff is run, thus stuff is stored in the desired array index + 1 = not what I want.
     if (currentArrayIndex = "")
         currentArrayIndex := 1
     GUI, GCALGUI:Submit, NoHide ;Store the control contents in their variables, and don't hide the GUI.
     setAllArrayValues()
     setGUIControlValues()
-    currentArrayIndex := currentPageIndex
+    currentArrayIndex := currentGUIPage
 return
 
 ;When this is pressed, start creating the Google Calendar events.
@@ -261,22 +250,22 @@ setGUIControlValues() {
     ;Check if this index has already been defined.
     ;Basically, if the page doesn't have an event name, you can't do anything.
     ;In Google Calendar, every event needs an event name.
-    if (eventNameArray[currentPageIndex] = "")
+    if (eventNameArray[currentGUIPage] = "")
     {
 	;Initialize any of the objects that need default values here.
-	eventAllDayBoolArray[currentPageIndex] := 0 ;defaults to unchecked
-	scheduledToWorkBoolArray[currentPageIndex] := 1 ;defaults to checked
+	eventAllDayBoolArray[currentGUIPage] := 0 ;defaults to unchecked
+	scheduledToWorkBoolArray[currentGUIPage] := 0 ;defaults to checked
     }
 
-    GuiControl,GCALGUI:,EventNameVar, % eventNameArray[currentPageIndex]
-    GuiControl,GCALGUI:,AllDayCheckBoxVar, % eventAllDayBoolArray[currentPageIndex]
-    GuiControl,GCALGUI:,ScheduledToWorkVar, % scheduledToWorkBoolArray[currentPageIndex]
-    GuiControl,GCALGUI:,StartDateVar, % startDateArray[currentPageIndex]
-    GuiControl,GCALGUI:,StartTimeVar, % startTimeArray[currentPageIndex]
-    GuiControl,GCALGUI:,EndDateVar, % endDateArray[currentPageIndex]
-    GuiControl,GCALGUI:,EndTimeVar, % endTimeArray[currentPageIndex]
-    GuiControl,GCALGUI: ChooseString,EventColorChoice, % eventColorArray[currentPageIndex]
-    GuiControl,GCALGUI:,DescriptionEditBoxVar, % eventDescriptionArray[currentPageIndex]
+    GuiControl,GCALGUI:,EventNameVar, % eventNameArray[currentGUIPage]
+    GuiControl,GCALGUI:,AllDayCheckBoxVar, % eventAllDayBoolArray[currentGUIPage]
+    GuiControl,GCALGUI:,ScheduledToWorkVar, % scheduledToWorkBoolArray[currentGUIPage]
+    GuiControl,GCALGUI:,StartDateVar, % startDateArray[currentGUIPage]
+    GuiControl,GCALGUI:,StartTimeVar, % startTimeArray[currentGUIPage]
+    GuiControl,GCALGUI:,EndDateVar, % endDateArray[currentGUIPage]
+    GuiControl,GCALGUI:,EndTimeVar, % endTimeArray[currentGUIPage]
+    GuiControl,GCALGUI: ChooseString,EventColorChoice, % eventColorArray[currentGUIPage]
+    GuiControl,GCALGUI:,DescriptionEditBoxVar, % eventDescriptionArray[currentGUIPage]
 }
 
 ;At the current array index (the current page number), store the control's contents.
