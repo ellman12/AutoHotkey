@@ -215,7 +215,7 @@ ScheduledToWorkLabel:
     GUI, GCALGUI:Submit, NoHide
 
     ;This prevents both checkboxes from being selected at the same time.
-    ;This would obviously cause problems.
+    ; This would obviously cause problems.
     if (ScheduledToWorkVar = 1 && AllDayCheckBoxVar = 1) {
         GuiControl, GCALGUI:,AllDayCheckBoxVar, 0
     }
@@ -242,11 +242,7 @@ setGUIControlValues() {
     ;Check if this index has already been defined.
     ;Basically, if the page doesn't have an event name, you can't do anything.
     ;In Google Calendar, every event needs an event name.
-    if (eventNameArray[currentGUIPage] = "")
-    {
-	;Initialize any of the objects that need default values here.
-	eventAllDayBoolArray[currentGUIPage] := 0 ;defaults to unchecked
-	scheduledToWorkBoolArray[currentGUIPage] := 0 ;defaults to checked
+    if (eventNameArray[currentGUIPage] = "") {
         ;Initialize any of the objects that need default values here.
         eventAllDayBoolArray[currentGUIPage] := 0 ;defaults to unchecked
         scheduledToWorkBoolArray[currentGUIPage] := 0 ;defaults to unchecked (for now).
@@ -287,3 +283,6 @@ FinishButtonLabel:
     ;TODO Do I need this???
     ; eventNameArray.MaxIndex() := totalNumOfArrayIndexes
 
+    
+
+return
