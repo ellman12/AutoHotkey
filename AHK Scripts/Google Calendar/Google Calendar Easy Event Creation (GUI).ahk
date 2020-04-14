@@ -226,7 +226,7 @@ ScheduledToWorkLabel:
         GuiControl, GCALGUI:,AllDayCheckBoxVar, 0
     }
 
-    ;It also disables the Event Name and End Time control, since there's no need to type a name.
+    ;It also disables the Event Name and End Date controls, since there's no need to type a name/modify the end date.
     if (ScheduledToWorkVar = 1) {
         GuiControl, GCALGUI:Disable,EventNameVar
         GuiControl, GCALGUI:,EventNameVar, N/A
