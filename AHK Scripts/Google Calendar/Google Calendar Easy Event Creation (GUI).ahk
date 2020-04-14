@@ -317,18 +317,18 @@ createEvents() {
     totalArrayIndices := eventNameArray.MaxIndex()
 
     ;If null, make 1.
-    if (totalArrayIndices = "") {
-        totalArrayIndices := 1
-    }
+    ;~ if (totalArrayIndices = "") {
+        ;~ totalArrayIndices := 1
+    ;~ }
 
     ;This while loop is used for creating the events, and the right amount of them.
     ;While the current index for the arrays is less than the total number of events.
     ;When they equal, the script is done with its job, and terminates itself.
-    ; while (currentArrayIndex <= totalArrayIndices) {
+    while (currentArrayIndex <= totalArrayIndices) {
 
         ;Starts creating the event.
-        ; Send, c
-        ; Sleep, 1000
+        Send, c
+        Sleep, 1000
 
         ;Format the date and time variables properly.
         FormatTime, newStartDateVar, startDateArray[currentArrayIndex], M/d/yyyy
@@ -336,8 +336,6 @@ createEvents() {
         FormatTime, newEndDateVar, endDateArray[currentArrayIndex], M/d/yyyy
         FormatTime, newEndTimeVar, endTimeArray[currentArrayIndex], h:mm tt
 
-        MsgBox %newEndTimeVar%
-/*
         ;If this specific event is a working event (is checked),
         ;override the event name and format it as "Working *startTime* to *endTime*".
         if (scheduledToWorkBoolArray[currentArrayIndex] = 1) {
@@ -358,10 +356,6 @@ createEvents() {
 
             Send, %newEndDateVar%
             Sleep 550
-            ; Send, {Tab}
-
-            ; Send, % endDateArray[currentArrayIndex]
-            ; Sleep 550
 
             Send, {Tab 30}
             Sleep 550
@@ -400,20 +394,17 @@ createEvents() {
                 Send, %newStartDateVar%
                 Sleep 5500
                 Send, {Tab}
-
-                ; MsgBox %newStartTimeVar%
-                ; Sleep 1000
+                Sleep 5500
 
                 Send, %newStartTimeVar%
                 Sleep 5500
                 Send, {Tab}
-
-                ; MsgBox %newEndTimeVar%
-                ; Sleep 1000
+                Sleep 5500
 
                 Send, %newEndTimeVar%
                 Sleep 5500
                 Send, {Tab}
+                Sleep 5500
 
                 Send, %newEndDateVar%
                 Sleep 5500
