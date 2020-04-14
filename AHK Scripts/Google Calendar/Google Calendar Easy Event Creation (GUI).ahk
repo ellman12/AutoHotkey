@@ -34,18 +34,16 @@ DetectHiddenWindows, On
 ;If an index is missing any value besides color and description, ignore it when actually creating the events.
 ;After clicking the UpDown, focus the event name thing.
 
-;Matrix for tracking the user-inputted data.
-EventDataMatrix := {}
-EventDataMatrix[0] := {} ;create index 0 of the array, we will use this to drive the for loops later.
-EventDataMatrix[0].EventNameVar := ""
-EventDataMatrix[0].AllDayCheckBoxVar := ""
-EventDataMatrix[0].ScheduledToWorkVar := ""
-EventDataMatrix[0].StartDateVar := ""
-EventDataMatrix[0].StartTimeVar := ""
-EventDataMatrix[0].EndDateVar := ""
-EventDataMatrix[0].EndTimeVar := ""
-EventDataMatrix[0].EventColorChoice := ""
-EventDataMatrix[0].DescriptionEditBoxVar := ""
+;Arrays for tracking all of the user-inputted data.
+eventNameArray := []
+eventAllDayBoolArray := []
+scheduledToWorkBoolArray := []
+startDateArray := []
+startTimeArray := []
+endDateArray := []
+endTimeArray := []
+eventColorArray := []
+eventDescriptionArray := []
 
 ;************CONSTANTS************
 ;So AHK and the programmer don't get confused.
@@ -185,7 +183,7 @@ GUI, GCALGUI:Show, h%GCALGUI_HEIGHT% w%GCALGUI_WIDTH%, Google Calendar Easy Even
 GUI, GCALGUI:Submit, NoHide
 return ;End of auto-execute.
 
-;*********************LABELS AND LOGIC*********************
+;*********************LABELS*********************
 ;When the GUI is closed (Red x button, etc).
 GuiClose:
 ExitApp
@@ -202,6 +200,15 @@ AllDayCheckBoxLabel:
         GuiControl, GCALGUI:,ScheduledToWorkVar, 0
     }
 
+    ;If this is checked, disable the start/end time controls because modifying them doesn't make sense.
+    if (AllDayCheckBoxVar = 1) {
+        GuiControl, GCALGUI:Disable,StartTimeVar
+        GuiControl, GCALGUI:Disable,EndTimeVar
+    } else {
+        GuiControl, GCALGUI:Enable,StartTimeVar
+        GuiControl, GCALGUI:Enable,EndTimeVar
+    }
+
 return
 
 ;Label for the "Working this day?" CheckBox.
@@ -210,7 +217,7 @@ ScheduledToWorkLabel:
     GUI, GCALGUI:Submit, NoHide
 
     ;This prevents both checkboxes from being selected at the same time.
-    ; This would obviously cause problems.
+    ;This would obviously cause problems.
     if (ScheduledToWorkVar = 1 && AllDayCheckBoxVar = 1) {
         GuiControl, GCALGUI:,AllDayCheckBoxVar, 0
     }
@@ -236,50 +243,75 @@ FinishButtonLabel:
     ;Store stuff in the variables, and hide the GUI (since it's no longer needed).
     GUI, GCALGUI:Submit
 
-    ;This function creates the events.
-    createEvents()
-
 return
 
+;*********************FUNCTIONS*********************
 ;Retrieves the array contents at the current array index, and puts them in the controls.
 setGUIControlValues() {
-    global ;So the arrays can be seen in this function.
+	global ;So the arrays can be seen in this function.
 
-    if (EventDataMatrix[currentGUIPage].EventNameVar = "") ;Check if this index has already been defined.
-    {
-        EventDataMatrix[currentGUIPage] := {} ;Initialize the object for this index
-        EventDataMatrix[currentGUIPage].AllDayCheckBoxVar := 0 ;default to unchecked
-        EventDataMatrix[currentGUIPage].ScheduledToWorkVar := 0 ;default to checked (0 for now???).
-        ;any other controls that need default values
+    ;Check if this index has already been defined.
+    ;Basically, if the page doesn't have an event name, you can't do anything.
+    ;In Google Calendar, every event needs an event name.
+    if (eventNameArray[currentGUIPage] = "") {
+        ;Initialize any of the objects that need default values here.
+        eventAllDayBoolArray[currentGUIPage] := 0 ;defaults to unchecked
+        scheduledToWorkBoolArray[currentGUIPage] := 0 ;defaults to checked
     }
 
-    ;Loop through all the objects of the matrix, and put the stuff at that index in the controls.
-    for var,val in EventDataMatrix[0]
-    {
-        ;This stuff somehow works.
-        ;The ChooseString thing is only for the event color, and that also somehow works.
-        GuiControl, GCALGUI:,%var%, % EventDataMatrix[currentGUIPage][var]
-        GuiControl, ChooseString,%var%, % EventDataMatrix[currentGUIPage][var]
-    }
+    GuiControl,GCALGUI:,EventNameVar, % eventNameArray[currentGUIPage]
+    GuiControl,GCALGUI:,AllDayCheckBoxVar, % eventAllDayBoolArray[currentGUIPage]
+    GuiControl,GCALGUI:,ScheduledToWorkVar, % scheduledToWorkBoolArray[currentGUIPage]
+    GuiControl,GCALGUI:,StartDateVar, % startDateArray[currentGUIPage]
+    GuiControl,GCALGUI:,StartTimeVar, % startTimeArray[currentGUIPage]
+    GuiControl,GCALGUI:,EndDateVar, % endDateArray[currentGUIPage]
+    GuiControl,GCALGUI:,EndTimeVar, % endTimeArray[currentGUIPage]
+    GuiControl,GCALGUI:ChooseString,EventColorChoice, % eventColorArray[currentGUIPage]
+    GuiControl,GCALGUI:,DescriptionEditBoxVar, % eventDescriptionArray[currentGUIPage]
 }
 
 ;At the current array index (the current page number), store the control's contents.
 setAllArrayValues() {
-    global ;So the arrays can be seen in this function.
-    EventDataMatrix[currentArrayIndex] := {} ;initialize or reset the object for this index
-    for var,val in EventDataMatrix[0] ;Loop through index 0 to get the keys (strings, like Name, Color, etc. I think) to use in assigned values to the current index.
-    {
-        EventDataMatrix[currentArrayIndex][var] := %var%
-    }
+	global ;So the arrays can be seen in this function.
+    eventNameArray[currentArrayIndex] := EventNameVar
+    eventAllDayBoolArray[currentArrayIndex] := AllDayCheckBoxVar
+    scheduledToWorkBoolArray[currentArrayIndex] := ScheduledToWorkVar
+    startDateArray[currentArrayIndex] := StartDateVar
+    startTimeArray[currentArrayIndex] := StartTimeVar
+    endDateArray[currentArrayIndex] := EndDateVar
+    endTimeArray[currentArrayIndex] := EndTimeVar
+    eventColorArray[currentArrayIndex] := EventColorChoice
+    eventDescriptionArray[currentArrayIndex] := DescriptionEditBoxVar
 }
 
 ;*********************ACTUALLY CREATING THE EVENTS*********************
 ;This is what actually takes the user data at each index and makes the GCal events.
 createEvents() {
 
-    ;For obvious reasons; we'll be incrementing this throughout.
+    MsgBox hi
+
     currentArrayIndex := 1
 
-    while ()
+    ;This while loop is used for creating the events, and the right amount of them.
+    ;While the current index for the arrays is less than the total number of events.
+    ;When they equal, the script is done with its job, and terminates itself.
+    while (currentArrayIndex < EventDataMatrix.MaxIndex()) {
+        
+        ;Starts creating the event
+        ; Send, c
+        ; Sleep, 1000
+
+        if (event)
+
+
+
+
+
+
+
+
+
+        currentArrayIndex++ ;Move on to the next index.
+    }
 
 }
