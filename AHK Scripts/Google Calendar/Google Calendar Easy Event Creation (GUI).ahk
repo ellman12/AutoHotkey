@@ -257,7 +257,7 @@ return
 FinishButtonLabel:
 
     ;Store stuff in the variables, and hide the GUI (since it's no longer needed).
-    setAllArrayValues()
+    ;~ setAllArrayValues()
     GUI, GCALGUI:Submit
     setAllArrayValues()
 
