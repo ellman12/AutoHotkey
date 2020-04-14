@@ -28,6 +28,7 @@ DetectHiddenWindows, On
 ;https://www.reddit.com/r/AutoHotkey/comments/fxu9gk/help_with_two_gui_problems/
 
 ;TODO:
+;Make stuff functions.
 ;Big green FINISH button with a check mark symbol or something, and it either destroys the GUI, or grays out parts of it.
 ;Have a button/Hotkey to pause the script, and maybe tell the user what part it's on, and allow the user to restart that part?
 ;Default to working event checked?
@@ -222,6 +223,18 @@ ScheduledToWorkLabel:
         GuiControl, GCALGUI:,AllDayCheckBoxVar, 0
     }
 
+    ;It also disables the Event Name and End Time control, since there's no need to type a name.
+    if (ScheduledToWorkVar = 1) {
+        GuiControl, GCALGUI:Disable,EventNameVar
+        GuiControl, GCALGUI:,EventNameVar, N/A
+        GuiControl, GCALGUI:Disable,EndDateVar
+        GuiControl, GCALGUI:Disable,EndTimeVar
+    } else {
+        GuiControl, GCALGUI:Enable,EventNameVar
+        GuiControl, GCALGUI:Enable,EndDateVar
+        GuiControl, GCALGUI:Enable,EndTimeVar
+    }
+
 return
 
 ;Label for the UpDown.
@@ -242,6 +255,8 @@ FinishButtonLabel:
 
     ;Store stuff in the variables, and hide the GUI (since it's no longer needed).
     GUI, GCALGUI:Submit
+
+    createEvents()
 
 return
 
@@ -284,34 +299,168 @@ setAllArrayValues() {
     eventDescriptionArray[currentArrayIndex] := DescriptionEditBoxVar
 }
 
+;This does all the Tabbing and start/end date/time data entry
+;for the working and normal events.
+; startCreatingEvents() {
+
+;     Sleep 500
+;     Send, {Tab 2}
+;     Sleep 500
+
+;     Send, % startDateArray[currentArrayIndex]
+;     Sleep 550
+;     Send, {Tab}
+
+;     Send, % startTimeArray[currentArrayIndex]
+;     Sleep 550
+;     Send, {Tab}
+
+;     Send, % endTimeArray[currentArrayIndex]
+;     Sleep 550
+;     Send, {Tab}
+
+;     Send, % endDateArray[currentArrayIndex]
+;     Sleep 550
+
+;     Send, {Tab 29}
+;     Sleep 550
+;     Send, {Space}
+;     Sleep 850
+; }
+
 ;*********************ACTUALLY CREATING THE EVENTS*********************
 ;This is what actually takes the user data at each index and makes the GCal events.
 createEvents() {
-
-    MsgBox hi
+    global ;So the arrays can be seen in this function.
 
     currentArrayIndex := 1
 
     ;This while loop is used for creating the events, and the right amount of them.
     ;While the current index for the arrays is less than the total number of events.
     ;When they equal, the script is done with its job, and terminates itself.
-    while (currentArrayIndex < EventDataMatrix.MaxIndex()) {
-        
-        ;Starts creating the event
-        ; Send, c
-        ; Sleep, 1000
+    while (currentArrayIndex < eventNameArray.MaxIndex()) {
 
-        if ()
+        ;Starts creating the event.
+        Send, c
+        Sleep, 1000
 
+        ;Get the time variables formatted properly (like this: 7:12 PM) so they're not some useless garbled mess.
+        FormatTime, newStartTimeVar, % startTimeArray[currentArrayIndex], h:mm tt
+        FormatTime, newEndTimeVar, % endTimeArray[currentArrayIndex], h:mm tt
 
+        ;If this specific event is a working event (is checked),
+        ;override the event name and format it as "Working *startTime* to *endTime*".
+        if (scheduledToWorkBoolArray[currentArrayIndex] = 1) {
 
+            Send, Working %newStartTimeVar% to %newEndTimeVar%
+            
+            Sleep 500
+            Send, {Tab 2}
+            Sleep 500
 
+            Send, % startDateArray[currentArrayIndex]
+            Sleep 550
+            Send, {Tab}
 
+            Send, % startTimeArray[currentArrayIndex]
+            Sleep 550
+            Send, {Tab}
 
+            Send, % endTimeArray[currentArrayIndex]
+            Sleep 550
+            ; Send, {Tab}
 
+            ; Send, % endDateArray[currentArrayIndex]
+            ; Sleep 550
 
+            Send, {Tab 30}
+            Sleep 550
+            Send, {Space}
+            Sleep 850
+
+        ;If it's not marked as a working event.
+        } else {
+
+            Send, % eventNameArray[currentArrayIndex]
+            Sleep 600
+            Send, {Tab 2}
+            Sleep 600
+
+            ;If an event is marked as all day.
+            if (eventAllDayBoolArray[currentArrayIndex]) {
+
+                Send, % startDateArray[currentArrayIndex]
+                Sleep 400
+                Send, {Tab 3}
+                Sleep 600
+                Send, % endDateArray[currentArrayIndex]
+                Sleep 600
+                Send, {Tab 2}
+                Sleep 600
+                Send, {Space}
+                Sleep 600
+                Send, {Tab 26}
+                Sleep 600
+
+            ;If an event is completely normal (no all day/working).
+            } else {
+                
+                Sleep 500
+                Send, {Tab 2}
+                Sleep 500
+
+                Send, % startDateArray[currentArrayIndex]
+                Sleep 550
+                Send, {Tab}
+
+                Send, % startTimeArray[currentArrayIndex]
+                Sleep 550
+                Send, {Tab}
+
+                Send, % endTimeArray[currentArrayIndex]
+                Sleep 550
+                Send, {Tab}
+
+                Send, % endDateArray[currentArrayIndex]
+                Sleep 550
+
+                Send, {Tab 29}
+                Sleep 550
+                Send, {Space}
+                Sleep 850
+            }
+
+        }
+
+            ;Select the right color.
+            Switch (eventColorArray[currentArrayIndex]) {
+                Case "Red": ;Do nothing, since Red is already selected.
+                Case "Pink": Send, {Down 1}
+                Case "Orange": Send, {Down 2}
+                Case "Yellow": Send, {Down 3}
+                Case "Light Green": Send, {Down 4}
+                Case "Dark Green": Send, {Down 5}
+                Case "Light Blue": Send, {Up 5}
+                Case "Dark Blue": Send, {Up 4}
+                Case "Lavender": Send, {Up 3}
+                Case "Purple": Send, {Up 2}
+                Case "Gray": Send, {Up 1}
+            }
+
+            ;Move to and click the save button, finish creating the event.
+            if (eventAllDayBoolArray[currentArrayIndex]) {
+                Send, +{Tab 29}
+            } else {
+                Send, +{Tab 33}
+            }
 
         currentArrayIndex++ ;Move on to the next index.
-    }
 
-}
+    } ;End of the while loop.
+
+} ;End of createEvents().
+
+;TEMP FOR TESTING IT ALL
+^F9::
+
+return
