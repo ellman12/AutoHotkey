@@ -34,23 +34,18 @@ DetectHiddenWindows, On
 ;If an index is missing any value besides color and description, ignore it when actually creating the events.
 ;After clicking the UpDown, focus the event name thing.
 
-;Arrays for tracking all of the user-inputted data.
-eventNameArray := []
-eventAllDayBoolArray := []
-scheduledToWorkBoolArray := []
-startDateArray := []
-startTimeArray := []
-endDateArray := []
-endTimeArray := []
-eventColorArray := []
-eventDescriptionArray := []
-
-;Index for the array "pages" (individual array indices).
-currentGUIPage := 1
-
-;Used when creating the events in GCal for looping through the arrays, so the script knows when to stop.
-;Not used at the moment.
-totalNumOfArrayIndexes := 1
+;Matrix for tracking the user-inputted data.
+EventDataMatrix := {}
+EventDataMatrix[0] := {} ;create index 0 of the array, we will use this to drive the for loops later.
+EventDataMatrix[0].EventNameVar := ""
+EventDataMatrix[0].AllDayCheckBoxVar := ""
+EventDataMatrix[0].ScheduledToWorkVar := ""
+EventDataMatrix[0].StartDateVar := ""
+EventDataMatrix[0].StartTimeVar := ""
+EventDataMatrix[0].EndDateVar := ""
+EventDataMatrix[0].EndTimeVar := ""
+EventDataMatrix[0].EventColorChoice := ""
+EventDataMatrix[0].DescriptionEditBoxVar := ""
 
 ;************CONSTANTS************
 ;So AHK and the programmer don't get confused.
@@ -235,54 +230,58 @@ PrevNextPageLabel:
     currentArrayIndex := currentGUIPage
 return
 
-;Retrieves the array contents at the current array index, and puts them in the controls.
-setGUIControlValues() {
-	global ;So the arrays can be seen in this function.
-
-    ;Check if this index has already been defined.
-    ;Basically, if the page doesn't have an event name, you can't do anything.
-    ;In Google Calendar, every event needs an event name.
-    if (eventNameArray[currentGUIPage] = "") {
-        ;Initialize any of the objects that need default values here.
-        eventAllDayBoolArray[currentGUIPage] := 0 ;defaults to unchecked
-        scheduledToWorkBoolArray[currentGUIPage] := 0 ;defaults to unchecked (for now).
-    }
-
-    GuiControl,GCALGUI:,EventNameVar, % eventNameArray[currentGUIPage]
-    GuiControl,GCALGUI:,AllDayCheckBoxVar, % eventAllDayBoolArray[currentGUIPage]
-    GuiControl,GCALGUI:,ScheduledToWorkVar, % scheduledToWorkBoolArray[currentGUIPage]
-    GuiControl,GCALGUI:,StartDateVar, % startDateArray[currentGUIPage]
-    GuiControl,GCALGUI:,StartTimeVar, % startTimeArray[currentGUIPage]
-    GuiControl,GCALGUI:,EndDateVar, % endDateArray[currentGUIPage]
-    GuiControl,GCALGUI:,EndTimeVar, % endTimeArray[currentGUIPage]
-    GuiControl,GCALGUI:ChooseString,EventColorChoice, % eventColorArray[currentGUIPage]
-    GuiControl,GCALGUI:,DescriptionEditBoxVar, % eventDescriptionArray[currentGUIPage]
-}
-
-;At the current array index (the current page number), store the control's contents.
-setAllArrayValues() {
-	global ;So the arrays can be seen in this function.
-    eventNameArray[currentArrayIndex] := EventNameVar
-    eventAllDayBoolArray[currentArrayIndex] := AllDayCheckBoxVar
-    scheduledToWorkBoolArray[currentArrayIndex] := ScheduledToWorkVar
-    startDateArray[currentArrayIndex] := StartDateVar
-    startTimeArray[currentArrayIndex] := StartTimeVar
-    endDateArray[currentArrayIndex] := EndDateVar
-    endTimeArray[currentArrayIndex] := EndTimeVar
-    eventColorArray[currentArrayIndex] := EventColorChoice
-    eventDescriptionArray[currentArrayIndex] := DescriptionEditBoxVar
-}
-
-;*********************ACTUALLY CREATING THE EVENTS*********************
 ;When this is pressed, start creating the Google Calendar events.
 FinishButtonLabel:
 
     ;Store stuff in the variables, and hide the GUI (since it's no longer needed).
     GUI, GCALGUI:Submit
 
-    ;TODO Do I need this???
-    ; eventNameArray.MaxIndex() := totalNumOfArrayIndexes
-
-    
+    ;This function creates the events.
+    createEvents()
 
 return
+
+;Retrieves the array contents at the current array index, and puts them in the controls.
+setGUIControlValues() {
+    global ;So the arrays can be seen in this function.
+
+    if (EventDataMatrix[currentGUIPage].EventNameVar = "") ;Check if this index has already been defined.
+    {
+        EventDataMatrix[currentGUIPage] := {} ;Initialize the object for this index
+        EventDataMatrix[currentGUIPage].AllDayCheckBoxVar := 0 ;default to unchecked
+        EventDataMatrix[currentGUIPage].ScheduledToWorkVar := 0 ;default to checked (0 for now???).
+        ;any other controls that need default values
+    }
+
+    ;Loop through all the objects of the matrix, and put the stuff at that index in the controls.
+    for var,val in EventDataMatrix[0]
+    {
+        ;This stuff somehow works.
+        ;The ChooseString thing is only for the event color, and that also somehow works.
+        GuiControl, GCALGUI:,%var%, % EventDataMatrix[currentGUIPage][var]
+        GuiControl, ChooseString,%var%, % EventDataMatrix[currentGUIPage][var]
+    }	
+}
+
+;At the current array index (the current page number), store the control's contents.
+setAllArrayValues() {
+    global ;So the arrays can be seen in this function.
+    EventDataMatrix[currentArrayIndex] := {} ;initialize or reset the object for this index
+    for var,val in EventDataMatrix[0] ;Loop through index 0 to get the keys (strings, like Name, Color, etc. I think) to use in assigned values to the current index.
+    {
+        EventDataMatrix[currentArrayIndex][var] := %var%
+    }
+}
+
+;*********************ACTUALLY CREATING THE EVENTS*********************
+;This is what actually takes the user data at each index and makes the GCal events.
+createEvents() {
+
+    ;Start at the beginning index.
+    currentArrayIndex := 1
+
+    ;Variables that are only used in here.
+    
+    
+
+}
