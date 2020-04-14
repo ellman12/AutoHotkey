@@ -116,7 +116,7 @@ FINISH_BUTTON_WIDTH := 100
 GCALGUI_HEIGHT := 580
 GCALGUI_WIDTH := 445
 
-;**************GUI INITIALIZATION**************
+;*********************GUI INITIALIZATION*********************
 ;************MISC GUI STUFF************
 GUI, GCALGUI:+AlwaysOnTop
 GUI, GCALGUI:Color, Silver
@@ -190,7 +190,7 @@ GUI, GCALGUI:Show, h%GCALGUI_HEIGHT% w%GCALGUI_WIDTH%, Google Calendar Easy Even
 GUI, GCALGUI:Submit, NoHide
 return ;End of auto-execute.
 
-;************LABELS AND LOGIC************
+;*********************LABELS AND LOGIC*********************
 ;When the GUI is closed (Red x button, etc).
 GuiClose:
 ExitApp
@@ -235,13 +235,6 @@ PrevNextPageLabel:
     currentArrayIndex := currentGUIPage
 return
 
-;When this is pressed, start creating the Google Calendar events.
-FinishButtonLabel:
-
-    GUI, GCALGUI:Submit
-
-return
-
 ;Retrieves the array contents at the current array index, and puts them in the controls.
 setGUIControlValues() {
 	global ;So the arrays can be seen in this function.
@@ -254,6 +247,9 @@ setGUIControlValues() {
 	;Initialize any of the objects that need default values here.
 	eventAllDayBoolArray[currentGUIPage] := 0 ;defaults to unchecked
 	scheduledToWorkBoolArray[currentGUIPage] := 0 ;defaults to checked
+        ;Initialize any of the objects that need default values here.
+        eventAllDayBoolArray[currentGUIPage] := 0 ;defaults to unchecked
+        scheduledToWorkBoolArray[currentGUIPage] := 0 ;defaults to unchecked (for now).
     }
 
     GuiControl,GCALGUI:,EventNameVar, % eventNameArray[currentGUIPage]
@@ -263,7 +259,7 @@ setGUIControlValues() {
     GuiControl,GCALGUI:,StartTimeVar, % startTimeArray[currentGUIPage]
     GuiControl,GCALGUI:,EndDateVar, % endDateArray[currentGUIPage]
     GuiControl,GCALGUI:,EndTimeVar, % endTimeArray[currentGUIPage]
-    GuiControl,GCALGUI: ChooseString,EventColorChoice, % eventColorArray[currentGUIPage]
+    GuiControl,GCALGUI:ChooseString,EventColorChoice, % eventColorArray[currentGUIPage]
     GuiControl,GCALGUI:,DescriptionEditBoxVar, % eventDescriptionArray[currentGUIPage]
 }
 
@@ -280,3 +276,14 @@ setAllArrayValues() {
     eventColorArray[currentArrayIndex] := EventColorChoice
     eventDescriptionArray[currentArrayIndex] := DescriptionEditBoxVar
 }
+
+;*********************ACTUALLY CREATING THE EVENTS*********************
+;When this is pressed, start creating the Google Calendar events.
+FinishButtonLabel:
+
+    ;Store stuff in the variables, and hide the GUI (since it's no longer needed).
+    GUI, GCALGUI:Submit
+
+    ;TODO Do I need this???
+    ; eventNameArray.MaxIndex() := totalNumOfArrayIndexes
+
