@@ -31,13 +31,8 @@ DetectHiddenWindows, On
 
 ;TODO:
 ;Make stuff functions.
-;Big green FINISH button with a check mark symbol or something, and it either destroys the GUI, or grays out parts of it.
 ;Have a button/Hotkey to pause the script, and maybe tell the user what part it's on, and allow the user to restart that part?
-;Default to working event checked?
-;If an index is missing any value besides color and description, ignore it when actually creating the events.
-;After clicking the UpDown, focus the event name thing.
 ;In the Event Color DDL, the font color changes to match the selected color. E.g, red selected = make red the font color, etc.
-;After clicking up/down after the previous event was checked working, enable the name control.
 ;If event is marked as working, GUIcontol the end date as whatever the start date is. And/or just don't send that value when creating the event.
 ;End date defaults to Start Date, unless end date is modified.
 
@@ -254,6 +249,8 @@ PrevNextPageLabel:
     setAllArrayValues()
     setGUIControlValues()
     currentArrayIndex := currentGUIPage
+
+    GuiControl, Focus, EventNameVar
 return
 
 ;When this is pressed, start creating the Google Calendar events.
@@ -328,7 +325,7 @@ createEvents() {
     while (currentArrayIndex <= totalArrayIndices) {
 
         ;If there isn't an event at this index, don't do anything and increment the array index by 1.
-        if (eventNameArray[currentArrayIndex] != "") {
+        if (eventNameArray[currentArrayIndex] = "") {
 
         ;Starts creating the event.
         Send, c
@@ -457,6 +454,7 @@ createEvents() {
     } ;End of the while loop.
 
 } ;End of createEvents().
+ExitApp
 ;End of the script.
 
 ;TODO TEMP Emergency stop.
