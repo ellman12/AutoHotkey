@@ -312,6 +312,8 @@ createEvents() {
     global ;So the arrays can be seen in this function.
 
     MsgBox % endTimeArray[currentArrayIndex]
+    FormatTime, newEndTimeVar, endTimeArray[currentArrayIndex], h:mm tt
+    MsgBox %newEndTimeVar%
 
     currentArrayIndex := 1
     totalArrayIndices := eventNameArray.MaxIndex()
@@ -354,7 +356,7 @@ createEvents() {
             Sleep 550
             Send, {Tab}
 
-            Send, %newEndDateVar%
+            Send, %newEndTimeVar%
             Sleep 550
 
             Send, {Tab 30}
@@ -364,8 +366,6 @@ createEvents() {
 
         ;If it's not marked as a working event.
         } else {
-            
-            MsgBox hi
 
             Send, % eventNameArray[currentArrayIndex]
             Sleep 600
@@ -451,7 +451,7 @@ createEvents() {
         currentArrayIndex++ ;Move on to the next index.
 
     } ;End of the while loop.
-*/
+
 } ;End of createEvents().
 ;End of the script.
 
