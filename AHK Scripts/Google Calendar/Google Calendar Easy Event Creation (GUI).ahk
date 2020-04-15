@@ -37,6 +37,9 @@ DetectHiddenWindows, On
 ;If an index is missing any value besides color and description, ignore it when actually creating the events.
 ;After clicking the UpDown, focus the event name thing.
 ;In the Event Color DDL, the font color changes to match the selected color. E.g, red selected = make red the font color, etc.
+;After clicking up/down after the previous event was checked working, enable the name control.
+;If event is marked as working, GUIcontol the end date as whatever the start date is. And/or just don't send that value when creating the event.
+;End date defaults to Start Date, unless end date is modified.
 
 ;Arrays for tracking all of the user-inputted data.
 eventNameArray := []
@@ -324,18 +327,21 @@ createEvents() {
     ;When they equal, the script is done with its job, and terminates itself.
     while (currentArrayIndex <= totalArrayIndices) {
 
+        ;If there isn't an event at this index, don't do anything and increment the array index by 1.
+        if (eventNameArray[currentArrayIndex] != "") {
+
         ;Starts creating the event.
         Send, c
         Sleep, 1000
 
         ;Format the date and time variables properly.
-        FormatTime, newStartDateVar, startDateArray[currentArrayIndex], M/d/yyyy
-        FormatTime, newStartTimeVar, startTimeArray[currentArrayIndex], h:mm tt
-        FormatTime, newEndDateVar, endDateArray[currentArrayIndex], M/d/yyyy
-        FormatTime, newEndTimeVar, endTimeArray[currentArrayIndex], h:mm tt
+        FormatTime, newStartDateVar, % startDateArray[currentArrayIndex], M/d/yyyy
+        FormatTime, newStartTimeVar, % startTimeArray[currentArrayIndex], h:mm tt
+        FormatTime, newEndDateVar, % endDateArray[currentArrayIndex], M/d/yyyy
+        FormatTime, newEndTimeVar, % endTimeArray[currentArrayIndex], h:mm tt
 
         ;If this specific event is a working event (is checked),
-        ;override the event name and format it as "Working *startTime* to *endTime*".
+        ;override (don't even use) the event name and instead send "Working *startTime* to *endTime*".
         if (scheduledToWorkBoolArray[currentArrayIndex] = 1) {
 
             Send, Working %newStartTimeVar% to %newEndTimeVar%
@@ -443,6 +449,8 @@ createEvents() {
             ;Click the save button.
             Send, {Enter}
             Sleep 2500
+
+        } ;End of the if empty string if statement.
 
         currentArrayIndex++ ;Move on to the next index.
 
