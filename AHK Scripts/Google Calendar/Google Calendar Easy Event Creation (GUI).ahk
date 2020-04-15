@@ -30,9 +30,8 @@ DetectHiddenWindows, On
 ;https://www.reddit.com/r/AutoHotkey/comments/fxu9gk/help_with_two_gui_problems/
 
 ;TODO:
+;Make the color DDL text color change based on what color is selected. (gLabel is created already).
 ;Make stuff functions.
-;Have a button/Hotkey to pause the script, and maybe tell the user what part it's on, and allow the user to restart that part?
-;In the Event Color DDL, the font color changes to match the selected color. E.g, red selected = make red the font color, etc.
 ;If event is marked as working, GUIcontol the end date as whatever the start date is. And/or just don't send that value when creating the event.
 ;End date defaults to Start Date, unless end date is modified.
 
@@ -158,7 +157,7 @@ GUI, GCALGUI:Font, underline s18
 GUI, GCALGUI:Add, Text, x%EVENT_COLOR_TEXT_X% y%EVENT_COLOR_TEXT_Y%, Event Color
 
 GUI, GCALGUI:Font, norm s14
-GUI, GCALGUI:Add, DropDownList, x%EVENT_COLOR_COMBOBOX_X% y%EVENT_COLOR_COMBOBOX_Y% w%EVENT_COLOR_COMBOBOX_WIDTH% vEventColorChoice Sort, Red||Pink|Orange|Yellow|Light Green|Dark Green|Light Blue|Dark Blue|Lavender|Purple|Gray
+GUI, GCALGUI:Add, DropDownList, x%EVENT_COLOR_COMBOBOX_X% y%EVENT_COLOR_COMBOBOX_Y% w%EVENT_COLOR_COMBOBOX_WIDTH% gColorDDL vEventColorChoice Sort, Red||Pink|Orange|Yellow|Light Green|Dark Green|Light Blue|Dark Blue|Lavender|Purple|Gray
 
 ;************DESCRIPTION STUFF************
 GUI, GCALGUI:Font, underline s18
@@ -238,6 +237,22 @@ ScheduledToWorkLabel:
 
 return
 
+ColorDDL:
+Switch (eventColorArray[currentArrayIndex]) {
+    ;~ Case "Red": ;Do nothing, since Red is already selected.
+    Case "Pink": Send, {Down 1}
+    Case "Orange": Send, {Down 2}
+    Case "Yellow": Send, {Down 3}
+    Case "Light Green": Send, {Down 4}
+    Case "Dark Green": Send, {Down 5}
+    Case "Light Blue": Send, {Up 5}
+    Case "Dark Blue": Send, {Up 4}
+    Case "Lavender": Send, {Up 3}
+    Case "Purple": Send, {Up 2}
+    Case "Gray": Send, {Up 1}
+}
+return
+
 ;Label for the UpDown.
 PrevNextPageLabel:
     ;If this variable doesn't exist/is null, initialize it to 1.
@@ -257,7 +272,6 @@ return
 FinishButtonLabel:
 
     ;Store stuff in the variables, and hide the GUI (since it's no longer needed).
-    ;~ setAllArrayValues()
     GUI, GCALGUI:Submit
     setAllArrayValues()
 
