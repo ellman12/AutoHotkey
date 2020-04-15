@@ -311,10 +311,6 @@ setAllArrayValues() {
 createEvents() {
     global ;So the arrays can be seen in this function.
 
-    MsgBox % endTimeArray[currentArrayIndex]
-    FormatTime, newEndTimeVar, endTimeArray[currentArrayIndex], h:mm tt
-    MsgBox %newEndTimeVar%
-
     currentArrayIndex := 1
     totalArrayIndices := eventNameArray.MaxIndex()
 
