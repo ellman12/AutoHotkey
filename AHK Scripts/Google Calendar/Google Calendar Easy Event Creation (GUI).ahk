@@ -30,10 +30,11 @@ DetectHiddenWindows, On
 ;https://www.reddit.com/r/AutoHotkey/comments/fxu9gk/help_with_two_gui_problems/
 
 ;TODO:
-;Make the color DDL text color change based on what color is selected. (gLabel is created already).
+;Make the color DDL text color change based on what color is selected. (gLabel is created already). https://www.autohotkey.com/docs/commands/GuiControls.htm#Progress
 ;Make stuff functions.
 ;If event is marked as working, GUIcontol the end date as whatever the start date is. And/or just don't send that value when creating the event.
 ;End date defaults to Start Date, unless end date is modified.
+;Times start at 3:00 PM or something normal without annoying non-zero digits.
 
 ;Arrays for tracking all of the user-inputted data.
 eventNameArray := []
@@ -46,11 +47,17 @@ endTimeArray := []
 eventColorArray := []
 eventDescriptionArray := []
 
+currentArrayIndex := 1
+
+colorPreviewColor := "Red"
+
 ;************CONSTANTS************
 ;So AHK and the programmer don't get confused.
 GCALGUI := "Google Calendar Script GUI"
 
-;The following are all the x and y values, control widths, etc.
+;For Color Preview
+RED_COLOR := "cRed"
+
 PIXELS_BETWEEN_CONTROL_AND_NEXT_SECTION := 35
 PIXELS_BETWEEN_SECTION_TITLE_AND_FIRST_CONTROL := 50
 
@@ -159,6 +166,9 @@ GUI, GCALGUI:Add, Text, x%EVENT_COLOR_TEXT_X% y%EVENT_COLOR_TEXT_Y%, Event Color
 GUI, GCALGUI:Font, norm s14
 GUI, GCALGUI:Add, DropDownList, x%EVENT_COLOR_COMBOBOX_X% y%EVENT_COLOR_COMBOBOX_Y% w%EVENT_COLOR_COMBOBOX_WIDTH% gColorDDL vEventColorChoice Sort, Red||Pink|Orange|Yellow|Light Green|Dark Green|Light Blue|Dark Blue|Lavender|Purple|Gray
 
+;************COLOR PREVIEW STUFF************
+GUI, GCALGUI:Add,Progress, x230 y339 w70 h62 BackgroundRed cRed +Smooth vColorPreviewVal, 100
+
 ;************DESCRIPTION STUFF************
 GUI, GCALGUI:Font, underline s18
 GUI, GCALGUI:Add, Text, x%DESCRIPTION_TEXT_X% y%DESCRIPTION_TEXT_Y%, Event Description (Optional)
@@ -175,13 +185,13 @@ GUI, GCALGUI:Add, UpDown, x%NEXT_PREV_UPDOWN_X% y%NEXT_PREV_UPDOWN_Y% w%NEXT_PRE
 GUI, GCALGUI:Add, Text, x%CURRENT_PAGE_TEXT_X% y%CURRENT_PAGE_TEXT_Y%, Current Page: %NextPrevPageVar%
 
 ;************FINISH BUTTON STUFF************
-GUI, GCALGUI:Font, s14 c008000
+GUI, GCALGUI:Font, s14
 GUI, GCALGUI:Add, Button, x%FINISH_BUTTON_X% y%FINISH_BUTTON_Y% w%FINISH_BUTTON_WIDTH% gFinishButtonLabel, &Finish
 
 ;************SHOW THE GUI STUFF************
 GUI, GCALGUI:Show, h%GCALGUI_HEIGHT% w%GCALGUI_WIDTH%, Google Calendar Easy Event Creation GUI
 
-GUI, GCALGUI:Submit, NoHide
+; GUI, GCALGUI:Submit, NoHide ;No idea when or why this was put here...
 return ;End of auto-execute.
 
 ;*********************LABELS*********************
@@ -238,19 +248,33 @@ ScheduledToWorkLabel:
 return
 
 ColorDDL:
-Switch (eventColorArray[currentArrayIndex]) {
-    ;~ Case "Red": ;Do nothing, since Red is already selected.
-    Case "Pink": Send, {Down 1}
-    Case "Orange": Send, {Down 2}
-    Case "Yellow": Send, {Down 3}
-    Case "Light Green": Send, {Down 4}
-    Case "Dark Green": Send, {Down 5}
-    Case "Light Blue": Send, {Up 5}
-    Case "Dark Blue": Send, {Up 4}
-    Case "Lavender": Send, {Up 3}
-    Case "Purple": Send, {Up 2}
-    Case "Gray": Send, {Up 1}
-}
+
+; if (currentArrayIndex = "")
+;     currentArrayIndex := 1
+    
+; GUI, GCALGUI:Submit, NoHide ;Store the control contents in their variables, and don't hide the GUI.
+
+; currentArrayIndex := currentGUIPage
+
+;THIS WORKS!! (except for background?)
+newColor := "cGreen"
+
+GuiControl,+%newColor% Background%newColor%,ColorPreviewVal
+
+; Switch (eventColorArray[currentArrayIndex]) {
+;     Case "Red":previewColor := "cff0000"
+;     ; Case "Pink": Send, {Down 1}
+;     ; Case "Orange": Send, {Down 2}
+;     ; Case "Yellow": Send, {Down 3}
+;     ; Case "Light Green": Send, {Down 4}
+;     ; Case "Dark Green": Send, {Down 5}
+;     ; Case "Light Blue": Send, {Up 5}
+;     ; Case "Dark Blue": Send, {Up 4}
+;     ; Case "Lavender": Send, {Up 3}
+;     ; Case "Purple": Send, {Up 2}
+;     ; Case "Gray": Send, {Up 1}
+;     ; default:MsgBox
+; }
 return
 
 ;Label for the UpDown.
@@ -339,11 +363,11 @@ createEvents() {
     while (currentArrayIndex <= totalArrayIndices) {
 
         ;If there isn't an event at this index, don't do anything and increment the array index by 1.
-        if (eventNameArray[currentArrayIndex] = "") {
+        if (eventNameArray[currentArrayIndex] != "") {
 
         ;Starts creating the event.
         Send, c
-        Sleep, 1000
+        Sleep, 2000
 
         ;Format the date and time variables properly.
         FormatTime, newStartDateVar, % startDateArray[currentArrayIndex], M/d/yyyy
