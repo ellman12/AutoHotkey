@@ -24,10 +24,10 @@ DetectHiddenWindows, On
 * Development started 3/21/2020 5:10 PM.
 * One important thing to note is that in Google Calendar, you can have it create premade notifications by default.
 * This saves a lot of time and makes life easier for both the programmer and the user.
+*
+* HUGE thanks to u/Curpee89 of r/AutoHotkey for helping me with many problems I had while making this script.
+* https://www.reddit.com/r/AutoHotkey/comments/fxu9gk/help_with_two_gui_problems/
 */
-
-;HUGE thanks to u/Curpee89 of r/AutoHotkey for helping me with many problems I had while making this script.
-;https://www.reddit.com/r/AutoHotkey/comments/fxu9gk/help_with_two_gui_problems/
 
 ;Arrays for tracking all of the user-inputted data.
 eventNameArray := []
@@ -62,6 +62,9 @@ ALL_DAY_EVENT_CHECKBOX_Y := 85
 
 WORKING_THIS_DAY_X := 5
 WORKING_THIS_DAY_Y := 115
+
+SAME_DAY_EVENT_X := 205
+SAME_DAY_EVENT_Y := ALL_DAY_EVENT_CHECKBOX_Y
 
 START_DATE_TIME_TEXT_X := 5
 START_DATE_TIME_TEXT_Y := 160
@@ -127,7 +130,9 @@ GUI, GCALGUI:Add, Checkbox, x%ALL_DAY_EVENT_CHECKBOX_X% y%ALL_DAY_EVENT_CHECKBOX
 GUI, GCALGUI:Font, s14
 GUI, GCALGUI:Add, Checkbox, x%WORKING_THIS_DAY_X% y%WORKING_THIS_DAY_Y% gScheduledToWorkLabel vScheduledToWorkVar, Working this day?
 
-
+;************SAME DAY EVENT STUFF************
+GUI, GCALGUI:Font, s14
+GUI, GCALGUI:Add, Checkbox, x%SAME_DAY_EVENT_X% y%SAME_DAY_EVENT_Y% vSameDayEventVar Checked, Same day event?
 
 ;************START DATE STUFF************
 GUI, GCALGUI:Font, underline s18
@@ -137,7 +142,7 @@ GUI, GCALGUI:Font, norm s14
 GUI, GCALGUI:Add, DateTime, x%START_DATE_DATETIME_X% y%START_DATE_DATETIME_Y% w%START_END_DATE_WIDTH% vStartDateVar, dddd MMMM d, yyyy
 
 ;************START TIME STUFF************
-GUI, GCALGUI:Font, norm s14
+GUI, GCALGUI:Font, norm s14                                                                                         ;This starts it at 3:00 PM.
 GUI, GCALGUI:Add, DateTime, x%START_TIME_DATETIME_X% y%START_TIME_DATETIME_Y% w%START_END_TIME_WIDTH% vStartTimeVar Choose20020418150000, h:mm tt
 
 ;************END DATE STUFF************
@@ -148,7 +153,7 @@ GUI, GCALGUI:Font, norm s14
 GUI, GCALGUI:Add, DateTime, x%END_DATE_DATETIME_X% y%END_DATE_DATETIME_Y% w%START_END_DATE_WIDTH% vEndDateVar, dddd MMMM d, yyyy
 
 ;************END TIME STUFF************
-GUI, GCALGUI:Font, norm s14
+GUI, GCALGUI:Font, norm s14                                                                                   ;This starts it at 4:00 PM.
 GUI, GCALGUI:Add, DateTime, x%END_TIME_DATETIME_X% y%END_TIME_DATETIME_Y% w%START_END_TIME_WIDTH% vEndTimeVar Choose20020418160000, h:mm tt
 
 ;************EVENT COLOR STUFF************
@@ -187,7 +192,8 @@ GUI, GCALGUI:Show, h%GCALGUI_HEIGHT% w%GCALGUI_WIDTH%, Google Calendar Easy Even
 while (GUIActive = "true") {
     GUI, GCALGUI:Submit, NoHide
 
-    if (ScheduledToWorkVar = 1) {
+    ;The same day checkbox makes life SO much easier. It even starts out checked!
+    if (ScheduledToWorkVar = 1 or SameDayEventVar = 1) {
         GuiControl, GCALGUI:,EndDateVar, %StartDateVar%
     }
 
@@ -289,7 +295,7 @@ FinishButtonLabel:
     ;Disable the while loop in Auto-execute.
     GUIActive := "false"
 
-    MsgBox, The script will now begin making events. Before you hit OK, make sure that when this MsgBox closes, it'll go into the Google Calendar window.
+    MsgBox, 262192, Start Creating Events, The script will now begin making events. Before you hit OK`, make sure that when this MsgBox closes`, it'll go into the Google Calendar window.`n`nF10 is also the emergency stop button in case the script goes haywire.
 
     createEvents()
 
@@ -357,7 +363,7 @@ createEvents() {
 
         ;Starts creating the event.
         Send, c
-        Sleep, 2000
+        Sleep, 1000
 
         ;Format the date and time variables properly.
         FormatTime, newStartDateVar, % startDateArray[currentArrayIndex], M/d/yyyy
@@ -421,27 +427,27 @@ createEvents() {
             } else {
 
                 Send, %newStartDateVar%
-                Sleep 5500
+                Sleep 550
                 Send, {Tab}
-                Sleep 5500
+                Sleep 550
 
                 Send, %newStartTimeVar%
-                Sleep 5500
+                Sleep 550
                 Send, {Tab}
-                Sleep 5500
+                Sleep 550
 
                 Send, %newEndTimeVar%
-                Sleep 5500
+                Sleep 550
                 Send, {Tab}
-                Sleep 5500
+                Sleep 550
 
                 Send, %newEndDateVar%
-                Sleep 5500
+                Sleep 550
 
                 Send, {Tab 29}
-                Sleep 5500
+                Sleep 550
                 Send, {Space}
-                Sleep 8500
+                Sleep 850
             }
 
         }
@@ -449,7 +455,7 @@ createEvents() {
             ;Regardless of which type of event it is, this Switch statement is run.
             ;Select the right color.
             Switch (eventColorArray[currentArrayIndex]) {
-                ;~ Case "Red": ;Do nothing, since Red is already selected.
+                ;Case "Red": ;Do nothing, since Red is already selected.
                 Case "Pink": Send, {Down 1}
                 Case "Orange": Send, {Down 2}
                 Case "Yellow": Send, {Down 3}
@@ -461,6 +467,10 @@ createEvents() {
                 Case "Purple": Send, {Up 2}
                 Case "Gray": Send, {Up 1}
             }
+
+            Sleep 2000
+            Send, {Enter}
+            Sleep 2000
 
             ;Move to and click the save button; finish creating the event.
             ;There's less notifications to tab through when it's all day.
@@ -482,11 +492,11 @@ createEvents() {
 
     } ;End of the while loop.
 
-} ;End of createEvents().
-ExitApp
-;End of the script.
+    ExitApp ;End of the script.
 
-;TODO TEMP Emergency stop.
+} ;End of createEvents().
+
+;Emergency stop button.
 F10::
 Reload
 return
