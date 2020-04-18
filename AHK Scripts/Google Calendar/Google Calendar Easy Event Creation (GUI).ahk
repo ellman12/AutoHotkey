@@ -14,7 +14,7 @@ SetControlDelay, -1
 SendMode Input
 DetectHiddenWindows, On
 #SingleInstance force
-#Persistent
+; #Persistent
 ;OPTIMIZATIONS END
 
 /*
@@ -30,8 +30,6 @@ DetectHiddenWindows, On
 ;https://www.reddit.com/r/AutoHotkey/comments/fxu9gk/help_with_two_gui_problems/
 
 ;TODO:
-;Make the color DDL text color change based on what color is selected. (gLabel is created already). https://www.autohotkey.com/docs/commands/GuiControls.htm#Progress
-;Make stuff functions.
 ;If event is marked as working, GUIcontol the end date as whatever the start date is. And/or just don't send that value when creating the event.
 ;End date defaults to Start Date, unless end date is modified.
 ;Times start at 3:00 PM or something normal without annoying non-zero digits.
@@ -49,7 +47,7 @@ eventDescriptionArray := []
 
 currentArrayIndex := 1
 
-colorPreviewColor := "Red"
+GUIActive := "true"
 
 ;************CONSTANTS************
 ;So AHK and the programmer don't get confused.
@@ -185,18 +183,33 @@ GUI, GCALGUI:Add, Text, x%CURRENT_PAGE_TEXT_X% y%CURRENT_PAGE_TEXT_Y%, Current P
 GUI, GCALGUI:Font, s14
 GUI, GCALGUI:Add, Button, x%FINISH_BUTTON_X% y%FINISH_BUTTON_Y% w%FINISH_BUTTON_WIDTH% gFinishButtonLabel, &Finish
 
-;************SHOW THE GUI STUFF************
+;************SHOW THE GUI************
 GUI, GCALGUI:Show, h%GCALGUI_HEIGHT% w%GCALGUI_WIDTH%, Google Calendar Easy Event Creation GUI
 
-; GUI, GCALGUI:Submit, NoHide ;No idea when or why this was put here...
+;https://www.autohotkey.com/docs/commands/FormatTime.htm
+;THIS DOESN'T WORK!!!!!!!!!!!!!!!!!!!!!!!!
+stVar := 150000
+enVar := 160000
+; FormatTime, newStartTimeAE, %stVar%, h:mm tt
+; FormatTime, newEndTimeAE, %enVar%, h:mm tt
+
+GuiControl, GCALGUI:, StartTimeVar, %stVar%
+GuiControl, GCALGUI:, EndTimeVar, %enVar%
+
+;This stuff is always running while the GUI is in use. The Finish button disables it.
+while (GUIActive = "true") {
+    GUI, GCALGUI:Submit, NoHide
+
+    if (ScheduledToWorkVar = 1) {
+        GuiControl, GCALGUI:,EndDateVar, %StartDateVar%
+    }
+
+    ;This sleep statement DRASTICALLY helps reduce the power and CPU usage of the script.
+	Sleep 50
+}
 return ;End of auto-execute.
 
 ;*********************LABELS*********************
-;When the GUI is closed (Red x button, etc).
-GuiClose:
-ExitApp
-return
-
 ;When you toggle the All Day checkbox, this stuff is run.
 AllDayCheckBoxLabel:
     ;Get the checkbox's value.
@@ -235,23 +248,17 @@ ScheduledToWorkLabel:
         GuiControl, GCALGUI:Disable,EventNameVar
         GuiControl, GCALGUI:,EventNameVar, N/A
         GuiControl, GCALGUI:Disable,EndDateVar
-        ; GuiControl, GCALGUI:Disable,EndTimeVar
     } else {
         GuiControl, GCALGUI:Enable,EventNameVar
         GuiControl, GCALGUI:Enable,EndDateVar
-        ; GuiControl, GCALGUI:Enable,EndTimeVar
     }
 
 return
 
+;Event color DDL label.
 ColorDDL:
-
-; if (currentArrayIndex = "")
-;     currentArrayIndex := 1
     
 GUI, GCALGUI:Submit, NoHide ;Store the control contents in their variables, and don't hide the GUI.
-
-; currentArrayIndex := currentGUIPage
 
 Switch (EventColorChoice) {
     Case "Red":previewColor := "cD50000"
@@ -265,10 +272,9 @@ Switch (EventColorChoice) {
     Case "Lavender":previewColor := "c7986CB"
     Case "Purple":previewColor := "c8E24AA"
     Case "Gray":previewColor := "c616161"
-    default:MsgBox error
 }
 
-GuiControl,+%previewColor%,ColorPreviewVal
+GuiControl,+%previewColor%,ColorPreviewVal ;Change the progress bar's color.
 return
 
 ;Label for the UpDown.
@@ -292,6 +298,9 @@ FinishButtonLabel:
     ;Store stuff in the variables, and hide the GUI (since it's no longer needed).
     GUI, GCALGUI:Submit
     setAllArrayValues()
+
+    ;Disable the while loop in Auto-execute.
+    GUIActive := "false"
 
     MsgBox, The script will now begin making events. Before you hit OK, make sure that when this MsgBox closes, it'll go into the Google Calendar window.
 
@@ -467,6 +476,7 @@ createEvents() {
             }
 
             ;Move to and click the save button; finish creating the event.
+            ;There's less notifications to tab through when it's all day.
             if (eventAllDayBoolArray[currentArrayIndex]) {
                 Send, +{Tab 29}
             } else {
