@@ -29,11 +29,6 @@ DetectHiddenWindows, On
 ;HUGE thanks to u/Curpee89 of r/AutoHotkey for helping me with many problems I had while making this script.
 ;https://www.reddit.com/r/AutoHotkey/comments/fxu9gk/help_with_two_gui_problems/
 
-;TODO:
-;If event is marked as working, GUIcontol the end date as whatever the start date is. And/or just don't send that value when creating the event.
-;End date defaults to Start Date, unless end date is modified.
-;Times start at 3:00 PM or something normal without annoying non-zero digits.
-
 ;Arrays for tracking all of the user-inputted data.
 eventNameArray := []
 eventAllDayBoolArray := []
@@ -132,6 +127,8 @@ GUI, GCALGUI:Add, Checkbox, x%ALL_DAY_EVENT_CHECKBOX_X% y%ALL_DAY_EVENT_CHECKBOX
 GUI, GCALGUI:Font, s14
 GUI, GCALGUI:Add, Checkbox, x%WORKING_THIS_DAY_X% y%WORKING_THIS_DAY_Y% gScheduledToWorkLabel vScheduledToWorkVar, Working this day?
 
+
+
 ;************START DATE STUFF************
 GUI, GCALGUI:Font, underline s18
 GUI, GCALGUI:Add, Text, x%START_DATE_TIME_TEXT_X% y%START_DATE_TIME_TEXT_Y%, Start Date and Time
@@ -141,7 +138,7 @@ GUI, GCALGUI:Add, DateTime, x%START_DATE_DATETIME_X% y%START_DATE_DATETIME_Y% w%
 
 ;************START TIME STUFF************
 GUI, GCALGUI:Font, norm s14
-GUI, GCALGUI:Add, DateTime, x%START_TIME_DATETIME_X% y%START_TIME_DATETIME_Y% w%START_END_TIME_WIDTH% vStartTimeVar, h:mm tt
+GUI, GCALGUI:Add, DateTime, x%START_TIME_DATETIME_X% y%START_TIME_DATETIME_Y% w%START_END_TIME_WIDTH% vStartTimeVar Choose20020418150000, h:mm tt
 
 ;************END DATE STUFF************
 GUI, GCALGUI:Font, underline s18
@@ -152,7 +149,7 @@ GUI, GCALGUI:Add, DateTime, x%END_DATE_DATETIME_X% y%END_DATE_DATETIME_Y% w%STAR
 
 ;************END TIME STUFF************
 GUI, GCALGUI:Font, norm s14
-GUI, GCALGUI:Add, DateTime, x%END_TIME_DATETIME_X% y%END_TIME_DATETIME_Y% w%START_END_TIME_WIDTH% vEndTimeVar, h:mm tt
+GUI, GCALGUI:Add, DateTime, x%END_TIME_DATETIME_X% y%END_TIME_DATETIME_Y% w%START_END_TIME_WIDTH% vEndTimeVar Choose20020418160000, h:mm tt
 
 ;************EVENT COLOR STUFF************
 GUI, GCALGUI:Font, underline s18
@@ -185,16 +182,6 @@ GUI, GCALGUI:Add, Button, x%FINISH_BUTTON_X% y%FINISH_BUTTON_Y% w%FINISH_BUTTON_
 
 ;************SHOW THE GUI************
 GUI, GCALGUI:Show, h%GCALGUI_HEIGHT% w%GCALGUI_WIDTH%, Google Calendar Easy Event Creation GUI
-
-;https://www.autohotkey.com/docs/commands/FormatTime.htm
-;THIS DOESN'T WORK!!!!!!!!!!!!!!!!!!!!!!!!
-stVar := 150000
-enVar := 160000
-; FormatTime, newStartTimeAE, %stVar%, h:mm tt
-; FormatTime, newEndTimeAE, %enVar%, h:mm tt
-
-GuiControl, GCALGUI:, StartTimeVar, %stVar%
-GuiControl, GCALGUI:, EndTimeVar, %enVar%
 
 ;This stuff is always running while the GUI is in use. The Finish button disables it.
 while (GUIActive = "true") {
