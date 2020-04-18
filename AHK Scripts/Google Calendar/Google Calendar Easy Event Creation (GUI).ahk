@@ -55,9 +55,6 @@ colorPreviewColor := "Red"
 ;So AHK and the programmer don't get confused.
 GCALGUI := "Google Calendar Script GUI"
 
-;For Color Preview
-RED_COLOR := "cRed"
-
 PIXELS_BETWEEN_CONTROL_AND_NEXT_SECTION := 35
 PIXELS_BETWEEN_SECTION_TITLE_AND_FIRST_CONTROL := 50
 
@@ -167,7 +164,7 @@ GUI, GCALGUI:Font, norm s14
 GUI, GCALGUI:Add, DropDownList, x%EVENT_COLOR_COMBOBOX_X% y%EVENT_COLOR_COMBOBOX_Y% w%EVENT_COLOR_COMBOBOX_WIDTH% gColorDDL vEventColorChoice Sort, Red||Pink|Orange|Yellow|Light Green|Dark Green|Light Blue|Dark Blue|Lavender|Purple|Gray
 
 ;************COLOR PREVIEW STUFF************
-GUI, GCALGUI:Add,Progress, x230 y339 w70 h62 BackgroundRed cRed +Smooth vColorPreviewVal, 100
+GUI, GCALGUI:Add,Progress, x230 y339 w70 h62 BackgroundBlack cRed +Smooth vColorPreviewVal, 100
 
 ;************DESCRIPTION STUFF************
 GUI, GCALGUI:Font, underline s18
@@ -252,29 +249,26 @@ ColorDDL:
 ; if (currentArrayIndex = "")
 ;     currentArrayIndex := 1
     
-; GUI, GCALGUI:Submit, NoHide ;Store the control contents in their variables, and don't hide the GUI.
+GUI, GCALGUI:Submit, NoHide ;Store the control contents in their variables, and don't hide the GUI.
 
 ; currentArrayIndex := currentGUIPage
 
-;THIS WORKS!! (except for background?)
-newColor := "cGreen"
+Switch (EventColorChoice) {
+    Case "Red":previewColor := "cD50000"
+    Case "Pink":previewColor := "cE67C73"
+    Case "Orange":previewColor := "cF4511E"
+    Case "Yellow":previewColor := "cF6BF26"
+    Case "Light Green":previewColor := "c33B679"
+    Case "Dark Green":previewColor := "c0B8043"
+    Case "Light Blue":previewColor := "c039BE5"
+    Case "Dark Blue":previewColor := "c3F51B5"
+    Case "Lavender":previewColor := "c7986CB"
+    Case "Purple":previewColor := "c8E24AA"
+    Case "Gray":previewColor := "c616161"
+    default:MsgBox error
+}
 
-GuiControl,+%newColor% Background%newColor%,ColorPreviewVal
-
-; Switch (eventColorArray[currentArrayIndex]) {
-;     Case "Red":previewColor := "cff0000"
-;     ; Case "Pink": Send, {Down 1}
-;     ; Case "Orange": Send, {Down 2}
-;     ; Case "Yellow": Send, {Down 3}
-;     ; Case "Light Green": Send, {Down 4}
-;     ; Case "Dark Green": Send, {Down 5}
-;     ; Case "Light Blue": Send, {Up 5}
-;     ; Case "Dark Blue": Send, {Up 4}
-;     ; Case "Lavender": Send, {Up 3}
-;     ; Case "Purple": Send, {Up 2}
-;     ; Case "Gray": Send, {Up 1}
-;     ; default:MsgBox
-; }
+GuiControl,+%previewColor%,ColorPreviewVal
 return
 
 ;Label for the UpDown.
