@@ -139,22 +139,22 @@ GUI, GCALGUI:Font, underline s18
 GUI, GCALGUI:Add, Text, x%START_DATE_TIME_TEXT_X% y%START_DATE_TIME_TEXT_Y%, Start Date and Time
 
 GUI, GCALGUI:Font, norm s14
-GUI, GCALGUI:Add, DateTime, x%START_DATE_DATETIME_X% y%START_DATE_DATETIME_Y% w%START_END_DATE_WIDTH% vStartDateVar, dddd MMMM d, yyyy
+GUI, GCALGUI:Add, DateTime, x%START_DATE_DATETIME_X% y%START_DATE_DATETIME_Y% w%START_END_DATE_WIDTH% vStartDateVar Right, dddd MMMM d, yyyy
 
 ;************START TIME STUFF************
 GUI, GCALGUI:Font, norm s14                                                                                         ;This starts it at 3:00 PM.
-GUI, GCALGUI:Add, DateTime, x%START_TIME_DATETIME_X% y%START_TIME_DATETIME_Y% w%START_END_TIME_WIDTH% vStartTimeVar Choose20020418150000, h:mm tt
+GUI, GCALGUI:Add, DateTime, x%START_TIME_DATETIME_X% y%START_TIME_DATETIME_Y% w%START_END_TIME_WIDTH% vStartTimeVar Choose20020418150000 Right, h:mm tt
 
 ;************END DATE STUFF************
 GUI, GCALGUI:Font, underline s18
 GUI, GCALGUI:Add, Text, x%END_DATE_TIME_TEXT_X% y%END_DATE_TIME_TEXT_Y%, End Date and Time
 
 GUI, GCALGUI:Font, norm s14
-GUI, GCALGUI:Add, DateTime, x%END_DATE_DATETIME_X% y%END_DATE_DATETIME_Y% w%START_END_DATE_WIDTH% vEndDateVar, dddd MMMM d, yyyy
+GUI, GCALGUI:Add, DateTime, x%END_DATE_DATETIME_X% y%END_DATE_DATETIME_Y% w%START_END_DATE_WIDTH% vEndDateVar Right, dddd MMMM d, yyyy
 
 ;************END TIME STUFF************
 GUI, GCALGUI:Font, norm s14                                                                                   ;This starts it at 4:00 PM.
-GUI, GCALGUI:Add, DateTime, x%END_TIME_DATETIME_X% y%END_TIME_DATETIME_Y% w%START_END_TIME_WIDTH% vEndTimeVar Choose20020418160000, h:mm tt
+GUI, GCALGUI:Add, DateTime, x%END_TIME_DATETIME_X% y%END_TIME_DATETIME_Y% w%START_END_TIME_WIDTH% vEndTimeVar Choose20020418160000 Right, h:mm tt
 
 ;************EVENT COLOR STUFF************
 GUI, GCALGUI:Font, underline s18
@@ -250,7 +250,7 @@ return
 
 ;Event color DDL label.
 ColorDDL:
-    
+
 GUI, GCALGUI:Submit, NoHide ;Store the control contents in their variables, and don't hide the GUI.
 
 Switch (EventColorChoice) {
@@ -340,6 +340,39 @@ setAllArrayValues() {
     eventDescriptionArray[currentArrayIndex] := DescriptionEditBoxVar
 }
 
+;*********************FUNCTIONS*********************
+;Called at the start of each iteration.
+addEventDateAndTime() {
+    global ;So variables are accessible in this function.
+
+    Sleep 300
+    Send, {Tab 2}
+    Sleep 400
+
+    Send, %newStartDateVar%
+    Sleep 400
+    Send, {Tab}
+    Sleep 400
+
+    Send, %newStartTimeVar%
+    Sleep 400
+    Send, {Tab}
+    Sleep 400
+
+    Send, %newEndTimeVar%
+    Sleep 400
+    Send, {Tab}
+    Sleep 400
+
+    Send, %newEndDateVar%
+    Sleep 400
+
+    Send, {Tab 29}
+    Sleep 550
+    Send, {Space}
+    Sleep 550
+}
+
 ;*********************ACTUALLY CREATING THE EVENTS*********************
 ;This is what actually takes the user data at each index and makes the GCal events.
 createEvents() {
@@ -353,138 +386,121 @@ createEvents() {
         totalArrayIndices := 1
     }
 
+    ToolTip, currentArrayIndex/Event: %currentArrayIndex%`ntotalArrayIndices: %totalArrayIndices%
+
     ;This while loop is used for creating the events, and the right amount of them.
     ;While the current index for the arrays is less than the total number of events.
     ;When they equal, the script is done with its job, and terminates itself.
     while (currentArrayIndex <= totalArrayIndices) {
 
         ;If there isn't an event at this index, don't do anything and increment the array index by 1.
+        ;Idk if this actually does anything but it's included anyway.
         if (eventNameArray[currentArrayIndex] != "") {
 
-        ;Starts creating the event.
-        Send, c
-        Sleep, 1000
+            ;Starts creating the event.
+            Send, c
+            Sleep, 1000
 
-        ;Format the date and time variables properly.
-        FormatTime, newStartDateVar, % startDateArray[currentArrayIndex], M/d/yyyy
-        FormatTime, newStartTimeVar, % startTimeArray[currentArrayIndex], h:mm tt
-        FormatTime, newEndDateVar, % endDateArray[currentArrayIndex], M/d/yyyy
-        FormatTime, newEndTimeVar, % endTimeArray[currentArrayIndex], h:mm tt
+            ;Format the date and time variables properly.
+            FormatTime, newStartDateVar, % startDateArray[currentArrayIndex], M/d/yyyy
+            FormatTime, newStartTimeVar, % startTimeArray[currentArrayIndex], h:mm tt
+            FormatTime, newEndDateVar, % endDateArray[currentArrayIndex], M/d/yyyy
+            FormatTime, newEndTimeVar, % endTimeArray[currentArrayIndex], h:mm tt
 
-        ;If this specific event is a working event (is checked),
-        ;override (don't even use) the event name and instead send "Working *startTime* to *endTime*".
-        if (scheduledToWorkBoolArray[currentArrayIndex] = 1) {
+            ;If this specific event is a working event (is checked),
+            ;override (don't even use) the event name and instead send "Working *startTime* to *endTime*".
+            if (scheduledToWorkBoolArray[currentArrayIndex] = 1) {
 
-            Send, Working %newStartTimeVar% to %newEndTimeVar%
-            
-            Sleep 500
-            Send, {Tab 2}
-            Sleep 500
+                Send, Working %newStartTimeVar% to %newEndTimeVar%
+                addEventDateAndTime()
 
-            Send, %newStartDateVar%
-            Sleep 550
-            Send, {Tab}
+            ;If it's not marked as a working event.
+            } else {
 
-            Send, %newStartTimeVar%
-            Sleep 550
-            Send, {Tab}
-
-            Send, %newEndTimeVar%
-            Sleep 550
-
-            Send, {Tab 30}
-            Sleep 550
-            Send, {Space}
-            Sleep 850
-
-        ;If it's not marked as a working event.
-        } else {
-
-            Send, % eventNameArray[currentArrayIndex]
-            Sleep 600
-            Send, {Tab 2}
-            Sleep 500
-
-            ;If an event is marked as all day.
-            if (eventAllDayBoolArray[currentArrayIndex] = 1) {
-
-                Send, %newStartDateVar%
+                Send, % eventNameArray[currentArrayIndex]
                 Sleep 400
-                Send, {Tab 3}
-                Sleep 600
-                Send, %newEndDateVar%
-                Sleep 600
                 Send, {Tab 2}
-                Sleep 600
-                Send, {Space}
-                Sleep 600
-                Send, {Tab 26}
-                Sleep 600
-                Send, {Space}
-                Sleep 600
+                Sleep 400
 
-            ;If an event is completely normal (no all day/working).
-            } else {
+                ;If an event is marked as all day.
+                if (eventAllDayBoolArray[currentArrayIndex] = 1) {
 
-                Send, %newStartDateVar%
-                Sleep 550
-                Send, {Tab}
-                Sleep 550
+                    Send, %newStartDateVar%
+                    Sleep 400
+                    Send, {Tab 3}
+                    Sleep 400
+                    Send, %newEndDateVar%
+                    Sleep 400
+                    Send, {Tab 2}
+                    Sleep 400
+                    Send, {Space}
+                    Sleep 400
+                    Send, {Tab 26}
+                    Sleep 400
+                    Send, {Space}
+                    Sleep 400
 
-                Send, %newStartTimeVar%
-                Sleep 550
-                Send, {Tab}
-                Sleep 550
+                ;If an event is completely normal (no all day/working).
+                } else {
+                    addEventDateAndTime()
+                }
 
-                Send, %newEndTimeVar%
-                Sleep 550
-                Send, {Tab}
-                Sleep 550
-
-                Send, %newEndDateVar%
-                Sleep 550
-
-                Send, {Tab 29}
-                Sleep 550
-                Send, {Space}
-                Sleep 850
             }
+                ;Regardless of which type of event it is, this Switch statement is run.
+                ;Select the right color.
+                Switch (eventColorArray[currentArrayIndex]) {
+                    ;Case "Red": ;Do nothing, since Red is already selected.
+                    Case "Pink": Send, {Down 1}
+                    Case "Orange": Send, {Down 2}
+                    Case "Yellow": Send, {Down 3}
+                    Case "Light Green": Send, {Down 4}
+                    Case "Dark Green": Send, {Down 5}
+                    Case "Light Blue": Send, {Up 5}
+                    Case "Dark Blue": Send, {Up 4}
+                    Case "Lavender": Send, {Up 3}
+                    Case "Purple": Send, {Up 2}
+                    Case "Gray": Send, {Up 1}
+                }
 
-        }
+                ;Click the selected button to select that color.
+                Sleep 800
+                Send, {Enter}
+                Sleep 800
 
-            ;Regardless of which type of event it is, this Switch statement is run.
-            ;Select the right color.
-            Switch (eventColorArray[currentArrayIndex]) {
-                ;Case "Red": ;Do nothing, since Red is already selected.
-                Case "Pink": Send, {Down 1}
-                Case "Orange": Send, {Down 2}
-                Case "Yellow": Send, {Down 3}
-                Case "Light Green": Send, {Down 4}
-                Case "Dark Green": Send, {Down 5}
-                Case "Light Blue": Send, {Up 5}
-                Case "Dark Blue": Send, {Up 4}
-                Case "Lavender": Send, {Up 3}
-                Case "Purple": Send, {Up 2}
-                Case "Gray": Send, {Up 1}
-            }
+                ;If there isn't stuff in the description array at this index, move back to the save button.
+                ;Else, move over to there and put those contents in that field, then move back to the save button.
+                if (eventDescriptionArray[currentArrayIndex] = "") {
 
-            Sleep 2000
-            Send, {Enter}
-            Sleep 2000
+                    ;Move to and click the save button; finish creating the event.
+                    ;There's less notifications to tab through when it's all day.
+                    if (eventAllDayBoolArray[currentArrayIndex]) {
+                        Send, +{Tab 29}
+                    } else {
+                        Send, +{Tab 33}
+                    }
 
-            ;Move to and click the save button; finish creating the event.
-            ;There's less notifications to tab through when it's all day.
-            if (eventAllDayBoolArray[currentArrayIndex]) {
-                Send, +{Tab 29}
-            } else {
-                Send, +{Tab 33}
-            }
+                } else {
 
-            Sleep 2000
-            
-            ;Click the save button.
-            Send, {Enter}
-            Sleep 2500
+                    Send, {Tab 5}
+                    Sleep 550
+                    Send, % eventDescriptionArray[currentArrayIndex]
+                    Sleep 3500
+
+                    ;Move to and click the save button; finish creating the event.
+                    ;There's less notifications to tab through when it's all day.
+                    if (eventAllDayBoolArray[currentArrayIndex]) {
+                        Send, +{Tab 34}
+                    } else {
+                        Send, +{Tab 38}
+                    }
+
+                }
+
+                Sleep 800
+
+                ;Click the save button.
+                Send, {Enter}
+                Sleep 800
 
         } ;End of the if empty string if statement.
 
