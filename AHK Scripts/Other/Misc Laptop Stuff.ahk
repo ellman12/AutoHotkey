@@ -117,6 +117,16 @@ return
 ; Send, ^v
 ; return
 
+;TEMP Auto-fill for distance learning attendance.
+^#a::
+FormatTime, attendenceMonth, A_Now, M
+FormatTime, attendenceDay, A_Now, d
+
+Send, duch_ell@students.cps.k12.mn.us{Tab}Elliott{Tab}DuCharme{Tab}
+Send, %attendenceMonth%{Tab}%attendenceDay%{Tab 2}
+Sleep 260
+Send, {Enter}
+return
 
 ;Because Ctrl + Backspace in MSWord is kinda quirky doe.
 \::
