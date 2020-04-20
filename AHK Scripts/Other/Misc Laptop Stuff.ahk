@@ -341,6 +341,30 @@ Send, #{PrintScreen}
 return
 #If
 
+;*****************************************HOTKEYS FOR MULTIPLE POINTER POSITIONS*********************************
+;The basic format is like this:
+;Ctrl + Shift + x: save position. X is 1–4.
+;Ctrl + Alt + x: go to saved position. X is 1–4.
+
+;************SAVE POSITIONS************
+^+1::MouseGetPos, mousePosX1, mousePosY1
+
+^+2::MouseGetPos, mousePosX2, mousePosY2
+
+^+3::MouseGetPos, mousePosX3, mousePosY3
+
+^+4::MouseGetPos, mousePosX4, mousePosY4
+
+
+;************GO TO POSITION************
+^!1::MouseMove, mousePosX1, mousePosY1, 0
+
+^!2::MouseMove, mousePosX2, mousePosY2, 0
+
+^!3::MouseMove, mousePosX3, mousePosY3, 0
+
+^!4::MouseMove, mousePosX4, mousePosY4, 0
+
 ;*****************************************HOTKEYS FOR TITLE STUFF*********************************
 ;These hotkeys allow the user to adjust and modify text in whatever way they want.
 ;Can be used for titles or whatever you want.
