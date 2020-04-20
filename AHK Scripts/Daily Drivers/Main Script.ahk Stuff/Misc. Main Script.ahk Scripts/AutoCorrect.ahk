@@ -5316,7 +5316,6 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::heres::here's
 ::hes::he's
 ::howd::how'd
-::Id::I'd
 ::Ill::I'll
 ::Im::I'm
 ::Ive::I've
