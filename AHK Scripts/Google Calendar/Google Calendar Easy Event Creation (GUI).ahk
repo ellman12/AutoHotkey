@@ -418,13 +418,13 @@ createEvents() {
             } else {
 
                 Send, % eventNameArray[currentArrayIndex]
-                Sleep 400
-                Send, {Tab 2}
-                Sleep 400
 
                 ;If an event is marked as all day.
                 if (eventAllDayBoolArray[currentArrayIndex] = 1) {
 
+                    Sleep 400
+                    Send, {Tab 2}
+                    Sleep 400
                     Send, %newStartDateVar%
                     Sleep 400
                     Send, {Tab 3}
