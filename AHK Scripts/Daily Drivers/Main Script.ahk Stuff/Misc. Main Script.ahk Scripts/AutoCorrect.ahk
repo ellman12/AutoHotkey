@@ -5453,6 +5453,11 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*c?:! y::! Y
 :*c?:! z::! Z
 
+;EMAILS
+:*:dsuemail::Elliott.DuCharme@trojans.dsu.edu
+:*:maingmail::ellduc4@gmail.com
+:*:schoolgmail::duch_ell@students.cps.k12.mn.us
+
 ;Automatically change things like f1 to F1; makes life easier.
 :*:f1::F1
 :*:f2::F2
