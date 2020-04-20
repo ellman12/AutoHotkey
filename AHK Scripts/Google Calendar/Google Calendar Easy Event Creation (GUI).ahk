@@ -14,26 +14,22 @@ SetControlDelay, -1
 SendMode Input
 DetectHiddenWindows, On
 #SingleInstance force
-#Persistent
+; #Persistent
 ;OPTIMIZATIONS END
 
 /*
 * This is the ultimate Google Calendar script.
-* It allows the user to easily enter many events in a user-friendly GUI,
+* It allows me to easily enter many events in a user-friendly GUI,
 * and the script sends all the keystrokes in a Google Calendar Firefox window to create the events, one by one.
+* There is also support for "Working <Start Time> to <End Time>" format, which makes inserting my work schedule way easier.
 * Development started 3/21/2020 5:10 PM.
+*
 * One important thing to note is that in Google Calendar, you can have it create premade notifications by default.
 * This saves a lot of time and makes life easier for both the programmer and the user.
+*
+* HUGE thanks to u/Curpee89 of r/AutoHotkey for helping me with many problems I had while making this script.
+* https://www.reddit.com/r/AutoHotkey/comments/fxu9gk/help_with_two_gui_problems/
 */
-
-;HUGE thanks to u/Curpee89 of r/AutoHotkey for helping me with many problems I had while making this script.
-;https://www.reddit.com/r/AutoHotkey/comments/fxu9gk/help_with_two_gui_problems/
-
-;TODO:
-;Make the color DDL text color change based on what color is selected. (gLabel is created already).
-;Make stuff functions.
-;If event is marked as working, GUIcontol the end date as whatever the start date is. And/or just don't send that value when creating the event.
-;End date defaults to Start Date, unless end date is modified.
 
 ;Arrays for tracking all of the user-inputted data.
 eventNameArray := []
@@ -46,11 +42,15 @@ endTimeArray := []
 eventColorArray := []
 eventDescriptionArray := []
 
+currentArrayIndex := 1
+
+;Used to stop the first while loop after the GUI is no longer needed (when events start to get created).
+GUIActive := "true"
+
 ;************CONSTANTS************
 ;So AHK and the programmer don't get confused.
 GCALGUI := "Google Calendar Script GUI"
 
-;The following are all the x and y values, control widths, etc.
 PIXELS_BETWEEN_CONTROL_AND_NEXT_SECTION := 35
 PIXELS_BETWEEN_SECTION_TITLE_AND_FIRST_CONTROL := 50
 
@@ -65,6 +65,9 @@ ALL_DAY_EVENT_CHECKBOX_Y := 85
 
 WORKING_THIS_DAY_X := 5
 WORKING_THIS_DAY_Y := 115
+
+SAME_DAY_EVENT_X := 205
+SAME_DAY_EVENT_Y := ALL_DAY_EVENT_CHECKBOX_Y
 
 START_DATE_TIME_TEXT_X := 5
 START_DATE_TIME_TEXT_Y := 160
@@ -130,27 +133,31 @@ GUI, GCALGUI:Add, Checkbox, x%ALL_DAY_EVENT_CHECKBOX_X% y%ALL_DAY_EVENT_CHECKBOX
 GUI, GCALGUI:Font, s14
 GUI, GCALGUI:Add, Checkbox, x%WORKING_THIS_DAY_X% y%WORKING_THIS_DAY_Y% gScheduledToWorkLabel vScheduledToWorkVar, Working this day?
 
+;************SAME DAY EVENT STUFF************
+GUI, GCALGUI:Font, s14
+GUI, GCALGUI:Add, Checkbox, x%SAME_DAY_EVENT_X% y%SAME_DAY_EVENT_Y% vSameDayEventVar Checked, Same day event?
+
 ;************START DATE STUFF************
 GUI, GCALGUI:Font, underline s18
 GUI, GCALGUI:Add, Text, x%START_DATE_TIME_TEXT_X% y%START_DATE_TIME_TEXT_Y%, Start Date and Time
 
 GUI, GCALGUI:Font, norm s14
-GUI, GCALGUI:Add, DateTime, x%START_DATE_DATETIME_X% y%START_DATE_DATETIME_Y% w%START_END_DATE_WIDTH% vStartDateVar, dddd MMMM d, yyyy
+GUI, GCALGUI:Add, DateTime, x%START_DATE_DATETIME_X% y%START_DATE_DATETIME_Y% w%START_END_DATE_WIDTH% vStartDateVar Right, dddd MMMM d, yyyy
 
 ;************START TIME STUFF************
-GUI, GCALGUI:Font, norm s14
-GUI, GCALGUI:Add, DateTime, x%START_TIME_DATETIME_X% y%START_TIME_DATETIME_Y% w%START_END_TIME_WIDTH% vStartTimeVar, h:mm tt
+GUI, GCALGUI:Font, norm s14                                                                                         ;This starts it at 3:00 PM.
+GUI, GCALGUI:Add, DateTime, x%START_TIME_DATETIME_X% y%START_TIME_DATETIME_Y% w%START_END_TIME_WIDTH% vStartTimeVar Choose20020418150000 Right, h:mm tt
 
 ;************END DATE STUFF************
 GUI, GCALGUI:Font, underline s18
 GUI, GCALGUI:Add, Text, x%END_DATE_TIME_TEXT_X% y%END_DATE_TIME_TEXT_Y%, End Date and Time
 
 GUI, GCALGUI:Font, norm s14
-GUI, GCALGUI:Add, DateTime, x%END_DATE_DATETIME_X% y%END_DATE_DATETIME_Y% w%START_END_DATE_WIDTH% vEndDateVar, dddd MMMM d, yyyy
+GUI, GCALGUI:Add, DateTime, x%END_DATE_DATETIME_X% y%END_DATE_DATETIME_Y% w%START_END_DATE_WIDTH% vEndDateVar Right, dddd MMMM d, yyyy
 
 ;************END TIME STUFF************
-GUI, GCALGUI:Font, norm s14
-GUI, GCALGUI:Add, DateTime, x%END_TIME_DATETIME_X% y%END_TIME_DATETIME_Y% w%START_END_TIME_WIDTH% vEndTimeVar, h:mm tt
+GUI, GCALGUI:Font, norm s14                                                                                   ;This starts it at 4:00 PM.
+GUI, GCALGUI:Add, DateTime, x%END_TIME_DATETIME_X% y%END_TIME_DATETIME_Y% w%START_END_TIME_WIDTH% vEndTimeVar Choose20020418160000 Right, h:mm tt
 
 ;************EVENT COLOR STUFF************
 GUI, GCALGUI:Font, underline s18
@@ -158,6 +165,9 @@ GUI, GCALGUI:Add, Text, x%EVENT_COLOR_TEXT_X% y%EVENT_COLOR_TEXT_Y%, Event Color
 
 GUI, GCALGUI:Font, norm s14
 GUI, GCALGUI:Add, DropDownList, x%EVENT_COLOR_COMBOBOX_X% y%EVENT_COLOR_COMBOBOX_Y% w%EVENT_COLOR_COMBOBOX_WIDTH% gColorDDL vEventColorChoice Sort, Red||Pink|Orange|Yellow|Light Green|Dark Green|Light Blue|Dark Blue|Lavender|Purple|Gray
+
+;************COLOR PREVIEW STUFF************
+GUI, GCALGUI:Add,Progress, x230 y339 w70 h62 BackgroundBlack cRed +Smooth vColorPreviewVar, 100
 
 ;************DESCRIPTION STUFF************
 GUI, GCALGUI:Font, underline s18
@@ -175,30 +185,20 @@ GUI, GCALGUI:Add, UpDown, x%NEXT_PREV_UPDOWN_X% y%NEXT_PREV_UPDOWN_Y% w%NEXT_PRE
 GUI, GCALGUI:Add, Text, x%CURRENT_PAGE_TEXT_X% y%CURRENT_PAGE_TEXT_Y%, Current Page: %NextPrevPageVar%
 
 ;************FINISH BUTTON STUFF************
-GUI, GCALGUI:Font, s14 c008000
+GUI, GCALGUI:Font, s14
 GUI, GCALGUI:Add, Button, x%FINISH_BUTTON_X% y%FINISH_BUTTON_Y% w%FINISH_BUTTON_WIDTH% gFinishButtonLabel, &Finish
 
-;************SHOW THE GUI STUFF************
+;************SHOW THE GUI************
 GUI, GCALGUI:Show, h%GCALGUI_HEIGHT% w%GCALGUI_WIDTH%, Google Calendar Easy Event Creation GUI
 
-GUI, GCALGUI:Submit, NoHide
-return ;End of auto-execute.
-
-;*********************LABELS*********************
-;When the GUI is closed (Red x button, etc).
-GuiClose:
-ExitApp
-return
-
-;When you toggle the All Day checkbox, this stuff is run.
-AllDayCheckBoxLabel:
-    ;Get the checkbox's value.
+;This stuff is always running while the GUI is in use. The Finish button disables it.
+while (GUIActive = "true") {
     GUI, GCALGUI:Submit, NoHide
 
-    ;This prevents both checkboxes from being selected at the same time.
-    ;This would obviously cause problems.
-    if (AllDayCheckBoxVar = 1 && ScheduledToWorkVar = 1) {
-        GuiControl, GCALGUI:,ScheduledToWorkVar, 0
+    ;The Same Day checkbox makes life SO much easier. It even starts out checked!
+    ;Basically, it keeps the end dates the same as the start date while it's checked.
+    if (ScheduledToWorkVar = 1 or SameDayEventVar = 1) {
+        GuiControl, GCALGUI:,EndDateVar, %StartDateVar%
     }
 
     ;If this is checked, disable the start/end time controls, because modifying them doesn't make sense.
@@ -208,6 +208,33 @@ AllDayCheckBoxLabel:
     } else {
         GuiControl, GCALGUI:Enable,StartTimeVar
         GuiControl, GCALGUI:Enable,EndTimeVar
+    }
+
+    ;It also disables the Event Name and End Date controls, since there's no need to type a name/modify the end date.
+    if (ScheduledToWorkVar = 1) {
+        GuiControl, GCALGUI:Disable,EventNameVar
+        GuiControl, GCALGUI:,EventNameVar, N/A
+        GuiControl, GCALGUI:Disable,EndDateVar
+    } else {
+        GuiControl, GCALGUI:Enable,EventNameVar
+        GuiControl, GCALGUI:Enable,EndDateVar
+    }
+
+    ;This sleep statement DRASTICALLY helps reduce the power and CPU usage of the script.
+	Sleep 50
+}
+return ;End of auto-execute.
+
+;*********************LABELS*********************
+;When you toggle the All Day checkbox, this stuff is run.
+AllDayCheckBoxLabel:
+    ;Get the checkbox's value.
+    GUI, GCALGUI:Submit, NoHide
+
+    ;This prevents both checkboxes from being selected at the same time.
+    ;This would obviously cause problems.
+    if (AllDayCheckBoxVar = 1 && ScheduledToWorkVar = 1) {
+        GuiControl, GCALGUI:,ScheduledToWorkVar, 0
     }
 
 return
@@ -223,34 +250,28 @@ ScheduledToWorkLabel:
         GuiControl, GCALGUI:,AllDayCheckBoxVar, 0
     }
 
-    ;It also disables the Event Name and End Date controls, since there's no need to type a name/modify the end date.
-    if (ScheduledToWorkVar = 1) {
-        GuiControl, GCALGUI:Disable,EventNameVar
-        GuiControl, GCALGUI:,EventNameVar, N/A
-        GuiControl, GCALGUI:Disable,EndDateVar
-        ; GuiControl, GCALGUI:Disable,EndTimeVar
-    } else {
-        GuiControl, GCALGUI:Enable,EventNameVar
-        GuiControl, GCALGUI:Enable,EndDateVar
-        ; GuiControl, GCALGUI:Enable,EndTimeVar
-    }
-
 return
 
+;Event color DDL label.
 ColorDDL:
-Switch (eventColorArray[currentArrayIndex]) {
-    ;~ Case "Red": ;Do nothing, since Red is already selected.
-    Case "Pink": Send, {Down 1}
-    Case "Orange": Send, {Down 2}
-    Case "Yellow": Send, {Down 3}
-    Case "Light Green": Send, {Down 4}
-    Case "Dark Green": Send, {Down 5}
-    Case "Light Blue": Send, {Up 5}
-    Case "Dark Blue": Send, {Up 4}
-    Case "Lavender": Send, {Up 3}
-    Case "Purple": Send, {Up 2}
-    Case "Gray": Send, {Up 1}
+
+GUI, GCALGUI:Submit, NoHide ;Store the control contents in their variables, and don't hide the GUI.
+
+Switch (EventColorChoice) {
+    Case "Red":previewColor := "cD50000"
+    Case "Pink":previewColor := "cE67C73"
+    Case "Orange":previewColor := "cF4511E"
+    Case "Yellow":previewColor := "cF6BF26"
+    Case "Light Green":previewColor := "c33B679"
+    Case "Dark Green":previewColor := "c0B8043"
+    Case "Light Blue":previewColor := "c039BE5"
+    Case "Dark Blue":previewColor := "c3F51B5"
+    Case "Lavender":previewColor := "c7986CB"
+    Case "Purple":previewColor := "c8E24AA"
+    Case "Gray":previewColor := "c616161"
 }
+
+GuiControl,+%previewColor%,ColorPreviewVar ;Change the progress bar's color.
 return
 
 ;Label for the UpDown.
@@ -275,7 +296,10 @@ FinishButtonLabel:
     GUI, GCALGUI:Submit
     setAllArrayValues()
 
-    MsgBox, The script will now begin making events. Before you hit OK, make sure that when this MsgBox closes, it'll go into the Google Calendar window.
+    ;Disable the while loop in Auto-execute.
+    GUIActive := "false"
+
+    MsgBox, 262192, Start Creating Events, The script will now begin making events. Before you hit OK`, make sure that when this MsgBox closes`, it'll go into the Google Calendar window.`n`nF10 is also the emergency stop button in case the script goes haywire.
 
     createEvents()
 
@@ -320,6 +344,39 @@ setAllArrayValues() {
     eventDescriptionArray[currentArrayIndex] := DescriptionEditBoxVar
 }
 
+;*********************FUNCTIONS*********************
+;Called at the start of each iteration.
+addEventDateAndTime() {
+    global ;So variables are accessible in this function.
+
+    Sleep 300
+    Send, {Tab 2}
+    Sleep 400
+
+    Send, %newStartDateVar%
+    Sleep 400
+    Send, {Tab}
+    Sleep 400
+
+    Send, %newStartTimeVar%
+    Sleep 400
+    Send, {Tab}
+    Sleep 400
+
+    Send, %newEndTimeVar%
+    Sleep 400
+    Send, {Tab}
+    Sleep 400
+
+    Send, %newEndDateVar%
+    Sleep 400
+
+    Send, {Tab 29}
+    Sleep 550
+    Send, {Space}
+    Sleep 550
+}
+
 ;*********************ACTUALLY CREATING THE EVENTS*********************
 ;This is what actually takes the user data at each index and makes the GCal events.
 createEvents() {
@@ -333,133 +390,121 @@ createEvents() {
         totalArrayIndices := 1
     }
 
+    ToolTip, currentArrayIndex/Event: %currentArrayIndex%`ntotalArrayIndices: %totalArrayIndices%
+
     ;This while loop is used for creating the events, and the right amount of them.
     ;While the current index for the arrays is less than the total number of events.
     ;When they equal, the script is done with its job, and terminates itself.
     while (currentArrayIndex <= totalArrayIndices) {
 
         ;If there isn't an event at this index, don't do anything and increment the array index by 1.
-        if (eventNameArray[currentArrayIndex] = "") {
+        ;Idk if this actually does anything but it's included anyway.
+        if (eventNameArray[currentArrayIndex] != "") {
 
-        ;Starts creating the event.
-        Send, c
-        Sleep, 1000
+            ;Starts creating the event.
+            Send, c
+            Sleep, 1000
 
-        ;Format the date and time variables properly.
-        FormatTime, newStartDateVar, % startDateArray[currentArrayIndex], M/d/yyyy
-        FormatTime, newStartTimeVar, % startTimeArray[currentArrayIndex], h:mm tt
-        FormatTime, newEndDateVar, % endDateArray[currentArrayIndex], M/d/yyyy
-        FormatTime, newEndTimeVar, % endTimeArray[currentArrayIndex], h:mm tt
+            ;Format the date and time variables properly.
+            FormatTime, newStartDateVar, % startDateArray[currentArrayIndex], M/d/yyyy
+            FormatTime, newStartTimeVar, % startTimeArray[currentArrayIndex], h:mm tt
+            FormatTime, newEndDateVar, % endDateArray[currentArrayIndex], M/d/yyyy
+            FormatTime, newEndTimeVar, % endTimeArray[currentArrayIndex], h:mm tt
 
-        ;If this specific event is a working event (is checked),
-        ;override (don't even use) the event name and instead send "Working *startTime* to *endTime*".
-        if (scheduledToWorkBoolArray[currentArrayIndex] = 1) {
+            ;If this specific event is a working event (is checked),
+            ;override (don't even use) the event name and instead send "Working *startTime* to *endTime*".
+            if (scheduledToWorkBoolArray[currentArrayIndex] = 1) {
 
-            Send, Working %newStartTimeVar% to %newEndTimeVar%
-            
-            Sleep 500
-            Send, {Tab 2}
-            Sleep 500
+                Send, Working %newStartTimeVar% to %newEndTimeVar%
+                addEventDateAndTime()
 
-            Send, %newStartDateVar%
-            Sleep 550
-            Send, {Tab}
-
-            Send, %newStartTimeVar%
-            Sleep 550
-            Send, {Tab}
-
-            Send, %newEndTimeVar%
-            Sleep 550
-
-            Send, {Tab 30}
-            Sleep 550
-            Send, {Space}
-            Sleep 850
-
-        ;If it's not marked as a working event.
-        } else {
-
-            Send, % eventNameArray[currentArrayIndex]
-            Sleep 600
-            Send, {Tab 2}
-            Sleep 500
-
-            ;If an event is marked as all day.
-            if (eventAllDayBoolArray[currentArrayIndex] = 1) {
-
-                Send, %newStartDateVar%
-                Sleep 400
-                Send, {Tab 3}
-                Sleep 600
-                Send, %newEndDateVar%
-                Sleep 600
-                Send, {Tab 2}
-                Sleep 600
-                Send, {Space}
-                Sleep 600
-                Send, {Tab 26}
-                Sleep 600
-                Send, {Space}
-                Sleep 600
-
-            ;If an event is completely normal (no all day/working).
+            ;If it's not marked as a working event.
             } else {
 
-                Send, %newStartDateVar%
-                Sleep 5500
-                Send, {Tab}
-                Sleep 5500
+                Send, % eventNameArray[currentArrayIndex]
 
-                Send, %newStartTimeVar%
-                Sleep 5500
-                Send, {Tab}
-                Sleep 5500
+                ;If an event is marked as all day.
+                if (eventAllDayBoolArray[currentArrayIndex] = 1) {
 
-                Send, %newEndTimeVar%
-                Sleep 5500
-                Send, {Tab}
-                Sleep 5500
+                    Sleep 400
+                    Send, {Tab 2}
+                    Sleep 400
+                    Send, %newStartDateVar%
+                    Sleep 400
+                    Send, {Tab 3}
+                    Sleep 400
+                    Send, %newEndDateVar%
+                    Sleep 400
+                    Send, {Tab 2}
+                    Sleep 400
+                    Send, {Space}
+                    Sleep 400
+                    Send, {Tab 26}
+                    Sleep 400
+                    Send, {Space}
+                    Sleep 400
 
-                Send, %newEndDateVar%
-                Sleep 5500
+                ;If an event is completely normal (no all day/working).
+                } else {
+                    addEventDateAndTime()
+                }
 
-                Send, {Tab 29}
-                Sleep 5500
-                Send, {Space}
-                Sleep 8500
             }
+                ;Regardless of which type of event it is, this Switch statement is run.
+                ;Select the right color.
+                Switch (eventColorArray[currentArrayIndex]) {
+                    ;Case "Red": ;Do nothing, since Red is already selected.
+                    Case "Pink": Send, {Down 1}
+                    Case "Orange": Send, {Down 2}
+                    Case "Yellow": Send, {Down 3}
+                    Case "Light Green": Send, {Down 4}
+                    Case "Dark Green": Send, {Down 5}
+                    Case "Light Blue": Send, {Up 5}
+                    Case "Dark Blue": Send, {Up 4}
+                    Case "Lavender": Send, {Up 3}
+                    Case "Purple": Send, {Up 2}
+                    Case "Gray": Send, {Up 1}
+                }
 
-        }
+                ;Click the selected button to select that color.
+                Sleep 800
+                Send, {Enter}
+                Sleep 800
 
-            ;Regardless of which type of event it is, this Switch statement is run.
-            ;Select the right color.
-            Switch (eventColorArray[currentArrayIndex]) {
-                ;~ Case "Red": ;Do nothing, since Red is already selected.
-                Case "Pink": Send, {Down 1}
-                Case "Orange": Send, {Down 2}
-                Case "Yellow": Send, {Down 3}
-                Case "Light Green": Send, {Down 4}
-                Case "Dark Green": Send, {Down 5}
-                Case "Light Blue": Send, {Up 5}
-                Case "Dark Blue": Send, {Up 4}
-                Case "Lavender": Send, {Up 3}
-                Case "Purple": Send, {Up 2}
-                Case "Gray": Send, {Up 1}
-            }
+                ;If there isn't stuff in the description array at this index, move back to the save button.
+                ;Else, move over to there and put those contents in that field, then move back to the save button.
+                if (eventDescriptionArray[currentArrayIndex] = "") {
 
-            ;Move to and click the save button; finish creating the event.
-            if (eventAllDayBoolArray[currentArrayIndex]) {
-                Send, +{Tab 29}
-            } else {
-                Send, +{Tab 33}
-            }
+                    ;Move to and click the save button; finish creating the event.
+                    ;There's less notifications to tab through when it's all day.
+                    if (eventAllDayBoolArray[currentArrayIndex]) {
+                        Send, +{Tab 29}
+                    } else {
+                        Send, +{Tab 33}
+                    }
 
-            Sleep 2000
-            
-            ;Click the save button.
-            Send, {Enter}
-            Sleep 2500
+                } else {
+
+                    Send, {Tab 5}
+                    Sleep 550
+                    Send, % eventDescriptionArray[currentArrayIndex]
+                    Sleep 3500
+
+                    ;Move to and click the save button; finish creating the event.
+                    ;There's less notifications to tab through when it's all day.
+                    if (eventAllDayBoolArray[currentArrayIndex]) {
+                        Send, +{Tab 34}
+                    } else {
+                        Send, +{Tab 38}
+                    }
+
+                }
+
+                Sleep 800
+
+                ;Click the save button.
+                Send, {Enter}
+                Sleep 800
 
         } ;End of the if empty string if statement.
 
@@ -467,11 +512,11 @@ createEvents() {
 
     } ;End of the while loop.
 
-} ;End of createEvents().
-ExitApp
-;End of the script.
+    ExitApp ;End of the script.
 
-;TODO TEMP Emergency stop.
+} ;End of createEvents().
+
+;Emergency stop button.
 F10::
 Reload
 return
