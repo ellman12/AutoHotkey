@@ -19,9 +19,11 @@ DetectHiddenWindows, On
 
 /*
 * This is the ultimate Google Calendar script.
-* It allows the user to easily enter many events in a user-friendly GUI,
+* It allows me to easily enter many events in a user-friendly GUI,
 * and the script sends all the keystrokes in a Google Calendar Firefox window to create the events, one by one.
+* There is also support for "Working <Start Time> to <End Time>" format, which makes inserting my work schedule way easier.
 * Development started 3/21/2020 5:10 PM.
+*
 * One important thing to note is that in Google Calendar, you can have it create premade notifications by default.
 * This saves a lot of time and makes life easier for both the programmer and the user.
 *
@@ -42,6 +44,7 @@ eventDescriptionArray := []
 
 currentArrayIndex := 1
 
+;Used to stop the first while loop after the GUI is no longer needed (when events start to get created).
 GUIActive := "true"
 
 ;************CONSTANTS************
@@ -164,7 +167,7 @@ GUI, GCALGUI:Font, norm s14
 GUI, GCALGUI:Add, DropDownList, x%EVENT_COLOR_COMBOBOX_X% y%EVENT_COLOR_COMBOBOX_Y% w%EVENT_COLOR_COMBOBOX_WIDTH% gColorDDL vEventColorChoice Sort, Red||Pink|Orange|Yellow|Light Green|Dark Green|Light Blue|Dark Blue|Lavender|Purple|Gray
 
 ;************COLOR PREVIEW STUFF************
-GUI, GCALGUI:Add,Progress, x230 y339 w70 h62 BackgroundBlack cRed +Smooth vColorPreviewVal, 100
+GUI, GCALGUI:Add,Progress, x230 y339 w70 h62 BackgroundBlack cRed +Smooth vColorPreviewVar, 100
 
 ;************DESCRIPTION STUFF************
 GUI, GCALGUI:Font, underline s18
@@ -192,9 +195,29 @@ GUI, GCALGUI:Show, h%GCALGUI_HEIGHT% w%GCALGUI_WIDTH%, Google Calendar Easy Even
 while (GUIActive = "true") {
     GUI, GCALGUI:Submit, NoHide
 
-    ;The same day checkbox makes life SO much easier. It even starts out checked!
+    ;The Same Day checkbox makes life SO much easier. It even starts out checked!
+    ;Basically, it keeps the end dates the same as the start date while it's checked.
     if (ScheduledToWorkVar = 1 or SameDayEventVar = 1) {
         GuiControl, GCALGUI:,EndDateVar, %StartDateVar%
+    }
+
+    ;If this is checked, disable the start/end time controls, because modifying them doesn't make sense.
+    if (AllDayCheckBoxVar = 1) {
+        GuiControl, GCALGUI:Disable,StartTimeVar
+        GuiControl, GCALGUI:Disable,EndTimeVar
+    } else {
+        GuiControl, GCALGUI:Enable,StartTimeVar
+        GuiControl, GCALGUI:Enable,EndTimeVar
+    }
+
+    ;It also disables the Event Name and End Date controls, since there's no need to type a name/modify the end date.
+    if (ScheduledToWorkVar = 1) {
+        GuiControl, GCALGUI:Disable,EventNameVar
+        GuiControl, GCALGUI:,EventNameVar, N/A
+        GuiControl, GCALGUI:Disable,EndDateVar
+    } else {
+        GuiControl, GCALGUI:Enable,EventNameVar
+        GuiControl, GCALGUI:Enable,EndDateVar
     }
 
     ;This sleep statement DRASTICALLY helps reduce the power and CPU usage of the script.
@@ -214,15 +237,6 @@ AllDayCheckBoxLabel:
         GuiControl, GCALGUI:,ScheduledToWorkVar, 0
     }
 
-    ;If this is checked, disable the start/end time controls, because modifying them doesn't make sense.
-    if (AllDayCheckBoxVar = 1) {
-        GuiControl, GCALGUI:Disable,StartTimeVar
-        GuiControl, GCALGUI:Disable,EndTimeVar
-    } else {
-        GuiControl, GCALGUI:Enable,StartTimeVar
-        GuiControl, GCALGUI:Enable,EndTimeVar
-    }
-
 return
 
 ;Label for the "Working this day?" CheckBox.
@@ -234,16 +248,6 @@ ScheduledToWorkLabel:
     ;This would obviously cause problems.
     if (ScheduledToWorkVar = 1 && AllDayCheckBoxVar = 1) {
         GuiControl, GCALGUI:,AllDayCheckBoxVar, 0
-    }
-
-    ;It also disables the Event Name and End Date controls, since there's no need to type a name/modify the end date.
-    if (ScheduledToWorkVar = 1) {
-        GuiControl, GCALGUI:Disable,EventNameVar
-        GuiControl, GCALGUI:,EventNameVar, N/A
-        GuiControl, GCALGUI:Disable,EndDateVar
-    } else {
-        GuiControl, GCALGUI:Enable,EventNameVar
-        GuiControl, GCALGUI:Enable,EndDateVar
     }
 
 return
@@ -267,7 +271,7 @@ Switch (EventColorChoice) {
     Case "Gray":previewColor := "c616161"
 }
 
-GuiControl,+%previewColor%,ColorPreviewVal ;Change the progress bar's color.
+GuiControl,+%previewColor%,ColorPreviewVar ;Change the progress bar's color.
 return
 
 ;Label for the UpDown.
