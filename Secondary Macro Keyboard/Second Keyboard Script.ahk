@@ -19,42 +19,103 @@ FileRead, pressedKey, %keypressedTxtFileDir%
 ;See which key was pressed, and act on that.
 Switch (pressedKey) {
 
-    ;These macros are File Explorer specific; don't want them activating in other programs.
-    #IfWinActive, ahk_exe Explorer.EXE
+   
     ;In File Explorer, size all columns to fit.
+    ;In Firefox/Chrome go to tabs 1–8, or last tab (9).
     Case "1":
-    Send, !v ;Open View menu.
-    Send, sf ;Alt code for sizing columns.
+        IfWinActive, ahk_exe Explorer.EXE
+        {
+            Send, !v ;Open View menu.
+            Send, sf ;Alt code for sizing columns.
+        }
+        else IfWinActive, ahk_exe Firefox.exe
+            Send, ^1
+        else IfWinActive, ahk_exe chrome.exe
+            Send, ^1
     return
 
     ;In File Explorer, sort by name.
     Case "2":
-    Send, !v ;Open View menu.
-    Send, o ;Alt code for opening sort by menu.
-    Send, {Enter} ;Select it (cursor is on this one by default).
+        IfWinActive, ahk_exe Explorer.EXE
+        {
+            Send, !v ;Open View menu.
+            Send, o ;Alt code for opening sort by menu.
+            Send, {Enter} ;Select it (cursor is on this one by default).
+        }
+        else IfWinActive, ahk_exe Firefox.exe
+            Send, ^2
+        else IfWinActive, ahk_exe chrome.exe
+            Send, ^2
     return
 
     ;In File Explorer, sort by date modified.
     Case "3":
-    Send, !v ;Open View menu.
-    Send, o ;Alt code for opening sort by menu.
-    Send, {Down} ;Go to this menu item.
-    Send, {Enter} ;Select it.
+    IfWinActive, ahk_exe Explorer.EXE
+        {
+        Send, !v ;Open View menu.
+        Send, o ;Alt code for opening sort by menu.
+        Send, {Down} ;Go to this menu item.
+        Send, {Enter} ;Select it.
+        }
+        else IfWinActive, ahk_exe Firefox.exe
+            Send, ^3
+        else IfWinActive, ahk_exe chrome.exe
+            Send, ^3
     return
 
     ;In File Explorer, invert selection.
     Case "4":
-    Send, !h ;Open the Home menu.
-    Send, si ;Alt code for invert selection.
+    IfWinActive, ahk_exe Explorer.EXE
+    {
+        Send, !h ;Open the Home menu.
+        Send, si ;Alt code for invert selection.
+    }
+    else IfWinActive, ahk_exe Firefox.exe
+        Send, ^4
+    else IfWinActive, ahk_exe chrome.exe
+        Send, ^4
     return
 
     ;Rename an item in File Explorer.
     Case "5":
-    Send, !h
-    Send, r
+    IfWinActive, ahk_exe Explorer.EXE
+    {
+        Send, !h
+        Send, r
+    }
+    else IfWinActive, ahk_exe Firefox.exe
+        Send, ^5
+    else IfWinActive, ahk_exe chrome.exe
+        Send, ^5
     return
 
-    #If
+    Case "6":
+    IfWinActive, ahk_exe Firefox.exe
+        Send, ^6
+    else IfWinActive, ahk_exe chrome.exe
+        Send, ^6
+    return
+
+    Case "7":
+    IfWinActive, ahk_exe Firefox.exe
+        Send, ^7
+    else IfWinActive, ahk_exe chrome.exe
+        Send, ^7
+    return
+
+    Case "8":
+    IfWinActive, ahk_exe Firefox.exe
+        Send, ^8
+    else IfWinActive, ahk_exe chrome.exe
+        Send, ^8
+    return
+
+    Case "9":
+    IfWinActive, ahk_exe Firefox.exe
+        Send, ^9
+    IfWinActive, ahk_exe chrome.exe
+        Send, ^9
+    return
 
     ;Open the B: drive.
     Case "a":Run, explorer.exe "B:\"
