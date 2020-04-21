@@ -36,8 +36,6 @@ autoSelectProfiles() {
 		currentProfile = MSWord
 	else if Instr(activeWindowTitle, " - Visual Studio Code")
 		currentProfile = VSCode
-	; else if Instr(activeWindowTitle, "DOOM") ;TODO Switch to Any Game or something...
-		; currentProfile = DOOM
 	else
 		currentProfile = Default
 

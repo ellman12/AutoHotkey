@@ -117,6 +117,35 @@ Switch (pressedKey) {
         Send, ^9
     return
 
+    ;Reset zoom.
+    Case "0":
+    if (currentProfile = "Docs") {
+        Send, !/zoom 100
+        Sleep 420
+        Send, {Enter}
+    }
+    else if (currentProfile = "VSCode")
+        Send, ^!0
+    else
+        Send, ^0
+    return
+
+    ;Zoom in.
+    Case "equals":
+    if (currentProfile = "Docs" || currentProfile = "VSCode")
+        Send, ^!= ;Technically it's ^!+, but sending + is technically +=... It just works ;)
+    else
+        Send, ^=
+    return
+
+    ;Zoom out.
+    Case "minus":
+    if (currentProfile = "Docs" || currentProfile = "VSCode")
+        Send, ^!-
+    else
+        Send, ^-
+    return
+
     ;Open the B: drive.
     Case "a":Run, explorer.exe "B:\"
 
