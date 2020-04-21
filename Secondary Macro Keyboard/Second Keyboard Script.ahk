@@ -113,7 +113,7 @@ Switch (pressedKey) {
     Case "9":
     IfWinActive, ahk_exe Firefox.exe
         Send, ^9
-    IfWinActive, ahk_exe chrome.exe
+    else IfWinActive, ahk_exe chrome.exe
         Send, ^9
     return
 
