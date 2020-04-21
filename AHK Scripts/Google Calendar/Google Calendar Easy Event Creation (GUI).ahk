@@ -22,10 +22,14 @@ DetectHiddenWindows, On
 * It allows me to easily enter many events in a user-friendly GUI,
 * and the script sends all the keystrokes in a Google Calendar Firefox window to create the events, one by one.
 * There is also support for "Working <Start Time> to <End Time>" format, which makes inserting my work schedule way easier.
-* Development started 3/21/2020 5:10 PM.
+* Development started 3/21/2020 5:10 PM, and finished 4/20/2020 7:10 PM.
 *
 * One important thing to note is that in Google Calendar, you can have it create premade notifications by default.
 * This saves a lot of time and makes life easier for both the programmer and the user.
+* My default notifications:
+*   Not all day: 40 mins, 2, 5, and 10 hours before.
+*   All day: 0 days before at 6 AM, 1 & 2 days before at 9 AM.
+* If you use a different scheme, you will have to modify the script to accommodeat this.
 *
 * HUGE thanks to u/Curpee89 of r/AutoHotkey for helping me with many problems I had while making this script.
 * https://www.reddit.com/r/AutoHotkey/comments/fxu9gk/help_with_two_gui_problems/
@@ -226,6 +230,13 @@ while (GUIActive = "true") {
 return ;End of auto-execute.
 
 ;*********************LABELS*********************
+;Something I learned about from this forum post: https://autohotkey.com/board/topic/94449-guiclose-doesnt-fire-on-the-close-button/#entry595167
+;A normal GuiClose: label won't work if the GUI has a name, like this one.
+;To fix this, you go <GUI name>GuiClose:
+GCALGUIGuiClose:
+ExitApp
+return
+
 ;When you toggle the All Day checkbox, this stuff is run.
 AllDayCheckBoxLabel:
     ;Get the checkbox's value.
@@ -253,10 +264,12 @@ ScheduledToWorkLabel:
 return
 
 ;Event color DDL label.
+;This label is called when something in the DDL is selected, and also when the UpDown label is called.
 ColorDDL:
 
 GUI, GCALGUI:Submit, NoHide ;Store the control contents in their variables, and don't hide the GUI.
 
+;Used for changing the preview color.
 Switch (EventColorChoice) {
     Case "Red":previewColor := "cD50000"
     Case "Pink":previewColor := "cE67C73"
@@ -278,15 +291,22 @@ return
 PrevNextPageLabel:
     ;If this variable doesn't exist/is null, initialize it to 1.
     ;Basically the array and page index variables are separate because the page index is changed
-    ;by +/- 1 before this label stuff is run, thus stuff is stored in the desired array index + 1 = not what I want.
+    ;by +/- 1 before this label stuff is run, thus stuff is stored in the desired array index + 1, which is NOT what I want.
     if (currentArrayIndex = "")
         currentArrayIndex := 1
     GUI, GCALGUI:Submit, NoHide ;Store the control contents in their variables, and don't hide the GUI.
-    setAllArrayValues()
-    setGUIControlValues()
+    setAllArrayValues() ;Store values in the arrays.
+    setGUIControlValues() ;Update the GUI controls with stored values, if any.
     currentArrayIndex := currentGUIPage
 
-    GuiControl, Focus, EventNameVar
+    ;Put the event name control into focus.
+    GuiControl, GCALGUI:Focus, EventNameVar
+
+    ;When going to a new page, default the color to Red, since GCal events default to Red and it just makes life much easier.
+    if (eventNameArray[currentArrayIndex] = "")
+        GuiControl,GCALGUI:ChooseString,EventColorChoice,Red
+
+    Gosub, ColorDDL ;Update the preview color.
 return
 
 ;When this is pressed, start creating the Google Calendar events.
@@ -299,10 +319,17 @@ FinishButtonLabel:
     ;Disable the while loop in Auto-execute.
     GUIActive := "false"
 
+    ;Give a final prompt so the user can prepare the Firefox window.
     MsgBox, 262192, Start Creating Events, The script will now begin making events. Before you hit OK`, make sure that when this MsgBox closes`, it'll go into the Google Calendar window.`n`nF10 is also the emergency stop button in case the script goes haywire.
 
+    ;Actually start creating events.
     createEvents()
 
+return
+
+;Used when creating events to tell you which index you're at, and how many in total; it follow the mouse, somehow.
+ToolTip:
+ToolTip, currentArrayIndex/Event: %currentArrayIndex%`ntotalArrayIndices: %totalArrayIndices%
 return
 
 ;*********************FUNCTIONS*********************
@@ -312,11 +339,12 @@ setGUIControlValues() {
 
     ;Check if this index has already been defined.
     ;Basically, if the page doesn't have an event name, you can't do anything.
-    ;In Google Calendar, every event needs an event name.
+    ;In Google Calendar, every event needs an event name
+    ;(although you can technically NOT give events names, that's stupid and we're ignoring that).
     if (eventNameArray[currentGUIPage] = "") {
         ;Initialize any of the objects that need default values here.
         eventAllDayBoolArray[currentGUIPage] := 0 ;defaults to unchecked
-        scheduledToWorkBoolArray[currentGUIPage] := 0 ;defaults to checked
+        scheduledToWorkBoolArray[currentGUIPage] := 0 ;defaults to unchecked
     }
 
     GuiControl,GCALGUI:,EventNameVar, % eventNameArray[currentGUIPage]
@@ -330,7 +358,7 @@ setGUIControlValues() {
     GuiControl,GCALGUI:,DescriptionEditBoxVar, % eventDescriptionArray[currentGUIPage]
 }
 
-;At the current array index (the current page number), store the control's contents.
+;Store the contents of the controls into their respective arrays.
 setAllArrayValues() {
 	global ;So the arrays can be seen in this function.
     eventNameArray[currentArrayIndex] := EventNameVar
@@ -344,11 +372,14 @@ setAllArrayValues() {
     eventDescriptionArray[currentArrayIndex] := DescriptionEditBoxVar
 }
 
-;*********************FUNCTIONS*********************
-;Called at the start of each iteration.
+;Called at the start of each iteration of the 2nd while loop (below) for working and not all-day events.
 addEventDateAndTime() {
     global ;So variables are accessible in this function.
 
+    ;Basic keystrokes for adding the event name, and start/end date/time.
+    ;It then goes to and selects the event color menu.
+    ;The number of tabs for an all-day event might be more, less, or the same,
+    ;depending on how many you configure in the GCal settings.
     Sleep 300
     Send, {Tab 2}
     Sleep 400
@@ -382,19 +413,21 @@ addEventDateAndTime() {
 createEvents() {
     global ;So the arrays can be seen in this function.
 
+    ;Reset this to 1 and get how many events/pages there are.
     currentArrayIndex := 1
     totalArrayIndices := eventNameArray.MaxIndex()
 
-    ;If null, make 1.
+    ;If null, make 1. I think this is only needed if there's only 1 event.
     if (totalArrayIndices = "") {
         totalArrayIndices := 1
     }
 
     ToolTip, currentArrayIndex/Event: %currentArrayIndex%`ntotalArrayIndices: %totalArrayIndices%
+    SetTimer, Tooltip, 30 ;Sets a timer to move the tooltip around with the mouse cursor.
 
     ;This while loop is used for creating the events, and the right amount of them.
     ;While the current index for the arrays is less than the total number of events.
-    ;When they equal, the script is done with its job, and terminates itself.
+    ;The script terminates itself when it's done.
     while (currentArrayIndex <= totalArrayIndices) {
 
         ;If there isn't an event at this index, don't do anything and increment the array index by 1.
