@@ -5539,3 +5539,5 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::compter::computer
 :*:tio::to
 :*:ahkk::AutoHotKey
+::oiut::out
+::wifi::Wi-Fi
