@@ -416,16 +416,6 @@ return
 Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts
 return
 
-;Moves the active window to the primary display (first monitor).
-#Home::
-WinMove, %mainLoopActWinTitle%,, 500, 300
-return
-
-;Moves the active window to the secondary display (second monitor).
-#End::
-WinMove, %mainLoopActWinTitle%,, -1400, 300
-return
-
 ;*****************************************HOTKEYS FOR MULTIPLE POINTER POSITIONS*********************************
 ;The basic format is like this:
 ;Ctrl + Shift + x: save position. X is 1–4.
