@@ -335,10 +335,38 @@ MouseMove, 0, 64, 0, R
 Sleep 150
 return
 
-#IfWinActive, ahk_exe Zoom.exe
-$PrintScreen::
-Send, #{PrintScreen}
+;Like video and remove from "Watch on Treadmill" playlist.
+#k::
+MouseGetPos, mousePosXWinK, mousePosYWinK
+;Click like button.
+MouseMove, 715, 805, 0
+Send, {Click}
+Sleep 1000
+
+;Click playlists button
+MouseMove, 1003, 805, 0
+Send, {Click}
+Sleep 2000
+
+;Remove from playlist
+MouseMove, 710, 384, 0
+Send, {Click}
+Sleep 1000
+Send, {Esc}
+
+;Start position
+MouseMove, %mousePosXWinK%, %mousePosYWinK%, 0
+
 return
+
+#IfWinActive, ahk_exe Zoom.exe
+$PrintScreen::Send, #{PrintScreen}
+
+;"Hide" the mouse pointer, and hide the Zoom meeting controls.
+$CapsLock::
+MouseGetPos, mousePosX, mousePosY
+MouseMove, 1920, 540, 0
+Send, {LAlt}
 #If
 
 ;*****************************************HOTKEYS FOR MULTIPLE POINTER POSITIONS*********************************
