@@ -109,6 +109,7 @@ local keyCodeArray = {
 	[9]   = "tab",
 	[20]  = "capslock",
 	[18]  = "alt",
+        [91] = "windows key",
 
 	--No clue what this is for.
 	[string.byte('Q')] = "q",
