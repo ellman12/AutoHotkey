@@ -126,8 +126,15 @@ if WinActive("ahk_exe firefox.exe") {
     Send, {AppsKey}
     Sleep 100
     Send, p
-} else {
-    MsgBox, G5 only works with Firefox.
+} else if WinActive("ahk_exe chrome.exe") {
+    Suspend, On ;So my F6 hotkey doesn't get triggered.
+    Sleep 2000
+    Send, {F6 2}
+    Sleep 2000
+    Send, {AppsKey}
+    Sleep 2000
+    Send, p
+    Suspend, Off
 }
 return
 
