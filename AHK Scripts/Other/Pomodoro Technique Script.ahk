@@ -55,7 +55,7 @@ GUI, MainGUI:Add, Picture, w70 h70 x10 y10, %A_ScriptDir%\Pomodoro GUI Script Ic
 
 ;************WORDS OF ENCOURAGEMENT************
 GUI, MainGUI:Font, norm s12
-GUI, MainGUI:Add, Text, w100 h75, You can do it!
+GUI, MainGUI:Add, Text, x10 y90 w100 h75, You can do it!
 
 ;************START A NEW TASK!************
 GUI, MainGUI:Font, bold s14
@@ -92,18 +92,18 @@ GUI, MainGUI:Add, GroupBox, x327 y149 w150 h85, What's Next?
 GUI, MainGUI:Font, norm s12
 GUI, MainGUI:Add, Text, x336 y180 w140 h50, Start a new task! ;Starting text.
 
-;************BUTTONS FOR THE OTHER GUIS************
+;************
+GUI, MainGUI:Add, GroupBox, x3 y130 w121 h127, Other GUIs
+
 ;************SAFE WINDOWS************
 GUI, MainGUI:Font, norm s12
-GUI, MainGUI:Add, Button, x122 y217, Safe Windows
+GUI, MainGUI:Add, Button, x4 y150, Safe Windows
 
 ;************STATS************
-GUI, MainGUI:Font, norm s12
-GUI, MainGUI:Add, Button, x246 y217, Stats
+GUI, MainGUI:Add, Button, x4 y185, Stats
 
 ;************OPTIONS************
-GUI, MainGUI:Font, norm s12
-GUI, MainGUI:Add, Button, x122 y255, Options
+GUI, MainGUI:Add, Button, x4 y220, Options
 
 ;************TIMER PROGRESS************
 GUI, MainGUI:Add, Progress, x326 y250 w151 h20 cEB3834 vTimerProgress, 100
