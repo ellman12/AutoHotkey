@@ -61,7 +61,7 @@ GUI, MainGUI:Add, Text, x10 y90 w100 h75, You can do it!
 GUI, MainGUI:Font, bold s14
 GUI, MainGUI:Add, GroupBox, x123 y10 w191 h200, Start a new task!
 
-;************DONE TASK STUFF************
+;************DONE TASKS STUFF************
 GUI, MainGUI:Font, bold s14
 GUI, MainGUI:Add, GroupBox, x327 y10 w150 h135, Done Tasks
 
@@ -92,7 +92,7 @@ GUI, MainGUI:Add, GroupBox, x327 y149 w150 h85, What's Next?
 GUI, MainGUI:Font, norm s12
 GUI, MainGUI:Add, Text, x336 y180 w140 h50, Start a new task! ;Starting text.
 
-;************
+;************OTHER GUI GROUPBOX************
 GUI, MainGUI:Add, GroupBox, x3 y130 w121 h127, Other GUIs
 
 ;************SAFE WINDOWS************
@@ -106,7 +106,7 @@ GUI, MainGUI:Add, Button, x4 y185, Stats
 GUI, MainGUI:Add, Button, x4 y220, Options
 
 ;************TIMER PROGRESS************
-GUI, MainGUI:Add, Progress, x326 y250 w151 h20 cEB3834 vTimerProgress, 100
+GUI, MainGUI:Add, Progress, x126 y215 w189 h20 cEB3834 vTimerProgress, 100
 
 ;************SHOW THE GUI************
 GUI, MainGUI:+AlwaysOnTop
