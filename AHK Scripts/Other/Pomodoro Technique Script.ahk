@@ -63,18 +63,30 @@ GUI, MainGUI:Add, GroupBox, x123 y10 w191 h200, Start a new task!
 
 ;************DONE TASKS STUFF************
 GUI, MainGUI:Font, bold s14
-GUI, MainGUI:Add, GroupBox, x327 y10 w150 h135, Done Tasks
+GUI, MainGUI:Add, GroupBox, x327 y10 w150 h155, Done Tasks
 
 GUI, MainGUI:Font, norm s12
-GUI, MainGUI:Add, Checkbox, x335 y39 vCheckbox1, Task &1
-GUI, MainGUI:Add, Checkbox, x335 y65 vCheckbox2, Task &2
-GUI, MainGUI:Add, Checkbox, x335 y91 vCheckbox3, Task &3
-GUI, MainGUI:Add, Checkbox, x335 y117 vCheckbox4, Task &4
+
+;Checkbox1
+GUI, MainGUI:Add, Checkbox, x335 y40 vCheckbox1, &1
+GUI, MainGUI:Add, Edit, x370 y36 w100 h26 vCheck1EditBox
+
+;Checkbox2
+GUI, MainGUI:Add, Checkbox, x335 y68 vCheckbox2, &2
+GUI, MainGUI:Add, Edit, x370 y64 w100 h26 vCheck2EditBox
+
+;Checkbox3
+GUI, MainGUI:Add, Checkbox, x335 y98 vCheckbox3, &3
+GUI, MainGUI:Add, Edit, x370 y95 w100 h26 vCheck3EditBox
+
+;Checkbox4
+GUI, MainGUI:Add, Checkbox, x335 y130 vCheckbox4, &4
+GUI, MainGUI:Add, Edit, x370 y127 w100 h26 vCheck4EditBox
 
 ;************TASK EDIT BOX************
 GUI, MainGUI:Font, norm s12
 GUI, MainGUI:Add, Text, x133 y51,Task:
-GUI, MainGUI:Add, Edit, x179 y48 w130 vTaskName
+; GUI, MainGUI:Add, Edit, x179 y48 w130 vTaskName
 
 ;************POMODORO BUTTON************
 GUI, MainGUI:Add, Button, x133 y85, Start &Pomodoro
@@ -86,11 +98,11 @@ GUI, MainGUI:Add, Button, x133 y125, &Short Break
 GUI, MainGUI:Add, Button, x133 y165, &Long Break
 
 ;************WHAT NEXT?************
-GUI, MainGUI:Font, bold s14
-GUI, MainGUI:Add, GroupBox, x327 y149 w150 h85, What's Next?
+; GUI, MainGUI:Font, bold s14
+; GUI, MainGUI:Add, GroupBox, x327 y149 w150 h85, What's Next?
 
-GUI, MainGUI:Font, norm s12
-GUI, MainGUI:Add, Text, x336 y180 w140 h50, Start a new task! ;Starting text.
+; GUI, MainGUI:Font, norm s12
+; GUI, MainGUI:Add, Text, x336 y180 w140 h50, Start a new task! ;Starting text.
 
 ;************OTHER GUI GROUPBOX************
 GUI, MainGUI:Add, GroupBox, x3 y130 w121 h127, Other GUIs
