@@ -63,13 +63,13 @@ GUI, MainGUI:Add, GroupBox, x123 y10 w191 h200, Start a new task!
 
 ;************DONE TASK STUFF************
 GUI, MainGUI:Font, bold s14
-GUI, MainGUI:Add, GroupBox, x345 y10 w150 h135, Done Tasks
+GUI, MainGUI:Add, GroupBox, x327 y10 w150 h135, Done Tasks
 
 GUI, MainGUI:Font, norm s12
-GUI, MainGUI:Add, Checkbox, x353 y39 vCheckbox1, Task &1
-GUI, MainGUI:Add, Checkbox, x353 y65 vCheckbox2, Task &2
-GUI, MainGUI:Add, Checkbox, x353 y91 vCheckbox3, Task &3
-GUI, MainGUI:Add, Checkbox, x353 y117 vCheckbox4, Task &4
+GUI, MainGUI:Add, Checkbox, x335 y39 vCheckbox1, Task &1
+GUI, MainGUI:Add, Checkbox, x335 y65 vCheckbox2, Task &2
+GUI, MainGUI:Add, Checkbox, x335 y91 vCheckbox3, Task &3
+GUI, MainGUI:Add, Checkbox, x335 y117 vCheckbox4, Task &4
 
 ;************TASK EDIT BOX************
 GUI, MainGUI:Font, norm s12
@@ -87,14 +87,14 @@ GUI, MainGUI:Add, Button, x133 y165, &Long Break
 
 ;************WHAT NEXT?************
 GUI, MainGUI:Font, bold s14
-GUI, MainGUI:Add, GroupBox, x345 y149 w150 h85, What Next?
+GUI, MainGUI:Add, GroupBox, x327 y149 w150 h85, What Next?
 
 GUI, MainGUI:Font, norm s12
-GUI, MainGUI:Add, Text, x355 y180 w139 h50, Start a new task! ;Starting text.
+GUI, MainGUI:Add, Text, x337 y180 w139 h50, Start a new task! ;Starting text.
 
 ;************SHOW THE GUI************
 GUI, MainGUI:+AlwaysOnTop
-GUI, MainGUI:Show, w550 h300 x1350 y377,Pomodoro Technique Script
+GUI, MainGUI:Show, w490 h240 x1350 y377,Pomodoro Technique Script
 return ;End of auto-execute.
 
 ;*********************LABELS*********************
