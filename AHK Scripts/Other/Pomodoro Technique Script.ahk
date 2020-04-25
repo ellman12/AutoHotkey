@@ -54,20 +54,14 @@ OptionsGUI := "Options for Pomodoro Script"
 GUI, MainGUI:Add, Picture, w70 h70 x10 y10, %A_ScriptDir%\Pomodoro GUI Script Icon.png
 
 ;************WORDS OF ENCOURAGEMENT************
-; GUI, MainGUI:Font, norm s12
-; GUI, MainGUI:Add, Text, w100 h75, You can do it!
+GUI, MainGUI:Font, norm s12
+GUI, MainGUI:Add, Text, w100 h75, You can do it!
 
 ;************ABOVE-TASK-NAME TEXT************
-; GUI, MainGUI:Font, underline s18
-; GUI, MainGUI:Add, Text, x133 y10, Start a new task!
-
 GUI, MainGUI:Font, bold s14
 GUI, MainGUI:Add, GroupBox, x123 y10 w191 h200, Start a new task!
 
 ;************DONE TASK STUFF************
-; GUI, MainGUI:Add, Text, x345 y10, Done Tasks
-; GUI, MainGUI:Font, norm s13
-
 GUI, MainGUI:Font, bold s14
 GUI, MainGUI:Add, GroupBox, x345 y10 w150 h135, Done Tasks
 
@@ -91,9 +85,12 @@ GUI, MainGUI:Add, Button, x133 y125, &Short Break
 ;************LONG BREAK BUTTON************
 GUI, MainGUI:Add, Button, x133 y165, &Long Break
 
-;************WHAT NEXT? TEXT************
-; GUI, MainGUI:Font, underline s18
-; GUI, MainGUI:Add, Text, w100 h75, You can do it!
+;************WHAT NEXT?************
+GUI, MainGUI:Font, bold s14
+GUI, MainGUI:Add, GroupBox, x345 y149 w150 h85, What Next?
+
+GUI, MainGUI:Font, norm s12
+GUI, MainGUI:Add, Text, x355 y180 w139 h50, Start a new task! ;Starting text.
 
 ;************SHOW THE GUI************
 GUI, MainGUI:+AlwaysOnTop
