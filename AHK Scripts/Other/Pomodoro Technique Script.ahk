@@ -57,7 +57,7 @@ GUI, MainGUI:Add, Picture, w70 h70 x10 y10, %A_ScriptDir%\Pomodoro GUI Script Ic
 GUI, MainGUI:Font, norm s12
 GUI, MainGUI:Add, Text, w100 h75, You can do it!
 
-;************ABOVE-TASK-NAME TEXT************
+;************START A NEW TASK!************
 GUI, MainGUI:Font, bold s14
 GUI, MainGUI:Add, GroupBox, x123 y10 w191 h200, Start a new task!
 
@@ -94,17 +94,23 @@ GUI, MainGUI:Add, Text, x336 y180 w140 h50, Start a new task! ;Starting text.
 
 ;************BUTTONS FOR THE OTHER GUIS************
 ;************SAFE WINDOWS************
+GUI, MainGUI:Font, norm s12
+GUI, MainGUI:Add, Button, x122 y217, Safe Windows
 
+;************STATS************
+GUI, MainGUI:Font, norm s12
+GUI, MainGUI:Add, Button, x246 y217, Stats
 
-
-
+;************OPTIONS************
+GUI, MainGUI:Font, norm s12
+GUI, MainGUI:Add, Button, x122 y255, Options
 
 ;************TIMER PROGRESS************
 GUI, MainGUI:Add, Progress, x326 y250 w151 h20 cEB3834 vTimerProgress, 100
 
 ;************SHOW THE GUI************
 GUI, MainGUI:+AlwaysOnTop
-GUI, MainGUI:Show, w490 h290 x1350 y377, Pomodoro Technique Script
+GUI, MainGUI:Show, w490 h292 x1350 y377, Pomodoro Technique Script
 return ;End of auto-execute.
 
 ;*********************LABELS*********************
