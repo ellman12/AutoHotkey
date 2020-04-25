@@ -68,20 +68,20 @@ GUI, MainGUI:Add, GroupBox, x327 y10 w150 h155, Done Tasks
 GUI, MainGUI:Font, norm s12
 
 ;Checkbox1
-GUI, MainGUI:Add, Checkbox, x335 y40 vCheckbox1, &1
-GUI, MainGUI:Add, Edit, x370 y36 w100 h26 vCheck1EditBox
+GUI, MainGUI:Add, Checkbox, x335 y38 vCheckbox1, &1
+GUI, MainGUI:Add, Edit, x368 y34 w100 h26 vCheck1EditBox
 
 ;Checkbox2
 GUI, MainGUI:Add, Checkbox, x335 y68 vCheckbox2, &2
-GUI, MainGUI:Add, Edit, x370 y64 w100 h26 vCheck2EditBox
+GUI, MainGUI:Add, Edit, x368 y64 w100 h26 vCheck2EditBox
 
 ;Checkbox3
 GUI, MainGUI:Add, Checkbox, x335 y98 vCheckbox3, &3
-GUI, MainGUI:Add, Edit, x370 y95 w100 h26 vCheck3EditBox
+GUI, MainGUI:Add, Edit, x368 y94 w100 h26 vCheck3EditBox
 
 ;Checkbox4
-GUI, MainGUI:Add, Checkbox, x335 y130 vCheckbox4, &4
-GUI, MainGUI:Add, Edit, x370 y127 w100 h26 vCheck4EditBox
+GUI, MainGUI:Add, Checkbox, x335 y129 vCheckbox4, &4
+GUI, MainGUI:Add, Edit, x368 y125 w100 h26 vCheck4EditBox
 
 ;************TASK EDIT BOX************
 GUI, MainGUI:Font, norm s12
