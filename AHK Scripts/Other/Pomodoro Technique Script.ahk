@@ -53,21 +53,63 @@ OptionsGUI := "Options for Pomodoro Script"
 ;************POMODORO PIC STUFF************
 GUI, MainGUI:Add, Picture, w70 h70 x10 y10, %A_ScriptDir%\Pomodoro GUI Script Icon.png
 
-;************
+;************WORDS OF ENCOURAGEMENT************
+; GUI, MainGUI:Font, norm s12
+; GUI, MainGUI:Add, Text, w100 h75, You can do it!
+
+;************ABOVE-TASK-NAME TEXT************
+; GUI, MainGUI:Font, underline s18
+; GUI, MainGUI:Add, Text, x133 y10, Start a new task!
+
+GUI, MainGUI:Font, bold s14
+GUI, MainGUI:Add, GroupBox, x123 y10 w191 h200, Start a new task!
+
+;************DONE TASK STUFF************
+; GUI, MainGUI:Add, Text, x345 y10, Done Tasks
+; GUI, MainGUI:Font, norm s13
+
+GUI, MainGUI:Font, bold s14
+GUI, MainGUI:Add, GroupBox, x345 y10 w150 h135, Done Tasks
+
+GUI, MainGUI:Font, norm s12
+GUI, MainGUI:Add, Checkbox, x353 y39 vCheckbox1, Task &1
+GUI, MainGUI:Add, Checkbox, x353 y65 vCheckbox2, Task &2
+GUI, MainGUI:Add, Checkbox, x353 y91 vCheckbox3, Task &3
+GUI, MainGUI:Add, Checkbox, x353 y117 vCheckbox4, Task &4
+
+;************TASK EDIT BOX************
+GUI, MainGUI:Font, norm s12
+GUI, MainGUI:Add, Text, x133 y51,Task:
+GUI, MainGUI:Add, Edit, x179 y48 w130 vTaskName
+
+;************POMODORO BUTTON************
+GUI, MainGUI:Add, Button, x133 y85, Start &Pomodoro
+
+;************SHORT BREAK BUTTON************
+GUI, MainGUI:Add, Button, x133 y125, &Short Break
+
+;************LONG BREAK BUTTON************
+GUI, MainGUI:Add, Button, x133 y165, &Long Break
+
+;************WHAT NEXT? TEXT************
+; GUI, MainGUI:Font, underline s18
+; GUI, MainGUI:Add, Text, w100 h75, You can do it!
 
 ;************SHOW THE GUI************
 GUI, MainGUI:+AlwaysOnTop
-GUI, MainGUI:Show, w400 h300 x1450 y377,Pomodoro Technique Script
+GUI, MainGUI:Show, w550 h300 x1350 y377,Pomodoro Technique Script
+return ;End of auto-execute.
 
+;*********************LABELS*********************
+MainGUIGuiClose:
 
-
-
+return
 
 ;TEMP hotkeys
 F10::
 Send, ************
-Return
+return
 
 F11::
 Send, GUI, MainGUI:
-Return
+return
