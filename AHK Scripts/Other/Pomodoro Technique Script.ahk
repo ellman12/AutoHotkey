@@ -59,11 +59,24 @@ GUI, MainGUI:Add, Text, x10 y90 w100 h75, You can do it!
 
 ;************START A NEW TASK!************
 GUI, MainGUI:Font, bold s14
-GUI, MainGUI:Add, GroupBox, x123 y10 w191 h200, Start a new task!
+GUI, MainGUI:Add, GroupBox, x123 y10 w191 h150, Start a new task!
 
-;************DONE TASKS STUFF************
+;************POMODORO BUTTON************
+GUI, MainGUI:Font, norm s12
+GUI, MainGUI:Add, Button, x133 y38, Start &Pomodoro
+
+;************SHORT BREAK BUTTON************
+GUI, MainGUI:Add, Button, x133 y78, &Short Break
+
+;************LONG BREAK BUTTON************
+GUI, MainGUI:Add, Button, x133 y118, &Long Break
+
+;************TIMER PROGRESS************
+GUI, MainGUI:Add, Progress, x126 y173 w189 h20 cEB3834 vTimerProgress, 100
+
+;************TASKS************
 GUI, MainGUI:Font, bold s14
-GUI, MainGUI:Add, GroupBox, x327 y10 w150 h155, Done Tasks
+GUI, MainGUI:Add, GroupBox, x327 y10 w150 h155, Tasks
 
 GUI, MainGUI:Font, norm s12
 
@@ -83,26 +96,13 @@ GUI, MainGUI:Add, Edit, x368 y94 w100 h26 vCheck3EditBox
 GUI, MainGUI:Add, Checkbox, x335 y129 vCheckbox4, &4
 GUI, MainGUI:Add, Edit, x368 y125 w100 h26 vCheck4EditBox
 
-;************TASK EDIT BOX************
-GUI, MainGUI:Font, norm s12
-GUI, MainGUI:Add, Text, x133 y51,Task:
-; GUI, MainGUI:Add, Edit, x179 y48 w130 vTaskName
-
-;************POMODORO BUTTON************
-GUI, MainGUI:Add, Button, x133 y85, Start &Pomodoro
-
-;************SHORT BREAK BUTTON************
-GUI, MainGUI:Add, Button, x133 y125, &Short Break
-
-;************LONG BREAK BUTTON************
-GUI, MainGUI:Add, Button, x133 y165, &Long Break
-
 ;************WHAT NEXT?************
-; GUI, MainGUI:Font, bold s14
-; GUI, MainGUI:Add, GroupBox, x327 y149 w150 h85, What's Next?
+;Helps the user by telling them what to do next.
+GUI, MainGUI:Font, bold s14
+GUI, MainGUI:Add, GroupBox, x327 y171 w150 h85, What's Next?
 
-; GUI, MainGUI:Font, norm s12
-; GUI, MainGUI:Add, Text, x336 y180 w140 h50, Start a new task! ;Starting text.
+GUI, MainGUI:Font, norm s12
+GUI, MainGUI:Add, Text, x333 y195 w140 h50, Start a new task! ;Starting text.
 
 ;************OTHER GUI GROUPBOX************
 GUI, MainGUI:Add, GroupBox, x3 y130 w121 h127, Other GUIs
@@ -116,9 +116,6 @@ GUI, MainGUI:Add, Button, x4 y185, Stats
 
 ;************OPTIONS************
 GUI, MainGUI:Add, Button, x4 y220, Options
-
-;************TIMER PROGRESS************
-GUI, MainGUI:Add, Progress, x126 y215 w189 h20 cEB3834 vTimerProgress, 100
 
 ;************SHOW THE GUI************
 GUI, MainGUI:+AlwaysOnTop
