@@ -87,14 +87,24 @@ GUI, MainGUI:Add, Button, x133 y165, &Long Break
 
 ;************WHAT NEXT?************
 GUI, MainGUI:Font, bold s14
-GUI, MainGUI:Add, GroupBox, x327 y149 w150 h85, What Next?
+GUI, MainGUI:Add, GroupBox, x327 y149 w150 h85, What's Next?
 
 GUI, MainGUI:Font, norm s12
-GUI, MainGUI:Add, Text, x337 y180 w139 h50, Start a new task! ;Starting text.
+GUI, MainGUI:Add, Text, x336 y180 w140 h50, Start a new task! ;Starting text.
+
+;************BUTTONS FOR THE OTHER GUIS************
+;************SAFE WINDOWS************
+
+
+
+
+
+;************TIMER PROGRESS************
+GUI, MainGUI:Add, Progress, x326 y250 w151 h20 cEB3834 vTimerProgress, 100
 
 ;************SHOW THE GUI************
 GUI, MainGUI:+AlwaysOnTop
-GUI, MainGUI:Show, w490 h240 x1350 y377,Pomodoro Technique Script
+GUI, MainGUI:Show, w490 h290 x1350 y377, Pomodoro Technique Script
 return ;End of auto-execute.
 
 ;*********************LABELS*********************
