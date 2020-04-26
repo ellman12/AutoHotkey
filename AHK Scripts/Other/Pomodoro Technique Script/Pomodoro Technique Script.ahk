@@ -137,6 +137,8 @@ GuiControl, MainGUI:Disable, Checkbox4
 GuiControl, MainGUI:Disable, Check4EditBox
 
 ;Other GUIs used for this script.
+
+;;;;;;;;;;;;;;;;;;;;;;;;;options is not working. Controls aren't showing up at all????
 #Include, %A_ScriptDir%\Pom Script Stats GUI.ahk
 #Include, %A_ScriptDir%\Pom Script Options GUI.ahk
 
