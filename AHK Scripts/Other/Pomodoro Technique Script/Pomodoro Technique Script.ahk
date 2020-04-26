@@ -138,6 +138,7 @@ GuiControl, MainGUI:Disable, Check4EditBox
 
 ;Other GUIs used for this script.
 #Include, %A_ScriptDir%\Pom Script Stats GUI.ahk
+#Include, %A_ScriptDir%\Pom Script Options GUI.ahk
 
 return ;End of Auto-execute.
 
@@ -170,10 +171,10 @@ return
 OptionsButton:
 showOptionsGUIToggle := !showOptionsGUIToggle
 
-; if (showOptionsGUIToggle = true)
-    ; GUI, StatsGUI:Show, w250 h110, Pom Script Stats
-; else
-    ; GUI, StatsGUI:Hide
+if (showOptionsGUIToggle = true)
+    GUI, OptionsGUI:Show, w250 h110, Pom Options
+else
+    GUI, OptionsGUI:Hide
 return
 
 ;TEMP hotkeys
