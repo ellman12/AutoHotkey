@@ -39,10 +39,4 @@ GUI, StatsGUI:Add, Edit, x190 y67 w50 vLoBreakStatsEditBox,0
 GuiControl, StatsGUI:Disable, TotalPomStatsEditBox
 GuiControl, StatsGUI:Disable, ShBreakStatsEditBox
 GuiControl, StatsGUI:Disable, LoBreakStatsEditBox
-return ;End of auto-execute.
-
-;*********************LABELS*********************
-StatsGUIGuiClose:
-showStatsGUIToggle := !showStatsGUIToggle
-GUI, StatsGUI:Hide
-return
+; return ;End of auto-execute.

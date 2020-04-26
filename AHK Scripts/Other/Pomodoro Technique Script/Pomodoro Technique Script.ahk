@@ -137,8 +137,6 @@ GuiControl, MainGUI:Disable, Checkbox4
 GuiControl, MainGUI:Disable, Check4EditBox
 
 ;Other GUIs used for this script.
-
-;;;;;;;;;;;;;;;;;;;;;;;;;options is not working. Controls aren't showing up at all????
 #Include, %A_ScriptDir%\Pom Script Stats GUI.ahk
 #Include, %A_ScriptDir%\Pom Script Options GUI.ahk
 
@@ -147,6 +145,13 @@ return ;End of Auto-execute.
 ;*********************LABELS*********************
 MainGUIGuiClose:
 ExitApp
+return
+
+
+;*********************LABELS*********************
+StatSGUIGuiClose:
+showStatsGUIToggle := !showStatsGUIToggle
+GUI, StatsGUI:Hide
 return
 
 ;Toggles between showing and hiding the safe windows menu.

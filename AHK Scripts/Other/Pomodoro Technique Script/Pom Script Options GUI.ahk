@@ -25,7 +25,7 @@ GUI, OptionsGUI:+AlwaysOnTop
 
 ;************TOTAL POMODOROS************
 GUI, OptionsGUI:Font, norm s12
-GUI, OptionsGUI:Add, Text, x10 y10,jhjkshdjkshjkdsk
+GUI, OptionsGUI:Add, Text, x50 y50,jhjkshdjkshjkdsk
 ; GUI, OptionsGUI:Add, Edit, x190 y7 w50 vTotalPomStatsEditBox,0
 
 ;************TOTAL SHORT BREAKS************
