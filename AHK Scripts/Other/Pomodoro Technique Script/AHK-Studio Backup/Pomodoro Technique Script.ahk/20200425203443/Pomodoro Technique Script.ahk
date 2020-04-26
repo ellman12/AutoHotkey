@@ -1,4 +1,4 @@
-;OPTIMIZATIONS START
+﻿;OPTIMIZATIONS START
 #NoEnv
 #MaxHotkeysPerInterval 99000000
 #HotkeyInterval 99000000
@@ -31,8 +31,8 @@ DetectHiddenWindows, Off
 ;  2. Set the pomodoro timer (traditionally to 25 minutes).
 ;  3. Work on the task. The script will make sure that there are no distractions ;)
 ;  4. End work when the timer rings and put a checkmark on a piece of paper (or in this case, the GUI).
-;  5. If you have fewer than four checkmarks, take a short break (3–5 minutes), then go to step 2.
-;  6. After four pomodoros, take a longer break (15–30 minutes), reset your checkmark count to zero, then go to step 1.
+;  5. If you have fewer than four checkmarks, take a short break (3â€“5 minutes), then go to step 2.
+;  6. After four pomodoros, take a longer break (15â€“30 minutes), reset your checkmark count to zero, then go to step 1.
 
 ;Changes the icon to a little tomato!
 Menu, Tray, Icon, %A_ScriptDir%\Pomodoro GUI Script Icon.png
@@ -44,13 +44,15 @@ Menu, Tray, Icon, %A_ScriptDir%\Pomodoro GUI Script Icon.png
 safeWindowTitles := []
 safeWindowIDs := []
 
-;*********************CONSTANTS*********************
+;******************CONSTANTS******************
 ;So AHK and the programmer don't get confused.
 MainGUI := "Pomodoro GUI Script"
 OptionsGUI := "Options for Pomodoro Script"
+SafeWinsGUI := "Safe windows for Pomodoro Script"
+StatsGUI := "Stats for Pomodoro Script"
 
-;*********************GUI INITIALIZATION*********************
-;************POMODORO PIC STUFF************
+;******************GUI INITIALIZATION******************
+;************POMODORO PICTURE************
 GUI, MainGUI:Add, Picture, w70 h70 x10 y10, %A_ScriptDir%\Pomodoro GUI Script Icon.png
 
 ;************WORDS OF ENCOURAGEMENT************
@@ -61,17 +63,17 @@ GUI, MainGUI:Add, Text, x10 y90 w100 h75, You can do it!
 GUI, MainGUI:Font, bold s14
 GUI, MainGUI:Add, GroupBox, x123 y10 w191 h150, Start a new task!
 
-;************POMODORO BUTTON************
+;******POMODORO BUTTON******
 GUI, MainGUI:Font, norm s12
 GUI, MainGUI:Add, Button, x133 y38, Start &Pomodoro
 
-;************SHORT BREAK BUTTON************
+;******SHORT BREAK BUTTON******
 GUI, MainGUI:Add, Button, x133 y78, &Short Break
 
-;************LONG BREAK BUTTON************
+;******LONG BREAK BUTTON******
 GUI, MainGUI:Add, Button, x133 y118, &Long Break
 
-;************TIMER PROGRESS************
+;******TIMER PROGRESS******
 GUI, MainGUI:Add, Progress, x126 y173 w189 h20 cEB3834 vTimerProgress, 100
 
 ;************TASKS************
@@ -80,20 +82,20 @@ GUI, MainGUI:Add, GroupBox, x327 y10 w150 h155, Tasks
 
 GUI, MainGUI:Font, norm s12
 
-;Checkbox1
+;******CHECKBOX1******
 GUI, MainGUI:Add, Checkbox, x335 y38 vCheckbox1, &1
 GUI, MainGUI:Add, Edit, x368 y34 w100 h26 vCheck1EditBox
 
-;Checkbox2
-GUI, MainGUI:Add, Checkbox, x335 y68 vCheckbox2, &2
+;******CHECKBOX2******
+GUI, MainGUI:Add, Checkbox, x335 y68 vCheckbox2 , &2
 GUI, MainGUI:Add, Edit, x368 y64 w100 h26 vCheck2EditBox
 
-;Checkbox3
+;******CHECKBOX3******
 GUI, MainGUI:Add, Checkbox, x335 y98 vCheckbox3, &3
 GUI, MainGUI:Add, Edit, x368 y94 w100 h26 vCheck3EditBox
 
-;Checkbox4
-GUI, MainGUI:Add, Checkbox, x335 y129 vCheckbox4, &4
+;******CHECKBOX4******
+GUI, MainGUI:Add, Checkbox, x335 y129 vCheckbox4 , &4
 GUI, MainGUI:Add, Edit, x368 y125 w100 h26 vCheck4EditBox
 
 ;************WHAT NEXT?************
@@ -107,14 +109,14 @@ GUI, MainGUI:Add, Text, x333 y195 w140 h50, Start a new task! ;Starting text.
 ;************OTHER GUI GROUPBOX************
 GUI, MainGUI:Add, GroupBox, x3 y130 w121 h127, Other GUIs
 
-;************SAFE WINDOWS************
+;******SAFE WINDOWS******
 GUI, MainGUI:Font, norm s12
-GUI, MainGUI:Add, Button, x4 y150, Safe Windows
+GUI, MainGUI:Add, Button, x4 y150 gSafeWindowsButton, Safe Windows
 
-;************STATS************
-GUI, MainGUI:Add, Button, x4 y185, Stats
+;******STATS******
+GUI, MainGUI:Add, Button, x4 y185 gStatsButton, Stats
 
-;************OPTIONS************
+;******OPTIONS******
 GUI, MainGUI:Add, Button, x4 y220, Options
 
 ;************SHOW THE GUI************
@@ -122,9 +124,20 @@ GUI, MainGUI:+AlwaysOnTop
 GUI, MainGUI:Show, w490 h292 x1350 y377, Pomodoro Technique Script
 return ;End of auto-execute.
 
+;Other GUIs used for this script.
+#Include, %A_ScriptDir%\Pom Script Stats GUI.ahk
+
 ;*********************LABELS*********************
 MainGUIGuiClose:
+ExitApp
+return
 
+SafeWindowsButton:
+return
+
+;Shows the stats menu.
+StatsButton:
+GUI, StatsGUI:Show, w900 h100, Pomodoro Script Stats
 return
 
 ;TEMP hotkeys
@@ -133,5 +146,6 @@ Send, ************
 return
 
 F11::
-Send, GUI, MainGUI:
+; Send, GUI, MainGUI:
+Send, GUI, StatsGUI:
 return
