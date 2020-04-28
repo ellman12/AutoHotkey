@@ -147,7 +147,7 @@ MainGUIGuiClose:
 ExitApp
 return
 
-
+;TODO have all 4 edit boxes available to edit whenever (gray out after prev pom is done?), but the 2-4 check boxes default to grayed out.
 ;*********************LABELS*********************
 StatSGUIGuiClose:
 showStatsGUIToggle := !showStatsGUIToggle

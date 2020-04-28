@@ -14,7 +14,7 @@
 showApplSwitchGUIToggle := !showApplSwitchGUIToggle
 
 if (showApplSwitchGUIToggle = 1)
-	GUI, ApplSwitchGUI:Show, x600 y90 w510 h580, ApplicationSwitcher.ahk Hotkey Help Window
+	GUI, ApplSwitchGUI:Show, x600 y90 w510 h604, ApplicationSwitcher.ahk Hotkey Help Window
 else
 	GUI, ApplSwitchGUI:Hide
 return
@@ -77,16 +77,13 @@ return
 
 ;Create a new normal Firefox window.
 ^F1::
-Run, firefox.exe
-return
-
-;Create a new normal Firefox window.
 ^F2::
 Run, firefox.exe
 return
 
 ;Create a new Private Firefox window.
-^!F2::
+!F1::
+!F2::
 Run, firefox.exe -private-window
 return
 
@@ -146,19 +143,14 @@ Run, chrome.exe
 return
 
 ;Create a new incognito Chrome window.
-^!F3::
+!F3::
+!F4::
 Run, chrome.exe -incognito
 return
-
-;Create a new incognito Chrome window.
-^!F4::
-Run, chrome.exe -incognito
-return
-
 
 ;MR button on my K95 RGB keyboard.
 ;Used for activating and switching to File Explorer windows.
-^!F1::
+^F5::
 switchToExplorer() {
 IfWinNotExist, ahk_class CabinetWClass
 	Run, explorer.exe
@@ -168,6 +160,12 @@ if WinActive("ahk_exe explorer.exe")
 else
 	WinActivate ahk_class CabinetWClass ;you have to use WinActivatebottom if you didn't create a window group.
 }
+
+;Creates a new File Explorer window.
+;Activated by holding down Shift and MR (Shift + Ctrl + F5).
+^+F5::
+Run, explorer.exe
+return
 
 ;Back button; does stuff in reverse.
 ;Ex. F9 in Firefox does the opposite of F1.

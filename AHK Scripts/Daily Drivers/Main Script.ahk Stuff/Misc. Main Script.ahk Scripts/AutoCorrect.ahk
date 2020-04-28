@@ -5490,8 +5490,10 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:rt::r
 :*:io::o
 :*:kl::l
-:*:opportuniuties::opportunities
+:*:/.::.
 
+
+:*:opportuniuties::opportunities
 :*:comp sci::computer science
 :*:alkso::also
 :*:aklso::also
@@ -5507,7 +5509,6 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::povertyl::poverty
 :*:hokah::Hokah
 ::pm::PM
-:*:ai::AI
 ::mathces::matches
 :*:asap::ASAP
 :*:caledonia::Caledonia

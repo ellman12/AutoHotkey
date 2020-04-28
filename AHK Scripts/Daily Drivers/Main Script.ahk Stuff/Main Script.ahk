@@ -53,8 +53,8 @@ GUI, ApplSwitchGUI:Add, Text, x5 y5, Hotkey
 GUI, ApplSwitchGUI:Add, Text, x115 y5, What It Does
 
 ;Adding the text for all the hotkeys and what they do.
-GUI, ApplSwitchGUI:Font, norm s11.5
-GUI, ApplSwitchGUI:Add, Text, x5 y40,Alt + a`t`tToggles between showing and hiding this help GUI.`nAlt + F6`t`tActivate windows in both the F6 and F7 array.`nCtrl + Alt + F1`tRun File Explorer and switch between wins.`nCtrl + Alt + F2`tCreate a new Private Firefox window.`nCtrl + Alt + F3`tCreate a new incognito Chrome window.`nCtrl + Alt + F6`tRemoves active window from the F6 group`nCtrl + Alt + F7`tRemoves active window from the F7 group`nCtrl + F1`tCreate a new normal Firefox window.`nCtrl + F2`tCreate a new normal Firefox window.`nCtrl + F3`tCreate a new normal Chrome window.`nCtrl + F4`tCreate a new normal Chrome window.`nCtrl + F6`tAdds active window to the F6 group`nCtrl + F7`tAdds active window to the F7 group`nCtrl + Shift + F6`tRemoves nonexistent wins from the F6 array.`nCtrl + Shift + F7`tRemoves nonexistent wins from the F7 array.`nF1`t`tRuns Firefox; switches to a FF win and between tabs.`nF12`t`tActivates MS Word windows, one at a time.`nF2`t`tRuns Firefox; switches between windows.`nF3`t`tRuns Chrome; switches to a Chr win and between tabs.`nF4`t`tRuns Chrome; switches between windows.`nF6`t`tNext window in the F6 group.`nF7`t`tNext window in the F7 group.`nF9`t`tThe Back button.`nShift + F1`tSame thing as F1, but reverse order.`nShift + F3`tSame thing as F3, but reverse order.`nShift + F6`tPrevious window in the F6 group.`nShift + F7`tPrevious window in the F7 group.
+GUI, ApplSwitchGUI:Font, norm s12
+GUI, ApplSwitchGUI:Add, Text, x5 y40,Alt + a`t`tToggles between showing and hiding this help GUI.`nAlt + F6`t`tActivate windows in both the F6 and F7 array.`nAlt + F1/F2`tCreate a new Private Firefox window.`nAlt + F3/F4`tCreate a new incognito Chrome window.`nAlt + F6`t`tRemoves active window from the F6 group`nCtrl + Alt + F7`tRemoves active window from the F7 group`nCtrl + F1`tCreate a new normal Firefox window.`nCtrl + F2`tCreate a new normal Firefox window.`nCtrl + F3`tCreate a new normal Chrome window.`nCtrl + F4`tCreate a new normal Chrome window.`nCtrl + F5`tRun File Explorer and switch between wins.`nCtrl + F6`tAdds active window to the F6 group`nCtrl + F7`tAdds active window to the F7 group`nCtrl + Shift + F5`tCreates a new File Explorer window (Shift + MR button).`nCtrl + Shift + F6`tRemoves nonexistent wins from the F6 array.`nCtrl + Shift + F7`tRemoves nonexistent wins from the F7 array.`nF1`t`tRuns Firefox; switches to a FF win and between tabs.`nF12`t`tActivates MS Word windows, one at a time.`nF2`t`tRuns Firefox; switches between windows.`nF3`t`tRuns Chrome; switches to a Chr win and between tabs.`nF4`t`tRuns Chrome; switches between windows.`nF6`t`tNext window in the F6 group.`nF7`t`tNext window in the F7 group.`nF9`t`tThe Back button.`nShift + F1`tSame thing as F1, but reverse order.`nShift + F3`tSame thing as F3, but reverse order.`nShift + F6`tPrevious window in the F6 group.`nShift + F7`tPrevious window in the F7 group.
 
 ;*******************************EDIT CLIPBOARD CONTENT INITIALIZATION******************************
 ;The ECC in the GUI commands helps differentiate these GUI things from any others.
@@ -406,8 +406,8 @@ return
 WinMinimize, A
 return
 
-;Maximizes the active window. It's supposed to be Alt + +, which gave me troubles before I realized the shortcut is technically !=.
-!=::
+;Maximizes the active window. It's supposed to be Alt + +, but it's technically !=.
+!SC00D::
 WinMaximize, A
 return
 
@@ -715,8 +715,10 @@ Send, {Enter}
 return
 
 ;English papers.
+:*:ai::AI
 :*:aai::artificial intelligence
 :*:AaI::Artificial Intelligence
+:*:bc::breast cancer
 
 ;For IntelliJ IDEA 2019.3.1.
 #IfWinActive ahk_exe idea64.exe
