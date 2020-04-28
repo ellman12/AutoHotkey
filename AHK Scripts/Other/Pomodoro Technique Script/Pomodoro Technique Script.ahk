@@ -16,6 +16,8 @@ DetectHiddenWindows, Off
 #SingleInstance force
 ;OPTIMIZATIONS END
 
+;TODO have all 4 edit boxes available to edit whenever (gray out after prev pom is done?), but the 2-4 check boxes default to grayed out.
+
 /*
 * This script is a HUGE upgrade from an old script called "Anti-Distraction.ahk".
 * That script worked ok, but it had problems and many annoyances that I didn't like.
@@ -116,13 +118,13 @@ GUI, MainGUI:Add, GroupBox, x3 y130 w121 h127, Other GUIs
 
 ;******SAFE WINDOWS******
 GUI, MainGUI:Font, norm s12
-GUI, MainGUI:Add, Button, x4 y150 gSafeWindowsButton, Safe Windows
+GUI, MainGUI:Add, Button, x4 y150 gSafeWindowsButton, Sa&fe Windows
 
 ;******STATS******
-GUI, MainGUI:Add, Button, x4 y185 gStatsButton, Stats
+GUI, MainGUI:Add, Button, x4 y185 gStatsButton, S&tats
 
 ;******OPTIONS******
-GUI, MainGUI:Add, Button, x4 y220 gOptionsButton, Options
+GUI, MainGUI:Add, Button, x4 y220 gOptionsButton, &Options
 
 ;************SHOW THE GUI************
 GUI, MainGUI:+AlwaysOnTop
@@ -130,16 +132,16 @@ GUI, MainGUI:Show, w490 h292 x1350 y377, Pomodoro Technique Script
 
 ;Disable until the first one is checked.
 GuiControl, MainGUI:Disable, Checkbox2
-GuiControl, MainGUI:Disable, Check2EditBox
+; GuiControl, MainGUI:Disable, Check2EditBox
 GuiControl, MainGUI:Disable, Checkbox3
-GuiControl, MainGUI:Disable, Check3EditBox
+; GuiControl, MainGUI:Disable, Check3EditBox
 GuiControl, MainGUI:Disable, Checkbox4
-GuiControl, MainGUI:Disable, Check4EditBox
+; GuiControl, MainGUI:Disable, Check4EditBox
 
 ;Other GUIs used for this script.
-#Include, %A_ScriptDir%\Pom Script Stats GUI.ahk
 #Include, %A_ScriptDir%\Pom Script Options GUI.ahk
-
+#Include, %A_ScriptDir%\Pom Script Safe Windows GUI.ahk
+#Include, %A_ScriptDir%\Pom Script Stats GUI.ahk
 return ;End of Auto-execute.
 
 ;*********************LABELS*********************
@@ -147,8 +149,16 @@ MainGUIGuiClose:
 ExitApp
 return
 
-;TODO have all 4 edit boxes available to edit whenever (gray out after prev pom is done?), but the 2-4 check boxes default to grayed out.
-;*********************LABELS*********************
+OptionsGUIGuiClose:
+showOptionsGUIToggle := !showOptionsGUIToggle
+GUI, OptionsGUI:Hide
+return
+
+SafeWinsGUIGuiClose:
+showSafeWinsGUIToggle := !showSafeWinsGUIToggle
+GUI, SafeWinsGUI:Hide
+return
+
 StatSGUIGuiClose:
 showStatsGUIToggle := !showStatsGUIToggle
 GUI, StatsGUI:Hide
@@ -158,10 +168,10 @@ return
 SafeWindowsButton:
 showSafeWinsGUIToggle := !showSafeWinsGUIToggle
 
-; if (showSafeWinsGUIToggle = true)
-    ; GUI, StatsGUI:Show, w250 h110, Pom Script Stats
-; else
-    ; GUI, StatsGUI:Hide
+if (showSafeWinsGUIToggle = true)
+    GUI, SafeWinsGUI:Show, w250 h110, Pom Script Stats
+else
+    GUI, SafeWinsGUI:Hide
 return
 
 ;Toggles between showing and hiding the stats menu.

@@ -17,13 +17,12 @@ DetectHiddenWindows, Off
 ;OPTIMIZATIONS END
 
 ;This script is part of the main Pomodoro Technique Script.
-;This is for the options GUI, that's it.
+;This is for the safe windows GUI, that's it.
 ;This is to help keep the main file from becoming a cluttered mess.
 
 ;******************GUI INITIALIZATION******************
-GUI, OptionsGUI:+AlwaysOnTop
+GUI, SafeWinsGUI:+AlwaysOnTop
 
-;************POMODORO LENGTH************
-GUI, OptionsGUI:Font, norm s12
-GUI, OptionsGUI:Add, Text, x10 y10,Pomodoro Length:
-GUI, OptionsGUI:Add, Edit, x135 y7 w50 vPomLengthEditBox,
+;************TOTAL POMODOROS************
+GUI, SafeWinsGUI:Font, norm s12
+GUI, SafeWinsGUI:Add, Text, x50 y50,hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh

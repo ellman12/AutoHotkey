@@ -144,7 +144,6 @@ return
 
 ;Create a new incognito Chrome window.
 !F3::
-!F4::
 Run, chrome.exe -incognito
 return
 
