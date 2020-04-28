@@ -26,4 +26,12 @@ GUI, OptionsGUI:+AlwaysOnTop
 ;************POMODORO LENGTH************
 GUI, OptionsGUI:Font, norm s12
 GUI, OptionsGUI:Add, Text, x10 y10,Pomodoro Length:
-GUI, OptionsGUI:Add, Edit, x135 y7 w50 vPomLengthEditBox,
+GUI, OptionsGUI:Add, Edit, x160 y7 w50 vPomLengthEditBox,25
+
+;************SHORT BREAK LENGTH************
+GUI, OptionsGUI:Add, Text, x10 y40,Short Break Length:
+GUI, OptionsGUI:Add, Edit, x160 y39 w50 vSBreakEditBox,5
+
+;************LONG BREAK LENGTH************
+GUI, OptionsGUI:Add, Text, x10 y70,Long Break Length:
+GUI, OptionsGUI:Add, Edit, x160 y69 w50 vLBreakEditBox,15

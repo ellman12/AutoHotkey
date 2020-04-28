@@ -17,7 +17,7 @@ DetectHiddenWindows, Off
 ;OPTIMIZATIONS END
 
 ;TODO have all 4 edit boxes available to edit whenever (gray out after prev pom is done?), but the 2-4 check boxes default to grayed out.
-
+;TODO pom/break length can't change while the session is ongoing
 /*
 * This script is a HUGE upgrade from an old script called "Anti-Distraction.ahk".
 * That script worked ok, but it had problems and many annoyances that I didn't like.
@@ -33,8 +33,8 @@ DetectHiddenWindows, Off
 ;  2. Set the pomodoro timer (traditionally to 25 minutes).
 ;  3. Work on the task. The script will make sure that there are no distractions ;)
 ;  4. End work when the timer rings and put a checkmark on a piece of paper (or in this case, the GUI).
-;  5. If you have fewer than four checkmarks, take a short break (3â€“5 minutes), then go to step 2.
-;  6. After four pomodoros, take a longer break (15â€“30 minutes), reset your checkmark count to zero, then go to step 1.
+;  5. If you have fewer than four checkmarks, take a short break (3-5 minutes), then go to step 2.
+;  6. After four pomodoros, take a longer break (15-30 minutes), reset your checkmark count to zero, then go to step 1.
 
 ;Changes the icon to a little tomato!
 Menu, Tray, Icon, %A_ScriptDir%\Pomodoro GUI Script Icon.png
@@ -169,7 +169,7 @@ SafeWindowsButton:
 showSafeWinsGUIToggle := !showSafeWinsGUIToggle
 
 if (showSafeWinsGUIToggle = true)
-    GUI, SafeWinsGUI:Show, w250 h110, Pom Script Stats
+    GUI, SafeWinsGUI:Show, w300 h500, Safe Windows
 else
     GUI, SafeWinsGUI:Hide
 return
@@ -179,7 +179,7 @@ StatsButton:
 showStatsGUIToggle := !showStatsGUIToggle
 
 if (showStatsGUIToggle = true)
-    GUI, StatsGUI:Show, w250 h110, Pom Script Stats
+    GUI, StatsGUI:Show, w250 h110, Stats
 else
     GUI, StatsGUI:Hide
 return
@@ -189,7 +189,7 @@ OptionsButton:
 showOptionsGUIToggle := !showOptionsGUIToggle
 
 if (showOptionsGUIToggle = true)
-    GUI, OptionsGUI:Show, w250 h110, Pom Options
+    GUI, OptionsGUI:Show, w250 h110, Options
 else
     GUI, OptionsGUI:Hide
 return
