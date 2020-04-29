@@ -18,6 +18,9 @@ DetectHiddenWindows, Off
 
 ;TODO have all 4 edit boxes available to edit whenever (gray out after prev pom is done?), but the 2-4 check boxes default to grayed out.
 ;TODO pom/break length can't change while the session is ongoing
+;TODO a clear button when the long break is ready to activate.
+;TODO break buttons start out as disabled.
+
 /*
 * This script is a HUGE upgrade from an old script called "Anti-Distraction.ahk".
 * That script worked ok, but it had problems and many annoyances that I didn't like.
@@ -131,11 +134,11 @@ GUI, MainGUI:+AlwaysOnTop
 GUI, MainGUI:Show, w490 h292 x1350 y377, Pomodoro Technique Script
 
 ;Disable until the first one is checked.
-GuiControl, MainGUI:Disable, Checkbox2
+;~ GuiControl, MainGUI:Disable, Checkbox2
 ; GuiControl, MainGUI:Disable, Check2EditBox
-GuiControl, MainGUI:Disable, Checkbox3
+;~ GuiControl, MainGUI:Disable, Checkbox3
 ; GuiControl, MainGUI:Disable, Check3EditBox
-GuiControl, MainGUI:Disable, Checkbox4
+;~ GuiControl, MainGUI:Disable, Checkbox4
 ; GuiControl, MainGUI:Disable, Check4EditBox
 
 ;Other GUIs used for this script.
