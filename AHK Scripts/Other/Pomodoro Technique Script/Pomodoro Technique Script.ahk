@@ -28,6 +28,9 @@ DetectHiddenWindows, Off
 * I've never really liked Pomodoro apps and browser extensions; they don't really do all that much tbh.
 * The nice thing about being a programmer is that if you don't like something, you can just change it.
 * Development started: 4/24/2020 ~1:00 PM
+*
+* The ListView in the Safe Windows GUI would not have been possible without u/trashdigger of the AutoHotKey subreddit.
+* Shout-out to them. https://www.reddit.com/r/AutoHotkey/comments/gad2bh/how_to_use_listview_for_gui/
 */
 
 ;Info on the Technique: https://www.wikiwand.com/en/Pomodoro_Technique
