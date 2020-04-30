@@ -150,7 +150,7 @@ GUI, MainGUI:Show, w490 h292 x1350 y377, Pomodoro Technique Script
 #Include, %A_ScriptDir%\Pom Script Stats GUI.ahk
 return ;End of Auto-execute.
 
-;*********************LABELS*********************
+;******************LABELS & HOTKEYS******************
 MainGUIGuiClose:
 ExitApp
 return
@@ -175,7 +175,7 @@ SafeWindowsButton:
 showSafeWinsGUIToggle := !showSafeWinsGUIToggle
 
 if (showSafeWinsGUIToggle = true)
-    GUI, SafeWinsGUI:Show, w300 h500, Safe Windows
+    GUI, SafeWinsGUI:Show, x1460 w200 h270, Safe Windows
 else
     GUI, SafeWinsGUI:Hide
 return
@@ -200,17 +200,57 @@ else
     GUI, OptionsGUI:Hide
 return
 
-;TEMP hotkeys
-F10::
-Send, ************
+;Deletes a single window from the ListView.
+DeleteButton:
+    ;Not a clue how this works; all credits go to u/trashdigger.
+    LV_GetText(text, LV_GetNext(), 1)
+    DeleteIndex := LV_GetNext()
+    LV_Delete(DeleteIndex)
+    DllCall("ComCtl32.dll\ImageList_Remove", "Ptr", SafeWinsImageListID, "Int", DeleteIndex - 1, "UInt") ;-1 because range of ListView start from 1 but ImageList starts from 0.
+            
+    ;Because the ImageList has changed, we must reorder the icons attached to items in the ListView to match the new indexing of the ImageList.
+    Loop % LV_GetCount() {
+        LV_Modify(A_Index, "Icon" . A_Index)
+    }
 return
 
-F11::
-; Send, GUI, MainGUI:
-Send, GUI, StatsGUI:
-return
+;Adds windows to the Safe Windows arrays. Only works when that window is around.
+#IfWinExist, Safe Windows
+^F11::
+    ;https://www.autohotkey.com/docs/commands/ListView.htm#BuiltIn
+    GUI, SafeWinsGUI:Default
 
-F9::
-Send, ^!s
-Reload
+    ;Get the active title, ID, and the window icon.
+    WinGetTitle, safeWinsActiveTitle, A
+    WinGet, safeWinsActiveID, ID, A
+    WInGet, activeWinProcPath, ProcessPath, A
+
+    ;Boolean to track if the active title was found in the array.
+    ;If it was, don't add it (duplicate it); if it wasn't, add it to the array.
+	found := false
+
+    ;Check if the title is already included in the array.
+    ;There can (and probably will) be multiple window IDs. E.g., multiple titles (tabs), 1 ID for Firefox.
+    for index, title in safeWindowTitles {
+		;If the current title was found inside the array
+		if (title = safeWinsActiveTitle) {
+			;Then mark it as found and break the loop.
+			found := true
+			break
+		}
+	}
+
+	;If the title was never found in the array.
+	if (found = false) {
+		;Add it to the array.
+		safeWindowTitles.Push(safeWinsActiveTitle)
+
+        ;Put the Icon of the program into the ImageList for use with the ListView.
+        IL_Add(SafeWinsImageListID, activeWinProcPath)
+
+        ;Add the Title and ID to the ListView, and add the Icon using the option "Icon1" "Icon2" etc.
+        ;Icon number is defined by "LV_GetCount() + 1" which gets the number of rows in before adding and adds one.
+        LV_Add("Icon" LV_GetCount() + 1, safeWinsActiveTitle, safeWinsActiveID)
+	}
 return
+#If
