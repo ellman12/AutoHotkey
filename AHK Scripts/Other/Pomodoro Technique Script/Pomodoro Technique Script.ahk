@@ -78,13 +78,13 @@ GUI, MainGUI:Add, GroupBox, x123 y10 w191 h150, Start a new task!
 
 ;******POMODORO BUTTON******
 GUI, MainGUI:Font, norm s12
-GUI, MainGUI:Add, Button, x133 y38, Start &Pomodoro
+GUI, MainGUI:Add, Button, x133 y38 gStartPomButton vPomButtonVar, Start &Pomodoro
 
 ;******SHORT BREAK BUTTON******
-GUI, MainGUI:Add, Button, x133 y78, &Short Break
+GUI, MainGUI:Add, Button, x133 y78 gSBButton vSBButtonVar, &Short Break
 
 ;******LONG BREAK BUTTON******
-GUI, MainGUI:Add, Button, x133 y118, &Long Break
+GUI, MainGUI:Add, Button, x133 y118 gLBButton vLBButtonVar, &Long Break
 
 ;******TIMER PROGRESS******
 GUI, MainGUI:Add, Progress, x126 y173 w189 h20 cEB3834 vTimerProgress, 100
@@ -137,11 +137,11 @@ GUI, MainGUI:+AlwaysOnTop
 GUI, MainGUI:Show, w490 h292 x1350 y377, Pomodoro Technique Script
 
 ;Disable until the first one is checked.
-;~ GuiControl, MainGUI:Disable, Checkbox2
+GuiControl, MainGUI:Disable, Checkbox2
 ; GuiControl, MainGUI:Disable, Check2EditBox
-;~ GuiControl, MainGUI:Disable, Checkbox3
+GuiControl, MainGUI:Disable, Checkbox3
 ; GuiControl, MainGUI:Disable, Check3EditBox
-;~ GuiControl, MainGUI:Disable, Checkbox4
+GuiControl, MainGUI:Disable, Checkbox4
 ; GuiControl, MainGUI:Disable, Check4EditBox
 
 ;Other GUIs used for this script.
@@ -254,3 +254,22 @@ return
 	}
 return
 #If
+
+;TODO try using SetTimer for the anti-dist stuff like in the old script (copy some of that code).
+StartPomButton:
+GuiControl, MainGUI:Disable, SBButtonVar
+GuiControl, MainGUI:Disable, LBButtonVar
+SetTimer, AntiDistraction, 500
+return
+
+SBButton:
+; MsgBox, 1
+return
+
+LBButton:
+; MsgBox
+return
+
+AntiDistraction:
+MsgBox h
+return
