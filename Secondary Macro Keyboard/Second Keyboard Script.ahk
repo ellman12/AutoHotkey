@@ -158,7 +158,8 @@ Switch (pressedKey) {
 
     Case "c":MsgBox, %kpressedKey% is unassigned.
 
-    Case "comma":MsgBox, %pressedKey% is unassigned.
+    ;(Shift + Win + Left) Move active window to 2nd monitor.
+    Case "comma":Send, +#{Left}
 
     ;Open the Desktop folder.
     Case "d":Run, explorer %A_Desktop%
@@ -285,7 +286,8 @@ Switch (pressedKey) {
 
     Case "pageup":MsgBox, %pressedKey% is unassigned.
 
-    Case "period":MsgBox, %pressedKey% is unassigned.
+    ;(Shift + Win + Right) Move active window to primary monitor.
+    Case "period":Send, +#{Right}
 
     Case "q":MsgBox, %pressedKey% is unassigned.
 
