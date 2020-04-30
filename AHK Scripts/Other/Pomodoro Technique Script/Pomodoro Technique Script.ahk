@@ -49,8 +49,8 @@ Menu, Tray, Icon, %A_ScriptDir%\Pomodoro GUI Script Icon.png
 ;The reason there's 2 arrays is because the script will compare if the active window title OR ID is not in the
 ;list of acceptable titles/IDs. For example, a music program. Its title won't stay constant, but its ID will.
 ;This was an annoyance with the old script.
-; safeWindowTitles := []
-; safeWindowIDs := []
+safeWindowTitles := []
+safeWindowIDs := []
 
 ;Toggle for showing/hiding all the other GUIs.
 showStatsGUIToggle := false
@@ -212,54 +212,83 @@ DeleteButton:
     Loop % LV_GetCount() {
         LV_Modify(A_Index, "Icon" . A_Index)
     }
+
+	titleFound := false
+    IDFound := false
+
+    for index, title in safeWindowIDs {
+        ;If the current ID was found inside the array, remove it.
+		if (title = text) {
+			titleFound := true
+            safeWindowTitles.RemoveAt(index)
+			break
+		}
+    }
+
+    if (titleFound = false) {
+        MsgBox idk
+    }
+
+    for index, ID in safeWindowIDs {
+        ;If the current title was found inside the array, remove it.
+		if (ID = text) {
+			IDFound := true
+            safeWindowTitles.RemoveAt(index)
+			break
+		}
+    }
+
+    if (titleFound = false) {
+        MsgBox idk2
+    }
+
 return
 
-;Adds windows to the Safe Windows arrays. Only works when that window is around.
-#IfWinExist, Safe Windows
+;Adds windows to the Safe Windows arrays.
 ^F11::
     ;https://www.autohotkey.com/docs/commands/ListView.htm#BuiltIn
     GUI, SafeWinsGUI:Default
 
-    ;Get the active title, ID, and the window icon.
-    WinGetTitle, safeWinsActiveTitle, A
-    WinGet, safeWinsActiveID, ID, A
+    ;Get the active window title, ID, and the window icon.
+    WinGetTitle, activeWinTitle, A
+    WinGet, activeWinID, ID, A
     WInGet, activeWinProcPath, ProcessPath, A
 
     ;Boolean to track if the active title was found in the array.
     ;If it was, don't add it (duplicate it); if it wasn't, add it to the array.
-	found := false
+	; found := false
 
     ;Check if the title is already included in the array.
     ;There can (and probably will) be multiple window IDs. E.g., multiple titles (tabs), 1 ID for Firefox.
-    for index, title in safeWindowTitles {
-		;If the current title was found inside the array
-		if (title = safeWinsActiveTitle) {
-			;Then mark it as found and break the loop.
-			found := true
-			break
-		}
-	}
+    ; for index, title in safeWindowTitles {
+	; 	;If the current title was found inside the array
+	; 	if (title = activeWinTitle) {
+	; 		;Then mark it as found, inform the user, and break the loop.
+    ;         MsgBox, 48, Already in the Array, This window title is already in the array.
+	; 		found := true
+	; 		break
+	; 	}
+	; }
 
 	;If the title was never found in the array.
-	if (found = false) {
+	; if (found = false) {
 		;Add it to the array.
-		safeWindowTitles.Push(safeWinsActiveTitle)
+		safeWindowTitles.Push(activeWinTitle)
+        safeWindowIDs.Push(activeWinID)
 
         ;Put the Icon of the program into the ImageList for use with the ListView.
         IL_Add(SafeWinsImageListID, activeWinProcPath)
 
         ;Add the Title and ID to the ListView, and add the Icon using the option "Icon1" "Icon2" etc.
         ;Icon number is defined by "LV_GetCount() + 1" which gets the number of rows in before adding and adds one.
-        LV_Add("Icon" LV_GetCount() + 1, safeWinsActiveTitle, safeWinsActiveID)
-	}
+        LV_Add("Icon" LV_GetCount() + 1, activeWinTitle, activeWinID)
+	; }
 return
-#If
 
-;TODO try using SetTimer for the anti-dist stuff like in the old script (copy some of that code).
 StartPomButton:
-GuiControl, MainGUI:Disable, SBButtonVar
-GuiControl, MainGUI:Disable, LBButtonVar
-SetTimer, AntiDistraction, 500
+    GuiControl, MainGUI:Disable, SBButtonVar
+    GuiControl, MainGUI:Disable, LBButtonVar
+    SetTimer, AntiDistraction, 500
 return
 
 SBButton:
@@ -270,6 +299,34 @@ LBButton:
 ; MsgBox
 return
 
+;When a pomodoro is running.
 AntiDistraction:
-MsgBox h
+
+    ;Get the active window title, and ID.
+    WinGetTitle, activeWinTitle, A
+    WinGet, activeWinID, ID, A
+
+    ;If the window (or browser tab) is not in the accepted list, close it.
+    if !inArray(activeWinTitle, safeWindowTitles) OR !inArray(activeWinID, safeWindowIDs) {
+
+        if (InStr(activeWinTitle, "Mozilla Firefox")) OR (InStr(activeWinTitle, "Google Chrome")) {
+			Send, ^w
+		} else if (activeWinTitle = "Safe Windows") OR (activeWinTitle = "Pomodoro Technique Script") {
+            return ;Don't want these windows to get closed...
+        } else {
+			WinClose, %activeWinTitle%
+		}
+
+    }
 return
+
+;Checks if an item is already in an array.
+inArray(Value, Array) {
+	For k, v in Array
+		If (v == Value)
+			Return True
+	Return False
+}
+
+;TODO
+F11::Reload
