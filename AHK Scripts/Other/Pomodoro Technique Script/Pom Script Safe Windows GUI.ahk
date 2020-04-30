@@ -22,7 +22,6 @@ DetectHiddenWindows, Off
 
 safeWindowTitles := []
 safeWindowIDs := []
-currentArrayIndex := 1
 
 ;******************GUI INITIALIZATION******************
 ;Make the GUI (and then make it AlwaysOnTop).
@@ -30,20 +29,22 @@ GUI, SafeWinsGUI:New
 GUI, SafeWinsGUI:+AlwaysOnTop
 
 GUI, SafeWinsGUI:Font, norm S12
-GUI, SafeWinsGUI:Add, Text, x4 y4, Ctrl + F11 to add windows to the list.
+GUI, SafeWinsGUI:Add, Text, x4 y4, Ctrl + F11: Add Windows
+
+GUI, SafeWinsGUI:Font, norm S10
+GUI, SafeWinsGUI:Add, Button, x4 y240 w190 gDeleteButton, Delete Selected Item
 
 GUI, SafeWinsGUI:Font, norm S9           ;Display ↓ grid; ↓ can't move headers around (but can resize).
-GUI, SafeWinsGUI:Add, ListView, x4 y34 w260 h300 Grid -LV0x10, Title|ID|Array Index
+GUI, SafeWinsGUI:Add, ListView, x4 y34 w190 h200 Grid -LV0x10, Title|ID
 
 SafeWinsImageListID := IL_Create() ;Initially create an ImageList to store icons in. It grows automatically.
 LV_SetImageList(SafeWinsImageListID) ;sets the image list for the ListView to use the ImageList created in the line above
 
 ;Set column widths.
-LV_ModifyCol(1, 150) ;Title.
-LV_ModifyCol(2, 40) ;ID.
-LV_ModifyCol(3, 65) ;Array Index.
+LV_ModifyCol(1, 160) ;Title.
+LV_ModifyCol(2, 30) ;ID.
 
-GUI, SafeWinsGUI:Show, x1460 w270 h340, Safe Windows
+GUI, SafeWinsGUI:Show, x1460 w200 h340, Safe Windows
 return
 
 ;Adds windows to the Safe Windows arrays.
@@ -56,14 +57,15 @@ return
     WinGet, safeWinsActiveID, ID, A
     WInGet, activeWinProcPath, ProcessPath, A
 
-    ;Value to track if ID was found in the array.
+    ;Boolean to track if the active title was found in the array.
+    ;If it was, don't add it (duplicate it); if it wasn't, add it to the array.
 	found := false
 
     ;Check if the title is already included in the array.
     ;There can (and probably will) be multiple window IDs. E.g., multiple titles (tabs), 1 ID for Firefox.
-    for index, value in safeWindowTitles {
+    for index, title in safeWindowTitles {
 		;If the current title was found inside the array
-		if (value = safeWinsActiveTitle) {
+		if (title = safeWinsActiveTitle) {
 			;Then mark it as found and break the loop.
 			found := true
 			break
@@ -82,5 +84,9 @@ return
         ;Icon number is defined by "LV_GetCount() + 1" which gets the number of rows in before adding and adds one.
         LV_Add("Icon" LV_GetCount() + 1, safeWinsActiveTitle, safeWinsActiveID)
 	}
+
+return
+
+DeleteButton:
 
 return
