@@ -87,6 +87,7 @@ return
 
 return
 
+;TODO delete stuff from ListView AND arrays.
 DeleteButton:
-
+LV_Delete(1)
 return
