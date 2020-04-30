@@ -251,8 +251,8 @@ $^NumpadPgup::Send, l
 ;Lower volume by 1
 $^NumpadDiv::SoundSet, -1
 
-;Raises volume by 1$^NumpadMult::
-SoundSet, +1
+;Raises volume by 1
+$^NumpadMult::SoundSet, +1
 
 
 ;Shows the current and exact master volume.
