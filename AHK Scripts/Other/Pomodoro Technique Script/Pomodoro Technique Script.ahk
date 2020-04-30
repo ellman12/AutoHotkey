@@ -30,7 +30,7 @@ DetectHiddenWindows, Off
 * Development started: 4/24/2020 ~1:00 PM
 *
 * The ListView in the Safe Windows GUI would not have been possible without u/trashdigger of the AutoHotKey subreddit.
-* Shout-out to them. https://www.reddit.com/r/AutoHotkey/comments/gad2bh/how_to_use_listview_for_gui/
+* HUGE shout-out to them. https://www.reddit.com/r/AutoHotkey/comments/gad2bh/how_to_use_listview_for_gui/
 */
 
 ;Info on the Technique: https://www.wikiwand.com/en/Pomodoro_Technique
@@ -47,10 +47,10 @@ Menu, Tray, Icon, %A_ScriptDir%\Pomodoro GUI Script Icon.png
 
 ;Window titles and IDs that won't get smote when a Pomodoro timer is running, and there isn't a break going on.
 ;The reason there's 2 arrays is because the script will compare if the active window title OR ID is not in the
-;list of acceptable titles/IDS. For example, a music program. Its title won't stay constant, but its ID will.
+;list of acceptable titles/IDs. For example, a music program. Its title won't stay constant, but its ID will.
 ;This was an annoyance with the old script.
-safeWindowTitles := []
-safeWindowIDs := []
+; safeWindowTitles := []
+; safeWindowIDs := []
 
 ;Toggle for showing/hiding all the other GUIs.
 showStatsGUIToggle := false

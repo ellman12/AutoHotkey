@@ -237,10 +237,11 @@ AddWindowF6() {
 	}
 
 	;If the ID was never found in the array
-	if (foundF6 = false)
+	if (foundF6 = false) {
 		;Add it to the array
 		WindowGroupF6.Push(thisIDF6)
 		F6andF7WinIDArray.Push(thisIDF6)
+	}
 	return
 }
 
@@ -347,10 +348,11 @@ AddWindowF7() {
 	}
 
 	;If the ID was never found in the array.
-	if (foundF7 = false)
+	if (foundF7 = false) {
 		;Add it to the array.
 		WindowGroupF7.Push(thisIDF7)
 		F6andF7WinIDArray.Push(thisIDF7)
+	}
 	return
 }
 
