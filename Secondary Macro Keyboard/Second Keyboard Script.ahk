@@ -151,12 +151,20 @@ Switch (pressedKey) {
 
     Case "appskey":MsgBox, %pressedKey% is unassigned.
 
-    Case "b":MsgBox, %pressedKey% is unassigned.
+    ;Sends the current time.
+    Case "b":
+    FormatTime, CurrentDateTime,, h:mm tt
+    SendInput, %CurrentDateTime%
+    return
 
     ;Sends Alt + F4.
     Case "backspace":Send, !{F4}
 
-    Case "c":MsgBox, %kpressedKey% is unassigned.
+    ;Sends the current date and time.
+    Case "c":
+    FormatTime, CurrentDateTime,, M/d/yyyy h:mm tt
+    SendInput, %CurrentDateTime%
+    return
 
     ;(Shift + Win + Left) Move active window to 2nd monitor.
     Case "comma":Send, +#{Left}
@@ -322,7 +330,11 @@ Switch (pressedKey) {
     ;Sends the normal up key, to be used in conjunction with Left and Right.
     Case "up":Send, {Up}
 
-    Case "v":MsgBox, %pressedKey% is unassigned.
+    ;Sends the current date.
+    Case "v":
+    FormatTime, CurrentDateTime,, M/d/yyyy
+    SendInput, %CurrentDateTime%
+    return
 
     Case "w":MsgBox, %pressedKey% is unassigned.
 
