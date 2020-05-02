@@ -707,6 +707,7 @@ return
 #If numPadMode = "Dumbed-Down"
 ;Shift minus
 $+SC00C::
+$SC00C:: ;Minus
 Send, +{SC00C}
 MouseMove, -290, 1070, 0
 Send, {Click}
@@ -715,6 +716,7 @@ return
 
 ;Shift plus
 $+SC00D::
+$SC00D:: ;Plus
 Send, +{SC00D}
 MouseMove, -290, 1070, 0
 Send, {Click}
