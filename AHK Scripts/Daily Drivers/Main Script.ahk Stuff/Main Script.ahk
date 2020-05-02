@@ -703,6 +703,25 @@ return
 ;*****************************************TEMPORARY*****************************************
 ;-------------------------------------------------------------------------------------------
 
+;For MediaSpace for D2L for Java class.
+#If numPadMode = "Dumbed-Down"
+;Shift minus
+$+SC00C::
+Send, +{SC00C}
+MouseMove, -290, 1070, 0
+Send, {Click}
+MouseMove, 5000, 540, 0 ;Like Insert.
+return
+
+;Shift plus
+$+SC00D::
+Send, +{SC00D}
+MouseMove, -290, 1070, 0
+Send, {Click}
+MouseMove, 5000, 540, 0 ;Like Insert.
+return
+#If
+
 ;TEMP Auto-fill for distance learning attendance.
 ^#a::
 FormatTime, attendenceMonth, A_Now, M
