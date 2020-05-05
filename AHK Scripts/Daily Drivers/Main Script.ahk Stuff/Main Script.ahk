@@ -402,7 +402,7 @@ DllCall("SystemParametersInfo", Int,113, Int,0, UInt,10, Int,1)
 return
 
 ;Keyboard shortcut originally inspired by Chrome OS; minimizes the active window.
-!-::
+!SC00C::
 WinMinimize, A
 return
 
