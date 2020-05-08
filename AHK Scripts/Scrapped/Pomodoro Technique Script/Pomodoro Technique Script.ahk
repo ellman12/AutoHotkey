@@ -20,6 +20,8 @@ DetectHiddenWindows, Off
 ;TODO pom/break length can't change while the session is ongoing
 ;TODO a clear button when the long break is ready to activate.
 ;TODO break buttons start out as disabled.
+;MAKE A HELP GUI FOR THE POMODORO SCRIPT
+;Have a checkbox to toggle either !F4 or ^w, or minimize. Also, add a Window ID, AND title array. If the active window is not in the ID array or the title array, close or minimize.
 
 /*
 * This script is a HUGE upgrade from an old script called "Anti-Distraction.ahk".

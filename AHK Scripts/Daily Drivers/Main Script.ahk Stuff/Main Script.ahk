@@ -774,6 +774,10 @@ return
 :*:java::Java
 #If
 
+#IfWinActive, ahk_exe EXCEL.EXE
+$F2::Send, {F2}
+#If
+
 
 ;~ ;Temp for moving single tracks to new folder
 ;~ #y::

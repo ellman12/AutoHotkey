@@ -5533,7 +5533,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:ibm::IBM
 :*:watson::Watson
 ::ff::Firefox
-:*:chr::Chrome
+;~ :*:chr::Chrome
 :*:gchr::Google Chrome
 :*:youtube::YouTube
 :*:pc::PC
