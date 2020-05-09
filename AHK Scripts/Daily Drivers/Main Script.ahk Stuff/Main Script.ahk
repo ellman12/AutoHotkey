@@ -293,7 +293,7 @@ MouseMove, mousePosX, mousePosY, 0
 return
 
 ; Disables it. Use Ctrl + CapsLock to enable/disable it. This prevents accidentally pressing it.
-; CapsLock::return
+CapsLock::return
 
 ^CapsLock::
 if capsLockState := GetKeyState("CapsLock", "T")
@@ -656,7 +656,6 @@ return
 ;Normally, a window can only be dragged by clicking on its title bar.
 ;This extends that so that any point inside a window can be dragged.
 ~LButton & RButton::
-CapsLock & LButton::
 CoordMode, Mouse  ; Switch to screen/absolute coordinates.
 MouseGetPos, EWD_MouseStartX, EWD_MouseStartY, EWD_MouseWin
 WinGetPos, EWD_OriginalPosX, EWD_OriginalPosY,,, ahk_id %EWD_MouseWin%
