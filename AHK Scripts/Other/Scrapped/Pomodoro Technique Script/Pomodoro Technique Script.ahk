@@ -342,7 +342,7 @@ AntiDistraction:
             
     ;     }
     ; }
-    
+
     ;5/10/2020 8:38 PM I think this works perfectly...
     if (activeWinTitle = "Safe Windows") OR (activeWinTitle = "Pomodoro Technique Script") {
         return
