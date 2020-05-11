@@ -308,18 +308,54 @@ AntiDistraction:
     WinGetTitle, activeWinTitle, A
     WinGet, activeWinID, ID, A
 
+    ;Didn't work perfectly.
     ;If the window (or browser tab) is not in the accepted list, close it.
-    if !inArray(activeWinTitle, safeWindowTitles) OR !inArray(activeWinID, safeWindowIDs) {
+    ; if !inArray(activeWinTitle, safeWindowTitles) AND !inArray(activeWinID, safeWindowIDs) {
 
-        if (InStr(activeWinTitle, "Mozilla Firefox")) OR (InStr(activeWinTitle, "Google Chrome")) {
-			Send, ^w
-		} else if (activeWinTitle = "Safe Windows") OR (activeWinTitle = "Pomodoro Technique Script") {
-            return ;Don't want these windows to get closed...
-        } else {
-			WinClose, %activeWinTitle%
-		}
+    ;     if (InStr(activeWinTitle, "Mozilla Firefox")) OR (InStr(activeWinTitle, "Google Chrome")) {
+	; 		Send, ^w
+	; 	} else if (activeWinTitle = "Safe Windows") OR (activeWinTitle = "Pomodoro Technique Script") {
+    ;         return ;Don't want these windows to get closed...
+    ;     } else {
+	; 		WinClose, %activeWinTitle%
+	; 	}
+
+    ; }
+
+    ;Untested...?
+    ; if !inArray(activeWinID, safeWindowIDs) {
+    ;     WinClose, %activeWinTitle%
+    ;  } else if (activeWinTitle = "Safe Windows") OR (activeWinTitle = "Pomodoro Technique Script") {
+    ;         return ;Don't want these windows to get closed...
+    ;  } else {
+    ;      if !inArray(activeWinID, safeWindowIDs) {
+    ;          if (InStr(activeWinTitle, "Mozilla Firefox")) OR (InStr(activeWinTitle, "Google Chrome")) {
+    ;              Send, ^w
+    ;          }
+    ;      }
+    ;  }
+
+    ;Untested...?
+    ; if !inArray(activeWinID, safeWindowIDs) {
+
+        ; if !inArray(activeWinTitle, safeWindowTitles) {
+            
+    ;     }
+    ; }
+    
+    ;5/10/2020 8:38 PM I think this works perfectly...
+    if (activeWinTitle = "Safe Windows") OR (activeWinTitle = "Pomodoro Technique Script") {
+        return
+    } else if !inArray(activeWinTitle, safeWindowTitles) {
+
+        if !inArray(activeWinID, safeWindowIDs) {
+            WinClose, %activeWinTitle%
+        } else if (InStr(activeWinTitle, "Mozilla Firefox")) OR (InStr(activeWinTitle, "Google Chrome")) {
+            Send, ^w
+        }
 
     }
+
 return
 
 ;Checks if an item is already in an array.
