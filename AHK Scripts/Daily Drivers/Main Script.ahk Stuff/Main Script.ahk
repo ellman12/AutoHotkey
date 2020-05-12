@@ -235,6 +235,7 @@ Loop {
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Run.ahk
 #Include, %A_ScriptDir%\Screen Clipper Script\Screen Clipper.ahk
 #Include, %A_ScriptDir%\Video Game Stuff\Any Game.ahk
+#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Video Game Stuff\Terraria.ahk
 
 ;#Include the script for my Secondary Macro Keyboard.
 #Include, %A_MyDocuments%\GitHub\AutoHotkey\Secondary Macro Keyboard\Second Keyboard Script.ahk
@@ -769,7 +770,7 @@ return
 :*:ai::AI
 :*:aai::artificial intelligence
 :*:AaI::Artificial Intelligence
-:*:bc::breast cancer
+;~ :*:bc::breast cancer
 
 ;For IntelliJ IDEA 2019.3.1.
 #IfWinActive ahk_exe idea64.exe

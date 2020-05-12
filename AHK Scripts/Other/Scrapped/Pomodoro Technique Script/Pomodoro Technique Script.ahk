@@ -349,9 +349,11 @@ AntiDistraction:
     } else if !inArray(activeWinTitle, safeWindowTitles) {
 
         if !inArray(activeWinID, safeWindowIDs) {
-            WinClose, %activeWinTitle%
+            ;~ WinClose, %activeWinTitle%
+            WinMinimize, %activeWinTitle%
         } else if (InStr(activeWinTitle, "Mozilla Firefox")) OR (InStr(activeWinTitle, "Google Chrome")) {
-            Send, ^w
+            ;~ Send, ^w
+            WinMinimize, %activeWinTitle%
         }
 
     }
@@ -367,4 +369,4 @@ inArray(Value, Array) {
 }
 
 ;TODO
-F11::Reload
+F11::Pause

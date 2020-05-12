@@ -36,6 +36,8 @@ autoSelectProfiles() {
 		currentProfile = MSWord
 	else if Instr(activeWindowTitle, " - Visual Studio Code")
 		currentProfile = VSCode
+else if Instr(activeWindowTitle, "Terraria")
+		currentProfile = Terraria
 	else
 		currentProfile = Default
 
