@@ -146,8 +146,8 @@ Switch (pressedKey) {
         Send, ^-
     return
 
-    ;Open the B: drive.
-    Case "a":Run, explorer.exe "B:\"
+    ;Send Ctrl + A.
+    Case "a":Send, ^a
 
     Case "appskey":MsgBox, %pressedKey% is unassigned.
 
@@ -177,18 +177,7 @@ Switch (pressedKey) {
     ;Sends the normal down key, to be used in conjunction with Left and Right.
     Case "down":Send, {Down}
 
-    ;Ejects the First Item in the Eject List on the Taskbar.
-    Case "e":
-    Send, #b
-    Sleep 200
-    Send, {Right}
-    Sleep 200
-    Send, {Enter}
-    Sleep 200
-    Send, {Down 2}
-    Sleep 200
-    Send, {Enter}
-    return
+    Case "e":MsgBox, %pressedKey% is unassigned.
 
     ;Normal End.
     Case "end":Send, {End}
@@ -229,7 +218,8 @@ Switch (pressedKey) {
     ;Normal Home.
     Case "home":Send, {Home}
 
-    Case "i":MsgBox, %pressedKey% is unassigned.
+    ;Create a new Private Firefox window w/ Google Images.
+    Case "i":Run, firefox.exe -private-window https://images.google.com/
 
     Case "insert":MsgBox, %pressedKey% is unassigned.
 
@@ -286,9 +276,11 @@ Switch (pressedKey) {
     ;Shift + Right.
     Case "numMult":Send, +{Right}
 
-    Case "o":MsgBox, %pressedKey% is unassigned.
+    ;Send Ctrl + O.
+    Case "o":Send, ^o
 
-    Case "p":MsgBox, %pressedKey% is unassigned.
+    ;Create a new Private Firefox window w/ Google.
+    Case "p":Run, firefox.exe -private-window https://www.google.com/
 
     Case "pagedown":MsgBox, %pressedKey% is unassigned.
 
