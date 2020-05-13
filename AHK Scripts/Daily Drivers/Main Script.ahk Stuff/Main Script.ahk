@@ -700,6 +700,9 @@ return
 Send, ^+{Left}{BackSpace}
 return
 
+!Up::Send, {WheelUp}
+!Down::Send, {WheelDown}
+
 ;For drawing straight lines with the pen tool in MS Word.
 ; ^!Up::
 ; Send, {Click up}
@@ -735,25 +738,25 @@ return
 
 ;*****************************************TEMPORARY*****************************************
 ;For MediaSpace for D2L for Java class.
-#If numPadMode = "Dumbed-Down"
-;Shift minus
-$+SC00C::
-$SC00C:: ;Minus
-Send, +{SC00C}
-MouseMove, -290, 1070, 0
-Send, {Click}
-MouseMove, 5000, 540, 0 ;Like Insert.
-return
+; #If numPadMode = "Dumbed-Down"
+; ;Shift minus
+; $+SC00C::
+; $SC00C:: ;Minus
+; Send, +{SC00C}
+; MouseMove, -290, 1070, 0
+; Send, {Click}
+; MouseMove, 5000, 540, 0 ;Like Insert.
+; return
 
-;Shift plus
-$+SC00D::
-$SC00D:: ;Plus
-Send, +{SC00D}
-MouseMove, -290, 1070, 0
-Send, {Click}
-MouseMove, 5000, 540, 0 ;Like Insert.
-return
-#If
+; ;Shift plus
+; $+SC00D::
+; $SC00D:: ;Plus
+; Send, +{SC00D}
+; MouseMove, -290, 1070, 0
+; Send, {Click}
+; MouseMove, 5000, 540, 0 ;Like Insert.
+; return
+; #If
 
 ;TEMP Auto-fill for distance learning attendance.
 ^#a::
@@ -773,37 +776,37 @@ return
 ;~ :*:bc::breast cancer
 
 ;For IntelliJ IDEA 2019.3.1.
-#IfWinActive ahk_exe idea64.exe
-:*:sln::
-Send, System.out.println("");
-Sleep 20
-Send, {Left 3}
-return
+; #IfWinActive ahk_exe idea64.exe
+; :*:sln::
+; Send, System.out.println("");
+; Sleep 20
+; Send, {Left 3}
+; return
 
-:*:spr::
-Send, System.out.print("");
-Sleep 20
-Send, {Left 3}
+; :*:spr::
+; Send, System.out.print("");
+; Sleep 20
+; Send, {Left 3}
 
-:*:sys::
-Send, System.out.print("");
-Sleep 20
-Send, {Left 3}
-return
+; :*:sys::
+; Send, System.out.print("");
+; Sleep 20
+; Send, {Left 3}
+; return
 
-;Get the mouse's current position, moves the mouse to the Run button, and clicks it.
-;It does this so fast that if you blink, you'll miss it.
-F5::
-MouseGetPos, F5MouseX, F5MouseY
-MouseMove, 1572, 41, 0 ;X, Y, speed (0 = instant).
-;~ Sleep 1000
-Send, {Click}
-;~ Sleep 1000
-MouseMove, %F5MouseX%, %F5MouseY%, 0
-return
+; ;Get the mouse's current position, moves the mouse to the Run button, and clicks it.
+; ;It does this so fast that if you blink, you'll miss it.
+; F5::
+; MouseGetPos, F5MouseX, F5MouseY
+; MouseMove, 1572, 41, 0 ;X, Y, speed (0 = instant).
+; ;~ Sleep 1000
+; Send, {Click}
+; ;~ Sleep 1000
+; MouseMove, %F5MouseX%, %F5MouseY%, 0
+; return
 
-:*:java::Java
-#If
+; :*:java::Java
+; #If
 
 #IfWinActive, ahk_exe EXCEL.EXE
 $F2::Send, {F2}
