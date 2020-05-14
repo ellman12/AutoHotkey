@@ -356,18 +356,7 @@ Send, {Esc}
 
 ;Start position
 MouseMove, %mousePosXWinK%, %mousePosYWinK%, 0
-
 return
-
-#IfWinActive, ahk_exe Zoom.exe
-$PrintScreen::Send, #{PrintScreen}
-
-;"Hide" the mouse pointer, and hide the Zoom meeting controls.
-$CapsLock::
-MouseGetPos, mousePosX, mousePosY
-MouseMove, 1920, 540, 0
-Send, {LAlt}
-#If
 
 ;*****************************************HOTKEYS FOR MULTIPLE POINTER POSITIONS*********************************
 ;The basic format is like this:
@@ -634,3 +623,22 @@ return
 ;~ ^!#F13::
 ;~ MsgBox hi
 ;~ return
+
+;******************************TEMPORARY******************************
+;For Zoom stuff
+#IfWinActive, ahk_exe Zoom.exe
+$PrintScreen::Send, #{PrintScreen}
+
+;"Hide" the mouse pointer, and hide the Zoom meeting controls.
+$CapsLock::
+MouseGetPos, mousePosX, mousePosY
+MouseMove, 1920, 540, 0
+Send, {LAlt}
+return
+
+;For meeting passwords
+#IfWinActive, Enter meeting password
+:*:calc::7GmNeX
+:*:econ::2Pxp62
+:*:eng::1eWtLs
+#If
