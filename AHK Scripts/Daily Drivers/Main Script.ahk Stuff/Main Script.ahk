@@ -58,17 +58,15 @@ GUI, ApplSwitchGUI:Add, Text, x5 y40,Alt + a`t`tToggles between showing and hidi
 
 ;*******************************EDIT CLIPBOARD CONTENT INITIALIZATION******************************
 ;The ECC in the GUI commands helps differentiate these GUI things from any others.
-GUI, ECC:Font, s14, Arial ;Font settings for the Text Box.
-GUI, ECC:Add, Edit, HScroll wrap r9 x15 y40 w560 h200 vclipboardBoxText gclipboardTextBoxLabel,%Clipboard% ;Creates an edit box for inputting the clipboard. AHK GUI Documentation explains the r, x, etc. stuff.
+GUI, ECC:Font, s11
+GUI, ECC:Add, Text, x5 y5,Current Clipboard Contents. Type what you want to change it to.
+GUI, ECC:Add, Edit, HScroll wrap x4 y30 w440 h185 vclipboardBoxText gclipboardTextBoxLabel,%Clipboard%
 
-;Creating the GUI button for the Finish button: when the user is done editing the clipboard contents.
-GUI, ECC:Add, Button, w100 gclipboardFinishButton,Finish
+GUI, ECC:Font, s12
+GUI, ECC:Add, Button, gclipboardFinishButton w80 x3 y220,Finish
 
-GUI, ECC:Font, s15, Arial ;Font settings for everything else.
-GUI, ECC:Add, Text, x16 y5, Current Clipboard contents. Type what you want to change it to. ;Text instructing the user what to do.
-
-;Making the GUI always on top, and giving it a Silver color.
 GUI, ECC:+AlwaysOnTop
+GUI, ECC:+Resize
 GUI, ECC:Color, Silver
 
 ;Toggle for showing or hiding the Clipboard GUI.
@@ -665,17 +663,19 @@ return ;End of ^!a.
 
 ;Toggles between showing and hiding the Clipboard GUI.
 #c::
+GuiControl, ECC:,clipboardBoxText, %Clipboard%
+
 showClipboardGUIToggle := !showClipboardGUIToggle
 
 if (showClipboardGUIToggle = 1)
-	GUI, ECC:Show, w600 h400,Clipboard Edit
+	GUI, ECC:Show, w450 h255,Clipboard Edit
 else
 	GUI, ECC:Hide
 return
 
 ;***************************LABELS***************************
 ;Activates when the GUI is closed. E.g., pressing the red x button, manually exiting the script, Alt + F4, etc.
-1GuiClose:
+ECCGuiClose:
     GUI, ECC:Submit, NoHide
     GuiControl, ECC:Focus, clipboardBoxText
     GUI, ECC:Hide
@@ -685,19 +685,17 @@ return
 ;Label for the text box.
 clipboardTextBoxLabel:
     GUI, ECC:Submit, NoHide
-    Clipboard := clipboardBoxText
 return
 
-;Label for when the user presses the Done button.
-;This button is exactly like the Finish button in TCT, where it stores the text in the Clipboard variable.
+;Label for when the user presses the Finish button.
 clipboardFinishButton:
+    GUI, ECC:Submit
     Clipboard := clipboardBoxText
-    GUI, ECC:Hide
-    GuiControl, ECC:Focus, %clipboardBoxText%
+    showClipboardGUIToggle := !showClipboardGUIToggle
 return
 
 ;*****************************************MAIN SCRIPT CONTROL PANEL*********************************
-;Show hide the Control Panel.
+;Show hide the Main Script Control Panel.
 #o::
 showControlPanelGUI := !showControlPanelGUI
 
