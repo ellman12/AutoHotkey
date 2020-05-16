@@ -38,7 +38,7 @@ Menu, Tray, Icon, shell32.dll, 233 ;Changes the icon to a cute little computer.
 
 ;******************************************AUTO-EXECUTE**************************************************
 ;*******************************APPLICATIONSWITCHER HELP GUI INITIALIZATION******************************
-ApplSwitchGUI := "ApplicationSwitcher Help Box GUI"
+; ApplSwitchGUI := "ApplicationSwitcher Help Box GUI"
 
 ;Toggle for the hotkey to show/hide the help.
 showApplSwitchGUIToggle := 0
@@ -75,6 +75,39 @@ GUI, ECC:Color, Silver
 ;If it's 1, show the GUI; if it's 0, hide it.
 ;Starts out as 0, so it only appers when the user wants it.
 showClipboardGUIToggle := 0
+
+;*******************************MAIN SCRIPT CONTROL PANEL INITIALIZATION******************************
+;This is a GUI for the Main Script that allows the user to change how parts of the script work.
+GUI, CPanel:+AlwaysOnTop
+; GUI, CPanel:Color, Silver
+
+;Insert.
+GUI, CPanel:Font, s13
+GUI, CPanel:Add, Text, x5 y5,Insert Hotkey Monitor Choice
+GUI, CPanel:Font, s11
+GUI, CPanel:Add, DropDownList, x5 y30 w136 vInsMonChoice, 1 (Primary Mon)||2 (Secondary Mon)
+
+;Ctrl + Insert.
+GUI, CPanel:Font, s13
+GUI, CPanel:Add, Text, x5 y60,Ctrl + Insert Hotkey Monitor Choice
+GUI, CPanel:Font, s11
+GUI, CPanel:Add, DropDownList, x5 y85 w136 vCtrlInsMonChoice, 1 (Primary Mon)|2 (Secondary Mon)||
+
+;For Chromebook Typing, which monitor to send the mouse pointer too.
+GUI, CPanel:Font, s13
+GUI, CPanel:Add, Text, x5 y115,Chromebook Typing Monitor Choice
+GUI, CPanel:Font, s11
+GUI, CPanel:Add, DropDownList, x5 y140 w136 vChrBookTypeMonChoice, 1 (Primary Mon)||2 (Secondary Mon)|
+
+;Toggle for showing or hiding the GUI.
+;If it's 1, show the GUI; if it's 0, hide it.
+;Starts out as 0, so it only appers when the user wants it.
+global showControlPanelGUI := 0
+
+;Default values.
+global InsMonChoice := "1 (Primary Mon)"
+global CtrlInsMonChoice := "2 (Secondary Mon)"
+global ChrBookTypeMonChoice := "1 (Primary Mon)"
 
 ;****************************************MISC VARIABLES, INITIALIZATION, ETC*********************************
 ;Variables for F6 group stuff.
@@ -627,7 +660,12 @@ return ;End of ^!a.
 
 ;Toggles between showing and hiding the Clipboard GUI.
 #c::
-GUI, ECC:Show, w600 h400,Clipboard Edit
+showClipboardGUIToggle := !showClipboardGUIToggle
+
+if (showClipboardGUIToggle = 1)
+	GUI, ECC:Show, w600 h400,Clipboard Edit
+else
+	GUI, ECC:Hide
 return
 
 ;***************************LABELS***************************
@@ -651,6 +689,22 @@ clipboardFinishButton:
     Clipboard := clipboardBoxText
     GUI, ECC:Hide
     GuiControl, ECC:Focus, %clipboardBoxText%
+return
+
+;*****************************************MAIN SCRIPT CONTROL PANEL*********************************
+;Show hide the Control Panel.
+#o::
+showControlPanelGUI := !showControlPanelGUI
+
+if (showControlPanelGUI = 1)
+	GUI, CPanel:Show, w280 h170,Main Script Control Panel
+else
+	GUI, CPanel:Hide
+return
+
+CPanelGuiClose:
+GUI, CPanel:Submit
+showControlPanelGUI := !showControlPanelGUI
 return
 
 ;*****************************************EASY WINDOW DRAGGING (EWD)*********************************

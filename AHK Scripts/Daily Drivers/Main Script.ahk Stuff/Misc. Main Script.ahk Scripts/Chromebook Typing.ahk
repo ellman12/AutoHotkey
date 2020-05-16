@@ -29,154 +29,142 @@ return
 ;Keys that move the mouse pointer when the variable is set to true (1)
 #If chromebookTypingToggle = "1"
 
-$a::
-MouseMove, -1920, 540, 0
-SendInput, a
+~a::
+chromebookTyping()
 return
 
-$b::
-MouseMove, -1920, 540, 0
-SendInput, b
+~b::
+chromebookTyping()
 return
 
-$c::
-MouseMove, -1920, 540, 0
-SendInput, c
+~c::
+chromebookTyping()
 return
 
-$d::
-MouseMove, -1920, 540, 0
-SendInput, d
+~d::
+chromebookTyping()
 return
 
-$e::
-MouseMove, -1920, 540, 0
-SendInput, e
+~e::
+chromebookTyping()
 return
 
-$f::
-MouseMove, -1920, 540, 0
-SendInput, f
+~f::
+chromebookTyping()
 return
 
-$g::
-MouseMove, -1920, 540, 0
-SendInput, g
+~g::
+chromebookTyping()
 return
 
-$h::
-MouseMove, -1920, 540, 0
-SendInput, h
+~h::
+chromebookTyping()
 return
 
-$i::
-MouseMove, -1920, 540, 0
-SendInput, i
+~i::
+chromebookTyping()
 return
 
-$j::
-MouseMove, -1920, 540, 0
-SendInput, j
+~j::
+chromebookTyping()
 return
 
-$k::
-MouseMove, -1920, 540, 0
-SendInput, k
+~k::
+chromebookTyping()
 return
 
-$l::
-MouseMove, -1920, 540, 0
-SendInput, l
+~l::
+chromebookTyping()
 return
 
-$m::
-MouseMove, -1920, 540, 0
-SendInput, m
+~m::
+chromebookTyping()
 return
 
-$n::
-MouseMove, -1920, 540, 0
-SendInput, n
+~n::
+chromebookTyping()
 return
 
-$o::
-MouseMove, -1920, 540, 0
-SendInput, o
+~o::
+chromebookTyping()
 return
 
-$p::
-MouseMove, -1920, 540, 0
-SendInput, p
+~p::
+chromebookTyping()
 return
 
-$q::
-MouseMove, -1920, 540, 0
-SendInput, q
+~q::
+chromebookTyping()
 return
 
-$r::
-MouseMove, -1920, 540, 0
-SendInput, r
+~r::
+chromebookTyping()
 return
 
-$s::
-MouseMove, -1920, 540, 0
-SendInput, s
+~s::
+chromebookTyping()
 return
 
-$t::
-MouseMove, -1920, 540, 0
-SendInput, t
+~t::
+chromebookTyping()
 return
 
-$u::
-MouseMove, -1920, 540, 0
-SendInput, u
+~u::
+chromebookTyping()
 return
 
-$v::
-MouseMove, -1920, 540, 0
-SendInput, v
+~v::
+chromebookTyping()
 return
 
-$w::
-MouseMove, -1920, 540, 0
-SendInput, w
+~w::
+chromebookTyping()
 return
 
-$x::
-MouseMove, -1920, 540, 0
-SendInput, x
+~x::
+chromebookTyping()
 return
 
-$y::
-MouseMove, -1920, 540, 0
-SendInput, y
+~y::
+chromebookTyping()
 return
 
-$z::
-MouseMove, -1920, 540, 0
-SendInput, z
+~z::
+chromebookTyping()
 return
 
-$Space::
-MouseMove, -1920, 540, 0
-SendInput, {Space}
+~Space::
+chromebookTyping()
 return
 
-$BackSpace::
-MouseMove, -1920, 540, 0
-SendInput, {BackSpace}
+~BackSpace::
+chromebookTyping()
 return
 
-$Delete::
-MouseMove, -1920, 540, 0
-SendInput, {Delete}
+~Delete::
+chromebookTyping()
 return
 
-$Enter::
-MouseMove, -1920, 540, 0
-SendInput, {Enter}
+~Enter::
+chromebookTyping()
 return
 
 #If
+
+;Function called when Chromebook Typing is on. Monitor pointer is moved to depends on the setting in the Control Panel.
+chromebookTyping() {
+	
+	;Forgot this stupid thing and wasted so much time trying to figure out why it wasn't working.
+	;I hate this global thing so much...
+	global
+
+	if (ChrBookTypeMonChoice = "1 (Primary Mon)") {
+		MouseMove, 1920, 540, 0
+	} else if (ChrBookTypeMonChoice = "2 (Secondary Mon)") {
+		MouseMove, -1920, 540, 0
+	} else {
+		MsgBox Chromebook Typing error
+	}
+
+	
+}
