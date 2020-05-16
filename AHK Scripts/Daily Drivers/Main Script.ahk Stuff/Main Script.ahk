@@ -312,13 +312,18 @@ return
 ;Moves mouse pointer as far off the screen as possible (on main display); usually either to A, get it out of the way, or B, so I can easily find it.
 Insert::
 MouseGetPos, mousePosX, mousePosY
-MouseMove, 5000, 540, 0
+if (InsMonChoice = "1 (Primary Mon)")
+	MouseMove, 1920, 540, 0
+else if (InsMonChoice = "2 (Secondary Mon)")
+	MouseMove, -1920, 540, 0
 return
 
 ;Moves mouse pointer as far off the screen as possible (on second display); usually either to A, get it out of the way, or B, so I can easily find it.
 ^Insert::
-MouseGetPos, mousePosX, mousePosY
-MouseMove, -1920, 540, 0
+if (CtrlInsMonChoice = "1 (Primary Mon)")
+	MouseMove, 1920, 540, 0
+else if (CtrlInsMonChoice = "2 (Secondary Mon)")
+	MouseMove, -1920, 540, 0
 return
 
 ;Moves mouse pointer back to where it was before pressing Insert or ^Insert (but not both).
