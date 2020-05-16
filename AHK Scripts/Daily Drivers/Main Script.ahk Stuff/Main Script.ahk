@@ -706,6 +706,7 @@ else
 return
 
 CPanelGuiClose:
+CPanelGuiEscape:
 GUI, CPanel:Submit
 showControlPanelGUI := !showControlPanelGUI
 return
