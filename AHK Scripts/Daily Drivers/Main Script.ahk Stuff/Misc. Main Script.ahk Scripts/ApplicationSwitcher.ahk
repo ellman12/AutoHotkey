@@ -178,12 +178,18 @@ if WinActive("ahk_exe explorer.exe")
 return
 
 ;Switch between MS Word windows.
-F12::
-GroupAdd, taranwords, ahk_class OpusApp
-if WinActive("ahk_class OpusApp")
-	GroupActivate, taranwords, r
-else
-	WinActivate ahk_class OpusApp
+;I added the outer if statement so that way when I'm playing a Steam game (like Terraria),
+;I can screenshot without triggering the normal F12 hotkey, and without having to suspend the hotkeys.
+$F12::
+if WinExist("ahk_class OpusApp") {
+	GroupAdd, taranwords, ahk_class OpusApp
+	if WinActive("ahk_class OpusApp")
+		GroupActivate, taranwords, r
+	else
+		WinActivate ahk_class OpusApp
+} else {
+	Send, {F12}
+}
 return
 
 
