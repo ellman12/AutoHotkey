@@ -1,5 +1,6 @@
 ;This script is the Terraria profile.
-
+;Terraria is... Weird. It doesn't except hotkeys like this: Send, q.
+;You have to do it a different way.
 
 ;****************************************MOUSE ACTIONS***************************************
 
@@ -12,18 +13,31 @@ return
 ^+F23::
 return
 
-;Mouse G1
+;Mouse G1.
+;Quick Buff.
 F13::
+Send, {b down}
+KeyWait, F13
+Send, {b up}
 return
 
-;Mouse G2
+;Mouse G2.
+;Quick Heal.
 F14::
+Send, {h down}
+KeyWait, F14
+Send, {h up}
 return
 
-;Mouse G3
+;Mouse G3.
+;Quick Mana.
 F15::
+Send, {j down}
+KeyWait, F15
+Send, {j up}
 return
 
+/*
 ;Mouse G4.
 ;Grapple.
 F16::
@@ -33,16 +47,31 @@ Send, {e up}
 return
 
 ;Mouse G5.
-;Open Inventory (I changed Esc to q in the game settings).
-;Terraria is... Weird. It doesn't except hotkeys like this: Send, q.
-;You have to do it like this:
+;Open Inventory 
 F17::
 Send, {q down}
 KeyWait, F17
 Send, {q up}
 return
+*/
 
-;Mouse G6
+;Mouse G4.
+;Inventory. (I changed Esc to q in the game settings).
+F16::
+Send, {q down}
+KeyWait, F16
+Send, {q up}
+return
+
+;Mouse G5.
+;Grapple.
+F17::
+Send, {e down}
+KeyWait, F17
+Send, {e up}
+return
+
+;Mouse G6.
 F18::
 return
 
