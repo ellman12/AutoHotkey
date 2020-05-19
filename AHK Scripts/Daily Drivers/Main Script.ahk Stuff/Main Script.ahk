@@ -407,6 +407,7 @@ return
 MsgBox, 0, Misc. Variables`, Toggles`, etc.,Current Main Script.ahk profile:  %currentProfile%`n`nNumPadMode: %numPadMode%`n`nChromebook Typing Toggled: %chromebookTypingToggle%`n`nautoNumPadModeToggle: %autoNumPadModeToggle%
 return
 
+#If currentProfile != "Terraria"
 ;Scroll down faster by holding down the G3 key on Scimitar Pro RGB.
 F15 & WheelDown::
 Send, {WheelDown 8}
@@ -417,6 +418,17 @@ F15 & WheelUp::
 Send, {WheelUp 8}
 return
 
+;A way to make the mouse move faster while Mouse G3 and the Right Button are held down.
+;It's basically the complete opposite of the sniper button.
+;I have no idea how these DllCall functions work, nor do I know where I found this stuff.
+F15 & RButton::
+DllCall("SystemParametersInfo", Int,113, Int,0, UInt,17, Int,1)
+KeyWait, RButton
+DllCall("SystemParametersInfo", Int,113, Int,0, UInt,10, Int,1)
+return
+
+#If
+
 ;A "sniper" button, more or less, that slows the mouse pointer speed down to a crawl.
 ;Pressing this key also sends out the normal RShift key, somehow. I added ~ to the hotkey after looking at this forum post:
 ;https://www.autohotkey.com/boards/viewtopic.php?t=40770
@@ -426,15 +438,6 @@ return
 Send, {RShift}
 DllCall("SystemParametersInfo", Int,113, Int,0, UInt,1, Int,1)
 KeyWait, RShift
-DllCall("SystemParametersInfo", Int,113, Int,0, UInt,10, Int,1)
-return
-
-;A way to make the mouse move faster while Mouse G3 and the Right Button are held down.
-;It's basically the complete opposite of the sniper button.
-;I have no idea how these DllCall functions work, nor do I know where I found this stuff.
-F15 & RButton::
-DllCall("SystemParametersInfo", Int,113, Int,0, UInt,17, Int,1)
-KeyWait, RButton
 DllCall("SystemParametersInfo", Int,113, Int,0, UInt,10, Int,1)
 return
 
