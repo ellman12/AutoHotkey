@@ -19,7 +19,7 @@ FileRead, pressedKey, %keypressedTxtFileDir%
 ;See which key was pressed, and act on that.
 Switch (pressedKey) {
 
-   
+
     ;In File Explorer, size all columns to fit.
     ;In Firefox/Chrome go to tabs 1–8, or last tab (9).
     Case "1":
@@ -237,9 +237,21 @@ Switch (pressedKey) {
 
     ;Google Images Search for selected text in Private Firefox.
     Case "leftbracket":
-    Send, ^c
-    Sleep 200
-    Run, firefox.exe -private-window https://www.google.com/search?tbm=isch&q=%Clipboard%
+        ; Send, ^c
+        ; Sleep 200
+        ; Run, firefox.exe -private-window https://www.google.com/search?tbm=isch&q=%Clipboard%
+        BlockInput, on
+        prevClipboard = %clipboard%
+        clipboard =
+        Send, ^c
+        BlockInput, off
+        ClipWait, 2
+        if ErrorLevel = 0
+        {
+            searchQuery=%clipboard%
+            GoSub, GoogleImagesSearch
+        }
+        clipboard = %prevClipboard%
     return
 
     Case "m":MsgBox, %pressedKey% is unassigned.
@@ -307,9 +319,21 @@ Switch (pressedKey) {
 
     ;Google Search for selected text in Private Firefox.
     Case "rightbracket":
-    Send, ^c
-    Sleep 200
-    Run, firefox.exe -private-window http://www.google.com/search?q=%Clipboard%
+        ; Send, ^c
+        ; Sleep 200
+        ; Run, firefox.exe -private-window http://www.google.com/search?q=`%22%clipboard%`%22
+        BlockInput, on
+        prevClipboard = %clipboard%
+        clipboard =
+        Send, ^c
+        BlockInput, off
+        ClipWait, 2
+        if ErrorLevel = 0
+        {
+            searchQuery=%clipboard%
+            GoSub, GoogleSearch
+        }
+        clipboard = %prevClipboard%
     return
 
     ;Open Music folder.
@@ -371,3 +395,71 @@ blankOutNumPadTxtFile() {
     FileDelete, %numPadToggleFileDir%
     FileAppend, , %numPadToggleFileDir%
 }
+
+GoogleSearch:
+   StringReplace, searchQuery, searchQuery, `r`n, %A_Space%, All
+   Loop
+   {
+      noExtraSpaces=1
+      StringLeft, leftMost, searchQuery, 1
+      IfInString, leftMost, %A_Space%
+      {
+         StringTrimLeft, searchQuery, searchQuery, 1
+         noExtraSpaces=0
+      }
+      StringRight, rightMost, searchQuery, 1
+      IfInString, rightMost, %A_Space%
+      {
+         StringTrimRight, searchQuery, searchQuery, 1
+         noExtraSpaces=0
+      }
+      If (noExtraSpaces=1)
+         break
+   }
+   StringReplace, searchQuery, searchQuery, \, `%5C, All
+   StringReplace, searchQuery, searchQuery, %A_Space%, +, All
+   StringReplace, searchQuery, searchQuery, `%, `%25, All
+   IfInString, searchQuery, .
+   {
+      IfInString, searchQuery, +
+         Run, firefox.exe -private-window http://www.google.com/search?hl=en&q=%searchQuery%
+      else
+         Run, firefox.exe -private-window %searchQuery%
+   }
+   else
+      Run, firefox.exe -private-window http://www.google.com/search?hl=en&q=%searchQuery%
+return
+
+GoogleImagesSearch:
+   StringReplace, searchQuery, searchQuery, `r`n, %A_Space%, All
+   Loop
+   {
+      noExtraSpaces=1
+      StringLeft, leftMost, searchQuery, 1
+      IfInString, leftMost, %A_Space%
+      {
+         StringTrimLeft, searchQuery, searchQuery, 1
+         noExtraSpaces=0
+      }
+      StringRight, rightMost, searchQuery, 1
+      IfInString, rightMost, %A_Space%
+      {
+         StringTrimRight, searchQuery, searchQuery, 1
+         noExtraSpaces=0
+      }
+      If (noExtraSpaces=1)
+         break
+   }
+   StringReplace, searchQuery, searchQuery, \, `%5C, All
+   StringReplace, searchQuery, searchQuery, %A_Space%, +, All
+   StringReplace, searchQuery, searchQuery, `%, `%25, All
+   IfInString, searchQuery, .
+   {
+      IfInString, searchQuery, +
+         Run, firefox.exe -private-window https://www.google.com/search?tbm=isch&q=%searchQuery%
+      else
+         Run, firefox.exe -private-window %searchQuery%
+   }
+   else
+      Run, firefox.exe -private-window https://www.google.com/search?tbm=isch&q=%searchQuery%
+return
