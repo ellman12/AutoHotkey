@@ -235,11 +235,11 @@ Switch (pressedKey) {
     ;Ctrl + Left. Common keeb shortcut for moving between words in text.
     Case "left":Send, ^{Left}
 
-    ;Google Search for selected text in Private Firefox.
+    ;Google Images Search for selected text in Private Firefox.
     Case "leftbracket":
     Send, ^c
     Sleep 200
-    Run, firefox.exe -private-window http://www.google.com/search?q=%Clipboard%
+    Run, firefox.exe -private-window https://www.google.com/search?tbm=isch&q=%Clipboard%
     return
 
     Case "m":MsgBox, %pressedKey% is unassigned.
@@ -309,7 +309,7 @@ Switch (pressedKey) {
     Case "rightbracket":
     Send, ^c
     Sleep 200
-    Run, firefox.exe -private-window https://www.google.com/search?tbm=isch&q=%Clipboard%
+    Run, firefox.exe -private-window http://www.google.com/search?q=%Clipboard%
     return
 
     ;Open Music folder.
