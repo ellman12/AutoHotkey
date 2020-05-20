@@ -226,8 +226,8 @@ Switch (pressedKey) {
     ;Open the C: drive.
     Case "j":Run, explorer.exe "C:\"
 
-    ;Open the D: drive.
-    Case "k":Run, explorer.exe "D:\"
+    ;Open the Downloads folder.
+    Case "k":Run, explorer.exe "C:\Users\Elliott\Downloads"
 
     ;Open the G: drive.
     Case "l":Run, explorer.exe "G:\"
@@ -235,7 +235,12 @@ Switch (pressedKey) {
     ;Ctrl + Left. Common keeb shortcut for moving between words in text.
     Case "left":Send, ^{Left}
 
-    Case "leftbracket":MsgBox, %pressedKey% is unassigned.
+    ;Google Search for selected text in Private Firefox.
+    Case "leftbracket":
+    Send, ^c
+    Sleep 200
+    Run, firefox.exe -private-window http://www.google.com/search?q=%Clipboard%
+    return
 
     Case "m":MsgBox, %pressedKey% is unassigned.
 
@@ -300,7 +305,12 @@ Switch (pressedKey) {
     ;Ctrl + Right. Common keeb shortcut for moving between words in text.
     Case "right":Send, ^{Right}
 
-    Case "rightbracket":MsgBox, %pressedKey% is unassigned.
+    ;Google Search for selected text in Private Firefox.
+    Case "rightbracket":
+    Send, ^c
+    Sleep 200
+    Run, firefox.exe -private-window https://www.google.com/search?tbm=isch&q=%Clipboard%
+    return
 
     ;Open Music folder.
     Case "s":Run, explorer C:\Users\Elliott\Music
@@ -317,7 +327,12 @@ Switch (pressedKey) {
 
     Case "t":MsgBox, %pressedKey% is unassigned.
 
-    Case "u":MsgBox, %pressedKey% is unassigned.
+    ;Unzip a single .zip file in File Explorer.
+    Case "u":
+    Send, {Alt}jza
+    Sleep 900
+    Send, !e
+    return
 
     ;Sends the normal up key, to be used in conjunction with Left and Right.
     Case "up":Send, {Up}
