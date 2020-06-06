@@ -479,8 +479,6 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::matinee::matinée
 ::matinees::matinées
 ::melange::mélange
-::melee::mêlée
-::melees::mêlées
 ::menage a trois::ménage à trois
 ::menages a trois::ménages à trois
 ::mesalliance::mésalliance
