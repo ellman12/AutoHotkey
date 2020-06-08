@@ -35,6 +35,8 @@ DetectHiddenWindows, On
 * https://www.reddit.com/r/AutoHotkey/comments/fxu9gk/help_with_two_gui_problems/
 */
 
+Menu, Tray, Icon, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Google Calendar\GCal Logo.png
+
 ;Arrays for tracking all of the user-inputted data.
 eventNameArray := []
 eventAllDayBoolArray := []
@@ -411,11 +413,6 @@ addEventDateAndTime() {
 
     Send, %newEndDateVar%
     Sleep 400
-
-    Send, {Tab 29}
-    Sleep 550
-    Send, {Space}
-    Sleep 550
 }
 
 ;*********************ACTUALLY CREATING THE EVENTS*********************
@@ -461,6 +458,27 @@ createEvents() {
                 Send, Working %newStartTimeVar% to %newEndTimeVar%
                 addEventDateAndTime()
 
+                ;If an event color is red AND there's no description, tab back over to and click the Save button.
+                ;There's no point going over to the event color area if the default is already red.
+                ;If they aren't, continue like normal.
+                if ((eventColorArray[currentArrayIndex] = "Red") && (eventDescriptionArray[currentArrayIndex] = "")) {
+
+                    Send, +{Tab 4}
+                    Sleep 550
+                    Send, {Enter}
+
+                    currentArrayIndex++ ;Move on to the next index.
+                    continue ;Skip the unnecessary stuff in the while loop after the end of this giant if block.
+
+                } else {
+
+                    ;At the event color selector.
+                    Send, {Tab 32}
+                    Sleep 550
+                    Send, {Space}
+                    Sleep 550
+                }
+
             ;If it's not marked as a working event.
             } else {
 
@@ -469,6 +487,7 @@ createEvents() {
                 ;If an event is marked as all day.
                 if (eventAllDayBoolArray[currentArrayIndex] = 1) {
 
+                    ;Add dates and chech the box marking it as all day.
                     Sleep 400
                     Send, {Tab 2}
                     Sleep 400
@@ -482,18 +501,59 @@ createEvents() {
                     Sleep 400
                     Send, {Space}
                     Sleep 400
-                    Send, {Tab 26}
-                    Sleep 400
-                    Send, {Space}
-                    Sleep 400
+
+                    ;If an event color is red AND there's no description, tab back over to and click the Save button.
+                    ;There's no point going over to the event color area if the default is already red.
+                    ;If they aren't, continue like normal.
+                    if ((eventColorArray[currentArrayIndex] = "Red") && (eventDescriptionArray[currentArrayIndex] = "")) {
+
+                        Send, +{Tab 3}
+                        Sleep 550
+                        Send, {Enter}
+
+                        currentArrayIndex++ ;Move on to the next index.
+                        continue ;Skip the unnecessary stuff in the while loop after the end of this giant if block.
+
+                    } else {
+
+                        ;At the event color selector.
+                        Send, {Tab 26}
+                        Sleep 550
+                        Send, {Space}
+                        Sleep 550
+                    }
 
                 ;If an event is completely normal (no all day/working).
                 } else {
                     addEventDateAndTime()
+
+                    ;If an event color is red AND there's no description, tab back over to and click the Save button.
+                    ;There's no point going over to the event color area if the default is already red.
+                    ;If they aren't, continue like normal.
+                    if ((eventColorArray[currentArrayIndex] = "Red") && (eventDescriptionArray[currentArrayIndex] = "")) {
+
+                        Send, +{Tab 4}
+                        Sleep 550
+                        Send, {Enter}
+
+                        currentArrayIndex++ ;Move on to the next index.
+                        continue ;Skip the unnecessary stuff in the while loop after the end of this giant if block.
+
+                    } else {
+
+                        ;At the event color selector.
+                        Send, {Tab 32}
+                        Sleep 550
+                        Send, {Space}
+                        Sleep 550
+                    }
+
                 }
 
             }
-                ;Regardless of which type of event it is, this Switch statement is run.
+
+                ;The 'continue' command skips the rest of this stuff because it doesn't need to run this stuff.
+
                 ;Select the right color.
                 Switch (eventColorArray[currentArrayIndex]) {
                     ;Case "Red": ;Do nothing, since Red is already selected.
@@ -521,9 +581,9 @@ createEvents() {
                     ;Move to and click the save button; finish creating the event.
                     ;There's less notifications to tab through when it's all day.
                     if (eventAllDayBoolArray[currentArrayIndex]) {
-                        Send, +{Tab 29}
+                        Send, +{Tab 32}
                     } else {
-                        Send, +{Tab 33}
+                        Send, +{Tab 36}
                     }
 
                 } else {
@@ -536,9 +596,9 @@ createEvents() {
                     ;Move to and click the save button; finish creating the event.
                     ;There's less notifications to tab through when it's all day.
                     if (eventAllDayBoolArray[currentArrayIndex]) {
-                        Send, +{Tab 34}
+                        Send, +{Tab 37}
                     } else {
-                        Send, +{Tab 38}
+                        Send, +{Tab 41}
                     }
 
                 }
