@@ -372,7 +372,18 @@ Switch (pressedKey) {
     ;Redo.
     Case "x":Send, ^y
 
-    Case "y":MsgBox, %pressedKey% is unassigned.
+    ;Paste a link in Gmail, and make it blue and clickable too.
+    Case "y":
+    Send, ^k
+    Sleep 150
+    Send, ^v
+    Sleep 150
+    Send, {Tab 2}
+    Sleep 150
+    Send, ^v
+    Sleep 150
+    Send, {Enter}
+    return
 
     ;Undo.
     Case "z":Send, ^z
