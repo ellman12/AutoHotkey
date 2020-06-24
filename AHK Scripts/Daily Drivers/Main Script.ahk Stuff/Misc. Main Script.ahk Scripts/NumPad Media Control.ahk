@@ -47,7 +47,7 @@ return
 
 ;If NumLock = On and ScrollLock = Off. The brackets are for condensing the code.
 ;This mode makes listening to music much easier and thus much more enjoyable.
-#If numPadMode = "MusicBee"
+#If numPadMode = "MusicBee" and !(getKeyState("F24", "P"))
 {
 
 ;No function.
@@ -153,7 +153,7 @@ return
 
 ;If NumLock = On and ScrollLock = On.
 ;This mode makes watching YouTube videos easier.
-#If numPadMode = "YouTube"
+#If numPadMode = "YouTube" and !(getKeyState("F24", "P"))
 {
 
 ;No function.
@@ -263,7 +263,7 @@ return
 ;Hotkeys with one space between them are a pair.
 ;E.g., 0 and Ins are a pair, because 0 and Ins are on the same physical key.
 ;Two spaces separate each pair.
-#If numPadMode = "Normal"
+#If numPadMode = "Normal" and !(getKeyState("F24", "P"))
 {
 
 $Numpad0::Send, {Numpad0}
@@ -346,7 +346,7 @@ $NumPadSub::Send, {NumpadSub}
 ; players that are all that great. Thus, this numPadMode was born.
 ;The reason it's called "Dumbed-Down" is because, well, it's a dumbed-down version
 ; of the YouTube numPadMode.
-#If numPadMode = "Dumbed-Down"
+#If numPadMode = "Dumbed-Down" and !(getKeyState("F24", "P"))
 {
 
 ;No function.

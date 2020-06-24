@@ -233,7 +233,7 @@ Loop {
 ;#Include the script for my Secondary Macro Keyboard.
 ; #Include, %A_MyDocuments%\GitHub\AutoHotkey\Secondary Macro Keyboard\Second Keyboard Script.ahk
 
-;#Include, %A_MyDocuments%\GitHub\AutoHotkey\Secondary Macro Keyboard\Hasu USB to USB Script.ahk
+#Include, %A_MyDocuments%\GitHub\AutoHotkey\Secondary Macro Keyboard\Hasu USB to USB Script.ahk
 
 ;****************************************GLOBAL HOTKEYS***************************************
 ;These global hotkeys are hotkeys that are always running, regardless of the active window, profile, or whatever.
@@ -691,6 +691,14 @@ EWD_MouseStartX := EWD_MouseX  ; Update for the next timer-call to this subrouti
 EWD_MouseStartY := EWD_MouseY
 return
 
+;*****************************************GLOBAL FUNCTIONS*****************************************
+;Used for making the process of using ToolTips a lot simpler and easier.
+Tippy(Text, Duration) {
+	ToolTip, %Text%
+	Sleep %Duration%
+	ToolTip ;Remove the ToolTip.
+}
+
 ;*****************************************EXPERIMENTAL*****************************************
 \::
 Send, ^+{Left}
@@ -701,8 +709,8 @@ return
 Send, ^+{Left}{BackSpace}
 return
 
-!Up::Send, {WheelUp}
-!Down::Send, {WheelDown}
+; !Up::Send, {WheelUp}
+; !Down::Send, {WheelDown}
 
 ;For drawing straight lines with the pen tool in MS Word.
 ; ^!Up::

@@ -21,18 +21,14 @@ F1::MouseMove, mousePosX1, mousePosY1, 0
 
 +F1::
 MouseGetPos, mousePosX1, mousePosY1
-ToolTip, F1 pointer saved at X%mousePosX1%`, Y%mousePosY1%
-Sleep 1500
-ToolTip
+Tippy("F1 pointer saved", 1300)
 return
 
 F2::MouseMove, mousePosX2, mousePosY2, 0
 
 +F2::
 MouseGetPos, mousePosX2, mousePosY2
-ToolTip, F2 pointer saved at X%mousePosX2%`, Y%mousePosY2%
-Sleep 1500
-ToolTip
+Tippy("F2 pointer saved", 1300)
 return
 
 ;In File Explorer, size all columns to fit.
@@ -185,12 +181,6 @@ SC033::Send, +#{Left}
 ;Open the Desktop folder.
 d::Run, explorer %A_Desktop%
 
-;Sends the normal down key, to be used in conjunction with Left and Right.
-down::Send, {Down}
-
-;Normal End.
-end::Send, {End}
-
 ;Kind Regards Macro.
 enter::Send, Kind regards`,{Enter 2}Elliott DuCharme
 
@@ -205,9 +195,6 @@ g::Run, explorer %A_MyDocuments%
 
 ;Open my user folder.
 h::Run, explorer C:\Users\Elliott\
-
-;Normal Home.
-home::Send, {Home}
 
 ;Create a new Private Firefox window w/ Google Images.
 i::Run, firefox.exe -private-window https://images.google.com/
@@ -269,7 +256,7 @@ NumpadDiv::Send, +{Left}
 NumpadMult::Send, +{Right}
 
 ;;=========== Unassigned NumPad Keys on 2nd Keeb ==============;;
-numpad0::ToolTip, [F24] %a_thishotKey%
+numpad0::ToolTip, [F24] %A_thishotKey%
 NumpadIns::ToolTip, [F24] %A_thishotKey%
 
 NumpadDot::ToolTip, [F24] %A_thishotKey%
@@ -342,9 +329,6 @@ Send, {Alt}jza
 Sleep 900
 Send, !e
 return
-
-;Sends the normal up key, to be used in conjunction with Left and Right.
-up::Send, {Up}
 
 ;Sends the current date.
 v::
