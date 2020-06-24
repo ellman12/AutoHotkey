@@ -232,7 +232,8 @@ Loop {
 
 ;#Include the script for my Secondary Macro Keyboard.
 ; #Include, %A_MyDocuments%\GitHub\AutoHotkey\Secondary Macro Keyboard\Second Keyboard Script.ahk
-#Include, %A_MyDocuments%\GitHub\AutoHotkey\Secondary Macro Keyboard\Hasu USB to USB Script.ahk
+
+;#Include, %A_MyDocuments%\GitHub\AutoHotkey\Secondary Macro Keyboard\Hasu USB to USB Script.ahk
 
 ;****************************************GLOBAL HOTKEYS***************************************
 ;These global hotkeys are hotkeys that are always running, regardless of the active window, profile, or whatever.
@@ -356,12 +357,12 @@ Send, ^c
 return
 
 ;M2 on K95 RGB cuts to the clipboard.
-#F24::
++F21::
 Send, ^x
 return
 
 ;M3 on K95 RGB pastes to the clipboard.
-!F24::
++F22::
 Send, ^v
 return
 
@@ -757,17 +758,6 @@ return
 ; MouseMove, 5000, 540, 0 ;Like Insert.
 ; return
 ; #If
-
-;TEMP Auto-fill for distance learning attendance.
-^#a::
-FormatTime, attendenceMonth, A_Now, M
-FormatTime, attendenceDay, A_Now, d
-
-Send, duch_ell@students.cps.k12.mn.us{Tab}Elliott{Tab}DuCharme{Tab}
-Send, %attendenceMonth%{Tab}%attendenceDay%{Tab 2}
-Sleep 260
-Send, {Enter}
-return
 
 ;English papers.
 :*:ai::AI

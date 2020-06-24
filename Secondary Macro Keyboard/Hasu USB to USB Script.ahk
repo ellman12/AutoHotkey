@@ -12,49 +12,41 @@ SendMode Input
 #MenuMaskKey vk07 ;https://autohotkey.com/boards/viewtopic.php?f=76&t=57683
 #WinActivateForce ;https://autohotkey.com/docs/commands/_WinActivateForce.htm ;prevent taskbar flashing.
 
-; Loop {
-;     DetectHiddenWindows, On ;Temporarily on for the Space bar thing below.
-; 	SetTitleMatchMode, 2
-
-
-;     if (A_IsSuspended and coolVar = "space") {
-; 		;Un-suspends AWH.
-; 		PostMessage, 0x111, 65305,,, Advanced Window Hider.ahk - AutoHotkey
-; 		Suspend, Off
-; } else if (!A_IsSuspended and coolVar = "space") {
-; 		;Suspend AWH.
-; 		PostMessage, 0x111, 65305,,, Advanced Window Hider.ahk - AutoHotkey
-; 		Suspend, On
-; }
-
-;     ; coolVar := ""
-;     DetectHiddenWindows, Off
-;     SetTitleMatchMode, 1
-
-; }
-
+;The Hasu USB to USB Controller Converter somehow separates the 2nd keyboard from the others. Idk how it does.
 #if (getKeyState("F24", "P")) ;<--Everything after this line will only happen on the secondary keyboard that uses F24.
 F24::return ;this line is mandatory for proper functionality
 
-
+;Saving mouse pointer locations and returning to saved spots.
 F1::MouseMove, mousePosX1, mousePosY1, 0
-+F1::MouseGetPos, mousePosX1, mousePosY1
-F2::MouseMove, mousePosX2, mousePosY2, 0
-+F2::MouseGetPos, mousePosX2, mousePosY2
 
++F1::
+MouseGetPos, mousePosX1, mousePosY1
+ToolTip, F1 pointer saved at X%mousePosX1%`, Y%mousePosY1%
+Sleep 1500
+ToolTip
+return
+
+F2::MouseMove, mousePosX2, mousePosY2, 0
+
++F2::
+MouseGetPos, mousePosX2, mousePosY2
+ToolTip, F2 pointer saved at X%mousePosX2%`, Y%mousePosY2%
+Sleep 1500
+ToolTip
+return
 
 ;In File Explorer, size all columns to fit.
 ;In Firefox/Chrome go to tabs 1-8, or last tab (9).
 1::
-        IfWinActive, ahk_exe Explorer.EXE
-        {
-            Send, !v ;Open View menu.
-            Send, sf ;Alt code for sizing columns.
-        }
-        else IfWinActive, ahk_exe Firefox.exe
-            Send, ^1
-        else IfWinActive, ahk_exe chrome.exe
-            Send, ^1
+    IfWinActive, ahk_exe Explorer.EXE
+    {
+        Send, !v ;Open View menu.
+        Send, sf ;Alt code for sizing columns.
+    }
+    else IfWinActive, ahk_exe Firefox.exe
+        Send, ^1
+    else IfWinActive, ahk_exe chrome.exe
+        Send, ^1
 return
 
 ;In File Explorer, sort by name.
@@ -256,15 +248,19 @@ n::Run, notepad.exe
 
 ;Shift + End.
 NumPad1::Send, +{End}
+NumpadEnd::Send, +{End}
 
 ;Ctrl + Shift + Left.
 NumPad4::Send, ^+{Left}
+NumpadLeft::Send, ^+{Left}
 
 ;Ctrl + Shift + Right.
 NumPad6::Send, ^+{Right}
+NumpadRight::Send, ^+{Right}
 
 ;Shift + Home.
 NumPad7::Send, +{Home}
+NumpadHome::Send, +{Home}
 
 ;Shift + Left.
 NumpadDiv::Send, +{Left}
@@ -272,41 +268,31 @@ NumpadDiv::Send, +{Left}
 ;Shift + Right.
 NumpadMult::Send, +{Right}
 
-;;=========== Unassigned NumPad Keys ==============;;
-;;; -- (I never turn numlock off, FYI.) -- ;;
-;;Please note that SHIFT will make numlock act like it's off...
-;;or is it the other way around? AGH! Just don't use shift with the numpad!
+;;=========== Unassigned NumPad Keys on 2nd Keeb ==============;;
+numpad0::ToolTip, [F24] %a_thishotKey%
+NumpadIns::ToolTip, [F24] %A_thishotKey%
 
-numpad0::
-numpad1::
-numpad2::
-numpad3::
-numpad4::
-numpad5::
-numpad6::
-numpad7::
-numpad8::
-numpad9::tooltip,[F24] %A_thishotKey%
+NumpadDot::ToolTip, [F24] %A_thishotKey%
+NumpadDel::ToolTip, [F24] %A_thishotKey%
 
-numpadins::
-numpadend::
-numpaddown::
-numpadpgdn::
-numpadleft::
-numpadclear::
-numpadright::
-numpadhome::
-numpadup::
-numpadpgup::tooltip,[F24] %A_thishotKey% Because numlock is off
+numpad2::ToolTip, [F24] %A_thishotKey%
+NumpadDown::ToolTip, [F24] %A_thishotKey%
 
-;;====== NUMPAD KEYS THAT DON'T CARE ABOUT NUMLOCK =====;;
-;;NumLock::tooltip, DO NOT USE THE NUMLOCK KEY IN YOUR 2ND KEYBOARD! I have replaced it with SC05C-International 6
-numpadDiv::
-numpadMult::
-numpadSub::
-numpadAdd::
-numpadEnter::
-numpadDot::tooltip, [F24] %A_thishotKey%
+numpad3::ToolTip, [F24] %A_thishotKey%
+NumpadPgdn::ToolTip, [F24] %A_thishotKey%
+
+numpad5::ToolTip, [F24] %A_thishotKey%
+NumpadClear::ToolTip, [F24] %A_thishotKey%
+
+numpad8::ToolTip, [F24] %A_thishotKey%
+NumpadUp::ToolTip, [F24] %A_thishotKey%
+
+numpad9::ToolTip, [F24] %A_thishotKey%
+NumpadPgup::ToolTip, [F24] %A_thishotKey%
+
+NumpadEnter::ToolTip, [F24] %A_thishotKey%
+NumpadAdd::ToolTip, [F24] %A_thishotKey%
+NumpadSub::ToolTip, [F24] %A_thishotKey%
 
 ;Send Ctrl + O.
 o::Send, ^o

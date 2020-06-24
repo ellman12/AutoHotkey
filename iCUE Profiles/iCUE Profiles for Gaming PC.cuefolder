@@ -34,7 +34,7 @@
 												</locked_ptr>
 											</parent>
 										</base>
-										<id>{55ce7bb6-115f-4885-959a-9eccd96544b1}</id>
+										<id>{a26ba461-e590-4c6d-afec-1b48dd50d731}</id>
 									</data>
 								</ptr_wrapper>
 							</value0>
@@ -56,7 +56,7 @@
 												</locked_ptr>
 											</parent>
 										</base>
-										<id>{10604d39-57bb-448b-af48-b85a335c9349}</id>
+										<id>{5a18cbb0-1019-4437-84c5-612168e9d8c0}</id>
 									</data>
 								</ptr_wrapper>
 							</value1>
@@ -78,7 +78,7 @@
 												</locked_ptr>
 											</parent>
 										</base>
-										<id>{88d3f58e-8375-46bf-a466-531354973d17}</id>
+										<id>{8a7bf516-3421-44d2-8567-912b07fe9c2f}</id>
 									</data>
 								</ptr_wrapper>
 							</value2>
@@ -100,7 +100,7 @@
 												</locked_ptr>
 											</parent>
 										</base>
-										<id>{20bb64a7-43ff-4f27-87d3-5a5804b6bc39}</id>
+										<id>{1637224b-8281-40fb-b6a6-51b2c55b2c82}</id>
 									</data>
 								</ptr_wrapper>
 							</value3>
@@ -111,7 +111,7 @@
 							</locked_ptr>
 						</parent>
 					</base>
-					<id>{89f8aa8a-053d-4f0e-a9f3-b194d9f31ca5}</id>
+					<id>{073bc17f-f785-4c5a-a425-88a541b1f94e}</id>
 				</data>
 			</ptr_wrapper>
 		</folder>
@@ -121,7 +121,7 @@
 				<profile>
 					<cereal_class_version>305</cereal_class_version>
 					<name>Normal Profile (AHK Hotkeys)</name>
-					<id>{55ce7bb6-115f-4885-959a-9eccd96544b1}</id>
+					<id>{a26ba461-e590-4c6d-afec-1b48dd50d731}</id>
 					<iconUrl></iconUrl>
 					<iconColor>#00000000</iconColor>
 					<linkedProgramPath></linkedProgramPath>
@@ -347,7 +347,7 @@
 																<data>
 																	<cereal_class_version>200</cereal_class_version>
 																	<base/>
-																	<id>{c081266c-0a3d-4c24-8196-8d832586a6d2}</id>
+																	<id>{9286e80a-cc2f-4245-a807-0b150540c822}</id>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -1857,7 +1857,7 @@
 																<data>
 																	<cereal_class_version>300</cereal_class_version>
 																	<base/>
-																	<cookie>3</cookie>
+																	<cookie>4</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -1877,7 +1877,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>3</cookie>
+																	<cookie>4</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -1897,7 +1897,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>3</cookie>
+																	<cookie>4</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -1917,7 +1917,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>3</cookie>
+																	<cookie>4</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -1937,7 +1937,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>3</cookie>
+																	<cookie>4</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -1957,7 +1957,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>3</cookie>
+																	<cookie>4</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -1977,7 +1977,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>3</cookie>
+																	<cookie>4</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -1997,7 +1997,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>3</cookie>
+																	<cookie>4</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -2017,7 +2017,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>3</cookie>
+																	<cookie>4</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -2037,7 +2037,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>3</cookie>
+																	<cookie>4</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -2057,7 +2057,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>3</cookie>
+																	<cookie>4</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -3907,7 +3907,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -3927,7 +3927,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -3947,7 +3947,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -3967,7 +3967,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -3987,7 +3987,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -4007,7 +4007,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -4027,7 +4027,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -4047,7 +4047,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -4067,7 +4067,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -4087,7 +4087,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -4107,7 +4107,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -4364,7 +4364,7 @@
 																				<data>
 																					<base/>
 																					<keys size="dynamic">
-																						<value0>LeftGui</value0>
+																						<value0>LeftShift</value0>
 																					</keys>
 																					<sub>KeyPress</sub>
 																				</data>
@@ -4377,7 +4377,7 @@
 																				<data>
 																					<base/>
 																					<keys size="dynamic">
-																						<value0>F24</value0>
+																						<value0>F21</value0>
 																					</keys>
 																					<sub>KeyPress</sub>
 																				</data>
@@ -4401,7 +4401,7 @@
 																				<data>
 																					<base/>
 																					<keys size="dynamic">
-																						<value0>LeftGui</value0>
+																						<value0>LeftShift</value0>
 																					</keys>
 																					<sub>KeyRelease</sub>
 																				</data>
@@ -4414,7 +4414,7 @@
 																				<data>
 																					<base/>
 																					<keys size="dynamic">
-																						<value0>F24</value0>
+																						<value0>F21</value0>
 																					</keys>
 																					<sub>KeyRelease</sub>
 																				</data>
@@ -4475,7 +4475,7 @@
 																				<data>
 																					<base/>
 																					<keys size="dynamic">
-																						<value0>LeftAlt</value0>
+																						<value0>LeftShift</value0>
 																					</keys>
 																					<sub>KeyPress</sub>
 																				</data>
@@ -4488,7 +4488,7 @@
 																				<data>
 																					<base/>
 																					<keys size="dynamic">
-																						<value0>F24</value0>
+																						<value0>F22</value0>
 																					</keys>
 																					<sub>KeyPress</sub>
 																				</data>
@@ -4512,7 +4512,7 @@
 																				<data>
 																					<base/>
 																					<keys size="dynamic">
-																						<value0>LeftAlt</value0>
+																						<value0>LeftShift</value0>
 																					</keys>
 																					<sub>KeyRelease</sub>
 																				</data>
@@ -4525,7 +4525,7 @@
 																				<data>
 																					<base/>
 																					<keys size="dynamic">
-																						<value0>F24</value0>
+																						<value0>F22</value0>
 																					</keys>
 																					<sub>KeyRelease</sub>
 																				</data>
@@ -6484,7 +6484,7 @@
 																	<switchType>ProfileList</switchType>
 																	<loop>true</loop>
 																	<profiles size="dynamic">
-																		<value0>{20bb64a7-43ff-4f27-87d3-5a5804b6bc39}</value0>
+																		<value0>{1637224b-8281-40fb-b6a6-51b2c55b2c82}</value0>
 																	</profiles>
 																	<direction>Backward</direction>
 																	<folderOnlyVisible>false</folderOnlyVisible>
@@ -6852,7 +6852,7 @@
 																		<cereal_class_version>301</cereal_class_version>
 																		<base>
 																			<name></name>
-																			<id>{82261ac2-79ca-45d6-a0bc-606a65ebd832}</id>
+																			<id>{0c19d222-e517-4712-92f5-055f55f805e2}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -6887,7 +6887,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{bd1c800a-ed72-44cc-8fb8-c77f3bcb1ab1}</id>
+																			<id>{e13a678a-166e-4e45-b1cf-7a646fbbe25d}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -6922,7 +6922,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{ae5a166d-fcd1-49d1-afc3-4b3173407e02}</id>
+																			<id>{f3770409-fc97-44f9-9304-cd700cb22cd6}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -6957,7 +6957,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{5cb20106-8a5c-4327-9d22-9f54a708c372}</id>
+																			<id>{358bb016-79f5-413e-acb9-c741a8d49f31}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -6992,7 +6992,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{43414e06-7209-4eb4-8e7d-557a5c8e6582}</id>
+																			<id>{bfb17e24-4f76-4c60-90bd-7a3bf6246f09}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -7027,7 +7027,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{f820b965-0197-49d5-9f0b-83d1ce4164d1}</id>
+																			<id>{119a5032-6081-4984-af75-093bf2aad453}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -7062,7 +7062,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{488264d1-ceaa-4c63-b222-a0cdaeee061a}</id>
+																			<id>{d4b6a60e-5e5c-40ab-9089-b0e6d5af83a6}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -7097,7 +7097,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{fe3b949a-c64a-456f-aadb-509521e3f696}</id>
+																			<id>{7f2f8089-2860-47b0-ae29-17a60669576c}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -7132,7 +7132,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{3bcecedf-87e1-4d28-9570-afcdbc9bac7c}</id>
+																			<id>{646e4020-5fea-4558-b58e-b244aec69ae8}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -7167,7 +7167,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{64218f9f-6d4b-49ef-aae7-1cf6e52c9b2d}</id>
+																			<id>{4457dca6-7c09-4405-9e8e-53ca5362bc95}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -7202,7 +7202,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{7e7aa5c2-1bbf-409c-9a63-1ec0fbc90c02}</id>
+																			<id>{e90d10ef-79ed-4998-ac47-b65714b400e1}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -7237,7 +7237,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{8e0cdd3c-83b3-4148-a9fa-6617e3fc025b}</id>
+																			<id>{216ccf49-e622-4eac-ac0f-aa09cff1c627}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -7272,7 +7272,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{719998e1-36ae-4edf-a58c-9f4603dc252e}</id>
+																			<id>{2a6f993e-f099-493d-a934-c331153a13f8}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -7307,7 +7307,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{b574538c-e081-44b1-88dc-4c5bfb84aa48}</id>
+																			<id>{ba3811de-e613-493b-a030-d9f8e20aeadb}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -7342,7 +7342,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{2f943adf-ad8e-458e-8541-70880948f0ab}</id>
+																			<id>{15595891-7654-418c-b589-348768e2b55a}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -7377,7 +7377,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{d52a34c4-879a-43a8-a0c1-413d4beea3da}</id>
+																			<id>{18b133bb-64ae-45c6-9812-79ece2828a83}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -7412,7 +7412,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{eb36bbfc-5a52-433e-a77f-847ff73ce3f5}</id>
+																			<id>{30954228-ccf5-403c-83b7-3166cbf061d8}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -7447,7 +7447,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{8202987d-b78a-4ef1-ad13-994fb84244d4}</id>
+																			<id>{db94b3a3-6719-4cd2-90e2-3f66acf6dbaf}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -7482,7 +7482,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{5daddad5-2c2d-4dfd-9653-50f1964acd88}</id>
+																			<id>{b9084b7b-dba1-4c0d-b9b5-ef199ff6e198}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -7517,7 +7517,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{4cfa94ed-dcf3-4ccd-a5c9-0674a57e42cd}</id>
+																			<id>{2125a38e-65cb-43c8-9d7d-5a66d7aaafe0}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -7552,7 +7552,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{ac9a3f39-8c5b-45b8-afcb-ab14521b903a}</id>
+																			<id>{fd19a459-36d5-4d58-9306-75aae71b7b3a}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -8537,7 +8537,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -8557,7 +8557,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -8577,7 +8577,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -8597,7 +8597,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -8617,7 +8617,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -8637,7 +8637,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -8657,7 +8657,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -8677,7 +8677,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -8697,7 +8697,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -8717,7 +8717,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -8737,7 +8737,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -9395,7 +9395,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -9415,7 +9415,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -9435,7 +9435,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -9455,7 +9455,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -9475,7 +9475,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -9495,7 +9495,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -9515,7 +9515,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -9535,7 +9535,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -9555,7 +9555,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -9575,7 +9575,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -9595,7 +9595,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -10577,8 +10577,8 @@
 				</profile>
 				<dpiMode>
 					<cereal_class_version>201</cereal_class_version>
-					<id>{c081266c-0a3d-4c24-8196-8d832586a6d2}</id>
-					<name>AHK Profile</name>
+					<id>{9286e80a-cc2f-4245-a807-0b150540c822}</id>
+					<name>AHK Profile (1)</name>
 					<settings size="dynamic">
 						<value0>
 							<key>Dpi1</key>
@@ -10684,7 +10684,7 @@
 					<isDefault>false</isDefault>
 				</dpiMode>
 				<dpiModeAdditional>
-					<id>{1dc8f635-8cb1-4c5c-af1e-663e70a9a656}</id>
+					<id>{d9b3805d-1872-402b-8d4d-10ddba673421}</id>
 					<name></name>
 					<settings size="dynamic"/>
 					<active>false</active>
@@ -10697,7 +10697,7 @@
 			<value1>
 				<profile>
 					<name>Normal Onboard Profile</name>
-					<id>{10604d39-57bb-448b-af48-b85a335c9349}</id>
+					<id>{5a18cbb0-1019-4437-84c5-612168e9d8c0}</id>
 					<iconUrl></iconUrl>
 					<iconColor>#00000000</iconColor>
 					<linkedProgramPath></linkedProgramPath>
@@ -10900,7 +10900,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<id>{2ade3374-f75e-43d0-ada5-132eb9ea396f}</id>
+																	<id>{a0f755fe-5b4f-455d-a8c0-088e4a9d580d}</id>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -11508,7 +11508,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>25</cookie>
+																	<cookie>26</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -11528,7 +11528,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>25</cookie>
+																	<cookie>26</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -11548,7 +11548,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>25</cookie>
+																	<cookie>26</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -11568,7 +11568,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>25</cookie>
+																	<cookie>26</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -11588,7 +11588,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>25</cookie>
+																	<cookie>26</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -11608,7 +11608,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>25</cookie>
+																	<cookie>26</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -11628,7 +11628,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>25</cookie>
+																	<cookie>26</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -11648,7 +11648,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>25</cookie>
+																	<cookie>26</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -11668,7 +11668,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>25</cookie>
+																	<cookie>26</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -11688,7 +11688,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>25</cookie>
+																	<cookie>26</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -11708,7 +11708,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>25</cookie>
+																	<cookie>26</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -13376,7 +13376,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -13396,7 +13396,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -13416,7 +13416,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -13436,7 +13436,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -13456,7 +13456,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -13476,7 +13476,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -13496,7 +13496,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -13516,7 +13516,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -13536,7 +13536,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -13556,7 +13556,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -13576,7 +13576,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -13647,7 +13647,7 @@
 																	<switchType>Direct</switchType>
 																	<loop>true</loop>
 																	<profiles size="dynamic">
-																		<value0>{20bb64a7-43ff-4f27-87d3-5a5804b6bc39}</value0>
+																		<value0>{1637224b-8281-40fb-b6a6-51b2c55b2c82}</value0>
 																	</profiles>
 																	<direction>Backward</direction>
 																	<folderOnlyVisible>false</folderOnlyVisible>
@@ -13997,7 +13997,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{bd99db04-5a9c-49e5-90a2-7ea19be49049}</id>
+																			<id>{4b1226c1-0e2f-484d-8918-1844972265fb}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -14032,7 +14032,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{39b1c2dd-3700-4fa1-8a08-463fd1ba44d4}</id>
+																			<id>{d6a5c8c4-b85b-43bc-a0ee-08477ca8397e}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -14067,7 +14067,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{f98c20cc-3609-4044-b772-707914464f22}</id>
+																			<id>{7807bfda-19f6-43a9-a537-b0885b70ffec}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -14102,7 +14102,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{e55867dc-f803-49fe-b91d-c3ba5bfe0895}</id>
+																			<id>{86fcc1cf-7afc-4d9d-b880-4838e76e986d}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -14137,7 +14137,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{046123a0-ff65-42a8-9a56-88c8f52aa11c}</id>
+																			<id>{32ad8911-abcf-4695-90bd-2182336082c0}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -14172,7 +14172,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{d0a4c92f-7218-4ebb-ba40-91070f9ff31a}</id>
+																			<id>{bf325d4a-f13f-45f6-8a55-326e885fa5a2}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -14207,7 +14207,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{5ff41042-8444-4d7a-ae48-a4b1758e5358}</id>
+																			<id>{b1d973b8-9dae-4078-993c-b804d4541379}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -14242,7 +14242,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{ba1b1007-b445-4fc3-a09e-901b319e782c}</id>
+																			<id>{8263b3b2-dc79-4664-81b2-2f56aa2aa8a2}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -14277,7 +14277,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{6e5ad47f-304d-43cb-b822-1b061c7f85c6}</id>
+																			<id>{d6015967-b685-4c46-b036-ca5a2bed560a}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -14312,7 +14312,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{6944240f-2fa6-4f11-a5ee-79cfabb70449}</id>
+																			<id>{696ac134-35e7-4a8d-b000-6d9b710c0cc0}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -14347,7 +14347,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{cd4c6a28-63da-40c8-bfeb-45157441c3e0}</id>
+																			<id>{f99731d0-8512-4261-84e3-5081c22c4107}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -14382,7 +14382,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{d9da604c-ab68-455c-8e08-8c41959f6d5a}</id>
+																			<id>{b3a77ae6-d3fa-403b-b267-f50a1ae3ee71}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -14417,7 +14417,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{fe425158-de41-49cf-8091-628620037b77}</id>
+																			<id>{b702c9df-a56b-42a2-abda-4ff360e98430}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -14452,7 +14452,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{aa5bafe5-6966-4d5c-8acd-72ce325b7384}</id>
+																			<id>{6499e404-e61c-43fe-b745-36af4115a657}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -14487,7 +14487,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{defc1dd8-6177-4c5b-b4db-d75cc4c92c63}</id>
+																			<id>{048321bb-ab8d-4100-b48e-cc9be105ca74}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -14522,7 +14522,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{e0492e5e-8545-4e58-a6b4-4aa19f72c9ea}</id>
+																			<id>{13138adb-8bd2-4601-97c5-fa7536b08034}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -14557,7 +14557,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{e525a967-44cf-4af8-b52b-1823fdfebdda}</id>
+																			<id>{0e5b4995-4ce6-4700-a3e0-34647824ec9f}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -14592,7 +14592,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{a878bfb9-57c4-4164-970c-1d447d5bf72d}</id>
+																			<id>{bbe9623b-c799-42d7-b2d1-f8586bb2f023}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -14627,7 +14627,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{5346c00b-c3a7-455c-9c72-0000631f2139}</id>
+																			<id>{956e26f4-8b49-456c-8f46-415e630c3953}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -14662,7 +14662,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{8a793112-0614-4a25-ac8c-598708434204}</id>
+																			<id>{977e1cd5-d9dd-4a81-8068-acad95646dda}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -14697,7 +14697,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{4099e3da-036e-4f7f-9375-b604fe53f2bc}</id>
+																			<id>{fdece562-d2a2-4983-9ec1-d1eaba108299}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -15672,7 +15672,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -15692,7 +15692,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -15712,7 +15712,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -15732,7 +15732,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -15752,7 +15752,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -15772,7 +15772,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -15792,7 +15792,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -15812,7 +15812,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -15832,7 +15832,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -15852,7 +15852,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -15872,7 +15872,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -16514,7 +16514,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -16534,7 +16534,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -16554,7 +16554,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -16574,7 +16574,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -16594,7 +16594,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -16614,7 +16614,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -16634,7 +16634,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -16654,7 +16654,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -16674,7 +16674,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -16694,7 +16694,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -16714,7 +16714,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -17663,8 +17663,8 @@
 						</value11>
 					</properties>
 					<RGBShareMeta>
-						<CueVersion>3.27.68</CueVersion>
-						<ProfileVersion>3.27.14</ProfileVersion>
+						<CueVersion>3.29.110</CueVersion>
+						<ProfileVersion>3.29.91</ProfileVersion>
 						<KeyboardModel>K95 RGB</KeyboardModel>
 						<MouseModel>SCIMITAR PRO RGB</MouseModel>
 						<HeadsetModel>none</HeadsetModel>
@@ -17679,8 +17679,8 @@
 					</RGBShareMeta>
 				</profile>
 				<dpiMode>
-					<id>{2ade3374-f75e-43d0-ada5-132eb9ea396f}</id>
-					<name>Normal Onboard Profile</name>
+					<id>{a0f755fe-5b4f-455d-a8c0-088e4a9d580d}</id>
+					<name>Normal Onboard Profile (1)</name>
 					<settings size="dynamic">
 						<value0>
 							<key>Dpi1</key>
@@ -17785,7 +17785,7 @@
 					<isDefault>false</isDefault>
 				</dpiMode>
 				<dpiModeAdditional>
-					<id>{9400aec3-2f05-42a8-9f87-001739a7503c}</id>
+					<id>{a77c4c4d-866d-4585-ba46-58a51aa3ab7d}</id>
 					<name></name>
 					<settings size="dynamic"/>
 					<active>false</active>
@@ -17798,7 +17798,7 @@
 			<value2>
 				<profile>
 					<name>DOOM</name>
-					<id>{88d3f58e-8375-46bf-a466-531354973d17}</id>
+					<id>{8a7bf516-3421-44d2-8567-912b07fe9c2f}</id>
 					<iconUrl></iconUrl>
 					<iconColor>#00000000</iconColor>
 					<linkedProgramPath>G:/Games/Steam Games/steamapps/common/DOOM/DOOMx64.exe</linkedProgramPath>
@@ -17826,7 +17826,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<id>{5f8be314-83cc-4c87-8d5e-9d0d85151e09}</id>
+																	<id>{11115b21-9fe8-47c0-8de3-8af7219454d9}</id>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -19036,7 +19036,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>8</cookie>
+																	<cookie>9</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -19056,7 +19056,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>8</cookie>
+																	<cookie>9</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -19076,7 +19076,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>8</cookie>
+																	<cookie>9</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -19096,7 +19096,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>8</cookie>
+																	<cookie>9</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -19116,7 +19116,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>8</cookie>
+																	<cookie>9</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -19136,7 +19136,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>8</cookie>
+																	<cookie>9</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -19156,7 +19156,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>8</cookie>
+																	<cookie>9</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -19176,7 +19176,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>8</cookie>
+																	<cookie>9</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -19196,7 +19196,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>8</cookie>
+																	<cookie>9</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -19216,7 +19216,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>8</cookie>
+																	<cookie>9</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -19236,7 +19236,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>8</cookie>
+																	<cookie>9</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -21029,7 +21029,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -21049,7 +21049,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -21069,7 +21069,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -21089,7 +21089,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -21109,7 +21109,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -21129,7 +21129,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -21149,7 +21149,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -21169,7 +21169,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -21189,7 +21189,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -21209,7 +21209,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -21229,7 +21229,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -21311,7 +21311,7 @@
 																	<switchType>Direct</switchType>
 																	<loop>true</loop>
 																	<profiles size="dynamic">
-																		<value0>{20bb64a7-43ff-4f27-87d3-5a5804b6bc39}</value0>
+																		<value0>{1637224b-8281-40fb-b6a6-51b2c55b2c82}</value0>
 																	</profiles>
 																	<direction>Backward</direction>
 																	<folderOnlyVisible>false</folderOnlyVisible>
@@ -21650,7 +21650,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{4a4e23a2-9a7e-4890-aa0a-8845d2db2622}</id>
+																			<id>{732449bd-bce8-4d3c-9f11-9a37483900be}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -21685,7 +21685,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{cf32db3d-7f8e-405c-b61e-01fae0f3d1c1}</id>
+																			<id>{49094297-63ef-4d01-91e3-f5dac152e7d1}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -21720,7 +21720,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{e11e9949-9549-4cf0-b2de-213bd8317c9e}</id>
+																			<id>{3aa5d39a-aa33-4b09-8ab5-1900b4743a80}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -21755,7 +21755,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{49a0083e-f555-499a-b102-76336d9d5234}</id>
+																			<id>{65c12bf3-b0ae-4bc2-9b36-8b95a68a3153}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -21790,7 +21790,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{a0a814bb-839b-42eb-9d6b-4ba24e548b78}</id>
+																			<id>{c966a29f-703d-43f4-8c36-ba7fa9a9b4e6}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -21825,7 +21825,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{d5adac0d-a1c5-4c26-8eba-ba57f9620bb2}</id>
+																			<id>{cb7a334b-4426-44cf-b998-22b671c4cc87}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -21860,7 +21860,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{40ca6e02-9b01-46d9-86d6-8a2d53b49e67}</id>
+																			<id>{de7664f3-365d-4cd3-b55e-ad53878102d8}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -21895,7 +21895,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{4a3b9995-ff19-424d-b750-0ca204c320c9}</id>
+																			<id>{05e5d3b0-6c3d-4b3d-9439-fc53bdd3579d}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -21930,7 +21930,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{b5123105-7271-4301-ad79-7d9f298d032c}</id>
+																			<id>{45602955-1383-438b-a810-9569ebd28947}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -21965,7 +21965,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{d2f80e21-39cd-4701-8127-fd04f88c00d7}</id>
+																			<id>{06b9ca29-912b-44ea-8b4b-7b96f16f6400}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -22000,7 +22000,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{ade03ac7-069e-4636-af67-f24afc8b50c4}</id>
+																			<id>{bcd3c1ba-520c-4933-9975-71510e5dabc9}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -22035,7 +22035,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{b0c6d173-e74d-4263-8c44-63194ba56fb1}</id>
+																			<id>{792d0c28-3364-4646-86dd-7224bdb00a02}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -22070,7 +22070,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{7f3e2191-71db-42ad-bb2c-0c5dbdcc4489}</id>
+																			<id>{3f13a04c-3dc8-4f36-9f23-da69ab59cb53}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -22105,7 +22105,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{95072f0f-268d-4ef4-b034-5d351b7c727b}</id>
+																			<id>{a38bddd9-6f0d-408f-bd3a-e35e40431264}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -22140,7 +22140,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{9bc10e61-11fb-46ec-9941-412c532d326e}</id>
+																			<id>{778beda8-b9df-4dd4-b8d9-87809f5fb112}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -22175,7 +22175,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{4b72057b-814d-472a-b471-1295bbc1b0a4}</id>
+																			<id>{f27c4763-c611-4869-a99d-519bb6ca22c1}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -22210,7 +22210,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{07e9fcc8-5e2b-46b7-81b8-e4054f8c1bcc}</id>
+																			<id>{2a893718-925e-4a5d-939c-e3509d11f8df}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -22245,7 +22245,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{e0b517a8-2382-48da-adea-880322e1e6c5}</id>
+																			<id>{1faee34b-e034-4331-bbf0-b39e07978a67}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -22280,7 +22280,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{94c65fd8-ad19-4550-9745-cfb288aa8cc3}</id>
+																			<id>{46868f69-3531-400c-be1e-f629df4efd76}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -22315,7 +22315,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{8d135c9a-e25a-489e-a523-f6a95925fb5b}</id>
+																			<id>{9bbf42c5-a799-48c0-84df-c8e3d9bdf105}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -22350,7 +22350,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{b381b080-676f-4cc4-bbc1-413b152e2f25}</id>
+																			<id>{c99bcecd-c3e4-4ab3-81af-f05d327f0396}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -23325,7 +23325,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -23345,7 +23345,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -23365,7 +23365,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -23385,7 +23385,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -23405,7 +23405,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -23425,7 +23425,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -23445,7 +23445,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -23465,7 +23465,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -23485,7 +23485,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -23505,7 +23505,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -23525,7 +23525,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -24167,7 +24167,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -24187,7 +24187,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -24207,7 +24207,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -24227,7 +24227,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -24247,7 +24247,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -24267,7 +24267,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -24287,7 +24287,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -24307,7 +24307,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -24327,7 +24327,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -24347,7 +24347,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -24367,7 +24367,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -25316,8 +25316,8 @@
 						</value11>
 					</properties>
 					<RGBShareMeta>
-						<CueVersion>3.28.70</CueVersion>
-						<ProfileVersion>3.27.14</ProfileVersion>
+						<CueVersion>3.29.110</CueVersion>
+						<ProfileVersion>3.29.91</ProfileVersion>
 						<KeyboardModel>K95 RGB</KeyboardModel>
 						<MouseModel>SCIMITAR PRO RGB</MouseModel>
 						<HeadsetModel>none</HeadsetModel>
@@ -25332,8 +25332,8 @@
 					</RGBShareMeta>
 				</profile>
 				<dpiMode>
-					<id>{5f8be314-83cc-4c87-8d5e-9d0d85151e09}</id>
-					<name>DOOM</name>
+					<id>{11115b21-9fe8-47c0-8de3-8af7219454d9}</id>
+					<name>DOOM (1)</name>
 					<settings size="dynamic">
 						<value0>
 							<key>Dpi1</key>
@@ -25438,7 +25438,7 @@
 					<isDefault>false</isDefault>
 				</dpiMode>
 				<dpiModeAdditional>
-					<id>{ffc89d53-ca2f-453c-b169-8ec1eede90d8}</id>
+					<id>{45e8e67a-0c85-4eee-a1ff-e003974d03e6}</id>
 					<name></name>
 					<settings size="dynamic"/>
 					<active>false</active>
@@ -25451,7 +25451,7 @@
 			<value3>
 				<profile>
 					<name>Profile Without RGB</name>
-					<id>{20bb64a7-43ff-4f27-87d3-5a5804b6bc39}</id>
+					<id>{1637224b-8281-40fb-b6a6-51b2c55b2c82}</id>
 					<iconUrl></iconUrl>
 					<iconColor>#00000000</iconColor>
 					<linkedProgramPath></linkedProgramPath>
@@ -26181,7 +26181,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -26201,7 +26201,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -26221,7 +26221,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -26241,7 +26241,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -26261,7 +26261,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -26281,7 +26281,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -26301,7 +26301,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -26321,7 +26321,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -26341,7 +26341,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -26361,7 +26361,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -26381,7 +26381,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>1</cookie>
+																	<cookie>2</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -26420,7 +26420,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<id>{7cfed156-b1d9-43bf-ace5-4f6a7f3bec4d}</id>
+																	<id>{d00171a8-ee66-494f-920c-362296a21cdb}</id>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -27682,7 +27682,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -27702,7 +27702,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -27722,7 +27722,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -27742,7 +27742,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -27762,7 +27762,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -27782,7 +27782,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -27802,7 +27802,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -27822,7 +27822,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -27842,7 +27842,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -27862,7 +27862,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -27882,7 +27882,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -27928,7 +27928,7 @@
 																	<switchType>Direct</switchType>
 																	<loop>true</loop>
 																	<profiles size="dynamic">
-																		<value0>{55ce7bb6-115f-4885-959a-9eccd96544b1}</value0>
+																		<value0>{a26ba461-e590-4c6d-afec-1b48dd50d731}</value0>
 																	</profiles>
 																	<direction>Forward</direction>
 																	<folderOnlyVisible>false</folderOnlyVisible>
@@ -28614,7 +28614,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{91e7b9b5-4a55-44f0-8ce1-3df31a643b66}</id>
+																			<id>{b2817819-4ed4-40c6-9908-a6972af6594a}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -28649,7 +28649,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{bfb13977-5a65-42af-8110-a6016d0b2666}</id>
+																			<id>{008ad36d-044c-4b5a-ba2c-3be86f56c924}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -28684,7 +28684,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{77e41fed-9f7a-42ed-9dc2-1d470c15f97d}</id>
+																			<id>{43b5c074-961b-4145-becd-bda042ec92f4}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -28719,7 +28719,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{58e66dc1-ec6b-4b4a-b1bb-706d733542de}</id>
+																			<id>{dfbe8f93-fac2-4311-870d-f4bad921e214}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -28754,7 +28754,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{627ce31c-a905-414a-8ae0-bb358daf0206}</id>
+																			<id>{ff3b2f2c-eea9-49e7-be32-7a7016d112f3}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -28789,7 +28789,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{d5c244c9-48ff-47f4-8728-cb5d36860d82}</id>
+																			<id>{e9775ef3-87d2-472a-9f59-e8393e345001}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -28824,7 +28824,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{ef82bfbb-256b-476d-8a3d-42cd2f70567c}</id>
+																			<id>{b04f32f4-5f5c-49a9-99e0-a0b566d8fa6e}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -28859,7 +28859,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{8f682bf6-ae66-4858-865a-e88dcb2a8efc}</id>
+																			<id>{30abd7d7-3399-418b-9607-c7e12ecd21df}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -28894,7 +28894,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{df3aac09-d5a9-4381-8e14-f84c6d20ef39}</id>
+																			<id>{7b9b7855-721d-47c4-a454-4e7592dcbe4f}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -28929,7 +28929,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{0365489c-c000-4c11-9a0b-8e64f801ead4}</id>
+																			<id>{76816feb-f924-406c-a007-fb8297880887}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -28964,7 +28964,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{349977ec-024f-4623-9525-97ba0d753541}</id>
+																			<id>{44618d05-fbc4-45e4-99b0-b1b2f0dd237f}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -28999,7 +28999,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{32f3a9da-f85f-4c4c-9321-e39f914852b8}</id>
+																			<id>{4042f077-6a0b-4c4e-9500-a973617f9350}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -29034,7 +29034,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{a24c5880-e1ca-4109-af5d-eb289e7e1d65}</id>
+																			<id>{20bd8c12-f417-4fda-b55e-881f328f5ca5}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -29069,7 +29069,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{dbd1f3fe-62d6-413b-83b1-def4c5365c23}</id>
+																			<id>{391a101b-2bbc-4b69-b549-ab00597f3e75}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -29104,7 +29104,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{12e42332-5361-4eb2-b7b3-b11f779ff65e}</id>
+																			<id>{c9918bc1-a708-4dd9-af7d-a89655f48927}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -29139,7 +29139,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{fa84753a-bcf0-484d-a31b-f71469e11c17}</id>
+																			<id>{9bc868b9-9619-46b9-b55e-f2045795056c}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -29174,7 +29174,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{54583182-3e65-43dd-bbab-5b868338e91d}</id>
+																			<id>{0480560c-896d-43ea-b989-2407ba301249}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -29209,7 +29209,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{0da1cdd3-c739-46dd-8c25-01efca64a248}</id>
+																			<id>{526d3180-23fa-42af-941d-d690b07f88ec}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -29244,7 +29244,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{25587438-e852-4634-9982-2c1ad8ce7271}</id>
+																			<id>{9758a185-dfd8-4d9d-b373-f609a9eb235c}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -29279,7 +29279,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{9c13444d-a667-4598-a3dd-2539d4045a71}</id>
+																			<id>{c5234cf6-93f4-4d9e-acde-e87866363053}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -29314,7 +29314,7 @@
 																	<data>
 																		<base>
 																			<name></name>
-																			<id>{4a2d500c-6daf-4da4-a81a-3efda0c4d294}</id>
+																			<id>{093a44ea-977a-4bde-9f1f-135b9cc8efa5}</id>
 																			<repeatOptions>
 																				<repeatCount>1</repeatCount>
 																				<repeatMode>NoRepeat</repeatMode>
@@ -30315,7 +30315,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -30335,7 +30335,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -30355,7 +30355,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -30375,7 +30375,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -30395,7 +30395,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -30415,7 +30415,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -30435,7 +30435,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -30455,7 +30455,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -30475,7 +30475,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -30495,7 +30495,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -30515,7 +30515,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -31157,7 +31157,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -31177,7 +31177,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -31197,7 +31197,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -31217,7 +31217,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -31237,7 +31237,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -31257,7 +31257,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -31277,7 +31277,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -31297,7 +31297,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -31317,7 +31317,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -31337,7 +31337,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -31357,7 +31357,7 @@
 																<valid>1</valid>
 																<data>
 																	<base/>
-																	<cookie>0</cookie>
+																	<cookie>1</cookie>
 																</data>
 															</ptr_wrapper>
 														</value>
@@ -32306,8 +32306,8 @@
 						</value11>
 					</properties>
 					<RGBShareMeta>
-						<CueVersion>3.28.70</CueVersion>
-						<ProfileVersion>3.27.14</ProfileVersion>
+						<CueVersion>3.29.110</CueVersion>
+						<ProfileVersion>3.29.91</ProfileVersion>
 						<KeyboardModel>K95 RGB</KeyboardModel>
 						<MouseModel>SCIMITAR PRO RGB</MouseModel>
 						<HeadsetModel>none</HeadsetModel>
@@ -32322,8 +32322,8 @@
 					</RGBShareMeta>
 				</profile>
 				<dpiMode>
-					<id>{7cfed156-b1d9-43bf-ace5-4f6a7f3bec4d}</id>
-					<name>Profile Without RGB 2</name>
+					<id>{d00171a8-ee66-494f-920c-362296a21cdb}</id>
+					<name>Profile Without RGB 2 (1)</name>
 					<settings size="dynamic">
 						<value0>
 							<key>Dpi1</key>
@@ -32428,7 +32428,7 @@
 					<isDefault>false</isDefault>
 				</dpiMode>
 				<dpiModeAdditional>
-					<id>{09a1de11-9542-4858-af20-4318ace1a9fd}</id>
+					<id>{43a8fb87-4adb-4df6-b790-114c38bfd81c}</id>
 					<name></name>
 					<settings size="dynamic"/>
 					<active>false</active>
