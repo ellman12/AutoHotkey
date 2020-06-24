@@ -15,14 +15,14 @@ inv(y) {
 
 
 ;Gets the master volume, displays it, and allows the user to input their own exact and custom volume.
-^NumpadSub::
-SoundGet, systemMasterVolume
-InputBox, systemMasterVolume , Input Custom Volume, Input a custom volume. Current volume: %systemMasterVolume%., , , , , , , , %systemMasterVolume%
-if ErrorLevel = 1 ;If the user presses Escape or CANCEL.
-	MsgBox, ,CANCEL/Escape was pressed., CANCEL/Escape was pressed., 0.95
-else ;Else adjust set the volume to the inputted variable.
-	SoundSet, %systemMasterVolume%
-return
+; NumpadSub::
+; SoundGet, systemMasterVolume
+; InputBox, systemMasterVolume , Input Custom Volume, Input a custom volume. Current volume: %systemMasterVolume%., , , , , , , , %systemMasterVolume%
+; if ErrorLevel = 1 ;If the user presses Escape or CANCEL.
+; 	MsgBox, ,CANCEL/Escape was pressed., CANCEL/Escape was pressed., 0.95
+; else ;Else adjust set the volume to the inputted variable.
+; 	SoundSet, %systemMasterVolume%
+; return
 
 ;Change the step value of NumPad 2 and NumPad 8.
 !NumpadSub::
@@ -45,56 +45,50 @@ autoNumPadModeToggle := !autoNumPadModeToggle
 
 return
 
-;UPDATE 3/29/2020 8:33 PM: All of these NumPad hotkeys have ^ in them because that keeps
-;them separated from my 2nd keeb's NumPad.
-;They were acting as the same NumPad, and that is not what I wanted.
-;I tried other ways, but those methods didn't work.
-;I can settle with this method.
-
 ;If NumLock = On and ScrollLock = Off. The brackets are for condensing the code.
 ;This mode makes listening to music much easier and thus much more enjoyable.
 #If numPadMode = "MusicBee"
 {
 
 ;No function.
-$^Numpad0::return
+$Numpad0::return
 
-$^NumpadIns::return
-
-
-;No function.
-$^NumpadDot::return
-
-$^NumpadDel::return
+$NumpadIns::return
 
 
 ;No function.
-$^Numpad1::return
+$NumpadDot::return
 
-$^NumpadEnd::return
+$NumpadDel::return
+
+
+;No function.
+$Numpad1::return
+
+$NumpadEnd::return
 
 
 ;Turns the volume down according to the "Num2And8Step" variable.
-$^Numpad2::SoundSet, -%Num2And8Step%
+$Numpad2::SoundSet, -%Num2And8Step%
 
-$^NumpadDown::SoundSet, -%Num2And8Step%
+$NumpadDown::SoundSet, -%Num2And8Step%
 
 
 ;No function.
-$^Numpad3::return
+$Numpad3::return
 
-$^NumpadPgdn::return
+$NumpadPgdn::return
 
 
 ;Increase (Add) and decrease (Enter) the volume with some logarithmic volume scaling stuff.
-$^NumpadAdd::
+$NumpadAdd::
 soundget, v
 p:=inv(v/100.0)+0.02
 nv:=f(p)*100.0
 soundset, nv
 return
 
-$^NumpadEnter::
+$NumpadEnter::
 soundget, v
 p:=inv(v/100.0)-0.02
 nv:=f(p)*100.0
@@ -103,49 +97,49 @@ return
 
 
 ;Previous track.
-$^Numpad4::Send, {Media_Prev}
+$Numpad4::Send, {Media_Prev}
 
-$^NumpadLeft::Send, {Media_Prev}
+$NumpadLeft::Send, {Media_Prev}
 
 
 ;Play/pause
-$^Numpad5::Send, {Media_Play_Pause}
+$Numpad5::Send, {Media_Play_Pause}
 
 ;This weird key goes with Numpad5.
 ;I never knew about this key until trying to figure out why Numpad5 wouldn't send "5" in Normal mode.
 ;It doesn't appear to have any function (at least in Windows 10).
-$^NumpadClear::Send, {Media_Play_Pause}
+$NumpadClear::Send, {Media_Play_Pause}
 
 
 ;Next track.
-$^Numpad6::Send, {Media_Next}
+$Numpad6::Send, {Media_Next}
 
-$^NumpadRight::Send, {Media_Next}
+$NumpadRight::Send, {Media_Next}
 
 
 ;No function.
-$^Numpad7::return
+$Numpad7::return
 
-$^NumpadHome::return
+$NumpadHome::return
 
 
 ;Turns the volume up according to the "Num2And8Step" variable.
-$^Numpad8::SoundSet, +%Num2And8Step%
+$Numpad8::SoundSet, +%Num2And8Step%
 
-$^NumpadUp::SoundSet, +%Num2And8Step%
+$NumpadUp::SoundSet, +%Num2And8Step%
 
 
 ;No function.
-$^Numpad9::
+$Numpad9::
 
-$^NumpadPgup::
+$NumpadPgup::
 
 
 ;Lower volume by 1
-$^NumpadDiv::SoundSet, -1
+$NumpadDiv::SoundSet, -1
 
 ;Raises volume by 1
-$^NumpadMult::SoundSet, +1
+$NumpadMult::SoundSet, +1
 
 
 ;Shows the current rounded master volume.
@@ -163,37 +157,37 @@ return
 {
 
 ;No function.
-$^Numpad0::return
+$Numpad0::return
 
-$^NumpadIns::return
+$NumpadIns::return
 
 
 ;Toggle captions.
-$^NumpadDot::Send, c
+$NumpadDot::Send, c
 
-$^NumpadDel::Send, c
+$NumpadDel::Send, c
 
 
 ;Mute.
-$^Numpad1::Send, m
+$Numpad1::Send, m
 
-$^NumpadEnd::Send, m
+$NumpadEnd::Send, m
 
 
 ;Turns the volume down according to the "Num2And8Step" variable.
-$^Numpad2::SoundSet, -%Num2And8Step%
+$Numpad2::SoundSet, -%Num2And8Step%
 
-$^NumpadDown::SoundSet, -%Num2And8Step%
+$NumpadDown::SoundSet, -%Num2And8Step%
 
 
 ;Send f to make the YouTube video full screen
-$^Numpad3::Send, f
+$Numpad3::Send, f
 
-$^NumpadPgdn::Send, f
+$NumpadPgdn::Send, f
 
 
 ;Increase (Add) and decrease (Enter) the volume with some logarithmic volume scaling stuff.
-$^NumpadAdd::
+$NumpadAdd::
 soundget, v
 p:=inv(v/100.0)+0.02
 nv:=f(p)*100.0
@@ -201,7 +195,7 @@ soundset, nv
 return
 
 
-$^NumpadEnter::
+$NumpadEnter::
 soundget, v
 p:=inv(v/100.0)-0.02
 nv:=f(p)*100.0
@@ -210,49 +204,49 @@ return
 
 
 ;Backwards five seconds.
-$^Numpad4::Send, {Left}
+$Numpad4::Send, {Left}
 
-$^NumpadLeft::Send, {Left}
+$NumpadLeft::Send, {Left}
 
 
 ;Play/pause
-$^Numpad5::Send, k
+$Numpad5::Send, k
 
 ;This weird key goes with Numpad5.
 ;I never knew about this key until trying to figure out why Numpad5 wouldn't send "5" in Normal mode.
 ;It doesn't appear to have any function (at least in Windows 10).
-$^NumpadClear::Send, k
+$NumpadClear::Send, k
 
 
 ;Forward five seconds.
-$^Numpad6::Send, {Right}
+$Numpad6::Send, {Right}
 
-$^NumpadRight::Send, {Right}
+$NumpadRight::Send, {Right}
 
 
 ;Backwards ten seconds.
-$^Numpad7::Send, j
+$Numpad7::Send, j
 
-$^NumpadHome::Send, j
+$NumpadHome::Send, j
 
 
 ;Turns the volume up according to the "Num2And8Step" variable.
-$^Numpad8::SoundSet, +%Num2And8Step%
+$Numpad8::SoundSet, +%Num2And8Step%
 
-$^NumpadUp::SoundSet, +%Num2And8Step%
+$NumpadUp::SoundSet, +%Num2And8Step%
 
 
 ;Forwards ten seconds.
-$^Numpad9::Send, l
+$Numpad9::Send, l
 
-$^NumpadPgup::Send, l
+$NumpadPgup::Send, l
 
 
 ;Lower volume by 1
-$^NumpadDiv::SoundSet, -1
+$NumpadDiv::SoundSet, -1
 
 ;Raises volume by 1
-$^NumpadMult::SoundSet, +1
+$NumpadMult::SoundSet, +1
 
 
 ;Shows the current and exact master volume.
@@ -272,72 +266,72 @@ return
 #If numPadMode = "Normal"
 {
 
-$^Numpad0::Send, {Numpad0}
+$Numpad0::Send, {Numpad0}
 
-$^NumpadIns::Send, {Numpad0}
-
-
-$^NumpadDot::Send, {NumpadDot}
-
-$^NumpadDel::Send, {NumpadDot}
+$NumpadIns::Send, {Numpad0}
 
 
-$^Numpad1::Send, {Numpad1}
+$NumpadDot::Send, {NumpadDot}
 
-$^NumpadEnd::Send, {Numpad1}
-
-
-$^Numpad2::Send, {Numpad2}
-
-$^NumpadDown::Send, {Numpad2}
+$NumpadDel::Send, {NumpadDot}
 
 
-$^Numpad3::Send, {Numpad3}
+$Numpad1::Send, {Numpad1}
 
-$^NumpadPgdn::Send, {Numpad3}
-
-
-$^NumpadAdd::Send, {NumpadAdd}
-
-$^NumpadEnter::Send, {NumpadEnter}
+$NumpadEnd::Send, {Numpad1}
 
 
-$^Numpad4::Send, {Numpad4}
+$Numpad2::Send, {Numpad2}
 
-$^NumpadLeft::Send, {Numpad4}
+$NumpadDown::Send, {Numpad2}
 
 
-$^Numpad5::Send, {Numpad5}
+$Numpad3::Send, {Numpad3}
+
+$NumpadPgdn::Send, {Numpad3}
+
+
+$NumpadAdd::Send, {NumpadAdd}
+
+$NumpadEnter::Send, {NumpadEnter}
+
+
+$Numpad4::Send, {Numpad4}
+
+$NumpadLeft::Send, {Numpad4}
+
+
+$Numpad5::Send, {Numpad5}
 
 ;This weird key goes with Numpad5.
 ;I never knew about this key until trying to figure out why Numpad5 wouldn't send "5" in Normal mode.
 ;It doesn't appear to have any function (at least in Windows 10).
-$^NumpadClear::Send, {Numpad5}
+$NumpadClear::Send, {Numpad5}
 
 
-$^Numpad6::Send, {Numpad6}
+$Numpad6::Send, {Numpad6}
 
-$^NumpadRight::Send, {Numpad6}
-
-
-$^Numpad7::Send, {Numpad7}
-
-$^NumpadHome::Send, {Numpad7}
+$NumpadRight::Send, {Numpad6}
 
 
-$^Numpad8::Send, {Numpad8}
+$Numpad7::Send, {Numpad7}
 
-$^NumpadUp::Send, {Numpad8}
-
-
-$^Numpad9::Send, {Numpad9}
-
-$^NumpadPgup::Send, {Numpad9}
+$NumpadHome::Send, {Numpad7}
 
 
-$^NumpadDiv::Send, {NumpadDiv}
+$Numpad8::Send, {Numpad8}
 
-$^NumpadMult::Send, {NumpadMult}
+$NumpadUp::Send, {Numpad8}
+
+
+$Numpad9::Send, {Numpad9}
+
+$NumpadPgup::Send, {Numpad9}
+
+
+$NumpadDiv::Send, {NumpadDiv}
+
+$NumpadMult::Send, {NumpadMult}
 
 
 $NumPadSub::Send, {NumpadSub}
@@ -356,37 +350,37 @@ $NumPadSub::Send, {NumpadSub}
 {
 
 ;No function.
-$^Numpad0::return
+$Numpad0::return
 
-$^NumpadIns::return
+$NumpadIns::return
 
 
 ;Toggle captions.
-$^NumpadDot::Send, c
+$NumpadDot::Send, c
 
-$^NumpadDel::Send, c
+$NumpadDel::Send, c
 
 
 ;Mute.
-$^Numpad1::Send, m
+$Numpad1::Send, m
 
-$^NumpadEnd::Send, m
+$NumpadEnd::Send, m
 
 
 ;Turns the volume down according to the "Num2And8Step" variable.
-$^Numpad2::SoundSet, -%Num2And8Step%
+$Numpad2::SoundSet, -%Num2And8Step%
 
-$^NumpadDown::SoundSet, -%Num2And8Step%
+$NumpadDown::SoundSet, -%Num2And8Step%
 
 
 ;Send f to make the YouTube video full screen
-$^Numpad3::Send, f
+$Numpad3::Send, f
 
-$^NumpadPgdn::Send, f
+$NumpadPgdn::Send, f
 
 
 ;Increase (Add) and decrease (Enter) the volume with some logarithmic volume scaling stuff.
-$^NumpadAdd::
+$NumpadAdd::
 soundget, v
 p:=inv(v/100.0)+0.02
 nv:=f(p)*100.0
@@ -394,7 +388,7 @@ soundset, nv
 return
 
 
-$^NumpadEnter::
+$NumpadEnter::
 soundget, v
 p:=inv(v/100.0)-0.02
 nv:=f(p)*100.0
@@ -403,49 +397,49 @@ return
 
 
 ;Backwards five seconds.
-$^Numpad4::Send, {Left}
+$Numpad4::Send, {Left}
 
-$^NumpadLeft::Send, {Left}
+$NumpadLeft::Send, {Left}
 
 
 ;Play/pause
-$^Numpad5::Send, {Space}
+$Numpad5::Send, {Space}
 
 ;This weird key goes with Numpad5.
 ;I never knew about this key until trying to figure out why Numpad5 wouldn't send "5" in Normal mode.
 ;It doesn't appear to have any function (at least in Windows 10).
-$^NumpadClear::Send, {Space}
+$NumpadClear::Send, {Space}
 
 
 ;Forward five seconds.
-$^Numpad6::Send, {Right}
+$Numpad6::Send, {Right}
 
-$^NumpadRight::Send, {Right}
+$NumpadRight::Send, {Right}
 
 
 ;Backwards ten seconds.
-$^Numpad7::Send, {Left 2}
+$Numpad7::Send, {Left 2}
 
-$^NumpadHome::Send, {Left 2}
+$NumpadHome::Send, {Left 2}
 
 
 ;Turns the volume up according to the "Num2And8Step" variable.
-$^Numpad8::SoundSet, +%Num2And8Step%
+$Numpad8::SoundSet, +%Num2And8Step%
 
-$^NumpadUp::SoundSet, +%Num2And8Step%
+$NumpadUp::SoundSet, +%Num2And8Step%
 
 
 ;Forwards ten seconds.
-$^Numpad9::Send, {Right 2}
+$Numpad9::Send, {Right 2}
 
-$^NumpadPgup::Send, {Right 2}
+$NumpadPgup::Send, {Right 2}
 
 
 ;Lower volume by 1
-$^NumpadDiv::SoundSet, -1
+$NumpadDiv::SoundSet, -1
 
 ;Raises volume by 1
-$^NumpadMult::SoundSet, +1
+$NumpadMult::SoundSet, +1
 
 
 ;Shows the current and exact master volume.
