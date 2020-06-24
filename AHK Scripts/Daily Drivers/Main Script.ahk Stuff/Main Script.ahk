@@ -638,7 +638,7 @@ clipboardFinishButton:
 return
 
 ;*****************************************MAIN SCRIPT CONTROL PANEL*********************************
-;Show hide the Main Script Control Panel.
+;Show/hide the Main Script Control Panel.
 #o::
 showControlPanelGUI := !showControlPanelGUI
 
@@ -692,7 +692,7 @@ EWD_MouseStartY := EWD_MouseY
 return
 
 ;*****************************************GLOBAL FUNCTIONS*****************************************
-;Used for making the process of using ToolTips a lot simpler and easier.
+;Used for making the use of ToolTips a lot simpler and easier.
 Tippy(Text, Duration) {
 	ToolTip, %Text%
 	Sleep %Duration%
