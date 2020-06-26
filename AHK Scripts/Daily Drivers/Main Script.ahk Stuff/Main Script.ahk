@@ -155,14 +155,6 @@ SetWorkingDir, %A_ScriptDir%\Screen Clipper Script\Saved Clips ;Set the saved cl
 Handles := [] ; Create an array to hold the name of the different gui's.
 Index := 0 ;Used as the name of the current gui cap window.
 
-;***************SECOND KEEB STUFF***************
-;Directory where the "keypressed.txt" file is.
-global keypressedTxtFileDir := "C:\Users\Elliott\Documents\keypressed.txt"
-global numPadToggleFileDir := "C:\Users\Elliott\Documents\numPad Toggle.txt"
-
-;Probs don't need to blank out the keypressed.txt file on startup, but whatever.
-blankOutKeyTxtFile()
-
 ;The stuff in this loop needs to be running constantly.
 Loop {
 
@@ -212,36 +204,6 @@ Loop {
 
 	}
 
-	;****************MACRO KEYBOARD STUFF BELOW****************
-	;Used for suspending the hotkeys of Advanced Window Hider.ahk.
-	DetectHiddenWindows, On ;Temporarily on for the Space bar thing below.
-	SetTitleMatchMode, 2
-
-	;Get this value every loop.
-	FileRead, pressedKey, %keypressedTxtFileDir%
-
-	;Space Bar. Used for suspending the hotkeys of this script and AWH simultaneously.
-	if (A_IsSuspended and pressedKey = "space") {
-		;Un-suspends AWH.
-		PostMessage, 0x111, 65305,,, Advanced Window Hider.ahk - AutoHotkey
-		Suspend, Off
-
-		;Blank out/delete this file so it doesn't keep switching
-		;back and forth from suspended to not suspended.
-		blankOutKeyTxtFile()
-	} else if (!A_IsSuspended and pressedKey = "space") {
-		;Suspend AWH.
-		PostMessage, 0x111, 65305,,, Advanced Window Hider.ahk - AutoHotkey
-		Suspend, On
-		blankOutKeyTxtFile()
-	}
-
-	;Then it's turned off again because it causes F1, F2, F3, F4, etc. to activate
-	;windows on other virtual desktops. This is NOT useful, nor is it intended.
-	;It's honestly pretty annoying. I'd imagine that those windows are "hidden",
-	;because you can't see them: they're on the other (virtual) desktop.
-	DetectHiddenWindows, Off
-
 	;This sleep statement DRASTICALLY helps reduce the power and CPU usage of the Main Script.
 	Sleep 50
 }
@@ -269,7 +231,9 @@ Loop {
 #Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Video Game Stuff\Terraria.ahk
 
 ;#Include the script for my Secondary Macro Keyboard.
-#Include, %A_MyDocuments%\GitHub\AutoHotkey\Secondary Macro Keyboard\Second Keyboard Script.ahk
+; #Include, %A_MyDocuments%\GitHub\AutoHotkey\Secondary Macro Keyboard\Second Keyboard Script.ahk
+
+#Include, %A_MyDocuments%\GitHub\AutoHotkey\Secondary Macro Keyboard\Hasu USB to USB Script.ahk
 
 ;****************************************GLOBAL HOTKEYS***************************************
 ;These global hotkeys are hotkeys that are always running, regardless of the active window, profile, or whatever.
@@ -393,12 +357,12 @@ Send, ^c
 return
 
 ;M2 on K95 RGB cuts to the clipboard.
-#F24::
++F21::
 Send, ^x
 return
 
 ;M3 on K95 RGB pastes to the clipboard.
-!F24::
++F22::
 Send, ^v
 return
 
@@ -455,30 +419,6 @@ return
 ^+f::
 Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts
 return
-
-;*****************************************HOTKEYS FOR MULTIPLE POINTER POSITIONS*********************************
-;The basic format is like this:
-;Ctrl + Shift + x: save position. X is 1-4.
-;Ctrl + Alt + x: go to saved position. X is 1-4.
-
-;************SAVE POSITIONS************
-^+1::MouseGetPos, mousePosX1, mousePosY1
-
-^+2::MouseGetPos, mousePosX2, mousePosY2
-
-^+3::MouseGetPos, mousePosX3, mousePosY3
-
-^+4::MouseGetPos, mousePosX4, mousePosY4
-
-
-;************GO TO POSITION************
-^!1::MouseMove, mousePosX1, mousePosY1, 0
-
-^!2::MouseMove, mousePosX2, mousePosY2, 0
-
-^!3::MouseMove, mousePosX3, mousePosY3, 0
-
-^!4::MouseMove, mousePosX4, mousePosY4, 0
 
 ;*****************************************HOTKEYS FOR TITLE STUFF*********************************
 ;These hotkeys allow the user to adjust and modify text in whatever way they want.
@@ -698,7 +638,7 @@ clipboardFinishButton:
 return
 
 ;*****************************************MAIN SCRIPT CONTROL PANEL*********************************
-;Show hide the Main Script Control Panel.
+;Show/hide the Main Script Control Panel.
 #o::
 showControlPanelGUI := !showControlPanelGUI
 
@@ -751,6 +691,14 @@ EWD_MouseStartX := EWD_MouseX  ; Update for the next timer-call to this subrouti
 EWD_MouseStartY := EWD_MouseY
 return
 
+;*****************************************GLOBAL FUNCTIONS*****************************************
+;Used for making the use of ToolTips a lot simpler and easier.
+Tippy(Text, Duration) {
+	ToolTip, %Text%
+	Sleep %Duration%
+	ToolTip ;Remove the ToolTip.
+}
+
 ;*****************************************EXPERIMENTAL*****************************************
 \::
 Send, ^+{Left}
@@ -761,8 +709,8 @@ return
 Send, ^+{Left}{BackSpace}
 return
 
-!Up::Send, {WheelUp}
-!Down::Send, {WheelDown}
+; !Up::Send, {WheelUp}
+; !Down::Send, {WheelDown}
 
 ;For drawing straight lines with the pen tool in MS Word.
 ; ^!Up::
@@ -818,17 +766,6 @@ return
 ; MouseMove, 5000, 540, 0 ;Like Insert.
 ; return
 ; #If
-
-;TEMP Auto-fill for distance learning attendance.
-^#a::
-FormatTime, attendenceMonth, A_Now, M
-FormatTime, attendenceDay, A_Now, d
-
-Send, duch_ell@students.cps.k12.mn.us{Tab}Elliott{Tab}DuCharme{Tab}
-Send, %attendenceMonth%{Tab}%attendenceDay%{Tab 2}
-Sleep 260
-Send, {Enter}
-return
 
 ;English papers.
 :*:ai::AI
