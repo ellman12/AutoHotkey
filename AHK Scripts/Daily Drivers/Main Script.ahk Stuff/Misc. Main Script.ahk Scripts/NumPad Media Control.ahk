@@ -37,11 +37,11 @@ return
 
 autoNumPadModeToggle := !autoNumPadModeToggle
 
-	if (autoNumPadModeToggle = "1") {
-		MsgBox, 0, autoNumPadModeToggle is ENABLED, autoNumPadModeToggle is ENABLED, 0.3
-	} else if (autoNumPadModeToggle = "0") {
-		MsgBox, 0, autoNumPadModeToggle is DISABLED, autoNumPadModeToggle is DISABLED, 0.3
-	}
+	;~ if (autoNumPadModeToggle = "1") {
+		;~ MsgBox, 0, autoNumPadModeToggle is ENABLED, autoNumPadModeToggle is ENABLED, 0.3
+	;~ } else if (autoNumPadModeToggle = "0") {
+		;~ MsgBox, 0, autoNumPadModeToggle is DISABLED, autoNumPadModeToggle is DISABLED, 0.3
+	;~ }
 
 return
 
