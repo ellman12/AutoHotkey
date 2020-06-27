@@ -198,26 +198,21 @@ return
 ;Credits for this F6 stuff goes to GroggyOtter from the AHK subreddit:
 ;https://www.reddit.com/r/AutoHotkey/comments/dbil7u/add_active_window_to_group_and_push_button_to/f241ak3?utm_source=share&utm_medium=web2x
 ;I modified it a teeny tiny bit, plus added the F7 one. It's really nice having this for both F6 and F7.
-^F6::
-AddWindowF6()
-return
+^F6::AddWindowF6()
 
+!F6::ActivateBothF6AndF7Windows() ;Activate windows in both the F6 and F7 array.
 
-!F6::
-ActivateBothF6AndF7Windows() ;Activate windows in both the F6 and F7 array.
-return
-^!F6::
-RemoveWindowF6()
-return
-F6::
-NextWindowF6()
-return
-+F6::
-PrevWindowF6()
-return
-^+F6::
-RemoveNonexistentWindowsF6()
-return
+^!F6::RemoveWindowF6()
+
+F6::NextWindowF6()
+
++F6::PrevWindowF6()
+
+^+F6::RemoveNonexistentWindowsF6()
+
+#F6::SaveIDsToTxtFileF6()
+
+#!F6::restoreSavedIDsF6()
 
 ;Add the current window to the array.
 AddWindowF6() {
@@ -313,6 +308,45 @@ RemoveNonexistentWindowsF6() {
 	}
 	return
 
+}
+
+;Dumps all the IDs in the array into a .txt file. They can then be loaded in for later use. The old file is deleted and replaced with the current one.
+SaveIDsToTxtFileF6() {
+	FileDelete, testF6.txt
+	Loop % WindowGroupF6.Length()
+		FileAppend, % WindowGroupF6[A_Index] . "`n", testF6.txt
+	Tippy("Finished saving F6 IDs to disk", 1500)
+	return
+}
+
+;Restores saved IDs to the F6 array. Overwrites what is in it all ready.
+restoreSavedIDsF6() {
+	Tippy("Loading the F6 file", 800)
+	
+	;This should theoretically blank this out.
+	WindowGroupF6 := ""
+
+	F6ArrayIndex := 1
+
+	FileRead, F6TxtFileIDs, testF6.txt
+
+	MsgBox % F6TxtFileIDs
+
+	Loop, Parse, F6TxtFileIDs, `n
+	{
+		if (A_LoopField = "`n") {
+			continue
+		} else {
+			MsgBox, 0, , A_LoopField = %A_LoopField%
+			WindowGroupF6[F6ArrayIndex] := A_LoopField
+			F6ArrayIndex++
+		}
+	}
+
+	while (A_Index < WindowGroupF6.MaxIndex()) {
+		MsgBox % WindowGroupF6[A_Index]
+	}
+	return
 }
 
 ;*************************************************F7 GROUP STUFF*************************************************
