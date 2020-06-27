@@ -17,7 +17,8 @@ DetectHiddenWindows, Off
 ;OPTIMIZATIONS END
 
 ;This script is a test for being able to save array contents to a .txt file on disk; more specifically, for F12/F7 and AWH.
-;TODO: be able to LOAD the .txt file into the script.
+;Development started 6/29/2020; as of 7:23 PM it's working great.
+;TODO: try this thing with the actual F6/F7 group stuff.
 
 CurrentWinF12 := 1
 
@@ -41,15 +42,26 @@ return
 
 ;Load the IDs into the script.
 !F12::
-Tippy("Loading the file", 1000)
+Tippy("Loading the file", 790)
+
+currentArrayIndex := 1
 
 FileRead, TxtFileIDs, arrayTest.txt
 
 MsgBox % TxtFileIDs
 
-WindowGroupF12 := StrSplit(TxtFileIDs, "`n")
+Loop, Parse, TxtFileIDs, `n
+{
+	if (A_LoopField = "`n") {
+		continue
+	} else {
+		MsgBox, 0, , A_LoopField = %A_LoopField%
+		WindowGroupF12[currentArrayIndex] := A_LoopField
+		currentArrayIndex++
+	}
+}
 
-while A_Index < WindowGroupF12.MaxIndex() {
+while (A_Index < WindowGroupF12.MaxIndex()) {
 	MsgBox % WindowGroupF12[A_Index]
 }
 return
@@ -66,7 +78,6 @@ NextWindowF12() {
 		CurrentWinF12 := WindowGroupF12.MinIndex()
 	;Now activate the window based on CurrentWin.
 	WinActivate, % "ahk_id" WindowGroupF12[CurrentWinF12]
-	return
 }
 return
 
