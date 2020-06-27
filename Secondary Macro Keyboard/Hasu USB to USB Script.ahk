@@ -256,30 +256,30 @@ NumpadDiv::Send, +{Left}
 NumpadMult::Send, +{Right}
 
 ;;=========== Unassigned NumPad Keys on 2nd Keeb ==============;;
-numpad0::ToolTip, [F24] %A_thishotKey%
-NumpadIns::ToolTip, [F24] %A_thishotKey%
+numpad0::Tippy(Unassigned, 1300)
+NumpadIns::Tippy(Unassigned, 1300)
 
-NumpadDot::ToolTip, [F24] %A_thishotKey%
-NumpadDel::ToolTip, [F24] %A_thishotKey%
+NumpadDot::Tippy(Unassigned, 1300)
+NumpadDel::Tippy(Unassigned, 1300)
 
-numpad2::ToolTip, [F24] %A_thishotKey%
-NumpadDown::ToolTip, [F24] %A_thishotKey%
+numpad2::Tippy(Unassigned, 1300)
+NumpadDown::Tippy(Unassigned, 1300)
 
-numpad3::ToolTip, [F24] %A_thishotKey%
-NumpadPgdn::ToolTip, [F24] %A_thishotKey%
+numpad3::Tippy(Unassigned, 1300)
+NumpadPgdn::Tippy(Unassigned, 1300)
 
-numpad5::ToolTip, [F24] %A_thishotKey%
-NumpadClear::ToolTip, [F24] %A_thishotKey%
+numpad5::Tippy(Unassigned, 1300)
+NumpadClear::Tippy(Unassigned, 1300)
 
-numpad8::ToolTip, [F24] %A_thishotKey%
-NumpadUp::ToolTip, [F24] %A_thishotKey%
+numpad8::Tippy(Unassigned, 1300)
+NumpadUp::Tippy(Unassigned, 1300)
 
-numpad9::ToolTip, [F24] %A_thishotKey%
-NumpadPgup::ToolTip, [F24] %A_thishotKey%
+numpad9::Tippy(Unassigned, 1300)
+NumpadPgup::Tippy(Unassigned, 1300)
 
-NumpadEnter::ToolTip, [F24] %A_thishotKey%
-NumpadAdd::ToolTip, [F24] %A_thishotKey%
-NumpadSub::ToolTip, [F24] %A_thishotKey%
+NumpadEnter::Tippy(Unassigned, 1300)
+NumpadAdd::Tippy(Unassigned, 1300)
+NumpadSub::Tippy(Unassigned, 1300)
 
 ;Send Ctrl + O.
 o::Send, ^o
