@@ -13,7 +13,7 @@ SendMode Input
 #WinActivateForce ;https://autohotkey.com/docs/commands/_WinActivateForce.htm ;prevent taskbar flashing.
 
 ;The Hasu USB to USB Controller Converter somehow separates the 2nd keyboard from the others. Idk how it does.
-#if (getKeyState("F24", "P")) ;<--Everything after this line will only happen on the secondary keyboard that uses F24.
+#if (GetKeyState("F24", "P")) ;<--Everything after this line will only happen on the secondary keyboard that uses F24.
 F24::return ;this line is mandatory for proper functionality
 
 ;Saving mouse pointer locations and returning to saved spots.
@@ -321,7 +321,7 @@ return
 s::Run, explorer C:\Users\Elliott\Music
 
 ;Suspends hotkeys in Main and AWH.
-space::Suspend
+; space::Suspend
 
 ;Unzip a single .zip file in File Explorer.
 u::
@@ -354,6 +354,15 @@ return
 
 ;Undo.
 z::Send, ^z
+
+; #if (GetKeyState("F24", "P")) AND (GetKeyState("Space", "P"))
+; F24::return
+
+Space::
+Suspend
+; SetTitleMatchMode, 2
+; PostMessage, 0x111, 65305,,, Advanced Window Hider.ahk - AutoHotkey
+return
 
 #if
 
