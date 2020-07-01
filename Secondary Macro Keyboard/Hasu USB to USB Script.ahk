@@ -31,6 +31,20 @@ MouseGetPos, mousePosX2, mousePosY2
 Tippy("F2 pointer saved", 1300)
 return
 
+F3::MouseMove, mousePosX3, mousePosY3, 0
+
++F3::
+MouseGetPos, mousePosX3, mousePosY3
+Tippy("F3 pointer saved", 1300)
+return
+
+F4::MouseMove, mousePosX4, mousePosY4, 0
+
++F4::
+MouseGetPos, mousePosX4, mousePosY4
+Tippy("F4 pointer saved", 1300)
+return
+
 ;In File Explorer, size all columns to fit.
 ;In Firefox/Chrome go to tabs 1-8, or last tab (9).
 1::
