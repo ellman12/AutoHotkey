@@ -237,11 +237,6 @@ Send, ^#{Right}
 return
 
 ;****************************************MISC DOCS ACTIONS***************************************
-;(Ctrl + Backspace) Delete an entire word.
-\::
-Send, ^{BackSpace}
-return
-
 ;Correct to.
 RAlt::
 Send, {AppsKey}{Down}{Enter}

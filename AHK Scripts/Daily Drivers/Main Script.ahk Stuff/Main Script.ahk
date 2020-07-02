@@ -138,6 +138,9 @@ global Num2And8Step := 3
 ;Toggle for if the NumPad switches modes automatically or not; starts out at true, for convenience.
 global autoNumPadModeToggle := true
 
+;Toggle for Programming Mode.
+programmingMode := false
+
 ;*************Screen Clipper.ahk Initialization Stuff************
 ;************************************************
 Hotkey, #s , CreateCapWindow , On ;Take a screen clip with the Screen Clipper script.
@@ -231,8 +234,6 @@ Loop {
 #Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Video Game Stuff\Terraria.ahk
 
 ;#Include the script for my Secondary Macro Keyboard.
-; #Include, %A_MyDocuments%\GitHub\AutoHotkey\Secondary Macro Keyboard\Second Keyboard Script.ahk
-
 #Include, %A_MyDocuments%\GitHub\AutoHotkey\Secondary Macro Keyboard\Hasu USB to USB Script.ahk
 
 ;****************************************GLOBAL HOTKEYS***************************************
@@ -241,10 +242,14 @@ Loop {
 ;Pushing Ctrl + Pause suspends all hotkeys, thus "pausing" the script.
 ;The reason it's ^CtrlBreak instead of ^Pause is because, according to the documentation, "While the Ctrl key is held down,
 ;the Pause key produces the key code of CtrlBreak and NumLock produces Pause, so use ^CtrlBreak in hotkeys instead of ^Pause."
-^CtrlBreak::Suspend, Toggle
+^CtrlBreak::
+#!p::
+Suspend, Toggle
+return
 
 ;Pushing the Pause key suspends all hotkeys for the specified number in milliseconds (in this case, 2500).
 Pause::
+#p::
 SetTimer, setTimerLabel, 2500, On
 Suspend, On
 return
@@ -371,6 +376,23 @@ return
 MsgBox, 0, Misc. Variables`, Toggles`, etc.,Current Main Script.ahk profile:  %currentProfile%`n`nNumPadMode: %numPadMode%`n`nChromebook Typing Toggled: %chromebookTypingToggle%`n`nautoNumPadModeToggle: %autoNumPadModeToggle%
 return
 
+
+;Toggle programming mode. Disables hotkeys/hotstrings that can be annoying when programming.
+^!Insert::
+programmingMode := !programmingMode
+Tippy(programmingMode, 900)
+return
+
+#If programmingMode = false
+\::
+Send, ^+{Left}
+Send, {BackSpace}
+return
+
+::i::I
+#If
+
+
 #If currentProfile != "Terraria"
 ;Scroll down faster by holding down the G3 key on Scimitar Pro RGB.
 F15 & WheelDown::
@@ -419,6 +441,122 @@ return
 ^+f::
 Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts
 return
+
+;Stuff that is exclusive to my laptop.
+#if A_ComputerName = "Elliott-Laptop"
+;Open battery menu.
+#b::
+MouseMove, 1432, 885, 0
+Sleep 300
+Send, {Click}
+return
+
+PrintScreen::
+Send, {AppsKey}
+return
+
+!PrintScreen::
+Send, ^{Esc}
+return
+
+;Disables these ANNOYING things.
+^WheelDown::return
+^WheelUp::return
+
+!Up::
+;~ SoundSet, +1
+soundget, v
+p:=inv(v/100.0)+0.02
+nv:=f(p)*100.0
+soundset, nv
+return
+
+!Down::
+;~ SoundSet, -1
+soundget, v
+p:=inv(v/100.0)-0.02
+nv:=f(p)*100.0
+soundset, nv
+return
+
+;Increment/decrement volume by 1.
+!Right::SoundSet, +1
+!Left::SoundSet, -1
+
+;Get the current master volume, and add the inputted value to the current master volume.
+!\::
+SoundGet, systemMasterVolume
+InputBox, masterVolumeAlt , Add/subtract to the master volume, Input a number to add/subtract to the current master volume. Current volume: %systemMasterVolume%., , , , , , , , %systemMasterVolume%
+if (ErrorLevel = 1) {
+} else if (ErrorLevel = 0) {
+	systemMasterVolume += masterVolumeAlt
+    SoundSet, %systemMasterVolume%
+}
+return
+
+;Gets the aforementioned master volume, displays it, and allows the user to input their own exact and custom volume.
+^\::
+SoundGet, systemMasterVolume
+InputBox, systemMasterVolume , Input Custom Volume, Input a custom volume. Current volume: %systemMasterVolume%., , , , , , , , %systemMasterVolume%
+if (ErrorLevel = 1) {
+} else if (ErrorLevel = 0) {
+SoundSet, %systemMasterVolume%
+}
+return
+
+;For Firefox
+^Tab::
+Send, ^{PGDN}
+return
+
+^+Tab::
+Send, ^{PGUP}
+return
+
+;Used for auto-clicking discussion questions in D2L Grid View, to mark them as "Read".
+; #r::
+; Send, {Click}
+; Sleep 150
+; MouseMove, 0, 64, 0, R
+; Sleep 150
+; return
+
+;*****************************************HOTKEYS FOR MULTIPLE POINTER POSITIONS*********************************
+;The basic format is like this:
+;Ctrl + Shift + x: save position. X is 1–4.
+;Ctrl + Alt + x: go to saved position. X is 1–4.
+
+;************SAVE POSITIONS************
+^+1::MouseGetPos, mousePosX1, mousePosY1
+
+^+2::MouseGetPos, mousePosX2, mousePosY2
+
+^+3::MouseGetPos, mousePosX3, mousePosY3
+
+^+4::MouseGetPos, mousePosX4, mousePosY4
+
+
+;************GO TO POSITION************
+^!1::MouseMove, mousePosX1, mousePosY1, 0
+
+^!2::MouseMove, mousePosX2, mousePosY2, 0
+
+^!3::MouseMove, mousePosX3, mousePosY3, 0
+
+^!4::MouseMove, mousePosX4, mousePosY4, 0
+
+; ;For Zoom stuff
+; #IfWinActive, ahk_exe Zoom.exe
+; $PrintScreen::Send, #{PrintScreen}
+
+; ;"Hide" the mouse pointer, and hide the Zoom meeting controls.
+; $CapsLock::
+; MouseGetPos, mousePosX, mousePosY
+; MouseMove, 1920, 540, 0
+; Send, {LAlt}
+; return
+
+#if
 
 ;*****************************************HOTKEYS FOR TITLE STUFF*********************************
 ;These hotkeys allow the user to adjust and modify text in whatever way they want.
@@ -700,14 +838,9 @@ Tippy(Text, Duration) {
 }
 
 ;*****************************************EXPERIMENTAL*****************************************
-\::
-Send, ^+{Left}
-Send, {BackSpace}
-return
-
-^BackSpace::
-Send, ^+{Left}{BackSpace}
-return
+; ^BackSpace::
+; Send, ^+{Left}{BackSpace}
+; return
 
 ; !Up::Send, {WheelUp}
 ; !Down::Send, {WheelDown}

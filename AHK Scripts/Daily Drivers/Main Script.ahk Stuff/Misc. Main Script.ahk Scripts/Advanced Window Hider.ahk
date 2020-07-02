@@ -18,13 +18,7 @@ DetectHiddenWindows, On
 
 ;Pic of all these icons: https://diymediahome.org/wp-content/uploads/shell32_icons.jpg
 
-;The reason this exists is because it would change the icon for the Misc Laptop script, and I didn't like it.
-;This variable is declared in Misc Laptop Stuff, so this if block shouldn't affect anything.
-if (useMiscLaptopStuffIcon = true) {
-	Menu, Tray, Icon, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\Misc Laptop Stuff Icon.png
-} else {
-    Menu, Tray, Icon, shell32.dll, 175 ;Changes the icon to a black computer monitor.
-}
+Menu, Tray, Icon, shell32.dll, 175 ;Changes the icon to a black computer monitor.
 
 ;This script is a more advanced version of an old script called "WindowHider.ahk" script.
 ;That script kinda sucked, so I got inspired to make this improved version.
