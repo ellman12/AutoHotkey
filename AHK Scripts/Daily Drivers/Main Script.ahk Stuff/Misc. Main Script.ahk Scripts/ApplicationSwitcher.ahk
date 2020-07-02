@@ -210,9 +210,9 @@ F6::NextWindowF6()
 
 ^+F6::RemoveNonexistentWindowsF6()
 
-#F6::SaveIDsToTxtFileF6()
+; #F6::SaveIDsToTxtFileF6()
 
-#!F6::restoreSavedIDsF6()
+; #!F6::restoreSavedIDsF6()
 
 ;Add the current window to the array.
 AddWindowF6() {
@@ -311,43 +311,43 @@ RemoveNonexistentWindowsF6() {
 }
 
 ;Dumps all the IDs in the array into a .txt file. They can then be loaded in for later use. The old file is deleted and replaced with the current one.
-SaveIDsToTxtFileF6() {
-	FileDelete, testF6.txt
-	Loop % WindowGroupF6.Length()
-		FileAppend, % WindowGroupF6[A_Index] . "`n", testF6.txt
-	Tippy("Finished saving F6 IDs to disk", 1500)
-	return
-}
+; SaveIDsToTxtFileF6() {
+; 	FileDelete, testF6.txt
+; 	Loop % WindowGroupF6.Length()
+; 		FileAppend, % WindowGroupF6[A_Index] . "`n", testF6.txt
+; 	Tippy("Finished saving F6 IDs to disk", 1500)
+; 	return
+; }
 
 ;Restores saved IDs to the F6 array. Overwrites what is in it all ready.
-restoreSavedIDsF6() {
-	Tippy("Loading the F6 file", 800)
+; restoreSavedIDsF6() {
+; 	Tippy("Loading the F6 file", 800)
 	
-	;This should theoretically blank this out.
-	WindowGroupF6 := ""
+; 	;This should theoretically blank this out.
+; 	WindowGroupF6 := ""
 
-	F6ArrayIndex := 1
+; 	F6ArrayIndex := 1
 
-	FileRead, F6TxtFileIDs, testF6.txt
+; 	FileRead, F6TxtFileIDs, testF6.txt
 
-	MsgBox % F6TxtFileIDs
+; 	MsgBox % F6TxtFileIDs
 
-	Loop, Parse, F6TxtFileIDs, `n
-	{
-		if (A_LoopField = "`n") {
-			continue
-		} else {
-			MsgBox, 0, , A_LoopField = %A_LoopField%
-			WindowGroupF6[F6ArrayIndex] := A_LoopField
-			F6ArrayIndex++
-		}
-	}
+; 	Loop, Parse, F6TxtFileIDs, `n
+; 	{
+; 		if (A_LoopField = "`n") {
+; 			continue
+; 		} else {
+; 			MsgBox, 0, , A_LoopField = %A_LoopField%
+; 			WindowGroupF6[F6ArrayIndex] := A_LoopField
+; 			F6ArrayIndex++
+; 		}
+; 	}
 
-	while (A_Index < WindowGroupF6.MaxIndex()) {
-		MsgBox % WindowGroupF6[A_Index]
-	}
-	return
-}
+; 	while (A_Index < WindowGroupF6.MaxIndex()) {
+; 		MsgBox % WindowGroupF6[A_Index]
+; 	}
+; 	return
+; }
 
 ;*************************************************F7 GROUP STUFF*************************************************
 ;Identical to F6 Group Stuff, but for the F7 key. Thus, allowing me to have 2 custom window groups.
@@ -466,11 +466,4 @@ ActivateBothF6AndF7Windows() {
 	;Now activate the window based on CurrentWinF6AndF7ActBoth.
 	WinActivate, % "ahk_id" F6andF7WinIDArray[CurrentWinF6AndF7ActBoth]
 	return
-}
-
-;Used for making the use of ToolTips a lot simpler and easier.
-Tippy(Text, Duration) {
-	ToolTip, %Text%
-	Sleep %Duration%
-	ToolTip ;Remove the ToolTip.
 }
