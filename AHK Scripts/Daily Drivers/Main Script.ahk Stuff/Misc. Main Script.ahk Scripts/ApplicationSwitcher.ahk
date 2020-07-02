@@ -467,3 +467,10 @@ ActivateBothF6AndF7Windows() {
 	WinActivate, % "ahk_id" F6andF7WinIDArray[CurrentWinF6AndF7ActBoth]
 	return
 }
+
+;Used for making the use of ToolTips a lot simpler and easier.
+Tippy(Text, Duration) {
+	ToolTip, %Text%
+	Sleep %Duration%
+	ToolTip ;Remove the ToolTip.
+}
