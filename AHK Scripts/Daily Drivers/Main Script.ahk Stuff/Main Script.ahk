@@ -879,6 +879,33 @@ Tippy(Text, Duration) {
 ;~ return
 
 ;*****************************************TEMPORARY*****************************************
+;~ ;For adding individual links into YouTube-DLG.
+;~ RAlt::
+
+	;~ Loop 50 {
+
+	;~ ;Copy link
+	;~ Click, right
+	;~ Sleep 420
+	;~ Send, a
+	;~ Sleep 420
+	
+	;~ ;Scroll down
+	;~ Send, {WheelDown}
+	;~ Sleep 420
+	
+	;~ ;Paste in YT-DLG.
+	;~ WinActivate, Youtube-DLG
+	;~ Sleep 420
+	;~ Send, ^v
+	;~ Sleep 420
+	
+	;~ WinActivate, Music to Download - YouTube - Mozilla Firefox
+	
+	;~ }
+
+;~ return
+
 ;For MediaSpace for D2L for Java class.
 ; #If numPadMode = "Dumbed-Down"
 ; ;Shift minus
