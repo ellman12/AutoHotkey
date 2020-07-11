@@ -10,7 +10,10 @@ Gui, Add, Text, x67 y22 w60 h20 BackgroundTrans E0x20 vTimeText
 Gui, Add, Button, x2 y62 w163 h20 gStart Center, Start / Stop
 Gui, Show, h89 w165, Flowtime
 Gui +AlwaysOnTop -MinimizeBox
+
 SetMode(0)
+
+#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\Tippy.ahk
 return
 
 SetMode(mode) {
@@ -91,9 +94,13 @@ MillisecToTime(msec) {
     return Format("{:02}:{:02}:{:02}",hour,mins,secs)
 }
 
-SetTime(t){
-    global TimeText
+SetTime(t) {
+    global TimeText, CurrentMode
     GuiControl, , TimeText ,  % MillisecToTime(t)
+
+	if (CurrentMode = 1) {
+		Tippy("Work work work", 50)
+	}
 }
 
 GuiClose:
