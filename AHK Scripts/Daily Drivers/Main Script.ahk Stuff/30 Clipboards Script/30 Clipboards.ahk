@@ -1,5 +1,4 @@
-;You know those crappy stock programming images with disgusting, unformatted-properly code you'll see online occasionally? Yeah, this script is where they got their inspiration.
-;Seriously though, this script is awesome. Here's a link to the video where I found this: https://www.youtube.com/watch?v=TRJDB3nM3bg&feature=em-uploademail
+;This script is awesome. Here's a link to the video where I found this: https://www.youtube.com/watch?v=TRJDB3nM3bg&feature=em-uploademail
 /*
 	Written By: Hellbent
 	Date Started: June 24th, 2019

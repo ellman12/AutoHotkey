@@ -16,22 +16,25 @@ DetectHiddenWindows, Off
 #SingleInstance force
 ;OPTIMIZATIONS END
 
-/*
-* This script is the main file that links all of my other scripts together, plus some other things.
-* On my K95 keyboard and my Scimitar mouse, I have 18 and 12 G keys, respectively.
-* In the garbage iCUE software, I have assigned each of them some keeb shortcuts to send.
-* They all involve F13-F24, since 99.9% of keyboards don't have those physical keys, but Windows can still accept them as inputs.
-* Keeb G keys 1-12 send ^F13-F24; 13-18 send !F13-F18; and Scimitar G1-12 sends F13-F18 (no modifiers, since there's no need).
-* This surprisingly works perfectly.
-* I tried doing some stuff with iCUE sending weird language key things, and AHK trying to detect those scan codes, but I couldn't get
-it working. *Shrug*
-* This file is mainly for generic keeb shortcuts and things that are used everywhere, and to house the iCUE keeb shortcuts (look at the
-bottom of the file). Changed on 10/27/2019. Now, all the respective files house their respective actions and stuff. It makes way more sense
-to do it this way.
-* Some of the others like Browser, Docs, Sheets, are used to house the actions that pertain to that current profile (which I define as
-the set of actions that are done by the G keys depending on the current active window/program).
-* Hopefully this explains it well enough.
-*/
+; This script is the main file that links all of my other scripts together, plus some other things.
+; On my K95 keyboard and my Scimitar mouse, I have 18 and 12 G keys, respectively.
+; In the garbage iCUE software, I have assigned each of them some keeb shortcuts to send.
+; They all involve F13-F24, since 99.9% of keyboards don't have those physical keys, but Windows can still accept them as inputs.
+; Keeb G keys 1-12 send ^F13-F24; 13-18 send !F13-F18; and Scimitar G1-12 sends F13-F18 (no modifiers, since there's no need).
+; This surprisingly works perfectly.
+; I tried doing some stuff with iCUE sending weird language key things, and AHK trying to detect those scan codes, but I couldn't get
+;it working. *Shrug*
+; This file is mainly for generic keeb shortcuts and things that are used everywhere, and to house the iCUE keeb shortcuts (look at the
+;bottom of the file). Changed on 10/27/2019. Now, all the respective files house their respective actions and stuff. It makes way more sense
+;to do it this way.
+; Some of the others like Browser, Docs, Sheets, are used to house the actions that pertain to that current profile (which I define as
+;the set of actions that are done by the G keys depending on the current active window/program).
+; Hopefully this explains it well enough.
+; 7/2/2020: Misc Laptop Stuff was merged with this script. It was a script designed for use with my laptop.
+; It started as a small little script with some basic key remappings and hotkeys, but it started to grow more and more complex over time.
+; Eventually, Main and Misc became so similar to each other to the point where it was becoming a lot harder to copy changes from Main over to Misc.
+; Thus the merging of the both of them. The very few Laptop-exclusive hotkeys are in an #if directive down below. They will only run on my laptop, as
+;its name is different from my PC's name.
 
 ;Pic of all these icons: https://diymediahome.org/wp-content/uploads/shell32_icons.jpg
 Menu, Tray, Icon, shell32.dll, 233 ;Changes the icon to a cute little computer.
@@ -480,8 +483,8 @@ soundset, nv
 return
 
 ;Increment/decrement volume by 1.
-!Right::SoundSet, +1
-!Left::SoundSet, -1
+!PGUP::SoundSet, +1
+!PGDN::SoundSet, -1
 
 ;Get the current master volume, and add the inputted value to the current master volume.
 !\::
