@@ -878,11 +878,22 @@ Tippy(Text, Duration) {
 ; WinSet, AlwaysOnTop, Toggle, Calculator ; Toggle the always-on-top status of Calculator.
 ;~ return
 
+
+
+
+;;Lshift -to-> SC070-International 2 -back-to-> Lshift. This is easier than having to re-flash the QMK chip...
+SC070::Lshift
+
+;;and here it is for Rshift, but this is untested:
+SC07D::Rshift
+
+;;note that some of the QMK changes only work for key UP, rather than key down and up, so not all modifier key re-remappings will necessarily work.
+
 ;*****************************************TEMPORARY*****************************************
 ;~ ;For adding individual links into YouTube-DLG.
 ;~ RAlt::
 
-	;~ Loop 50 {
+	;~ Loop 64 {
 
 	;~ ;Copy link
 	;~ Click, right
@@ -896,8 +907,11 @@ Tippy(Text, Duration) {
 	
 	;~ ;Paste in YT-DLG.
 	;~ WinActivate, Youtube-DLG
+	;~ WinActivate, YouTube to Mp3 Converter - Mozilla Firefox
 	;~ Sleep 420
 	;~ Send, ^v
+	;~ Sleep 420
+	;~ Send, {Enter}
 	;~ Sleep 420
 	
 	;~ WinActivate, Music to Download - YouTube - Mozilla Firefox
