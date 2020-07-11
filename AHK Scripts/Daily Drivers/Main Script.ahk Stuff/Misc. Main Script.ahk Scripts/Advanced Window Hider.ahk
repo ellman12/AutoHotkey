@@ -17,7 +17,6 @@ DetectHiddenWindows, On
 ;OPTIMIZATIONS END
 
 ;Pic of all these icons: https://diymediahome.org/wp-content/uploads/shell32_icons.jpg
-
 Menu, Tray, Icon, shell32.dll, 175 ;Changes the icon to a black computer monitor.
 
 ;This script is a more advanced version of an old script called "WindowHider.ahk" script.
@@ -95,6 +94,11 @@ if (showAdvWinHiderGUIToggle = 1)
 	GUI, AdvWinHider:Show, x600 y90 w560 h370, Advanced Window Hider.ahk Hotkey Help Window
 else
 	GUI, AdvWinHider:Hide
+return
+
+AdvWinHiderGUIEscape:
+GUI, AdvWinHider:Hide
+showAdvWinHiderGUIToggle := !showAdvWinHiderGUIToggle
 return
 
 ;***************************************F8 HOTKEYS***************************************

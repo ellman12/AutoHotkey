@@ -19,6 +19,11 @@ else
 	GUI, ApplSwitchGUI:Hide
 return
 
+ApplSwitchGUIGUIEscape:
+GUI, ApplSwitchGUI:Hide
+showApplSwitchGUIToggle := !showApplSwitchGUIToggle
+return
+
 ;If a Firefox window doesn't exist, run Firefox.
 ;If a Firefox window does exist, switch to Chrome.
 ;If Firefox is active, send ^PGDN (switch between tabs).

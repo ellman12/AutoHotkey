@@ -40,6 +40,25 @@ DetectHiddenWindows, Off
 Menu, Tray, Icon, shell32.dll, 233 ;Changes the icon to a cute little computer.
 
 ;******************************************AUTO-EXECUTE**************************************************
+;*******************************ADVANCED WINDOW HIDER HELP GUI INITIALIZATION******************************
+AdvWinHider := "Advanced Window Hider Help Box GUI"
+
+;Toggle for the hotkey to show/hide the help.
+showAdvWinHiderGUIToggle := 0
+
+;Basic GUI setup.
+GUI, AdvWinHider:+AlwaysOnTop
+GUI, AdvWinHider:Color, Silver
+
+;Adding the title text.
+GUI, AdvWinHider:Font, underline s14
+GUI, AdvWinHider:Add, Text, x5 y5, Hotkey
+GUI, AdvWinHider:Add, Text, x115 y5, What It Does
+
+;Adding the text for all the hotkeys and what they do.
+GUI, AdvWinHider:Font, norm s12
+GUI, AdvWinHider:Add, Text, x5 y40,Alt + w`t`tToggles between showing and hiding this help GUI.`nAlt + F10`tAdd the window to F8 the array and hide.`nAlt + F8`t`tAdd the window to F8 the array and hide.`n^!+F10`t`tRemove all windows from the F10 group, without closing them.`n^!+F8`t`tRemove all windows from the F8 group, without closing them.`n^!+#F10`tClose all windows in the F10 list (array).`n^!+#F8`t`tClose all windows in the F8 list (array).`nCtrl + F10`tAdd the current window's title and ID to the F10 list (array).`nCtrl + F8`tAdd the current window's title and ID to the F8 list (array).`nShift + F10`tRemove the current window from F10 group.`nShift + F8`tRemove the current window from F10 group.`nF10`t`tShow/hide F10 windows.`nF8`t`thow/hide F10 windows.`nShift + Pause`tHotkey for suspending AWH hotkeys.`nWin + F10`tShows hidden F10 wins list. 1-9 to unhide that window.`nWin + F8`tShows hidden F8 wins list. 1-9 to unhide that window.
+
 ;*******************************APPLICATIONSWITCHER HELP GUI INITIALIZATION******************************
 ; ApplSwitchGUI := "ApplicationSwitcher Help Box GUI"
 
