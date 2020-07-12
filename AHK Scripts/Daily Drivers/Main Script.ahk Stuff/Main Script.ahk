@@ -857,8 +857,8 @@ return
 ;"Note that some of the QMK changes only work for key UP, rather than key down and up, so not all modifier key re-remappings will necessarily work."
 ;https://youtu.be/GZEoss4XIgc
 ;LShift -to-> SC070-International 2 -back-to-> LShift.
-SC070::LShift
-SC07D::RShift
+SC070::Lshift
+SC07D::Rshift
 
 ;*****************************************EXPERIMENTAL*****************************************
 ~$a::
