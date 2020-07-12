@@ -852,7 +852,22 @@ EWD_MouseStartX := EWD_MouseX  ; Update for the next timer-call to this subrouti
 EWD_MouseStartY := EWD_MouseY
 return
 
+;Allowing the 2nd keyboard to use Shift for hotkeys. E.g., Shift + F1.
+;IDK if Ctrl, Alt, and/or Win Key will work...
+;"Note that some of the QMK changes only work for key UP, rather than key down and up, so not all modifier key re-remappings will necessarily work."
+;https://youtu.be/GZEoss4XIgc
+;LShift -to-> SC070-International 2 -back-to-> LShift.
+SC070::LShift
+SC07D::RShift
+
 ;*****************************************EXPERIMENTAL*****************************************
+~$a::
+KeyWait, a, U
+KeyWait, a, D, T0.2
+If (ErrorLevel = 0)
+send, {BS 2}hello world
+return
+
 ; ^BackSpace::
 ; Send, ^+{Left}{BackSpace}
 ; return
@@ -892,17 +907,6 @@ return
 ;~ WinSet, AlwaysOnTop, On, Calculator
 ; WinSet, AlwaysOnTop, Toggle, Calculator ; Toggle the always-on-top status of Calculator.
 ;~ return
-
-
-
-
-;;Lshift -to-> SC070-International 2 -back-to-> Lshift. This is easier than having to re-flash the QMK chip...
-SC070::Lshift
-
-;;and here it is for Rshift, but this is untested:
-SC07D::Rshift
-
-;;note that some of the QMK changes only work for key UP, rather than key down and up, so not all modifier key re-remappings will necessarily work.
 
 ;*****************************************TEMPORARY*****************************************
 ;~ ;For adding individual links into YouTube-DLG.
