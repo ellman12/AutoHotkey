@@ -254,7 +254,6 @@ Loop {
 #Include, %A_ScriptDir%\Screen Clipper Script\Screen Clipper.ahk
 #Include, %A_ScriptDir%\Video Game Stuff\Any Game.ahk
 #Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Video Game Stuff\Terraria.ahk
-#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\Tippy.ahk
 
 ;#Include the script for my Secondary Macro Keyboard.
 #Include, %A_MyDocuments%\GitHub\AutoHotkey\Secondary Macro Keyboard\Hasu USB to USB Script.ahk
@@ -851,6 +850,14 @@ WinMove, ahk_id %EWD_MouseWin%,, EWD_WinX + EWD_MouseX - EWD_MouseStartX, EWD_Wi
 EWD_MouseStartX := EWD_MouseX  ; Update for the next timer-call to this subroutine.
 EWD_MouseStartY := EWD_MouseY
 return
+
+;*****************************************GLOBAL FUNCTIONS*****************************************
+;Used for making the use of ToolTips a lot simpler and easier.
+Tippy(Text, Duration) {
+	ToolTip, %Text%
+	Sleep %Duration%
+	ToolTip ;Remove the ToolTip.
+}
 
 ;*****************************************EXPERIMENTAL*****************************************
 ; ^BackSpace::
