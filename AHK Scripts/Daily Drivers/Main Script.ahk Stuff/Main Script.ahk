@@ -252,7 +252,7 @@ Loop {
 #Include, %A_ScriptDir%\Screen Clipper Script\Screen Clipper.ahk
 #Include, %A_ScriptDir%\Video Game Stuff\Any Game.ahk
 #Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Video Game Stuff\Terraria.ahk
-#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\Tippy.ahk
+#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\Header Files\Tippy.ahk
 
 ;#Include the script for my Secondary Macro Keyboard.
 #Include, %A_MyDocuments%\GitHub\AutoHotkey\Secondary Macro Keyboard\Hasu USB to USB Script.ahk
