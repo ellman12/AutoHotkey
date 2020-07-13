@@ -1,7 +1,6 @@
-﻿;OPTIMIZATIONS START
-#NoEnv
-#MaxHotkeysPerInterval 99000000
-#HotkeyInterval 99000000
+﻿#NoEnv
+#MaxHotkeysPerInterval 999999999999999999999999999999999
+#HotkeyInterval 99999999999999999999999999999999999
 #KeyHistory 0
 ListLines Off
 Process, Priority, , A
@@ -14,7 +13,6 @@ SetControlDelay, -1
 SendMode Input
 DetectHiddenWindows, Off
 #SingleInstance force
-;OPTIMIZATIONS END
 
 ; This script is the main file that links all of my other scripts together, plus some other things.
 ; On my K95 keyboard and my Scimitar mouse, I have 18 and 12 G keys, respectively.
@@ -245,7 +243,7 @@ Loop {
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\Profile Switcher.ahk
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\SciTE4AutoHotkey Programming.ahk
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\VSCode.ahk
-#Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Advanced Window Hider.ahk
+; #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Advanced Window Hider.ahk
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\ApplicationSwitcher.ahk
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\AutoCorrect.ahk
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Chromebook Typing.ahk
@@ -861,13 +859,6 @@ SC070::Lshift
 SC07D::Rshift
 
 ;*****************************************EXPERIMENTAL*****************************************
-~$a::
-KeyWait, a, U
-KeyWait, a, D, T0.2
-If (ErrorLevel = 0)
-send, {BS 2}hello world
-return
-
 ; ^BackSpace::
 ; Send, ^+{Left}{BackSpace}
 ; return
