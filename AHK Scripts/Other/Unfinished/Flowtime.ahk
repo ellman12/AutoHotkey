@@ -56,6 +56,7 @@ LV_ModifyCol(1, 160) ;Title.
 LV_ModifyCol(2, 30) ;ID.
 
 #Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\Header Files\Tippy.ahk
+#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\Header Files\inArray().ahk
 
 return
 
@@ -104,8 +105,8 @@ return
     GUI, BlackWhiteListGUI:Default
 
     ;Get the active window title, ID, and the window icon.
-    WinGetTitle, activeWinTitle, A
-    WinGet, activeWinID, ID, A
+    WinGetTitle, ActiveWinTitle, A
+    WinGet, ActiveWinID, ID, A
     WInGet, activeWinProcPath, ProcessPath, A
 
     ;Boolean to track if the active title was found in the array.
@@ -113,10 +114,10 @@ return
 	found := false
 
     ;Check if the title is already included in the array.
-    ;There can (and probably will) be multiple window IDs. E.g., multiple titles (tabs), 1 ID for Firefox.
+    ;There can (and probably will) be multiple window IDs. E.g., multiple titles (tabs), 1 ID for Firefox. Thus checking for duplicate IDs wouldn't work.
     for index, title in WindowTitles {
 		;If the current title was found inside the array
-		if (title = activeWinTitle) {
+		if (title = ActiveWinTitle) {
 			;Then mark it as found, inform the user, and break the loop.
             MsgBox, 48, Already in the Array, This window title is already in the array.
 			found := true
@@ -127,15 +128,15 @@ return
 	;If the title was never found in the array.
 	if (found = false) {
 		;Add it to the array.
-		WindowTitles.Push(activeWinTitle)
-        WindowIDs.Push(activeWinID)
+		WindowTitles.Push(ActiveWinTitle)
+        WindowIDs.Push(ActiveWinID)
 
         ;Put the Icon of the program into the ImageList for use with the ListView.
         IL_Add(SafeWinsImageListID, activeWinProcPath)
 
         ;Add the Title and ID to the ListView, and add the Icon using the option "Icon1" "Icon2" etc.
         ;Icon number is defined by "LV_GetCount() + 1" which gets the number of rows in before adding and adds one.
-        LV_Add("Icon" LV_GetCount() + 1, activeWinTitle, activeWinID)
+        LV_Add("Icon" LV_GetCount() + 1, ActiveWinTitle, ActiveWinID)
 	}
 return
 
@@ -147,28 +148,30 @@ SetMode(mode) {
 
 	if (mode == 0) {
 		
-		; Off
+		;Off
 		SetTime(0)
 		GuiControl, MainGUI:, ModeTxt, Off
 		
 	} else if (mode == 1) {
 		
-		; Work Mode
+		;Work Mode
 		SetTime(0)
 		GuiControl, MainGUI:, ModeTxt, Time this session
 		StartTime := A_TickCount
-		Settimer, UpdateWorkTime, 1000
+		SetTimer, UpdateWorkTime, 1000
+		SetTimer, AntiDistraction, 5000
 		
 	} else {
 		
-		; Break Mode
+		;Break Mode
 		GuiControl, MainGUI:, ModeTxt, Time until end of break
-		t := (A_TickCount - StartTime)*.4 ; length of break
+		t := (A_TickCount - StartTime)*.4 ;Length of break.
 		SetTime(t)
 		EndPause := t + A_TickCount
 		SetTimer, UpdatePauseTime, 1000
 		SetTimer, BackToWork, % "-" t
 	}
+
 	CurrentMode := mode
 }
 
@@ -181,7 +184,7 @@ Start:
 return
 
 Pause:
-	if (CurrentMode == 1){
+	if (CurrentMode == 1) {
 		SetMode(2)
 	}
 return
@@ -218,15 +221,53 @@ MillisecToTime(msec) {
     return Format("{:02}:{:02}:{:02}",hour,mins,secs)
 }
 
+;I think this updates the timer in the GUI.
 SetTime(t) {
     global TimeText, CurrentMode
     GuiControl, MainGUI:, TimeText ,  % MillisecToTime(t)
 
-	if (CurrentMode = 1) {
-		Tippy("Work work work", 50)
-	}
+	SetTimer, AntiDistraction, 500
 }
 
-GuiClose:
-ExitApp
+;When a pomodoro is running.
+AntiDistraction:
+
+    ;Get the active window title, and ID.
+    WinGetTitle, ActiveWinTitle, A
+    WinGet, ActiveWinID, ID, A
+
+    ;5/10/2020 8:38 PM I think this works perfectly...
+    ; if (ActiveWinTitle = "Safe Windows") OR (ActiveWinTitle = "Pomodoro Technique Script") {
+    ;     return
+    ; } else if !inArray(ActiveWinTitle, safeWindowTitles) {
+
+    ;     if !inArray(ActiveWinID, safeWindowIDs) {
+    ;         ;~ WinClose, %ActiveWinTitle%
+    ;         WinMinimize, %ActiveWinTitle%
+    ;     } else if (InStr(ActiveWinTitle, "Mozilla Firefox")) OR (InStr(ActiveWinTitle, "Google Chrome")) {
+    ;         ;~ Send, ^w
+    ;         WinMinimize, %ActiveWinTitle%
+    ;     }
+    ; }
+
+	if (inArray(ActiveWinID, WindowIDs)) {
+
+		MsgBox 1
+
+		if (inArray(ActiveWinTitle, WindowTitles)) {
+
+			MsgBox 2
+
+		} else {
+			
+			MsgBox 3
+			WinMinimize %ActiveWinTitle%
+
+		}
+
+	} else {
+		MsgBox 4
+		WinMinimize %ActiveWinTitle%
+	}
+
 return
