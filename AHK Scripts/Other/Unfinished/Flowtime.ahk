@@ -11,6 +11,9 @@
 * HUGE shout-out to them. https://www.reddit.com/r/AutoHotkey/comments/gad2bh/how_to_use_listview_for_gui/
 */
 
+;TODO
+;Disable the ^F11 hotkey while working...?
+
 CurrentMode := 0 ; 0 = Off, 1 = Working, 2 = Break
 
 ;These arrays store window titles for BOTH the black and whitelist modes.
@@ -159,7 +162,7 @@ SetMode(mode) {
 		GuiControl, MainGUI:, ModeTxt, Time this session
 		StartTime := A_TickCount
 		SetTimer, UpdateWorkTime, 1000
-		SetTimer, AntiDistraction, 5000
+		SetTimer, AntiDistraction, 1000
 		
 	} else {
 		
@@ -225,8 +228,6 @@ MillisecToTime(msec) {
 SetTime(t) {
     global TimeText, CurrentMode
     GuiControl, MainGUI:, TimeText ,  % MillisecToTime(t)
-
-	SetTimer, AntiDistraction, 500
 }
 
 ;When a pomodoro is running.
@@ -252,22 +253,24 @@ AntiDistraction:
 
 	if (inArray(ActiveWinID, WindowIDs)) {
 
-		MsgBox 1
+		Tippy("1", 1000)
 
 		if (inArray(ActiveWinTitle, WindowTitles)) {
 
-			MsgBox 2
+			Tippy("2", 1000)
 
 		} else {
 			
-			MsgBox 3
-			WinMinimize %ActiveWinTitle%
+			Tippy("3", 1000)
+			; WinMinimize %ActiveWinTitle%
 
 		}
 
 	} else {
-		MsgBox 4
-		WinMinimize %ActiveWinTitle%
+		Tippy("4", 1000)
+		; WinMinimize %ActiveWinTitle%
 	}
 
 return
+
+F11::Reload
