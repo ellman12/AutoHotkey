@@ -7,7 +7,7 @@
 * This script combines that with The Flowtime Technique
 * https://medium.com/@lightsandcandy/the-flowtime-technique-7685101bd191
 *
-* The ListView in the BlackWhitelistGUI would not have been possible without u/trashdigger of the AutoHotKey subreddit.
+* The ListView in the WindowsGUI would not have been possible without u/trashdigger of the AutoHotKey subreddit.
 * HUGE shout-out to them. https://www.reddit.com/r/AutoHotkey/comments/gad2bh/how_to_use_listview_for_gui/
 */
 
@@ -34,22 +34,25 @@ GUI, MainGUI: Show, h105 w165, Flowtime
 SetMode(0)
 
 ;********************BLACK/WHITELIST GUI********************
-BlackWhiteListGUI := "Black/Whitelist GUI"
+WindowsGUI := "Black/Whitelist GUI"
 
 ;Make the GUI (and then make it AlwaysOnTop).
-GUI, BlackWhiteListGUI:New
-GUI, BlackWhiteListGUI:+AlwaysOnTop -MinimizeBox
+GUI, WindowsGUI:New
+GUI, WindowsGUI:+AlwaysOnTop -MinimizeBox
 
-GUI, BlackWhiteListGUI:Font, norm S12
-GUI, BlackWhiteListGUI:Add, Text, x3 y4, Ctrl + F11: Add Windows
+GUI, WindowsGUI:Font, norm S10
+GUI, WindowsGUI:Add, Text, x3 y4, ^F11: Add Windows
+
+;Radio buttons for toggling between blacklist/whitelist modes.
+GUI, WindowsGUI:Add, Radio, x127 y4 gRadioButtonLabel vWhitelistRadio Checked, Whitelist
+GUI, WindowsGUI:Add, Radio, x127 y22 gRadioButtonLabel vBlacklistRadio, Blacklist
 
 ;Delete button.
-GUI, BlackWhiteListGUI:Font, norm S10
-GUI, BlackWhiteListGUI:Add, Button, x3 y27 w192 gLVDeleteButton, Delete Selected Item
+GUI, WindowsGUI:Font, norm S9
+GUI, WindowsGUI:Add, Button, x3 y27 w120 gLVDeleteButton, Delete Selected Item
 
 ;ListView.
-GUI, BlackWhiteListGUI:Font, norm S9           ;Display ↓ grid; ↓ can't move headers around (but can resize).
-GUI, BlackWhiteListGUI:Add, ListView, x4 y58 w190 h205 Grid -LV0x10, Title|ID
+GUI, WindowsGUI:Add, ListView, x4 y58 w190 h205 Grid -LV0x10, Title|ID
 
 ;Icons.
 SafeWinsImageListID := IL_Create() ;Initially create an ImageList to store icons in. It grows automatically.
@@ -68,9 +71,9 @@ BlackWhiteListButton:
 	showBlackWhiteListToggle := !showBlackWhiteListToggle
 
 	if (showBlackWhiteListToggle = true)
-		GUI, BlackWhiteListGUI:Show, w200 h270, Windows GUI
+		GUI, WindowsGUI:Show, w200 h270, Windows GUI
 	else
-		GUI, BlackWhiteListGUI:Hide
+		GUI, WindowsGUI:Hide
 return
 
 ;Deletes a single window from the ListView.
@@ -80,7 +83,7 @@ LVDeleteButton:
     DeleteIndex := LV_GetNext()
     LV_Delete(DeleteIndex)
     DllCall("ComCtl32.dll\ImageList_Remove", "Ptr", SafeWinsImageListID, "Int", DeleteIndex - 1, "UInt") ;-1 because range of ListView start from 1 but ImageList starts from 0.
-            
+
     ;Because the ImageList has changed, we must reorder the icons attached to items in the ListView to match the new indexing of the ImageList.
     Loop % LV_GetCount() {
         LV_Modify(A_Index, "Icon" . A_Index)
@@ -96,10 +99,16 @@ LVDeleteButton:
     }
 return
 
+;Gets the values from the radio buttons.
+RadioButtonLabel:
+GUI, WindowsGUI:Submit, NoHide
+return
+
 ;Adds windows to the arrays.
 ^F11::
+
     ;https://www.autohotkey.com/docs/commands/ListView.htm#BuiltIn
-    GUI, BlackWhiteListGUI:Default
+    GUI, WindowsGUI:Default
 
     ;Get the active window title, ID, and the window icon.
     WinGetTitle, ActiveWinTitle, A
@@ -141,20 +150,20 @@ return
 
 ;For setting what mode you're in for the Flowtime GUI.
 SetMode(mode) {
-	
+
 	global CurrentMode, ModeTxt, StartTime, EndPause
 	GoSub, StopTimers
 
 	if (mode == 0) {
-		
+
 		;Off
 		SetTime(0)
 		GuiControl, MainGUI:, ModeTxt, Off
 		SetTimer, AntiDistraction, Off
 		Hotkey, ^F11, On
-		
+
 	} else if (mode == 1) {
-		
+
 		;Work Mode
 		SetTime(0)
 		GuiControl, MainGUI:, ModeTxt, Time this session
@@ -162,9 +171,9 @@ SetMode(mode) {
 		Hotkey, ^F11, Off
 		SetTimer, UpdateWorkTime, 1000
 		SetTimer, AntiDistraction, 1000
-		
+
 	} else {
-		
+
 		;Break Mode
 		Hotkey, ^F11, On
 		GuiControl, MainGUI:, ModeTxt, Time until end of break
@@ -230,41 +239,69 @@ SetTime(t) {
     GuiControl, MainGUI:, TimeText ,  % MillisecToTime(t)
 }
 
-;Run when working.
+;Runs when working.
 AntiDistraction:
 
 	SetTitleMatchMode, 2 ;A window's title can contain WinTitle anywhere inside it to be a match.
 
-    ;Get the active window title, and ID.
+	GUI, WindowsGUI:Submit, NoHide ;Gets the values from the radio buttons.
+
+    ;Get the active window title and ID.
     WinGetTitle, ActiveWinTitle, A
     WinGet, ActiveWinID, ID, A
 
-	if (ActiveWinTitle = "Flowtime") or (ActiveWinTitle = "Windows GUI") {
+	if (WhitelistRadio = 1) {
 
-		Tippy("Can't close this window because it's part of the script.", 1000)
+		if (ActiveWinTitle = "Flowtime") or (ActiveWinTitle = "Windows GUI") {
 
-	} else if ActiveWinTitle contains MusicBee
-	
-		Tippy("Won't close this window.", 1000)
-	
-	else if (inArray(ActiveWinID, WindowIDs)) {
+			Tippy("Can't close this window because it's part of the script.", 1000)
 
-		Tippy("ID in array, window staying open...", 1000)
+		} else if ActiveWinTitle contains MusicBee
 
-		if (inArray(ActiveWinTitle, WindowTitles)) {
+			Tippy("Won't close this window.", 1000)
 
-			Tippy("ID AND title in array, both staying open...", 1000)
+		else if (inArray(ActiveWinID, WindowIDs)) {
+
+			Tippy("ID in array, window staying open...", 1000)
+
+			if (inArray(ActiveWinTitle, WindowTitles)) {
+
+				Tippy("ID AND title in array, both staying open...", 1000)
+
+			} else {
+
+				Tippy("Title not in array, closing tab...", 1000)
+				; WinMinimize %ActiveWinTitle%
+
+			}
 
 		} else {
-			
-			Tippy("Title not in array, closing tab...", 1000)
+			Tippy("ID NOT in array, closing...", 1000)
 			; WinMinimize %ActiveWinTitle%
+		}
+
+	} else if (BlacklistRadio = 1) {
+
+		if (inArray(ActiveWinID, WindowIDs)) {
+
+			Tippy("ID in blacklist array, closing...", 1000)
+
+			if (inArray(ActiveWinTitle, WindowTitles)) {
+
+				Tippy("ID AND title in blacklist array, both closing...", 1000)
+
+			} else {
+
+				Tippy("Title NOT in array, tab staying open...", 1000)
+
+			}
+
+		} else {
+
+			Tippy("ID NOT in array, window staying open...", 1000)
 
 		}
 
-	} else {
-		Tippy("ID NOT in array, closing...", 1000)
-		; WinMinimize %ActiveWinTitle%
 	}
 
 return
