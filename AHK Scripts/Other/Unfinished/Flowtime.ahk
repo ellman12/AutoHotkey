@@ -151,6 +151,7 @@ SetMode(mode) {
 		SetTime(0)
 		GuiControl, MainGUI:, ModeTxt, Off
 		SetTimer, AntiDistraction, Off
+		Hotkey, ^F11, On
 		
 	} else if (mode == 1) {
 		
@@ -158,12 +159,14 @@ SetMode(mode) {
 		SetTime(0)
 		GuiControl, MainGUI:, ModeTxt, Time this session
 		StartTime := A_TickCount
+		Hotkey, ^F11, Off
 		SetTimer, UpdateWorkTime, 1000
 		SetTimer, AntiDistraction, 1000
 		
 	} else {
 		
 		;Break Mode
+		Hotkey, ^F11, On
 		GuiControl, MainGUI:, ModeTxt, Time until end of break
 		t := (A_TickCount - StartTime)*.4 ;Length of break.
 		SetTime(t)
@@ -236,20 +239,6 @@ AntiDistraction:
     WinGetTitle, ActiveWinTitle, A
     WinGet, ActiveWinID, ID, A
 
-    ;5/10/2020 8:38 PM I think this works perfectly...
-    ; if (ActiveWinTitle = "Safe Windows") OR (ActiveWinTitle = "Pomodoro Technique Script") {
-    ;     return
-    ; } else if !inArray(ActiveWinTitle, safeWindowTitles) {
-
-    ;     if !inArray(ActiveWinID, safeWindowIDs) {
-    ;         ;~ WinClose, %ActiveWinTitle%
-    ;         WinMinimize, %ActiveWinTitle%
-    ;     } else if (InStr(ActiveWinTitle, "Mozilla Firefox")) OR (InStr(ActiveWinTitle, "Google Chrome")) {
-    ;         ;~ Send, ^w
-    ;         WinMinimize, %ActiveWinTitle%
-    ;     }
-    ; }
-
 	if (ActiveWinTitle = "Flowtime") or (ActiveWinTitle = "Windows GUI") {
 
 		Tippy("Can't close this window because it's part of the script.", 1000)
@@ -277,45 +266,6 @@ AntiDistraction:
 		Tippy("ID NOT in array, closing...", 1000)
 		; WinMinimize %ActiveWinTitle%
 	}
-
-
-	; if (ActiveWinTitle = "Flowtime") OR (ActiveWinTitle = "Windows") {
-
-	; 	Tippy("Can't close this window because it's part of the script.", 1000)
-
-	; } else if (ActiveWinTitle = " - MusicBee") {
-
-	; 	Tippy("Won't close this window.", 1000)
-	
-	; } else if (inArray(ActiveWinID, WindowIDs)) AND (inArray(ActiveWinTitle, WindowTitles)) {
-
-	; 	Tippy("ID AND Title good.", 1000)
-
-	; } else if (inArray(ActiveWinID, WindowIDs)) AND (!inArray(ActiveWinTitle, WindowTitles)) {
-
-	; 	Tippy("ID good, title not good. Closing tab.", 1000)
-
-	; } else if (!inArray(ActiveWinID, WindowIDs)) AND (!inArray(ActiveWinTitle, WindowTitles)) {
-
-	; 	Tippy("Neither is good, closing window...", 1000)
-	; }
-
-
-
-		
-
-
-	; if (ActiveWinTitle = "Flowtime") {
-
-	; 	Tippy("Can't close this window...", 1000)
-
-	; } else if (inArray(ActiveWinID, WindowIDs)) AND (!inArray(ActiveWinTitle, WindowTitles)) {
-
-	; 	Tippy("ID good, title not good.", 1000)
-
-	; } else if (!inArray())
-
-	; }
 
 return
 
