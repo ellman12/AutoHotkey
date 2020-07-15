@@ -16,6 +16,14 @@ SendMode Input
 #if (GetKeyState("F24", "P")) ;<--Everything after this line will only happen on the secondary keyboard that uses F24.
 F24::return ;this line is mandatory for proper functionality
 
+;Allowing the 2nd keyboard to use Shift for hotkeys. E.g., Shift + F1.
+;IDK if Ctrl, Alt, and/or Win Key will work...
+;"Note that some of the QMK changes only work for key UP, rather than key down and up, so not all modifier key re-remappings will necessarily work."
+;https://youtu.be/GZEoss4XIgc
+;LShift -to-> SC070-International 2 -back-to-> LShift.
+SC070::Lshift
+SC07D::Rshift
+
 ;Saving mouse pointer locations and returning to saved spots.
 F1::MouseMove, mousePosX1, mousePosY1, 0
 
@@ -195,6 +203,13 @@ SC033::Send, +#{Left}
 ;Open the Desktop folder.
 d::Run, explorer %A_Desktop%
 
+;Open AHK Documentation
+e::
+RunWait, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.autohotkey.com/docs/AutoHotkey.htm
+Sleep 1000
+Send, !s
+return
+
 ;Kind Regards Macro.
 enter::Send, Kind regards`,{Enter 2}Elliott DuCharme
 
@@ -335,7 +350,18 @@ return
 s::Run, explorer C:\Users\Elliott\Music
 
 ;Suspends hotkeys in Main and AWH.
-; space::Suspend
+Space::
+Suspend
+; SetTitleMatchMode, 2
+; PostMessage, 0x111, 65305,,, Advanced Window Hider.ahk - AutoHotkey
+return
+
+;Open Terraria Wiki
+t::
+RunWait, "C:\Program Files\Mozilla Firefox\firefox.exe" https://terraria.gamepedia.com/Terraria_Wiki
+Sleep 2000
+Send, !+f ;Open the search bar.
+return
 
 ;Unzip a single .zip file in File Explorer.
 u::
@@ -371,12 +397,6 @@ z::Send, ^z
 
 ; #if (GetKeyState("F24", "P")) AND (GetKeyState("Space", "P"))
 ; F24::return
-
-Space::
-Suspend
-; SetTitleMatchMode, 2
-; PostMessage, 0x111, 65305,,, Advanced Window Hider.ahk - AutoHotkey
-return
 
 #if
 

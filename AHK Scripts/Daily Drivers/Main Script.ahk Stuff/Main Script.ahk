@@ -252,7 +252,7 @@ Loop {
 #Include, %A_ScriptDir%\Screen Clipper Script\Screen Clipper.ahk
 #Include, %A_ScriptDir%\Video Game Stuff\Any Game.ahk
 #Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Video Game Stuff\Terraria.ahk
-#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\Tippy.ahk
+; #Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\Tippy.ahk
 
 ;#Include the script for my Secondary Macro Keyboard.
 #Include, %A_MyDocuments%\GitHub\AutoHotkey\Secondary Macro Keyboard\Hasu USB to USB Script.ahk
@@ -850,14 +850,6 @@ EWD_MouseStartX := EWD_MouseX  ; Update for the next timer-call to this subrouti
 EWD_MouseStartY := EWD_MouseY
 return
 
-;Allowing the 2nd keyboard to use Shift for hotkeys. E.g., Shift + F1.
-;IDK if Ctrl, Alt, and/or Win Key will work...
-;"Note that some of the QMK changes only work for key UP, rather than key down and up, so not all modifier key re-remappings will necessarily work."
-;https://youtu.be/GZEoss4XIgc
-;LShift -to-> SC070-International 2 -back-to-> LShift.
-SC070::Lshift
-SC07D::Rshift
-
 ;*****************************************EXPERIMENTAL*****************************************
 ; ^BackSpace::
 ; Send, ^+{Left}{BackSpace}
@@ -900,6 +892,13 @@ SC07D::Rshift
 ;~ return
 
 ;*****************************************TEMPORARY*****************************************
+;Used for making the use of ToolTips a lot simpler and easier.
+Tippy(Text, Duration) {
+	ToolTip, %Text%
+	Sleep %Duration%
+	ToolTip ;Remove the ToolTip.
+}
+
 ;~ ;For adding individual links into YouTube-DLG.
 ;~ RAlt::
 

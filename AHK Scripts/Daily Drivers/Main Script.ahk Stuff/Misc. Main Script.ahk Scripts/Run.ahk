@@ -37,7 +37,6 @@ Case "Help": Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" 
 ;Open the documentation in either Firefox or Chrome
 Case "Docu FF", "Docu Firefox", "Documentation FF", "Documentation Firefox":
 RunWait, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.autohotkey.com/docs/AutoHotkey.htm
-Send, https://www.autohotkey.com/docs/AutoHotkey.htm {Enter}
 Sleep 1000
 Send, !s
 return
