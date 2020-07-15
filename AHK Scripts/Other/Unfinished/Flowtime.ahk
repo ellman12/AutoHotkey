@@ -13,6 +13,7 @@
 
 ;TODO
 ;Disable the ^F11 hotkey while working...?
+;Try removing/adding windows some more with the LV thing.
 
 CurrentMode := 0 ; 0 = Off, 1 = Working, 2 = Break
 
@@ -27,7 +28,7 @@ GUI, MainGUI: Add, Button, x82 y42 w80 h20 gReset, &Reset
 GUI, MainGUI: Add, Text, x53 y22 w60 h20 Center E0x20 vTimeText
 GUI, MainGUI: Add, Button, x2 y62 w160 h20 gStart Center, &Start / Stop
 GUI, MainGUI: Add, Button, x2 y82 w160 h20 gBlackWhiteListButton Center, &Blacklist / Whitelist Windows
-GUI, MainGUI: -AlwaysOnTop -MinimizeBox
+GUI, MainGUI: +AlwaysOnTop -MinimizeBox
 GUI, MainGUI: Show, h105 w165, Flowtime
 
 SetMode(0)
@@ -58,8 +59,8 @@ LV_SetImageList(SafeWinsImageListID) ;sets the image list for the ListView to us
 LV_ModifyCol(1, 160) ;Title.
 LV_ModifyCol(2, 30) ;ID.
 
-#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\Header Files\Tippy.ahk
-#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\Header Files\inArray().ahk
+#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\Tippy.ahk
+#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\inArray().ahk
 
 return
 
@@ -67,7 +68,7 @@ BlackWhiteListButton:
 	showBlackWhiteListToggle := !showBlackWhiteListToggle
 
 	if (showBlackWhiteListToggle = true)
-		GUI, BlackWhiteListGUI:Show, w200 h270, Safe Windows
+		GUI, BlackWhiteListGUI:Show, w200 h270, Windows GUI
 	else
 		GUI, BlackWhiteListGUI:Hide
 return
@@ -89,20 +90,13 @@ LVDeleteButton:
         ;If the current ID was found inside the array, remove it.
 		if (title = text) {
             WindowTitles.RemoveAt(index)
-			break
-		}
-    }
-
-    for index, ID in WindowIDs {
-        ;If the current title was found inside the array, remove it.
-		if (ID = text) {
-            WindowTitles.RemoveAt(index)
+            WindowIDs.RemoveAt(index)
 			break
 		}
     }
 return
 
-;Adds windows to the Safe Windows arrays.
+;Adds windows to the arrays.
 ^F11::
     ;https://www.autohotkey.com/docs/commands/ListView.htm#BuiltIn
     GUI, BlackWhiteListGUI:Default
@@ -140,6 +134,8 @@ return
         ;Add the Title and ID to the ListView, and add the Icon using the option "Icon1" "Icon2" etc.
         ;Icon number is defined by "LV_GetCount() + 1" which gets the number of rows in before adding and adds one.
         LV_Add("Icon" LV_GetCount() + 1, ActiveWinTitle, ActiveWinID)
+
+		Tippy("Window ID and Title added.", 600)
 	}
 return
 
@@ -154,6 +150,7 @@ SetMode(mode) {
 		;Off
 		SetTime(0)
 		GuiControl, MainGUI:, ModeTxt, Off
+		SetTimer, AntiDistraction, Off
 		
 	} else if (mode == 1) {
 		
@@ -212,7 +209,7 @@ BackToWork:
 return
 
 StopTimers:
-	Settimer, UpdateWorkTime, Off
+	SetTimer, UpdateWorkTime, Off
 	SetTimer, UpdatePauseTime, Off
 	SetTimer, BackToWork, Off
 return
@@ -230,8 +227,10 @@ SetTime(t) {
     GuiControl, MainGUI:, TimeText ,  % MillisecToTime(t)
 }
 
-;When a pomodoro is running.
+;Run when working.
 AntiDistraction:
+
+	SetTitleMatchMode, 2 ;A window's title can contain WinTitle anywhere inside it to be a match.
 
     ;Get the active window title, and ID.
     WinGetTitle, ActiveWinTitle, A
@@ -251,25 +250,72 @@ AntiDistraction:
     ;     }
     ; }
 
-	if (inArray(ActiveWinID, WindowIDs)) {
+	if (ActiveWinTitle = "Flowtime") or (ActiveWinTitle = "Windows GUI") {
 
-		Tippy("1", 1000)
+		Tippy("Can't close this window because it's part of the script.", 1000)
+
+	} else if ActiveWinTitle contains MusicBee
+	
+		Tippy("Won't close this window.", 1000)
+	
+	else if (inArray(ActiveWinID, WindowIDs)) {
+
+		Tippy("ID in array, window staying open...", 1000)
 
 		if (inArray(ActiveWinTitle, WindowTitles)) {
 
-			Tippy("2", 1000)
+			Tippy("ID AND title in array, both staying open...", 1000)
 
 		} else {
 			
-			Tippy("3", 1000)
+			Tippy("Title not in array, closing tab...", 1000)
 			; WinMinimize %ActiveWinTitle%
 
 		}
 
 	} else {
-		Tippy("4", 1000)
+		Tippy("ID NOT in array, closing...", 1000)
 		; WinMinimize %ActiveWinTitle%
 	}
+
+
+	; if (ActiveWinTitle = "Flowtime") OR (ActiveWinTitle = "Windows") {
+
+	; 	Tippy("Can't close this window because it's part of the script.", 1000)
+
+	; } else if (ActiveWinTitle = " - MusicBee") {
+
+	; 	Tippy("Won't close this window.", 1000)
+	
+	; } else if (inArray(ActiveWinID, WindowIDs)) AND (inArray(ActiveWinTitle, WindowTitles)) {
+
+	; 	Tippy("ID AND Title good.", 1000)
+
+	; } else if (inArray(ActiveWinID, WindowIDs)) AND (!inArray(ActiveWinTitle, WindowTitles)) {
+
+	; 	Tippy("ID good, title not good. Closing tab.", 1000)
+
+	; } else if (!inArray(ActiveWinID, WindowIDs)) AND (!inArray(ActiveWinTitle, WindowTitles)) {
+
+	; 	Tippy("Neither is good, closing window...", 1000)
+	; }
+
+
+
+		
+
+
+	; if (ActiveWinTitle = "Flowtime") {
+
+	; 	Tippy("Can't close this window...", 1000)
+
+	; } else if (inArray(ActiveWinID, WindowIDs)) AND (!inArray(ActiveWinTitle, WindowTitles)) {
+
+	; 	Tippy("ID good, title not good.", 1000)
+
+	; } else if (!inArray())
+
+	; }
 
 return
 
