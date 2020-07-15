@@ -259,6 +259,15 @@ SC01A::
     clipboard = %prevClipboard%
 return
 
+;Sleep PC (+ manual Enter).
+m::
+Send, #x
+Sleep, 250
+Send, {Up 2}
+Send, {Right}
+Send, {Down}
+return
+
 ;Open Notepad.
 n::Run, notepad.exe
 
