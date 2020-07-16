@@ -15,6 +15,9 @@
 ;Disable the ^F11 hotkey while working...?
 ;Try removing/adding windows some more with the LV thing.
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Only check title (after ID check) in FF/Chr...............?
+
 CurrentMode := 0 ; 0 = Off, 1 = Working, 2 = Break
 
 ;These arrays store window titles for BOTH the black and whitelist modes.
