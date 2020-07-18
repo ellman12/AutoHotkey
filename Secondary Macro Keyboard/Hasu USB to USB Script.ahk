@@ -389,17 +389,18 @@ return
 x::Send, ^y
 
 ;Paste a link in Gmail, and make it blue and clickable too.
-y::
-Send, ^k
-Sleep 150
-Send, ^v
-Sleep 150
-Send, {Tab 2}
-Sleep 150
-Send, ^v
-Sleep 150
-Send, {Enter}
-return
+;7/18/2020 1:26 PM removed because Gmail does this automatically (I think?) after sending an email.
+; y::
+; Send, ^k
+; Sleep 150
+; Send, ^v
+; Sleep 150
+; Send, {Tab 2}
+; Sleep 150
+; Send, ^v
+; Sleep 150
+; Send, {Enter}
+; return
 
 ;Undo.
 z::Send, ^z
