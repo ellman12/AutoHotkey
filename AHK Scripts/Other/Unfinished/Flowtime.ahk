@@ -4,23 +4,18 @@
 /*
 * This script is a huge upgrade from an old script called "Anti-Distraction.ahk".
 * That script worked ok, but it had problems and many annoyances that I didn't like.
-* This script combines that with The Flowtime Technique
-* https://medium.com/@lightsandcandy/the-flowtime-technique-7685101bd191
+* This script combines that script with The Flowtime Technique: https://medium.com/@lightsandcandy/the-flowtime-technique-7685101bd191
 *
 * The ListView in the WindowsGUI would not have been possible without u/trashdigger of the AutoHotKey subreddit.
 * HUGE shout-out to them. https://www.reddit.com/r/AutoHotkey/comments/gad2bh/how_to_use_listview_for_gui/
 */
 
-;TODO
-;Disable the ^F11 hotkey while working...?
-;Try removing/adding windows some more with the LV thing.
+CurrentMode := 0 ;0 = Off, 1 = Working, 2 = Break
 
+showBlackWhiteListToggle := 0
+ShowMainGUIToggle := 1
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Only check title (after ID check) in FF/Chr...............?
-
-CurrentMode := 0 ; 0 = Off, 1 = Working, 2 = Break
-
-;These arrays store window titles for BOTH the black and whitelist modes.
+;These arrays store window titles and window IDs for BOTH the blacklist and whitelist modes.
 WindowTitles := []
 WindowIDs := []
 
@@ -66,11 +61,20 @@ LV_ModifyCol(1, 160) ;Title.
 LV_ModifyCol(2, 30) ;ID.
 
 #Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\Tippy.ahk
-#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\inArray().ahk
+#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\inArray.ahk
 
+return ;End of Auto-execute.
+
+MainGUIGUIClose:
+	ShowMainGUIToggle := !ShowMainGUIToggle
+
+	if (ShowMainGUIToggle = true)
+		GUI, MainGUI:Show
+	else
+		GUI, MainGUI:Hide
 return
 
-BlackWhiteListButton:
+WindowsGUIGUIClose:
 	showBlackWhiteListToggle := !showBlackWhiteListToggle
 
 	if (showBlackWhiteListToggle = true)
@@ -78,6 +82,16 @@ BlackWhiteListButton:
 	else
 		GUI, WindowsGUI:Hide
 return
+
+BlackWhiteListButton:
+Goto, WindowsGUIGUIClose
+return
+
+;Show/hide main GUI.
+F11::Goto, MainGUIGUIClose
+
+;Show hide the Blacklist/Whitelist GUI.
++F11::Goto, BlackWhiteListButton
 
 ;Deletes a single window from the ListView.
 LVDeleteButton:
@@ -134,9 +148,11 @@ return
 		}
 	}
 
-	;If the title was never found in the array.
-	if (found = false) {
-		;Add it to the array.
+	;If the title was never found in the array, add it to the array.
+	if (ActiveWinTitle == "Flowtime") OR (ActiveWinTitle == "Windows GUI") {
+		Tippy("There's no need to add this window.", 1000)
+	} else if (found = false) {
+
 		WindowTitles.Push(ActiveWinTitle)
         WindowIDs.Push(ActiveWinID)
 
@@ -147,7 +163,8 @@ return
         ;Icon number is defined by "LV_GetCount() + 1" which gets the number of rows in before adding and adds one.
         LV_Add("Icon" LV_GetCount() + 1, ActiveWinTitle, ActiveWinID)
 
-		Tippy("Window ID and Title added.", 600)
+		TippyMsg = %ActiveWinTitle% added.
+		Tippy(TippyMsg, 1000)
 	}
 return
 
@@ -253,17 +270,19 @@ AntiDistraction:
     WinGetTitle, ActiveWinTitle, A
     WinGet, ActiveWinID, ID, A
 
+	;If Whitelist mode enabled, check the arrays that way.
+	;If any windows and titles are in the arrays, they will be safe, and will not be closed.
 	if (WhitelistRadio = 1) {
 
 		if (ActiveWinTitle = "Flowtime") or (ActiveWinTitle = "Windows GUI") {
 
 			Tippy("Can't close this window because it's part of the script.", 1000)
 
-		} else if (ActiveWinTitle contains MusicBee) {
+		} else if ActiveWinTitle contains MusicBee
 
 			Tippy("Won't close this window.", 1000)
 
-		} else if (inArray(ActiveWinID, WindowIDs)) {
+		else if (inArray(ActiveWinID, WindowIDs)) {
 
 			Tippy("ID in array, window staying open...", 1000)
 
@@ -271,7 +290,7 @@ AntiDistraction:
 
 				Tippy("ID AND title in array, both staying open...", 1000)
 
-			} else {
+			} else if !(inArray(ActiveWinTitle, WindowTitles)) AND (ActiveWinTitle in Firefox,Google Chrome) {
 
 				Tippy("Title not in array, closing tab...", 1000)
 				; WinMinimize %ActiveWinTitle%
@@ -283,9 +302,15 @@ AntiDistraction:
 			; WinMinimize %ActiveWinTitle%
 		}
 
+	;If Blacklist mode enabled, check the arrays that way.
+	;If any windows and titles are in the arrays, they will not be safe, and will be closed if they are open.
 	} else if (BlacklistRadio = 1) {
 
-		if (inArray(ActiveWinID, WindowIDs)) {
+		if (ActiveWinTitle = "Flowtime") or (ActiveWinTitle = "Windows GUI") {
+
+			Tippy("Can't close this window because it's part of the script.", 1000)
+
+		} else if (inArray(ActiveWinID, WindowIDs)) {
 
 			Tippy("ID in blacklist array, closing...", 1000)
 
@@ -307,6 +332,4 @@ AntiDistraction:
 
 	}
 
-return
-
-F11::Reload
+return ;End of AntiDistraction label.
