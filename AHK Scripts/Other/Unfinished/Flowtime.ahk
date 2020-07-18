@@ -259,11 +259,11 @@ AntiDistraction:
 
 			Tippy("Can't close this window because it's part of the script.", 1000)
 
-		} else if ActiveWinTitle contains MusicBee
+		} else if (ActiveWinTitle contains MusicBee) {
 
 			Tippy("Won't close this window.", 1000)
 
-		else if (inArray(ActiveWinID, WindowIDs)) {
+		} else if (inArray(ActiveWinID, WindowIDs)) {
 
 			Tippy("ID in array, window staying open...", 1000)
 
