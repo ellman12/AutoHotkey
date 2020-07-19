@@ -414,7 +414,11 @@ return
 ;Toggle programming mode. Disables hotkeys/hotstrings that can be annoying when programming.
 ^!Insert::
 programmingMode := !programmingMode
-Tippy(programmingMode, 900)
+
+if (programmingMode = 1)
+	Tippy("programmingMode On", 900)
+else
+	Tippy("programmingMode Off", 900)
 return
 
 #If programmingMode = false
