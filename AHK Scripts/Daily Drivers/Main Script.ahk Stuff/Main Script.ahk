@@ -57,6 +57,19 @@ GUI, AdvWinHider:Add, Text, x115 y5, What It Does
 GUI, AdvWinHider:Font, norm s12
 GUI, AdvWinHider:Add, Text, x5 y40,Alt + w`t`tToggles between showing and hiding this help GUI.`nAlt + F10`tAdd the window to F8 the array and hide.`nAlt + F8`t`tAdd the window to F8 the array and hide.`n^!+F10`t`tRemove all windows from the F10 group, without closing them.`n^!+F8`t`tRemove all windows from the F8 group, without closing them.`n^!+#F10`tClose all windows in the F10 list (array).`n^!+#F8`t`tClose all windows in the F8 list (array).`nCtrl + F10`tAdd the current window's title and ID to the F10 list (array).`nCtrl + F8`tAdd the current window's title and ID to the F8 list (array).`nShift + F10`tRemove the current window from F10 group.`nShift + F8`tRemove the current window from F10 group.`nF10`t`tShow/hide F10 windows.`nF8`t`thow/hide F10 windows.`nShift + Pause`tHotkey for suspending AWH hotkeys.`nWin + F10`tShows hidden F10 wins list. 1-9 to unhide that window.`nWin + F8`tShows hidden F8 wins list. 1-9 to unhide that window.
 
+;Declare arrays to track window IDs.
+F8WinIDArray := []
+F10WinIDArray := []
+
+;Declare arrays to track window titles.
+F8WinTitleArray := []
+F10WinTitleArray := []
+
+;Decalre F8ShowHideToggle and F10showHideToggle as 1 so the first time you press F8, it hides everything.
+;If it's 1, hide windows; if it's 0, show windows.
+F8ShowHideToggle := 1
+F10ShowHideToggle := 1
+
 ;*******************************APPLICATIONSWITCHER HELP GUI INITIALIZATION******************************
 ; ApplSwitchGUI := "ApplicationSwitcher Help Box GUI"
 
@@ -243,7 +256,7 @@ Loop {
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\Profile Switcher.ahk
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\SciTE4AutoHotkey Programming.ahk
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\VSCode.ahk
-; #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Advanced Window Hider.ahk
+#Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Advanced Window Hider.ahk
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\ApplicationSwitcher.ahk
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\AutoCorrect.ahk
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Chromebook Typing.ahk
