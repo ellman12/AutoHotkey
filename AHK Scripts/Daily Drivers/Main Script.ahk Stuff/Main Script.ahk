@@ -416,9 +416,9 @@ return
 programmingMode := !programmingMode
 
 if (programmingMode = 1)
-	Tippy("programmingMode On", 900)
+	Tippy("programmingMode On", 400)
 else
-	Tippy("programmingMode Off", 900)
+	Tippy("programmingMode Off", 400)
 return
 
 #If programmingMode = false
