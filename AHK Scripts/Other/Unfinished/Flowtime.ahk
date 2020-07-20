@@ -274,7 +274,7 @@ AntiDistraction:
 	;If any windows and titles are in the arrays, they will be safe, and will not be closed.
 	if (WhitelistRadio = 1) {
 
-		if (ActiveWinTitle = "Flowtime") or (ActiveWinTitle = "Windows GUI") {
+		if (ActiveWinTitle = "Flowtime") OR (ActiveWinTitle = "Windows GUI") {
 
 			Tippy("Can't close this window because it's part of the script.", 1000)
 
@@ -293,30 +293,35 @@ AntiDistraction:
 			} else if !(inArray(ActiveWinTitle, WindowTitles)) AND (ActiveWinTitle in Firefox,Google Chrome) {
 
 				Tippy("Title not in array, closing tab...", 1000)
-				; WinMinimize %ActiveWinTitle%
-
+				Send, ^w
 			}
 
 		} else {
 			Tippy("ID NOT in array, closing...", 1000)
-			; WinMinimize %ActiveWinTitle%
+			WinClose, ahk_id %ActiveWinID%
 		}
 
 	;If Blacklist mode enabled, check the arrays that way.
 	;If any windows and titles are in the arrays, they will not be safe, and will be closed if they are open.
 	} else if (BlacklistRadio = 1) {
 
-		if (ActiveWinTitle = "Flowtime") or (ActiveWinTitle = "Windows GUI") {
+		if (ActiveWinTitle = "Flowtime") OR (ActiveWinTitle = "Windows GUI") {
 
 			Tippy("Can't close this window because it's part of the script.", 1000)
 
-		} else if (inArray(ActiveWinID, WindowIDs)) {
+		} else if ActiveWinTitle contains MusicBee
 
-			Tippy("ID in blacklist array, closing...", 1000)
+			Tippy("Won't close this window.", 1000)
 
-			if (inArray(ActiveWinTitle, WindowTitles)) {
+		else if (inArray(ActiveWinTitle, WindowTitles)) AND (ActiveWinTitle in Firefox,Google Chrome) {
+
+			Tippy("Title in blacklist array, closing tab...", 1000)
+            Send, ^w
+
+			if (inArray(ActiveWinID, WindowIDs)) {
 
 				Tippy("ID AND title in blacklist array, both closing...", 1000)
+                WinClose, ahk_id %ActiveWinID%
 
 			} else {
 

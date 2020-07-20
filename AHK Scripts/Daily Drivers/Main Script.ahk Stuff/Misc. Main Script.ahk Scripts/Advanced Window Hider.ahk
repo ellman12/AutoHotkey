@@ -81,10 +81,10 @@ F8ShowHideToggle := 1
 F10ShowHideToggle := 1
 return ;End of Auto-execute section.
 
-;Suspend hotkeys.
-+Pause::
-Suspend, Toggle
-return
+; ;Suspend hotkeys.
+; +Pause::
+; Suspend, Toggle
+; return
 
 ;Toggles between showing and hiding the help GUI for Advanced Window Hider.ahk
 !w::
