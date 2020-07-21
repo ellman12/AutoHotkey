@@ -5521,7 +5521,6 @@ return
 :*:kkt::Kwik Trip
 ::its::it's
 ::itss::its
-::git::Git
 :*:github::GitHub
 :*:frc::FRC
 :*:ftc::FTC
