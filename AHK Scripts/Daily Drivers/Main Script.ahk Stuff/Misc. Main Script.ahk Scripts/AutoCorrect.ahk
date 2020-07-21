@@ -5514,7 +5514,6 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:kkt::Kwik Trip
 ::its::it's
 ::itss::its
-::git::Git
 :*:github::GitHub
 :*:frc::FRC
 :*:ftc::FTC

@@ -430,6 +430,7 @@ Send, {BackSpace}
 return
 
 ::i::I
+::git::Git
 #If
 
 
