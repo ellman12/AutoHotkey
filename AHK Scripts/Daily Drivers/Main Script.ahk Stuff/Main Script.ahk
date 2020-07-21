@@ -256,19 +256,21 @@ Loop {
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\Profile Switcher.ahk
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\SciTE4AutoHotkey Programming.ahk
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\VSCode.ahk
-#Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Advanced Window Hider.ahk
+
+; #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Advanced Window Hider.ahk
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\ApplicationSwitcher.ahk
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\AutoCorrect.ahk
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Chromebook Typing.ahk
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\NumPad Media Control.ahk
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Run.ahk
+
 #Include, %A_ScriptDir%\Screen Clipper Script\Screen Clipper.ahk
 #Include, %A_ScriptDir%\Video Game Stuff\Any Game.ahk
 #Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Video Game Stuff\Terraria.ahk
 #Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\Tippy.ahk
 
 ;#Include the script for my Secondary Macro Keyboard.
-; #Include, %A_MyDocuments%\GitHub\AutoHotkey\Secondary Macro Keyboard\Hasu USB to USB Script.ahk
+#Include, %A_MyDocuments%\GitHub\AutoHotkey\Secondary Macro Keyboard\Hasu USB to USB Script.ahk
 
 ;****************************************GLOBAL HOTKEYS***************************************
 ;These global hotkeys are hotkeys that are always running, regardless of the active window, profile, or whatever.
@@ -1076,3 +1078,11 @@ $F2::Send, {F2}
 
 ;~ }
 ;~ return
+
+;Allowing the 2nd keyboard to use Shift for hotkeys. E.g., Shift + F1.
+;IDK if Ctrl, Alt, and/or Win Key will work...
+;"Note that some of the QMK changes only work for key UP, rather than key down and up, so not all modifier key re-remappings will necessarily work."
+;https://youtu.be/GZEoss4XIgc
+;LShift -to-> SC070-International 2 -back-to-> LShift.
+SC070::Lshift
+SC07D::Rshift

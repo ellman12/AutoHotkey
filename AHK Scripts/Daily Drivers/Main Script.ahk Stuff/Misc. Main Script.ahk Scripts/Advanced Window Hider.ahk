@@ -79,7 +79,7 @@ F10WinTitleArray := []
 ;If it's 1, hide windows; if it's 0, show windows.
 F8ShowHideToggle := 1
 F10ShowHideToggle := 1
-return ;End of Auto-execute section.
+; return ;End of Auto-execute section.
 
 ; ;Suspend hotkeys.
 ; +Pause::
