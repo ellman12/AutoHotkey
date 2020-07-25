@@ -16,13 +16,10 @@ chromebookTypingToggle := false
 chromebookTypingToggle := !chromebookTypingToggle
 
 if (chromebookTypingToggle = "1") {
-	MsgBox, 64, Chromebook Typing is ENABLED, Chromebook Typing is ENABLED, 0.3
+	Tippy("Chromebook Typing is ENABLED", 400)
 } else if (chromebookTypingToggle = "0") {
-	MsgBox, 64, Chromebook Typing is DISABLED, Chromebook Typing is DISABLED, 0.3
-} else {
-	MsgBox, 16, You shouldn't be seeing this., This is an else statement error MsgBox for Chromebook Typing. If you see this`, it's probably an error or something lol.
+	Tippy("Chromebook Typing is DISABLED", 400)
 }
-
 return
 
 
