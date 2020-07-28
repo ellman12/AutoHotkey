@@ -5453,7 +5453,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ;EMAILS
 :*:dsuemail::Elliott.DuCharme@trojans.dsu.edu
 :*:maingmail::ellduc4@gmail.com
-:*:schoolgmail::duch_ell@students.cps.k12.mn.us
+:*:2ndgmail::bobb71013@gmail.com
 
 ;Used for Git Bash for cding to the repo folder.
 #IfWinActive, MINGW64:/
