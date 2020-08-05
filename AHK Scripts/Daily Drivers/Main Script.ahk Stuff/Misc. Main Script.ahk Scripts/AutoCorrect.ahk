@@ -5455,12 +5455,24 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:maingmail::ellduc4@gmail.com
 :*:2ndgmail::bobb71013@gmail.com
 
-;Used for Git Bash for cding to the repo folder.
+;Used for cding to different GitHub repo folders.
 #IfWinActive, MINGW64:/
 :*:gahk::
 Send, cd /c/Users/Elliott/Documents/GitHub/AutoHotkey{Enter}
 return
+
+:*:glrnc::
+Send, cd /c/Users/Elliott/Documents/GitHub/Learning-C{Enter}
+return
 #If
+
+:*:gahk::
+Send, cd C:/Users/Elliott/Documents/GitHub/AutoHotkey{Enter}
+return
+
+:*:glrnc::
+Send, cd C:/Users/Elliott/Documents/GitHub/Learning-C{Enter}
+return
 
 ;Automatically change things like f1 to F1; makes life easier.
 :*:f1::F1
