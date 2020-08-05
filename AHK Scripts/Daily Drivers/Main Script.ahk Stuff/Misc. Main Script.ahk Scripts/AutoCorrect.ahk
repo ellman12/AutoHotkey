@@ -5455,6 +5455,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:maingmail::ellduc4@gmail.com
 :*:2ndgmail::bobb71013@gmail.com
 
+;Stuff for making Git cmd line stuff less repetitive.
 ;Used for cding to different GitHub repo folders.
 #IfWinActive, MINGW64:/
 :*:gahk::
@@ -5472,6 +5473,28 @@ return
 
 :*:glrnc::
 Send, cd C:/Users/Elliott/Documents/GitHub/Learning-C{Enter}
+return
+
+:*:gst::
+Send, Git status{Enter}
+return
+
+:*:gad::
+Send, Git add -A{Enter}
+return
+
+:*:gmt::
+:*:gcmt::
+Send, Git commit -m "
+return
+
+:*:gpul::
+Send, Git pull{Enter}
+return
+
+:*:gpus::
+:*:gpsh::
+Send, Git push{Enter}
 return
 
 ;Automatically change things like f1 to F1; makes life easier.
