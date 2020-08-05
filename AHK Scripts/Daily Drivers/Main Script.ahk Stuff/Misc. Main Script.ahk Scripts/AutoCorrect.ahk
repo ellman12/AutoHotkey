@@ -5485,7 +5485,7 @@ return
 
 :*:gmt::
 :*:gcmt::
-Send, Git commit -m "
+Send, Git commit -m ""{Left}
 return
 
 :*:gpul::
