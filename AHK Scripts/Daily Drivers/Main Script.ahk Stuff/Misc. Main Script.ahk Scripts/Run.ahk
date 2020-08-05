@@ -7,6 +7,9 @@
 ;NGl it's pretty sloppy and not very pretty so try your best to be able to read it.
 */
 
+B_DRIVE_MAX_FREE_GB := 240 ;How much free space can be available before the script throws a warning/error.
+BACKUP_PROGRAM_OPEN_TOGGLE := 0 ;Toggle for first time the backup program is open. Upon opening, it goes to 1. After closing, it resets back to 0.
+
 ;Alt + R opens the InputBox, which allows the user to type a command. It also contains a cheat sheet of all of the commands, in alphabetical order.
 ;This one single line is astronomically enormous, so Word Wrap is recommended.
 !r::
@@ -129,15 +132,68 @@ Send, {Tab 4}
 return
 
 ;***********************************************MISC***********************************************
+Case "drive stat", "dr st", "st":
+
+InputBox, DriveLetterChoice, Choose a Drive Letter, Enter either B`, C`, or G`, to get stats on that drive (not case-sensitive).
+
+Switch (DriveLetterChoice) {
+	
+	Case "B", "b":
+		DriveGet, usedInMB, Capacity, B:\
+		usedInGB := Floor(usedInMB / 1000)
+
+		DriveSpaceFree, freeInMB, B:\
+		freeInGB := Floor(freeInMB / 1000)
+
+		DisplayDriveStats()
+	return
+
+	Case "C", "c":
+		DriveGet, usedInMB, Capacity, C:\
+		usedInGB := Floor(usedInMB / 1000)
+
+		DriveSpaceFree, freeInMB, C:\
+		freeInGB := Floor(freeInMB / 1000)
+
+		DisplayDriveStats()
+	return
+
+	Case "G", "g":
+		DriveGet, usedInMB, Capacity, G:\
+		usedInGB := Floor(usedInMB / 1000)
+
+		DriveSpaceFree, freeInMB, G:\
+		freeInGB := Floor(freeInMB / 1000)
+
+		DisplayDriveStats()
+	return
+
+	;If the user presses Escape or Cancel.
+	Default:
+	if ErrorLevel = 1
+		Tippy("CANCEL/Escape was pressed.", 500)
+	else
+		MsgBox, 16, Invalid drive letter, Drive letter entered: "%runInputBoxText%" does not exist/is invalid.
+
+}
+return
+
 Case "exit script", "exitapp": ExitApp
 
 ;If the user presses Escape or Cancel.
 Default:
 if ErrorLevel = 1
-	MsgBox, ,CANCEL/Escape was pressed., CANCEL/Escape was pressed., 0.3
+	Tippy("CANCEL/Escape was pressed.", 500)
 else
 	MsgBox, 16, Unknown command, Command entered: "%runInputBoxText%" does not exist.
 
 
 }
 return
+
+;Used solely for Drive Stat command.
+DisplayDriveStats() {
+	global
+	StringUpper, DriveLetterChoiceUpper, DriveLetterChoice ;Make it capital to look better.
+	MsgBox, 0, Drive Stats,Drive: %DriveLetterChoiceUpper%`n`n%usedInMB% MB in use`n%usedInGB% GB in use`n%usedInTB% TB in use`n`n%freeInMB% MB free`n%freeInGB% GB free`n%freeInTB% TB free
+}
