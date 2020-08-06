@@ -5499,7 +5499,7 @@ return
 
 ;C programming stuff for use with VScode and the gcc compiler in command prompt only (not Git Bash).
 #!c::
-InputBox, ccompFileName, Enter the file name, Enter the file name without the .c extension to then be used with the cc hotstring.
+InputBox, ccompFileName, Enter the file name, Enter the file name without the .c extension to then be used with the cc hotstring.,,,,,,,,main
 return
 
 ;Does the gcc command in command prompt and runs the a.exe file automatcally: gcc <file name.c>, and send a.exe (the compiled file).
