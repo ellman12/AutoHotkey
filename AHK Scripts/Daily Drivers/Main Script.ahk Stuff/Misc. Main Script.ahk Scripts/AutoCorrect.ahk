@@ -5520,6 +5520,13 @@ return
 Send, gcc %ccompFileName%.c{Enter}a.exe{Enter}
 return
 
+;Adds default C stuff like stdio.h.
+:*:cnewfile::
+SendRaw, #include <stdio.h>`n`nint main()`n{`n`n}
+Sleep 100
+Send, {Up}{Tab}
+return
+
 ;Automatically change things like f1 to F1; makes life easier.
 :*:f1::F1
 :*:f2::F2
