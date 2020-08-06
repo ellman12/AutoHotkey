@@ -5502,6 +5502,19 @@ return
 InputBox, ccompFileName, Enter the file name, Enter the file name without the .c extension to then be used with the cc hotstring.,,,,,,,,main
 return
 
+;This is only useful for my folde setup in the Learning-C repo folder in command prompt.
+;It allows you to specify the 1st and 2nd folder that it will cd into, to automatically get to the right spot.
+#+c::
+InputBox, firstFolderName, Enter the 1st folder name, Enter the 1st folder name (or at least enough to autocomplete) to cd into.,,,,,,,,ell
+InputBox, secondFolderName,Enter the 2nd folder name, Enter the 2nd folder name (or at least enough to autocomplete) to cd into.,,,,,,,,
+return
+
+;The hotstring that actually cd's into the right folder.
+:*:cdd::
+Send, cd %firstFolderName%{Tab}{Enter}
+Send, cd %secondFolderName%{Tab}{Enter}
+return
+
 ;Does the gcc command in command prompt and runs the a.exe file automatcally: gcc <file name.c>, and send a.exe (the compiled file).
 :*:cc::
 Send, gcc %ccompFileName%.c{Enter}a.exe{Enter}
