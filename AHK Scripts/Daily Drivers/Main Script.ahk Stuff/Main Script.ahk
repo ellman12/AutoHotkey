@@ -96,7 +96,7 @@ GUI, ECC:Add, Text, x5 y5,Current Clipboard Contents. Type what you want to chan
 GUI, ECC:Add, Edit, HScroll wrap x4 y30 w440 h185 vclipboardBoxText gclipboardTextBoxLabel,%Clipboard%
 
 GUI, ECC:Font, s12
-GUI, ECC:Add, Button, gclipboardFinishButton w80 x3 y220,Finish
+GUI, ECC:Add, Button, gclipboardFinishButton w80 x3 y220,&Finish
 
 GUI, ECC:+AlwaysOnTop
 GUI, ECC:+Resize
@@ -110,7 +110,7 @@ showClipboardGUIToggle := 0
 ;*******************************MAIN SCRIPT CONTROL PANEL INITIALIZATION******************************
 ;This is a GUI for the Main Script that allows the user to change how parts of the script work.
 GUI, CPanel:+AlwaysOnTop
-; GUI, CPanel:Color, Silver
+GUI, CPanel:Color, Silver
 
 ;Insert.
 GUI, CPanel:Font, s13
