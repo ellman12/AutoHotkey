@@ -5535,7 +5535,11 @@ SendRaw, #include <stdio.h>`n`nint main()`n{`n`n}
 Sleep 100
 Send, {BackSpace 2}
 Sleep 100
-Send, {Tab}{Up 18}{End}
+Send, {Tab}{Enter}return 0;
+Sleep 100
+Send, {Tab}{Up}{Tab}{Up 18}
+Sleep 100
+Send, {End}
 return
 
 ;Automatically change things like f1 to F1; makes life easier.
