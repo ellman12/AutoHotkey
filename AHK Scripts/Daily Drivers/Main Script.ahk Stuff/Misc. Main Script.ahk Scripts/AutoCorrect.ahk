@@ -5497,6 +5497,16 @@ return
 Send, Git push{Enter}
 return
 
+;C programming stuff for use with VScode and the gcc compiler in command prompt only (not Git Bash).
+#!c::
+InputBox, ccompFileName, Enter the file name, Enter the file name without the .c extension to then be used with the cc hotstring.
+return
+
+;Does the gcc command in command prompt and runs the a.exe file automatcally: gcc <file name.c>, and send a.exe (the compiled file).
+:*:cc::
+Send, gcc %ccompFileName%.c{Enter}a.exe{Enter}
+return
+
 ;Automatically change things like f1 to F1; makes life easier.
 :*:f1::F1
 :*:f2::F2
