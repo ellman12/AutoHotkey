@@ -260,6 +260,7 @@ Loop {
 ; #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Advanced Window Hider.ahk
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\ApplicationSwitcher.ahk
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\AutoCorrect.ahk
+#Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\C-C++ Programming.ahk
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Chromebook Typing.ahk
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\NumPad Media Control.ahk
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Run.ahk
