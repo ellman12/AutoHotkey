@@ -99,7 +99,6 @@ Send, cd %secondFolderName%{Enter}
 Sleep 1000
 
 if (thirdFolderName = "C") {
-    MsgBox, 1
     Send, cd "C Stuff"{Enter}
 } else if (thirdFolderName = "C++" or thirdFolderName = "CPP") {
     SendRaw, cd "C++ Stuff"
