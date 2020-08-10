@@ -28,8 +28,6 @@ GUI, BedtimeGUI:Add, Button, w250 h50 gExtraTimeButton, Five extra minutes to cl
 
 GUI, BedtimeGUI:+AlwaysOnTop
 
-ReadFiles()
-
 SetTimer, Bedtime, 500 ;Check time every half second.
 
 return ;End of Auto-execute.
@@ -41,7 +39,7 @@ Bedtime:
     
     FormatTime, CurrentTime,, Time
     
-    if (currentTime >= BedtimeValue AND currentTime <= WakeUpTime) ;If it's bedtime, start the thing.
+    if (currentTime >= BedtimeValue AND currentTime <= WakeUpTime) ;If the current time is between bedtime and wake up time, start the thing.
         GUI, BedtimeGUI:Show, w%A_ScreenWidth% h%A_ScreenHeight% ;Make it cover the whole screen.
 return
 
