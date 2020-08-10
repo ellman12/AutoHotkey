@@ -64,7 +64,7 @@ Gui, Add, Button, x530 y320 h30 w90 gReset, &Reset
 Gui, Add, Groupbox, x10 y350 w610 h75 section, Result
 Gui, Add, Edit, xs+10 ys+20 w590 r3 vMsgbox_Command,
 
-Gui, Show, , Create MessageBox
+Gui, Show, , Create MsgBox
 GoSub, Reset      ;Initalize GUI from Ini
 return
 
