@@ -10,7 +10,7 @@
 ;Alt + R opens the InputBox, which allows the user to type a command. It also contains a cheat sheet of all of the commands, in alphabetical order.
 ;This one single line is astronomically enormous, so Word Wrap is recommended.
 !r::
-InputBox, runInputBoxText, Type a command,Recommended Command`tWhat It Does`t`t`t`t`t`t`tCategory`nDocu FF/Chr`t`tOpens the AHK documentation in either Chrome or Firefox`t`tOpen`nEm/en`t`t`tInserts either of them`t`t`t`t`t`tInsert`nExitApp`t`t`tKills the current running script`t`t`t`t`tMisc`nHelp`t`t`tOpens the Run.ahk sheet in the AHK Google Sheets workbook`t`tOpen`nMB`t`t`tOpens the MsgBox Creator script.`t`t`t`t`t`tOpen`nOp in FF/Chr`t`tOpens the current tab in the specified browser`t`t`t`tOpen`nSec`t`t`tInserts the section symbol`t`t`t`t`t`tInsert`nThes FF/Chr`t`tOpen thesaurus.com in either browser and search for the inputted word`tOpen`nThesaurus FF/Chr`t`tOpen thesaurus.com in the chosen browser`t`t`t`tOpen`nUp/right/down/left`t`tInserts the corresponding arrow symbol`t`t`t`tInsert`nst`t`t`tGet free space of all the drives in GB.`t`t`t`t`tMisc`nYT FF/Chr`t`t`tOpens the YouTube homepage in FF/Chr`t`t`t`tOpen`nYT S FF/Chr`t`tOpens the YouTube homepage in FF/Chr and searches for the inputted text`tOpen`nYT SB FF/Chr`t`tOpens the YouTube homepage in FF/Chr and Tabs to the search bar`tOpen,, 698, 348
+InputBox, runInputBoxText, Type a command,Recommended Command`tWhat It Does`t`t`t`t`t`t`tCategory`nDocu FF/Chr`t`tOpens the AHK documentation in either Chrome or Firefox`t`tOpen`nEm/en`t`t`tInserts either of them`t`t`t`t`t`tInsert`nExitApp`t`t`tKills the current running script`t`t`t`t`tMisc`nHelp`t`t`tOpens the Run.ahk sheet in the AHK Google Sheets workbook`t`tOpen`nMB`t`t`tOpens the MsgBox Creator script.`t`t`t`t`t`tOpen`nOp in FF/Chr`t`tOpens the current tab in the specified browser`t`t`t`tOpen`nSec`t`t`tInserts the section symbol`t`t`t`t`t`tInsert`nThes FF/Chr`t`tOpen thesaurus.com in either browser and search for the inputted word`tOpen`nThesaurus FF/Chr`t`tOpen thesaurus.com in the chosen browser`t`t`t`tOpen`nUp/right/down/left`t`tInserts the corresponding arrow symbol`t`t`t`tInsert`nst`t`t`tGet free space of all the drives in GB.`t`t`t`t`tMisc`nYT FF/Chr`t`t`tOpens the YouTube homepage in FF/Chr`t`t`t`tOpen`nYT S FF/Chr`t`tOpens the YouTube homepage in FF/Chr and searches for the inputted text`tOpen`nYT SB FF/Chr`t`tOpens the YouTube homepage in FF/Chr and Tabs to the search bar`tOpen,, 698, 385
 
 ;The script decides which command to run.
 Switch (runInputBoxText) {
@@ -153,7 +153,6 @@ if ErrorLevel = 1
 	Tippy("CANCEL/Escape was pressed.", 500)
 else
 	MsgBox, 16, Unknown command, Command entered: "%runInputBoxText%" does not exist.
-
 
 }
 return
