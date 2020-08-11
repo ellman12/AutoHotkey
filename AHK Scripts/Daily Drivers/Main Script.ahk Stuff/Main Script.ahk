@@ -484,8 +484,9 @@ return
 Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts
 return
 
+
 ;Stuff that is exclusive to my laptop.
-#if A_ComputerName = "Elliott-Laptop"
+#If A_ComputerName = "Elliott-Laptop"
 ;Open battery menu.
 #b::
 MouseMove, 1432, 885, 0
@@ -504,22 +505,6 @@ return
 ;Disables these ANNOYING things.
 ^WheelDown::return
 ^WheelUp::return
-
-!Up::
-;~ SoundSet, +1
-soundget, v
-p:=inv(v/100.0)+0.02
-nv:=f(p)*100.0
-soundset, nv
-return
-
-!Down::
-;~ SoundSet, -1
-soundget, v
-p:=inv(v/100.0)-0.02
-nv:=f(p)*100.0
-soundset, nv
-return
 
 ;Increment/decrement volume by 1.
 !PGUP::SoundSet, +1
@@ -598,7 +583,25 @@ return
 ; Send, {LAlt}
 ; return
 
-#if
+#IfWinNotActive, ahk_exe explorer.exe
+
+!Up::
+;~ SoundSet, +1
+soundget, v
+p:=inv(v/100.0)+0.02
+nv:=f(p)*100.0
+soundset, nv
+return
+
+!Down::
+;~ SoundSet, -1
+soundget, v
+p:=inv(v/100.0)-0.02
+nv:=f(p)*100.0
+soundset, nv
+return
+
+#If
 
 ;*****************************************HOTKEYS FOR TITLE STUFF*********************************
 ;These hotkeys allow the user to adjust and modify text in whatever way they want.
