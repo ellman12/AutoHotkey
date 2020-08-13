@@ -18,24 +18,27 @@ return
 ;Send, ///////////////////////////////////////////////////////////////////////`n//File: `n///////////////////////////////////////////////////////////////////////`n//Purpose: `n///////////////////////////////////////////////////////////////////////`n//Programmer: Elliott DuCharme`n///////////////////////////////////////////////////////////////////////`n//Initial release date: `n///////////////////////////////////////////////////////////////////////`n//Known issues/bugs: `n///////////////////////////////////////////////////////////////////////`n//Revisions: `n///////////////////////////////////////////////////////////////////////`n//Comments: `n///////////////////////////////////////////////////////////////////////`n
 ;return
 
+#if gameModeActive
 ;Stuff for making Git cmd line stuff less repetitive.
 ;Used for cding to different GitHub repo folders.
-#IfWinActive, MINGW64:/
-:*:gahk::
-Send, cd /c/Users/Elliott/Documents/GitHub/AutoHotkey{Enter}
-return
-
-:*:glrnc::
-Send, cd /c/Users/Elliott/Documents/GitHub/Learning-C-CPP{Enter}
-return
-#If
-
 :*:gahk::
 Send, cd C:/Users/Elliott/Documents/GitHub/AutoHotkey{Enter}
 return
 
 :*:glrnc::
 Send, cd C:/Users/Elliott/Documents/GitHub/Learning-C-CPP{Enter}
+return
+
+:*:gnxt::
+Send, cd C:/Users/Elliott/Documents/GitHub/LEGO-Mindstorms-NXT{Enter}
+return
+
+:*:gev3::
+Send, cd C:/Users/Elliott/Documents/GitHub/LEGO-Mindstorms-EV3{Enter}
+return
+
+:*:gshstf::
+Send, cd C:/Users/Elliott/Documents/GitHub/Shared-Stuff{Enter}
 return
 
 :*:gst::
@@ -50,6 +53,7 @@ return
 Send, Git commit -m ""{Left}
 return
 
+:*:gpl::
 :*:gpul::
 Send, Git pull{Enter}
 return
@@ -111,3 +115,5 @@ Sleep 1000
 Send, cd %fourthFolderName%{Tab}{Enter}
 Sleep 1000
 return
+
+#If

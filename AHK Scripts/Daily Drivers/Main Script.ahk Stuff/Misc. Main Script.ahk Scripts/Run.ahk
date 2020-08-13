@@ -10,7 +10,7 @@
 ;Alt + R opens the InputBox, which allows the user to type a command. It also contains a cheat sheet of all of the commands, in alphabetical order.
 ;This one single line is astronomically enormous, so Word Wrap is recommended.
 !r::
-InputBox, runInputBoxText, Type a command,Recommended Command`tWhat It Does`t`t`t`t`t`t`tCategory`nDocu FF/Chr`t`tOpens the AHK documentation in either Chrome or Firefox`t`tOpen`nEm/en`t`t`tInserts either of them`t`t`t`t`t`tInsert`nExitApp`t`t`tKills the current running script`t`t`t`t`tMisc`nHelp`t`t`tOpens the Run.ahk sheet in the AHK Google Sheets workbook`t`tOpen`nMB`t`t`tOpens the MsgBox Creator script.`t`t`t`t`t`tOpen`nOp in FF/Chr`t`tOpens the current tab in the specified browser`t`t`t`tOpen`nSec`t`t`tInserts the section symbol`t`t`t`t`t`tInsert`nThes FF/Chr`t`tOpen thesaurus.com in either browser and search for the inputted word`tOpen`nThesaurus FF/Chr`t`tOpen thesaurus.com in the chosen browser`t`t`t`tOpen`nUp/right/down/left`t`tInserts the corresponding arrow symbol`t`t`t`tInsert`nst`t`t`tGet free space of all the drives in GB.`t`t`t`t`tMisc`nYT FF/Chr`t`t`tOpens the YouTube homepage in FF/Chr`t`t`t`tOpen`nYT S FF/Chr`t`tOpens the YouTube homepage in FF/Chr and searches for the inputted text`tOpen`nYT SB FF/Chr`t`tOpens the YouTube homepage in FF/Chr and Tabs to the search bar`tOpen,, 698, 385
+InputBox, runInputBoxText, Type a command,Recommended Command`tWhat It Does`t`t`t`t`t`t`tCategory`nDocu FF/Chr`t`tOpens the AHK documentation in either Chrome or Firefox.`t`tOpen`nEm/en`t`t`tInserts either of them.`t`t`t`t`t`tInsert`nExitApp`t`t`tKills the current running script.`t`t`t`t`tMisc`nGM`t`t`tToggles Game Mode`, disabling hotkeys/strings that interrupt gaming.`tMisc`nHelp`t`t`tOpens the Run.ahk sheet in the AHK Google Sheets workbook.`t`tOpen`nMB`t`t`tOpens the MsgBox Creator script.`t`t`t`t`tOpen`nOp in FF/Chr`t`tOpens the current tab in the specified browser`t`t`t`tOpen`nSec`t`t`tInserts the section symbol.`t`t`t`t`t`tInsert`nThes FF/Chr`t`tOpen thesaurus.com in either browser and search for the inputted word.`tOpen`nThesaurus FF/Chr`t`tOpen thesaurus.com in the chosen browser.`t`t`t`tOpen`nUp/right/down/left`t`tInserts the corresponding arrow symbol.`t`t`t`tInsert`nst`t`t`tGet free space of all the drives in GB.`t`t`t`t`tMisc,, 698, 330
 
 ;The script decides which command to run.
 Switch (runInputBoxText) {
@@ -85,50 +85,6 @@ Case "Thesaurus Chr", "Thesaurus.com Chr": Run, "C:\Program Files (x86)\Google\C
 ;Open thesaurus.com in Firefox.
 Case "Thesaurus FF", "Thesaurus.com FF": Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.thesaurus.com/
 
-;Opens the YouTube homepage in Chrome
-Case "YT Chr": Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://www.youtube.com
-
-;Opens the YouTube homepage in Firefox
-Case "YT FF": Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.youtube.com
-
-;Opens the YouTube homepage in Chrome and searches for the inputted text
-Case "YT S Chr":
-InputBox, YT_S_ChrInputBox, What Do You Want to Search YT For?, Search YouTube in Chrome
-Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://www.youtube.com
-Sleep, 2300
-Send, {Tab 4}
-Sleep 30
-Send, %YT_S_ChrInputBox%
-Sleep 30
-Send, {Enter}
-return
-
-;Opens the YouTube homepage in Firefox and searches for the inputted text
-Case "YT S FF":
-InputBox, YT_S_FFInputBox, What Do You Want to Search YT For?, Search YouTube in Firefox
-Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.youtube.com
-Sleep, 3000
-Send, {Tab 4}
-Sleep 30
-Send, %YT_S_FFInputBox%
-Sleep 30
-Send, {Enter}
-return
-
-;Opens the YouTube homepage in Chrome and Tabs to the search bar
-Case "YT SB Chr":
-RunWait, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://www.youtube.com
-Sleep, 2300
-Send, {Tab 4}
-return
-
-;Opens the YouTube homepage in Firefox and Tabs to the search bar
-Case "YT SB FF":
-Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.youtube.com
-Sleep, 3000
-Send, {Tab 4}
-return
-
 ;***********************************************MISC***********************************************
 ;Get free space in GB of all the drives.
 Case "drive stat", "dr st", "st":
@@ -146,6 +102,15 @@ Case "drive stat", "dr st", "st":
 return
 
 Case "exit script", "exitapp": ExitApp
+
+Case "Game Mode", "GM":
+gameModeActive := !gameModeActive
+
+if (gameModeActive = true)
+	Tippy("Game Mode activated!", 1200)
+else
+	Tippy("Game Mode disabled!", 1200)
+return
 
 ;If the user presses Escape or Cancel.
 Default:

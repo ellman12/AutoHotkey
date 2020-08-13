@@ -171,8 +171,11 @@ global Num2And8Step := 3
 ;Toggle for if the NumPad switches modes automatically or not; starts out at true, for convenience.
 global autoNumPadModeToggle := true
 
-;Toggle for Programming Mode.
+;Toggle for Programming Mode: disabling certain hotkeys/hotstrings to make programming easier. ^!Insert is the hotkey.
 programmingMode := false
+
+;Toggle for Game Mode. This disables any hotkeys/hotstrings that I find annoying whilst gaming. This is toggled in Run.ahk.
+gameModeActive := false
 
 ;*************Screen Clipper.ahk Initialization Stuff************
 ;************************************************
@@ -485,6 +488,7 @@ Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts
 return
 
 
+
 ;Stuff that is exclusive to my laptop.
 #If A_ComputerName = "Elliott-Laptop"
 ;Open battery menu.
@@ -548,6 +552,26 @@ return
 ; Sleep 150
 ; return
 
+#IfWinNotActive, ahk_exe explorer.exe
+
+!Up::
+;~ SoundSet, +1
+soundget, v
+p:=inv(v/100.0)+0.02
+nv:=f(p)*100.0
+soundset, nv
+return
+
+!Down::
+;~ SoundSet, -1
+soundget, v
+p:=inv(v/100.0)-0.02
+nv:=f(p)*100.0
+soundset, nv
+return
+
+#If
+
 ;*****************************************HOTKEYS FOR MULTIPLE POINTER POSITIONS*********************************
 ;The basic format is like this:
 ;Ctrl + Shift + x: save position. X is 1–4.
@@ -582,26 +606,6 @@ return
 ; MouseMove, 1920, 540, 0
 ; Send, {LAlt}
 ; return
-
-#IfWinNotActive, ahk_exe explorer.exe
-
-!Up::
-;~ SoundSet, +1
-soundget, v
-p:=inv(v/100.0)+0.02
-nv:=f(p)*100.0
-soundset, nv
-return
-
-!Down::
-;~ SoundSet, -1
-soundget, v
-p:=inv(v/100.0)-0.02
-nv:=f(p)*100.0
-soundset, nv
-return
-
-#If
 
 ;*****************************************HOTKEYS FOR TITLE STUFF*********************************
 ;These hotkeys allow the user to adjust and modify text in whatever way they want.
