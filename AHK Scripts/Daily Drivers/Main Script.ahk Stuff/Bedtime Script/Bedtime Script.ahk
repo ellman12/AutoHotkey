@@ -15,7 +15,7 @@ DetectHiddenWindows, Off
 #SingleInstance force
 #Persistent
 
-#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\Tippy.ahk
+#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\Tippy.ahk
 
 GUI, BedtimeGUI:Font, S36
 GUI, BedtimeGUI:Add, Text,,IT'S BEDTIME!!

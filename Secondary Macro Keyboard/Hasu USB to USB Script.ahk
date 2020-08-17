@@ -12,7 +12,7 @@ SendMode Input
 #MenuMaskKey vk07 ;https://autohotkey.com/boards/viewtopic.php?f=76&t=57683
 #WinActivateForce ;https://autohotkey.com/docs/commands/_WinActivateForce.htm ;prevent taskbar flashing.
 
-; #Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\Tippy.ahk
+; #Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\Tippy.ahk
 ; Menu, Tray, Icon, shell32.dll, 174 ;Changes the icon to a keyboard.
 
 ;The Hasu USB to USB Controller Converter somehow separates the 2nd keyboard from the others. Idk how it does.
