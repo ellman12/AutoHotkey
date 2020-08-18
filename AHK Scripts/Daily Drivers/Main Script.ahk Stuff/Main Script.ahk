@@ -488,12 +488,13 @@ Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts
 return
 
 
-
 ;Stuff that is exclusive to my laptop.
-#If A_ComputerName = "Elliott-Laptop"
+;8/18/2020 11:47 AM: It's supposed to be Laptop, but idk why but the 'top' part got cut off...
+#If A_ComputerName = "Elliott-DSU-Lap"
 ;Open battery menu.
 #b::
-MouseMove, 1432, 885, 0
+; MouseMove, 1432, 885, 0 ;Lenovo Laptop.
+MouseMove, 1618, 1049, 0 ;DSU Laptop
 Sleep 300
 Send, {Click}
 return
