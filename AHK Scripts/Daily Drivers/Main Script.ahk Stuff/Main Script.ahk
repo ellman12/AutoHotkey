@@ -1096,3 +1096,12 @@ $F2::Send, {F2}
 ;LShift -to-> SC070-International 2 -back-to-> LShift.
 SC070::Lshift
 SC07D::Rshift
+
+:*:calczoomlink::https://dsu.zoom.us/j/92067482708?pwd=cGphak5zRjFVM3JBZnlaYWpWd1VCUT09
+:*:calczoomid::920 6748 2708
+:*:calczoompass::897584
+:*:csc250zoomlink::https://dsu.zoom.us/j/93760057028?pwd=NWtJUWVIOWV3ZEo0ZXVDazQ4Rk1xUT09
+:*:csc250zoompass::130762
+:*:compozoomlink::https://dsu.zoom.us/j/93638392745?pwd=VkxRQklnSFdBMUpSY0hnYU5jWllsUT09
+:*:compozoomid::936 3839 2745
+:*:compozoompass::445518

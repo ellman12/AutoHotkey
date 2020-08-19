@@ -22,23 +22,23 @@ return
 ;Stuff for making Git cmd line stuff less repetitive.
 ;Used for cding to different GitHub repo folders.
 :*:gahk::
-Send, cd C:/Users/Elliott/Documents/GitHub/AutoHotkey{Enter}
+Send, cd C:/Users/%A_Username%/Documents/GitHub/AutoHotkey{Enter}
 return
 
 :*:glrnc::
-Send, cd C:/Users/Elliott/Documents/GitHub/Learning-C-CPP{Enter}
+Send, cd C:/Users/%A_Username%/Documents/GitHub/Learning-C-CPP{Enter}
 return
 
 :*:gnxt::
-Send, cd C:/Users/Elliott/Documents/GitHub/LEGO-Mindstorms-NXT{Enter}
+Send, cd C:/Users/%A_Username%/Documents/GitHub/LEGO-Mindstorms-NXT{Enter}
 return
 
 :*:gev3::
-Send, cd C:/Users/Elliott/Documents/GitHub/LEGO-Mindstorms-EV3{Enter}
+Send, cd C:/Users/%A_Username%/Documents/GitHub/LEGO-Mindstorms-EV3{Enter}
 return
 
 :*:gshstf::
-Send, cd C:/Users/Elliott/Documents/GitHub/Shared-Stuff{Enter}
+Send, cd C:/Users/%A_Username%/Documents/GitHub/Shared-Stuff{Enter}
 return
 
 :*:gst::
