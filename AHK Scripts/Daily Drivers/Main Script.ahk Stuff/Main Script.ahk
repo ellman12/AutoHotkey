@@ -1097,6 +1097,7 @@ $F2::Send, {F2}
 SC070::Lshift
 SC07D::Rshift
 
+;For Zoom meetings at DSU.
 :*:calczoomlink::https://dsu.zoom.us/j/92067482708?pwd=cGphak5zRjFVM3JBZnlaYWpWd1VCUT09
 :*:calczoomid::920 6748 2708
 :*:calczoompass::897584
