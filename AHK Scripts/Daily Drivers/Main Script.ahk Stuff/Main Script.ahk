@@ -1106,3 +1106,6 @@ SC07D::Rshift
 :*:compozoomlink::https://dsu.zoom.us/j/93638392745?pwd=VkxRQklnSFdBMUpSY0hnYU5jWllsUT09
 :*:compozoomid::936 3839 2745
 :*:compozoompass::445518
+
+::dsu::DSU
+:*:hon comp::Honors: Composition II
