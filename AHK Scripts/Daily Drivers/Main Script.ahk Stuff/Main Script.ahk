@@ -260,7 +260,7 @@ Loop {
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\SciTE4AutoHotkey Programming.ahk
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\VSCode.ahk
 
-; #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Advanced Window Hider.ahk
+#Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Advanced Window Hider.ahk
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\ApplicationSwitcher.ahk
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\AutoCorrect.ahk
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\C-C++ Programming.ahk
@@ -274,7 +274,7 @@ Loop {
 #Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\Tippy.ahk
 
 ;#Include the script for my Secondary Macro Keyboard.
-#Include, %A_MyDocuments%\GitHub\AutoHotkey\Secondary Macro Keyboard\Hasu USB to USB Script.ahk
+#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\Secondary Macro Keyboard
 
 ;****************************************GLOBAL HOTKEYS***************************************
 ;These global hotkeys are hotkeys that are always running, regardless of the active window, profile, or whatever.
