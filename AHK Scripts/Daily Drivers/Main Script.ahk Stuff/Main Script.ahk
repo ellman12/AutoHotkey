@@ -177,6 +177,8 @@ programmingMode := false
 ;Toggle for Game Mode. This disables any hotkeys/hotstrings that I find annoying whilst gaming. This is toggled in Run.ahk.
 gameModeActive := false
 
+HomeworkAndMusicModeActive := false
+
 ;*************Screen Clipper.ahk Initialization Stuff************
 ;************************************************
 Hotkey, #s , CreateCapWindow , On ;Take a screen clip with the Screen Clipper script.
@@ -272,6 +274,7 @@ Loop {
 #Include, %A_ScriptDir%\Video Game Stuff\Any Game.ahk
 #Include, %A_ScriptDir%\Video Game Stuff\Terraria.ahk
 #Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\Tippy.ahk
+#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\BooleanToggle.ahk
 
 ;#Include the script for my Secondary Macro Keyboard.
 #Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\Secondary Macro Keyboard
@@ -472,7 +475,7 @@ KeyWait, RShift
 DllCall("SystemParametersInfo", Int,113, Int,0, UInt,10, Int,1)
 return
 
-;Keyboard shortcut originally inspired by Chrome OS; minimizes the active window.
+;Keyboard shortcut originally inspired by Chrome OS; minimizes the active window. Alt + -.
 !SC00C::
 WinMinimize, A
 return
@@ -487,6 +490,8 @@ return
 Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts
 return
 
+;Open Notepad.
+#n::Run, Notepad
 
 ;Stuff that is exclusive to my laptop.
 ;8/18/2020 11:47 AM: It's supposed to be Laptop, but idk why but the 'top' part got cut off...
@@ -545,18 +550,9 @@ return
 Send, ^{PGUP}
 return
 
-;Used for auto-clicking discussion questions in D2L Grid View, to mark them as "Read".
-; #r::
-; Send, {Click}
-; Sleep 150
-; MouseMove, 0, 64, 0, R
-; Sleep 150
-; return
-
 #IfWinNotActive, ahk_exe explorer.exe
 
 !Up::
-;~ SoundSet, +1
 soundget, v
 p:=inv(v/100.0)+0.02
 nv:=f(p)*100.0
@@ -564,12 +560,43 @@ soundset, nv
 return
 
 !Down::
-;~ SoundSet, -1
 soundget, v
 p:=inv(v/100.0)-0.02
 nv:=f(p)*100.0
 soundset, nv
 return
+
+
+;Stuff for making doing homework and/or listening to music on a laptop much easier.
+^#Insert::BooleanToggle(HomeworkAndMusicModeActive, "Homework & Music Mode ENABLED.", "Homework & Music Mode DISABLED.")
+
+#If HomeworkAndMusicModeActive = true
+
+SC00C::SendRaw, +
++SC00C::SendRaw, =
+
+Up::
+soundget, v
+p:=inv(v/100.0)+0.02
+nv:=f(p)*100.0
+soundset, nv
+return
+
+Down::
+soundget, v
+p:=inv(v/100.0)-0.02
+nv:=f(p)*100.0
+soundset, nv
+return
+
+Left::Send, {Media_Prev}
+Right::Send, {Media_Next}
+RShift::Send, {Media_Play_Pause}
+
++$Up::Send, {Up}
++$Down::Send, {Down}
++$Left::Send, {Left}
++$Right::Send, {Right}
 
 #If
 
