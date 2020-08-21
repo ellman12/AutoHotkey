@@ -69,10 +69,15 @@ F21::
 Send, ^/
 return
 
-;Mouse G10
-;(Ctrl + Shift + K) Delete line.
+; ;Mouse G10
+; ;(Ctrl + Shift + K) Delete line.
+; F22::
+; Send, ^+k
+; return
+
+;Mouse G10: Alt + Tab
 F22::
-Send, ^+k
+Send, !{Tab}
 return
 
 ;Mouse G11

@@ -47,8 +47,9 @@ return
 F21::
 return
 
-;Mouse G10
+;Mouse G10: Alt + Tab
 F22::
+Send, !{Tab}
 return
 
 ;Mouse G11

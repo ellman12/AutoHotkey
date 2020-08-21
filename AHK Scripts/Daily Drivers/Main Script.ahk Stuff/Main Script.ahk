@@ -947,6 +947,19 @@ return
 ; WinSet, AlwaysOnTop, Toggle, Calculator ; Toggle the always-on-top status of Calculator.
 ;~ return
 
+;In Microsoft To Do, make a task due today and then add it
+#IfWinActive, Microsoft To Do
+#t::
+Send, {Tab}
+Sleep 230
+Send, {Space}
+Sleep 230
+Send, {Space}
+Sleep 230
+Send, +{Tab}{Enter}
+return
+#If
+
 ;*****************************************TEMPORARY*****************************************
 ;~ ;For adding individual links into YouTube-DLG.
 ;~ RAlt::
