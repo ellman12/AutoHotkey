@@ -1150,3 +1150,4 @@ SC07D::Rshift
 
 ::dsu::DSU
 :*:hon comp::Honors: Composition II
+:*:hcomp::Honors Composition II
