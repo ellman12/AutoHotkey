@@ -505,17 +505,9 @@ Sleep 300
 Send, {Click}
 return
 
-PrintScreen::
-Send, {AppsKey}
-return
-
-!PrintScreen::
-Send, ^{Esc}
-return
-
-;Disables these ANNOYING things.
-^WheelDown::return
-^WheelUp::return
+RShift::Send, {Media_Play_Pause}
+RAlt::Send, {Media_Prev}
+RCtrl::Send, {Media_Next}
 
 ;Increment/decrement volume by 1.
 !PGUP::SoundSet, +1
