@@ -506,8 +506,8 @@ Send, {Click}
 return
 
 RShift::Send, {Media_Play_Pause}
-RAlt::Send, {Media_Prev}
-RCtrl::Send, {Media_Next}
+^!Left::Send, {Media_Prev}
+^!Right::Send, {Media_Next}
 
 ;Increment/decrement volume by 1.
 !PGUP::SoundSet, +1
