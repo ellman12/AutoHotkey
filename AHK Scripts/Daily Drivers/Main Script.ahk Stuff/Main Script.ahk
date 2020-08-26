@@ -851,7 +851,7 @@ return
 showControlPanelGUI := !showControlPanelGUI
 
 if (showControlPanelGUI = 1)
-	GUI, CPanel:Show, w280 h170,Main Script Control Panel
+	GUI, CPanel:Show, w285 h170,Main Script Control Panel
 else
 	GUI, CPanel:Hide
 return
