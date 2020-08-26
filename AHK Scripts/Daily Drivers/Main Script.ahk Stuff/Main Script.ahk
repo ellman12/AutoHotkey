@@ -1141,5 +1141,6 @@ SC07D::Rshift
 :*:compozoompass::445518
 
 ::dsu::DSU
+:*:dsuu::Dakota State University
 :*:hon comp::Honors: Composition II
 :*:hcomp::Honors Composition II
