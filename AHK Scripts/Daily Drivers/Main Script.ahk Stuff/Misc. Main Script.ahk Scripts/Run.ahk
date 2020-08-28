@@ -20,6 +20,10 @@ Switch (runInputBoxText) {
 Case "en": Send, {U+2013}
 Case "em": Send, {U+2014}
 
+Case "kre":Send, Kind regards,{Enter 2}Elliott
+Case "kred":Send, Kind regards,{Enter 2}Elliott DuCharme
+Case "fwd":Send, m{Tab}d{Tab}{Enter}
+
 Case "Sec", "Section": Send, {U+00A7}
 
 Case "up": Send, {U+2191}

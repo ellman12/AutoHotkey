@@ -164,6 +164,8 @@ return ;End of ^F8.
 
     ;Hide the window after putting it in the list (array).
     WinHide, % "ahk_id " F8ActiveWinID
+
+    F8WindowsHidden := true
 return ;End of !F8.
 
 ;Remove the active window from the list.
@@ -197,19 +199,23 @@ F8::
     ;If it's 1, hide windows; if it's 0, it shows windows.
     F8ShowHideToggle := !F8ShowHideToggle
     
-    ;If F8ShowHideToggle = 1
     if (F8ShowHideToggle = 1) {
+       
+        F8WindowsHidden := false
+
         ;Loop through the array...
         for index, value in F8WinIDArray
-        ;...and show everything
+        ;...and show everything.
         WinShow, % "ahk_id " value
         WinActivate, , % "ahk_id " value
-    ;If F8ShowHideToggle does not = 1
+
     } else {
+        ;Make it so the script can't be reloaded (and thus losing the windows forever).
+        F8WindowsHidden := true
         ;Loop through the array...
         for index, value in F8WinIDArray
         ;...and hide everything
-        WinHide, % "ahk_id " value
+            WinHide, % "ahk_id " value
     }
 return ;End of F8.
 
@@ -350,6 +356,8 @@ return ;End of ^F10.
 
     ;Hide the window after putting it in the list (array).
     WinHide, % "ahk_id " F10ActiveWinID
+
+    F10WindowsHidden := true
 return ;End of !F10.
 
 ;Remove the active window from the list.
@@ -383,15 +391,18 @@ F10::
     ;If it's 1, hide windows; if it's 0, it shows windows.
     F10ShowHideToggle := !F10ShowHideToggle
     
-    ;If F10ShowHideToggle = 1
     if (F10ShowHideToggle = 1) {
+        F10WindowsHidden := false
+        
         ;Loop through the array...
         for index, value in F10WinIDArray
         ;...and show everything
         WinShow, % "ahk_id " value
         WinActivate, , % "ahk_id " value
-    ;If F10ShowHideToggle does not = 1
+
     } else {
+        F10WindowsHidden := true
+
         ;Loop through the array...
         for index, value in F10WinIDArray
         ;...and hide everything

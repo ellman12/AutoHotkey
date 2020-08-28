@@ -177,6 +177,10 @@ programmingMode := false
 ;Toggle for Game Mode. This disables any hotkeys/hotstrings that I find annoying whilst gaming. This is toggled in Run.ahk.
 gameModeActive := false
 
+;Prevents losing windows when reloading the script with F8/F10 windows hidden.
+global F8WindowsHidden := false
+global F10WindowsHidden := false
+
 HomeworkAndMusicModeActive := false
 
 ;*************Screen Clipper.ahk Initialization Stuff************
@@ -359,7 +363,12 @@ return
 
 ;Reloads the script. Useful for "recompiling" the script.
 ^#r::
-Reload
+if (F8WindowsHidden = false AND F10WindowsHidden = false)
+	Reload
+else if (F8WindowsHidden = true)
+	MsgBox, 262160, Can't Reload Main!, You can't reload Main because there are F8 windows hidden. Unhide them and then reload the script.
+else if (F10WindowsHidden = true)
+	MsgBox, 262160, Can't Reload Main!, You can't reload Main because there are F10 windows hidden. Unhide them and then reload the script.
 return
 
 ;Sends the current date and time in this format: 10/31/2019 07:43 PM.
@@ -505,7 +514,7 @@ Sleep 300
 Send, {Click}
 return
 
-RShift::Send, {Media_Play_Pause}
+~RShift::Send, {Media_Play_Pause}
 ^!Left::Send, {Media_Prev}
 ^!Right::Send, {Media_Next}
 

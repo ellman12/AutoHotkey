@@ -10,6 +10,9 @@
 * HUGE shout-out to them. https://www.reddit.com/r/AutoHotkey/comments/gad2bh/how_to_use_listview_for_gui/
 */
 
+;Changes the icon to an hourglass.
+Menu, Tray, Icon, %A_ScriptDir%\Hourglass.jpg
+
 CurrentMode := 0 ;0 = Off, 1 = Working, 2 = Break
 
 showBlackWhiteListToggle := 0
