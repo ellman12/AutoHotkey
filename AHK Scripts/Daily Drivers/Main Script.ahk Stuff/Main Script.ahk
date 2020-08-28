@@ -369,6 +369,8 @@ else if (F8WindowsHidden = true)
 	MsgBox, 262160, Can't Reload Main!, You can't reload Main because there are F8 windows hidden. Unhide them and then reload the script.
 else if (F10WindowsHidden = true)
 	MsgBox, 262160, Can't Reload Main!, You can't reload Main because there are F10 windows hidden. Unhide them and then reload the script.
+else if (F8WindowsHidden = true AND F10WindowsHidden = true)
+	MsgBox, 262160, Can't Reload Main!, You can't reload Main because there are F8 AND F10 windows hidden. Unhide them and then reload the script.
 return
 
 ;Sends the current date and time in this format: 10/31/2019 07:43 PM.
