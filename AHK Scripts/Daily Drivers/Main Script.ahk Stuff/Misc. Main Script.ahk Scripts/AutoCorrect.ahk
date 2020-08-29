@@ -5518,6 +5518,8 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:frc::FRC
 :*:ftc::FTC
 :*:elliott::Elliott
+:*:ethan::Ethan
+:*:sophia::Sophia
 :*:ducharme::DuCharme
 :*:gui::GUI
 ::custoemr::customer
