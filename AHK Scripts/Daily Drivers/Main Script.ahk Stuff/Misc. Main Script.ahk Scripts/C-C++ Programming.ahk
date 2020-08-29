@@ -74,9 +74,9 @@ InputBox, cppcompFileName, Enter the C file name, Enter the C file name without 
 return
 
 ;Does the gcc command in command prompt and runs the a.exe file automatcally: gcc <file name.c>, and send a.exe (the compiled file).
-:*:cc::
-Send, gcc %ccompFileName%.c{Enter}a.exe{Enter}
-return
+; :*:cc::
+; Send, gcc %ccompFileName%.c{Enter}a.exe{Enter}
+; return
 
 ;Same thing, but for C++ with the g++ compiler.
 :*:pp::

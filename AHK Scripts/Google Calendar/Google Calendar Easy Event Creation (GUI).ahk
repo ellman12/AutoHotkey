@@ -35,7 +35,7 @@ DetectHiddenWindows, On
 * https://www.reddit.com/r/AutoHotkey/comments/fxu9gk/help_with_two_gui_problems/
 */
 
-Menu, Tray, Icon, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Google Calendar\GCal Logo.png
+Menu, Tray, Icon, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Google Calendar\GCal Logo.png
 
 ;Arrays for tracking all of the user-inputted data.
 eventNameArray := []

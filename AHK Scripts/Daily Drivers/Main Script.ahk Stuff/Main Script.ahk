@@ -250,7 +250,7 @@ Loop {
 	}
 
 	;This sleep statement DRASTICALLY helps reduce the power and CPU usage of the Main Script.
-	Sleep 50
+	Sleep 200
 }
 
 ;Linking other scripts together.
@@ -282,7 +282,7 @@ Loop {
 #Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\BooleanToggle.ahk
 
 ;#Include the script for my Secondary Macro Keyboard.
-#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\Secondary Macro Keyboard
+#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\Secondary Macro Keyboard\Hasu USB to USB Script.ahk
 
 ;****************************************GLOBAL HOTKEYS***************************************
 ;These global hotkeys are hotkeys that are always running, regardless of the active window, profile, or whatever.
