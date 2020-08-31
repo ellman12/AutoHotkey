@@ -30,7 +30,7 @@ return
 F1::
 switchToFirefoxAndBetweenTabs() {
 	IfWinNotExist, ahk_class MozillaWindowClass
-		Run, firefox.exe
+		Run, C:\Program Files\Mozilla Firefox\firefox.exe
 	if WinActive("ahk_exe firefox.exe")
 			Send ^{PGDN}
 	else {
@@ -48,7 +48,7 @@ return
 +F1::
 switchToFirefoxAndBetweenTabsReverse() {
 	IfWinNotExist, ahk_class MozillaWindowClass
-		Run, firefox.exe
+		Run, C:\Program Files\Mozilla Firefox\firefox.exe
 	if WinActive("ahk_exe firefox.exe")
 			Send ^{PGUP}
 	else {
@@ -68,7 +68,7 @@ return
 F2::
 switchToOtherFirefoxWindows() {
 	If WinNotExist, ahk_class MozillaWindowClass
-		Run, firefox.exe
+		Run, C:\Program Files\Mozilla Firefox\firefox.exe
 	else
 	{
 		GroupAdd, taranfirefoxes, ahk_class MozillaWindowClass
@@ -83,13 +83,13 @@ return
 ;Create a new normal Firefox window.
 ^F1::
 ^F2::
-Run, firefox.exe
+Run, C:\Program Files\Mozilla Firefox\firefox.exe
 return
 
 ;Create a new Private Firefox window.
 !F1::
 !F2::
-Run, firefox.exe -private-window
+Run, C:\Program Files\Mozilla Firefox\firefox.exe -private-window
 return
 
 ;If a Chrome window doesn't exist, run Chrome.

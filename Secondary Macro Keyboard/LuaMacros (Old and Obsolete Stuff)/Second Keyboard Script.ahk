@@ -219,7 +219,7 @@ Switch (pressedKey) {
     Case "home":Send, {Home}
 
     ;Create a new Private Firefox window w/ Google Images.
-    Case "i":Run, firefox.exe -private-window https://images.google.com/
+    Case "i":Run, C:\Program Files\Mozilla Firefox\firefox.exe -private-window https://images.google.com/
 
     Case "insert":MsgBox, %pressedKey% is unassigned.
 
@@ -239,7 +239,7 @@ Switch (pressedKey) {
     Case "leftbracket":
         ; Send, ^c
         ; Sleep 200
-        ; Run, firefox.exe -private-window https://www.google.com/search?tbm=isch&q=%Clipboard%
+        ; Run, C:\Program Files\Mozilla Firefox\firefox.exe -private-window https://www.google.com/search?tbm=isch&q=%Clipboard%
         BlockInput, on
         prevClipboard = %clipboard%
         clipboard =
@@ -297,7 +297,7 @@ Switch (pressedKey) {
     Case "o":Send, ^o
 
     ;Create a new Private Firefox window w/ Google.
-    Case "p":Run, firefox.exe -private-window https://www.google.com/
+    Case "p":Run, C:\Program Files\Mozilla Firefox\firefox.exe -private-window https://www.google.com/
 
     Case "pagedown":MsgBox, %pressedKey% is unassigned.
 
@@ -321,7 +321,7 @@ Switch (pressedKey) {
     Case "rightbracket":
         ; Send, ^c
         ; Sleep 200
-        ; Run, firefox.exe -private-window http://www.google.com/search?q=`%22%clipboard%`%22
+        ; Run, C:\Program Files\Mozilla Firefox\firefox.exe -private-window http://www.google.com/search?q=`%22%clipboard%`%22
         BlockInput, on
         prevClipboard = %clipboard%
         clipboard =
@@ -433,12 +433,12 @@ GoogleSearch:
    IfInString, searchQuery, .
    {
       IfInString, searchQuery, +
-         Run, firefox.exe -private-window http://www.google.com/search?hl=en&q=%searchQuery%
+         Run, C:\Program Files\Mozilla Firefox\firefox.exe -private-window http://www.google.com/search?hl=en&q=%searchQuery%
       else
-         Run, firefox.exe -private-window %searchQuery%
+         Run, C:\Program Files\Mozilla Firefox\firefox.exe -private-window %searchQuery%
    }
    else
-      Run, firefox.exe -private-window http://www.google.com/search?hl=en&q=%searchQuery%
+      Run, C:\Program Files\Mozilla Firefox\firefox.exe -private-window http://www.google.com/search?hl=en&q=%searchQuery%
 return
 
 GoogleImagesSearch:
@@ -467,10 +467,10 @@ GoogleImagesSearch:
    IfInString, searchQuery, .
    {
       IfInString, searchQuery, +
-         Run, firefox.exe -private-window https://www.google.com/search?tbm=isch&q=%searchQuery%
+         Run, C:\Program Files\Mozilla Firefox\firefox.exe -private-window https://www.google.com/search?tbm=isch&q=%searchQuery%
       else
-         Run, firefox.exe -private-window %searchQuery%
+         Run, C:\Program Files\Mozilla Firefox\firefox.exe -private-window %searchQuery%
    }
    else
-      Run, firefox.exe -private-window https://www.google.com/search?tbm=isch&q=%searchQuery%
+      Run, C:\Program Files\Mozilla Firefox\firefox.exe -private-window https://www.google.com/search?tbm=isch&q=%searchQuery%
 return
