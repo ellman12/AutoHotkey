@@ -401,7 +401,6 @@ Send, {LWin}
 return
 
 ;Sends a Space and "meaning" when the Windows 10 Search Bar window is active (Cortana).
-;Equivalent to G15 in Browser.
 !s::
 Send, {Space}meaning
 return

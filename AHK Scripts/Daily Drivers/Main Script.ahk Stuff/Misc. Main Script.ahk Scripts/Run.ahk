@@ -16,13 +16,9 @@ InputBox, runInputBoxText, Type a command,Recommended Command`tWhat It Does`t`t`
 Switch (runInputBoxText) {
 
 ;***********************************************INSERT***********************************************
-;AHK can apparently send Unicode characters.
+;Sends either an em or en dash.
 Case "en": Send, {U+2013}
 Case "em": Send, {U+2014}
-
-Case "kre":Send, Kind regards,{Enter 2}Elliott
-Case "kred":Send, Kind regards,{Enter 2}Elliott DuCharme
-Case "fwd":Send, m{Tab}d{Tab}{Enter}
 
 Case "Sec", "Section": Send, {U+00A7}
 
@@ -32,8 +28,6 @@ Case "down": Send, {U+2193}
 Case "left": Send, {U+2190}
 
 ;***********************************************OPEN***********************************************
-Case "Help": Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://docs.google.com/spreadsheets/d/1vGHwAVQwkmzGGpM_xQJ86RGXfsBiBxDD089cu1u02eA/edit#gid=17759502
-
 ;Opens the Google spreadsheet for this script, which contains all of the commands in a table.
 Case "Help": Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://docs.google.com/spreadsheets/d/1vGHwAVQwkmzGGpM_xQJ86RGXfsBiBxDD089cu1u02eA/edit#gid=17759502
 
@@ -82,7 +76,6 @@ InputBox, Thes_FFInputBox, Search for This Word on Thesaurus.com, Type the word 
 Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.thesaurus.com/browse/%Thes_FFInputBox%
 return
 
-
 ;Open thesaurus.com in Chrome.
 Case "Thesaurus Chr", "Thesaurus.com Chr": Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://www.thesaurus.com/
 
@@ -122,6 +115,45 @@ if ErrorLevel = 1
 	Tippy("CANCEL/Escape was pressed.", 500)
 else
 	MsgBox, 16, Unknown command, Command entered: "%runInputBoxText%" does not exist.
+
+;***********************************************TEMPORARY???***********************************************
+Case "kre":Send, Kind regards,{Enter 2}Elliott
+Case "kred":Send, Kind regards,{Enter 2}Elliott DuCharme
+Case "fwd":Send, m{Tab}d{Tab}{Enter}
+
+;Searches for the selected text in a private Firefox window with Google Images.
+;This is taken from the 2nd keeb script.
+Case "pr i":
+	BlockInput, on
+    prevClipboard = %clipboard%
+    clipboard =
+    Send, ^c
+    BlockInput, off
+    ClipWait, 2
+    if ErrorLevel = 0
+    {
+        searchQuery=%clipboard%
+        GoSub, GoogleImagesSearch
+    }
+    clipboard = %prevClipboard%
+return
+
+;Searches for the selected text in a private Firefox window with Google.
+;This is taken from the 2nd keeb script.
+Case "pr", "pr g":
+	BlockInput, on
+    prevClipboard = %clipboard%
+    clipboard =
+    Send, ^c
+    BlockInput, off
+    ClipWait, 2
+    if ErrorLevel = 0
+    {
+        searchQuery=%clipboard%
+        GoSub, GoogleSearch
+    }
+    clipboard = %prevClipboard%
+return
 
 }
 return
