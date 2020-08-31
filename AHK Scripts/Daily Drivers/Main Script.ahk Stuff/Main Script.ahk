@@ -392,7 +392,8 @@ SendInput, %CurrentDateTime%
 return
 
 ;When Cortana/Search is open, RWin does LWin twice.
-#IfWinActive Cortana
+; #IfWinActive Cortana
+#IfWinActive Search
 RWin::
 Send, {LWin}
 Sleep 300
