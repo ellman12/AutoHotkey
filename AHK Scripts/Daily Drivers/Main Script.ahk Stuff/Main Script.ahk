@@ -203,6 +203,12 @@ Index := 0 ;Used as the name of the current gui cap window.
 ;The stuff in this loop needs to be running constantly.
 Loop {
 
+	global activeWindowTitle
+	WinGetActiveTitle, activeWindowTitle
+
+	global activeWindowID
+	WinGet, activeWindowID, ID
+
 	;Constantly checking to see what profile the script should put the user in.
 	global currentProfile := autoSelectProfiles()
 
@@ -210,18 +216,15 @@ Loop {
 	global numLockToggled := GetKeyState("NumLock", "T")
 	global scrollLockToggled := GetKeyState("ScrollLock", "T")
 
-	;Get the active window title; used only in this Loop for the numPadMode stuff.
-	WinGetActiveTitle, mainLoopActWinTitle
-
 	;If the auto-numpad toggle is true, sets the numPadMode automatically.
 	;Else, leave it to the user to do it manually.
 	if (autoNumPadModeToggle = true) {
 
-		if InStr(mainLoopActWinTitle, "- YouTube") {
+		if InStr(activeWindowTitle, "- YouTube") {
 			SetNumLockState, On
 			SetScrollLockState, On
 			global numPadMode = "YouTube"
-		} else if InStr(mainLoopActWinTitle, "- MediaSpace") {
+		} else if InStr(activeWindowTitle, "- MediaSpace") {
 			SetNumLockState, Off
 			SetScrollLockState, On
 			global numPadMode = "Dumbed-Down"
@@ -511,7 +514,8 @@ return
 ;Open battery menu.
 #b::
 ; MouseMove, 1432, 885, 0 ;Lenovo Laptop.
-MouseMove, 1618, 1049, 0 ;DSU Laptop
+; MouseMove, 1618, 1049, 0 ;DSU Laptop with inkspace button shown.
+MouseMove, 1664, 1049, 0 ;DSU Laptop without inkspace button shown.
 Sleep 300
 Send, {Click}
 return
