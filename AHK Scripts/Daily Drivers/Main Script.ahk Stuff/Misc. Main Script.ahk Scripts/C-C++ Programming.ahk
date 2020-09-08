@@ -78,6 +78,9 @@ return
 ; Send, gcc %ccompFileName%.c{Enter}a.exe{Enter}
 ; return
 
+
+
+/*
 ;Same thing, but for C++ with the g++ compiler.
 :*:pp::
 SendRaw, g++ %cppcompFileName%.cpp
@@ -115,5 +118,7 @@ Sleep 1000
 Send, cd %fourthFolderName%{Tab}{Enter}
 Sleep 1000
 return
+
+*/
 
 #If
