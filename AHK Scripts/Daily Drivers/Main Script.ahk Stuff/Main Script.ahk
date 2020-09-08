@@ -172,16 +172,16 @@ global Num2And8Step := 3
 global autoNumPadModeToggle := true
 
 ;Toggle for Programming Mode: disabling certain hotkeys/hotstrings to make programming easier. ^!Insert is the hotkey.
-programmingMode := false
+global programmingMode := false
 
 ;Toggle for Game Mode. This disables any hotkeys/hotstrings that I find annoying whilst gaming. This is toggled in Run.ahk.
-gameModeActive := false
+global gameModeActive := false
 
 ;Prevents losing windows when reloading the script with F8/F10 windows hidden.
 global F8WindowsHidden := false
 global F10WindowsHidden := false
 
-HomeworkAndMusicModeActive := false
+global HomeworkAndMusicModeActive := false
 
 ;*************Screen Clipper.ahk Initialization Stuff************
 ;************************************************
@@ -207,7 +207,7 @@ Loop {
 	WinGetActiveTitle, activeWindowTitle
 
 	global activeWindowID
-	WinGet, activeWindowID, ID
+	WinGet, activeWindowID, ID, A
 
 	;Constantly checking to see what profile the script should put the user in.
 	global currentProfile := autoSelectProfiles()

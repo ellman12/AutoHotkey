@@ -12,7 +12,7 @@
 ;Toggles between showing and hiding the help GUI for ApplicationSwitcher.ahk
 !a::
     showApplSwitchGUIToggle := !showApplSwitchGUIToggle
-    
+
     if (showApplSwitchGUIToggle = 1)
         GUI, ApplSwitchGUI:Show, x600 y90 w510 h604, ApplicationSwitcher.ahk Hotkey Help Window
     else
@@ -83,13 +83,13 @@ return
 ;Create a new normal Firefox window.
 ^F1::
 ^F2::
-    Run, C:\Program Files\Mozilla Firefox\firefox.exe
+Run, C:\Program Files\Mozilla Firefox\firefox.exe
 return
 
 ;Create a new Private Firefox window.
 !F1::
 !F2::
-    Run, C:\Program Files\Mozilla Firefox\firefox.exe -private-window
+Run, C:\Program Files\Mozilla Firefox\firefox.exe -private-window
 return
 
 ;If a Chrome window doesn't exist, run Chrome.
@@ -105,8 +105,8 @@ F3::
         else
             WinActivate ahk_exe chrome.exe
     }
-    
-    ;Same thing as F3, but reverse order (PGUP instead of PGDN).
+
+;Same thing as F3, but reverse order (PGUP instead of PGDN).
 +F3::
     switchToChromeAndTabsReverse()
     {
@@ -136,20 +136,20 @@ F4::
                 WinActivate ahk_class Chrome_WidgetWin_1
         }
     }
-    
-    ;Create a new normal Chrome window.
+
+;Create a new normal Chrome window.
 ^F3::
-    Run, chrome.exe
+Run, chrome.exe
 return
 
 ;Create a new normal Chrome window.
 ^F4::
-    Run, chrome.exe
+Run, chrome.exe
 return
 
 ;Create a new incognito Chrome window.
 !F3::
-    Run, chrome.exe -incognito
+Run, chrome.exe -incognito
 return
 
 ;MR button on my K95 RGB keyboard.
@@ -164,7 +164,7 @@ return
         else
             WinActivate ahk_class CabinetWClass ;you have to use WinActivatebottom if you didn't create a window group.
     }
-    
+
     ;Creates a new File Explorer window.
     ;Activated by holding down Shift and MR (Shift + Ctrl + F5).
 ^+F5::
@@ -220,13 +220,12 @@ F6::NextWindowF6()
 
 ;Add the current window to the array.
 AddWindowF6() {
-    
+
     ;Quick little prompt telling the user the window was added.
     ToolTip, Added to F6 Group!
     Sleep, 200
     ToolTip
-    
-    ;Get the active window's ID
+
     WinGet, thisIDF6, ID, A
     ;Value to track if ID was found in the group
     foundF6 := false
@@ -240,14 +239,14 @@ AddWindowF6() {
             break
         }
     }
-    
+
     ;If the ID was never found in the array
     if (foundF6 = false) {
         ;Add it to the array
         WindowGroupF6.Push(thisIDF6)
         F6andF7WinIDArray.Push(thisIDF6)
     }
-return
+    return
 }
 
 ;Remove the curent window from the array.
@@ -255,7 +254,7 @@ RemoveWindowF6() {
     ToolTip, Removed from F6 Group!
     Sleep, 200
     ToolTip
-    
+
     WinGet, thisIDF6, ID, A
     foundF6 := false
     for indexF6, value in WindowGroupF6
@@ -267,43 +266,49 @@ RemoveWindowF6() {
             break
         }
     }
-return
+    return
 }
 
 ;Activates the next window.
 NextWindowF6() {
 
-	if (activeWindowID = WindowGroupF6[CurrentWinF6]) {
-        ; NextWindowF6()
-        ; WinActivate, % "ahk_id" WindowGroupF6[CurrentWinF6
-		CurrentWinF6++
-    }
+    WinGet, thisIDF6, ID, A
 
-    ;Increment the current window by 1.
-    CurrentWinF6++
+    ;See this link for picture explanation: https://imgur.com/1Mc5B24
+    if (activeWindowID = WindowGroupF6[CurrentWinF6 + 1]) {
+        CurrentWinF6 += 2 ;Skip the window that is already active.
+    } else {
+        CurrentWinF6++
+    }
 
     ;If the current window is greater than the number of entries in the array, then reset it to the lowest index.
     if (CurrentWinF6 > WindowGroupF6.MaxIndex()) {
-        Tippy("Overflow", 1000)
         CurrentWinF6 := WindowGroupF6.MinIndex()
     }
 
     ;Now activate the window based on CurrentWin.
     WinActivate, % "ahk_id" WindowGroupF6[CurrentWinF6]
-    
-return
+
+    return
 }
 
 ;Activate previous window.
 PrevWindowF6() {
-    ;Decrement the current window by 1.
-    CurrentWinF6--
-    ;If it's lower than the lowest index, set CurrentWindow to the maxindex.
+
+   WinGet, thisIDF6, ID, A
+
+    ;See this link for picture explanation, it's just backwards: https://imgur.com/1Mc5B24
+    if (activeWindowID = WindowGroupF6[CurrentWinF6 - 1]) {
+        CurrentWinF6 -= 2
+    } else {
+        CurrentWinF6--
+    }
+
     if (CurrentWinF6 < WindowGroupF6.MinIndex())
         CurrentWinF6 := WindowGroupF6.MaxIndex()
     ;Now activate that window based on CurrentWin.
     WinActivate, % "ahk_id" WindowGroupF6[CurrentWinF6]
-return
+    return
 }
 
 ;Removes windows that don't exist anymore—and their IDs—from the array.
@@ -321,7 +326,7 @@ RemoveNonexistentWindowsF6() {
             F6andF7WinIDArray.RemoveAt(indexF6)
         }
     }
-return
+    return
 
 }
 
@@ -366,27 +371,21 @@ return
 
 ;*************************************************F7 GROUP STUFF*************************************************
 ;Identical to F6 Group Stuff, but for the F7 key. Thus, allowing me to have 2 custom window groups.
-^F7::
-    AddWindowF7()
-return
-^!F7::
-    RemoveWindowF7()
-return
-F7::
-    NextWindowF7()
-return
-+F7::
-    PrevWindowF7()
-return
-^+F7::
-    RemoveNonexistentWindowsF7()
-return
+^F7::AddWindowF7()
+
+^!F7::RemoveWindowF7()
+
+F7::NextWindowF7()
+
++F7::PrevWindowF7()
+
+^+F7::RemoveNonexistentWindowsF7()
 
 AddWindowF7() {
     ToolTip, Added to F7 Group!
     Sleep, 200
     ToolTip
-    
+
     ;Get the active window's ID
     WinGet, thisIDF7, ID, A
     ;Value to track if ID was found in the group
@@ -401,21 +400,21 @@ AddWindowF7() {
             break
         }
     }
-    
+
     ;If the ID was never found in the array.
     if (foundF7 = false) {
         ;Add it to the array.
         WindowGroupF7.Push(thisIDF7)
         F6andF7WinIDArray.Push(thisIDF7)
     }
-return
+    return
 }
 
 RemoveWindowF7() {
     ToolTip, Removed from F7 Group!
     Sleep, 200
     ToolTip
-    
+
     WinGet, thisIDF7, ID, A
     foundF7 := false
     for indexF7, value in WindowGroupF7
@@ -427,30 +426,50 @@ RemoveWindowF7() {
             break
         }
     }
-return
+    return
 }
 
+;Activates the next window.
 NextWindowF7() {
-    ;Increment the current window by 1
-    CurrentWinF7++
-    ;If the current window is greater than the number of entries in the array
-    if (CurrentWinF7 > WindowGroupF7.MaxIndex())
-        ;Then reset it to the lowest index
-    CurrentWinF7 := WindowGroupF7.MinIndex()
-    ;Now activate the window based on CurrentWin
+
+    WinGet, thisIDF7, ID, A
+
+    ;See this link for picture explanation: https://imgur.com/1Mc5B24
+    if (activeWindowID = WindowGroupF7[CurrentWinF7 + 1]) {
+        CurrentWinF7 += 2 ;Skip the window that is already active.
+    } else {
+        CurrentWinF7++
+    }
+
+    ;If the current window is greater than the number of entries in the array, then reset it to the lowest index.
+    if (CurrentWinF7 > WindowGroupF7.MaxIndex()) {
+        ; Tippy("Overflow", 600)
+        CurrentWinF7 := WindowGroupF7.MinIndex()
+    }
+
+    ;Now activate the window based on CurrentWin.
     WinActivate, % "ahk_id" WindowGroupF7[CurrentWinF7]
-return
+
+    return
 }
 
+;Activate previous window.
 PrevWindowF7() {
-    ;Decrement the current window by 1
-    CurrentWinF7--
-    ;If it's lower than the lowest index, set CurrentWindow to the maxindex
+
+   WinGet, thisIDF7, ID, A
+
+    ;See this link for picture explanation, it's just backwards: https://imgur.com/1Mc5B24
+    if (activeWindowID = WindowGroupF7[CurrentWinF7 - 1]) {
+        CurrentWinF7 -= 2
+    } else {
+        CurrentWinF7--
+    }
+
     if (CurrentWinF7 < WindowGroupF7.MinIndex())
         CurrentWinF7 := WindowGroupF7.MaxIndex()
-    ;Now activate that window based on CurrentWin
+    ;Now activate that window based on CurrentWin.
     WinActivate, % "ahk_id" WindowGroupF7[CurrentWinF7]
-return
+    return
 }
 
 RemoveNonexistentWindowsF7() {
@@ -465,7 +484,7 @@ RemoveNonexistentWindowsF7() {
             F6andF7WinIDArray.RemoveAt(indexF7)
         }
     }
-return
+    return
 
 }
 
@@ -480,5 +499,5 @@ ActivateBothF6AndF7Windows() {
     CurrentWinF6AndF7ActBoth := F6andF7WinIDArray.MinIndex()
     ;Now activate the window based on CurrentWinF6AndF7ActBoth.
     WinActivate, % "ahk_id" F6andF7WinIDArray[CurrentWinF6AndF7ActBoth]
-return
+    return
 }
