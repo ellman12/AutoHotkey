@@ -34,7 +34,7 @@ Case "Help": Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" 
 Case "MsgBox Creator", "MsgBox", "Msg", "MB":Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Misc. Main Script.ahk Scripts\MsgBox Creator.ahk
 
 ;Open the documentation in either Firefox or Chrome
-Case "Docu FF", "Docu Firefox", "Documentation FF", "Documentation Firefox":
+Case "Docu", "Docu FF", "Docu Firefox", "Documentation FF", "Documentation Firefox":
 RunWait, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.autohotkey.com/docs/AutoHotkey.htm
 Sleep 1000
 Send, !s
@@ -71,7 +71,7 @@ Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://www.t
 return
 
 ;Open thesaurus.com in Firefox and search for the inputted word
-Case "Thes ff", "Thes Firefox":
+Case "Thes", "Thes ff", "Thes Firefox":
 InputBox, Thes_FFInputBox, Search for This Word on Thesaurus.com, Type the word you want to search on Thesaurus.com in Firefox.
 Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.thesaurus.com/browse/%Thes_FFInputBox%
 return
@@ -80,7 +80,7 @@ return
 Case "Thesaurus Chr", "Thesaurus.com Chr": Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://www.thesaurus.com/
 
 ;Open thesaurus.com in Firefox.
-Case "Thesaurus FF", "Thesaurus.com FF": Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.thesaurus.com/
+Case "Thesaurus", "Thesaurus FF", "Thesaurus.com FF": Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.thesaurus.com/
 
 ;***********************************************MISC***********************************************
 ;Get free space in GB of all the drives.
