@@ -364,7 +364,7 @@ return
 WinSet, AlwaysOnTop, Toggle, A
 return
 
-;Reloads the script. Useful for "recompiling" the script.
+;Reloads the script.
 ^#r::
 if (F8WindowsHidden = false AND F10WindowsHidden = false)
 	Reload
@@ -375,6 +375,9 @@ else if (F10WindowsHidden = true)
 else if (F8WindowsHidden = true AND F10WindowsHidden = true)
 	MsgBox, 262160, Can't Reload Main!, You can't reload Main because there are F8 AND F10 windows hidden. Unhide them and then reload the script.
 return
+
+;Force Reload the script, even if there are F8/F10 windows hidden (or if the script says there is, but there actually isn't).
+!#r::Reload
 
 ;Sends the current date and time in this format: 10/31/2019 07:43 PM.
 :*:datetime::

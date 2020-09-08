@@ -272,8 +272,6 @@ RemoveWindowF6() {
 ;Activates the next window.
 NextWindowF6() {
 
-    WinGet, thisIDF6, ID, A
-
     ;See this link for picture explanation: https://imgur.com/1Mc5B24
     if (activeWindowID = WindowGroupF6[CurrentWinF6 + 1]) {
         CurrentWinF6 += 2 ;Skip the window that is already active.
@@ -294,8 +292,6 @@ NextWindowF6() {
 
 ;Activate previous window.
 PrevWindowF6() {
-
-   WinGet, thisIDF6, ID, A
 
     ;See this link for picture explanation, it's just backwards: https://imgur.com/1Mc5B24
     if (activeWindowID = WindowGroupF6[CurrentWinF6 - 1]) {
@@ -432,8 +428,6 @@ RemoveWindowF7() {
 ;Activates the next window.
 NextWindowF7() {
 
-    WinGet, thisIDF7, ID, A
-
     ;See this link for picture explanation: https://imgur.com/1Mc5B24
     if (activeWindowID = WindowGroupF7[CurrentWinF7 + 1]) {
         CurrentWinF7 += 2 ;Skip the window that is already active.
@@ -455,8 +449,6 @@ NextWindowF7() {
 
 ;Activate previous window.
 PrevWindowF7() {
-
-   WinGet, thisIDF7, ID, A
 
     ;See this link for picture explanation, it's just backwards: https://imgur.com/1Mc5B24
     if (activeWindowID = WindowGroupF7[CurrentWinF7 - 1]) {
