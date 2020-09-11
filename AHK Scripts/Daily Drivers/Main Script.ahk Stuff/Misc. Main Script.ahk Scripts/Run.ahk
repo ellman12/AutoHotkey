@@ -21,6 +21,7 @@ Case "en": Send, {U+2013}
 Case "em": Send, {U+2014}
 
 Case "Sec", "Section": Send, {U+00A7}
+Case "inf": Send, {U+221E}
 
 Case "up": Send, {U+2191}
 Case "right": Send, {U+2192}

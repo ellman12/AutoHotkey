@@ -617,23 +617,23 @@ RShift::Send, {Media_Play_Pause}
 ;Ctrl + Alt + x: go to saved position. X is 1–4.
 
 ;************SAVE POSITIONS************
-^+1::MouseGetPos, mousePosX1, mousePosY1
+; ^+1::MouseGetPos, mousePosX1, mousePosY1
 
-^+2::MouseGetPos, mousePosX2, mousePosY2
+; ^+2::MouseGetPos, mousePosX2, mousePosY2
 
-^+3::MouseGetPos, mousePosX3, mousePosY3
+; ^+3::MouseGetPos, mousePosX3, mousePosY3
 
-^+4::MouseGetPos, mousePosX4, mousePosY4
+; ^+4::MouseGetPos, mousePosX4, mousePosY4
 
 
-;************GO TO POSITION************
-^!1::MouseMove, mousePosX1, mousePosY1, 0
+; ;************GO TO POSITION************
+; ^!1::MouseMove, mousePosX1, mousePosY1, 0
 
-^!2::MouseMove, mousePosX2, mousePosY2, 0
+; ^!2::MouseMove, mousePosX2, mousePosY2, 0
 
-^!3::MouseMove, mousePosX3, mousePosY3, 0
+; ^!3::MouseMove, mousePosX3, mousePosY3, 0
 
-^!4::MouseMove, mousePosX4, mousePosY4, 0
+; ^!4::MouseMove, mousePosX4, mousePosY4, 0
 
 ; ;For Zoom stuff
 ; #IfWinActive, ahk_exe Zoom.exe
