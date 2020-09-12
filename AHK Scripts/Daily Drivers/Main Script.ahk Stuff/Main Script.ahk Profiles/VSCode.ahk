@@ -2,14 +2,14 @@
 
 ;****************************************MOUSE ACTIONS***************************************
 #If currentProfile = "VSCode"
-;Mouse Profile Switch
-;Left double click (front button on top of mouse).
+;Mouse Profile Switch button
 ^!F23::
-Send, {Click 2}
+NextWindowF6()
 return
 
-;Mouse DPI Toggle (back button on top of mouse).
+;Mouse DPI Toggle
 ^+F23::
+NextWindowF7()
 return
 
 ;Mouse G1

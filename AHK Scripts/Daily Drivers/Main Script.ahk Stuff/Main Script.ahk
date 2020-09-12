@@ -14,24 +14,24 @@ SendMode Input
 DetectHiddenWindows, Off
 #SingleInstance force
 
-; This script is the main file that links all of my other scripts together, plus some other things.
-; On my K95 keyboard and my Scimitar mouse, I have 18 and 12 G keys, respectively.
-; In the garbage iCUE software, I have assigned each of them some keeb shortcuts to send.
-; They all involve F13-F24, since 99.9% of keyboards don't have those physical keys, but Windows can still accept them as inputs.
-; Keeb G keys 1-12 send ^F13-F24; 13-18 send !F13-F18; and Scimitar G1-12 sends F13-F18 (no modifiers, since there's no need).
-; This surprisingly works perfectly.
-; I tried doing some stuff with iCUE sending weird language key things, and AHK trying to detect those scan codes, but I couldn't get
+;This script is the main file that links all of my other scripts together, plus some other things.
+;On my K95 keyboard and my Scimitar mouse, I have 18 and 12 G keys, respectively.
+;In the garbage iCUE software, I have assigned each of them some keeb shortcuts to send.
+;They all involve F13-F24, since 99.9% of keyboards don't have those physical keys, but Windows can still accept them as inputs.
+;Keeb G keys 1-12 send ^F13-F24; 13-18 send !F13-F18; and Scimitar G1-12 sends F13-F18 (no modifiers, since there's no need).
+;This surprisingly works perfectly.
+;I tried doing some stuff with iCUE sending weird language key things, and AHK trying to detect those scan codes, but I couldn't get
 ;it working. *Shrug*
-; This file is mainly for generic keeb shortcuts and things that are used everywhere, and to house the iCUE keeb shortcuts (look at the
+;This file is mainly for generic keeb shortcuts and things that are used everywhere, and to house the iCUE keeb shortcuts (look at the
 ;bottom of the file). Changed on 10/27/2019. Now, all the respective files house their respective actions and stuff. It makes way more sense
 ;to do it this way.
-; Some of the others like Browser, Docs, Sheets, are used to house the actions that pertain to that current profile (which I define as
+;Some of the others like Browser, Docs, Sheets, are used to house the actions that pertain to that current profile (which I define as
 ;the set of actions that are done by the G keys depending on the current active window/program).
-; Hopefully this explains it well enough.
-; 7/2/2020: Misc Laptop Stuff was merged with this script. It was a script designed for use with my laptop.
-; It started as a small little script with some basic key remappings and hotkeys, but it started to grow more and more complex over time.
-; Eventually, Main and Misc became so similar to each other to the point where it was becoming a lot harder to copy changes from Main over to Misc.
-; Thus the merging of the both of them. The very few Laptop-exclusive hotkeys are in an #if directive down below. They will only run on my laptop, as
+;Hopefully this explains it well enough.
+;7/2/2020: Misc Laptop Stuff was merged with this script. It was a script designed for use with my laptop.
+;It started as a small little script with some basic key remappings and hotkeys, but it started to grow more and more complex over time.
+;Eventually, Main and Misc became so similar to each other to the point where it was becoming a lot harder to copy changes from Main over to Misc.
+;Thus the merging of the both of them. The very few Laptop-exclusive hotkeys are in an #if directive down below. They will only run on my laptop, as
 ;its name is different from my PC's name.
 
 ;Pic of all these icons: https://diymediahome.org/wp-content/uploads/shell32_icons.jpg
@@ -90,13 +90,11 @@ GUI, ApplSwitchGUI:Font, norm s12
 GUI, ApplSwitchGUI:Add, Text, x5 y40,Alt + a`t`tToggles between showing and hiding this help GUI.`nAlt + F6`t`tActivate windows in both the F6 and F7 array.`nAlt + F1/F2`tCreate a new Private Firefox window.`nAlt + F3`t`tCreate a new incognito Chrome window.`nAlt + F6`t`tRemoves active window from the F6 group`nCtrl + Alt + F7`tRemoves active window from the F7 group`nCtrl + F1`tCreate a new normal Firefox window.`nCtrl + F2`tCreate a new normal Firefox window.`nCtrl + F3`tCreate a new normal Chrome window.`nCtrl + F4`tCreate a new normal Chrome window.`nCtrl + F5`tRun File Explorer and switch between wins.`nCtrl + F6`tAdds active window to the F6 group`nCtrl + F7`tAdds active window to the F7 group`nCtrl + Shift + F5`tCreates a new File Explorer window (Shift + MR button).`nCtrl + Shift + F6`tRemoves nonexistent wins from the F6 array.`nCtrl + Shift + F7`tRemoves nonexistent wins from the F7 array.`nF1`t`tRuns Firefox; switches to a FF win and between tabs.`nF12`t`tActivates MS Word windows, one at a time.`nF2`t`tRuns Firefox; switches between windows.`nF3`t`tRuns Chrome; switches to a Chr win and between tabs.`nF4`t`tRuns Chrome; switches between windows.`nF6`t`tNext window in the F6 group.`nF7`t`tNext window in the F7 group.`nF9`t`tThe Back button.`nShift + F1`tSame thing as F1, but reverse order.`nShift + F3`tSame thing as F3, but reverse order.`nShift + F6`tPrevious window in the F6 group.`nShift + F7`tPrevious window in the F7 group.
 
 ;*******************************EDIT CLIPBOARD CONTENT INITIALIZATION******************************
-;The ECC in the GUI commands helps differentiate these GUI things from any others.
-GUI, ECC:Font, s11
-GUI, ECC:Add, Text, x5 y5,Current Clipboard Contents. Type what you want to change it to.
-GUI, ECC:Add, Edit, HScroll wrap x4 y30 w440 h185 vclipboardBoxText gclipboardTextBoxLabel,%Clipboard%
-
 GUI, ECC:Font, s12
-GUI, ECC:Add, Button, gclipboardFinishButton w80 x3 y220,&Finish
+GUI, ECC:Add, Button, gclipboardFinishButton x4 y2 w80,&Finish
+
+GUI, ECC:Font, s11
+GUI, ECC:Add, Edit, HScroll wrap x4 y36 w640 h355 vclipboardBoxText gclipboardTextBoxLabel,%Clipboard%
 
 GUI, ECC:+AlwaysOnTop
 GUI, ECC:+Resize
@@ -130,6 +128,31 @@ GUI, CPanel:Add, Text, x5 y115,Chromebook Typing Monitor Choice
 GUI, CPanel:Font, s11
 GUI, CPanel:Add, DropDownList, x5 y140 w136 vChrBookTypeMonChoice, 1 (Primary Mon)||2 (Secondary Mon)|
 
+;Default screen X and Y of battery icons; user can change them later in #o.
+if (A_ComputerName = "Ellott-Laptop") {
+	global laptopBatteryIconX := 1432
+	global laptopBatteryIconY := 885
+} else if (A_ComputerName = "Elliott-DSU-Lap") {
+	global laptopBatteryIconX := 1664
+	global laptopBatteryIconY := 1049 ;This is WITHOUT the Ink Workspace button shown. If it's shown, it's 1618 and 1049.
+} else if (A_ComputerName = "Elliott-Gaming-Computer") {
+	;Do nothing.
+} else {
+	MsgBox, 16, Error. Computer/laptop name not part of the script., Error. Computer/laptop name not part of the script. A_ComputerName is: %A_ComputerName%`n`nIf you're on a desktop computer this can be totally ignored.
+}
+
+;X choice for the #b hotkey.
+GUI, CPanel:Font, s13
+GUI, CPanel:Add, Text, x5 y170,#B Screen X
+GUI, CPanel:Font, s11
+GUI, CPanel:Add, Edit, x5 y195 w100 vlaptopBatteryIconX, %laptopBatteryIconX%
+
+;X choice for the #b hotkey.
+GUI, CPanel:Font, s13
+GUI, CPanel:Add, Text, x120 y170,#B Screen Y
+GUI, CPanel:Font, s11
+GUI, CPanel:Add, Edit, x120 y195 w100 vlaptopBatteryIconY, %laptopBatteryIconY%
+
 ;Toggle for showing or hiding the GUI.
 ;If it's 1, show the GUI; if it's 0, hide it.
 ;Starts out as 0, so it only appers when the user wants it.
@@ -160,11 +183,6 @@ global F6andF7WinIDArray := []
 ;Tracks the current window for the previous array.
 global CurrentWinF6AndF7ActBoth := 1
 
-;Holds the F6 and F7 Window IDs for ActivateBothF6AndF7Windows() in ApplicationSwitcher.ahk.
-; global F6andF7WinIDArray := []
-; ;Tracks the current window for the previous array.
-; global CurrentWinF6AndF7ActBoth := 1
-
 ;Used for the step values for NumPad2 and NumPad8 in NumPad Media Control.
 global Num2And8Step := 3
 
@@ -172,16 +190,16 @@ global Num2And8Step := 3
 global autoNumPadModeToggle := true
 
 ;Toggle for Programming Mode: disabling certain hotkeys/hotstrings to make programming easier. ^!Insert is the hotkey.
-programmingMode := false
+global programmingMode := false
 
 ;Toggle for Game Mode. This disables any hotkeys/hotstrings that I find annoying whilst gaming. This is toggled in Run.ahk.
-gameModeActive := false
+global gameModeActive := false
 
 ;Prevents losing windows when reloading the script with F8/F10 windows hidden.
 global F8WindowsHidden := false
 global F10WindowsHidden := false
 
-HomeworkAndMusicModeActive := false
+global HomeworkAndMusicModeActive := false
 
 ;*************Screen Clipper.ahk Initialization Stuff************
 ;************************************************
@@ -203,6 +221,12 @@ Index := 0 ;Used as the name of the current gui cap window.
 ;The stuff in this loop needs to be running constantly.
 Loop {
 
+	global activeWindowTitle
+	WinGetActiveTitle, activeWindowTitle
+
+	global activeWindowID
+	WinGet, activeWindowID, ID, A
+
 	;Constantly checking to see what profile the script should put the user in.
 	global currentProfile := autoSelectProfiles()
 
@@ -210,18 +234,15 @@ Loop {
 	global numLockToggled := GetKeyState("NumLock", "T")
 	global scrollLockToggled := GetKeyState("ScrollLock", "T")
 
-	;Get the active window title; used only in this Loop for the numPadMode stuff.
-	WinGetActiveTitle, mainLoopActWinTitle
-
 	;If the auto-numpad toggle is true, sets the numPadMode automatically.
 	;Else, leave it to the user to do it manually.
 	if (autoNumPadModeToggle = true) {
 
-		if InStr(mainLoopActWinTitle, "- YouTube") {
+		if InStr(activeWindowTitle, "- YouTube") {
 			SetNumLockState, On
 			SetScrollLockState, On
 			global numPadMode = "YouTube"
-		} else if InStr(mainLoopActWinTitle, "- MediaSpace") {
+		} else if InStr(activeWindowTitle, "- MediaSpace") {
 			SetNumLockState, Off
 			SetScrollLockState, On
 			global numPadMode = "Dumbed-Down"
@@ -278,8 +299,9 @@ Loop {
 #Include, %A_ScriptDir%\Video Game Stuff\Any Game.ahk
 #Include, %A_ScriptDir%\Video Game Stuff\Terraria.ahk
 #Include, %A_ScriptDir%\Video Game Stuff\Factorio.ahk
-#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\Tippy.ahk
 #Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\BooleanToggle.ahk
+#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\inArray.ahk
+#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\Tippy.ahk
 
 ;#Include the script for my Secondary Macro Keyboard.
 #Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\Secondary Macro Keyboard\Hasu USB to USB Script.ahk
@@ -346,7 +368,7 @@ return
 MouseMove, mousePosX, mousePosY, 0
 return
 
-; Disables it. Use Ctrl + CapsLock to enable/disable it. This prevents accidentally pressing it.
+;Disables it. Use Ctrl + CapsLock to enable/disable it. This prevents accidentally pressing it.
 CapsLock::return
 
 ^CapsLock::
@@ -361,7 +383,7 @@ return
 WinSet, AlwaysOnTop, Toggle, A
 return
 
-;Reloads the script. Useful for "recompiling" the script.
+;Reloads the script.
 ^#r::
 if (F8WindowsHidden = false AND F10WindowsHidden = false)
 	Reload
@@ -373,23 +395,8 @@ else if (F8WindowsHidden = true AND F10WindowsHidden = true)
 	MsgBox, 262160, Can't Reload Main!, You can't reload Main because there are F8 AND F10 windows hidden. Unhide them and then reload the script.
 return
 
-;Sends the current date and time in this format: 10/31/2019 07:43 PM.
-:*:datetime::
-FormatTime, CurrentDateTime,, M/d/yyyy h:mm tt
-SendInput, %CurrentDateTime%
-return
-
-;Same thing, but just the date.
-:*:currdate::
-FormatTime, CurrentDateTime,, M/d/yyyy
-SendInput, %CurrentDateTime%
-return
-
-;Same thing, but just the time.
-:*:currtime::
-FormatTime, CurrentDateTime,, h:mm tt
-SendInput, %CurrentDateTime%
-return
+;Force Reload the script, even if there are F8/F10 windows hidden (or if the script says there is, but there actually isn't).
+!#r::Reload
 
 ;When Cortana/Search is open, RWin does LWin twice.
 ; #IfWinActive Cortana
@@ -510,8 +517,7 @@ return
 #If A_ComputerName = "Elliott-DSU-Lap"
 ;Open battery menu.
 #b::
-; MouseMove, 1432, 885, 0 ;Lenovo Laptop.
-MouseMove, 1618, 1049, 0 ;DSU Laptop
+MouseMove, %laptopBatteryIconX%, %laptopBatteryIconY%, 0
 Sleep 300
 Send, {Click}
 return
@@ -610,23 +616,23 @@ RShift::Send, {Media_Play_Pause}
 ;Ctrl + Alt + x: go to saved position. X is 1–4.
 
 ;************SAVE POSITIONS************
-^+1::MouseGetPos, mousePosX1, mousePosY1
+; ^+1::MouseGetPos, mousePosX1, mousePosY1
 
-^+2::MouseGetPos, mousePosX2, mousePosY2
+; ^+2::MouseGetPos, mousePosX2, mousePosY2
 
-^+3::MouseGetPos, mousePosX3, mousePosY3
+; ^+3::MouseGetPos, mousePosX3, mousePosY3
 
-^+4::MouseGetPos, mousePosX4, mousePosY4
+; ^+4::MouseGetPos, mousePosX4, mousePosY4
 
 
-;************GO TO POSITION************
-^!1::MouseMove, mousePosX1, mousePosY1, 0
+; ;************GO TO POSITION************
+; ^!1::MouseMove, mousePosX1, mousePosY1, 0
 
-^!2::MouseMove, mousePosX2, mousePosY2, 0
+; ^!2::MouseMove, mousePosX2, mousePosY2, 0
 
-^!3::MouseMove, mousePosX3, mousePosY3, 0
+; ^!3::MouseMove, mousePosX3, mousePosY3, 0
 
-^!4::MouseMove, mousePosX4, mousePosY4, 0
+; ^!4::MouseMove, mousePosX4, mousePosY4, 0
 
 ; ;For Zoom stuff
 ; #IfWinActive, ahk_exe Zoom.exe
@@ -830,7 +836,7 @@ GuiControl, ECC:,clipboardBoxText, %Clipboard%
 showClipboardGUIToggle := !showClipboardGUIToggle
 
 if (showClipboardGUIToggle = 1)
-	GUI, ECC:Show, w450 h255,Clipboard Edit
+	GUI, ECC:Show, w650 h400,Clipboard Edit
 else
 	GUI, ECC:Hide
 return
@@ -862,7 +868,7 @@ return
 showControlPanelGUI := !showControlPanelGUI
 
 if (showControlPanelGUI = 1)
-	GUI, CPanel:Show, w285 h170,Main Script Control Panel
+	GUI, CPanel:Show, w285 h225,Main Script Control Panel
 else
 	GUI, CPanel:Hide
 return

@@ -2,14 +2,14 @@
 
 ;****************************************MOUSE ACTIONS***************************************
 #If currentProfile = "Default"
-;Mouse Profile Switch.
-;Left double click.
+;Mouse Profile Switch button
 ^!F23::
-Send, {Click 2}
+NextWindowF6()
 return
 
-;Mouse DPI Toggle.
+;Mouse DPI Toggle
 ^+F23::
+NextWindowF7()
 return
 
 ;Mouse G1

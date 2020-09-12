@@ -4,7 +4,7 @@
 ;****************************************MOUSE ACTIONS***************************************
 
 #If currentProfile = "RuneScape"
-;Mouse Profile Switch
+;Mouse Profile Switch button
 ^!F23::
 return
 

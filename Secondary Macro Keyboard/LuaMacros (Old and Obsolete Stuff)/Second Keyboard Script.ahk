@@ -153,8 +153,8 @@ Switch (pressedKey) {
 
     ;Sends the current time.
     Case "b":
-    FormatTime, CurrentDateTime,, h:mm tt
-    SendInput, %CurrentDateTime%
+    FormatTime, formattedDateTime,, h:mm tt
+    SendInput, %formattedDateTime%
     return
 
     ;Sends Alt + F4.
@@ -162,8 +162,8 @@ Switch (pressedKey) {
 
     ;Sends the current date and time.
     Case "c":
-    FormatTime, CurrentDateTime,, M/d/yyyy h:mm tt
-    SendInput, %CurrentDateTime%
+    FormatTime, formattedDateTime,, M/d/yyyy h:mm tt
+    SendInput, %formattedDateTime%
     return
 
     ;(Shift + Win + Left) Move active window to 2nd monitor.
@@ -363,8 +363,8 @@ Switch (pressedKey) {
 
     ;Sends the current date.
     Case "v":
-    FormatTime, CurrentDateTime,, M/d/yyyy
-    SendInput, %CurrentDateTime%
+    FormatTime, formattedDateTime,, M/d/yyyy
+    SendInput, %formattedDateTime%
     return
 
     Case "w":MsgBox, %pressedKey% is unassigned.

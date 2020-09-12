@@ -179,8 +179,8 @@ a::Send, ^a
 
 ;Sends the current time.
 b::
-FormatTime, CurrentDateTime,, h:mm tt
-SendInput, %CurrentDateTime%
+FormatTime, formattedDateTime,, h:mm tt
+SendInput, %formattedDateTime%
 return
 
 ;Sends Alt + F4.
@@ -188,8 +188,8 @@ backspace::Send, !{F4}
 
 ;Sends the current date and time.
 c::
-FormatTime, CurrentDateTime,, M/d/yyyy h:mm tt
-SendInput, %CurrentDateTime%
+FormatTime, formattedDateTime,, M/d/yyyy h:mm tt
+SendInput, %formattedDateTime%
 return
 
 ;(Shift + Win + Left) Comma moves active window to 2nd monitor.
@@ -376,8 +376,8 @@ return
 
 ;Sends the current date.
 v::
-FormatTime, CurrentDateTime,, M/d/yyyy
-SendInput, %CurrentDateTime%
+FormatTime, formattedDateTime,, M/d/yyyy
+SendInput, %formattedDateTime%
 return
 
 ;Redo.

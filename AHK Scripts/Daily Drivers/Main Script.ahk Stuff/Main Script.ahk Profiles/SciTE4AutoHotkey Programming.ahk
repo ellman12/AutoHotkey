@@ -3,7 +3,7 @@
 ;****************************************MOUSE ACTIONS***************************************
 
 #If currentProfile = "SciTE4AutoHotkey"
-;Mouse Profile Switch
+;Mouse Profile Switch button
 ;Left double click
 ^!F23::
 Send, {Click 2}
