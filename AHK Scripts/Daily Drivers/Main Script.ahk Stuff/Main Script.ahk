@@ -14,24 +14,24 @@ SendMode Input
 DetectHiddenWindows, Off
 #SingleInstance force
 
-; This script is the main file that links all of my other scripts together, plus some other things.
-; On my K95 keyboard and my Scimitar mouse, I have 18 and 12 G keys, respectively.
-; In the garbage iCUE software, I have assigned each of them some keeb shortcuts to send.
-; They all involve F13-F24, since 99.9% of keyboards don't have those physical keys, but Windows can still accept them as inputs.
-; Keeb G keys 1-12 send ^F13-F24; 13-18 send !F13-F18; and Scimitar G1-12 sends F13-F18 (no modifiers, since there's no need).
-; This surprisingly works perfectly.
-; I tried doing some stuff with iCUE sending weird language key things, and AHK trying to detect those scan codes, but I couldn't get
+;This script is the main file that links all of my other scripts together, plus some other things.
+;On my K95 keyboard and my Scimitar mouse, I have 18 and 12 G keys, respectively.
+;In the garbage iCUE software, I have assigned each of them some keeb shortcuts to send.
+;They all involve F13-F24, since 99.9% of keyboards don't have those physical keys, but Windows can still accept them as inputs.
+;Keeb G keys 1-12 send ^F13-F24; 13-18 send !F13-F18; and Scimitar G1-12 sends F13-F18 (no modifiers, since there's no need).
+;This surprisingly works perfectly.
+;I tried doing some stuff with iCUE sending weird language key things, and AHK trying to detect those scan codes, but I couldn't get
 ;it working. *Shrug*
-; This file is mainly for generic keeb shortcuts and things that are used everywhere, and to house the iCUE keeb shortcuts (look at the
+;This file is mainly for generic keeb shortcuts and things that are used everywhere, and to house the iCUE keeb shortcuts (look at the
 ;bottom of the file). Changed on 10/27/2019. Now, all the respective files house their respective actions and stuff. It makes way more sense
 ;to do it this way.
-; Some of the others like Browser, Docs, Sheets, are used to house the actions that pertain to that current profile (which I define as
+;Some of the others like Browser, Docs, Sheets, are used to house the actions that pertain to that current profile (which I define as
 ;the set of actions that are done by the G keys depending on the current active window/program).
-; Hopefully this explains it well enough.
-; 7/2/2020: Misc Laptop Stuff was merged with this script. It was a script designed for use with my laptop.
-; It started as a small little script with some basic key remappings and hotkeys, but it started to grow more and more complex over time.
-; Eventually, Main and Misc became so similar to each other to the point where it was becoming a lot harder to copy changes from Main over to Misc.
-; Thus the merging of the both of them. The very few Laptop-exclusive hotkeys are in an #if directive down below. They will only run on my laptop, as
+;Hopefully this explains it well enough.
+;7/2/2020: Misc Laptop Stuff was merged with this script. It was a script designed for use with my laptop.
+;It started as a small little script with some basic key remappings and hotkeys, but it started to grow more and more complex over time.
+;Eventually, Main and Misc became so similar to each other to the point where it was becoming a lot harder to copy changes from Main over to Misc.
+;Thus the merging of the both of them. The very few Laptop-exclusive hotkeys are in an #if directive down below. They will only run on my laptop, as
 ;its name is different from my PC's name.
 
 ;Pic of all these icons: https://diymediahome.org/wp-content/uploads/shell32_icons.jpg
@@ -90,13 +90,11 @@ GUI, ApplSwitchGUI:Font, norm s12
 GUI, ApplSwitchGUI:Add, Text, x5 y40,Alt + a`t`tToggles between showing and hiding this help GUI.`nAlt + F6`t`tActivate windows in both the F6 and F7 array.`nAlt + F1/F2`tCreate a new Private Firefox window.`nAlt + F3`t`tCreate a new incognito Chrome window.`nAlt + F6`t`tRemoves active window from the F6 group`nCtrl + Alt + F7`tRemoves active window from the F7 group`nCtrl + F1`tCreate a new normal Firefox window.`nCtrl + F2`tCreate a new normal Firefox window.`nCtrl + F3`tCreate a new normal Chrome window.`nCtrl + F4`tCreate a new normal Chrome window.`nCtrl + F5`tRun File Explorer and switch between wins.`nCtrl + F6`tAdds active window to the F6 group`nCtrl + F7`tAdds active window to the F7 group`nCtrl + Shift + F5`tCreates a new File Explorer window (Shift + MR button).`nCtrl + Shift + F6`tRemoves nonexistent wins from the F6 array.`nCtrl + Shift + F7`tRemoves nonexistent wins from the F7 array.`nF1`t`tRuns Firefox; switches to a FF win and between tabs.`nF12`t`tActivates MS Word windows, one at a time.`nF2`t`tRuns Firefox; switches between windows.`nF3`t`tRuns Chrome; switches to a Chr win and between tabs.`nF4`t`tRuns Chrome; switches between windows.`nF6`t`tNext window in the F6 group.`nF7`t`tNext window in the F7 group.`nF9`t`tThe Back button.`nShift + F1`tSame thing as F1, but reverse order.`nShift + F3`tSame thing as F3, but reverse order.`nShift + F6`tPrevious window in the F6 group.`nShift + F7`tPrevious window in the F7 group.
 
 ;*******************************EDIT CLIPBOARD CONTENT INITIALIZATION******************************
-;The ECC in the GUI commands helps differentiate these GUI things from any others.
-GUI, ECC:Font, s11
-GUI, ECC:Add, Text, x5 y5,Current Clipboard Contents. Type what you want to change it to.
-GUI, ECC:Add, Edit, HScroll wrap x4 y30 w440 h185 vclipboardBoxText gclipboardTextBoxLabel,%Clipboard%
-
 GUI, ECC:Font, s12
-GUI, ECC:Add, Button, gclipboardFinishButton w80 x3 y220,&Finish
+GUI, ECC:Add, Button, gclipboardFinishButton x4 y2 w80,&Finish
+
+GUI, ECC:Font, s11
+GUI, ECC:Add, Edit, HScroll wrap x4 y36 w640 h355 vclipboardBoxText gclipboardTextBoxLabel,%Clipboard%
 
 GUI, ECC:+AlwaysOnTop
 GUI, ECC:+Resize
@@ -820,7 +818,7 @@ GuiControl, ECC:,clipboardBoxText, %Clipboard%
 showClipboardGUIToggle := !showClipboardGUIToggle
 
 if (showClipboardGUIToggle = 1)
-	GUI, ECC:Show, w450 h255,Clipboard Edit
+	GUI, ECC:Show, w650 h400,Clipboard Edit
 else
 	GUI, ECC:Hide
 return
