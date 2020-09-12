@@ -349,7 +349,7 @@ return
 MouseMove, mousePosX, mousePosY, 0
 return
 
-; Disables it. Use Ctrl + CapsLock to enable/disable it. This prevents accidentally pressing it.
+;Disables it. Use Ctrl + CapsLock to enable/disable it. This prevents accidentally pressing it.
 CapsLock::return
 
 ^CapsLock::

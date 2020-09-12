@@ -7,14 +7,15 @@
 
 ;****************************************MOUSE ACTIONS***************************************
 #If currentProfile = "Firefox" or currentProfile = "Chrome"
-;Mouse Profile Switch
+;Mouse Profile Switch button
 ;Left double click
 ^!F23::
-Send, {Click 2}
+NextWindowF6()
 return
 
 ;Mouse DPI Toggle
 ^+F23::
+NextWindowF7()
 return
 
 ;Mouse G1
