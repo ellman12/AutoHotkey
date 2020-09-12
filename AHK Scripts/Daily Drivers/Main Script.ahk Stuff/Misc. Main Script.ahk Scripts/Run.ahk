@@ -17,16 +17,73 @@ Switch (runInputBoxText) {
 
 ;***********************************************INSERT***********************************************
 ;Sends either an em or en dash.
-Case "en": Send, {U+2013}
-Case "em": Send, {U+2014}
+Case "en": Send, {U+2013} ;–
+Case "em": Send, {U+2014} ;—
 
-Case "Sec", "Section": Send, {U+00A7}
-Case "inf": Send, {U+221E}
+Case "sec", "section": Send, {U+00A7} ;§
+Case "inf": Send, {U+221E} ;∞
 
-Case "up": Send, {U+2191}
-Case "right": Send, {U+2192}
-Case "down": Send, {U+2193}
-Case "left": Send, {U+2190}
+Case "u", "up": Send, {U+2191} ;↑
+Case "r", "right": Send, {U+2192} ;→
+Case "d", "down": Send, {U+2193} ;↓
+Case "l", "left": Send, {U+2190} ;←
+
+;Date stuff for today.
+Case "dt":
+FormatTime, formattedDateTime,, M/d/yyyy h:mm tt ;9/11/2020 6:35 PM
+SendInput, %formattedDateTime%
+return
+
+Case "ti":
+FormatTime, formattedDateTime,, h:mm tt ;6:35 PM
+SendInput, %formattedDateTime%
+return
+
+Case "da":
+FormatTime, formattedDateTime,, M/d/yyyy ;9/11/2020
+SendInput, %formattedDateTime%
+return
+
+Case "da sh":
+FormatTime, formattedDateTime,, ddd, MMM d ;Fri, Sep 11
+SendInput, %formattedDateTime%
+return
+
+Case "da lo":
+FormatTime, formattedDateTime,, dddd, MMMM d ;Friday, September 11
+SendInput, %formattedDateTime%
+return
+
+Case "da longest":
+FormatTime, formattedDateTime,, dddd, MMMM d, yyyy ;Friday, September 11, 2020
+SendInput, %formattedDateTime%
+return
+
+;Date stuff for tomorrow.
+;https://www.autohotkey.com/boards/viewtopic.php?t=10497
+Case "da t": ;9/12/20
+getTmrDate()
+FormatTime, formattedDateTime, %formattedDateTime%, M/d/yy ;9/12/20
+SendInput, %formattedDateTime%
+return
+
+Case "da sh t":
+getTmrDate()
+FormatTime, formattedDateTime, %formattedDateTime%, ddd, MMM d ;Sat, Sep 12
+SendInput, %formattedDateTime%
+return
+
+Case "da lo t":
+getTmrDate()
+FormatTime, formattedDateTime, %formattedDateTime%, dddd, MMMM d ;Saturday, September 12
+SendInput, %formattedDateTime%
+return
+
+Case "da longest t":
+getTmrDate()
+FormatTime, formattedDateTime, %formattedDateTime%, dddd, MMMM d, yyyy ;Friday, September, 11, 2020
+SendInput, %formattedDateTime%
+return
 
 ;***********************************************OPEN***********************************************
 ;Opens the Google spreadsheet for this script, which contains all of the commands in a table.
@@ -158,3 +215,10 @@ return
 
 }
 return
+
+;Function used for sending tomorrow's date in different formats.
+getTmrDate() {
+    global
+    formattedDateTime = %a_now%
+    formattedDateTime += +1, days
+}

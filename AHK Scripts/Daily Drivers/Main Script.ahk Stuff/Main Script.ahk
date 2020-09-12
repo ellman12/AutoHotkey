@@ -379,24 +379,6 @@ return
 ;Force Reload the script, even if there are F8/F10 windows hidden (or if the script says there is, but there actually isn't).
 !#r::Reload
 
-;Sends the current date and time in this format: 10/31/2019 07:43 PM.
-:*:datetime::
-FormatTime, CurrentDateTime,, M/d/yyyy h:mm tt
-SendInput, %CurrentDateTime%
-return
-
-;Same thing, but just the date.
-:*:currdate::
-FormatTime, CurrentDateTime,, M/d/yyyy
-SendInput, %CurrentDateTime%
-return
-
-;Same thing, but just the time.
-:*:currtime::
-FormatTime, CurrentDateTime,, h:mm tt
-SendInput, %CurrentDateTime%
-return
-
 ;When Cortana/Search is open, RWin does LWin twice.
 ; #IfWinActive Cortana
 #IfWinActive Search

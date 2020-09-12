@@ -2,11 +2,11 @@
 
 ;Adds default C stuff like stdio.h, etc. Also a header comment thing; original idea for the header comment thing from FRC programming mentor Larry Basegio. Only use if in a totally blank, brand new file with the .c extension.
 :*:cnewfile::
-FormatTime, CurrentDateTime,, M/d/yyyy
+FormatTime, formattedDateTime,, M/d/yyyy
 
 SendRaw, ///////////////////////////////////////////////////////////////////////`n//File:`n///////////////////////////////////////////////////////////////////////`n//Purpose:
 SendRaw, `n///////////////////////////////////////////////////////////////////////`n//Programmer: Elliott DuCharme`n///////////////////////////////////////////////////////////////////////
-Send, `n//Comments: Created on {A_Space}%CurrentDateTime%.`n
+Send, `n//Comments: Created on {A_Space}%formattedDateTime%.`n
 SendRaw, ///////////////////////////////////////////////////////////////////////`n#include <stdio.h>`n`nint main()`n{`n`n    return 0`;`n}
 Sleep 1000
 Send, {Left}+{Tab}
