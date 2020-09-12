@@ -128,6 +128,31 @@ GUI, CPanel:Add, Text, x5 y115,Chromebook Typing Monitor Choice
 GUI, CPanel:Font, s11
 GUI, CPanel:Add, DropDownList, x5 y140 w136 vChrBookTypeMonChoice, 1 (Primary Mon)||2 (Secondary Mon)|
 
+;Default screen X and Y of battery icons; user can change them later in #o.
+if (A_ComputerName = "Ellott-Laptop") {
+	global laptopBatteryIconX := 1432
+	global laptopBatteryIconY := 885
+} else if (A_ComputerName = "Elliott-DSU-Lap") {
+	global laptopBatteryIconX := 1664
+	global laptopBatteryIconY := 1049 ;This is WITHOUT the Ink Workspace button shown. If it's shown, it's 1618 and 1049.
+} else if (A_ComputerName = "Elliott-Gaming-Computer") {
+	;Do nothing.
+} else {
+	MsgBox, 16, Error. Computer/laptop name not part of the script., Error. Computer/laptop name not part of the script. A_ComputerName is: %A_ComputerName%`n`nIf you're on a desktop computer this can be totally ignored.
+}
+
+;X choice for the #b hotkey.
+GUI, CPanel:Font, s13
+GUI, CPanel:Add, Text, x5 y170,#B Screen X
+GUI, CPanel:Font, s11
+GUI, CPanel:Add, Edit, x5 y195 w100 vlaptopBatteryIconX, %laptopBatteryIconX%
+
+;X choice for the #b hotkey.
+GUI, CPanel:Font, s13
+GUI, CPanel:Add, Text, x120 y170,#B Screen Y
+GUI, CPanel:Font, s11
+GUI, CPanel:Add, Edit, x120 y195 w100 vlaptopBatteryIconY, %laptopBatteryIconY%
+
 ;Toggle for showing or hiding the GUI.
 ;If it's 1, show the GUI; if it's 0, hide it.
 ;Starts out as 0, so it only appers when the user wants it.
@@ -157,11 +182,6 @@ global CurrentWinF7 := 1
 global F6andF7WinIDArray := []
 ;Tracks the current window for the previous array.
 global CurrentWinF6AndF7ActBoth := 1
-
-;Holds the F6 and F7 Window IDs for ActivateBothF6AndF7Windows() in ApplicationSwitcher.ahk.
-; global F6andF7WinIDArray := []
-; ;Tracks the current window for the previous array.
-; global CurrentWinF6AndF7ActBoth := 1
 
 ;Used for the step values for NumPad2 and NumPad8 in NumPad Media Control.
 global Num2And8Step := 3
@@ -497,9 +517,7 @@ return
 #If A_ComputerName = "Elliott-DSU-Lap"
 ;Open battery menu.
 #b::
-; MouseMove, 1432, 885, 0 ;Lenovo Laptop.
-; MouseMove, 1618, 1049, 0 ;DSU Laptop with inkspace button shown.
-MouseMove, 1664, 1049, 0 ;DSU Laptop without inkspace button shown.
+MouseMove, %laptopBatteryIconX%, %laptopBatteryIconY%, 0
 Sleep 300
 Send, {Click}
 return
@@ -850,7 +868,7 @@ return
 showControlPanelGUI := !showControlPanelGUI
 
 if (showControlPanelGUI = 1)
-	GUI, CPanel:Show, w285 h170,Main Script Control Panel
+	GUI, CPanel:Show, w285 h225,Main Script Control Panel
 else
 	GUI, CPanel:Hide
 return
