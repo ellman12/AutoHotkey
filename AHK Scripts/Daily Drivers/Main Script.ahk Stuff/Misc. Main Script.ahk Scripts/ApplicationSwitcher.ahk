@@ -272,6 +272,11 @@ RemoveWindowF6() {
 ;Activates the next window.
 NextWindowF6() {
 
+    if (activeWindowID != WindowGroupF6[CurrentWinF6] AND !inArray(activeWindowID, WindowGroupF6)) {
+        WinActivate, % "ahk_id" WindowGroupF6[CurrentWinF6]
+        return
+    }
+
     ;See this link for picture explanation: https://imgur.com/1Mc5B24
     if (activeWindowID = WindowGroupF6[CurrentWinF6 + 1]) {
         CurrentWinF6 += 2 ;Skip the window that is already active.
@@ -286,12 +291,16 @@ NextWindowF6() {
 
     ;Now activate the window based on CurrentWin.
     WinActivate, % "ahk_id" WindowGroupF6[CurrentWinF6]
-
     return
 }
 
 ;Activate previous window.
 PrevWindowF6() {
+
+    if (activeWindowID != WindowGroupF6[CurrentWinF6] AND !inArray(activeWindowID, WindowGroupF6)) {
+        WinActivate, % "ahk_id" WindowGroupF6[CurrentWinF6]
+        return
+    }
 
     ;See this link for picture explanation, it's just backwards: https://imgur.com/1Mc5B24
     if (activeWindowID = WindowGroupF6[CurrentWinF6 - 1]) {
@@ -427,6 +436,11 @@ RemoveWindowF7() {
 
 ;Activates the next window.
 NextWindowF7() {
+
+    if (activeWindowID != WindowGroupF7[CurrentWinF7] AND !inArray(activeWindowID, WindowGroupF7)) {
+        WinActivate, % "ahk_id" WindowGroupF7[CurrentWinF7]
+        return
+    }
 
     ;See this link for picture explanation: https://imgur.com/1Mc5B24
     if (activeWindowID = WindowGroupF7[CurrentWinF7 + 1]) {

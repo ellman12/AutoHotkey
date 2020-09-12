@@ -281,8 +281,9 @@ Loop {
 #Include, %A_ScriptDir%\Video Game Stuff\Any Game.ahk
 #Include, %A_ScriptDir%\Video Game Stuff\Terraria.ahk
 #Include, %A_ScriptDir%\Video Game Stuff\Factorio.ahk
-#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\Tippy.ahk
 #Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\BooleanToggle.ahk
+#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\inArray.ahk
+#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\Tippy.ahk
 
 ;#Include the script for my Secondary Macro Keyboard.
 #Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\Secondary Macro Keyboard\Hasu USB to USB Script.ahk
