@@ -150,7 +150,7 @@ Switch (runInputBoxText) {
     Case "l", "left": Send, {U+2190} ;←
 
     ;***********************************************MISC***********************************************
-    ;Get free space in GB of all the drives.
+    ;Get free space in GB(ish) of all the drives.
     Case "st":
         DriveGet, OutputVar, List, Fixed ; get drive letters
         Loop, Parse, OutputVar ; extract single drive letters
