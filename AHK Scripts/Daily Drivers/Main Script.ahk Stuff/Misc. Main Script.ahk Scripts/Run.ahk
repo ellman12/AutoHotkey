@@ -127,6 +127,7 @@ Switch (runInputBoxText) {
     Case "deg": Send, {U+00B0} ;°
     Case "micro": Send, {U+00B5} ;µ
     Case "inf": Send, {U+221E} ;∞
+    Case "...": Send, {U+2026} ;…
     
     ;Sends either an em or en dash.
     Case "en": Send, {U+2013} ;–
@@ -234,6 +235,38 @@ Switch (runInputBoxText) {
             Tippy("Game Mode activated!", 1200)
         else
             Tippy("Game Mode disabled!", 1200)
+    return
+
+    ;Sleep PC.
+    Case "z":
+    Send, #x
+    Sleep, 250
+    Send, {Up 2}
+    Send, {Right}s
+    return
+
+    ;Hibernate PC.
+    Case "zz":
+    Send, #x
+    Sleep, 250
+    Send, {Up 2}
+    Send, {Right}h
+    return
+
+    ;Shut down PC.
+    Case "sd":
+    Send, #x
+    Sleep, 250
+    Send, {Up 2}
+    Send, {Right}u
+    return
+    
+    ;Restart PC.
+    Case "rs":
+    Send, #x
+    Sleep, 250
+    Send, {Up 2}
+    Send, {Right}r
     return
 
     ;If the user presses Escape or Cancel.
