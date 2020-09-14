@@ -112,7 +112,7 @@ Switch (runInputBoxText) {
     ;Lots of misc. math symbols.
     Case "+-": Send, {U+00B1} ;±
     Case "-+": Send, {U+2213} ;∓
-    Case "x": Send, {U+00D7} ;×
+    Case "mult": Send, {U+00D7} ;×
     Case "div": Send, {U+00F7} ;÷
     Case "sqrt": Send, {U+221A} ;√
     Case "int": Send, {U+222B} ;∫
@@ -135,6 +135,8 @@ Switch (runInputBoxText) {
 
     ;Misc.
     Case "sec": Send, {U+00A7} ;§
+    Case "check": Send, {U+2713} ;✓
+    Case "x": Send, {U+2717} ;✗
 
     ;Emails.
     Case "2mail": Send, bobb71013@gmail.com
