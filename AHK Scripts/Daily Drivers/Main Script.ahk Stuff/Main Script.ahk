@@ -163,6 +163,15 @@ global InsMonChoice := "1 (Primary Mon)"
 global CtrlInsMonChoice := "2 (Secondary Mon)"
 global ChrBookTypeMonChoice := "1 (Primary Mon)"
 
+;*******************************RUN.ahk GUI INITIALIZATION******************************
+;This is a GUI for the Main Script that allows the user to change how parts of the script work.
+GUI, Run:Color, Silver
+GUI, Run:Font, s11
+GUI, Run:Add, Text, x2 y0, Recommended Cmd`tWhat It Does
+
+;Magic numbers that can easily be changed here and won't have to be changed anywhere else.
+RunGUITextX := 3
+RunGUITextY := 17
 ;****************************************MISC VARIABLES, INITIALIZATION, ETC*********************************
 ;Variables for F6 group stuff.
 ;Tracks all windows you want as part of your custom group.
