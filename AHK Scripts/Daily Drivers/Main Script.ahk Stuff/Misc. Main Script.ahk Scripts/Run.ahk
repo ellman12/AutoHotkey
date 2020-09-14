@@ -167,7 +167,6 @@ Switch (runInputBoxText) {
 
     Case "exitapp": ExitApp
 
-
     Case "GM":
         gameModeActive := !gameModeActive
 
