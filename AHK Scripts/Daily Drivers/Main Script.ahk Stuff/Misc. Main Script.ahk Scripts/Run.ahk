@@ -41,6 +41,12 @@ Switch (runInputBoxText) {
 
     Case "da lo y":
     getYesterdayDate()
+    FormatTime, formattedDateTime, %formattedDateTime%, ddd, MMM d, yyyy ;Sat, Sep 12, 2020
+    SendInput, %formattedDateTime%
+    return
+
+    Case "da longer y":
+    getYesterdayDate()
     FormatTime, formattedDateTime, %formattedDateTime%, dddd, MMMM d ;Saturday, September 12
     SendInput, %formattedDateTime%
     return
@@ -73,6 +79,11 @@ Switch (runInputBoxText) {
     return
 
     Case "da lo":
+    FormatTime, formattedDateTime,, ddd, MMM d, yyyy ;Sun, Sep 13, 2020
+    SendInput, %formattedDateTime%
+    return
+
+    Case "da longer":
     FormatTime, formattedDateTime,, dddd, MMMM d ;Sunday, September 13
     SendInput, %formattedDateTime%
     return
@@ -97,6 +108,12 @@ Switch (runInputBoxText) {
     return
 
     Case "da lo t":
+    getTmrDate()
+    FormatTime, formattedDateTime, %formattedDateTime%, ddd, MMM d, yyyy ;Mon, Sep 14, 2020
+    SendInput, %formattedDateTime%
+    return
+
+    Case "da longer t":
     getTmrDate()
     FormatTime, formattedDateTime, %formattedDateTime%, dddd, MMMM d ;Monday, September 14
     SendInput, %formattedDateTime%
