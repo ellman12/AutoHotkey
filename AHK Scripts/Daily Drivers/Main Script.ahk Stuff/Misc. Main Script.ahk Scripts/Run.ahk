@@ -133,14 +133,90 @@ Switch (runInputBoxText) {
     Case "en": Send, {U+2013} ;–
     Case "em": Send, {U+2014} ;—
 
+    ;Misc.
     Case "sec": Send, {U+00A7} ;§
 
+    ;Emails.
+    Case "2mail": Send, bobb71013@gmail.com
+    Case "DSU": Send, Elliott.DuCharme@trojans.dsu.edu
+    Case "mail": Send, ellduc4@gmail.com
+
+    ;Arrows.
     Case "u", "up": Send, {U+2191} ;↑
     Case "r", "right": Send, {U+2192} ;→
     Case "d", "down": Send, {U+2193} ;↓
     Case "l", "left": Send, {U+2190} ;←
 
+    ;***********************************************MISC***********************************************
+    ;Get free space in GB of all the drives.
+    Case "st":
+        DriveGet, OutputVar, List, Fixed ; get drive letters
+        Loop, Parse, OutputVar ; extract single drive letters
+        {
+            DriveSpaceFree, FreeSpace, %A_LoopField%:\
+            FreeSpace := FreeSpace / 1000
+            FreeSpace := Round(FreeSpace, 2) ;Convert to GB and round to 2 decimal places.
+            Total := (Total . A_LoopField ":\     " FreeSpace " GBish free" "`n") ; create list
+        }
+        StringTrimRight, Total, Total, 1 ; get rid of tailing linefeed char
+
+        MsgBox, 0, Drive Stats, Drive Stats`n`n%Total%
+    return
+
+    Case "exitapp": ExitApp
+
+    Case "GM":
+        gameModeActive := !gameModeActive
+
+        if (gameModeActive = true)
+            Tippy("Game Mode activated!", 1200)
+        else
+            Tippy("Game Mode disabled!", 1200)
+    return
+
+    ;Sleep PC.
+    Case "z":
+    Send, #x
+    Sleep, 250
+    Send, {Up 2}
+    Send, {Right}s
+    return
+
+    ;Hibernate PC.
+    Case "zz":
+    Send, #x
+    Sleep, 250
+    Send, {Up 2}
+    Send, {Right}h
+    return
+
+    ;Shut down PC.
+    Case "sd":
+    Send, #x
+    Sleep, 250
+    Send, {Up 2}
+    Send, {Right}u
+    return
+    
+    ;Restart PC.
+    Case "rs":
+    Send, #x
+    Sleep, 250
+    Send, {Up 2}
+    Send, {Right}r
+    return
+
+    ;If the user presses Escape or Cancel.
+    Default:
+    if ErrorLevel = 1
+        Tippy("Cancel/Escape was pressed.", 500)
+    else
+        MsgBox, 16, Unknown command, Command entered: "%runInputBoxText%" does not exist.
+
     ;***********************************************OPEN***********************************************
+    ;Opens Desmos graphing calculator.
+    Case "des": Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.desmos.com/calculator
+
     ;Opens the Google spreadsheet for this script in Chrome, which contains all of the commands in a table.
     Case "Help", "Help Sheet", "Sheet Help": Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://docs.google.com/spreadsheets/d/1vGHwAVQwkmzGGpM_xQJ86RGXfsBiBxDD089cu1u02eA/edit#gid=17759502
 
@@ -209,72 +285,6 @@ Switch (runInputBoxText) {
     InputBox, Thes_FFInputBox, Search for This Word on Thesaurus.com, Type the word you want to search on Thesaurus.com in Firefox.
     Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.thesaurus.com/browse/%Thes_FFInputBox%
     return
-
-    ;***********************************************MISC***********************************************
-    ;Get free space in GB of all the drives.
-    Case "st":
-        DriveGet, OutputVar, List, Fixed ; get drive letters
-        Loop, Parse, OutputVar ; extract single drive letters
-        {
-            DriveSpaceFree, FreeSpace, %A_LoopField%:\
-            FreeSpace := FreeSpace / 1000
-            FreeSpace := Round(FreeSpace, 2) ;Convert to GB and round to 2 decimal places.
-            Total := (Total . A_LoopField ":\     " FreeSpace " GBish free" "`n") ; create list
-        }
-        StringTrimRight, Total, Total, 1 ; get rid of tailing linefeed char
-
-        MsgBox, 0, Drive Stats, Drive Stats`n`n%Total%
-    return
-
-    Case "exitapp": ExitApp
-
-    Case "GM":
-        gameModeActive := !gameModeActive
-
-        if (gameModeActive = true)
-            Tippy("Game Mode activated!", 1200)
-        else
-            Tippy("Game Mode disabled!", 1200)
-    return
-
-    ;Sleep PC.
-    Case "z":
-    Send, #x
-    Sleep, 250
-    Send, {Up 2}
-    Send, {Right}s
-    return
-
-    ;Hibernate PC.
-    Case "zz":
-    Send, #x
-    Sleep, 250
-    Send, {Up 2}
-    Send, {Right}h
-    return
-
-    ;Shut down PC.
-    Case "sd":
-    Send, #x
-    Sleep, 250
-    Send, {Up 2}
-    Send, {Right}u
-    return
-    
-    ;Restart PC.
-    Case "rs":
-    Send, #x
-    Sleep, 250
-    Send, {Up 2}
-    Send, {Right}r
-    return
-
-    ;If the user presses Escape or Cancel.
-    Default:
-    if ErrorLevel = 1
-        Tippy("Cancel/Escape was pressed.", 500)
-    else
-        MsgBox, 16, Unknown command, Command entered: "%runInputBoxText%" does not exist.
 
     ;***********************************************TEMPORARY???***********************************************
     Case "kre":Send, Kind regards,{Enter 2}Elliott
