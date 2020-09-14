@@ -5273,26 +5273,26 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ;-------------------------------------------------------------------------------
 ;  Capitalise dates
 ;-------------------------------------------------------------------------------
-::monday::Monday
-::tuesday::Tuesday
-::wednesday::Wednesday
-::thursday::Thursday
-::friday::Friday
-::saturday::Saturday
-::sunday::Sunday 
+:*:monday::Monday
+:*:tuesday::Tuesday
+:*:wednesday::Wednesday
+:*:thursday::Thursday
+:*:friday::Friday
+:*:saturday::Saturday
+:*:sunday::Sunday 
 
-::january::January
-::february::February
+:*:january::January
+:*:february::February
 ; ::march::March  ; Commented out because it matches the common word "march".
-::april::April
+:*:april::April
 ; ::may::May  ; Commented out because it matches the common word "may".
-::june::June
-::july::July
-::august::August
-::september::September
-::october::October
-::november::November
-::december::December
+:*:june::June
+:*:july::July
+:*:august::August
+:*:september::September
+:*:october::October
+:*:november::November
+:*:december::December
 
 ;-----------------------------------------------------------------------------------------------------------------------------
 ; Contractions that I added in alphabetical order. Source: https://en.wikipedia.org/wiki/Wikipedia:List_of_English_contractions
