@@ -279,28 +279,28 @@ AntiDistraction:
 
 		if (ActiveWinTitle = "Flowtime") OR (ActiveWinTitle = "Windows GUI") {
 
-			Tippy("Can't close this window because it's part of the script.", 1000)
+			; Tippy("Can't close this window because it's part of the script.", 1000)
 
 		} else if ActiveWinTitle contains MusicBee
+		{
+			; Tippy("Won't close this window.", 1000)
 
-			Tippy("Won't close this window.", 1000)
+		} else if (inArray(ActiveWinID, WindowIDs)) {
 
-		else if (inArray(ActiveWinID, WindowIDs)) {
-
-			Tippy("ID in array, window staying open...", 1000)
+			; Tippy("ID in array, window staying open...", 1000)
 
 			if (inArray(ActiveWinTitle, WindowTitles)) {
 
-				Tippy("ID AND title in array, both staying open...", 1000)
+				; Tippy("ID AND title in array, both staying open...", 1000)
 
 			} else if !(inArray(ActiveWinTitle, WindowTitles)) AND (ActiveWinTitle in Firefox,Google Chrome) {
 
-				Tippy("Title not in array, closing tab...", 1000)
+				; Tippy("Title not in array, closing tab...", 1000)
 				Send, ^w
 			}
 
 		} else {
-			Tippy("ID NOT in array, closing...", 1000)
+			; Tippy("ID NOT in array, closing...", 1000)
 			WinClose, ahk_id %ActiveWinID%
 		}
 
@@ -310,31 +310,31 @@ AntiDistraction:
 
 		if (ActiveWinTitle = "Flowtime") OR (ActiveWinTitle = "Windows GUI") {
 
-			Tippy("Can't close this window because it's part of the script.", 1000)
+			; Tippy("Can't close this window because it's part of the script.", 1000)
 
 		} else if ActiveWinTitle contains MusicBee
+		{
+			; Tippy("Won't close this window.", 1000)
 
-			Tippy("Won't close this window.", 1000)
+		} else if (inArray(ActiveWinTitle, WindowTitles)) AND (ActiveWinTitle in Firefox,Google Chrome) {
 
-		else if (inArray(ActiveWinTitle, WindowTitles)) AND (ActiveWinTitle in Firefox,Google Chrome) {
-
-			Tippy("Title in blacklist array, closing tab...", 1000)
+			; Tippy("Title in blacklist array, closing tab...", 1000)
             Send, ^w
 
 			if (inArray(ActiveWinID, WindowIDs)) {
 
-				Tippy("ID AND title in blacklist array, both closing...", 1000)
+				; Tippy("ID AND title in blacklist array, both closing...", 1000)
                 WinClose, ahk_id %ActiveWinID%
 
 			} else {
 
-				Tippy("Title NOT in array, tab staying open...", 1000)
+				; Tippy("Title NOT in array, tab staying open...", 1000)
 
 			}
 
 		} else {
 
-			Tippy("ID NOT in array, window staying open...", 1000)
+			; Tippy("ID NOT in array, window staying open...", 1000)
 
 		}
 

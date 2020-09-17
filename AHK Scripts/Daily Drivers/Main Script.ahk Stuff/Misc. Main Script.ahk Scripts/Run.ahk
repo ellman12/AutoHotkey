@@ -285,7 +285,7 @@ Switch (runInputBoxText) {
     return
 
     ;Opens the current tab in Firefox
-    Case "op in ff":
+    Case "op in Firefox":
     Send, ^l
     Sleep, 80
     Send, ^c
@@ -300,7 +300,7 @@ Switch (runInputBoxText) {
     return
 
     ;Open thesaurus.com in Firefox and search for the inputted word
-    Case "Thes", "Thes ff":
+    Case "Thes", "Thes ff", "thes Firefox":
     InputBox, Thes_FFInputBox, Search for This Word on Thesaurus.com, Type the word you want to search on Thesaurus.com in Firefox.
     Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.thesaurus.com/browse/%Thes_FFInputBox%
     return
