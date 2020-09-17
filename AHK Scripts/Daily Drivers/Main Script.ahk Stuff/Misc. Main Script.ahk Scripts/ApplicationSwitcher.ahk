@@ -197,11 +197,52 @@ $F12::
     }
 return
 
+;*******************FOR MICROSOFT TO DO APP*******************
+#t::
+Sleep 600
+if WinActive("Microsoft To Do") { ;In the Tasks menu, add a task and mark it due today.
+    createMSToDoTask(1, 0)
+} else if WinExist("Microsoft To Do") ;Activate it.
+    WinActivate
+else { ;"Run" it
+    Send, {LWin}
+    Sleep 700
+    Send, Microsoft To Do
+    Sleep 900
+    Send, {Enter}
+}
+return
+
+#IfWinActive, Microsoft To Do
+;*****HOTKEYS FOR THE TASKS MENU*****
+;Add a task and mark it due tomorrow.
+!#t::createMSToDoTask(1, 1)
+
+;*****HOTKEYS FOR THE MY DAY MENU*****
+;Add a task and mark it due today.
++#t::createMSToDoTask(2, 0)
+
+;Add a task and mark it due tomorrow.
+!+#t::createMSToDoTask(2, 1)
+#If
+
+;Used for creating tasks in MS To Do.
+;This function only works in/for the Tasks or My Day view.
+createMSToDoTask(numberOfTabs, numberOfDowns) {
+Sleep 250
+Send, {Tab %numberOfTabs%}
+Sleep 230
+Send, {Space}
+Sleep 230
+Send, {Down %numberOfDowns%}
+Sleep 230
+Send, {Space}
+Sleep 230
+Send, +{Tab %numberOfTabs%}{Enter}
+}
+
 ;****************************************************CUSTOM GROUP STUFF****************************************************
 ;*************************************************F6 GROUP STUFF*************************************************
-;Credits for this F6 stuff goes to GroggyOtter from the AHK subreddit:
-;https://www.reddit.com/r/AutoHotkey/comments/dbil7u/add_active_window_to_group_and_push_button_to/f241ak3?utm_source=share&utm_medium=web2x
-;I modified it a teeny tiny bit, plus added the F7 one. It's really nice having this for both F6 and F7.
 ^F6::AddWindowF6()
 
 !F6::ActivateBothF6AndF7Windows() ;Activate windows in both the F6 and F7 array.
