@@ -153,6 +153,23 @@ GUI, CPanel:Add, Text, x120 y170,#B Screen Y
 GUI, CPanel:Font, s11
 GUI, CPanel:Add, Edit, x120 y195 w100 vlaptopBatteryIconY, %laptopBatteryIconY%
 
+;For the Custom Window Group stuff.
+GUI, CPanel:Font, s13
+GUI, CPanel:Add, Text, x5 y225,Custom Window Groups
+
+GUI, CPanel:Font, s11
+GUI, CPanel:Add, Text, x5 y250,F6
+GUI, CPanel:Add, DDL, vF6Choice w118 x25 y248,Window Group||Window Hider
+
+GUI, CPanel:Add, Text, x150 y250,F7
+GUI, CPanel:Add, DDL, vF7Choice w118 x177 y248,Window Group||Window Hider
+
+GUI, CPanel:Add, Text, x5 y275,F8
+GUI, CPanel:Add, DDL, vF8Choice w118 x25 y273,Window Group|Window Hider||
+
+GUI, CPanel:Add, Text, x150 y275,F10
+GUI, CPanel:Add, DDL, vF10Choice w118 x177 y273,Window Group||Window Hider||
+
 ;Toggle for showing or hiding the GUI.
 ;If it's 1, show the GUI; if it's 0, hide it.
 ;Starts out as 0, so it only appers when the user wants it.
@@ -162,6 +179,11 @@ global showControlPanelGUI := 0
 global InsMonChoice := "1 (Primary Mon)"
 global CtrlInsMonChoice := "2 (Secondary Mon)"
 global ChrBookTypeMonChoice := "1 (Primary Mon)"
+
+CONTROL_PANEL_WIDTH := 298
+CONTROL_PANEL_HEIGHT := 300
+
+GUI, CPanel:Show, w%CONTROL_PANEL_WIDTH% h%CONTROL_PANEL_HEIGHT% x1500,Main Script Control Panel
 
 ;*******************************RUN.ahk GUI INITIALIZATION******************************
 ;This is a GUI for the Main Script that allows the user to change how parts of the script work.
@@ -188,23 +210,28 @@ global gameModeActive := false
 global HomeworkAndMusicModeActive := false
 
 ;****************************************CUSTOM WINDOW GROUPS*********************************
-;Variables for F6 group stuff.
-;Tracks all windows you want as part of your custom group.
-;Stores Window IDs.
-global WindowGroupF6 := []
-;Tracks the current window you're on.
-global CurrentWinF6 := 1
-
-;Variables for F7 group stuff.
-;Tracks all windows you want as part of your custom group.
-;Stores Window IDs.
+;Tracks all the window IDs for the custom groups.
+global WindowGroupF6 := [] ;Stores Window IDs.
+global CurrentWinF6 := 1 ;Tracks the current window you're on.
 global WindowGroupF7 := []
-;Tracks the current window you're on.
 global CurrentWinF7 := 1
+global WindowGroupF8 := []
+global CurrentWinF8 := 1
+global WindowGroupF10 := []
+global CurrentWinF10 := 1
 
-;Prevents losing windows when reloading the script with F8/F10 windows hidden.
+;Prevents losing windows when reloading the script with windows hidden.
+global F6WindowsHidden := false
+global F7WindowsHidden := false
 global F8WindowsHidden := false
 global F10WindowsHidden := false
+
+;Decalre these as 1 so the first time you press F8, it hides everything.
+;If it's 1, hide windows; if it's 0, show windows.
+global F6ShowHideToggle := 1
+global F7ShowHideToggle := 1
+global F8ShowHideToggle := 1
+global F10ShowHideToggle := 1
 
 ;*************Screen Clipper.ahk Initialization Stuff************
 ;************************************************
@@ -873,7 +900,7 @@ return
 showControlPanelGUI := !showControlPanelGUI
 
 if (showControlPanelGUI = 1)
-	GUI, CPanel:Show, w285 h225,Main Script Control Panel
+	GUI, CPanel:Show, w%CONTROL_PANEL_WIDTH% h%CONTROL_PANEL_HEIGHT%,Main Script Control Panel
 else
 	GUI, CPanel:Hide
 return
