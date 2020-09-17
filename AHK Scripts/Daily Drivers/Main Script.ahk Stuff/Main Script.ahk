@@ -173,6 +173,21 @@ GUI, Run:Add, Text, x2 y0, Recommended Cmd`tWhat It Does
 RunGUITextX := 3
 RunGUITextY := 17
 ;****************************************MISC VARIABLES, INITIALIZATION, ETC*********************************
+;Used for the step values for NumPad2 and NumPad8 in NumPad Media Control.
+global Num2And8Step := 3
+
+;Toggle for if the NumPad switches modes automatically or not; starts out at true, for convenience.
+global autoNumPadModeToggle := true
+
+;Toggle for Programming Mode: disabling certain hotkeys/hotstrings to make programming easier. ^!Insert is the hotkey.
+global programmingMode := false
+
+;Toggle for Game Mode. This disables any hotkeys/hotstrings that I find annoying whilst gaming. This is toggled in Run.ahk.
+global gameModeActive := false
+
+global HomeworkAndMusicModeActive := false
+
+;****************************************CUSTOM WINDOW GROUPS*********************************
 ;Variables for F6 group stuff.
 ;Tracks all windows you want as part of your custom group.
 ;Stores Window IDs.
@@ -187,28 +202,9 @@ global WindowGroupF7 := []
 ;Tracks the current window you're on.
 global CurrentWinF7 := 1
 
-;Holds the F6 and F7 Window IDs for ActivateBothF6AndF7Windows() in ApplicationSwitcher.ahk.
-global F6andF7WinIDArray := []
-;Tracks the current window for the previous array.
-global CurrentWinF6AndF7ActBoth := 1
-
-;Used for the step values for NumPad2 and NumPad8 in NumPad Media Control.
-global Num2And8Step := 3
-
-;Toggle for if the NumPad switches modes automatically or not; starts out at true, for convenience.
-global autoNumPadModeToggle := true
-
-;Toggle for Programming Mode: disabling certain hotkeys/hotstrings to make programming easier. ^!Insert is the hotkey.
-global programmingMode := false
-
-;Toggle for Game Mode. This disables any hotkeys/hotstrings that I find annoying whilst gaming. This is toggled in Run.ahk.
-global gameModeActive := false
-
 ;Prevents losing windows when reloading the script with F8/F10 windows hidden.
 global F8WindowsHidden := false
 global F10WindowsHidden := false
-
-global HomeworkAndMusicModeActive := false
 
 ;*************Screen Clipper.ahk Initialization Stuff************
 ;************************************************

@@ -360,8 +360,8 @@ return
 
 ;*****************************************HOTKEYS FOR MULTIPLE POINTER POSITIONS*********************************
 ;The basic format is like this:
-;Ctrl + Shift + x: save position. X is 1–4.
-;Ctrl + Alt + x: go to saved position. X is 1–4.
+;Ctrl + Shift + x: save position. X is 1ï¿½4.
+;Ctrl + Alt + x: go to saved position. X is 1ï¿½4.
 
 ;************SAVE POSITIONS************
 ^+1::MouseGetPos, mousePosX1, mousePosY1
