@@ -198,7 +198,7 @@ return
 
 ;*******************FOR MICROSOFT TO DO APP*******************
 #t::
-Sleep 600
+Sleep 400
 if WinActive("Microsoft To Do") { ;In the Tasks menu, add a task and mark it due today.
     createMSToDoTask(1, 0)
 } else if WinExist("Microsoft To Do") ;Activate it.

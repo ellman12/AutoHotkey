@@ -129,7 +129,7 @@ return
     ;If duplicate isn't found, add window to the array.
     F8WinIDArray.Push(F8ActiveWinID)
 
-    ;Notify user add was sucessful.
+    ;Notify user add was successful.
     ToolTip, Added to F8 AWH Group!
     Sleep, 200
     ToolTip
@@ -172,7 +172,7 @@ return ;End of !F8.
 +F8::
     ;Get ID of current active window.
     WinGet, F8ActiveWinID, ID, A
-    
+
     ;Loop through list and find the value to remove.
     for index, value in F8WinIDArray
 
@@ -198,9 +198,9 @@ F8::
     ;1 becomes 0. 0 becomes 1.
     ;If it's 1, hide windows; if it's 0, it shows windows.
     F8ShowHideToggle := !F8ShowHideToggle
-    
+
     if (F8ShowHideToggle = 1) {
-       
+
         F8WindowsHidden := false
 
         ;Loop through the array...
@@ -230,7 +230,7 @@ return ;End of F8.
 	}
 
     ;Used for the Progress GUI thing.
-    F8ProgressWindowList = 
+    F8ProgressWindowList =
 	Loop %NumHiddenWindowsF8% {
 		if (A_Index >= 10)
 			F8ProgressWindowList := F8ProgressWindowList . "...The Following windows cannot be reached directly through this...`n"
@@ -264,13 +264,13 @@ return ;End of F8.
 				IndexToCopy := IndexToEdit + 1
 				F8WinTitleArray%IndexToEdit% := F8WinTitleArray%IndexToCopy%
 			}
-			NumHiddenWindowsF8 := NumHiddenWindowsF8 - 1		
+			NumHiddenWindowsF8 := NumHiddenWindowsF8 - 1
 		}
 		else {
 			NumHiddenWindowsF8 := NumHiddenWindowsF8 - 1
 			F8ActiveWinTitle := F8WinTitleArray%NumHiddenWindowsF8%
 		}
-		
+
 	}
 return ;End of #F8.
 
@@ -278,8 +278,8 @@ return ;End of #F8.
 ^!+F8::
 
     ;Blank out the arrays.
-    F8WinIDArray := 
-    F8WinTitleArray := 
+    F8WinIDArray :=
+    F8WinTitleArray :=
 
 return ;End of ^!+F8.
 
@@ -364,7 +364,7 @@ return ;End of !F10.
 +F10::
     ;Get ID of current active window.
     WinGet, F10ActiveWinID, ID, A
-    
+
     ;Loop through list and find the value to remove.
     for index, value in F10WinIDArray
 
@@ -390,10 +390,10 @@ F10::
     ;1 becomes 0. 0 becomes 1.
     ;If it's 1, hide windows; if it's 0, it shows windows.
     F10ShowHideToggle := !F10ShowHideToggle
-    
+
     if (F10ShowHideToggle = 1) {
         F10WindowsHidden := false
-        
+
         ;Loop through the array...
         for index, value in F10WinIDArray
         ;...and show everything
@@ -421,7 +421,7 @@ return ;End of F10.
 	}
 
     ;Used for the Progress GUI thing.
-    F10ProgressWindowList = 
+    F10ProgressWindowList =
 	Loop %NumHiddenWindowsF10% {
 		if (A_Index >= 10)
 			F10ProgressWindowList := F10ProgressWindowList . "...The Following windows cannot be reached directly through this...`n"
@@ -455,13 +455,13 @@ return ;End of F10.
 				IndexToCopy := IndexToEdit + 1
 				F10WinTitleArray%IndexToEdit% := F10WinTitleArray%IndexToCopy%
 			}
-			NumHiddenWindowsF10 := NumHiddenWindowsF10 - 1		
+			NumHiddenWindowsF10 := NumHiddenWindowsF10 - 1
 		}
 		else {
 			NumHiddenWindowsF10 := NumHiddenWindowsF10 - 1
 			F10ActiveWinTitle := F10WinTitleArray%NumHiddenWindowsF10%
 		}
-		
+
 	}
 return ;End of #F10.
 
@@ -469,8 +469,8 @@ return ;End of #F10.
 ^!+F10::
 
     ;Blank out the arrays.
-    F10WinIDArray := 
-    F10WinTitleArray := 
+    F10WinIDArray :=
+    F10WinTitleArray :=
 
 return ;End of ^!+F10.
 
