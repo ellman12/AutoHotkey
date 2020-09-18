@@ -183,8 +183,6 @@ global ChrBookTypeMonChoice := "1 (Primary Mon)"
 CONTROL_PANEL_WIDTH := 298
 CONTROL_PANEL_HEIGHT := 300
 
-GUI, CPanel:Show, w%CONTROL_PANEL_WIDTH% h%CONTROL_PANEL_HEIGHT% x1500,Main Script Control Panel
-
 ;*******************************RUN.ahk GUI INITIALIZATION******************************
 ;This is a GUI for the Main Script that allows the user to change how parts of the script work.
 GUI, Run:Color, Silver
