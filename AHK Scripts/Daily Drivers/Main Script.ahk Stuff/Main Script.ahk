@@ -135,7 +135,7 @@ if (A_ComputerName = "Ellott-Laptop") {
 } else if (A_ComputerName = "Elliott-DSU-Lap") {
 	global laptopBatteryIconX := 1664
 	global laptopBatteryIconY := 1049 ;This is WITHOUT the Ink Workspace button shown. If it's shown, it's 1618 and 1049.
-} else if (A_ComputerName = "Elliott-Gaming-Computer") {
+} else if (A_ComputerName = "Elliott-PC") {
 	;Do nothing.
 } else {
 	MsgBox, 16, Error. Computer/laptop name not part of the script., Error. Computer/laptop name not part of the script. A_ComputerName is: %A_ComputerName%`n`nIf you're on a desktop computer this can be totally ignored.
