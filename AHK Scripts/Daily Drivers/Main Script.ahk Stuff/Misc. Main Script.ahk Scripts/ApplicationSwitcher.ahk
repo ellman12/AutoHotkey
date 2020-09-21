@@ -196,9 +196,19 @@ $F12::
     }
 return
 
-;*******************FOR MICROSOFT TO DO APP*******************
+;*******************HOTKEYS FOR MICROSOFT TO DO APP*******************
+; #t:: In the Tasks menu, add a task and mark it due today. Or activate it. Or run it.
+
+;*****HOTKEYS FOR THE TASKS MENU*****
+; !#t:: Add a task and mark it due tomorrow.
+; +#t:: Add a task and mark it due today.
+
+;*****HOTKEYS FOR THE MY DAY MENU*****
+; +#t:: Add a task and mark it due today.
+; !+#t:: Add a task and mark it due tomorrow.
+
 #t::
-Sleep 400
+Sleep 200
 if WinActive("Microsoft To Do") { ;In the Tasks menu, add a task and mark it due today.
     createMSToDoTask(1, 0)
 } else if WinExist("Microsoft To Do") ;Activate it.
@@ -228,16 +238,16 @@ return
 ;Used for creating tasks in MS To Do.
 ;This function only works in/for the Tasks or My Day view.
 createMSToDoTask(numberOfTabs, numberOfDowns) {
-Sleep 250
-Send, {Tab %numberOfTabs%}
-Sleep 230
-Send, {Space}
-Sleep 230
-Send, {Down %numberOfDowns%}
-Sleep 230
-Send, {Space}
-Sleep 230
-Send, +{Tab %numberOfTabs%}{Enter}
+    Sleep 250
+    Send, {Tab %numberOfTabs%}
+    Sleep 230
+    Send, {Space}
+    Sleep 230
+    Send, {Down %numberOfDowns%}
+    Sleep 230
+    Send, {Space}
+    Sleep 230
+    Send, +{Tab %numberOfTabs%}{Enter}
 }
 
 ;****************************************************CUSTOM GROUP STUFF****************************************************
