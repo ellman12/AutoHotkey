@@ -24,13 +24,11 @@ GUI, BedtimeGUI:Font, S20
 GUI, BedtimeGUI:Add, Text,,Go to bed now, and you will have a good morning tomorrow.
 
 GUI, BedtimeGUI:Font, S11
-GUI, BedtimeGUI:Add, Button, w250 h50 gExtraTimeButton, Five extra minutes to close stuff, etc.
+GUI, BedtimeGUI:Add, Button, w250 h50 gExtraTimeButton, Five extra minutes to save and close stuff, etc.
 
 GUI, BedtimeGUI:+AlwaysOnTop
 
 SetTimer, Bedtime, 500 ;Check time every half second.
-
-return ;End of Auto-execute.
 
 Bedtime:
     ReadFiles()
