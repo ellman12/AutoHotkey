@@ -26,8 +26,6 @@ GUI, BedtimeGUI:Add, Text,,Go to bed now, and you will have a good morning tomor
 GUI, BedtimeGUI:Font, S11
 GUI, BedtimeGUI:Add, Button, w250 h50 gExtraTimeButton, Five extra minutes to save and close stuff, etc.
 
-GUI, BedtimeGUI:+AlwaysOnTop
-
 SetTimer, Bedtime, 500 ;Check time every half second.
 
 Bedtime:
@@ -52,7 +50,7 @@ return
 
 ;Read the data from the Bedtime and WakeUpTime files.
 ReadFiles() {
-
+global
     FileRead, BedtimeValue, %A_ScriptDir%\Bedtime.txt ;User can set the Bedtime to what they want in this file.
     if (ErrorLevel = 1) {
         MsgBox, 16, Something went wrong., Something went wrong while reading the "Bedtime" file. The script will now exit.
