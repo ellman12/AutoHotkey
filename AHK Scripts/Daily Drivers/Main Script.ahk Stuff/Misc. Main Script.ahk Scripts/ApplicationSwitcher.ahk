@@ -91,6 +91,34 @@ return
 Run, C:\Program Files\Mozilla Firefox\firefox.exe -private-window
 return
 
+F3::
+switchToVSAndTabs()
+{
+IfWinNotExist, ahk_class Chrome_WidgetWin_1
+	Run, Code.exe
+if WinActive("ahk_exe Code.exe")
+	Send ^{PGDN}
+else
+	WinActivate ahk_exe Code.exe
+}
+
+F4::
+switchToOtherVSWindows()
+{
+Process, Exist, Code.exe
+	If errorLevel = 0
+		Run, Code.exe
+	else
+	{
+	GroupAdd, taranCodes, ahk_exe Code.exe
+	if WinActive("ahk_exe Code.exe")
+		GroupActivate, taranCodes, r
+	else
+		WinActivate ahk_exe Code.exe
+	}
+}
+
+/*
 ;If a Chrome window doesn't exist, run Chrome.
 ;If a Chrome window does exist, switch to Chrome.
 ;If Chrome is active, send ^PGDN (switch between tabs).
@@ -150,6 +178,7 @@ return
 !F3::
 Run, chrome.exe -incognito
 return
+*/
 
 ;MR button on my K95 RGB keyboard.
 ;Used for activating and switching to File Explorer windows.
