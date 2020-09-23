@@ -95,7 +95,7 @@ F3::
 switchToVSAndTabs()
 {
 IfWinNotExist, ahk_class Chrome_WidgetWin_1
-	Run, Code.exe
+	Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code\Code.exe
 if WinActive("ahk_exe Code.exe")
 	Send ^{PGDN}
 else
@@ -107,7 +107,7 @@ switchToOtherVSWindows()
 {
 Process, Exist, Code.exe
 	If errorLevel = 0
-		Run, Code.exe
+		Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code\Code.exe
 	else
 	{
 	GroupAdd, taranCodes, ahk_exe Code.exe
