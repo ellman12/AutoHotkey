@@ -307,6 +307,8 @@ Loop {
 ;Linking other scripts together.
 ;#Include is lterally like pasting those script contents in that exact spot.
 ;The variable %A_ScriptDir% is the full path of the directory where the script is located; makes code neater and simpler.
+#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Bedtime Script\Bedtime Script.ahk
+
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\Browser.ahk
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\Default.ahk
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\Google Docs.ahk
@@ -917,8 +919,8 @@ return
 CoordMode, Mouse  ; Switch to screen/absolute coordinates.
 MouseGetPos, EWD_MouseStartX, EWD_MouseStartY, EWD_MouseWin
 WinGetPos, EWD_OriginalPosX, EWD_OriginalPosY,,, ahk_id %EWD_MouseWin%
-WinGet, EWD_WinState, MinMax, ahk_id %EWD_MouseWin% 
-if EWD_WinState = 0  ; Only if the window isn't maximized 
+WinGet, EWD_WinState, MinMax, ahk_id %EWD_MouseWin%
+if EWD_WinState = 0  ; Only if the window isn't maximized
 	SetTimer, EWD_WatchMouse, 10 ; Track the mouse as the user drags it.
 return
 
@@ -999,11 +1001,11 @@ return
 	;~ Sleep 420
 	;~ Send, a
 	;~ Sleep 420
-	
+
 	;~ ;Scroll down
 	;~ Send, {WheelDown}
 	;~ Sleep 420
-	
+
 	;~ ;Paste in YT-DLG.
 	;~ WinActivate, Youtube-DLG
 	;~ WinActivate, YouTube to Mp3 Converter - Mozilla Firefox
@@ -1012,9 +1014,9 @@ return
 	;~ Sleep 420
 	;~ Send, {Enter}
 	;~ Sleep 420
-	
+
 	;~ WinActivate, Music to Download - YouTube - Mozilla Firefox
-	
+
 	;~ }
 
 ;~ return
