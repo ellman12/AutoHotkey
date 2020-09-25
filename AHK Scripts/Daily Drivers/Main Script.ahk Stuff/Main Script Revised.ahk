@@ -52,6 +52,10 @@ A way to run 30 clipboards akin to the MB creator
 A #o thing to toggle F3 between Chrome and VSCode
 A #o thing to switch between double click and F6 on mouse
 Run's cancel button doesn't work
+
+make ^+f work in Docs
+Label the small context section in here the misc ones: the ones without a profile or file or something.
+Make sure ^tab is removed from laptop section.
 */
 
 #NoEnv
@@ -413,15 +417,6 @@ if (ErrorLevel = 1) {
 	systemMasterVolume += masterVolumeAlt
     SoundSet, %systemMasterVolume%
 }
-return
-
-;For Firefox
-^Tab::
-Send, ^{PGDN}
-return
-
-^+Tab::
-Send, ^{PGUP}
 return
 
 #IfWinNotActive, ahk_exe explorer.exe
