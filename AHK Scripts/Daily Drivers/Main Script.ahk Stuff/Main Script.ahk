@@ -35,7 +35,7 @@ DetectHiddenWindows, Off
 ;its name is different from my PC's name.
 
 ;Pic of all these icons: https://diymediahome.org/wp-content/uploads/shell32_icons.jpg
-Menu, Tray, Icon, shell32.dll, 233 ;Changes the icon to a cute little computer.
+Menu, Tray, Icon, shell32.dll, 63 ;Changes the icon to a cute little computer. Changed on Thursday, September 24, 2020 to help differentiate between the new and old scripts, and to symbolize that this script is dying/dead.
 
 ;******************************************AUTO-EXECUTE**************************************************
 ;*******************************ADVANCED WINDOW HIDER HELP GUI INITIALIZATION******************************
