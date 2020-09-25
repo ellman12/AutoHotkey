@@ -43,7 +43,7 @@
 Remove Run and other help GUIs and replace with txt files
 Fix the number of *'s for headers and titles so it's consistent
 Refine the command line stuff
-Redo that pic of the layout of this script; missed some important parts.
+Redo that pic of the layout of this script; missed some important parts like TCT, ECC, etc.
 */
 
 #NoEnv
