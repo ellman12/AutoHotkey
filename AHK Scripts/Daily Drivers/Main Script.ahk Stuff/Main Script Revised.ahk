@@ -39,11 +39,13 @@
 ;///////////////////////////////////////////////////////////////////////
 
 
-
 /* TODO:
 Remove Run and other help GUIs and replace with txt files
 Fix the number of *'s for headers and titles so it's consistent
+Refine the command line stuff
+Redo that pic of the layout of this script; missed some important parts.
 */
+
 #NoEnv
 #MaxHotkeysPerInterval 999999999999999999999999999999999
 #HotkeyInterval 99999999999999999999999999999999999
@@ -127,13 +129,15 @@ GUI, CPanel:Add, DropDownList, x5 y140 w136 vChrBookTypeMonChoice, 1 (Primary Mo
 
 ;Default screen X and Y of battery icons; user can change them later in #o.
 if (A_ComputerName = "Ellott-Laptop") {
-	global laptopBatteryIconX := 1432
-	global laptopBatteryIconY := 885
+	laptopBatteryIconX := 1432
+	laptopBatteryIconY := 885
+    usingALaptop = true
 } else if (A_ComputerName = "Elliott-DSU-Lap") {
-	global laptopBatteryIconX := 1664
-	global laptopBatteryIconY := 1049 ;This is WITHOUT the Ink Workspace button shown. If it's shown, it's 1618 and 1049.
+	laptopBatteryIconX := 1664
+	laptopBatteryIconY := 1049 ;This is WITHOUT the Ink Workspace button shown. If it's shown, it's 1618 and 1049.
+    usingALaptop = true
 } else if (A_ComputerName = "Elliott-PC") {
-	;Do nothing.
+	usingALaptop = false
 } else {
 	MsgBox, 16, Error. Computer/laptop name not part of the script., Error. Computer/laptop name not part of the script. A_ComputerName is: %A_ComputerName%`n`nIf you're on a desktop computer this can be totally ignored.
 }
@@ -257,7 +261,12 @@ Loop {
 ;Force Reload the script, even if there are windows hidden (or if the script says there is, but there actually isn't).
 !#r::Reload
 
+;Shows you miscellaneous variables, toggles, etc.
+^#BackSpace::MsgBox, Misc. Variables`, Toggles`, etc.,Current Main Script.ahk profile:  %currentProfile%`n`nNumPadMode: %numPadMode%`n`nChromebook Typing Toggled: %chromebookTypingToggle%`n`nautoNumPadModeToggle: %autoNumPadModeToggle%
+
 ^Space::WinSet, AlwaysOnTop, Toggle, A
+
+^#s::Run, C:\Program Files\AutoHotkey\WindowSpy.ahk
 
 ^CtrlBreak:: ;Technically Ctrl + Pause. Read about this here: https://www.autohotkey.com/docs/KeyList.htm#other
 #!p::
@@ -283,6 +292,25 @@ sc029::Send, !{Tab} ;The grave accent key (that weird thing under the Tilde ~ sy
 
 *CapsLock::return ;Completely disables this horrible key.
 
+!SC00C::WinMinimize, A ;Alt + -
+
+!SC00D::WinMaximize, A ;Alt + +.
+
+^+f::Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts
+
+;Open Notepad.
+#n::Run, Notepad
+
+;Toggle programming mode. Disables hotkeys/hotstrings that can be annoying when programming.
+^!Insert::
+programmingMode := !programmingMode
+
+if (programmingMode = 1)
+	Tippy("programmingMode On", 400)
+else
+	Tippy("programmingMode Off", 400)
+return
+
 Insert:: ;Moves mouse pointer as far off the screen as possible (on main display).
 MouseGetPos, mousePosX, mousePosY
 if (InsMonChoice = "1 (Primary Mon)")
@@ -299,3 +327,111 @@ else if (CtrlInsMonChoice = "2 (Secondary Mon)")
 return
 
 !Insert::MouseMove, mousePosX, mousePosY, 0 ;Moves mouse pointer back to where it was before pressing Insert or ^Insert (but not both).
+
+~$RShift:: ;A "sniper" button, which slows the mouse pointer speed down to a crawl and still outputs the RShift key.
+Send, {RShift}
+DllCall("SystemParametersInfo", Int,113, Int,0, UInt,1, Int,1)
+KeyWait, RShift
+DllCall("SystemParametersInfo", Int,113, Int,0, UInt,10, Int,1)
+return
+
+;****************************************K95 RGB HOTKEYS***************************************
+;These 3 hotkeys are sent by the iCUE software, which AutoHotkey detects.
+;M1 on K95 RGB copies to the clipboard.
++F24::Send, ^c
+
+;M2 on K95 RGB cuts to the clipboard.
++F21::Send, ^x
+
+;M3 on K95 RGB pastes to the clipboard.
++F22::Send, ^v
+
+;****************************************CONTEXT-SENSITIVE HOTKEYS***************************************
+#If currentProfile != "Terraria"
+;Scroll down faster by holding down the G3 key on Scimitar Pro RGB.
+F15 & WheelDown::Send, {WheelDown 8}
+
+;Scroll up faster by holding down the G3 key on Scimitar Pro RGB.
+F15 & WheelUp::Send, {WheelUp 8}
+
+;A way to make the mouse move faster while Mouse G3 and the Right Button are held down.
+;It's basically the complete opposite of the sniper button.
+F15 & RButton::
+DllCall("SystemParametersInfo", Int,113, Int,0, UInt,17, Int,1)
+KeyWait, RButton
+DllCall("SystemParametersInfo", Int,113, Int,0, UInt,10, Int,1)
+return
+#If
+
+#IfWinActive Search ;When Cortana/Search is open.
+!s::Send, {Space}meaning
+
+RWin::
+Send, {LWin}
+Sleep 300
+Send, {LWin}
+return
+#If
+
+#If programmingMode = false
+\::
+Send, ^+{Left}
+Send, {BackSpace}
+return
+
+::i::I
+::git::Git
+
+#If usingALaptop = true
+#b:: ;Open battery menu.
+MouseMove, %laptopBatteryIconX%, %laptopBatteryIconY%, 0
+Sleep 300
+Send, {Click}
+return
+
+~RShift::Send, {Media_Play_Pause}
+^!Left::Send, {Media_Prev}
+^!Right::Send, {Media_Next}
+
+!PGUP::SoundSet, +1
+!PGDN::SoundSet, -1
+
+;Get the current master volume, and add the inputted value to the current master volume.
+!\::
+SoundGet, systemMasterVolume
+InputBox, masterVolumeAlt , Add/subtract to the master volume, Input a number to add/subtract to the current master volume. Current volume: %systemMasterVolume%., , , , , , , , %systemMasterVolume%
+if (ErrorLevel = 1) {
+} else if (ErrorLevel = 0) {
+	systemMasterVolume += masterVolumeAlt
+    SoundSet, %systemMasterVolume%
+}
+return
+
+;For Firefox
+^Tab::
+Send, ^{PGDN}
+return
+
+^+Tab::
+Send, ^{PGUP}
+return
+
+#IfWinNotActive, ahk_exe explorer.exe
+
+!Up::
+soundget, v
+p:=inv(v/100.0)+0.02
+nv:=f(p)*100.0
+soundset, nv
+return
+
+!Down::
+soundget, v
+p:=inv(v/100.0)-0.02
+nv:=f(p)*100.0
+soundset, nv
+return
+
+#If
+
+;*****************************************HOTKEYS FOR TITLE STUFF*********************************

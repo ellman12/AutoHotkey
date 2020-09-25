@@ -546,7 +546,6 @@ return
 #n::Run, Notepad
 
 ;Stuff that is exclusive to my laptop.
-;8/18/2020 11:47 AM: It's supposed to be Laptop, but idk why but the 'top' part got cut off...
 #If A_ComputerName = "Elliott-DSU-Lap"
 ;Open battery menu.
 #b::
