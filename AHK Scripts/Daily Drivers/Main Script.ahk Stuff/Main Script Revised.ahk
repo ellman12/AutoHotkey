@@ -41,9 +41,15 @@
 
 /* TODO:
 Remove Run and other help GUIs and replace with txt files
-Fix the number of *'s for headers and titles so it's consistent
 Refine the command line stuff
 Redo that pic of the layout of this script; missed some important parts like TCT, ECC, etc.
+2nd keeb keys for running and then showing hiding outlook Discord Slack etc. Activates em if they exist and are shown but not activated. Redo Main first tho. Nothing new until Main is no longer a mess
+Run stuff for inserting headers for script
+Fix the number of *'s for headers and titles so it's consistent
+Ahk script for MC
+A way to run 30 clipboards akin to the MB creator
+A #o thing to toggle F3 between Chrome and VSCode
+A #o thing to switch between double click and F6 on mouse
 */
 
 #NoEnv
