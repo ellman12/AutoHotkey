@@ -40,6 +40,7 @@
 
 
 /* TODO:
+cscnewf thing without due date and move date to comments and add time to both of the strings. Add to Run perhaps?
 Remove Run and other help GUIs and replace with txt files
 Refine the command line stuff
 Redo that pic of the layout of this script; missed some important parts like TCT, ECC, etc.
@@ -50,6 +51,7 @@ Ahk script for MC
 A way to run 30 clipboards akin to the MB creator
 A #o thing to toggle F3 between Chrome and VSCode
 A #o thing to switch between double click and F6 on mouse
+Run's cancel button doesn't work
 */
 
 #NoEnv
