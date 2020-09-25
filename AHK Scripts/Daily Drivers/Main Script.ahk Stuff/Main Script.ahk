@@ -584,15 +584,6 @@ SoundSet, %systemMasterVolume%
 }
 return
 
-;For Firefox
-^Tab::
-Send, ^{PGDN}
-return
-
-^+Tab::
-Send, ^{PGUP}
-return
-
 #IfWinNotActive, ahk_exe explorer.exe
 
 !Up::
