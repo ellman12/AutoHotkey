@@ -28,9 +28,22 @@
 
 * Important Acronyms:
 * MRS: Main Script Revised
+
+* Conventions for the number of * for a title/header.
+* Title:    50 **************************************************
+* Header 1: 35 ***********************************
+* Header 2: 20 ********************
+* Header 3: 14 **************
+* Header 4: 9  *********
 */
 ;///////////////////////////////////////////////////////////////////////
 
+
+
+/* TODO:
+Remove Run and other help GUIs and replace with txt files
+Fix the number of *'s for headers and titles so it's consistent
+*/
 #NoEnv
 #MaxHotkeysPerInterval 999999999999999999999999999999999
 #HotkeyInterval 99999999999999999999999999999999999
@@ -47,3 +60,242 @@ SendMode Input
 DetectHiddenWindows, Off
 #SingleInstance force
 
+;Pic of all these icons: https://diymediahome.org/wp-content/uploads/shell32_icons.jpg
+Menu, Tray, Icon, shell32.dll, 233 ;Changes the icon to a cute little computer.
+
+/*
+;******************************************AUTO-EXECUTE*************************************************
+;****************************************CUSTOM WINDOW GROUPS*********************************
+;Tracks all the window IDs for the custom groups.
+global WindowGroupF6 := [] ;Stores Window IDs.
+global CurrentWinF6 := 1 ;Tracks the current window you're on.
+global WindowGroupF7 := []
+global CurrentWinF7 := 1
+global WindowGroupF8 := []
+global CurrentWinF8 := 1
+global WindowGroupF10 := []
+global CurrentWinF10 := 1
+
+;Prevents losing windows when reloading the script with windows hidden.
+global F6WindowsHidden := false
+global F7WindowsHidden := false
+global F8WindowsHidden := false
+global F10WindowsHidden := false
+
+;Declare these as 1 so the first time you press F8, it hides everything.
+;If it's 1, hide windows; if it's 0, show windows.
+global F6ShowHideToggle := 1
+global F7ShowHideToggle := 1
+global F8ShowHideToggle := 1
+global F10ShowHideToggle := 1
+
+;*************Screen Clipper.ahk Initialization Stuff************
+Hotkey, #s , CreateCapWindow , On ;Take a screen clip with the Screen Clipper script.
+SaveToFile := 1 ;Set this to 1 to save all clips with a unique name , Set it to 0 to overwrite the saved clip every time a new clip is made.
+ShowCloseButton := 1 ;Set this to 1 to show a small close button in the top right corner of the clip. Set this to 0 to keep the close button, but not show it.
+CoordMode, Mouse , Screen ;Use the screen as the reference to get positions from.
+
+IfNotExist, %A_ScriptDir%\Screen Clipper Script\Saved Clips ; if there is no folder for saved clips
+	FileCreateDir, %A_ScriptDir%\Screen Clipper Script\Saved Clips ; create the folder.
+SetWorkingDir, %A_ScriptDir%\Screen Clipper Script\Saved Clips ;Set the saved clips folder as the working dir.
+Handles := [] ; Create an array to hold the name of the different gui's.
+Index := 0 ;Used as the name of the current gui cap window.
+
+;*******************************MAIN SCRIPT CONTROL PANEL INITIALIZATION******************************
+;This is a GUI for the Main Script that allows the user to change how parts of the script work: stuff
+; which probably couldn't really be done well with hotkeys.
+GUI, CPanel:+AlwaysOnTop
+GUI, CPanel:Color, Silver
+
+;Insert.
+GUI, CPanel:Font, s13
+GUI, CPanel:Add, Text, x5 y5,Insert Hotkey Monitor Choice
+GUI, CPanel:Font, s11
+GUI, CPanel:Add, DropDownList, x5 y30 w136 vInsMonChoice, 1 (Primary Mon)||2 (Secondary Mon)
+
+;Ctrl + Insert.
+GUI, CPanel:Font, s13
+GUI, CPanel:Add, Text, x5 y60,Ctrl + Insert Hotkey Monitor Choice
+GUI, CPanel:Font, s11
+GUI, CPanel:Add, DropDownList, x5 y85 w136 vCtrlInsMonChoice, 1 (Primary Mon)|2 (Secondary Mon)||
+
+;For Chromebook Typing, which monitor to send the mouse pointer too.
+GUI, CPanel:Font, s13
+GUI, CPanel:Add, Text, x5 y115,Chromebook Typing Monitor Choice
+GUI, CPanel:Font, s11
+GUI, CPanel:Add, DropDownList, x5 y140 w136 vChrBookTypeMonChoice, 1 (Primary Mon)||2 (Secondary Mon)|
+
+;Default screen X and Y of battery icons; user can change them later in #o.
+if (A_ComputerName = "Ellott-Laptop") {
+	global laptopBatteryIconX := 1432
+	global laptopBatteryIconY := 885
+} else if (A_ComputerName = "Elliott-DSU-Lap") {
+	global laptopBatteryIconX := 1664
+	global laptopBatteryIconY := 1049 ;This is WITHOUT the Ink Workspace button shown. If it's shown, it's 1618 and 1049.
+} else if (A_ComputerName = "Elliott-PC") {
+	;Do nothing.
+} else {
+	MsgBox, 16, Error. Computer/laptop name not part of the script., Error. Computer/laptop name not part of the script. A_ComputerName is: %A_ComputerName%`n`nIf you're on a desktop computer this can be totally ignored.
+}
+
+;X choice for the #b hotkey.
+GUI, CPanel:Font, s13
+GUI, CPanel:Add, Text, x5 y170,#B Screen X
+GUI, CPanel:Font, s11
+GUI, CPanel:Add, Edit, x5 y195 w100 vlaptopBatteryIconX, %laptopBatteryIconX%
+
+;X choice for the #b hotkey.
+GUI, CPanel:Font, s13
+GUI, CPanel:Add, Text, x120 y170,#B Screen Y
+GUI, CPanel:Font, s11
+GUI, CPanel:Add, Edit, x120 y195 w100 vlaptopBatteryIconY, %laptopBatteryIconY%
+
+;For the Custom Window Group stuff.
+GUI, CPanel:Font, s13
+GUI, CPanel:Add, Text, x5 y225,Custom Window Groups
+
+GUI, CPanel:Font, s11
+GUI, CPanel:Add, Text, x5 y250,F6
+GUI, CPanel:Add, DDL, vF6Choice w118 x25 y248,Window Group||Window Hider
+
+GUI, CPanel:Add, Text, x150 y250,F7
+GUI, CPanel:Add, DDL, vF7Choice w118 x177 y248,Window Group||Window Hider
+
+GUI, CPanel:Add, Text, x5 y275,F8
+GUI, CPanel:Add, DDL, vF8Choice w118 x25 y273,Window Group|Window Hider||
+
+GUI, CPanel:Add, Text, x150 y275,F10
+GUI, CPanel:Add, DDL, vF10Choice w118 x177 y273,Window Group||Window Hider||
+
+;Toggle for showing or hiding the GUI.
+;If it's 1, show the GUI; if it's 0, hide it.
+;Starts out as 0, so it only appers when the user wants it.
+global showControlPanelGUI := 0
+
+;Default values.
+global InsMonChoice := "1 (Primary Mon)"
+global CtrlInsMonChoice := "2 (Secondary Mon)"
+global ChrBookTypeMonChoice := "1 (Primary Mon)"
+
+CONTROL_PANEL_WIDTH := 298
+CONTROL_PANEL_HEIGHT := 300
+
+;****************************************MISC VARIABLES, INITIALIZATION, ETC*********************************
+;Used for the step values for NumPad2 and NumPad8 for NumPad Media Control.
+global Num2And8Step := 3
+
+;Toggle for if the NumPad switches modes automatically or not; starts out at true, for convenience.
+global autoNumPadModeToggle := true
+
+;Toggle for Programming Mode: disabling certain hotkeys/hotstrings to make programming easier. ^!Insert is the hotkey.
+global programmingMode := false
+
+;Toggle for Game Mode. This disables any hotkeys/hotstrings that I find annoying whilst gaming. This is toggled in Run.ahk.
+global gameModeActive := false ;TODO: WHAT IS THIS?
+
+;The stuff in this loop needs to be running constantly.
+Loop {
+
+	global activeWindowTitle
+	WinGetActiveTitle, activeWindowTitle
+
+	global activeWindowID
+	WinGet, activeWindowID, ID, A
+
+	;Constantly checking to see what profile the script should put the user in.
+	global currentProfile := autoSelectProfiles()
+
+	;For the NumPad stuff.
+	global numLockToggled := GetKeyState("NumLock", "T")
+	global scrollLockToggled := GetKeyState("ScrollLock", "T")
+
+	;If the auto-numpad toggle is true, sets the numPadMode automatically.
+	;Else, leave it to the user to do it manually.
+	if (autoNumPadModeToggle = true) {
+
+		if InStr(activeWindowTitle, "- YouTube") {
+			SetNumLockState, On
+			SetScrollLockState, On
+			global numPadMode = "YouTube"
+		} else if InStr(activeWindowTitle, "- MediaSpace") {
+			SetNumLockState, Off
+			SetScrollLockState, On
+			global numPadMode = "Dumbed-Down"
+		} else {
+			SetNumLockState, On
+			SetScrollLockState, Off
+			global numPadMode = "MusicBee"
+		}
+
+	} else {
+
+		;This works so much better than having a bunch of ugly numLockToggled = 1 and scrollLockToggled = 0 things everywhere.
+		;These variables are used in NumPad Media Control.ahk.
+		if (numLockToggled = 1 and scrollLockToggled = 0) {
+			global numPadMode = "MusicBee"
+		} else if (numLockToggled = 1 and scrollLockToggled = 1) {
+			global numPadMode = "YouTube"
+		} else if (numLockToggled = 0 and scrollLockToggled = 0) {
+			global numPadMode = "Normal"
+		} else if (numLockToggled = 0 and scrollLockToggled = 1) {
+			global numPadMode = "Dumbed-Down"
+		} else {
+			global numPadMode = "Normal"
+		}
+
+	}
+
+	This sleep statement DRASTICALLY helps reduce the power and CPU usage of the Main Script.
+	Sleep 200
+}
+*/
+;TODO: #Include files.
+
+;****************************************MISC HOTKEYS***************************************
+^#r::Reload ;TODO: When Window Groups is done make this keep hidden windows safe from being lost.
+
+;Force Reload the script, even if there are windows hidden (or if the script says there is, but there actually isn't).
+!#r::Reload
+
+^Space::WinSet, AlwaysOnTop, Toggle, A
+
+^CtrlBreak:: ;Technically Ctrl + Pause. Read about this here: https://www.autohotkey.com/docs/KeyList.htm#other
+#!p::
+Suspend, Toggle
+return
+
+Pause:: ;Suspends all hotkeys for the specified number in milliseconds.
+#p::
+SetTimer, setTimerLabel, 2500, On
+Suspend, On
+return
+
+setTimerLabel:
+Suspend, Off
+SetTimer, setTimerLabel, Off
+return
+
+sc029::Send, !{Tab} ;The grave accent key (that weird thing under the Tilde ~ symbol) sends Alt + Tab.
+
+^sc029::Send, `` ;Holding Ctrl and pushing the grave accent key inserts the grave accent symbol: `.
+
+^+sc029::Send, ~ ;Holding Ctrl and Shift and pushing the grave accent key inserts the tilde symbol: ~.
+
+*CapsLock::return ;Completely disables this horrible key.
+
+Insert:: ;Moves mouse pointer as far off the screen as possible (on main display).
+MouseGetPos, mousePosX, mousePosY
+if (InsMonChoice = "1 (Primary Mon)")
+	MouseMove, 1920, 540, 0
+else if (InsMonChoice = "2 (Secondary Mon)")
+	MouseMove, -1920, 540, 0
+return
+
+^Insert:: ;Moves mouse pointer as far off the screen as possible (on second display).
+if (CtrlInsMonChoice = "1 (Primary Mon)")
+	MouseMove, 1920, 540, 0
+else if (CtrlInsMonChoice = "2 (Secondary Mon)")
+	MouseMove, -1920, 540, 0
+return
+
+!Insert::MouseMove, mousePosX, mousePosY, 0 ;Moves mouse pointer back to where it was before pressing Insert or ^Insert (but not both).

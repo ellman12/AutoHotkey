@@ -379,7 +379,7 @@ return
 Send, ~
 return
 
-;Moves mouse pointer as far off the screen as possible (on main display); usually either to A, get it out of the way, or B, so I can easily find it.
+;Moves mouse pointer as far off the screen as possible (on main display).
 Insert::
 MouseGetPos, mousePosX, mousePosY
 if (InsMonChoice = "1 (Primary Mon)")
@@ -388,7 +388,7 @@ else if (InsMonChoice = "2 (Secondary Mon)")
 	MouseMove, -1920, 540, 0
 return
 
-;Moves mouse pointer as far off the screen as possible (on second display); usually either to A, get it out of the way, or B, so I can easily find it.
+;Moves mouse pointer as far off the screen as possible (on second display).
 ^Insert::
 if (CtrlInsMonChoice = "1 (Primary Mon)")
 	MouseMove, 1920, 540, 0
