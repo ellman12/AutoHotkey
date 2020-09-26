@@ -7,4 +7,4 @@
 ; a way to edit said hotkeys
 ; auto determine the game. Txt files or arrays or something?
 
-Hotkey, 
+; Hotkey, 

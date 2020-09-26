@@ -43,7 +43,20 @@
 ;///////////////////////////////////////////////////////////////////////
 
 /* TODO:
-if the volume just got turned up quite a ways, give some kind of warning (large Tippy, etc.) warning me to turn the volume down. Put in either Main or NumPad.
+if the volume just got turned up quite a ways, give some kind of warning (large Tippy, etc.) warning me to turn the volume down. Put in either Main or NumPad.#SingleInstance, Force
+#KeyHistory, 0
+SetBatchLines, -1
+ListLines, Off
+SendMode Input ; Forces Send and SendRaw to use SendInput buffering for speed.
+SetTitleMatchMode, 3 ; A window's title must exactly match WinTitle to be a match.
+SetWorkingDir, %A_ScriptDir%
+SplitPath, A_ScriptName, , , , thisscriptname
+#MaxThreadsPerHotkey, 1 ; no re-entrant hotkey handling
+; DetectHiddenWindows, On
+; SetWinDelay, -1 ; Remove short delay done automatically after every windowing command except IfWinActive and IfWinExist
+; SetKeyDelay, -1, -1 ; Remove short delay done automatically after every keystroke sent by Send or ControlSend
+; SetMouseDelay, -1 ; Remove short delay done automatically after Click and MouseMove/Click/Drag
+
 cscnewf thing without due date and move date to comments and add time to both of the strings. Add to Run perhaps?
 Remove Run and other help GUIs and replace with txt files
 Refine the command line stuff
