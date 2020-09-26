@@ -28,6 +28,7 @@
 
 * Important Acronyms:
 * MRS: Main Script Revised
+* TCT: Title Capitalization Tool
 
 * Conventions for the number of * for a title/header.
 * Title:    50 **************************************************
@@ -52,7 +53,6 @@ A way to run 30 clipboards akin to the MB creator
 A #o thing to toggle F3 between Chrome and VSCode
 A #o thing to switch between double click and F6 on mouse
 Run's cancel button doesn't work
-
 make ^+f work in Docs
 Label the small context section in here the misc ones: the ones without a profile or file or something.
 Make sure ^tab is removed from laptop section.
@@ -408,19 +408,7 @@ return
 !PGUP::SoundSet, +1
 !PGDN::SoundSet, -1
 
-;Get the current master volume, and add the inputted value to the current master volume.
-!\::
-SoundGet, systemMasterVolume
-InputBox, masterVolumeAlt , Add/subtract to the master volume, Input a number to add/subtract to the current master volume. Current volume: %systemMasterVolume%., , , , , , , , %systemMasterVolume%
-if (ErrorLevel = 1) {
-} else if (ErrorLevel = 0) {
-	systemMasterVolume += masterVolumeAlt
-    SoundSet, %systemMasterVolume%
-}
-return
-
-#IfWinNotActive, ahk_exe explorer.exe
-
+#IfWinNotActive, ahk_exe explorer.exe ;Really only useful for laptops.
 !Up::
 soundget, v
 p:=inv(v/100.0)+0.02
@@ -438,3 +426,134 @@ return
 #If
 
 ;*****************************************HOTKEYS FOR TITLE STUFF*********************************
+;These hotkeys allow the user to adjust and modify text/titles in whatever way they want.
+;Inspiration and code for this: https://autohotkey.com/board/topic/57888-title-case/ and https://autohotkey.com/board/topic/123994-capitalize-a-title/
+
+;Converts text to Title Case.
+^!t::
+  Send, ^c ;Copy text, and wait a bit so it can actually process that.
+  Sleep 45
+
+  ;Makes the title in AHK's "Title Case", which in reality just capitalizes the first letter of each word.
+  StringUpper, NewTitle, Clipboard, T
+  head := SubStr(NewTitle, 1, 1) ;Manipulates and edits the String somehow.
+  tail := SubStr(NewTitle, 2)
+
+  ;Stores the NewTitle in the Clipboard.             This is the list of words to NOT capitalize.
+  Clipboard := head RegExReplace(tail, "i)\b(a|an|and|at|but|by|for|in|nor|of|on|or|so|the|to|up|with|yet)\b", "$L1")
+
+  Send ^v ;Paste the new title.
+return
+
+;Converts text to UPPER CASE, using a built-in AHK function.
+^!u::
+	Send, ^c
+	Sleep 45
+	StringUpper, NewTitle, Clipboard
+	Clipboard := NewTitle
+	Send, ^v
+return
+
+^!l::
+	Send, ^c
+	Sleep 45
+	StringLower, NewTitle, Clipboard
+	Clipboard := NewTitle
+	Send, ^v
+return
+
+;Converts text to Sentence case.
+^!s::
+	Send, ^c
+	Sleep 45
+	StringLower, NewTitle, Clipboard
+	NewTitle := RegExReplace(Clipboard, "((?:^|[.!?]\s+)[a-z])", "$u1")
+	Clipboard := NewTitle
+	Send, ^v
+return
+
+;Converts text to First Letter Capitalization, using a built-in AHK function.
+^!f::
+	Send, ^c
+	Sleep 45
+	StringUpper, NewTitle, Clipboard, T
+	Clipboard := NewTitle
+	Send, ^v
+return
+
+;Convert text to aLt CaSe, with the first letter being lower case.
+;altCaseToggle is a toggle for if the alt case starts in lower case or not.
+;A_LoopField is the single character at that point in the Parse Loop.
+;0 = convert the char (A_LoopField) to lower...
+;...1 = convert the char to UPPER.
+^!a::
+
+	;Blank out this String.
+	finalString :=
+	altCaseToggle := 0
+
+	Send, ^c
+	Sleep, 50
+
+	;Loop through the contents of the Clipboard, and toggle between cases.
+	Loop, Parse, Clipboard
+	{
+		if (altCaseToggle = 0) {
+			if (A_LoopField = A_Space) {
+				;If the current char is a space, don't toggle the var and just concatenate it to the finalString.
+				finalString := finalString . A_Space
+			} else {
+				StringLower, strLwUpOutput, A_LoopField
+				finalString := finalString . strLwUpOutput
+				altCaseToggle := !altCaseToggle
+			}
+		} else if (altCaseToggle = 1) {
+			if (A_LoopField = A_Space) {
+				finalString := finalString . A_Space
+			} else {
+				StringUpper, strLwUpOutput, A_LoopField
+				finalString := finalString . strLwUpOutput
+				altCaseToggle := !altCaseToggle
+			}
+		}
+	}
+
+	Clipboard := finalString
+	Send, ^v
+
+return
+
+;Convert text to AlT cAsE, with the first letter being UPPER case.
+^!+a::
+
+	finalString :=
+	altCaseToggle := 1
+
+	Send, ^c
+	Sleep, 50
+
+	;Loop through the contents of the Clipboard, and toggle between cases.
+	Loop, Parse, Clipboard
+	{
+		if (altCaseToggle = 0) {
+			if (A_LoopField = A_Space) {
+				finalString := finalString . A_Space
+			} else {
+				StringLower, strLwUpOutput, A_LoopField
+				finalString := finalString . strLwUpOutput
+				altCaseToggle := !altCaseToggle
+			}
+		} else if (altCaseToggle = 1) {
+			if (A_LoopField = A_Space) {
+				finalString := finalString . A_Space
+			} else {
+				StringUpper, strLwUpOutput, A_LoopField
+				finalString := finalString . strLwUpOutput
+				altCaseToggle := !altCaseToggle
+			}
+		}
+	}
+
+	Clipboard := finalString
+	Send, ^v
+return
