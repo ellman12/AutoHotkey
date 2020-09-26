@@ -43,6 +43,7 @@
 ;///////////////////////////////////////////////////////////////////////
 
 /* TODO:
+if the volume just got turned up quite a ways, give some kind of warning (large Tippy, etc.) warning me to turn the volume down. Put in either Main or NumPad.
 cscnewf thing without due date and move date to comments and add time to both of the strings. Add to Run perhaps?
 Remove Run and other help GUIs and replace with txt files
 Refine the command line stuff
