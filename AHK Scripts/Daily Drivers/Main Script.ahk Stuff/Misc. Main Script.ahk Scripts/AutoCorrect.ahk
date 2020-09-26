@@ -5542,3 +5542,6 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::wifi::Wi-Fi
 ::dsu::DSU
 :*:dsuu::Dakota State University
+:*:numpad::NumPad
+:*:numlock::NumLock
+:*:scrolllock::ScrollLock

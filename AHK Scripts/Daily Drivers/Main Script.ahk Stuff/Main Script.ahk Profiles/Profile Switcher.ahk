@@ -5,7 +5,7 @@
 SetTitleMatchMode, 2
 
 autoSelectProfiles() {
-	
+
 	;If this string contains the thing in quotes, set the current profile to that. Else, go to Default (hence the Else).
 
 	if InStr(activeWindowTitle, "Mozilla Firefox")
@@ -24,8 +24,6 @@ autoSelectProfiles() {
 			currentProfile = Chrome
 	else if InStr(activeWindowTitle, "SciTE4AutoHotkey")
 		currentProfile = SciTE4AutoHotkey
-	else if InStr(activeWindowTitle, "RuneLite") or InStr(activeWindowTitle, "RuneScape")
-		currentProfile = RuneScape
 	else if InStr(activeWindowTitle, " - Word")
 		currentProfile = MSWord
 	else if Instr(activeWindowTitle, " - Visual Studio Code")

@@ -26,9 +26,11 @@
 
 * Here's how this giant script is laid out: https://imgur.com/R14NAWW
 
-* Important Acronyms:
+* Important Acronyms, Contractions, Etc.:
 * MRS: Main Script Revised
 * TCT: Title Capitalization Tool
+* YT: YouTube
+* Keeb: keyboard
 
 * Conventions for the number of * for a title/header.
 ;TODO: Change to column size or something.
@@ -186,8 +188,8 @@ GUI, CPanel:Add, DDL, vF10Choice w118 x177 y273,Window Group||Window Hider||
 
 ;Toggle for showing or hiding the GUI.
 ;If it's 1, show the GUI; if it's 0, hide it.
-;Starts out as 0, so it only appers when the user wants it.
-global showControlPanelGUI := 0
+;Starts out as 0, so it only appears when the user wants it.
+global controlPanelGUIToggle := 0
 
 ;Default values.
 global InsMonChoice := "1 (Primary Mon)"
@@ -198,11 +200,13 @@ CONTROL_PANEL_WIDTH := 298
 CONTROL_PANEL_HEIGHT := 300
 
 ;****************************************MISC VARIABLES, INITIALIZATION, ETC*********************************
-;Used for the step values for NumPad2 and NumPad8 for NumPad Media Control.
+;When Num2 or Num8 pressed, how much to increase/decrease volume.
 global Num2And8Step := 3
 
-;Toggle for if the NumPad switches modes automatically or not; starts out at true, for convenience.
+;If true, switch NumPad modes automatically. If 0 user controls it.
 global autoNumPadModeToggle := true
+
+global systemMasterVolume
 
 ;Toggle for Programming Mode: disabling certain hotkeys/hotstrings to make programming easier. ^!Insert is the hotkey.
 global programmingMode := false
@@ -266,7 +270,39 @@ Loop {
 	Sleep 200
 }
 */
-;TODO: #Include files.
+
+; #Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Bedtime Script\Bedtime Script.ahk
+
+;Context-sensitive hotkey script files.????????????????????????????
+#Include, %A_ScriptDir%\Main Script.ahk Profiles\Browser.ahk
+#Include, %A_ScriptDir%\Main Script.ahk Profiles\Default.ahk
+; #Include, %A_ScriptDir%\Main Script.ahk Profiles\Google Docs.ahk
+; #Include, %A_ScriptDir%\Main Script.ahk Profiles\Google Sheets.ahk
+; #Include, %A_ScriptDir%\Main Script.ahk Profiles\Microsoft Word.ahk
+#Include, %A_ScriptDir%\Main Script.ahk Profiles\Profile Switcher.ahk
+#Include, %A_ScriptDir%\Main Script.ahk Profiles\SciTE4AutoHotkey Programming.ahk
+#Include, %A_ScriptDir%\Main Script.ahk Profiles\VSCode.ahk
+
+; #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Advanced Window Hider.ahk
+#Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\ApplicationSwitcher.ahk
+#Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\AutoCorrect.ahk
+; #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\C-C++ Programming.ahk ???????????
+#Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Chromebook Typing.ahk
+#Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Custom Window Groups.ahk
+#Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\NumPad Media Control.ahk
+#Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Run.ahk
+
+#Include, %A_ScriptDir%\Screen Clipper Script\Screen Clipper.ahk
+#Include, %A_ScriptDir%\Video Game Stuff\Any Game.ahk
+#Include, %A_ScriptDir%\Video Game Stuff\Terraria.ahk
+#Include, %A_ScriptDir%\Video Game Stuff\Factorio.ahk
+#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\BooleanToggle.ahk
+#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\inArray.ahk
+#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\Tippy.ahk
+
+;#Include the script for my Secondary Macro Keyboard.
+#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\Secondary Macro Keyboard\Hasu USB to USB Script.ahk
+
 
 ;****************************************MISC HOTKEYS***************************************
 ^#r::Reload ;TODO: When Window Groups is done make this keep hidden windows safe from being lost.
@@ -360,10 +396,6 @@ return
 +F22::Send, ^v
 
 ;****************************************CONTEXT-SENSITIVE HOTKEYS***************************************
-#IfWinActive, ahk_exe EXCEL.EXE
-$F2::Send, {F2}
-
-
 #If programmingMode = false
 \::
 Send, ^+{Left}
@@ -590,9 +622,9 @@ return
 ;*****************************************MAIN SCRIPT CONTROL PANEL GUI BEHAVIOR*********************************
 ;Show/hide the Main Script Control Panel.
 #o::
-showControlPanelGUI := !showControlPanelGUI
+controlPanelGUIToggle := !controlPanelGUIToggle
 
-if (showControlPanelGUI = 1)
+if (controlPanelGUIToggle = 1)
 	GUI, CPanel:Show, w%CONTROL_PANEL_WIDTH% h%CONTROL_PANEL_HEIGHT%,Main Script Control Panel
 else
 	GUI, CPanel:Hide
@@ -601,7 +633,7 @@ return
 CPanelGuiClose:
 CPanelGuiEscape:
 GUI, CPanel:Submit
-showControlPanelGUI := !showControlPanelGUI
+controlPanelGUIToggle := !controlPanelGUIToggle
 return
 
 ;*****************************************EASY WINDOW DRAGGING (EWD)*********************************

@@ -314,7 +314,7 @@ Loop {
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\Google Docs.ahk
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\Google Sheets.ahk
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\Microsoft Word.ahk
-#Include, %A_ScriptDir%\Main Script.ahk Profiles\OSRS (RuneLite).ahk
+; #Include, %A_ScriptDir%\Main Script.ahk Profiles\OSRS (RuneLite).ahk Keeping in but commented out because I can.
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\Profile Switcher.ahk
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\SciTE4AutoHotkey Programming.ahk
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\VSCode.ahk
