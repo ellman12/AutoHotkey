@@ -42,7 +42,6 @@
 */
 ;///////////////////////////////////////////////////////////////////////
 
-
 /* TODO:
 cscnewf thing without due date and move date to comments and add time to both of the strings. Add to Run perhaps?
 Remove Run and other help GUIs and replace with txt files
@@ -58,7 +57,8 @@ A #o thing to switch between double click and F6 on mouse
 Run's cancel button doesn't work
 make ^+f work in Docs
 Label the small context section in here the misc ones: the ones without a profile or file or something.
-Make sure ^tab is removed from laptop section.
+bedtime script
+any game. Ideas in the script
 */
 
 #NoEnv
@@ -80,7 +80,7 @@ DetectHiddenWindows, Off
 ;Pic of all these icons: https://diymediahome.org/wp-content/uploads/shell32_icons.jpg
 Menu, Tray, Icon, shell32.dll, 233 ;Changes the icon to a cute little computer.
 
-/*
+
 ;******************************************AUTO-EXECUTE*************************************************
 ;****************************************CUSTOM WINDOW GROUPS*********************************
 ;Tracks all the window IDs for the custom groups.
@@ -216,15 +216,38 @@ global gameModeActive := false ;TODO: WHAT IS THIS?
 
 ;The stuff in this loop needs to be running constantly.
 Loop {
-
 	global activeWindowTitle
 	WinGetActiveTitle, activeWindowTitle
 
 	global activeWindowID
 	WinGet, activeWindowID, ID, A
 
-	;Constantly checking to see what profile the script should put the user in.
-	global currentProfile := autoSelectProfiles()
+	if InStr(activeWindowTitle, "Mozilla Firefox")
+		if InStr(activeWindowTitle, " - Google Docs")
+			currentProfile = Docs
+		else if InStr(activeWindowTitle, " - Google Sheets")
+			currentProfile = Sheets
+		else
+			currentProfile = Firefox
+	else if InStr(activeWindowTitle, "Google Chrome")
+		if InStr(activeWindowTitle, " - Google Docs")
+			currentProfile = Docs
+		else if InStr(activeWindowTitle, " - Google Sheets")
+			currentProfile = Sheets
+		else
+			currentProfile = Chrome
+	else if InStr(activeWindowTitle, "SciTE4AutoHotkey")
+		currentProfile = SciTE4AutoHotkey
+	else if InStr(activeWindowTitle, " - Word")
+		currentProfile = MSWord
+	else if Instr(activeWindowTitle, " - Visual Studio Code")
+		currentProfile = VSCode
+	else if Instr(activeWindowTitle, "Terraria")
+		currentProfile = Terraria
+	else if Instr(activeWindowTitle, "Factorio 1.")
+		currentProfile = Factorio
+	else
+		currentProfile = Default
 
 	;For the NumPad stuff.
 	global numLockToggled := GetKeyState("NumLock", "T")
@@ -266,24 +289,18 @@ Loop {
 
 	}
 
-	This sleep statement DRASTICALLY helps reduce the power and CPU usage of the Main Script.
+	;This sleep statement DRASTICALLY helps reduce the power and CPU usage of the Main Script.
 	Sleep 200
 }
-*/
 
-; #Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Bedtime Script\Bedtime Script.ahk
-
-;Context-sensitive hotkey script files.????????????????????????????
+;Other files with many different hotkeys in them.
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\Browser.ahk
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\Default.ahk
-; #Include, %A_ScriptDir%\Main Script.ahk Profiles\Google Docs.ahk
-; #Include, %A_ScriptDir%\Main Script.ahk Profiles\Google Sheets.ahk
-; #Include, %A_ScriptDir%\Main Script.ahk Profiles\Microsoft Word.ahk
-#Include, %A_ScriptDir%\Main Script.ahk Profiles\Profile Switcher.ahk
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\SciTE4AutoHotkey Programming.ahk
+#Include, %A_ScriptDir%\Main Script.ahk Profiles\Spreadsheeting.ahk
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\VSCode.ahk
+#Include, %A_ScriptDir%\Main Script.ahk Profiles\Word Processing.ahk
 
-; #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Advanced Window Hider.ahk
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\ApplicationSwitcher.ahk
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\AutoCorrect.ahk
 ; #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\C-C++ Programming.ahk ???????????
@@ -300,9 +317,7 @@ Loop {
 #Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\inArray.ahk
 #Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\Tippy.ahk
 
-;#Include the script for my Secondary Macro Keyboard.
 #Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\Secondary Macro Keyboard\Hasu USB to USB Script.ahk
-
 
 ;****************************************MISC HOTKEYS***************************************
 ^#r::Reload ;TODO: When Window Groups is done make this keep hidden windows safe from being lost.

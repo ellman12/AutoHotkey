@@ -250,15 +250,38 @@ Index := 0 ;Used as the name of the current gui cap window.
 
 ;The stuff in this loop needs to be running constantly.
 Loop {
-
 	global activeWindowTitle
 	WinGetActiveTitle, activeWindowTitle
 
 	global activeWindowID
 	WinGet, activeWindowID, ID, A
 
-	;Constantly checking to see what profile the script should put the user in.
-	global currentProfile := autoSelectProfiles()
+	if InStr(activeWindowTitle, "Mozilla Firefox")
+		if InStr(activeWindowTitle, " - Google Docs")
+			currentProfile = Docs
+		else if InStr(activeWindowTitle, " - Google Sheets")
+			currentProfile = Sheets
+		else
+			currentProfile = Firefox
+	else if InStr(activeWindowTitle, "Google Chrome")
+		if InStr(activeWindowTitle, " - Google Docs")
+			currentProfile = Docs
+		else if InStr(activeWindowTitle, " - Google Sheets")
+			currentProfile = Sheets
+		else
+			currentProfile = Chrome
+	else if InStr(activeWindowTitle, "SciTE4AutoHotkey")
+		currentProfile = SciTE4AutoHotkey
+	else if InStr(activeWindowTitle, " - Word")
+		currentProfile = MSWord
+	else if Instr(activeWindowTitle, " - Visual Studio Code")
+		currentProfile = VSCode
+	else if Instr(activeWindowTitle, "Terraria")
+		currentProfile = Terraria
+	else if Instr(activeWindowTitle, "Factorio 1.")
+		currentProfile = Factorio
+	else
+		currentProfile = Default
 
 	;For the NumPad stuff.
 	global numLockToggled := GetKeyState("NumLock", "T")
@@ -314,8 +337,8 @@ Loop {
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\Google Docs.ahk
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\Google Sheets.ahk
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\Microsoft Word.ahk
-; #Include, %A_ScriptDir%\Main Script.ahk Profiles\OSRS (RuneLite).ahk Keeping in but commented out because I can.
-#Include, %A_ScriptDir%\Main Script.ahk Profiles\Profile Switcher.ahk
+; #Include, %A_ScriptDir%\Main Script.ahk Profiles\OSRS (RuneLite).ahk
+; #Include, %A_ScriptDir%\Main Script.ahk Profiles\Profile Switcher.ahk
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\SciTE4AutoHotkey Programming.ahk
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\VSCode.ahk
 
@@ -329,7 +352,7 @@ Loop {
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Run.ahk
 
 #Include, %A_ScriptDir%\Screen Clipper Script\Screen Clipper.ahk
-#Include, %A_ScriptDir%\Video Game Stuff\Any Game.ahk
+; #Include, %A_ScriptDir%\Video Game Stuff\Any Game.ahk
 #Include, %A_ScriptDir%\Video Game Stuff\Terraria.ahk
 #Include, %A_ScriptDir%\Video Game Stuff\Factorio.ahk
 #Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\BooleanToggle.ahk
@@ -581,15 +604,6 @@ if (ErrorLevel = 1) {
 } else if (ErrorLevel = 0) {
 SoundSet, %systemMasterVolume%
 }
-return
-
-;For Firefox
-^Tab::
-Send, ^{PGDN}
-return
-
-^+Tab::
-Send, ^{PGUP}
 return
 
 #IfWinNotActive, ahk_exe explorer.exe

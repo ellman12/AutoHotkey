@@ -13,7 +13,7 @@ SplitPath, A_ScriptName, , , , thisscriptname
 ; SetMouseDelay, -1 ; Remove short delay done automatically after Click and MouseMove/Click/Drag
 
 
-merge sheets and maybe add some excel things here????
+; merge sheets and maybe add some excel things here????
 
 #IfWinActive, ahk_exe EXCEL.EXE
 $F2::Send, {F2}

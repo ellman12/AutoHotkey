@@ -1,29 +1,15 @@
-﻿;OPTIMIZATIONS START
-#NoEnv
-#MaxHotkeysPerInterval 99000000
-#HotkeyInterval 99000000
-#KeyHistory 0
-ListLines Off
-Process, Priority, , A
-SetBatchLines, -1
-SetKeyDelay, -1, -1
-SetMouseDelay, -1
-SetDefaultMouseSpeed, 0
-SetWinDelay, -1
-SetControlDelay, -1
-SendMode Input
-#SingleInstance force
-;OPTIMIZATIONS END
+﻿;TODO https://www.autohotkey.com/docs/commands/GuiControls.htm#Hotkey
 
-;consider removing these optimizations, but only if this thing is used in Main.
 
-;This script is the profile used for games.
-;As of right now, it's just used for DOOM.
-;TODO https://www.autohotkey.com/docs/commands/GuiControls.htm#Hotkey
+; layout idea:
+; shit ton of hotkey commands
+; labels
+; a GUI for changing hotkeys
+; a way to edit said hotkeys
+; auto determine the game. Txt files or arrays or something?
 
 ;****************************************MOUSE ACTIONS***************************************
-
-#If currentProfile = "DOOM"
+#If currentProfile = ""
 ;Mouse Profile Switch button
 ^!F23::
 return
