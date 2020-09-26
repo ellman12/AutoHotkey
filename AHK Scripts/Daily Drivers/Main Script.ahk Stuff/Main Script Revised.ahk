@@ -200,19 +200,14 @@ CONTROL_PANEL_WIDTH := 298
 CONTROL_PANEL_HEIGHT := 300
 
 ;****************************************MISC VARIABLES, INITIALIZATION, ETC*********************************
-;When Num2 or Num8 pressed, how much to increase/decrease volume.
-global Num2And8Step := 3
-
-;If true, switch NumPad modes automatically. If 0 user controls it.
-global autoNumPadModeToggle := true
-
+global Num2And8Step := 3 ;When Num2 or Num8 pressed, how much to increase/decrease volume.
+global autoNumPadModeToggle := true ;If true, switch NumPad modes automatically. If 0 user controls it.
 global systemMasterVolume
 
-;Toggle for Programming Mode: disabling certain hotkeys/hotstrings to make programming easier. ^!Insert is the hotkey.
-global programmingMode := false
+global programmingMode := false ;Toggle for Programming Mode: disabling certain hotkeys/hotstrings to make programming easier. ^!Insert is the hotkey.
 
-;Toggle for Game Mode. This disables any hotkeys/hotstrings that I find annoying whilst gaming. This is toggled in Run.ahk.
-global gameModeActive := false ;TODO: WHAT IS THIS?
+;TODO: WHAT IS THIS?
+global gameModeActive := false ;Toggle for Game Mode. This disables any hotkeys/hotstrings that I find annoying whilst gaming. This is toggled in Run.ahk.
 
 ;The stuff in this loop needs to be running constantly.
 Loop {

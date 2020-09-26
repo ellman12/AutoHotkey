@@ -1,12 +1,4 @@
-﻿;A lot of this code is taken from Taran Van Hemert from Linus Media Group.
-;His video on this: https://www.youtube.com/watch?v=OqyQABySV8k
-;As he calls it, this is his most useful script he's ever made.
-;It's quite simple, but extremely useful and powerful.
-
-;3/2/2020: something I've noticed is this example:
-;Say you have 2 virtual desktops, and you have a window on each virtual desktop. If you have both in the same group, and you try to
-; activate the other window on the other virtual desktop, it will not activate. It never used to do this, but now it does.
-;This is actually pretty awesome.
+﻿;A lot of this code is taken from Taran Van Hemert from Linus Media Group. His video on this: https://www.youtube.com/watch?v=OqyQABySV8k
 
 ;Toggles between showing and hiding the help GUI for ApplicationSwitcher.ahk
 !a::
