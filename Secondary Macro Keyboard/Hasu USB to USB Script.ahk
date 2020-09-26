@@ -405,6 +405,14 @@ z::Send, ^z
 
 #if
 
+;Allowing the 2nd keyboard to use Shift for hotkeys. E.g., Shift + F1.
+;IDK if Ctrl, Alt, and/or Win Key will work...
+;"Note that some of the QMK changes only work for key UP, rather than key down and up, so not all modifier key re-remappings will necessarily work."
+;https://youtu.be/GZEoss4XIgc
+;LShift -to-> SC070-International 2 -back-to-> LShift.
+SC070::Lshift
+SC07D::Rshift
+
 ;***************FUNCTIONS FOR THE 2ND KEEB***************
 GoogleSearch:
    StringReplace, searchQuery, searchQuery, `r`n, %A_Space%, All

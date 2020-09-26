@@ -1163,8 +1163,8 @@ $F2::Send, {F2}
 ;"Note that some of the QMK changes only work for key UP, rather than key down and up, so not all modifier key re-remappings will necessarily work."
 ;https://youtu.be/GZEoss4XIgc
 ;LShift -to-> SC070-International 2 -back-to-> LShift.
-SC070::Lshift
-SC07D::Rshift
+; SC070::Lshift
+; SC07D::Rshift
 
 ;For Zoom meetings at DSU.
 :*:calczoomlink::https://dsu.zoom.us/j/92067482708?pwd=cGphak5zRjFVM3JBZnlaYWpWd1VCUT09

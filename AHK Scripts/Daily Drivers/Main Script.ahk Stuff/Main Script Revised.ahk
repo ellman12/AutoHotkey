@@ -642,5 +642,17 @@ EWD_MouseStartY := EWD_MouseY
 return
 
 ;*****************************************EXPERIMENTAL*****************************************
-
 ;*****************************************TEMPORARY*****************************************
+:*:hon comp::Honors: Composition II
+:*:hcomp::Honors Composition II
+
+#IfWinActive, ahk_exe Zoom.exe
+$PrintScreen::Send, #{PrintScreen}
+
+;"Hide" the mouse pointer, and hide the Zoom meeting controls.
+$CapsLock::
+MouseGetPos, mousePosX, mousePosY
+MouseMove, 1920, 540, 0
+Send, {LAlt}
+return
+#If

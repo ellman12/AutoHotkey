@@ -1,6 +1,6 @@
 ﻿;------------------------------------------------------------------------------
 ; CHANGELOG:
-; 
+;
 ; Sep 13 2007: Added more misspellings.
 ;              Added fix for -ign -> -ing that ignores words like "sign".
 ;              Added word beginnings/endings sections to cover more options.
@@ -8,30 +8,30 @@
 ; Feb 28 2007: Added other common misspellings based on MS Word AutoCorrect.
 ;              Added optional auto-correction of 2 consecutive capital letters.
 ; Sep 24 2006: Initial release by Jim Biancolo (http://www.biancolo.com)
-; 
+;
 ; INTRODUCTION
-; 
+;
 ; This is an AutoHotKey script that implements AutoCorrect against several
 ; "Lists of common misspellings":
-; 
+;
 ; This does not replace a proper spellchecker such as in Firefox, Word, etc.
 ; It is usually better to have uncertain typos highlighted by a spellchecker
 ; than to "correct" them incorrectly so that they are no longer even caught by
 ; a spellchecker: it is not the job of an autocorrector to correct *all*
 ; misspellings, but only those which are very obviously incorrect.
-; 
+;
 ; From a suggestion by Tara Gibb, you can add your own corrections to any
 ; highlighted word by hitting Win+H. These will be added to a separate file,
 ; so that you can safely update this file without overwriting your changes.
-; 
+;
 ; Some entries have more than one possible resolution (achive->achieve/archive)
 ; or are clearly a matter of deliberate personal writing style (wanna, colour)
-; 
+;
 ; These have been placed at the end of this file and commented out, so you can
 ; easily edit and add them back in as you like, tailored to your preferences.
-; 
+;
 ; SOURCES
-; 
+;
 ; http://en.wikipedia.org/wiki/Wikipedia:Lists_of_common_misspellings
 ; http://en.wikipedia.org/wiki/Wikipedia:Typo
 ; Microsoft Office autocorrect list
@@ -39,9 +39,9 @@
 ; OpenOffice autocorrect list
 ; TextTrust press release
 ; User suggestions.
-; 
+;
 ; CONTENTS
-; 
+;
 ;   Settings
 ;   AUto-COrrect TWo COnsecutive CApitals (commented out by default)
 ;   Win+H code
@@ -305,7 +305,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ; Accented English words, from, amongst others,
 ; http://en.wikipedia.org/wiki/List_of_English_words_with_diacritics
 ; I have included all the ones compatible with reasonable codepages, and placed
-; those that may often not be accented either from a clash with an unaccented 
+; those that may often not be accented either from a clash with an unaccented
 ; word (resume), or because the unaccented version is now common (cafe).
 ;------------------------------------------------------------------------------
 ::aesop::Æsop
@@ -592,7 +592,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::vins rose::vins rosé
 ::vis a vis::vis à vis
 ::vis-a-vis::vis-à-vis
-::voila::voilà 
+::voila::voilà
 
 ;------------------------------------------------------------------------------
 ; Common Misspellings - the main list
@@ -5279,7 +5279,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:thursday::Thursday
 :*:friday::Friday
 :*:saturday::Saturday
-:*:sunday::Sunday 
+:*:sunday::Sunday
 
 :*:january::January
 :*:february::February
@@ -5540,4 +5540,5 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:ahkk::AutoHotkey
 ::oiut::out
 ::wifi::Wi-Fi
-
+::dsu::DSU
+:*:dsuu::Dakota State University
