@@ -59,6 +59,9 @@ make ^+f work in Docs
 Label the small context section in here the misc ones: the ones without a profile or file or something.
 bedtime script
 any game. Ideas in the script
+thing that after certain amount of time moves mouse pointer off screen. If it's moved by user put back to where it was. Have a #o thing to customize delay
+in zoom disable alt + a hotkey. Have a zoom section.
+win group if win already in array don't add and have a tippy saying not added.
 */
 
 #NoEnv
@@ -79,7 +82,6 @@ DetectHiddenWindows, Off
 
 ;Pic of all these icons: https://diymediahome.org/wp-content/uploads/shell32_icons.jpg
 Menu, Tray, Icon, shell32.dll, 233 ;Changes the icon to a cute little computer.
-
 
 ;******************************************AUTO-EXECUTE*************************************************
 ;****************************************CUSTOM WINDOW GROUPS*********************************
@@ -107,7 +109,7 @@ global F8ShowHideToggle := 1
 global F10ShowHideToggle := 1
 
 ;*************Screen Clipper.ahk Initialization Stuff************
-Hotkey, #s , CreateCapWindow , On ;Take a screen clip with the Screen Clipper script.
+Hotkey, #s, CreateCapWindow, On ;Take a screen clip with the Screen Clipper script.
 SaveToFile := 1 ;Set this to 1 to save all clips with a unique name , Set it to 0 to overwrite the saved clip every time a new clip is made.
 ShowCloseButton := 1 ;Set this to 1 to show a small close button in the top right corner of the clip. Set this to 0 to keep the close button, but not show it.
 CoordMode, Mouse , Screen ;Use the screen as the reference to get positions from.
