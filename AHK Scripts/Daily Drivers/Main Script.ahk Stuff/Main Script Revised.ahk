@@ -31,6 +31,7 @@
 * TCT: Title Capitalization Tool
 
 * Conventions for the number of * for a title/header.
+;TODO: Change to column size or something.
 * Title:    50 **************************************************
 * Header 1: 35 ***********************************
 * Header 2: 20 ********************
@@ -359,6 +360,28 @@ return
 +F22::Send, ^v
 
 ;****************************************CONTEXT-SENSITIVE HOTKEYS***************************************
+#IfWinActive, ahk_exe EXCEL.EXE
+$F2::Send, {F2}
+
+
+#If programmingMode = false
+\::
+Send, ^+{Left}
+Send, {BackSpace}
+return
+
+::i::I
+::git::Git
+
+#IfWinActive Search ;When Cortana/Search is open.
+!s::Send, {Space}meaning
+
+RWin::
+Send, {LWin}
+Sleep 300
+Send, {LWin}
+return
+
 #If currentProfile != "Terraria"
 ;Scroll down faster by holding down the G3 key on Scimitar Pro RGB.
 F15 & WheelDown::Send, {WheelDown 8}
@@ -373,26 +396,6 @@ DllCall("SystemParametersInfo", Int,113, Int,0, UInt,17, Int,1)
 KeyWait, RButton
 DllCall("SystemParametersInfo", Int,113, Int,0, UInt,10, Int,1)
 return
-#If
-
-#IfWinActive Search ;When Cortana/Search is open.
-!s::Send, {Space}meaning
-
-RWin::
-Send, {LWin}
-Sleep 300
-Send, {LWin}
-return
-#If
-
-#If programmingMode = false
-\::
-Send, ^+{Left}
-Send, {BackSpace}
-return
-
-::i::I
-::git::Git
 
 #If usingALaptop = true
 #b:: ;Open battery menu.
@@ -422,7 +425,6 @@ p:=inv(v/100.0)-0.02
 nv:=f(p)*100.0
 soundset, nv
 return
-
 #If
 
 ;*****************************************HOTKEYS FOR TITLE STUFF*********************************
@@ -487,8 +489,6 @@ return
 ;0 = convert the char (A_LoopField) to lower...
 ;...1 = convert the char to UPPER.
 ^!a::
-
-	;Blank out this String.
 	finalString :=
 	altCaseToggle := 0
 
@@ -525,7 +525,6 @@ return
 
 ;Convert text to AlT cAsE, with the first letter being UPPER case.
 ^!+a::
-
 	finalString :=
 	altCaseToggle := 1
 
@@ -557,3 +556,91 @@ return
 	Clipboard := finalString
 	Send, ^v
 return
+
+;*****************************EDIT CLIPBOARD CONTENT GUI BEHAVIOR******************************
+;Toggles between showing and hiding the Clipboard GUI.
+#c::
+GuiControl, ECC:,clipboardBoxText, %Clipboard%
+
+showClipboardGUIToggle := !showClipboardGUIToggle
+
+if (showClipboardGUIToggle = 1)
+	GUI, ECC:Show, w650 h400,Clipboard Edit
+else
+	GUI, ECC:Hide
+return
+
+ECCGuiClose:
+    GUI, ECC:Submit, NoHide
+    GuiControl, ECC:Focus, clipboardBoxText
+    GUI, ECC:Hide
+    showClipboardGUIToggle := !showClipboardGUIToggle
+return
+
+clipboardTextBoxLabel:
+    GUI, ECC:Submit, NoHide
+return
+
+clipboardFinishButton:
+    GUI, ECC:Submit
+    Clipboard := clipboardBoxText
+    showClipboardGUIToggle := !showClipboardGUIToggle
+return
+
+;*****************************************MAIN SCRIPT CONTROL PANEL GUI BEHAVIOR*********************************
+;Show/hide the Main Script Control Panel.
+#o::
+showControlPanelGUI := !showControlPanelGUI
+
+if (showControlPanelGUI = 1)
+	GUI, CPanel:Show, w%CONTROL_PANEL_WIDTH% h%CONTROL_PANEL_HEIGHT%,Main Script Control Panel
+else
+	GUI, CPanel:Hide
+return
+
+CPanelGuiClose:
+CPanelGuiEscape:
+GUI, CPanel:Submit
+showControlPanelGUI := !showControlPanelGUI
+return
+
+;*****************************************EASY WINDOW DRAGGING (EWD)*********************************
+;Normally, a window can only be dragged by clicking on its title bar.
+;This extends that so that any point inside a window can be dragged.
+~LButton & RButton::
+CoordMode, Mouse  ; Switch to screen/absolute coordinates.
+MouseGetPos, EWD_MouseStartX, EWD_MouseStartY, EWD_MouseWin
+WinGetPos, EWD_OriginalPosX, EWD_OriginalPosY,,, ahk_id %EWD_MouseWin%
+WinGet, EWD_WinState, MinMax, ahk_id %EWD_MouseWin%
+if EWD_WinState = 0  ; Only if the window isn't maximized
+	SetTimer, EWD_WatchMouse, 10 ; Track the mouse as the user drags it.
+return
+
+EWD_WatchMouse:
+GetKeyState, EWD_LButtonState, LButton, P
+if EWD_LButtonState = U  ; Button has been released, so drag is complete.
+{
+	SetTimer, EWD_WatchMouse, Off
+	return
+}
+GetKeyState, EWD_EscapeState, Escape, P
+if EWD_EscapeState = D  ; Escape has been pressed, so drag is cancelled.
+{
+	SetTimer, EWD_WatchMouse, Off
+	WinMove, ahk_id %EWD_MouseWin%,, %EWD_OriginalPosX%, %EWD_OriginalPosY%
+	return
+}
+; Otherwise, reposition the window to match the change in mouse coordinates
+; caused by the user having dragged the mouse:
+CoordMode, Mouse
+MouseGetPos, EWD_MouseX, EWD_MouseY
+WinGetPos, EWD_WinX, EWD_WinY,,, ahk_id %EWD_MouseWin%
+SetWinDelay, -1   ; Makes the below move faster/smoother.
+WinMove, ahk_id %EWD_MouseWin%,, EWD_WinX + EWD_MouseX - EWD_MouseStartX, EWD_WinY + EWD_MouseY - EWD_MouseStartY
+EWD_MouseStartX := EWD_MouseX  ; Update for the next timer-call to this subroutine.
+EWD_MouseStartY := EWD_MouseY
+return
+
+;*****************************************EXPERIMENTAL*****************************************
+
+;*****************************************TEMPORARY*****************************************
