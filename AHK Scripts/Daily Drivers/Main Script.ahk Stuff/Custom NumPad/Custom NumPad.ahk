@@ -31,32 +31,50 @@ SendMode Input
 DetectHiddenWindows, Off
 #SingleInstance force
 
+;****CONTROL DISTANCES REFERENCE****
+;Distance between GroupBox and button: 17 pixels
+;Distance between GroupBoxes: 55 pixels
+
 Menu, Tray, Icon, %A_ScriptDir%\Custom NumPad Icon.png
 
 ;Symbols & Constants (pi, e, (), ∞, -∞).
-GUI, NumPad:Font, s10
-GUI, NumPad:Add, GroupBox, w288 h55 x3 y0,Symbols && Constants
+GUI, NumPad:Font, s8
+GUI, NumPad:Add, GroupBox, w288 h55 x2 y0,Symbols && Constants
 
-GUI, NumPad:Font, s12
-GUI, NumPad:Add, Button, w40 h33 x7 y17 , &(
+GUI, NumPad:Font, s11
+GUI, NumPad:Add, Button, w40 h33 x6 y17 , &(
 GUI, NumPad:Add, Button, wp hp xp+40 yp , &)
 GUI, NumPad:Add, Button, wp hp xp+40 yp , inf
 GUI, NumPad:Add, Button, wp hp xp+40 yp , -inf
-GUI, NumPad:Add, Button, wp hp xp+40 yp ,&Pi
-GUI, NumPad:Add, Button, wp hp xp+40 yp ,e
-GUI, NumPad:Add, Button, wp hp xp+40 yp ,&e^
+GUI, NumPad:Add, Button, wp hp xp+40 yp , &Pi
+GUI, NumPad:Add, Button, wp hp xp+40 yp , e
+GUI, NumPad:Add, Button, wp hp xp+40 yp , &e^
 
 ;Exponents (x^-1, x^-2, x^y, x^2, x^3, x^4, x^5, x^6)
+GUI, NumPad:Font, s8
+GUI, NumPad:Add, GroupBox, w288 h55 x2 y55,Exponents
+
+GUI, NumPad:Font, s11
+GUI, NumPad:Add, Button, w40 h33 x6 y72 , x^-&1
+GUI, NumPad:Add, Button, wp hp xp+40 yp , x^-2
+GUI, NumPad:Add, Button, wp hp xp+40 yp , x^&y
+GUI, NumPad:Add, Button, wp hp xp+40 yp , x^&2
+GUI, NumPad:Add, Button, wp hp xp+40 yp , x^&3
+GUI, NumPad:Add, Button, wp hp xp+40 yp , x^&4
+GUI, NumPad:Add, Button, wp hp xp+40 yp , x^&5
 
 ;Variables (x, y, z, theta, a, b, c).
 ; GUI, NumPad:Font, s10
-; GUI, NumPad:Add, GroupBox, w145 h57 x5 y0,Symbols && Constants
+; GUI, NumPad:Add, GroupBox, w288 h55 x2 y0,Symbols && Constants
 
 ; GUI, NumPad:Font, s12
-; GUI, NumPad:Add, Button, w40 h33 x10 y17,&Pi
-; GUI, NumPad:Add, Button, wp hp xp+40 yp,e
-; GUI, NumPad:Add, Button, wp hp xp+40 yp,&e^
-
+; GUI, NumPad:Add, Button, w40 h33 x6 y17 ,
+; GUI, NumPad:Add, Button, wp hp xp+40 yp ,
+; GUI, NumPad:Add, Button, wp hp xp+40 yp ,
+; GUI, NumPad:Add, Button, wp hp xp+40 yp ,
+; GUI, NumPad:Add, Button, wp hp xp+40 yp ,
+; GUI, NumPad:Add, Button, wp hp xp+40 yp ,
+; GUI, NumPad:Add, Button, wp hp xp+40 yp ,
 
 ;Operators (+, -, ×, ÷, , √).
 
@@ -65,7 +83,7 @@ GUI, NumPad:Add, Button, wp hp xp+40 yp ,&e^
 
 
 GUI, NumPad:+AlwaysOnTop
-GUI, NumPad:Show, w295 h400 x1203 y652
+GUI, NumPad:Show, w293 h400 x1203 y652
 
 return
 
