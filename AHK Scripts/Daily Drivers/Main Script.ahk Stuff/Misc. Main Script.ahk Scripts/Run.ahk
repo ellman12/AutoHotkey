@@ -145,7 +145,8 @@ Switch (runInputBoxText) {
     Case "micro": Send, {U+00B5} ;µ
     Case "inf": Send, {U+221E} ;∞
     Case "...": Send, {U+2026} ;…
-    
+    Case "theta": Send, {U+03B8} ;θ
+
     ;Sends either an em or en dash.
     Case "en": Send, {U+2013} ;–
     Case "em": Send, {U+2014} ;—
@@ -216,7 +217,7 @@ Switch (runInputBoxText) {
     Send, {Up 2}
     Send, {Right}u
     return
-    
+
     ;Restart PC.
     Case "rs":
     Send, #x
