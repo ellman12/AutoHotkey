@@ -31,7 +31,7 @@ Gui, Add, Radio, xs+0 ys+80 vIcon3 gCreate_Msgbox_Command, Question
 Gui, Add, Radio, xs+0 ys+120 vIcon4 gCreate_Msgbox_Command, Exclamation
 Gui, Add, Radio, xs+0 ys+160 vIcon5 gCreate_Msgbox_Command, Info
 ;Gui, Add, Picture, xs+90 ys-10 gSelect_NoIcon icon1, %A_WinDir%\system32\user32.dll
-Gui, Add, Picture, xs+90 ys-10 gSelect_NoIcon h30 w20 
+Gui, Add, Picture, xs+90 ys-10 gSelect_NoIcon h30 w20
 Gui, Add, Picture, xs+90 ys+30 gSelect_ErrorIcon icon4 , %A_WinDir%\system32\user32.dll
 Gui, Add, Picture, xs+90 ys+70 gSelect_Question icon3 , %A_WinDir%\system32\user32.dll
 Gui, Add, Picture, xs+90 ys+110 gSelect_Exclamation icon2, %A_WinDir%\system32\user32.dll

@@ -183,7 +183,7 @@ Switch (runInputBoxText) {
         MsgBox, 0, Drive Stats, Drive Stats`n`n%Total%
     return
 
-    Case "exitapp": ExitApp
+    Case "Exit": ExitApp
 
     Case "GM":
         gameModeActive := !gameModeActive
