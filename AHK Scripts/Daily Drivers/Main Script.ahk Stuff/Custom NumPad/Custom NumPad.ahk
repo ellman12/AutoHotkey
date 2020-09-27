@@ -99,12 +99,6 @@ GUI, NumPad:Add, Button, wp hp xp+40 yp gButtonPress, &ln
 
 GUI, NumPad:+AlwaysOnTop
 GUI, NumPad:Show, w293 h280 x1203 y652
-
-Loop {
-    if (A_GuiControl == "Pi")
-        MsgBox, Pi
-}
-
 return ;End of auto-execute.
 
 NumPadGuiClose:
