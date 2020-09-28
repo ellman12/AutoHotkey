@@ -1,22 +1,6 @@
 ;This script allows me to run and do miscellaneous things that don't deserve their own (hot)key,
 ; or things that would be messy and/or annoying to do via (hot)keys.
 
-;Run.ahk GUI intelligence.
-;These reset the Run GUI for its next use.
-RunGUIEscape:
-GUI, Run:Destroy
-GUI, Run:Color, Silver
-GUI, Run:Font, s11
-GUI, Run:Add, Text, x2 y0, Recommended Cmd`tWhat It Does
-return
-
-RunGUIClose:
-GUI, Run:Destroy
-GUI, Run:Color, Silver
-GUI, Run:Font, s11
-GUI, Run:Add, Text, x2 y0, Recommended Cmd`tWhat It Does
-return
-
 ;Alt + R opens the InputBox, which allows the user to type a command. It also contains a cheat sheet of all of the commands, in alphabetical order.
 ;This one single line is astronomically enormous, so Word Wrap is recommended.
 !r::
@@ -233,27 +217,19 @@ Switch (runInputBoxText) {
 
     ;Help <category> things.
     Case "Help Date", "Date Help":
-    GUI, Run:Add, Text, x%RunGUITextX% y%RunGUITextY%,da			Today's date (9/13/2020)`nda lo			Sunday`, September 13`nda lo t			Monday`, September 14`nda lo y			Saturday`, September 12`, 2020`nda longest		Sunday`, September 13`, 2020`nda longest		Monday`, September 14`, 2020`nda longest y		Saturday`, September 12`, 2020`nda sh			Sun`, Sep 13`nda sh t			Mon`, Sep 14`nda sh y			Sat`, Sep 12`nda t			Tomorrow's date (9/14/20)`nda y			Yeserday's date (9/12/20)`ndt			9/13/2020 6:17 PM`nti			6:17 PM
-    GUI, Run:Show, w410 h268,Date Category Help
     return
 
     Case "Help Insert", "Insert Help":
-    GUI, Run:Add, Text, x%RunGUITextX% y%RunGUITextY%,MsgBox, 0, , (u)p/(r)ight/(d)own/(l)eft		Inserts the corresponding arrow symbol.`n/= / =/		≠`n+- / -+		± / ∓`n<= / >=		≤ / ≥`napprox		≈`ndeg		°`ndelta		Δ`ndiv		÷`nem/en		Inserts either an — or an –`ninf		∞`nint (top/bot)	∫ `, ⌠`, ⌡`nmicro		µ`npi		π`nsec		§`nsqrt		√`nx		×,
-    GUI, Run:Show, w413 h490,Insert Category Help
     return
 
     Case "Help Misc", "Help Misc.", "Misc Help", "Misc. Help":
-    GUI, Run:Add, Text, x%RunGUITextX% y%RunGUITextY%,st			Get free space of all the drives in GB.`nExitApp			Kills the current running script.`nGM			Toggles Game Mode`, disabling hotkeys/strings that interrupt gaming.
-    GUI, Run:Show, w597 h75,Misc Category Help
     return
 
     Case "Help Open", "Open Help":
-    GUI, Run:Add, Text, x%RunGUITextX% y%RunGUITextY%,docu ff/chr		Opens the AHK documentation in either Chrome or Firefox.`nHelp (Sheet)		Opens the Help sheet.`nHelp <Category>	Opens a window that shows all the commands for the specified category.`nMB			Opens the MsgBox Creator script.`nop in chr/ff		Opens the current tab in the specified browser.`nthes chr/ff		Open thesaurus.com in the chosen browser and search for the inputted word.
-    GUI, Run:Show, w653 h125,Open Category Help
     return
 
-    Case "MB":Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR.ahk Stuff\Misc. MSR.ahk Scripts\MsgBox Creator.ahk
-    Case "CN", "Num", "NumPad":Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR.ahk Stuff\Custom NumPad\Custom NumPad.ahk
+    Case "MB":Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Misc. MSR Scripts\MsgBox Creator.ahk
+    Case "CN", "Num", "NumPad":Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Custom NumPad\Custom NumPad.ahk
 
     ;Open the documentation in either Firefox or Chrome
     Case "docu", "docu ff":

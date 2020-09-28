@@ -183,15 +183,6 @@ global ChrBookTypeMonChoice := "1 (Primary Mon)"
 CONTROL_PANEL_WIDTH := 298
 CONTROL_PANEL_HEIGHT := 300
 
-;*******************************RUN.ahk GUI INITIALIZATION******************************
-;This is a GUI for the Main Script that allows the user to change how parts of the script work.
-GUI, Run:Color, Silver
-GUI, Run:Font, s11
-GUI, Run:Add, Text, x2 y0, Recommended Cmd`tWhat It Does
-
-;Magic numbers that can easily be changed here and won't have to be changed anywhere else.
-RunGUITextX := 3
-RunGUITextY := 17
 ;****************************************MISC VARIABLES, INITIALIZATION, ETC*********************************
 ;Used for the step values for NumPad2 and NumPad8 in NumPad Media Control.
 global Num2And8Step := 3
