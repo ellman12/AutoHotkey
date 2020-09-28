@@ -1,1 +1,24 @@
-jdhfjkdhfjdkh
+Text to Input	What It Does
+...		…
+u/r/d/l		Inserts the corresponding arrow symbol.
+/= / =/		≠
++- / -+		± / ∓
+<= / >=		≤ / ≥
+2mail		Sends secondary Gmail.
+approx		≈
+check		✓
+deg		°
+delta		Δ
+div		÷
+DSU		Sends DSU email.
+em/en		Inserts either an — or an –
+inf		∞
+int (top/bot)	∫ , ⌠, ⌡
+mail		Sends main Gmail.
+micro		µ
+mult		×
+pi		π
+sec		Inserts the section symbol.
+sqrt		√
+theta		θ
+x			✗
