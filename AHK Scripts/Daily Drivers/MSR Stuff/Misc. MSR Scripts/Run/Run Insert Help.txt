@@ -23,7 +23,7 @@ mail		Sends main Gmail.
 micro		µ
 mult		×
 pi		π
-sec		Inserts the section symbol.
+sec		§
 sqrt		√
 theta		θ
 title		Inserts 50 * for titles for code sections.

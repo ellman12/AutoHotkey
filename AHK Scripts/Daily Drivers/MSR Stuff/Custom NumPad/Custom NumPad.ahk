@@ -25,6 +25,7 @@ SetWinDelay, -1
 SetControlDelay, -1
 SendMode Input
 DetectHiddenWindows, Off
+SetTitleMatchMode, 2
 #SingleInstance force
 
 ;****CONTROL DISTANCES REFERENCE****
@@ -99,14 +100,14 @@ GUI, NumPad:Add, Button, wp hp xp+40 yp gButtonPress, &ln
 
 ;Tabs for when ready to submit answer(s).
 GUI, NumPad:Font, s8
-GUI, NumPad:Add, GroupBox, w208 h55 x2 y275, Number of buttons to tab through to reach submit button. ;Basically num of tabs = num of buttons + 1.
+GUI, NumPad:Add, GroupBox, w288 h55 x2 y275, Number of buttons to tab through to reach submit button. ;Basically num of tabs = num of buttons + 1.
 
-GUI, NumPad:Font, s11
-GUI, NumPad:Add, Button, w40 h33 x6 y292 gButtonPress, 1 Tab
-GUI, NumPad:Add, Button, wp hp xp+40 yp gButtonPress, 2 Tab
-GUI, NumPad:Add, Button, wp hp xp+40 yp gButtonPress, 3 Tab
-GUI, NumPad:Add, Button, wp hp xp+40 yp gButtonPress, 4 Tab
-GUI, NumPad:Add, Button, wp hp xp+40 yp gButtonPress, 5 Tab
+GUI, NumPad:Font, s8
+GUI, NumPad:Add, Button, w50 h33 x6 y292 gButtonPress, 1 Tab
+GUI, NumPad:Add, Button, wp hp xp+50 yp gButtonPress, 1 Button
+GUI, NumPad:Add, Button, wp+5 hp xp+50 yp gButtonPress, 2 Buttons
+GUI, NumPad:Add, Button, wp+5 hp xp+55 yp gButtonPress, 3 Buttons
+GUI, NumPad:Add, Button, wp+5 hp xp+60 yp gButtonPress, 4 Buttons
 
 GUI, NumPad:+AlwaysOnTop
 GUI, NumPad:Show, w293 h332 x1203 y652
@@ -119,22 +120,23 @@ return
 
 ;Called when a button is pressed. The param "symbol" is what to send to WebAssign or wherever else.
 ;E.g., put in "pi" to send pi, which WebAssign should interpret as π.
-insertSymbol(symbol) {
-    Send, !{Tab}
-    Sleep 100
+insertSymbol(symbol, amtOfRightsToSend := 0) {
+    WinActivate, | WebAssign
+    Sleep 30
     Send, {Text}%symbol%
-    Sleep 100
-    Send, !{Tab}
+    Sleep 30
+    Send, {Right amtOfRightsToSend}
+    WinActivate, Custom NumPad.ahk
 }
 
-;when ready to submit answer, 1-5 will tab through that many buttons to get to the submit button, then click it.
+;when ready to submit answer, will tab through this many buttons to get to the submit button, then click it. numOfTabs = num of buttons + 1.
 tabAndSubmit(numOfTabs) {
     Send, !{Tab}
-    Sleep 100
+    Sleep 30
     Send, {Tab numOfTabs}
-    Sleep 100
+    Sleep 30
     Send, {Space}
-    Sleep 100
+    Sleep 30
     Send, !{Tab}
 }
 
@@ -171,25 +173,25 @@ Switch (A_GuiControl) {
     Case "&c":insertSymbol("c")
 
     ;Operators.
-    Case "&+":insertSymbol("+")
-    Case "&-":insertSymbol("-")
-    Case "&*":insertSymbol("*")
-    Case "&/":insertSymbol("/")
-    Case "&sqrt":insertSymbol("sqrt")
-    Case "&,":insertSymbol(",")
+    Case "+":insertSymbol("+")
+    Case "-":insertSymbol("-")
+    Case "*":insertSymbol("*")
+    Case "/":insertSymbol("/")
+    Case "sqrt":insertSymbol("sqrt")
+    Case ",":insertSymbol(",")
 
     ;Functions.
-    Case "&,":insertSymbol("sin")
-    Case "&,":insertSymbol("cos")
-    Case "&,":insertSymbol("tan")
-    Case "&,":insertSymbol("log")
-    Case "&,":insertSymbol("ln")
+    Case "&sin":insertSymbol("sin")
+    Case "&cos":insertSymbol("cos")
+    Case "&tan":insertSymbol("tan")
+    Case "&log":insertSymbol("log")
+    Case "&ln":insertSymbol("ln")
 
-    Case "1 Tab":tabAndSubmit(numOfTabs)
-    Case "2 Tab":tabAndSubmit(numOfTabs)
-    Case "3 Tab":tabAndSubmit(numOfTabs)
-    Case "4 Tab":tabAndSubmit(numOfTabs)
-    Case "5 Tab":tabAndSubmit(numOfTabs)
+    Case "1 Tab":tabAndSubmit(1)
+    Case "1 Button":tabAndSubmit(2)
+    Case "2 Buttons":tabAndSubmit(3)
+    Case "3 Buttons":tabAndSubmit(4)
+    Case "4 Buttons":tabAndSubmit(5)
 
     Default:MsgBox, 16, This is an error message for the Custom NumPad Script., Error. Unknown Button.,
 }
