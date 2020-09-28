@@ -97,8 +97,19 @@ GUI, NumPad:Add, Button, wp hp xp+40 yp gButtonPress, &tan
 GUI, NumPad:Add, Button, wp hp xp+40 yp gButtonPress, &log
 GUI, NumPad:Add, Button, wp hp xp+40 yp gButtonPress, &ln
 
+;Tabs for when ready to submit answer(s).
+GUI, NumPad:Font, s8
+GUI, NumPad:Add, GroupBox, w208 h55 x2 y275, Number of buttons to tab through to reach submit button. ;Basically num of tabs = num of buttons + 1.
+
+GUI, NumPad:Font, s11
+GUI, NumPad:Add, Button, w40 h33 x6 y292 gButtonPress, 1 Tab
+GUI, NumPad:Add, Button, wp hp xp+40 yp gButtonPress, 2 Tab
+GUI, NumPad:Add, Button, wp hp xp+40 yp gButtonPress, 3 Tab
+GUI, NumPad:Add, Button, wp hp xp+40 yp gButtonPress, 4 Tab
+GUI, NumPad:Add, Button, wp hp xp+40 yp gButtonPress, 5 Tab
+
 GUI, NumPad:+AlwaysOnTop
-GUI, NumPad:Show, w293 h280 x1203 y652
+GUI, NumPad:Show, w293 h340 x1203 y652
 return ;End of auto-execute.
 
 NumPadGuiClose:
@@ -112,6 +123,17 @@ insertSymbol(symbol) {
     Send, !{Tab}
     Sleep 100
     Send, {Text}%symbol%
+    Sleep 100
+    Send, !{Tab}
+}
+
+;when ready to submit answer, 1-5 will tab through that many buttons to get to the submit button, then click it.
+tabAndSubmit(numOfTabs) {
+    Send, !{Tab}
+    Sleep 100
+    Send, {Tab numOfTabs}
+    Sleep 100
+    Send, {Space}
     Sleep 100
     Send, !{Tab}
 }
@@ -162,6 +184,12 @@ Switch (A_GuiControl) {
     Case "&,":insertSymbol("tan")
     Case "&,":insertSymbol("log")
     Case "&,":insertSymbol("ln")
+
+    Case "1 Tab":tabAndSubmit(numOfTabs)
+    Case "2 Tab":tabAndSubmit(numOfTabs)
+    Case "3 Tab":tabAndSubmit(numOfTabs)
+    Case "4 Tab":tabAndSubmit(numOfTabs)
+    Case "5 Tab":tabAndSubmit(numOfTabs)
 
     Default:MsgBox, 16, This is an error message for the Custom NumPad Script., Error. Unknown Button.,
 }
