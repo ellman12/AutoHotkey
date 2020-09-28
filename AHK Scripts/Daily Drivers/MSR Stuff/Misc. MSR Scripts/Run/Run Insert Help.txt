@@ -21,4 +21,4 @@ pi		π
 sec		Inserts the section symbol.
 sqrt		√
 theta		θ
-x			✗
+x		✗
