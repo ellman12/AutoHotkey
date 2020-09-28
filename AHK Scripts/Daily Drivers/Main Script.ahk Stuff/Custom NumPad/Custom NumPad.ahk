@@ -109,7 +109,7 @@ GUI, NumPad:Add, Button, wp hp xp+40 yp gButtonPress, 4 Tab
 GUI, NumPad:Add, Button, wp hp xp+40 yp gButtonPress, 5 Tab
 
 GUI, NumPad:+AlwaysOnTop
-GUI, NumPad:Show, w293 h340 x1203 y652
+GUI, NumPad:Show, w293 h332 x1203 y652
 return ;End of auto-execute.
 
 NumPadGuiClose:
