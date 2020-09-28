@@ -44,14 +44,11 @@
 
 /* TODO:
 if the volume just got turned up quite a ways, give some kind of warning (large Tippy, etc.) warning me to turn the volume down. Put in either Main or NumPad.#SingleInstance, Force
-cscnewf thing without due date and move date to comments and add time to both of the strings. Add to Run perhaps?
 Remove Run and other help GUIs and replace with txt files
-Refine the command line stuff
 Redo that pic of the layout of this script; missed some important parts like TCT, ECC, etc.
 2nd keeb keys for running and then showing hiding outlook Discord Slack etc. Activates em if they exist and are shown but not activated. Redo Main first tho. Nothing new until Main is no longer a mess
 Run stuff for inserting headers for script
 Fix the number of *'s for headers and titles so it's consistent
-Ahk script for MC
 A way to run 30 clipboards akin to the MB creator
 A #o thing to toggle F3 between Chrome and VSCode
 A #o thing to switch between double click and F6 on mouse
@@ -64,6 +61,7 @@ thing that after certain amount of time moves mouse pointer off screen. If it's 
 win group if win already in array don't add and have a tippy saying not added.
 ;Revise the help spreadsheet
 */
+
 
 #NoEnv
 #MaxHotkeysPerInterval 999999999999999999999999999999999
@@ -81,8 +79,6 @@ SendMode Input
 DetectHiddenWindows, Off
 #SingleInstance force
 
-;Pic of all these icons: https://diymediahome.org/wp-content/uploads/shell32_icons.jpg
-Menu, Tray, Icon, shell32.dll, 233 ;Changes the icon to a cute little computer.
 
 ;******************************************AUTO-EXECUTE*************************************************
 ;****************************************CUSTOM WINDOW GROUPS*********************************
@@ -241,30 +237,34 @@ Loop {
 
 	if InStr(activeWindowTitle, "Mozilla Firefox")
 		if InStr(activeWindowTitle, " - Google Docs")
-			currentProfile = Docs
+			currentProfile := "Docs"
 		else if InStr(activeWindowTitle, " - Google Sheets")
-			currentProfile = Sheets
+			currentProfile := "Sheets"
 		else
-			currentProfile = Firefox
+			currentProfile := "Firefox"
+
 	else if InStr(activeWindowTitle, "Google Chrome")
 		if InStr(activeWindowTitle, " - Google Docs")
-			currentProfile = Docs
+			currentProfile := "Docs"
 		else if InStr(activeWindowTitle, " - Google Sheets")
-			currentProfile = Sheets
+			currentProfile := "Sheets"
 		else
-			currentProfile = Chrome
-	else if InStr(activeWindowTitle, "SciTE4AutoHotkey")
-		currentProfile = SciTE4AutoHotkey
+			currentProfile := "Chrome"
+
+	else if InStr(activeWindowTitle, " - Excel")
+		currentProfile := "Excel"
 	else if InStr(activeWindowTitle, " - Word")
-		currentProfile = MSWord
+		currentProfile := "Word"
 	else if Instr(activeWindowTitle, " - Visual Studio Code")
-		currentProfile = VSCode
-	else if Instr(activeWindowTitle, "Terraria")
-		currentProfile = Terraria
+		currentProfile := "VSCode"
 	else if Instr(activeWindowTitle, "Factorio 1.")
-		currentProfile = Factorio
+		currentProfile := "Factorio"
+	else if Instr(activeWindowTitle, "Minecraft 1.1")
+		currentProfile := "Minecraft"
+	else if Instr(activeWindowTitle, "Terraria")
+		currentProfile := "Terraria"
 	else
-		currentProfile = Default
+		currentProfile := "Default"
 
 	;For the NumPad stuff.
 	global numLockToggled := GetKeyState("NumLock", "T")
@@ -316,10 +316,11 @@ Loop {
 
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\Browser.ahk
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\Default.ahk
-#Include, %A_ScriptDir%\Main Script.ahk Profiles\SciTE4AutoHotkey Programming.ahk
-#Include, %A_ScriptDir%\Main Script.ahk Profiles\Spreadsheeting.ahk
+#Include, %A_ScriptDir%\Main Script.ahk Profiles\Google Docs.ahk
+#Include, %A_ScriptDir%\Main Script.ahk Profiles\Google Sheets.ahk
+#Include, %A_ScriptDir%\Main Script.ahk Profiles\Microsoft Excel.ahk
+#Include, %A_ScriptDir%\Main Script.ahk Profiles\Microsoft Word.ahk
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\VSCode.ahk
-#Include, %A_ScriptDir%\Main Script.ahk Profiles\Word Processing.ahk
 
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\ApplicationSwitcher.ahk
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\AutoCorrect.ahk
@@ -343,7 +344,7 @@ Loop {
 !#r::Reload
 
 ;Shows you miscellaneous variables, toggles, etc.
-^#BackSpace::MsgBox, Misc. Variables`, Toggles`, etc.,Current Main Script.ahk profile:  %currentProfile%`n`nNumPadMode: %numPadMode%`n`nChromebook Typing Toggled: %chromebookTypingToggle%`n`nautoNumPadModeToggle: %autoNumPadModeToggle%
+^#BackSpace::MsgBox, 0, Misc. Variables`, Toggles`, etc., Main Script Revised Profile: %currentProfile%`n`nnumPadMode: %NumPadMode%`n`nautoNumPadModeToggle: %autoNumPadModeToggle%
 
 ^Space::WinSet, AlwaysOnTop, Toggle, A
 
@@ -376,8 +377,6 @@ sc029::Send, !{Tab} ;The grave accent key (that weird thing under the Tilde ~ sy
 !SC00C::WinMinimize, A ;Alt + -
 
 !SC00D::WinMaximize, A ;Alt + +.
-
-^+f::Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts
 
 ;Open Notepad.
 #n::Run, Notepad
@@ -416,7 +415,7 @@ KeyWait, RShift
 DllCall("SystemParametersInfo", Int,113, Int,0, UInt,10, Int,1)
 return
 
-;****************************************K95 RGB HOTKEYS***************************************
+;****************************************GLOBAL K95 RGB HOTKEYS***************************************
 ;These 3 hotkeys are sent by the iCUE software, which AutoHotkey detects.
 ;M1 on K95 RGB copies to the clipboard.
 +F24::Send, ^c
@@ -476,17 +475,17 @@ return
 
 #IfWinNotActive, ahk_exe explorer.exe ;Really only useful for laptops.
 !Up::
-soundget, v
+SoundGet, v
 p:=inv(v/100.0)+0.02
 nv:=f(p)*100.0
-soundset, nv
+SoundSet, nv
 return
 
 !Down::
-soundget, v
+SoundGet, v
 p:=inv(v/100.0)-0.02
 nv:=f(p)*100.0
-soundset, nv
+SoundSet, nv
 return
 #If
 

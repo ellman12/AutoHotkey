@@ -2,7 +2,7 @@
 
 ;****************************************MOUSE ACTIONS***************************************
 
-#If currentProfile = "MSWord"
+#If currentProfile = "Word"
 ;Mouse Profile Switch button
 ^!F23::
 ; NextWindowF6()
@@ -147,7 +147,7 @@ return
 Send, ^#{Right}
 return
 
-;****************************************MISC MSWORD ACTIONS***************************************
+;****************************************MISC WORD ACTIONS***************************************
 ;(Ctrl + S) save document.
 F5::
 Send, ^s

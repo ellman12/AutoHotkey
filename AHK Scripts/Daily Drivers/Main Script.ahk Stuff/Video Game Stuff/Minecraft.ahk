@@ -1,9 +1,7 @@
 ;This script is the Minecraft profile.
 
-
 ;****************************************MOUSE ACTIONS***************************************
-
-#If currentProfile = ""
+#If currentProfile = "Minecraft"
 ;Mouse Profile Switch button
 ^!F23::
 return

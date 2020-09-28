@@ -7,7 +7,7 @@
 
 ; ;User Defined Values
 ; ;************************************************
-; Hotkey, #s , CreateCapWindow , On  ;<------------------    Adjust the hotkey value to suit your needs / wants 
+; Hotkey, #s , CreateCapWindow , On  ;<------------------    Adjust the hotkey value to suit your needs / wants
 ; ;************************************************
 ; SaveToFile := 1 		 		   		;<------------------    Set this to 1 to save all clips with a unique name , Set it to 0 to overwrite the saved clip every time a new clip is made.
 ; ;************************************************
@@ -29,7 +29,12 @@ return   ; End of Auto-Execute Section.
 ;**************************************************************************************
 ; ^!ESC:: ExitApp ; Hotkey to exit the script.
 ; ^ESC::	Reload ; Hotkey to reload the script.
-#!s:: Run, explorer.exe %A_ScriptDir%\Screen Clipper Script\Saved Clips ;Opens the folder containing the saved clips.
+!#s:: ;Opens/activates the folder containing the saved clips.
+IfWinExist, Saved Clips
+	WinActivate
+else
+	Run, explorer.exe %A_ScriptDir%\Screen Clipper Script\Saved Clips
+return
 ;**************************************************************************************
 ;**************************************************************************************
 
@@ -38,14 +43,14 @@ CloseClip: ;Close (Destroy this gui)
 	Gui, % Handles[hwnd] ": Destroy"  ;Destroy the gui with the name stored in the Handles array at position hwnd.
 	return
 
-MoveWindow: 
+MoveWindow:
 	PostMessage, 0xA1 , 2  ;Move the active window
 	return
 
 CreateCapWindow: ;Create a gui to used for setting the screen cap area and to display the resulting screen shot.
 	Index++ ;Increment the current index. (the gui's name)
 	Gui, %Index% : New , +AlwaysOnTop -Caption -DPIScale +ToolWindow +LastFound +Border hwndHwnd ;Create a new gui and set its options.
-	Handles[hwnd] := Index  ;Use the windows handle (hwnd) as the index for the the value of the windows name. 
+	Handles[hwnd] := Index  ;Use the windows handle (hwnd) as the index for the the value of the windows name.
 	Gui, %Index% : Color , 123456 ;Set the color of the gui (This color will be made transparent in the next step)
 	WinSet, TransColor , 123456 ;Set only this color as transparent
 	Gui, %Index% : Font, cMaroon s10 Bold Q5 , Segoe UI ;Set this gui's font. (Used for the close button)
@@ -105,12 +110,12 @@ LButton Up::
 	Gui, %Index% : -Border ;Remove the border before taking the screen clip
 	gosub, TakeScreenShot ;Take a screen shot of the cap area.
 	Gui, %Index% : +Border ;Add the border again.
-	
+
 	Gui, %Index% : Add , Text , % ( ( ShowCloseButton ) ? ( " Center 0x200 Border " ) : ( "" ) ) " x" WinPos.W - 20 " y0 w20 h20 BackgroundTrans gCloseClip" , % ( ( ShowCloseButton ) ? ( "X" ) : ( "" ) ) ;Create a trigger used for closing this window.
 	Gui, %Index% : Add , Text , % "x0 y0 w" WinPos.W " h" WinPos.H " BackgroundTrans gMoveWindow" ;Create a trigger used for moving the window around.
 	Gui, %Index% : Add , Picture , % "x0 y0 w" WinPos.W " h" WinPos.H ,% ClipName ".png"   ;Add the Screen clip image
 	return
-	
+
 RButton::  ;If the right mouse button is pressed while selecting the screen clip area, Cancel the action and restore variables etc.
 	Active := 0 ;Set context hotkeys off
 	SetTimer, DrawCapArea , Off ;Turn off the drawing timer.
@@ -118,7 +123,7 @@ RButton::  ;If the right mouse button is pressed while selecting the screen clip
 	ToolTip, ;Turn off any tooltips.
 	Gui, %Index% : Destroy ;Destroy the current gui
 	return
-	
+
 #If
 
 ;******************************************************************************************************************************************
@@ -137,7 +142,7 @@ Gdip_Startup(){
 Gdip_BitmapFromScreen(Screen=0, Raster=""){
 	if (Screen = 0){
 		Sysget, x, 76
-		Sysget, y, 77	
+		Sysget, y, 77
 		Sysget, w, 78
 		Sysget, h, 79
 	}else if (SubStr(Screen, 1, 5) = "hwnd:"){
@@ -211,7 +216,7 @@ Gdip_SaveBitmapToFile(pBitmap, sOutput, Quality=75){
 					NumPut(Quality, NumGet(NumPut(4, NumPut(1, p+0)+20, "UInt")), "UInt")
 					break
 				}
-			}      
+			}
 		}
 	}
 	if (!A_IsUnicode){
