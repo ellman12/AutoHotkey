@@ -62,6 +62,8 @@ win group if win already in array don't add and have a tippy saying not added.
 ;Revise the help spreadsheet
 */
 
+;Pic of all these icons: https://diymediahome.org/wp-content/uploads/shell32_icons.jpg
+Menu, Tray, Icon, shell32.dll, 233 ;Changes the icon to a cute little computer.
 
 #NoEnv
 #MaxHotkeysPerInterval 999999999999999999999999999999999
@@ -78,7 +80,6 @@ SetControlDelay, -1
 SendMode Input
 DetectHiddenWindows, Off
 #SingleInstance force
-
 
 ;******************************************AUTO-EXECUTE*************************************************
 ;****************************************CUSTOM WINDOW GROUPS*********************************
