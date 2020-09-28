@@ -185,15 +185,6 @@ Switch (runInputBoxText) {
 
     Case "Exit": ExitApp
 
-    Case "GM":
-        gameModeActive := !gameModeActive
-
-        if (gameModeActive = true)
-            Tippy("Game Mode activated!", 1200)
-        else
-            Tippy("Game Mode disabled!", 1200)
-    return
-
     ;Sleep PC.
     Case "z":
     Send, #x

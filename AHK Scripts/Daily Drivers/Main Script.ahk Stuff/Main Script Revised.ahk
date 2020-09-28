@@ -225,9 +225,6 @@ global systemMasterVolume
 
 global programmingMode := false ;Toggle for Programming Mode: disabling certain hotkeys/hotstrings to make programming easier. ^!Insert is the hotkey.
 
-;TODO: WHAT IS THIS?
-global gameModeActive := false ;Toggle for Game Mode. This disables any hotkeys/hotstrings that I find annoying whilst gaming. This is toggled in Run.ahk.
-
 ;The stuff in this loop needs to be running constantly.
 Loop {
 	global activeWindowTitle
