@@ -96,6 +96,12 @@ global CurrentWinF8 := 1
 global WindowGroupF10 := []
 global CurrentWinF10 := 1
 
+;These can be changed in #o, but set them to their normal, default values.
+global F6Mode := "Window Group"
+global F7Mode := "Window Group"
+global F8Mode := "Window Hider"
+global F10Mode := "Window Hider"
+
 ;Prevents losing windows when reloading the script with windows hidden.
 global F6WindowsHidden := false
 global F7WindowsHidden := false
