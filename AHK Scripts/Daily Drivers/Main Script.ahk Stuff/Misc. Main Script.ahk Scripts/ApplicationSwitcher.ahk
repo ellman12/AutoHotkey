@@ -273,6 +273,8 @@ createMSToDoTask(numberOfTabs, numberOfDowns) {
 
 ;****************************************************CUSTOM GROUP STUFF****************************************************
 ;*************************************************F6 GROUP STUFF*************************************************
+
+/*
 ^F6::AddWindowF6()
 
 ^!F6::RemoveWindowF6()
@@ -333,7 +335,7 @@ RemoveWindowF6() {
 }
 
 ;Activates the next window.
-NextWindowF6() {
+; NextWindowF6() {
 
     if (activeWindowID != WindowGroupF6[CurrentWinF6] AND !inArray(activeWindowID, WindowGroupF6)) {
         WinActivate, % "ahk_id" WindowGroupF6[CurrentWinF6]
@@ -552,3 +554,4 @@ RemoveNonexistentWindowsF7() {
     return
 
 }
+*/

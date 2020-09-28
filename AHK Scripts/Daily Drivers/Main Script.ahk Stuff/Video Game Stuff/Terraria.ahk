@@ -7,12 +7,12 @@
 #If currentProfile = "Terraria"
 ;;Mouse Profile Switch button
 ^!F23::
-NextWindowF6()
+; NextWindowF6()
 return
 
 ;Mouse DPI Toggle
 ^+F23::
-NextWindowF7()
+; NextWindowF7()
 return
 
 ;Mouse G1.
@@ -49,7 +49,7 @@ Send, {e up}
 return
 
 ;Mouse G5.
-;Open Inventory 
+;Open Inventory
 F17::
 Send, {q down}
 KeyWait, F17

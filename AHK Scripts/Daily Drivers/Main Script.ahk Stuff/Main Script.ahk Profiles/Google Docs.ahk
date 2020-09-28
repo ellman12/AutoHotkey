@@ -11,12 +11,12 @@
 ;Mouse Profile Switch
 ;Left double click
 ^!F23::
-NextWindowF6()
+; NextWindowF6()
 return
 
 ;Mouse DPI Toggle
 ^+F23::
-NextWindowF7()
+; NextWindowF7()
 return
 
 ;Mouse G1
