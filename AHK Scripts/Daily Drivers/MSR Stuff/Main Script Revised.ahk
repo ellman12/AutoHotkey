@@ -33,7 +33,6 @@
 * Keeb: keyboard
 
 * Conventions for the number of * for a title/header.
-;TODO: Change to column size or something.
 * Title:    50 **************************************************
 * Header 1: 35 ***********************************
 * Header 2: 20 ********************
@@ -57,7 +56,7 @@ bedtime script
 any game. Ideas in the script
 thing that after certain amount of time moves mouse pointer off screen. If it's moved by user put back to where it was. Have a #o thing to customize delay
 win group if win already in array don't add and have a tippy saying not added.
-;Revise the help spreadsheet
+Revise the help spreadsheet (hotkeys, etc).
 */
 
 ;Pic of all these icons: https://diymediahome.org/wp-content/uploads/shell32_icons.jpg
