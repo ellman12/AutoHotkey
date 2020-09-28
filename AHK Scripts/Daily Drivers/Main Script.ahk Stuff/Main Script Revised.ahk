@@ -317,7 +317,7 @@ Loop {
 
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\ApplicationSwitcher.ahk
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\AutoCorrect.ahk
-; #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\C-C++ Programming.ahk ???????????
+#Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\C-C++ Programming.ahk
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Chromebook Typing.ahk
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Custom Window Groups.ahk
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\NumPad Media Control.ahk
@@ -432,7 +432,6 @@ Send, {BackSpace}
 return
 
 ::i::I
-::git::Git
 
 #IfWinActive Search ;When Cortana/Search is open.
 !s::Send, {Space}meaning
