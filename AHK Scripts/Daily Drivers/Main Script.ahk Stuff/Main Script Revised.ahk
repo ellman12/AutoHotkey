@@ -162,7 +162,7 @@ GUI, CPanel:Font, s11
 GUI, CPanel:Add, DropDownList, x5 y140 w136 vChrBookTypeMonChoice, 1 (Primary Mon)||2 (Secondary Mon)|
 
 ;Default screen X and Y of battery icons; user can change them later in #o.
-if (A_ComputerName = "Ellott-Laptop") {
+if (A_ComputerName = "Elliott-Laptop") {
 	laptopBatteryIconX := 1432
 	laptopBatteryIconY := 885
     usingALaptop = true
