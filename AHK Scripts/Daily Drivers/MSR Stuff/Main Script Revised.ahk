@@ -329,7 +329,7 @@ Loop {
 #Include, %A_ScriptDir%\Misc. MSR Scripts\Chromebook Typing.ahk
 #Include, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups.ahk
 #Include, %A_ScriptDir%\Misc. MSR Scripts\NumPad Media Control.ahk
-#Include, %A_ScriptDir%\Misc. MSR Scripts\Run.ahk
+#Include, %A_ScriptDir%\Misc. MSR Scripts\Run\Run.ahk
 
 #Include, %A_ScriptDir%\Screen Clipper Script\Screen Clipper.ahk
 #Include, %A_ScriptDir%\Video Game Stuff\Factorio.ahk

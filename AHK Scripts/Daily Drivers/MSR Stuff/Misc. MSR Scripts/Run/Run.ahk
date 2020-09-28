@@ -216,17 +216,13 @@ Switch (runInputBoxText) {
     Case "Help", "Help Sheet", "Sheet Help": Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://docs.google.com/spreadsheets/d/1vGHwAVQwkmzGGpM_xQJ86RGXfsBiBxDD089cu1u02eA/edit#gid=17759502
 
     ;Help <category> things.
-    Case "Help Date", "Date Help":
-    return
+    Case "Help Date", "Date Help":Run, notepad.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Misc. MSR Scripts\Run\Run Date Help.txt
 
-    Case "Help Insert", "Insert Help":
-    return
+    Case "Help Insert", "Insert Help":Run, notepad.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Misc. MSR Scripts\Run\Run Insert Help.txt
 
-    Case "Help Misc", "Help Misc.", "Misc Help", "Misc. Help":
-    return
+    Case "Help Misc", "Help Misc.", "Misc Help", "Misc. Help":Run, notepad.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Misc. MSR Scripts\Run\Run Misc. Help.txt
 
-    Case "Help Open", "Open Help":
-    return
+    Case "Help Open", "Open Help":Run, notepad.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Misc. MSR Scripts\Run\Run Open Help.txt
 
     Case "MB":Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Misc. MSR Scripts\MsgBox Creator.ahk
     Case "CN", "Num", "NumPad":Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Custom NumPad\Custom NumPad.ahk
