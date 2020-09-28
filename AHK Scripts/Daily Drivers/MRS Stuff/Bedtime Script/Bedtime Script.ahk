@@ -51,13 +51,13 @@ return
 ;Read the data from the Bedtime and WakeUpTime files.
 ReadFiles() {
 global
-    FileRead, BedtimeValue, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Bedtime Script\Bedtime.txt ;User can set the Bedtime to what they want in this file.
+    FileRead, BedtimeValue, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR.ahk Stuff\Bedtime Script\Bedtime.txt ;User can set the Bedtime to what they want in this file.
     if (ErrorLevel = 1) {
         MsgBox, 16, Something went wrong., Something went wrong while reading the "Bedtime" file. The script will now exit.
         ExitApp, -2
     }
 
-    FileRead, WakeUpTime, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Bedtime Script\WakeUpTime.txt ;When to turn the thing off.
+    FileRead, WakeUpTime, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR.ahk Stuff\Bedtime Script\WakeUpTime.txt ;When to turn the thing off.
     if (ErrorLevel = 1) {
         MsgBox, 16, Something went wrong., Something went wrong while reading the "WakeUpTime" file. The script will now exit.
         ExitApp, -3

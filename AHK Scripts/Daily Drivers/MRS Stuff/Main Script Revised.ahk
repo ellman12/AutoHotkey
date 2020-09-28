@@ -140,8 +140,8 @@ SetWorkingDir, %A_ScriptDir%\Screen Clipper Script\Saved Clips ;Set the saved cl
 Handles := [] ;Create an array to hold the name of the different gui's.
 Index := 0 ;Used as the name of the current gui cap window.
 
-;*******************************MAIN SCRIPT CONTROL PANEL INITIALIZATION******************************
-;This is a GUI for the Main Script that allows the user to change how parts of the script work: stuff
+;*******************************MSR CONTROL PANEL INITIALIZATION******************************
+;This is a GUI for the MSR that allows the user to change how parts of the script work: stuff
 ; which probably couldn't really be done well with hotkeys.
 GUI, CPanel:+AlwaysOnTop
 GUI, CPanel:Color, Silver
@@ -307,36 +307,36 @@ Loop {
 
 	}
 
-	Sleep 200 ;This sleep statement DRASTICALLY helps reduce the power and CPU usage of the Main Script.
+	Sleep 200 ;This sleep statement DRASTICALLY helps reduce the power and CPU usage of the MSR.
 }
 
 ;Other files with many different hotkeys in them.
-#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\BooleanToggle.ahk
-#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\inArray.ahk
-#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\Tippy.ahk
+#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\BooleanToggle.ahk
+#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\inArray.ahk
+#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\Tippy.ahk
 
-#Include, %A_ScriptDir%\Main Script.ahk Profiles\Browser.ahk
-#Include, %A_ScriptDir%\Main Script.ahk Profiles\Default.ahk
-#Include, %A_ScriptDir%\Main Script.ahk Profiles\Google Docs.ahk
-#Include, %A_ScriptDir%\Main Script.ahk Profiles\Google Sheets.ahk
-#Include, %A_ScriptDir%\Main Script.ahk Profiles\Microsoft Excel.ahk
-#Include, %A_ScriptDir%\Main Script.ahk Profiles\Microsoft Word.ahk
-#Include, %A_ScriptDir%\Main Script.ahk Profiles\VSCode.ahk
+#Include, %A_ScriptDir%\MSR Profiles\Browser.ahk
+#Include, %A_ScriptDir%\MSR Profiles\Default.ahk
+#Include, %A_ScriptDir%\MSR Profiles\Google Docs.ahk
+#Include, %A_ScriptDir%\MSR Profiles\Google Sheets.ahk
+#Include, %A_ScriptDir%\MSR Profiles\Microsoft Excel.ahk
+#Include, %A_ScriptDir%\MSR Profiles\Microsoft Word.ahk
+#Include, %A_ScriptDir%\MSR Profiles\VSCode.ahk
 
-#Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\ApplicationSwitcher.ahk
-#Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\AutoCorrect.ahk
-#Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\C-C++ Programming.ahk
-#Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Chromebook Typing.ahk
-#Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Custom Window Groups.ahk
-#Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\NumPad Media Control.ahk
-#Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Run.ahk
+#Include, %A_ScriptDir%\Misc. MSR Scripts\ApplicationSwitcher.ahk
+#Include, %A_ScriptDir%\Misc. MSR Scripts\AutoCorrect.ahk
+#Include, %A_ScriptDir%\Misc. MSR Scripts\C-C++ Programming.ahk
+#Include, %A_ScriptDir%\Misc. MSR Scripts\Chromebook Typing.ahk
+#Include, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups.ahk
+#Include, %A_ScriptDir%\Misc. MSR Scripts\NumPad Media Control.ahk
+#Include, %A_ScriptDir%\Misc. MSR Scripts\Run.ahk
 
 #Include, %A_ScriptDir%\Screen Clipper Script\Screen Clipper.ahk
 #Include, %A_ScriptDir%\Video Game Stuff\Factorio.ahk
 #Include, %A_ScriptDir%\Video Game Stuff\Minecraft.ahk
 #Include, %A_ScriptDir%\Video Game Stuff\Terraria.ahk
 
-#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\Secondary Macro Keyboard\Hasu USB to USB Script.ahk
+#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\Secondary Macro Keyboard\Hasu USB to USB Script.ahk
 
 ;****************************************MISC HOTKEYS***************************************
 ^#r::Reload ;TODO: When Window Groups is done make this keep hidden windows safe from being lost.
@@ -345,7 +345,7 @@ Loop {
 !#r::Reload
 
 ;Shows you miscellaneous variables, toggles, etc.
-^#BackSpace::MsgBox, 0, Misc. Variables`, Toggles`, etc., Main Script Revised Profile: %currentProfile%`n`nnumPadMode: %NumPadMode%`n`nautoNumPadModeToggle: %autoNumPadModeToggle%
+^#BackSpace::MsgBox, 0, Misc. Variables`, Toggles`, etc., MSR Revised Profile: %currentProfile%`n`nnumPadMode: %NumPadMode%`n`nautoNumPadModeToggle: %autoNumPadModeToggle%
 
 ^Space::WinSet, AlwaysOnTop, Toggle, A
 
@@ -650,13 +650,13 @@ clipboardFinishButton:
     showClipboardGUIToggle := !showClipboardGUIToggle
 return
 
-;*****************************************MAIN SCRIPT CONTROL PANEL GUI BEHAVIOR*********************************
-;Show/hide the Main Script Control Panel.
+;*****************************************MSR CONTROL PANEL GUI BEHAVIOR*********************************
+;Show/hide the MSR Control Panel.
 #o::
 controlPanelGUIToggle := !controlPanelGUIToggle
 
 if (controlPanelGUIToggle = 1)
-	GUI, CPanel:Show, w%CONTROL_PANEL_WIDTH% h%CONTROL_PANEL_HEIGHT%,Main Script Control Panel
+	GUI, CPanel:Show, w%CONTROL_PANEL_WIDTH% h%CONTROL_PANEL_HEIGHT%,MSR Control Panel
 else
 	GUI, CPanel:Hide
 return

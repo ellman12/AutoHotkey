@@ -252,8 +252,8 @@ Switch (runInputBoxText) {
     GUI, Run:Show, w653 h125,Open Category Help
     return
 
-    Case "MB":Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Misc. Main Script.ahk Scripts\MsgBox Creator.ahk
-    Case "CN", "Num", "NumPad":Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\Main Script.ahk Stuff\Custom NumPad\Custom NumPad.ahk
+    Case "MB":Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR.ahk Stuff\Misc. MSR.ahk Scripts\MsgBox Creator.ahk
+    Case "CN", "Num", "NumPad":Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR.ahk Stuff\Custom NumPad\Custom NumPad.ahk
 
     ;Open the documentation in either Firefox or Chrome
     Case "docu", "docu ff":

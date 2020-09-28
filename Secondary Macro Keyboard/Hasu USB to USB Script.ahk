@@ -323,7 +323,7 @@ p::Run, C:\Program Files\Mozilla Firefox\firefox.exe -private-window https://www
 ;(Shift + Win + Right) Period moves active window to primary monitor.
 SC034::Send, +#{Right}
 
-;Reload either the Main Script or this Script.
+;Reload either the MSR or this Script.
 r::
 Reload
 return
