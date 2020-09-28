@@ -131,13 +131,13 @@ insertSymbol(symbol, amtOfRightsToSend := 0) {
 
 ;when ready to submit answer, will tab through this many buttons to get to the submit button, then click it. numOfTabs = num of buttons + 1.
 tabAndSubmit(numOfTabs) {
-    Send, !{Tab}
+    WinActivate, | WebAssign
     Sleep 30
     Send, {Tab numOfTabs}
     Sleep 30
     Send, {Space}
     Sleep 30
-    Send, !{Tab}
+    WinActivate, Custom NumPad.ahk
 }
 
 ;Called whenever any button is pressed. This big brain idea simplifies the code and makes it so there's only 1 label: not a crap ton more basically doing the same thing.
