@@ -194,16 +194,16 @@ GUI, CPanel:Add, Text, x5 y225,Custom Window Groups
 
 GUI, CPanel:Font, s11
 GUI, CPanel:Add, Text, x5 y250,F6
-GUI, CPanel:Add, DDL, vF6Choice w118 x25 y248,Window Group||Window Hider
+GUI, CPanel:Add, DDL, vF6Mode w118 x25 y248,Window Group||Window Hider
 
 GUI, CPanel:Add, Text, x150 y250,F7
-GUI, CPanel:Add, DDL, vF7Choice w118 x177 y248,Window Group||Window Hider
+GUI, CPanel:Add, DDL, vF7Mode w118 x177 y248,Window Group||Window Hider
 
 GUI, CPanel:Add, Text, x5 y275,F8
-GUI, CPanel:Add, DDL, vF8Choice w118 x25 y273,Window Group|Window Hider||
+GUI, CPanel:Add, DDL, vF8Mode w118 x25 y273,Window Group|Window Hider||
 
 GUI, CPanel:Add, Text, x150 y275,F10
-GUI, CPanel:Add, DDL, vF10Choice w118 x177 y273,Window Group||Window Hider||
+GUI, CPanel:Add, DDL, vF10Mode w118 x177 y273,Window Group||Window Hider||
 
 ;Toggle for showing or hiding the GUI.
 ;If it's 1, show the GUI; if it's 0, hide it.
@@ -305,6 +305,10 @@ Loop {
 }
 
 ;Other files with many different hotkeys in them.
+#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\BooleanToggle.ahk
+#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\inArray.ahk
+#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\Tippy.ahk
+
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\Browser.ahk
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\Default.ahk
 #Include, %A_ScriptDir%\Main Script.ahk Profiles\SciTE4AutoHotkey Programming.ahk
@@ -324,9 +328,6 @@ Loop {
 #Include, %A_ScriptDir%\Video Game Stuff\Factorio.ahk
 #Include, %A_ScriptDir%\Video Game Stuff\Minecraft.ahk
 #Include, %A_ScriptDir%\Video Game Stuff\Terraria.ahk
-#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\BooleanToggle.ahk
-#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\inArray.ahk
-#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\Tippy.ahk
 
 #Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\Secondary Macro Keyboard\Hasu USB to USB Script.ahk
 

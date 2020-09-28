@@ -37,14 +37,10 @@ TODO: Put these above each hotkey block.
 !F10::addAndHideWindowFx("F10", WindowGroupF10)
 
 ; Fx:: Either next window or hide windows.
-; F6::nextWinOrShowHideWins("F6", WindowGroupF6, CurrentWinF6, F6ShowHideToggle)
-; F7::nextWinOrShowHideWins("F7", WindowGroupF7, CurrentWinF7, F7ShowHideToggle)
-; F8::nextWinOrShowHideWins("F8", WindowGroupF8, CurrentWinF8, F8ShowHideToggle)
-; F10::nextWinOrShowHideWins("F10", WindowGroupF10, CurrentWinF10, F10ShowHideToggle)
-
-F6::
-
-return
+F6::nextWinOrShowHideWins("F6", WindowGroupF6, CurrentWinF6, F6ShowHideToggle)
+F7::nextWinOrShowHideWins("F7", WindowGroupF7, CurrentWinF7, F7ShowHideToggle)
+F8::nextWinOrShowHideWins("F8", WindowGroupF8, CurrentWinF8, F8ShowHideToggle)
+F10::nextWinOrShowHideWins("F10", WindowGroupF10, CurrentWinF10, F10ShowHideToggle)
 
 ; +Fx:: Either previous window or hide windows.
 +F6::prevWinOrHideWins("F6", WindowGroupF6, CurrentWinF6)
@@ -170,19 +166,19 @@ global
     if ((A_ThisHotkey = "F6") AND (F6Mode = "Window Group"))
         nextWindowFx("F6", WindowGroupF6, CurrentWinF6)
     else if ((A_ThisHotkey = "F6") AND (F6Mode = "Window Hider"))
-        showOrHideWindowsFx(WindowGroupF6, FxShowHideToggle)
+        showOrHideWindowsFx(WindowGroupF6, F6ShowHideToggle)
     else if ((A_ThisHotkey = "F7") AND (F7Mode = "Window Group"))
         nextWindowFx("F7", WindowGroupF7, CurrentWinF7)
     else if ((A_ThisHotkey = "F7") AND (F7Mode = "Window Hider"))
-        showOrHideWindowsFx(WindowGroupF7, FxShowHideToggle)
+        showOrHideWindowsFx(WindowGroupF7, F7ShowHideToggle)
     else if ((A_ThisHotkey = "F8") AND (F8Mode = "Window Group"))
         nextWindowFx("F8", WindowGroupF8, CurrentWinF8)
     else if ((A_ThisHotkey = "F8") AND (F8Mode = "Window Hider"))
-        showOrHideWindowsFx(WindowGroupF8, FxShowHideToggle)
+        showOrHideWindowsFx(WindowGroupF8, F8ShowHideToggle)
     else if ((A_ThisHotkey = "F10") AND (F10Mode = "Window Group"))
         nextWindowFx("F10", WindowGroupF10, CurrentWinF10)
     else if ((A_ThisHotkey = "F10") AND (F10Mode = "Window Hider"))
-        showOrHideWindowsFx(WindowGroupF10, FxShowHideToggle)
+        showOrHideWindowsFx(WindowGroupF10, F10ShowHideToggle)
 
     return
 
