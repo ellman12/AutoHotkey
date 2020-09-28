@@ -321,9 +321,9 @@ Loop {
 #Include, %A_ScriptDir%\Misc. Main Script.ahk Scripts\Run.ahk
 
 #Include, %A_ScriptDir%\Screen Clipper Script\Screen Clipper.ahk
-#Include, %A_ScriptDir%\Video Game Stuff\Factorio.ahk
-#Include, %A_ScriptDir%\Video Game Stuff\Minecraft.ahk
+#Include, %A_ScriptDir%\Video Game Stuff\Any Game.ahk
 #Include, %A_ScriptDir%\Video Game Stuff\Terraria.ahk
+#Include, %A_ScriptDir%\Video Game Stuff\Factorio.ahk
 #Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\BooleanToggle.ahk
 #Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\inArray.ahk
 #Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\Tippy.ahk

@@ -1,9 +1,6 @@
 ;Used for making the use of ToolTips a lot simpler and easier.
-Tippy(Message, Delay) {
-	ToolTip, %Message% TP
-	SetTimer, removeToolTip, %Delay%
+Tippy(Text, Duration) {
+	ToolTip, %Text%
+	Sleep %Duration%
+	ToolTip ;Remove the ToolTip.
 }
-
-removeToolTip:
-ToolTip
-return
