@@ -1,20 +1,5 @@
 ﻿;A lot of this code is taken from Taran Van Hemert from Linus Media Group. His video on this: https://www.youtube.com/watch?v=OqyQABySV8k
 
-;Toggles between showing and hiding the help GUI for ApplicationSwitcher.ahk
-!a::
-    showApplSwitchGUIToggle := !showApplSwitchGUIToggle
-
-    if (showApplSwitchGUIToggle = 1)
-        GUI, ApplSwitchGUI:Show, x600 y90 w510 h604, ApplicationSwitcher.ahk Hotkey Help Window
-    else
-        GUI, ApplSwitchGUI:Hide
-return
-
-ApplSwitchGUIGUIEscape:
-    GUI, ApplSwitchGUI:Hide
-    showApplSwitchGUIToggle := !showApplSwitchGUIToggle
-return
-
 ;If a Firefox window doesn't exist, run Firefox.
 ;If a Firefox window does exist, switch to Chrome.
 ;If Firefox is active, send ^PGDN (switch between tabs).

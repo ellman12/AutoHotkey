@@ -61,8 +61,8 @@ Label the small context section in here the misc ones: the ones without a profil
 bedtime script
 any game. Ideas in the script
 thing that after certain amount of time moves mouse pointer off screen. If it's moved by user put back to where it was. Have a #o thing to customize delay
-in zoom disable alt + a hotkey. Have a zoom section.
 win group if win already in array don't add and have a tippy saying not added.
+;Revise the help spreadsheet
 */
 
 #NoEnv
@@ -137,10 +137,10 @@ SaveToFile := 1 ;Set this to 1 to save all clips with a unique name , Set it to 
 ShowCloseButton := 1 ;Set this to 1 to show a small close button in the top right corner of the clip. Set this to 0 to keep the close button, but not show it.
 CoordMode, Mouse , Screen ;Use the screen as the reference to get positions from.
 
-IfNotExist, %A_ScriptDir%\Screen Clipper Script\Saved Clips ; if there is no folder for saved clips
-	FileCreateDir, %A_ScriptDir%\Screen Clipper Script\Saved Clips ; create the folder.
+IfNotExist, %A_ScriptDir%\Screen Clipper Script\Saved Clips ;if there is no folder for saved clips...
+	FileCreateDir, %A_ScriptDir%\Screen Clipper Script\Saved Clips ;create the folder.
 SetWorkingDir, %A_ScriptDir%\Screen Clipper Script\Saved Clips ;Set the saved clips folder as the working dir.
-Handles := [] ; Create an array to hold the name of the different gui's.
+Handles := [] ;Create an array to hold the name of the different gui's.
 Index := 0 ;Used as the name of the current gui cap window.
 
 ;*******************************MAIN SCRIPT CONTROL PANEL INITIALIZATION******************************
@@ -306,8 +306,7 @@ Loop {
 
 	}
 
-	;This sleep statement DRASTICALLY helps reduce the power and CPU usage of the Main Script.
-	Sleep 200
+	Sleep 200 ;This sleep statement DRASTICALLY helps reduce the power and CPU usage of the Main Script.
 }
 
 ;Other files with many different hotkeys in them.
