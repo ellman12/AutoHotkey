@@ -44,8 +44,6 @@
 
 /* TODO:
 if the volume just got turned up quite a ways, give some kind of warning (large Tippy, etc.) warning me to turn the volume down. Put in either Main or NumPad.#SingleInstance, Force
-Remove Run and other help GUIs and replace with txt files
-Redo that pic of the layout of this script; missed some important parts like TCT, ECC, etc.
 2nd keeb keys for running and then showing hiding outlook Discord Slack etc. Activates em if they exist and are shown but not activated. Redo Main first tho. Nothing new until Main is no longer a mess
 Run stuff for inserting headers for script
 Fix the number of *'s for headers and titles so it's consistent

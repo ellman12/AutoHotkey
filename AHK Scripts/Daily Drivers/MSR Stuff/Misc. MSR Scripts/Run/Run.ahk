@@ -218,7 +218,7 @@ Switch (runInputBoxText) {
     ;Help <category> things.
     Case "Help Date", "Date Help":Run, notepad.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Misc. MSR Scripts\Run\Run Date Help.txt
 
-    Case "Help Insert", "Insert Help":Run, notepad.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Misc. MSR Scripts\Run\Run Insert Help.txt
+    Case "Help Ins", "Ins Help", "Help Insert", "Insert Help":Run, notepad.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Misc. MSR Scripts\Run\Run Insert Help.txt
 
     Case "Help Misc", "Help Misc.", "Misc Help", "Misc. Help":Run, notepad.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Misc. MSR Scripts\Run\Run Misc. Help.txt
 
