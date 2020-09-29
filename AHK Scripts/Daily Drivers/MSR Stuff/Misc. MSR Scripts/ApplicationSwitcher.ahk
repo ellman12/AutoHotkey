@@ -187,9 +187,7 @@ F9::
         Send !{left} ;alt left is the explorer shortcut to go "back" or "down" one folder level.
 return
 
-;Switch between MS Word windows.
-;I added the outer if statement so that way when I'm playing a Steam game (like Terraria),
-;I can screenshot without triggering the normal F12 hotkey, and without having to suspend the hotkeys.
+;Run Word if not exist, and then switch between windows.
 $F12::
     if WinExist("ahk_class OpusApp") {
         GroupAdd, taranwords, ahk_class OpusApp
@@ -198,7 +196,7 @@ $F12::
         else
             WinActivate ahk_class OpusApp
     } else {
-        Send, {F12}
+        Run, C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE
     }
 return
 

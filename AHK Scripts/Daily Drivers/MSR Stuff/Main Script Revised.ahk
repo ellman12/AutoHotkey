@@ -42,9 +42,7 @@
 ;///////////////////////////////////////////////////////////////////////
 
 /* TODO:
-F12 runs Word if no wins exist
 if the volume just got turned up quite a ways, give some kind of warning (large Tippy, etc.) warning me to turn the volume down. Put in either Main or NumPad.#SingleInstance, Force
-2nd keeb keys for running and then showing hiding outlook Discord Slack etc. Activates em if they exist and are shown but not activated. Redo Main first tho. Nothing new until Main is no longer a mess
 A #o thing to toggle F3 between Chrome and VSCode
 A #o thing to switch between double click and F6 on mouse
 bedtime script
@@ -213,8 +211,8 @@ CONTROL_PANEL_HEIGHT := 300
 
 ;****************************************MISC VARIABLES, INITIALIZATION, ETC*********************************
 global Num2And8Step := 3 ;When Num2 or Num8 pressed, how much to increase/decrease volume.
-global autoNumPadModeToggle := true ;If true, switch NumPad modes automatically. If 0 user controls it.
-global systemMasterVolume
+global autoNumPadModeToggle := true ;If true, switch NumPad modes automatically. If false user manually controls it.
+global systemMasterVolume ;Used for NumPad Media Control stuff.
 
 global programmingMode := false ;Toggle for Programming Mode: disabling certain hotkeys/hotstrings to make programming easier. ^!Insert is the hotkey.
 

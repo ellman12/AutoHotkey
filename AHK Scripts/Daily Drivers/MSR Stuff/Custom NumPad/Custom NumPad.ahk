@@ -10,7 +10,6 @@
 ;//Comments: Originally designed for use with online math homework things
 ;// like Cengage WebAssingn and the like.
 ;///////////////////////////////////////////////////////////////////////
-
 #NoEnv
 #MaxHotkeysPerInterval 999999999999999999999999999999999
 #HotkeyInterval 99999999999999999999999999999999999
@@ -27,6 +26,8 @@ SendMode Input
 DetectHiddenWindows, Off
 SetTitleMatchMode, 2
 #SingleInstance force
+
+;TODO: Could add a 2nd button next to ln or something. I want a way to add the other 3 trig functions (sec, csc, tan).
 
 ;****CONTROL DISTANCES REFERENCE****
 ;Distance between GroupBox and button: 17 pixels

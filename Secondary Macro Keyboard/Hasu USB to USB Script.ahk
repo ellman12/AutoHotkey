@@ -47,6 +47,8 @@ return
 
 ;Run/activate Outlook.
 F9::
+OutlookVisibilityToggle := 1 ;Because it's visible now,
+
 if !WinExist("ahk_exe Outlook.exe")
     Run, C:\Program Files\Microsoft Office\root\Office16\Outlook.exe
 else if !WinActive("ahk_exe Outlook.exe")
@@ -71,6 +73,8 @@ return
 
 ;Run/show Discord.
 F11::
+DiscordVisibilityToggle := 1 ;Because it's visible now,
+
 if !WinExist("ahk_exe Discord.exe")
     Run, C:\Users\Elliott\AppData\Local\Discord\app-0.0.308\Discord.exe
 else if !WinActive("ahk_exe Discord.exe")
