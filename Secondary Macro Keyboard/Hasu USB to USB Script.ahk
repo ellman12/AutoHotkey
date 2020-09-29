@@ -8,14 +8,11 @@ SendMode Input
 
 ;;The lines below are optional. Delete them if you need to.
 #HotkeyModifierTimeout 60 ; https://autohotkey.com/docs/commands/_HotkeyModifierTimeout.htm
-#KeyHistory 200 ; https://autohotkey.com/docs/commands/_KeyHistory.htm ; useful for debugging.
+; #KeyHistory 200 ; https://autohotkey.com/docs/commands/_KeyHistory.htm ; useful for debugging.
 #MenuMaskKey vk07 ;https://autohotkey.com/boards/viewtopic.php?f=76&t=57683
 #WinActivateForce ;https://autohotkey.com/docs/commands/_WinActivateForce.htm ;prevent taskbar flashing.
 
-; #Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\Tippy.ahk
-; Menu, Tray, Icon, shell32.dll, 174 ;Changes the icon to a keyboard.
-
-;The Hasu USB to USB Controller Converter somehow separates the 2nd keyboard from the others. Idk how it does.
+;The Hasu USB to USB Controller Converter somehow separates the 2nd keyboard from the others.
 #if (GetKeyState("F24", "P")) ;<--Everything after this line will only happen on the secondary keyboard that uses F24.
 F24::return ;this line is mandatory for proper functionality
 
@@ -46,6 +43,49 @@ F4::MouseMove, mousePosX4, mousePosY4, 0
 +F4::
 MouseGetPos, mousePosX4, mousePosY4
 Tippy("F4 pointer saved", 1300)
+return
+
+;Run/activate Outlook.
+F9::
+if !WinExist("ahk_exe Outlook.exe")
+    Run, C:\Program Files\Microsoft Office\root\Office16\Outlook.exe
+else if !WinActive("ahk_exe Outlook.exe")
+    WinActivate ahk_exe Outlook.exe
+return
+
+;Show/hide Outlook.
+^F9::
+OutlookVisibilityToggle := !OutlookVisibilityToggle
+
+if (OutlookVisibilityToggle = "1") {
+    WinHide, ahk_exe Outlook.exe
+} else if (OutlookVisibilityToggle = "0") {
+    WinShow, ahk_exe Outlook.exe
+}
+return
+
+;Run/show MS To Do.
+F10::
+Run, C:\Users\Elliott\Documents\Microsoft To Do
+return
+
+;Run/show Discord.
+F11::
+if !WinExist("ahk_exe Discord.exe")
+    Run, C:\Users\Elliott\AppData\Local\Discord\app-0.0.308\Discord.exe
+else if !WinActive("ahk_exe Discord.exe")
+    WinActivate ahk_exe Discord.exe
+return
+
+;Show/hide Discord.
+^F11::
+DiscordVisibilityToggle := !DiscordVisibilityToggle
+
+if (DiscordVisibilityToggle = "1") {
+    WinHide, ahk_exe Discord.exe
+} else if (DiscordVisibilityToggle = "0") {
+    WinShow, ahk_exe Discord.exe
+}
 return
 
 ;In File Explorer, size all columns to fit.
@@ -353,12 +393,8 @@ return
 ;Open Music folder.
 s::Run, explorer C:\Users\Elliott\Music
 
-;Suspends hotkeys in Main and AWH.
-Space::
-Suspend
-; SetTitleMatchMode, 2
-; PostMessage, 0x111, 65305,,, Advanced Window Hider.ahk - AutoHotkey
-return
+;Suspends hotkeys in MSR.
+Space::Suspend
 
 ;Open Terraria Wiki
 t::

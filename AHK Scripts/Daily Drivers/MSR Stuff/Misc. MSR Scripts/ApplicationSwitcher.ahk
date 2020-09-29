@@ -219,12 +219,8 @@ if WinActive("Microsoft To Do") { ;In the Tasks menu, add a task and mark it due
     createMSToDoTask(1, 0)
 } else if WinExist("Microsoft To Do") ;Activate it.
     WinActivate
-else { ;"Run" it
-    Send, {LWin}
-    Sleep 700
-    Send, Microsoft To Do
-    Sleep 900
-    Send, {Enter}
+else {
+    Run, C:\Users\Elliott\Documents\Microsoft To Do ;Shortcut in Documents.
 }
 return
 

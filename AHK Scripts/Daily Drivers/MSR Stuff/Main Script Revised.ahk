@@ -42,6 +42,7 @@
 ;///////////////////////////////////////////////////////////////////////
 
 /* TODO:
+F12 runs Word if no wins exist
 if the volume just got turned up quite a ways, give some kind of warning (large Tippy, etc.) warning me to turn the volume down. Put in either Main or NumPad.#SingleInstance, Force
 2nd keeb keys for running and then showing hiding outlook Discord Slack etc. Activates em if they exist and are shown but not activated. Redo Main first tho. Nothing new until Main is no longer a mess
 A #o thing to toggle F3 between Chrome and VSCode
@@ -216,6 +217,10 @@ global autoNumPadModeToggle := true ;If true, switch NumPad modes automatically.
 global systemMasterVolume
 
 global programmingMode := false ;Toggle for Programming Mode: disabling certain hotkeys/hotstrings to make programming easier. ^!Insert is the hotkey.
+
+;Used for F9-F11 on 2nd keeb for showing/hiding these programs. 1 = visible; 0 = not visible. Start at 0 because I think that makes more sense???
+global OutlookVisibilityToggle := 0
+global DiscordVisibilityToggle := 0
 
 ;The stuff in this loop needs to be running constantly.
 Loop {
