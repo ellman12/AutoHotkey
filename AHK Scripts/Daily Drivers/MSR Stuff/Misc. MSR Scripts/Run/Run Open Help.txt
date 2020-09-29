@@ -1,10 +1,11 @@
 Text to Input	  What It Does
 
+30		  Runs the 30 Clipboards.ahk Script
 CN, Num, NumPad   Opens the Custom NumPad script.
 des         	  Opens Desmos graphing calculator.
 docu (ff)/chr     Opens the AHK documentation in either Chrome or Firefox.
 Help (Sheet)      Opens this sheet.
-Help <Category>   Opens a window that shows all the commands for the specified category.
+Help <Category>   Shows all the commands for the specified category.
 MB          	  Opens the MsgBox Creator script.
 op in ff/chr      Opens the current tab in the specified browser.
 thes ff/chr       Open thesaurus.com in the chosen browser and search for the inputted word.

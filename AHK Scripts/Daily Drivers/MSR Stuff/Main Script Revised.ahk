@@ -32,7 +32,7 @@
 * YT: YouTube
 * Keeb: keyboard
 
-* Conventions for the number of * for a title/header.
+* Conventions for the number of * for a title/header. These can be inserted via Run.ahk.
 * Title:    50 **************************************************
 * Header 1: 35 ***********************************
 * Header 2: 20 ********************
@@ -44,16 +44,11 @@
 /* TODO:
 if the volume just got turned up quite a ways, give some kind of warning (large Tippy, etc.) warning me to turn the volume down. Put in either Main or NumPad.#SingleInstance, Force
 2nd keeb keys for running and then showing hiding outlook Discord Slack etc. Activates em if they exist and are shown but not activated. Redo Main first tho. Nothing new until Main is no longer a mess
-Fix the number of *'s for headers and titles so it's consistent
-A way to run 30 clipboards akin to the MB creator
 A #o thing to toggle F3 between Chrome and VSCode
 A #o thing to switch between double click and F6 on mouse
-Label the small context section in here the misc ones: the ones without a profile or file or something.
 bedtime script
-any game. Ideas in the script
 thing that after certain amount of time moves mouse pointer off screen. If it's moved by user put back to where it was. Have a #o thing to customize delay
 win group if win already in array don't add and have a tippy saying not added.
-Revise the help spreadsheet (hotkeys, etc).
 */
 
 ;Pic of all these icons: https://diymediahome.org/wp-content/uploads/shell32_icons.jpg
