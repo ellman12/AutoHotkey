@@ -1,13 +1,17 @@
 ;This script allows me to run and do miscellaneous things that don't deserve their own (hot)key,
 ; or things that would be messy and/or annoying to do via (hot)keys.
 
-^CapsLock::runCommand(runInputBoxText) ;Repeats previous command.
+^CapsLock::runCommand(runInputBoxText) ;Repeats previous command. Can also "repeat(?)" error/unknown commands.
 
-!r:: ;Open the command InputBox, and then do what the user entered.
+;Open the command InputBox, and then do what the user entered.
+!r::
 CapsLock::
 
 InputBox, runInputBoxText, Type a Command,,, 200, 100
-runCommand(runInputBoxText)
+if ErrorLevel = 1
+    runCommand("1") ;ErrorLevel value for saying the user pressed Cancel/Escape.
+else
+    runCommand(runInputBoxText)
 return
 
 ;Function used for sending yesterday's date in different formats.
@@ -24,9 +28,18 @@ getTmrDate() {
     formattedDateTime += +1, days
 }
 
-runCommand(cmdToRun) { ;Runs the specified command.
+runCommand(cmdToRun) { ;Function that runs the specified command.
 
 Switch (cmdToRun) {
+
+    Default:
+    if cmdToRun = ;Mainly for the ^CapsLock command. If the user tries to repeat a command without having done a command before, it won't do anything.
+        Tippy("No Run command specified.", 2000)
+    else
+        MsgBox, 16, Unknown Command., Command entered: "%cmdToRun%" does not exist.
+    return
+
+    Case "1":Tippy("Cancel/Escape was pressed.", 500)
 
     ;***********************************************DATE***********************************************
     ;********************DATE STUFF FOR YESTERDAY********************
@@ -216,7 +229,7 @@ Switch (cmdToRun) {
     Send, #x
     Sleep, 250
     Send, {Up 2}
-    Send, {Right}u
+    Send, {Right}
     return
 
     ;Restart PC.
@@ -226,15 +239,6 @@ Switch (cmdToRun) {
     Send, {Up 2}
     Send, {Right}r
     return
-
-    ;If the user presses Escape or Cancel.
-    Default:
-    if ErrorLevel = 1
-        Tippy("Cancel/Escape was pressed.", 500)
-    else if cmdToRun =
-        Tippy("No Run command specified.", 1000)
-    else
-        MsgBox, 16, Unknown command, Command entered: "%cmdToRun%" does not exist.
 
     ;***********************************************OPEN***********************************************
     ;Opens Desmos graphing calculator.

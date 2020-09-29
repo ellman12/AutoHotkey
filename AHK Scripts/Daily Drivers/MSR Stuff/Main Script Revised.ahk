@@ -44,13 +44,10 @@
 /* TODO:
 if the volume just got turned up quite a ways, give some kind of warning (large Tippy, etc.) warning me to turn the volume down. Put in either Main or NumPad.#SingleInstance, Force
 2nd keeb keys for running and then showing hiding outlook Discord Slack etc. Activates em if they exist and are shown but not activated. Redo Main first tho. Nothing new until Main is no longer a mess
-Run stuff for inserting headers for script
 Fix the number of *'s for headers and titles so it's consistent
 A way to run 30 clipboards akin to the MB creator
 A #o thing to toggle F3 between Chrome and VSCode
 A #o thing to switch between double click and F6 on mouse
-Run's cancel button doesn't work
-make ^+f work in Docs
 Label the small context section in here the misc ones: the ones without a profile or file or something.
 bedtime script
 any game. Ideas in the script
