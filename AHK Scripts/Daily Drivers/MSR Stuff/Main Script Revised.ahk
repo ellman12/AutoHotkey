@@ -370,8 +370,6 @@ sc029::Send, !{Tab} ;The grave accent key (that weird thing under the Tilde ~ sy
 
 ^+sc029::Send, ~ ;Holding Ctrl and Shift and pushing the grave accent key inserts the tilde symbol: ~.
 
-*CapsLock::return ;Completely disables this horrible key.
-
 !SC00C::WinMinimize, A ;Alt + -
 
 !SC00D::WinMaximize, A ;Alt + +.

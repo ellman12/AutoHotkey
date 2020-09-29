@@ -25,6 +25,6 @@ mult		×
 pi		π
 sec		§
 sqrt		√
+t		Inserts 50 * for titles for code sections.
 theta		θ
-title		Inserts 50 * for titles for code sections.
 x		✗

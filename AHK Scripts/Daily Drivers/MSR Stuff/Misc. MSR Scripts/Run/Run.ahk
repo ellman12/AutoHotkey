@@ -1,16 +1,35 @@
 ;This script allows me to run and do miscellaneous things that don't deserve their own (hot)key,
 ; or things that would be messy and/or annoying to do via (hot)keys.
 
-;Alt + R opens the InputBox, which allows the user to type a command. It also contains a cheat sheet of all of the commands, in alphabetical order.
-;This one single line is astronomically enormous, so Word Wrap is recommended.
-!r::
-InputBox, runInputBoxText, Type a Command,,, 200, 100
+^CapsLock::runCommand(runInputBoxText) ;Repeats previous command.
 
-;The script decides which command to run.
-Switch (runInputBoxText) {
+!r:: ;Open the command InputBox, and then do what the user entered.
+CapsLock::
+
+InputBox, runInputBoxText, Type a Command,,, 200, 100
+runCommand(runInputBoxText)
+return
+
+;Function used for sending yesterday's date in different formats.
+getYesterdayDate() {
+    global
+    formattedDateTime = %a_now%
+    formattedDateTime += -1, days
+}
+
+;Function used for sending tomorrow's date in different formats.
+getTmrDate() {
+    global
+    formattedDateTime = %a_now%
+    formattedDateTime += +1, days
+}
+
+runCommand(cmdToRun) { ;Runs the specified command.
+
+Switch (cmdToRun) {
 
     ;***********************************************DATE***********************************************
-    ;************DATE STUFF FOR YESTERDAY************
+    ;********************DATE STUFF FOR YESTERDAY********************
     Case "da y": ;9/11/200
     getYesterdayDate()
     FormatTime, formattedDateTime, %formattedDateTime%, M/d/yy ;9/12/20
@@ -41,7 +60,7 @@ Switch (runInputBoxText) {
     SendInput, %formattedDateTime%
     return
 
-    ;************DATE STUFF FOR TODAY************
+    ;********************DATE STUFF FOR TODAY********************
     Case "dt":
     FormatTime, formattedDateTime,, M/d/yyyy h:mm tt ;9/13/2020 6:05 PM
     SendInput, %formattedDateTime%
@@ -77,7 +96,7 @@ Switch (runInputBoxText) {
     SendInput, %formattedDateTime%
     return
 
-    ;************DATE STUFF FOR TOMORROW************
+    ;********************DATE STUFF FOR TOMORROW********************
     ;https://www.autohotkey.com/boards/viewtopic.php?t=10497
     Case "da t": ;9/13/20
     getTmrDate()
@@ -109,7 +128,7 @@ Switch (runInputBoxText) {
     SendInput, %formattedDateTime%
     return
 
-    ;***********************************************INSERT***********************************************
+    ;**************************************************INSERT**************************************************
     ;Lots of misc. math symbols.
     Case "+-": Send, {U+00B1} ;±
     Case "-+": Send, {U+2213} ;∓
@@ -151,7 +170,14 @@ Switch (runInputBoxText) {
     Case "d", "down": Send, {U+2193} ;↓
     Case "l", "left": Send, {U+2190} ;←
 
-    ;***********************************************MISC***********************************************
+    ;Titles/headers.
+    Case "t":Send, {* 50}
+    Case "h1":Send, {* 35}
+    Case "h2":Send, {* 20}
+    Case "h3":Send, {* 14}
+    Case "h4":Send, {* 9}
+
+    ;**************************************************MISC**************************************************
     ;Get free space in GB(ish) of all the drives.
     Case "st":
         DriveGet, OutputVar, List, Fixed ; get drive letters
@@ -205,8 +231,10 @@ Switch (runInputBoxText) {
     Default:
     if ErrorLevel = 1
         Tippy("Cancel/Escape was pressed.", 500)
+    else if cmdToRun =
+        Tippy("No Run command specified.", 1000)
     else
-        MsgBox, 16, Unknown command, Command entered: "%runInputBoxText%" does not exist.
+        MsgBox, 16, Unknown command, Command entered: "%cmdToRun%" does not exist.
 
     ;***********************************************OPEN***********************************************
     ;Opens Desmos graphing calculator.
@@ -309,20 +337,5 @@ Switch (runInputBoxText) {
         clipboard = %prevClipboard%
     return
 
-}
-
-return
-
-;Function used for sending yesterday's date in different formats.
-getYesterdayDate() {
-    global
-    formattedDateTime = %a_now%
-    formattedDateTime += -1, days
-}
-
-;Function used for sending tomorrow's date in different formats.
-getTmrDate() {
-    global
-    formattedDateTime = %a_now%
-    formattedDateTime += +1, days
+    }
 }
