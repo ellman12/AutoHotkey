@@ -9,3 +9,4 @@ Help <Category>   Shows all the commands for the specified category.
 MB          	  Opens the MsgBox Creator script.
 op in ff/chr      Opens the current tab in the specified browser.
 thes ff/chr       Open thesaurus.com in the chosen browser and search for the inputted word.
+vs (ahk)/dsu	  Opens VSCode in either the AutoHotkey or DSU CSC 250 repo folder.

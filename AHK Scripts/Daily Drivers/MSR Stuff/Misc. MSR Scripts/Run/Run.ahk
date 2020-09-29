@@ -303,10 +303,12 @@ Switch (cmdToRun) {
     Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.thesaurus.com/browse/%Thes_FFInputBox%
     return
 
+    Case "vs", "vs ahk":Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey
+    Case "vs dsu":Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe C:\Users\Elliott\Documents\GitHub\DSU-CSC-250
+
     ;***********************************************TEMPORARY???***********************************************
     Case "kre":Send, Kind regards,{Enter 2}Elliott
     Case "kred":Send, Kind regards,{Enter 2}Elliott DuCharme
-    Case "fwd":Send, m{Tab}d{Tab}{Enter}
 
     ;Searches for the selected text in a private Firefox window with Google Images.
     ;This is taken from the 2nd keeb script.
