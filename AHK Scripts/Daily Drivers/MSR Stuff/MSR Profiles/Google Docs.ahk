@@ -9,7 +9,7 @@
 #If currentProfile = "Docs"
 ;Mouse DPI Toggle
 ^+F23::
-; NextWindowF7()
+nextWinOrShowHideWins("F7", WindowGroupF7, CurrentWinF7, F7ShowHideToggle)
 return
 
 ;Mouse G1
