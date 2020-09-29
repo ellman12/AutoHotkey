@@ -5545,3 +5545,4 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:numpad::NumPad
 :*:numlock::NumLock
 :*:scrolllock::ScrollLock
+:*:vscode::VSCode

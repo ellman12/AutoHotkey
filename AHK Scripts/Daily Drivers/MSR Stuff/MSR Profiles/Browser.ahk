@@ -7,8 +7,6 @@
 
 ;****************************************MOUSE ACTIONS***************************************
 #If currentProfile = "Firefox" or currentProfile = "Chrome"
-;Mouse Profile Switch button
-;Left double click
 ^!F23::
 ; NextWindowF6()
 return

@@ -43,8 +43,6 @@
 
 /* TODO:
 if the volume just got turned up quite a ways, give some kind of warning (large Tippy, etc.) warning me to turn the volume down. Put in either Main or NumPad.#SingleInstance, Force
-A #o thing to toggle F3 between Chrome and VSCode
-A #o thing to switch between double click and F6 on mouse
 bedtime script
 thing that after certain amount of time moves mouse pointer off screen. If it's moved by user put back to where it was. Have a #o thing to customize delay
 win group if win already in array don't add and have a tippy saying not added.
@@ -163,6 +161,8 @@ if (A_ComputerName = "Elliott-Laptop") {
     usingALaptop = true
 } else if (A_ComputerName = "Elliott-PC") {
 	usingALaptop = false
+	laptopBatteryIconX := NULL
+	laptopBatteryIconY := NULL
 } else {
 	MsgBox, 16, Error. Computer/laptop name not part of the script., Error. Computer/laptop name not part of the script. A_ComputerName is: %A_ComputerName%`n`nIf you're on a desktop computer this can be totally ignored.
 }
@@ -173,7 +173,7 @@ GUI, CPanel:Add, Text, x5 y170,#B Screen X
 GUI, CPanel:Font, s11
 GUI, CPanel:Add, Edit, x5 y195 w100 vlaptopBatteryIconX, %laptopBatteryIconX%
 
-;X choice for the #b hotkey.
+;Y choice for the #b hotkey.
 GUI, CPanel:Font, s13
 GUI, CPanel:Add, Text, x120 y170,#B Screen Y
 GUI, CPanel:Font, s11
@@ -184,17 +184,31 @@ GUI, CPanel:Font, s13
 GUI, CPanel:Add, Text, x5 y225,Custom Window Groups
 
 GUI, CPanel:Font, s11
-GUI, CPanel:Add, Text, x5 y250,F6
+GUI, CPanel:Add, Text, x5 y250,F6:
 GUI, CPanel:Add, DDL, vF6Mode w118 x25 y248,Window Group||Window Hider
 
-GUI, CPanel:Add, Text, x150 y250,F7
+GUI, CPanel:Add, Text, x150 y250,F7:
 GUI, CPanel:Add, DDL, vF7Mode w118 x177 y248,Window Group||Window Hider
 
-GUI, CPanel:Add, Text, x5 y275,F8
+GUI, CPanel:Add, Text, x5 y275,F8:
 GUI, CPanel:Add, DDL, vF8Mode w118 x25 y273,Window Group|Window Hider||
 
-GUI, CPanel:Add, Text, x150 y275,F10
-GUI, CPanel:Add, DDL, vF10Mode w118 x177 y273,Window Group||Window Hider||
+GUI, CPanel:Add, Text, x150 y275,F10:
+GUI, CPanel:Add, DDL, vF10Mode w118 x177 y273,Window Group|Window Hider||
+
+;F3 Behavior.
+GUI, CPanel:Font, s13
+GUI, CPanel:Add, Text, x5 y303,F3 Behavior:
+
+GUI, CPanel:Font, s11
+GUI, CPanel:Add, DDL, vF3Mode w118 x102 y302, Google Chrome||VSCode
+
+;Front Top Mouse Button.
+GUI, CPanel:Font, s13
+GUI, CPanel:Add, Text, x4 y334,Top Mouse Button Behavior
+
+GUI, CPanel:Font, s11
+GUI, CPanel:Add, DDL, vMouseButtonMode w125 x5 y356, Double Click||Next F6 Window
 
 ;Toggle for showing or hiding the GUI.
 ;If it's 1, show the GUI; if it's 0, hide it.
@@ -207,7 +221,7 @@ global CtrlInsMonChoice := "2 (Secondary Mon)"
 global ChrBookTypeMonChoice := "1 (Primary Mon)"
 
 CONTROL_PANEL_WIDTH := 298
-CONTROL_PANEL_HEIGHT := 300
+CONTROL_PANEL_HEIGHT := 384
 
 ;****************************************MISC VARIABLES, INITIALIZATION, ETC*********************************
 global Num2And8Step := 3 ;When Num2 or Num8 pressed, how much to increase/decrease volume.
@@ -216,9 +230,12 @@ global systemMasterVolume ;Used for NumPad Media Control stuff.
 
 global programmingMode := false ;Toggle for Programming Mode: disabling certain hotkeys/hotstrings to make programming easier. ^!Insert is the hotkey.
 
-;Used for F9-F11 on 2nd keeb for showing/hiding these programs. 1 = visible; 0 = not visible. Start at 0 because I think that makes more sense???
+;Used for F9 and F11 on 2nd keeb for showing/hiding these programs. 1 = visible; 0 = not visible. Start at 0 because I think that makes more sense???
 global OutlookVisibilityToggle := 0
 global DiscordVisibilityToggle := 0
+
+global F3Mode := "Google Chrome" ;Change in #o between this and VSCode.
+global MouseButtonMode := "Double Click" ;Change between this and Next F6 Window.
 
 ;The stuff in this loop needs to be running constantly.
 Loop {
@@ -404,6 +421,13 @@ Send, {RShift}
 DllCall("SystemParametersInfo", Int,113, Int,0, UInt,1, Int,1)
 KeyWait, RShift
 DllCall("SystemParametersInfo", Int,113, Int,0, UInt,10, Int,1)
+return
+
+^!F23:: ;Top Front Mouse Button on Scimitar RGB.
+if (MouseButtonMode = "Double Click")
+	Send, {Click 2}
+else
+	nextWinOrShowHideWins("F6", WindowGroupF6, CurrentWinF6, F6ShowHideToggle)
 return
 
 ;****************************************GLOBAL K95 RGB HOTKEYS***************************************

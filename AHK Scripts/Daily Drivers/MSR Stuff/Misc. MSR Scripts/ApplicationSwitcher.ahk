@@ -68,85 +68,79 @@ return
 Run, C:\Program Files\Mozilla Firefox\firefox.exe -private-window
 return
 
+;Switch to a window and go through tabs.
 F3::
-switchToVSAndTabs()
-{
-IfWinNotExist, ahk_class Chrome_WidgetWin_1
-	Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code\Code.exe
-if WinActive("ahk_exe Code.exe")
-	Send ^{PGDN}
-else
-	WinActivate ahk_exe Code.exe
-}
+if (F3Mode = "Google Chrome") {
 
-F4::
-switchToOtherVSWindows()
-{
-Process, Exist, Code.exe
-	If errorLevel = 0
-		Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code\Code.exe
-	else
-	{
-	GroupAdd, taranCodes, ahk_exe Code.exe
-	if WinActive("ahk_exe Code.exe")
-		GroupActivate, taranCodes, r
-	else
-		WinActivate ahk_exe Code.exe
-	}
-}
+    IfWinNotExist, ahk_class Chrome_WidgetWin_1
+        Run, chrome.exe
+    if WinActive("ahk_exe chrome.exe")
+        Send ^{PGDN}
+    else
+        WinActivate ahk_exe chrome.exe
 
-/*
-;If a Chrome window doesn't exist, run Chrome.
-;If a Chrome window does exist, switch to Chrome.
-;If Chrome is active, send ^PGDN (switch between tabs).
-F3::
-    switchToChromeAndTabs()
-    {
-        IfWinNotExist, ahk_class Chrome_WidgetWin_1
-            Run, chrome.exe
-        if WinActive("ahk_exe chrome.exe")
-            Send ^{PGDN}
-        else
-            WinActivate ahk_exe chrome.exe
-    }
+} else if (F3Mode = "VSCode") {
+
+    IfWinNotExist, ahk_class Chrome_WidgetWin_1
+        Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code\Code.exe
+    if WinActive("ahk_exe Code.exe")
+        Send ^{PGDN}
+    else
+        WinActivate ahk_exe Code.exe
+}
+return
 
 ;Same thing as F3, but reverse order (PGUP instead of PGDN).
 +F3::
-    switchToChromeAndTabsReverse()
-    {
-        IfWinNotExist, ahk_class Chrome_WidgetWin_1
-            Run, chrome.exe
-        if WinActive("ahk_exe chrome.exe")
-            Send ^{PGUP}
-        else
-            WinActivate ahk_exe chrome.exe
-    }
+    if (F3Mode = "Google Chrome") {
+
+    IfWinNotExist, ahk_class Chrome_WidgetWin_1
+        Run, chrome.exe
+    if WinActive("ahk_exe chrome.exe")
+        Send ^{PGUP}
+    else
+        WinActivate ahk_exe chrome.exe
+
+} else if (F3Mode = "VSCode") {
+
+    IfWinNotExist, ahk_class Chrome_WidgetWin_1
+        Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code\Code.exe
+    if WinActive("ahk_exe Code.exe")
+        Send ^{PGUP}
+    else
+        WinActivate ahk_exe Code.exe
+}
 return
 
-;If a Chrome window doesn't exist, run Chrome.
-;If Chrome windows do exist, switch between them.
+;If a window doesn't exist, run the program.
+;If windows do exist, switch between them.
 F4::
-    switchToOtherChromeWindows()
-    {
+    if (F3Mode = "Google Chrome") {
         Process, Exist, chrome.exe
         if errorLevel = 0
             Run, chrome.exe
-        else
-        {
+        else {
             GroupAdd, taranchromes, ahk_class Chrome_WidgetWin_1
             if WinActive("ahk_class ahk_class Chrome_WidgetWin_1")
                 GroupActivate, taranchromes, r
             else
                 WinActivate ahk_class Chrome_WidgetWin_1
         }
+    } else if (F3Mode = "VSCode") {
+        If errorLevel = 0
+            Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code\Code.exe
+        else {
+            GroupAdd, taranCodes, ahk_exe Code.exe
+            if WinActive("ahk_exe Code.exe")
+                GroupActivate, taranCodes, r
+            else
+                WinActivate ahk_exe Code.exe
+        }
     }
-
-;Create a new normal Chrome window.
-^F3::
-Run, chrome.exe
 return
 
 ;Create a new normal Chrome window.
+^F3::
 ^F4::
 Run, chrome.exe
 return
@@ -155,7 +149,6 @@ return
 !F3::
 Run, chrome.exe -incognito
 return
-*/
 
 ;MR button on my K95 RGB keyboard.
 ;Used for activating and switching to File Explorer windows.

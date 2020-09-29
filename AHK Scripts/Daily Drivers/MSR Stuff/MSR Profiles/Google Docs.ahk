@@ -6,14 +6,7 @@
 */
 
 ;****************************************MOUSE ACTIONS***************************************
-
 #If currentProfile = "Docs"
-;Mouse Profile Switch
-;Left double click
-^!F23::
-; NextWindowF6()
-return
-
 ;Mouse DPI Toggle
 ^+F23::
 ; NextWindowF7()

@@ -5,10 +5,7 @@
 ;****************************************MOUSE ACTIONS***************************************
 
 #If currentProfile = "Terraria"
-;;Mouse Profile Switch button
-^!F23::
-; NextWindowF6()
-return
+;
 
 ;Mouse DPI Toggle
 ^+F23::
