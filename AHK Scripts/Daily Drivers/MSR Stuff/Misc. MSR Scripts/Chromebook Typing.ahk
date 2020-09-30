@@ -1,15 +1,7 @@
-/*
-;Chromebook Typing.
 ;If you've never typed on a Chromebook before, basically, it hides the mouse pointer when you start typing.
 ;Sometimes that's helpful, most of the time it's annoying.
-;I had a shower thought one day, and this is what I came up with. I knew I had to try this.
-;It seems to work pretty well.
-;Essentially, when the chromebookTypingToggle variable is set to true, when you type a letter A-Z, Delete, Backspace, etc., it moves the mouse to the
-;2nd display, thus getting the annoying pointer out of the way.
-*/
 
 chromebookTypingToggle := false
-
 
 ;Toggle the variable, and inform the user of the mode they're in.
 ^+Insert::

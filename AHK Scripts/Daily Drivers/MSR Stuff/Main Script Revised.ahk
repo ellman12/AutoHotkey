@@ -313,10 +313,8 @@ Loop {
 		} else {
 			global numPadMode = "Normal"
 		}
-
 	}
-
-	Sleep 200 ;This sleep statement DRASTICALLY helps reduce the power and CPU usage of the MSR.
+	Sleep 100 ;This sleep statement DRASTICALLY helps reduce the power and CPU usage of the MSR.
 }
 
 ;Other files with many different hotkeys in them.

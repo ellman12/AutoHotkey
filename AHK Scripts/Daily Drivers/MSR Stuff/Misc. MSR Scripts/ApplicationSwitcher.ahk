@@ -72,7 +72,7 @@ return
 F3::
 if (F3Mode = "Google Chrome") {
 
-    IfWinNotExist, ahk_class Chrome_WidgetWin_1
+    IfWinNotExist, ahk_exe chrome.exe
         Run, chrome.exe
     if WinActive("ahk_exe chrome.exe")
         Send ^{PGDN}
@@ -81,7 +81,7 @@ if (F3Mode = "Google Chrome") {
 
 } else if (F3Mode = "VSCode") {
 
-    IfWinNotExist, ahk_class Chrome_WidgetWin_1
+    IfWinNotExist, ahk_exe chrome.exe
         Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code\Code.exe
     if WinActive("ahk_exe Code.exe")
         Send ^{PGDN}
@@ -146,9 +146,7 @@ Run, chrome.exe
 return
 
 ;Create a new incognito Chrome window.
-!F3::
-Run, chrome.exe -incognito
-return
+!F3::Run, chrome.exe -incognito
 
 ;MR button on my K95 RGB keyboard.
 ;Used for activating and switching to File Explorer windows.
