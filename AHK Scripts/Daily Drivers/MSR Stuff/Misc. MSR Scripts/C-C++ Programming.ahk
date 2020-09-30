@@ -64,8 +64,9 @@ return
 Send, cd C:/Users/%A_Username%/Documents/GitHub/Shared-Stuff{Enter}
 return
 
-:*:gdsu::
-Send, cd C:\Users\Elliott\Documents\GitHub\DSU-CSC-250{Enter}
+:*:gcsc::
+Send, cd C:/Users/Elliott/Documents/GitHub/DSU-CSC-250{Enter}
+return
 
 ;Simpler git commands.
 :*:gst::
