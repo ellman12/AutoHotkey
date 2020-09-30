@@ -5546,3 +5546,4 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:numlock::NumLock
 :*:scrolllock::ScrollLock
 :*:vscode::VSCode
+:*:yall::y'all
