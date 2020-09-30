@@ -257,10 +257,10 @@ Switch (cmdToRun) {
     Case "Help Open", "Open Help":Run, notepad.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Misc. MSR Scripts\Run\Run Open Help.txt
 
     Case "30":Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\30 Clipboards Script\30 Clipboards.ahk
-    Case "MB":Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Misc. MSR Scripts\MsgBox Creator.ahk
     Case "CN", "Num", "NumPad":Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Custom NumPad\Custom NumPad.ahk
+    Case "MB":Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Misc. MSR Scripts\MsgBox Creator.ahk
 
-    ;Open the documentation in either Firefox or Chrome
+    ;Open the documentation in either Firefox or Chrome.
     Case "docu", "docu ff":
     RunWait, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.autohotkey.com/docs/AutoHotkey.htm
     Sleep 1000
@@ -273,7 +273,7 @@ Switch (cmdToRun) {
     Send, !s
     return
 
-    ;Opens the current tab in Chrome
+    ;Opens the current tab in Chrome.
     Case "op in chr":
     Send, ^l
     Sleep, 80
@@ -282,7 +282,7 @@ Switch (cmdToRun) {
     Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" %Clipboard%
     return
 
-    ;Opens the current tab in Firefox
+    ;Opens the current tab in Firefox.
     Case "op in Firefox":
     Send, ^l
     Sleep, 80
@@ -291,13 +291,13 @@ Switch (cmdToRun) {
     Run, "C:\Program Files\Mozilla Firefox\firefox.exe" %Clipboard%
     return
 
-    ;Open thesaurus.com in Chrome and search for the inputted word
+    ;Open thesaurus.com in Chrome and search for the inputted word.
     Case "Thes Chr":
     InputBox, Thes_ChrInputBox, Search for This Word on Thesaurus.com, Type the word you want to search on Thesaurus.com in Chrome.
     Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://www.thesaurus.com/browse/%Thes_ChrInputBox%
     return
 
-    ;Open thesaurus.com in Firefox and search for the inputted word
+    ;Open thesaurus.com in Firefox and search for the inputted word.
     Case "Thes", "Thes ff", "thes Firefox":
     InputBox, Thes_FFInputBox, Search for This Word on Thesaurus.com, Type the word you want to search on Thesaurus.com in Firefox.
     Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.thesaurus.com/browse/%Thes_FFInputBox%

@@ -18,6 +18,7 @@ SplitPath, A_ScriptName, , , , thisscriptname
 ;TODO: make sure it's actually working, and also have it return back to it's original position if the user nudges the mouse a bit.
 
 mouseAutoMoveDelay := 5000
+mouseAutoMoveActive := false
 
 Loop {
     MouseGetPos, firstMouseX, firstMouseY
@@ -28,13 +29,23 @@ Loop {
     if (((firstMouseX = secondMouseX) OR (firstMouseX = (secondMouseX + 15)) OR (firstMouseX = (secondMouseX - 15))) AND ((firstMouseY = secondMouseY) OR (firstMouseY = (secondMouseY + 15)) OR (firstMouseY = (secondMouseY - 15)))) {
         Tippy("Moving", 1000)
         MouseGetPos, originalMouseX, originalMouseY
-        MouseMove, 1920, 1080
+        MouseMove, 1920, 1080, 0
     } else {
         Tippy("Not moving", 1000)
     }
+
+    Sleep, %mouseAutoMoveDelay%
+
+    if (((firstMouseX != secondMouseX) OR (firstMouseX != (secondMouseX + 15)) OR (firstMouseX != (secondMouseX - 15))) AND ((firstMouseY != secondMouseY) OR (firstMouseY != (secondMouseY + 15)) OR (firstMouseY != (secondMouseY - 15)))) {
+        MouseMove, %originalMouseX%, %originalMouseY%, 0
+    }
+
+    Sleep, %mouseAutoMoveDelay%
 }
 
 
+
+;↑ disable auto moving mouse. Have a if for this if it's running or not.
 
 
 ; if ((firstMouseX = secondMouseX) AND (firstMouseY = secondMouseY)) {
