@@ -154,13 +154,13 @@ GUI, CPanel:Add, DropDownList, x5 y140 w136 vChrBookTypeMonChoice, 1 (Primary Mo
 if (A_ComputerName = "Elliott-Laptop") {
 	laptopBatteryIconX := 1432
 	laptopBatteryIconY := 885
-    usingALaptop = true
+    usingALaptop := true
 } else if (A_ComputerName = "Elliott-DSU-Lap") {
 	laptopBatteryIconX := 1664
 	laptopBatteryIconY := 1049 ;This is WITHOUT the Ink Workspace button shown. If it's shown, it's 1618 and 1049.
-    usingALaptop = true
+    usingALaptop := true
 } else if (A_ComputerName = "Elliott-PC") {
-	usingALaptop = false
+	usingALaptop := false
 	laptopBatteryIconX := NULL
 	laptopBatteryIconY := NULL
 } else {
