@@ -217,7 +217,7 @@ Switch (cmdToRun) {
     return
 
     ;Hibernate PC.
-    Case "zz":
+    Case "h":
     Send, #x
     Sleep, 250
     Send, {Up 2}

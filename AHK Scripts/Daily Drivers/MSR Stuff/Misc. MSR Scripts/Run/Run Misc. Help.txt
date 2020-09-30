@@ -5,4 +5,4 @@ rs		Restart PC.
 sd		Shut down PC.
 st		Get free space of all the drives in GB.
 z		Sleep PC.
-zz		Hibernate PC.
+h		Hibernate PC.
