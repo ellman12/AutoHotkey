@@ -67,8 +67,8 @@ SendMode Input
 DetectHiddenWindows, Off
 #SingleInstance force
 
-;******************************************AUTO-EXECUTE*************************************************
-;****************************************CUSTOM WINDOW GROUPS*********************************
+;**************************************************AUTO-EXECUTE**************************************************
+;***********************************CUSTOM WINDOW GROUPS***********************************
 ;Tracks all the window IDs for the custom groups.
 global WindowGroupF6 := [] ;Stores Window IDs.
 global CurrentWinF6 := 1 ;Tracks the current window you're on.
@@ -335,7 +335,6 @@ Loop {
 #Include, %A_ScriptDir%\Misc. MSR Scripts\ApplicationSwitcher.ahk
 #Include, %A_ScriptDir%\Misc. MSR Scripts\AutoCorrect.ahk
 #Include, %A_ScriptDir%\Misc. MSR Scripts\C-C++ Programming.ahk
-#Include, %A_ScriptDir%\Misc. MSR Scripts\Chromebook Typing.ahk
 #Include, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups.ahk
 #Include, %A_ScriptDir%\Misc. MSR Scripts\NumPad Media Control.ahk
 #Include, %A_ScriptDir%\Misc. MSR Scripts\Run\Run.ahk
@@ -346,6 +345,9 @@ Loop {
 #Include, %A_ScriptDir%\Video Game Stuff\Terraria.ahk
 
 #Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\Secondary Macro Keyboard\Hasu USB to USB Script.ahk
+
+;This is after the 2nd keeb script because if it is #Included before it and it's enabled it breaks the keys like j, k, l, a, etc.
+#Include, %A_ScriptDir%\Misc. MSR Scripts\Chromebook Typing.ahk
 
 ;****************************************MISC HOTKEYS***************************************
 ^#r::Reload ;TODO: When Window Groups is done make this keep hidden windows safe from being lost.
