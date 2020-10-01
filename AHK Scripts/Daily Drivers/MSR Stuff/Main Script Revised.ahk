@@ -22,7 +22,8 @@
 * Trying to have code like GUI creation, hotkeys, etc. in a separate file is
 * very unpredictable and often doesn't work and wastes my time trying to
 * figure out why it doesn't work. The only #Includes are the things that work
-* best in separate files: the long files with context-sensitive hotkeys, as well as 'header' files.
+* best in separate files: the long files with (context-sensitive) hotkeys, as well as 'header' files.
+* The best things to have in other files are hotkeys, and that's it. This isn't too annoying TBH.
 
 * Here's how this giant script is laid out: https://imgur.com/R14NAWW
 
@@ -31,6 +32,9 @@
 * TCT: Title Capitalization Tool
 * YT: YouTube
 * Keeb: keyboard
+* CWG: Custom Window Groups
+* ApplSwitch: ApplicationSwitcher
+* Chr Typing: Chromebook Typing.
 
 * Conventions for the number of * for a title/header. These can be inserted via Run.ahk.
 * Title:    50 **************************************************
@@ -45,7 +49,6 @@
 if the volume just got turned up quite a ways, give some kind of warning (large Tippy, etc.) warning me to turn the volume down. Put in either Main or NumPad.#SingleInstance, Force
 bedtime script
 thing that after certain amount of time moves mouse pointer off screen. If it's moved by user put back to where it was. Have a #o thing to customize delay
-win group if win already in array don't add and have a tippy saying not added.
 */
 
 ;Pic of all these icons: https://diymediahome.org/wp-content/uploads/shell32_icons.jpg
