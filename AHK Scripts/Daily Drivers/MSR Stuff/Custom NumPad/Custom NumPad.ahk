@@ -123,9 +123,9 @@ return
 ;E.g., put in "pi" to send pi, which WebAssign should interpret as π.
 insertSymbol(symbol, amtOfRightsToSend := 0) {
     WinActivate, | WebAssign
-    Sleep 30
+    Sleep 300
     Send, {Text}%symbol%
-    Sleep 30
+    Sleep 300
     Send, {Right amtOfRightsToSend}
     WinActivate, Custom NumPad.ahk
 }
@@ -133,11 +133,11 @@ insertSymbol(symbol, amtOfRightsToSend := 0) {
 ;when ready to submit answer, will tab through this many buttons to get to the submit button, then click it. numOfTabs = num of buttons + 1.
 tabAndSubmit(numOfTabs) {
     WinActivate, | WebAssign
-    Sleep 30
-    Send, {Tab numOfTabs}
-    Sleep 30
+    Sleep 3000
+    Send, {Tab %numOfTabs%}
+    Sleep 3000
     Send, {Space}
-    Sleep 30
+    Sleep 3000
     WinActivate, Custom NumPad.ahk
 }
 
