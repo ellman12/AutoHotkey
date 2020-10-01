@@ -432,14 +432,9 @@ return
 
 ;****************************************GLOBAL K95 RGB HOTKEYS***************************************
 ;These 3 hotkeys are sent by the iCUE software, which AutoHotkey detects.
-;M1 on K95 RGB copies to the clipboard.
-+F24::Send, ^c
-
-;M2 on K95 RGB cuts to the clipboard.
-+F21::Send, ^x
-
-;M3 on K95 RGB pastes to the clipboard.
-+F22::Send, ^v
++F24::Send, ^c ;M1 on K95 RGB copies to the clipboard.
++F21::Send, ^x ;M2 on K95 RGB cuts to the clipboard.
++F22::Send, ^v ;M3 on K95 RGB pastes the clipboard.
 
 ;****************************************CONTEXT-SENSITIVE HOTKEYS***************************************
 #If programmingMode = false
@@ -505,11 +500,9 @@ return
 #If
 
 ;*****************************************HOTKEYS FOR TITLE STUFF*********************************
-;These hotkeys allow the user to adjust and modify text/titles in whatever way they want.
+;These hotkeys allow the user to adjust and modify text/titles in different ways.
 ;Inspiration and code for this: https://autohotkey.com/board/topic/57888-title-case/ and https://autohotkey.com/board/topic/123994-capitalize-a-title/
-
-;Converts text to Title Case.
-^!t::
+^!t:: ;Converts text to Title Case.
   Send, ^c ;Copy text, and wait a bit so it can actually process that.
   Sleep 45
 
@@ -524,8 +517,7 @@ return
   Send ^v ;Paste the new title.
 return
 
-;Converts text to UPPER CASE, using a built-in AHK function.
-^!u::
+^!u:: ;Converts text to UPPER CASE.
 	Send, ^c
 	Sleep 45
 	StringUpper, NewTitle, Clipboard
@@ -533,7 +525,7 @@ return
 	Send, ^v
 return
 
-^!l::
+^!l:: ;Converts text to lower case.
 	Send, ^c
 	Sleep 45
 	StringLower, NewTitle, Clipboard
@@ -541,8 +533,7 @@ return
 	Send, ^v
 return
 
-;Converts text to Sentence case.
-^!s::
+^!s:: ;Converts text to sentence case.
 	Send, ^c
 	Sleep 45
 	StringLower, NewTitle, Clipboard
@@ -551,8 +542,7 @@ return
 	Send, ^v
 return
 
-;Converts text to First Letter Capitalization, using a built-in AHK function.
-^!f::
+^!f:: ;Converts text to First Letter Capitalization.
 	Send, ^c
 	Sleep 45
 	StringUpper, NewTitle, Clipboard, T
@@ -665,8 +655,7 @@ clipboardFinishButton:
 return
 
 ;*****************************************MSR CONTROL PANEL GUI BEHAVIOR*********************************
-;Show/hide the MSR Control Panel.
-#o::
+#o:: ;Show/hide the MSR Control Panel.
 controlPanelGUIToggle := !controlPanelGUIToggle
 
 if (controlPanelGUIToggle = 1)
@@ -718,16 +707,15 @@ EWD_MouseStartX := EWD_MouseX  ; Update for the next timer-call to this subrouti
 EWD_MouseStartY := EWD_MouseY
 return
 
-;*****************************************EXPERIMENTAL*****************************************
-;*****************************************TEMPORARY*****************************************
+;**************************************************EXPERIMENTAL**************************************************
+;**************************************************TEMPORARY**************************************************
 :*:hon comp::Honors: Composition II
 :*:hcomp::Honors Composition II
 
 #IfWinActive, ahk_exe Zoom.exe
 $PrintScreen::Send, #{PrintScreen}
 
-;"Hide" the mouse pointer, and hide the Zoom meeting controls.
-$CapsLock::
+$CapsLock:: ;"Hide" the mouse pointer, and hide the Zoom meeting controls.
 MouseGetPos, mousePosX, mousePosY
 MouseMove, 1920, 540, 0
 Send, {LAlt}
