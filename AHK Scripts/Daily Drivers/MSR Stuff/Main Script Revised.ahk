@@ -352,24 +352,23 @@ Loop {
 #Include, %A_ScriptDir%\Misc. MSR Scripts\Chromebook Typing.ahk
 
 ;****************************************MISC HOTKEYS***************************************
-^#r::reloadMSR()
+^#r::reloadMSR() ;Reload MSR. If any windows are hidden, don't allow it to Reload until they're unhidden.
 
-;Force Reload the script, even if there are windows hidden (or if the script says there is, but there actually isn't).
-!#r::Reload
+!#r::Reload ;Force Reload the script, even if there are windows hidden (or if the script says there is, but there actually isn't).
 
 ;Shows you miscellaneous variables, toggles, etc.
 ^#BackSpace::MsgBox, 0, Misc. Variables`, Toggles`, etc., MSR Revised Profile: %currentProfile%`n`nnumPadMode: %NumPadMode%`n`nautoNumPadModeToggle: %autoNumPadModeToggle%
 
-^Space::WinSet, AlwaysOnTop, Toggle, A
+^Space::WinSet, AlwaysOnTop, Toggle, A ;Make active window AlwaysOnTop.
 
-^#s::Run, C:\Program Files\AutoHotkey\WindowSpy.ahk
+^#s::Run, C:\Program Files\AutoHotkey\WindowSpy.ahk ;Run Window Spy.
 
 ^CtrlBreak:: ;Technically Ctrl + Pause. Read about this here: https://www.autohotkey.com/docs/KeyList.htm#other
 #!p::
 Suspend, Toggle
 return
 
-Pause:: ;Suspends all hotkeys for the specified number in milliseconds.
+Pause:: ;Pause key or Win + p suspends all hotkeys for the specified number in milliseconds.
 #p::
 SetTimer, setTimerLabel, 2500, On
 Suspend, On
@@ -379,6 +378,8 @@ setTimerLabel:
 Suspend, Off
 SetTimer, setTimerLabel, Off
 return
+
+^\::Send, \ ;This key normally deletes a word. This hotkey allows you to insert a \ without having to suspend hotkeys.
 
 sc029::Send, !{Tab} ;The grave accent key (that weird thing under the Tilde ~ symbol) sends Alt + Tab.
 
@@ -390,8 +391,7 @@ sc029::Send, !{Tab} ;The grave accent key (that weird thing under the Tilde ~ sy
 
 !SC00D::WinMaximize, A ;Alt + +.
 
-;Open Notepad.
-#n::Run, Notepad
+#n::Run, Notepad ;Open Notepad.
 
 ;Toggle programming mode. Disables hotkeys/hotstrings that can be annoying when programming.
 ^!Insert::
