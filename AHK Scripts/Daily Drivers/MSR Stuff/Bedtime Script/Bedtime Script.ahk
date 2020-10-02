@@ -32,14 +32,20 @@ Loop {
 }
 
 Bedtime() {
-    ReadFiles()
+
+    FileRead, BedtimeValue, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Bedtime Script\Bedtime.txt ;User can set the Bedtime to what they want in this file.
+    if (ErrorLevel = 1)
+        MsgBox, 16, Something went wrong., Something went wrong while reading the "Bedtime" file. The script will now exit.
+
+    FileRead, WakeUpTime, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Bedtime Script\WakeUpTime.txt ;When to turn the thing off.
+    if (ErrorLevel = 1)
+        MsgBox, 16, Something went wrong., Something went wrong while reading the "WakeUpTime" file. The script will now exit.
 
     GUI, BedtimeGUI: +AlwaysOnTop ;This window always needs to stay on top.
 
     FormatTime, CurrentTime,, Time
-    
-    ;MsgBox, %CurrentTime%`n`n%BedtimeValue%`n`n%WakeUpTime%
 
+    ;For some reason, it only works with times like 10:00 PM, etc. If it's something like 9:55 PM, it won't work for some reason...?
     if (currentTime >= BedtimeValue AND currentTime <= WakeUpTime) ;If the current time is between bedtime and wake up time, start the thing.
         GUI, BedtimeGUI:Show, w%A_ScreenWidth% h%A_ScreenHeight% ;Make it cover the whole screen.
 }
@@ -52,19 +58,3 @@ ExtraTimeButton:
     GUI, BedtimeGUI:Show, w%A_ScreenWidth% h%A_ScreenHeight% ;Show the GUI again.
     SetTimer, Bedtime, On
 return
-
-;Read the data from the Bedtime and WakeUpTime files.
-ReadFiles() {
-global
-    FileRead, BedtimeValue, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Bedtime Script\Bedtime.txt ;User can set the Bedtime to what they want in this file.
-    if (ErrorLevel = 1) {
-        MsgBox, 16, Something went wrong., Something went wrong while reading the "Bedtime" file. The script will now exit.
-        ExitApp, -2
-    }
-
-    FileRead, WakeUpTime, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Bedtime Script\WakeUpTime.txt ;When to turn the thing off.
-    if (ErrorLevel = 1) {
-        MsgBox, 16, Something went wrong., Something went wrong while reading the "WakeUpTime" file. The script will now exit.
-        ExitApp, -3
-    }
-}
