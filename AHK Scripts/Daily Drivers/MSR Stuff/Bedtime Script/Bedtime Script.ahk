@@ -26,9 +26,12 @@ GUI, BedtimeGUI:Add, Text,,Go to bed now, and you will have a good morning tomor
 GUI, BedtimeGUI:Font, S11
 GUI, BedtimeGUI:Add, Button, w250 h50 gExtraTimeButton, Five extra minutes to save and close stuff, etc.
 
-SetTimer, Bedtime, 500 ;Check time every half second.
+Loop {
+    Bedtime()
+    Sleep 1000
+}
 
-Bedtime:
+Bedtime() {
     ReadFiles()
 
     GUI, BedtimeGUI: +AlwaysOnTop ;This window always needs to stay on top.
@@ -39,7 +42,7 @@ Bedtime:
 
     if (currentTime >= BedtimeValue AND currentTime <= WakeUpTime) ;If the current time is between bedtime and wake up time, start the thing.
         GUI, BedtimeGUI:Show, w%A_ScreenWidth% h%A_ScreenHeight% ;Make it cover the whole screen.
-return
+}
 
 ExtraTimeButton:
     GuiControl, BedtimeGUI:Hide, Five
