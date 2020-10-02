@@ -97,10 +97,10 @@ global F10WindowsHidden := false
 
 ;Declare these as 1 so the first time you press F8, it hides everything.
 ;If it's 1, hide windows; if it's 0, show windows.
-global F6ShowHideToggle := 1
-global F7ShowHideToggle := 1
-global F8ShowHideToggle := 1
-global F10ShowHideToggle := 1
+global F6ShowHideToggle := 0
+global F7ShowHideToggle := 0
+global F8ShowHideToggle := 0
+global F10ShowHideToggle := 0
 
 ;*******************************EDIT CLIPBOARD CONTENT INITIALIZATION******************************
 GUI, ECC:Font, s12
@@ -352,7 +352,7 @@ Loop {
 #Include, %A_ScriptDir%\Misc. MSR Scripts\Chromebook Typing.ahk
 
 ;****************************************MISC HOTKEYS***************************************
-^#r::Reload ;TODO: When Window Groups is done make this keep hidden windows safe from being lost.
+^#r::reloadMSR()
 
 ;Force Reload the script, even if there are windows hidden (or if the script says there is, but there actually isn't).
 !#r::Reload
@@ -431,7 +431,7 @@ return
 if (MouseButtonMode = "Double Click")
 	Send, {Click 2}
 else (MouseButtonMode = "Next F6 Window")
-	nextWinOrShowHideWins("F6", WindowGroupF6, CurrentWinF6, F6ShowHideToggle)
+	nextWinOrShowHideWins("F6", WindowGroupF6, CurrentWinF6)
 return
 
 ;****************************************GLOBAL K95 RGB HOTKEYS***************************************
@@ -721,6 +721,22 @@ WinMove, ahk_id %EWD_MouseWin%,, EWD_WinX + EWD_MouseX - EWD_MouseStartX, EWD_Wi
 EWD_MouseStartX := EWD_MouseX  ; Update for the next timer-call to this subroutine.
 EWD_MouseStartY := EWD_MouseY
 return
+
+;**************************************************FUNCTIONS AND LABELS**************************************************
+;Used for the Reload hotkey and also for the 2nd keeb.
+;Checking for if windows are hidden helps prevent them from getting indefinitely hidden and thus lost.
+reloadMSR() {
+	if (F6ShowHideToggle = 1)
+		MsgBox, 262160, Error. Can't Reload MSR., There are F6 windows hidden. Unhide them and then reload MSR.
+	else if (F7ShowHideToggle = 1)
+		MsgBox, 262160, Error. Can't Reload MSR., There are F7 windows hidden. Unhide them and then reload MSR.
+	else if (F8ShowHideToggle = 1)
+		MsgBox, 262160, Error. Can't Reload MSR., There are F8 windows hidden. Unhide them and then reload MSR.
+	else if (F10ShowHideToggle = 1)
+		MsgBox, 262160, Error. Can't Reload MSR., There are F10 windows hidden. Unhide them and then reload MSR.
+	else
+		Reload ;If no windows are hidden.
+}
 
 ;**************************************************EXPERIMENTAL**************************************************
 ;**************************************************TEMPORARY**************************************************

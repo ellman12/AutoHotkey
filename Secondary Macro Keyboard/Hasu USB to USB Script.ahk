@@ -367,10 +367,7 @@ p::Run, C:\Program Files\Mozilla Firefox\firefox.exe -private-window https://www
 ;(Shift + Win + Right) Period moves active window to primary monitor.
 SC034::Send, +#{Right}
 
-;Reload either the MSR or this Script.
-r::
-Reload
-return
+r::reloadMSR()
 
 ;Ctrl + Right. Common keeb shortcut for moving between words in text.
 right::Send, ^{Right}

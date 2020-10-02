@@ -5,10 +5,6 @@
 ;By default when the script starts, F6 and F7 are the 2 window groups, and F8 and F10 are the 2 window hiders.
 ;This can be changed in the Main Control Panel.
 
-;TODO: When switching/hiding windows, if win not exist, remove it from the array.
-;TODO: Remove extra unnecessary parameters.
-;TODO: if wins hidden, prevent script from reloading.
-
 ;**************************************************HOTKEYS**************************************************
 ; ^Fx:: Add the current window's ID to its respective array.
 ^F6::addWindowFx("F6", WindowGroupF6)
@@ -29,10 +25,10 @@
 !F10::addAndHideWindowFx("F10", WindowGroupF10)
 
 ; Fx:: Either next window or hide windows.
-F6::nextWinOrShowHideWins("F6", WindowGroupF6, CurrentWinF6, F6ShowHideToggle)
-F7::nextWinOrShowHideWins("F7", WindowGroupF7, CurrentWinF7, F7ShowHideToggle)
-F8::nextWinOrShowHideWins("F8", WindowGroupF8, CurrentWinF8, F8ShowHideToggle)
-F10::nextWinOrShowHideWins("F10", WindowGroupF10, CurrentWinF10, F10ShowHideToggle)
+F6::nextWinOrShowHideWins("F6", WindowGroupF6, CurrentWinF6)
+F7::nextWinOrShowHideWins("F7", WindowGroupF7, CurrentWinF7)
+F8::nextWinOrShowHideWins("F8", WindowGroupF8, CurrentWinF8)
+F10::nextWinOrShowHideWins("F10", WindowGroupF10, CurrentWinF10)
 
 ; +Fx:: Either previous window or hide windows.
 +F6::prevWinOrHideWins("F6", WindowGroupF6, CurrentWinF6)
@@ -89,19 +85,25 @@ addAndHideWindowFx(Fx, ByRef WindowGroupArray) {
     if (Fx = "F6" AND F6Mode = "Window Hider") {
         addWindowFx(Fx, WindowGroupArray)
         WinHide, % "ahk_id" activeWindowID
+        F6ShowHideToggle := 1
     } else if (Fx = "F7" AND F7Mode = "Window Hider") {
         addWindowFx(Fx, WindowGroupArray)
         WinHide, % "ahk_id" activeWindowID
+        F7ShowHideToggle := 1
     } else if (Fx = "F8" AND F8Mode = "Window Hider") {
         addWindowFx(Fx, WindowGroupArray)
         WinHide, % "ahk_id" activeWindowID
+        F8ShowHideToggle := 1
     } else if (Fx = "F10" AND F10Mode = "Window Hider") {
         addWindowFx(Fx, WindowGroupArray)
         WinHide, % "ahk_id" activeWindowID
+        F10ShowHideToggle := 1
     }
 }
 
 showOrHideWindowsFx(ByRef WindowGroupArray, ByRef FxShowHideToggle) {
+    removeNonexistentWindows(WindowGroupArray)
+
     ;If it's 1, hide windows; if it's 0, it shows windows.
     FxShowHideToggle := !FxShowHideToggle
 
@@ -118,6 +120,7 @@ showOrHideWindowsFx(ByRef WindowGroupArray, ByRef FxShowHideToggle) {
 }
 
 nextWindowFx(Fx, ByRef WindowGroupArray, ByRef CurrentWin) {
+    removeNonexistentWindows(WindowGroupArray)
 
     if (activeWindowID != WindowGroupArray[CurrentWin] AND !inArray(activeWindowID, WindowGroupArray)) {
         WinActivate, % "ahk_id" WindowGroupArray[CurrentWin]
@@ -136,7 +139,7 @@ nextWindowFx(Fx, ByRef WindowGroupArray, ByRef CurrentWin) {
     WinActivate, % "ahk_id" WindowGroupArray[CurrentWin] ;Now activate the window based on CurrentWin.
 }
 
-nextWinOrShowHideWins(Fx, ByRef WindowGroupArray, ByRef CurrentWin, ByRef FxShowHideToggle) {
+nextWinOrShowHideWins(Fx, ByRef WindowGroupArray, ByRef CurrentWin) {
 global ;I'm not proud of this code, but it works.
     if ((Fx = "F6") AND (F6Mode = "Window Group"))
         nextWindowFx("F6", WindowGroupF6, CurrentWinF6)
@@ -157,6 +160,7 @@ global ;I'm not proud of this code, but it works.
 }
 
 prevWindowFx(Fx, ByRef WindowGroupArray, ByRef CurrentWin) {
+    removeNonexistentWindows(WindowGroupArray)
 
     if (activeWindowID != WindowGroupArray[CurrentWin] AND !inArray(activeWindowID, WindowGroupArray)) {
         WinActivate, % "ahk_id" WindowGroupArray[CurrentWin]
@@ -193,6 +197,14 @@ global ;I'm not proud of this code, but it works.
         showOrHideWindowsFx(WindowGroupF10, F10ShowHideToggle)
 }
 
+removeNonexistentWindows(ByRef WindowGroupArray) {
+    DetectHiddenWindows, On
+    for index, value in WindowGroupArray
+        if !WinExist("ahk_id" value)
+            WindowGroupArray.RemoveAt(index)
+    DetectHiddenWindows, Off
+}
+
 removeAllWins(Fx, ByRef WindowGroupArray, ByRef CurrentWin) {
     ;Blank out the array. It's that simple.
     WindowGroupArray :=
@@ -201,9 +213,11 @@ removeAllWins(Fx, ByRef WindowGroupArray, ByRef CurrentWin) {
 }
 
 removeAndCloseAllWins(Fx, ByRef WindowGroupArray, ByRef CurrentWin) {
+    DetectHiddenWindows, On
     for index, value in WindowGroupArray
         WinClose, % "ahk_id " value
     WindowGroupArray :=
     CurrentWin := 1
     Tippy("All windows in " . A_Space . Fx . A_Space . "Group have been removed and closed.", 100)
+    DetectHiddenWindows, Off
 }
