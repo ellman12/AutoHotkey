@@ -503,7 +503,7 @@ SoundSet, nv
 return
 #If
 
-;*****************************************HOTKEYS FOR TITLE STUFF*********************************
+;*****************************************TITLE CAPITALIZATION TOOL (TCT)*********************************
 ;These hotkeys allow the user to adjust and modify text/titles in different ways.
 ;Inspiration and code for this: https://autohotkey.com/board/topic/57888-title-case/ and https://autohotkey.com/board/topic/123994-capitalize-a-title/
 ^!t:: ;Converts text to Title Case.
@@ -559,7 +559,7 @@ return
 ;A_LoopField is the single character at that point in the Parse Loop.
 ;0 = convert the char (A_LoopField) to lower...
 ;...1 = convert the char to UPPER.
-^!a::
+^+a::
 	finalString :=
 	altCaseToggle := 0
 
@@ -591,11 +591,9 @@ return
 
 	Clipboard := finalString
 	Send, ^v
-
 return
 
-;Convert text to AlT cAsE, with the first letter being UPPER case.
-^!+a::
+^!+a:: ;Convert text to AlT cAsE, with the first letter being UPPER case.
 	finalString :=
 	altCaseToggle := 1
 
@@ -623,6 +621,19 @@ return
 			}
 		}
 	}
+
+	Clipboard := finalString
+	Send, ^v
+return
+
+^+s:: ;Adds a space between letters. E x a m p l e.
+	finalString :=
+	Send, ^c
+	Sleep, 50
+
+	;Loop through the contents of the Clipboard, and toggle between cases.
+	Loop, Parse, Clipboard
+		finalString := finalString . A_LoopField . A_Space
 
 	Clipboard := finalString
 	Send, ^v
