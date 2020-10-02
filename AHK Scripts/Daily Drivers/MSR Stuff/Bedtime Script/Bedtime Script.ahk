@@ -48,6 +48,8 @@ Bedtime() {
     ;For some reason, it only works with times like 10:00 PM, etc. If it's something like 9:55 PM, it won't work for some reason...?
     if (currentTime >= BedtimeValue AND currentTime <= WakeUpTime) ;If the current time is between bedtime and wake up time, start the thing.
         GUI, BedtimeGUI:Show, w%A_ScreenWidth% h%A_ScreenHeight% ;Make it cover the whole screen.
+    else
+        GUI, BedtimeGUI:Hide
 }
 
 ExtraTimeButton:
