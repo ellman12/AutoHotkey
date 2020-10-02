@@ -34,6 +34,8 @@ Bedtime:
     GUI, BedtimeGUI: +AlwaysOnTop ;This window always needs to stay on top.
 
     FormatTime, CurrentTime,, Time
+    
+    ;MsgBox, %CurrentTime%`n`n%BedtimeValue%`n`n%WakeUpTime%
 
     if (currentTime >= BedtimeValue AND currentTime <= WakeUpTime) ;If the current time is between bedtime and wake up time, start the thing.
         GUI, BedtimeGUI:Show, w%A_ScreenWidth% h%A_ScreenHeight% ;Make it cover the whole screen.

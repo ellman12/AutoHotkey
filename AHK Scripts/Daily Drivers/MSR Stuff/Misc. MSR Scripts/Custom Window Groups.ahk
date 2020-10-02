@@ -70,7 +70,7 @@ addWindowFx(Fx, ByRef WindowGroupArray) {
     WinGet, currentID, ID, A ;Active window ID.
     for index, value in WindowGroupArray ;If the current ID is already in the array, don't add it.
         if (currentID = value)
-        return
+            return
 
     WindowGroupArray.Push(currentID) ;If duplicate isn't found, add window ID to the array.
     Tippy("Added to" . A_Space . Fx . A_Space . "Group.", 100)
@@ -80,7 +80,7 @@ removeWindowFx(Fx, ByRef WindowGroupArray) {
     WinGet, currentID, ID, A ;Active window ID.
     for index, value in WindowGroupArray ;Loop through list and find the value to remove.
         if (value != currentID) ;If it's not found, stop code flow because nothing needs to be added
-        return
+            return
     WindowGroupArray.RemoveAt(index)
 }
 

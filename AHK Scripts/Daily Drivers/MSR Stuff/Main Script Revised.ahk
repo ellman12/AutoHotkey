@@ -49,6 +49,7 @@
 if the volume just got turned up quite a ways, give some kind of warning (large Tippy, etc.) warning me to turn the volume down. Put in either Main or NumPad.#SingleInstance, Force
 bedtime script
 thing that after certain amount of time moves mouse pointer off screen. If it's moved by user put back to where it was. Have a #o thing to customize delay
+customize other top mouse button behavior
 */
 
 ;Pic of all these icons: https://diymediahome.org/wp-content/uploads/shell32_icons.jpg
@@ -429,7 +430,7 @@ return
 ^!F23:: ;Top Front Mouse Button on Scimitar RGB.
 if (MouseButtonMode = "Double Click")
 	Send, {Click 2}
-else
+else (MouseButtonMode = "Next F6 Window")
 	nextWinOrShowHideWins("F6", WindowGroupF6, CurrentWinF6, F6ShowHideToggle)
 return
 
