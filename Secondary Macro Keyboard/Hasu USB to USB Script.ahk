@@ -14,7 +14,7 @@ SendMode Input
 
 ;The Hasu USB to USB Controller Converter somehow separates the 2nd keyboard from the others.
 #if (GetKeyState("F24", "P")) ;<--Everything after this line will only happen on the secondary keyboard that uses F24.
-F24::return ;this line is mandatory for proper functionality
+F24::return ;This line is mandatory for proper functionality.
 
 ;Saving mouse pointer locations and returning to saved spots.
 F1::MouseMove, mousePosX1, mousePosY1, 0
@@ -217,6 +217,9 @@ if (currentProfile = "Docs" || currentProfile = "VSCode")
 else
     Send, ^-
 return
+
+q::Send, ^#{Left}
+w::Send, ^#{Right}
 
 ;Send Ctrl + A.
 a::Send, ^a
