@@ -559,7 +559,7 @@ return
 ;A_LoopField is the single character at that point in the Parse Loop.
 ;0 = convert the char (A_LoopField) to lower...
 ;...1 = convert the char to UPPER.
-^+a::
+^!a::
 	finalString :=
 	altCaseToggle := 0
 
