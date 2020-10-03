@@ -626,7 +626,7 @@ return
 	Send, ^v
 return
 
-^+s:: ;Adds a space between letters. E x a m p l e.
+^+s:: ;A d d s   a   s p a c e   b e t w e e n   l e t t e r s .
 	finalString :=
 	Send, ^c
 	Sleep, 50
