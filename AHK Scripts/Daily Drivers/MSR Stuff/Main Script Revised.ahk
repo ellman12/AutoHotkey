@@ -743,6 +743,13 @@ reloadMSR() {
 :*:hon comp::Honors: Composition II
 :*:hcomp::Honors Composition II
 
+;For Pop Culture paper.
+:*:shrek::Shrek
+:*:fiona::Fiona
+:*:farquaad::Farquaad
+:*:lofa::Lord Farquaad
+:*:duloc::Duloc
+
 #IfWinActive, ahk_exe Zoom.exe
 $PrintScreen::Send, #{PrintScreen}
 
