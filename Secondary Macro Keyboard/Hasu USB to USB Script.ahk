@@ -281,7 +281,7 @@ l::Run, explorer.exe "G:\"
 
 SC027:: ; :/; key copies the selected word/text, and searches for it on Thesaurus.com.
 Send, ^c
-Sleep 35
+Sleep 50
 Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.thesaurus.com/browse/%Clipboard%
 return
 
