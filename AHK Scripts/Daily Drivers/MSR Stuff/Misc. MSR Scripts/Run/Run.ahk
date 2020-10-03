@@ -5,14 +5,14 @@
 
 ;Open the command InputBox, and then do what the user entered.
 !r::
-CapsLock::
+*CapsLock::
 
 InputBox, runInputBoxText, Type a Command,,, 200, 100
 if ErrorLevel = 1
     runCommand("1") ;ErrorLevel value for saying the user pressed Cancel/Escape.
 else
     runCommand(runInputBoxText)
-return
+return ;End of !r and CapsLock.
 
 ;Function used for sending yesterday's date in different formats.
 getYesterdayDate() {

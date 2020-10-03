@@ -1,6 +1,16 @@
 ;Extremely useful groups of hotkeys that make the historically and typically useless NumPad control music, YouTube, and more depending on what's active at the moment. Can also be overridden by the user if they want.
 ;Created: IDK. Improved: Friday, September 25, 2020.
 
+;Allows the user to save the current volume level, and then return to it later.
+;A good use case for this is if you need to greatly increase the volume to hear something in another application,
+; and don't want to accidentally blow your ears out when resuming playback of your music or something else.
+^NumPadSub::
+global SavedNumMinusVol
+SoundGet, SavedNumMinusVol
+message := "Volume level of " . Round(SavedNumMinusVol, 2) . " has been saved!"
+Tippy(message, 1400)
+return
+
 ;Change the step value of NumPad 2 and NumPad 8.
 !NumpadSub::InputBox, Num2And8Step, Input Num2 and Num8 step value, Input Num2 and Num8 step value. Current value: %Num2And8Step%., , , , , , , , %Num2And8Step%
 
@@ -35,17 +45,17 @@ $NumpadPgdn::return
 
 ;Increase (Add) and decrease (Enter) the volume with some logarithmic volume scaling stuff.
 $NumpadAdd::
-soundget, v
+SoundGet, v
 p:=inv(v/100.0)+0.02
 nv:=f(p)*100.0
-soundset, nv
+SoundSet, nv
 return
 
 $NumpadEnter::
-soundget, v
+SoundGet, v
 p:=inv(v/100.0)-0.02
 nv:=f(p)*100.0
-soundset, nv
+SoundSet, nv
 return
 
 $Numpad4::Send, {Media_Prev}
@@ -69,6 +79,8 @@ $NumpadPgup::return
 
 $NumpadDiv::SoundSet, -1
 $NumpadMult::SoundSet, +1
+
+NumPadSub::restoreSavedVolume()
 }
 
 ;If NumLock is On and ScrollLock is On.
@@ -96,17 +108,17 @@ $NumpadPgdn::Send, f
 
 ;Increase (Add) and decrease (Enter) the volume with some logarithmic volume scaling stuff.
 $NumpadAdd::
-soundget, v
+SoundGet, v
 p:=inv(v/100.0)+0.02
 nv:=f(p)*100.0
-soundset, nv
+SoundSet, nv
 return
 
 $NumpadEnter::
-soundget, v
+SoundGet, v
 p:=inv(v/100.0)-0.02
 nv:=f(p)*100.0
-soundset, nv
+SoundSet, nv
 return
 
 ;Backwards five seconds.
@@ -135,6 +147,8 @@ $NumpadPgup::Send, l
 
 $NumpadDiv::SoundSet, -1
 $NumpadMult::SoundSet, +1
+
+NumPadSub::restoreSavedVolume()
 }
 
 ;If NumLock is Off and ScrollLock is On/Off.
@@ -209,17 +223,17 @@ $NumpadPgdn::Send, f
 
 ;Increase/decrease volume with some logarithmic volume scaling stuff.
 $NumpadAdd::
-soundget, v
+SoundGet, v
 p:=inv(v/100.0)+0.02
 nv:=f(p)*100.0
-soundset, nv
+SoundSet, nv
 return
 
 $NumpadEnter::
-soundget, v
+SoundGet, v
 p:=inv(v/100.0)-0.02
 nv:=f(p)*100.0
-soundset, nv
+SoundSet, nv
 return
 
 ;Backwards five (usually) seconds.
@@ -248,6 +262,8 @@ $NumpadPgup::Send, {Right 2}
 
 $NumpadDiv::SoundSet, -1
 $NumpadMult::SoundSet, +1
+
+NumPadSub::restoreSavedVolume()
 }
 #If
 
@@ -258,4 +274,13 @@ f(x) {
 
 inv(y) {
 	return ln(1000.0*y)/6.908
+}
+
+;Used for NumPadSub. Checks to see if SavedNumMinusVol is 0 or NULL. If so, it won't "restore" it.
+restoreSavedVolume() {
+	if ((SavedNumMinusVol = 0) OR (SavedNumMinusVol = NULL)) {
+		MsgBox, 262160, Error. SavedNumMinusVol is either 0 or NULL., Please use ^NumPadSub to save a volume level first.
+		return
+	} else
+		SoundSet, %SavedNumMinusVol% ;Restore the saved volume level from ^NumPadSub.
 }
