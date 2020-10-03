@@ -240,7 +240,7 @@ Switch (cmdToRun) {
     Send, {Right}r
     return
 
-    ;***********************************************OPEN***********************************************
+    ;**************************************************OPEN**************************************************
     ;Opens Google Calendar in Firefox.
     Case "cal":Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://calendar.google.com/calendar/u/0/r
 

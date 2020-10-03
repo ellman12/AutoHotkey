@@ -279,6 +279,17 @@ k::Run, explorer.exe "C:\Users\Elliott\Downloads"
 ;Open the G: drive.
 l::Run, explorer.exe "G:\"
 
+SC027:: ; :/; key copies the selected word/text, and searches for it on Thesaurus.com.
+Send, ^c
+Sleep 35
+Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.thesaurus.com/browse/%Clipboard%
+return
+
+SC028:: ; "/' key opens thesaurus.com in Chrome and searches for the inputted word.
+InputBox, Thes_ChrInputBox, Search for This Word on Thesaurus.com, Type the word you want to search on Thesaurus.com in Chrome.
+Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://www.thesaurus.com/browse/%Thes_ChrInputBox%
+return
+
 ;Ctrl + Left. Common keeb shortcut for moving between words in text.
 left::Send, ^{Left}
 
