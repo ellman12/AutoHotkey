@@ -488,19 +488,8 @@ return
 !PGDN::SoundSet, -1
 
 #IfWinNotActive, ahk_exe explorer.exe ;Really only useful for laptops.
-!Up::
-SoundGet, v
-p:=inv(v/100.0)+0.02
-nv:=f(p)*100.0
-SoundSet, nv
-return
-
-!Down::
-SoundGet, v
-p:=inv(v/100.0)-0.02
-nv:=f(p)*100.0
-SoundSet, nv
-return
+!Up::changeVolume(1)
+!Down::changeVolume(-1)
 #If
 
 ;*****************************************TITLE CAPITALIZATION TOOL (TCT)*********************************

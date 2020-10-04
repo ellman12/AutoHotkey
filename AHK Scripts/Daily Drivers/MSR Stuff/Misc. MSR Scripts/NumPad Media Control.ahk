@@ -22,8 +22,7 @@ else
 	Tippy("NumPad is controlled by you now.", 2000)
 return
 
-;If NumLock is On and ScrollLock is Off.
-;This mode makes listening to music much easier and thus much more enjoyable.
+;If NumLock is On and ScrollLock is Off. This mode makes listening to music much easier and thus much more enjoyable.
 #If numPadMode = "MusicBee" and !(getKeyState("F24", "P"))
 {
 
@@ -43,20 +42,8 @@ $NumpadDown::SoundSet, -%Num2And8Step%
 $Numpad3::return
 $NumpadPgdn::return
 
-;Increase (Add) and decrease (Enter) the volume with some logarithmic volume scaling stuff.
-$NumpadAdd::
-SoundGet, v
-p:=inv(v/100.0)+0.02
-nv:=f(p)*100.0
-SoundSet, nv
-return
-
-$NumpadEnter::
-SoundGet, v
-p:=inv(v/100.0)-0.02
-nv:=f(p)*100.0
-SoundSet, nv
-return
+$NumpadAdd::changeVolume(1)
+$NumpadEnter::changeVolume(-1)
 
 $Numpad4::Send, {Media_Prev}
 $NumpadLeft::Send, {Media_Prev}
@@ -84,7 +71,6 @@ NumPadSub::restoreSavedVolume()
 }
 
 ;If NumLock is On and ScrollLock is On.
-;This mode makes watching YouTube videos easier.
 #If numPadMode = "YouTube" and !(getKeyState("F24", "P"))
 {
 $Numpad0::return
@@ -106,20 +92,8 @@ $NumpadDown::SoundSet, -%Num2And8Step%
 $Numpad3::Send, f
 $NumpadPgdn::Send, f
 
-;Increase (Add) and decrease (Enter) the volume with some logarithmic volume scaling stuff.
-$NumpadAdd::
-SoundGet, v
-p:=inv(v/100.0)+0.02
-nv:=f(p)*100.0
-SoundSet, nv
-return
-
-$NumpadEnter::
-SoundGet, v
-p:=inv(v/100.0)-0.02
-nv:=f(p)*100.0
-SoundSet, nv
-return
+$NumpadAdd::changeVolume(1)
+$NumpadEnter::changeVolume(-1)
 
 ;Backwards five seconds.
 $Numpad4::Send, {Left}
@@ -151,8 +125,7 @@ $NumpadMult::SoundSet, +1
 NumPadSub::restoreSavedVolume()
 }
 
-;If NumLock is Off and ScrollLock is On/Off.
-;All keys in "Normal" mode behave like they normally would.
+;If NumLock is Off and ScrollLock is On/Off. All keys in "Normal" mode behave like they normally would.
 #If numPadMode = "Normal" and !(getKeyState("F24", "P"))
 {
 $Numpad0::Send, {Numpad0}
@@ -199,7 +172,7 @@ $NumPadSub::Send, {NumpadSub}
 
 ;If NumLock is Off and ScrollLock is On.
 ;Designed for use with video sites that aren't YouTube and that have worse interfaces than YT, as well as less useful shortcuts like j, k, l, etc.
-;Those have been transformed into ones that should work with most lower-budget video players.
+;Those have been transformed into ones that should work with most lower-budget and lower-quality video players.
 #If numPadMode = "Dumbed-Down" and !(getKeyState("F24", "P"))
 {
 $Numpad0::return
@@ -221,20 +194,8 @@ $NumpadDown::SoundSet, -%Num2And8Step%
 $Numpad3::Send, f
 $NumpadPgdn::Send, f
 
-;Increase/decrease volume with some logarithmic volume scaling stuff.
-$NumpadAdd::
-SoundGet, v
-p:=inv(v/100.0)+0.02
-nv:=f(p)*100.0
-SoundSet, nv
-return
-
-$NumpadEnter::
-SoundGet, v
-p:=inv(v/100.0)-0.02
-nv:=f(p)*100.0
-SoundSet, nv
-return
+$NumpadAdd::changeVolume(1)
+$NumpadEnter::changeVolume(-1)
 
 ;Backwards five (usually) seconds.
 $Numpad4::Send, {Left}
@@ -267,13 +228,12 @@ NumPadSub::restoreSavedVolume()
 }
 #If
 
-;Functions used for log volume scaling.
-f(x) {
-	return exp(6.908*x)/1000.0
-}
-
-inv(y) {
-	return ln(1000.0*y)/6.908
+;Log volume scaling stuff: https://www.autohotkey.com/boards/viewtopic.php?t=38738
+changeVolume(ud) { ;Called by NumPadAdd and NumPadEnter.
+	fullVolumeTippy()
+	static p := 20
+	SoundGet, vol
+	SoundSet, % vol * (1 + ud * p / 100)
 }
 
 ;Used for NumPadSub. Checks to see if SavedNumMinusVol is 0 or NULL. If so, it won't "restore" it.
@@ -283,4 +243,12 @@ restoreSavedVolume() {
 		return
 	} else
 		SoundSet, %SavedNumMinusVol% ;Restore the saved volume level from ^NumPadSub.
+}
+
+fullVolumeTippy() {
+	SoundGet, systemMasterVolume
+	if (systemMasterVolume = 100) {
+		Tippy("The master volume is at 100%!", 1000)
+		return
+	}
 }
