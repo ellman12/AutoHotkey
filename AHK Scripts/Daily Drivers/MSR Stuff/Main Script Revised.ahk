@@ -357,7 +357,7 @@ Loop {
 !#r::Reload ;Force Reload the script, even if there are windows hidden (or if the script says there is, but there actually isn't).
 
 ;Shows you miscellaneous variables, toggles, etc.
-^#BackSpace::MsgBox, 0, Misc. Variables`, Toggles`, etc., MSR Revised Profile: %currentProfile%`n`nnumPadMode: %NumPadMode%`n`nautoNumPadModeToggle: %autoNumPadModeToggle%
+^#BackSpace::MsgBox, 0, Misc. Variables`, Toggles`, etc., MSR Profile: %currentProfile%`n`nnumPadMode: %NumPadMode%`n`nautoNumPadModeToggle: %autoNumPadModeToggle%
 
 ^Space::WinSet, AlwaysOnTop, Toggle, A ;Make active window AlwaysOnTop.
 
