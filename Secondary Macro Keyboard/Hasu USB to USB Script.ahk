@@ -347,30 +347,11 @@ NumpadDiv::Send, +{Left}
 NumpadMult::Send, +{Right}
 
 ;;=========== Unassigned NumPad Keys on 2nd Keeb ==============;;
-numpad0::Send, ^#{Left} ;Virtual Desktop to the Left.
+NumPad0::Send, ^#{Left} ;Virtual Desktop to the Left.
 NumpadIns::Send, ^#{Left}
 
 NumpadDot::Send, ^#{Right}
 NumpadDel::Send, ^#{Right}
-
-numpad2::Tippy("Unassigned", 1300)
-NumpadDown::Tippy("Unassigned", 1300)
-
-numpad3::Tippy("Unassigned", 1300)
-NumpadPgdn::Tippy("Unassigned", 1300)
-
-numpad5::Tippy("Unassigned", 1300)
-NumpadClear::Tippy("Unassigned", 1300)
-
-numpad8::Tippy("Unassigned", 1300)
-NumpadUp::Tippy("Unassigned", 1300)
-
-numpad9::Tippy("Unassigned", 1300)
-NumpadPgup::Tippy("Unassigned", 1300)
-
-NumpadEnter::Tippy("Unassigned", 1300)
-NumpadAdd::Tippy("Unassigned", 1300)
-NumpadSub::Tippy("Unassigned", 1300)
 
 ;Send Ctrl + O.
 o::Send, ^o
