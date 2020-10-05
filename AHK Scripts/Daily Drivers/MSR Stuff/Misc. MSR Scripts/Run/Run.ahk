@@ -5,14 +5,14 @@
 
 ;Open the command InputBox, and then do what the user entered.
 !r::
-CapsLock::
+*CapsLock::
 
 InputBox, runInputBoxText, Type a Command,,, 200, 100
 if ErrorLevel = 1
     runCommand("1") ;ErrorLevel value for saying the user pressed Cancel/Escape.
 else
     runCommand(runInputBoxText)
-return
+return ;End of !r and CapsLock.
 
 ;Function used for sending yesterday's date in different formats.
 getYesterdayDate() {
@@ -240,8 +240,20 @@ Switch (cmdToRun) {
     Send, {Right}r
     return
 
-    ;***********************************************OPEN***********************************************
-    ;Opens Desmos graphing calculator.
+    Case "task failed":MsgBox, 64, Windows XP, Task failed successfully. ;Yes.
+
+    ;**************************************************OPEN**************************************************
+    ;Opens Google Calendar in Firefox.
+    Case "cal":Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://calendar.google.com/calendar/u/0/r
+
+    ;Copies the selected word/text, and search for it on Thesaurus.com.
+    Case "cthe":
+    Send, ^c
+    Sleep 35
+    Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.thesaurus.com/browse/%Clipboard%
+    return
+
+    ;Opens Desmos graphing calculator in Firefox.
     Case "des": Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.desmos.com/calculator
 
     ;Opens the Google spreadsheet for this script in Chrome, which contains all of the commands in a table.

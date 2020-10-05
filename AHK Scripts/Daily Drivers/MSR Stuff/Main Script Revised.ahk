@@ -357,7 +357,7 @@ Loop {
 !#r::Reload ;Force Reload the script, even if there are windows hidden (or if the script says there is, but there actually isn't).
 
 ;Shows you miscellaneous variables, toggles, etc.
-^#BackSpace::MsgBox, 0, Misc. Variables`, Toggles`, etc., MSR Revised Profile: %currentProfile%`n`nnumPadMode: %NumPadMode%`n`nautoNumPadModeToggle: %autoNumPadModeToggle%
+^#BackSpace::MsgBox, 0, Misc. Variables`, Toggles`, etc., MSR Profile: %currentProfile%`n`nnumPadMode: %NumPadMode%`n`nautoNumPadModeToggle: %autoNumPadModeToggle%
 
 ^Space::WinSet, AlwaysOnTop, Toggle, A ;Make active window AlwaysOnTop.
 
@@ -488,19 +488,8 @@ return
 !PGDN::SoundSet, -1
 
 #IfWinNotActive, ahk_exe explorer.exe ;Really only useful for laptops.
-!Up::
-SoundGet, v
-p:=inv(v/100.0)+0.02
-nv:=f(p)*100.0
-SoundSet, nv
-return
-
-!Down::
-SoundGet, v
-p:=inv(v/100.0)-0.02
-nv:=f(p)*100.0
-SoundSet, nv
-return
+!Up::changeVolume(1)
+!Down::changeVolume(-1)
 #If
 
 ;*****************************************TITLE CAPITALIZATION TOOL (TCT)*********************************
@@ -626,7 +615,7 @@ return
 	Send, ^v
 return
 
-^+s:: ;Adds a space between letters. E x a m p l e.
+^+s:: ;A d d s   a   s p a c e   b e t w e e n   l e t t e r s .
 	finalString :=
 	Send, ^c
 	Sleep, 50
@@ -742,6 +731,13 @@ reloadMSR() {
 ;**************************************************TEMPORARY**************************************************
 :*:hon comp::Honors: Composition II
 :*:hcomp::Honors Composition II
+
+;For Pop Culture paper.
+:*:shrek::Shrek
+:*:fiona::Fiona
+:*:farquaad::Farquaad
+:*:lofa::Lord Farquaad
+:*:duloc::Duloc
 
 #IfWinActive, ahk_exe Zoom.exe
 $PrintScreen::Send, #{PrintScreen}
