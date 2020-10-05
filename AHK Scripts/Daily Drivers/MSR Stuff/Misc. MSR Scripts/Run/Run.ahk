@@ -253,6 +253,9 @@ Switch (cmdToRun) {
     Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.thesaurus.com/browse/%Clipboard%
     return
 
+    ;Opens my Math Notes album in Google Photos.
+    Case "math":Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://photos.google.com/share/AF1QipPJWlaAritAARM-nFHMzvyGtSvGSkp-vcZDMFIc2IlNfaDX6-LEO6E-wVHJU-fBFg?key=S01rOFpZUmx0WGtsQ2VQdGlsM3ZIRHdsZWpOSkpR
+
     ;Opens Desmos graphing calculator in Firefox.
     Case "des": Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.desmos.com/calculator
 
