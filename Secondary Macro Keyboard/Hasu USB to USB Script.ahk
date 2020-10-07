@@ -92,6 +92,12 @@ if (DiscordVisibilityToggle = "1") {
 }
 return
 
+;Equivalent to Win + S.
+,::Gosub, CreateCapWindow
+
+;Equivalent to Alt + Win + S.
+!,::openOrShowClipsFolder()
+
 ;In File Explorer, size all columns to fit.
 ;In Firefox/Chrome go to tabs 1-8, or last tab (9).
 1::
@@ -224,23 +230,23 @@ w::Send, ^#{Right}
 ;Send Ctrl + A.
 a::Send, ^a
 
-;Sends the current time.
-b::
-FormatTime, formattedDateTime,, h:mm tt
-SendInput, %formattedDateTime%
-return
+; ;Sends the current time.
+; b::
+; FormatTime, formattedDateTime,, h:mm tt
+; SendInput, %formattedDateTime%
+; return
 
 ;Sends Alt + F4.
 backspace::Send, !{F4}
 
-;Sends the current date and time.
-c::
-FormatTime, formattedDateTime,, M/d/yyyy h:mm tt
-SendInput, %formattedDateTime%
-return
+; ;Sends the current date and time.
+; c::
+; FormatTime, formattedDateTime,, M/d/yyyy h:mm tt
+; SendInput, %formattedDateTime%
+; return
 
-;(Shift + Win + Left) Comma moves active window to 2nd monitor.
-SC033::Send, +#{Left}
+; (Shift + Win + Left) Comma moves active window to 2nd monitor.
+; SC033::Send, +#{Left}
 
 ;Open the Desktop folder.
 d::Run, explorer %A_Desktop%
@@ -321,8 +327,8 @@ Send, {Right}
 Send, {Down}
 return
 
-;Open Notepad.
-n::Run, notepad.exe
+; ;Open Notepad.
+; n::Run, notepad.exe
 
 ;Shift + End.
 NumPad1::Send, +{End}
@@ -406,11 +412,11 @@ Sleep 900
 Send, !e
 return
 
-;Sends the current date.
-v::
-FormatTime, formattedDateTime,, M/d/yyyy
-SendInput, %formattedDateTime%
-return
+; ;Sends the current date.
+; v::
+; FormatTime, formattedDateTime,, M/d/yyyy
+; SendInput, %formattedDateTime%
+; return
 
 ;Redo.
 x::Send, ^y

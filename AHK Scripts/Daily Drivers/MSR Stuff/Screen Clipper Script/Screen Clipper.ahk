@@ -29,12 +29,14 @@ return   ; End of Auto-Execute Section.
 ;**************************************************************************************
 ; ^!ESC:: ExitApp ; Hotkey to exit the script.
 ; ^ESC::	Reload ; Hotkey to reload the script.
-!#s:: ;Opens/activates the folder containing the saved clips.
+!#s::openOrShowClipsFolder()
+
+openOrShowClipsFolder() { ;Opens/activates the folder containing the saved clips.
 IfWinExist, Saved Clips
 	WinActivate
 else
 	Run, explorer.exe %A_ScriptDir%\Screen Clipper Script\Saved Clips
-return
+}
 ;**************************************************************************************
 ;**************************************************************************************
 
