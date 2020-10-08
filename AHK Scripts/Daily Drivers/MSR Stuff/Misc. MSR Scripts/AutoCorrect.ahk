@@ -5454,6 +5454,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:@me::Elliott DuCharme
 :*:@fi::Elliott
 :*:@la::DuCharme
+:*:@ph::507-858-9061
 
 ;EMAILS
 :*:dsuemail::Elliott.DuCharme@trojans.dsu.edu
