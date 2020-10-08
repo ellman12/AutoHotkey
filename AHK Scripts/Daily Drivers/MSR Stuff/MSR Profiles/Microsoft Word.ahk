@@ -9,8 +9,9 @@ nextWinOrShowHideWins("F7", WindowGroupF7, CurrentWinF7)
 return
 
 ;Mouse G1
-F13::
-return
+;For scrolling horizontally.
+F13 & WheelUp::Send, {WheelLeft}
+F13 & WheelDown::Send, {WheelRight}
 
 ;Mouse G2
 F14::

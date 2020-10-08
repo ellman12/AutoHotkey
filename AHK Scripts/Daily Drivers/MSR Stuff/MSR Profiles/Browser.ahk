@@ -17,7 +17,7 @@ nextWinOrShowHideWins("F7", WindowGroupF7, CurrentWinF7)
 return
 
 ;Mouse G1
-;"Holds" down Shift for scroling horizontally.
+;"Holds" down Shift for scrolling horizontally.
 F13::
 Send, {Shift down}
 KeyWait, F13

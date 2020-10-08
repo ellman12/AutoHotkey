@@ -14,7 +14,7 @@ nextWinOrShowHideWins("F7", WindowGroupF7, CurrentWinF7)
 return
 
 ;Mouse G1
-;For scroling horizontally
+;For scrolling horizontally
 F13 & WheelUp::  ; Scroll left.
 ControlGetFocus, fcontrol, A
 SendMessage, 0x114, 0, 0, %fcontrol%, A  ; 0x114 is WM_HSCROLL and the 0 after it is SB_LINELEFT.

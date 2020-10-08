@@ -17,3 +17,10 @@ SplitPath, A_ScriptName, , , , thisscriptname
 
 #IfWinActive, ahk_exe EXCEL.EXE
 $F2::Send, {F2}
+
+;Mouse G1
+;For scrolling horizontally.
+F13 & WheelUp::Send, {WheelLeft}
+F13 & WheelDown::Send, {WheelRight}
+
+#If
