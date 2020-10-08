@@ -131,28 +131,28 @@ Handles := [] ;Create an array to hold the name of the different gui's.
 Index := 0 ;Used as the name of the current gui cap window.
 
 ;*******************************MSR CONTROL PANEL INITIALIZATION******************************
-;This is a GUI for the MSR that allows the user to change how parts of the script work: stuff
+;This is a GUI for MSR that allows the user to change how parts of the script work: stuff
 ; which probably couldn't really be done well with hotkeys.
-GUI, CPanel:+AlwaysOnTop
-GUI, CPanel:Color, Silver
+GUI, oldCPanel:+AlwaysOnTop
+GUI, oldCPanel:Color, Silver
 
 ;Insert.
-GUI, CPanel:Font, s13
-GUI, CPanel:Add, Text, x5 y5,Insert Hotkey Monitor Choice
-GUI, CPanel:Font, s11
-GUI, CPanel:Add, DropDownList, x5 y30 w136 vInsMonChoice, 1 (Primary Mon)||2 (Secondary Mon)
+GUI, oldCPanel:Font, s13
+GUI, oldCPanel:Add, Text, x5 y5,Insert Hotkey Monitor Choice
+GUI, oldCPanel:Font, s11
+GUI, oldCPanel:Add, DropDownList, x5 y30 w136 vInsMonChoice, Primary Mon||Secondary Mon
 
 ;Ctrl + Insert.
-GUI, CPanel:Font, s13
-GUI, CPanel:Add, Text, x5 y60,Ctrl + Insert Hotkey Monitor Choice
-GUI, CPanel:Font, s11
-GUI, CPanel:Add, DropDownList, x5 y85 w136 vCtrlInsMonChoice, 1 (Primary Mon)|2 (Secondary Mon)||
+GUI, oldCPanel:Font, s13
+GUI, oldCPanel:Add, Text, x5 y60,Ctrl + Insert Hotkey Monitor Choice
+GUI, oldCPanel:Font, s11
+GUI, oldCPanel:Add, DropDownList, x5 y85 w136 vCtrlInsMonChoice, Primary Mon|Secondary Mon||
 
 ;For Chromebook Typing, which monitor to send the mouse pointer too.
-GUI, CPanel:Font, s13
-GUI, CPanel:Add, Text, x5 y115,Chromebook Typing Monitor Choice
-GUI, CPanel:Font, s11
-GUI, CPanel:Add, DropDownList, x5 y140 w136 vChrBookTypeMonChoice, 1 (Primary Mon)||2 (Secondary Mon)|
+GUI, oldCPanel:Font, s13
+GUI, oldCPanel:Add, Text, x5 y115,Chromebook Typing Monitor Choice
+GUI, oldCPanel:Font, s11
+GUI, oldCPanel:Add, DropDownList, x5 y140 w136 vChrBookTypeMonChoice, Primary Mon||Secondary Mon|
 
 ;Default screen X and Y of battery icons; user can change them later in #o.
 if (A_ComputerName = "Elliott-Laptop") {
@@ -172,47 +172,47 @@ if (A_ComputerName = "Elliott-Laptop") {
 }
 
 ;X choice for the #b hotkey.
-GUI, CPanel:Font, s13
-GUI, CPanel:Add, Text, x5 y170,#B Screen X
-GUI, CPanel:Font, s11
-GUI, CPanel:Add, Edit, x5 y195 w100 vlaptopBatteryIconX, %laptopBatteryIconX%
+GUI, oldCPanel:Font, s13
+GUI, oldCPanel:Add, Text, x5 y170,#B Screen X
+GUI, oldCPanel:Font, s11
+GUI, oldCPanel:Add, Edit, x5 y195 w100 vlaptopBatteryIconX, %laptopBatteryIconX%
 
 ;Y choice for the #b hotkey.
-GUI, CPanel:Font, s13
-GUI, CPanel:Add, Text, x120 y170,#B Screen Y
-GUI, CPanel:Font, s11
-GUI, CPanel:Add, Edit, x120 y195 w100 vlaptopBatteryIconY, %laptopBatteryIconY%
+GUI, oldCPanel:Font, s13
+GUI, oldCPanel:Add, Text, x120 y170,#B Screen Y
+GUI, oldCPanel:Font, s11
+GUI, oldCPanel:Add, Edit, x120 y195 w100 vlaptopBatteryIconY, %laptopBatteryIconY%
 
 ;For the Custom Window Group stuff.
-GUI, CPanel:Font, s13
-GUI, CPanel:Add, Text, x5 y225,Custom Window Groups
+GUI, oldCPanel:Font, s13
+GUI, oldCPanel:Add, Text, x5 y225,Custom Window Groups
 
-GUI, CPanel:Font, s11
-GUI, CPanel:Add, Text, x5 y250,F6:
-GUI, CPanel:Add, DDL, vF6Mode w118 x25 y248,Window Group||Window Hider
+GUI, oldCPanel:Font, s11
+GUI, oldCPanel:Add, Text, x5 y250,F6:
+GUI, oldCPanel:Add, DDL, vF6Mode w118 x25 y248,Window Group||Window Hider
 
-GUI, CPanel:Add, Text, x150 y250,F7:
-GUI, CPanel:Add, DDL, vF7Mode w118 x177 y248,Window Group||Window Hider
+GUI, oldCPanel:Add, Text, x150 y250,F7:
+GUI, oldCPanel:Add, DDL, vF7Mode w118 x177 y248,Window Group||Window Hider
 
-GUI, CPanel:Add, Text, x5 y275,F8:
-GUI, CPanel:Add, DDL, vF8Mode w118 x25 y273,Window Group|Window Hider||
+GUI, oldCPanel:Add, Text, x5 y275,F8:
+GUI, oldCPanel:Add, DDL, vF8Mode w118 x25 y273,Window Group|Window Hider||
 
-GUI, CPanel:Add, Text, x150 y275,F10:
-GUI, CPanel:Add, DDL, vF10Mode w118 x177 y273,Window Group|Window Hider||
+GUI, oldCPanel:Add, Text, x150 y275,F10:
+GUI, oldCPanel:Add, DDL, vF10Mode w118 x177 y273,Window Group|Window Hider||
 
 ;F3 Behavior.
-GUI, CPanel:Font, s13
-GUI, CPanel:Add, Text, x5 y303,F3 Behavior:
+GUI, oldCPanel:Font, s13
+GUI, oldCPanel:Add, Text, x5 y303,F3 Behavior:
 
-GUI, CPanel:Font, s11
-GUI, CPanel:Add, DDL, vF3Mode w118 x102 y302, Google Chrome||VSCode
+GUI, oldCPanel:Font, s11
+GUI, oldCPanel:Add, DDL, vF3Mode w118 x102 y302, Google Chrome||VSCode
 
 ;Front Top Mouse Button.
-GUI, CPanel:Font, s13
-GUI, CPanel:Add, Text, x4 y334,Top Mouse Button Behavior
+GUI, oldCPanel:Font, s13
+GUI, oldCPanel:Add, Text, x4 y334,Top Mouse Button Behavior
 
-GUI, CPanel:Font, s11
-GUI, CPanel:Add, DDL, vMouseButtonMode w125 x5 y356, Double Click||Next F6 Window
+GUI, oldCPanel:Font, s11
+GUI, oldCPanel:Add, DDL, vMouseButtonMode w125 x5 y356, Double Click||Next F6 Window
 
 ;Toggle for showing or hiding the GUI.
 ;If it's 1, show the GUI; if it's 0, hide it.
@@ -220,12 +220,84 @@ GUI, CPanel:Add, DDL, vMouseButtonMode w125 x5 y356, Double Click||Next F6 Windo
 global controlPanelGUIToggle := 0
 
 ;Default values.
-global InsMonChoice := "1 (Primary Mon)"
-global CtrlInsMonChoice := "2 (Secondary Mon)"
-global ChrBookTypeMonChoice := "1 (Primary Mon)"
+global InsMonChoice := "Primary Mon"
+global CtrlInsMonChoice := "Secondary Mon"
+global ChrBookTypeMonChoice := "Primary Mon"
 
-CONTROL_PANEL_WIDTH := 298
+CONTROL_PANEL_WIDTH := 485
 CONTROL_PANEL_HEIGHT := 384
+
+;************************************************new GUI****************************************************
+GUI, CPanel:+AlwaysOnTop
+GUI, CPanel:Color, Silver
+GUI, CPanel:Margin, 3, 1
+
+;Insert, Ctrl + Insert, and Chromebook Typing.
+GUI, CPanel:Font, s11
+; GUI, CPanel:Add, Text, xm+1 y3, Insert Hotkey Monitor Choice
+; GUI, CPanel:Add, Text, xp+185 yp, Ctrl + Insert Hotkey Monitor Choice
+; GUI, CPanel:Add, Text, xm+1 yp+46, Chromebook Typing Monitor Choice
+; GUI, CPanel:Add, DropDownList, xm y22 w136 vInsMonChoice, Primary Mon||Secondary Mon
+; GUI, CPanel:Add, DropDownList, xm+185 yp w136 vCtrlInsMonChoice, Primary Mon|Secondary Mon||
+; GUI, CPanel:Add, DropDownList, xm yp+46 w136 vChrBookTypeMonChoice, Primary Mon||Secondary Mon|
+
+GUI, CPanel:Add, Text, xm+1 ym, Insert Hotkey Monitor Choice
+GUI, CPanel:Add, DropDownList, xm ym+18 w136 vInsMonChoice, Primary Mon||Secondary Mon
+
+GUI, CPanel:Add, Text, xp+185 ym, Ctrl + Insert Hotkey Monitor Choice
+GUI, CPanel:Add, DropDownList, xm+185 ym+18 w136 vCtrlInsMonChoice, Primary Mon|Secondary Mon||
+
+GUI, CPanel:Add, Text, xm+1 yp+30, Chromebook Typing Monitor Choice
+GUI, CPanel:Add, DropDownList, xm yp+19 w136 vChrBookTypeMonChoice, Primary Mon||Secondary Mon|
+
+;Default screen X and Y of battery icons; user can change them later in #o.
+if (A_ComputerName = "Elliott-Laptop") {
+	laptopBatteryIconX := 1432
+	laptopBatteryIconY := 885
+    usingALaptop := true
+} else if (A_ComputerName = "Elliott-DSU-Lap") {
+	laptopBatteryIconX := 1664
+	laptopBatteryIconY := 1049 ;This is WITHOUT the Ink Workspace button shown. If it's shown, it's 1618 and 1049.
+    usingALaptop := true
+} else if (A_ComputerName = "Elliott-PC") {
+	usingALaptop := false
+	laptopBatteryIconX := NULL
+	laptopBatteryIconY := NULL
+} else {
+	MsgBox, 16, Error. Computer/laptop name not part of the script., Error. Computer/laptop name not part of the script. A_ComputerName is: %A_ComputerName%`n`nIf you're on a desktop computer this can be totally ignored.
+}
+
+;X choice for the #b hotkey.
+GUI, CPanel:Add, Text, xm yp+30, #B Screen X
+GUI, CPanel:Add, Edit, xm yp+19 w100 vlaptopBatteryIconX, %laptopBatteryIconX%
+
+;Y choice for the #b hotkey.
+GUI, CPanel:Add, Text, xp+110 yp-19, #B Screen Y
+GUI, CPanel:Add, Edit, xp yp+19 w100 vlaptopBatteryIconY, %laptopBatteryIconY%
+
+;Default screen X and Y of battery icons; user can change them later in #o.
+if (A_ComputerName = "Elliott-Laptop") {
+	WinWX :=
+	WinWY :=
+} else if (A_ComputerName = "Elliott-DSU-Lap") {
+	WinWX :=
+	WinWY :=
+} else if (A_ComputerName = "Elliott-PC") {
+	WinWX := 69
+	WinWY := 420
+} else {
+	MsgBox, 16, Error. Computer/laptop name not part of the script., Error. Computer/laptop name not part of the script. A_ComputerName is: %A_ComputerName%.
+}
+
+;X choice for the #w hotkey.
+GUI, CPanel:Add, Text, xp+125 yp-19, #W Screen X
+GUI, CPanel:Add, Edit, xp yp+19 w100 vWinWX, %WinWX%
+
+;Y choice for the #w hotkey.
+GUI, CPanel:Add, Text, xp+110 yp-19, #W Screen Y
+GUI, CPanel:Add, Edit, xp yp+19 w100 vWinWY, %WinWY%
+
+GUI, CPanel:Show, w%CONTROL_PANEL_WIDTH% h%CONTROL_PANEL_HEIGHT% x1090,MSR Control Panel
 
 ;****************************************MISC VARIABLES, INITIALIZATION, ETC*********************************
 global Num2And8Step := 3 ;When Num2 or Num8 pressed, how much to increase/decrease volume.
@@ -405,16 +477,16 @@ return
 
 Insert:: ;Moves mouse pointer as far off the screen as possible (on main display).
 MouseGetPos, mousePosX, mousePosY
-if (InsMonChoice = "1 (Primary Mon)")
+if (InsMonChoice = "Primary Mon")
 	MouseMove, 1920, 540, 0
-else if (InsMonChoice = "2 (Secondary Mon)")
+else if (InsMonChoice = "Secondary Mon")
 	MouseMove, -1920, 540, 0
 return
 
 ^Insert:: ;Moves mouse pointer as far off the screen as possible (on second display).
-if (CtrlInsMonChoice = "1 (Primary Mon)")
+if (CtrlInsMonChoice = "Primary Mon")
 	MouseMove, 1920, 540, 0
-else if (CtrlInsMonChoice = "2 (Secondary Mon)")
+else if (CtrlInsMonChoice = "Secondary Mon")
 	MouseMove, -1920, 540, 0
 return
 
