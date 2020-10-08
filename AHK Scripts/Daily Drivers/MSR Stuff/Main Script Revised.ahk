@@ -275,7 +275,7 @@ GUI, CPanel:Add, Edit, xm yp+19 w100 vlaptopBatteryIconX, %laptopBatteryIconX%
 GUI, CPanel:Add, Text, xp+110 yp-19, #B Screen Y
 GUI, CPanel:Add, Edit, xp yp+19 w100 vlaptopBatteryIconY, %laptopBatteryIconY%
 
-;Default screen X and Y of battery icons; user can change them later in #o.
+;Default screen X and Y of network icon; user can change them later in #o.
 if (A_ComputerName = "Elliott-Laptop") {
 	WinWX :=
 	WinWY :=
@@ -491,6 +491,10 @@ else if (CtrlInsMonChoice = "Secondary Mon")
 return
 
 !Insert::MouseMove, mousePosX, mousePosY, 0 ;Moves mouse pointer back to where it was before pressing Insert or ^Insert (but not both).
+
+;Opens Wi-Fi menu.
+#w::
+
 
 ~$RShift:: ;A "sniper" button, which slows the mouse pointer speed down to a crawl and still outputs the RShift key.
 Send, {RShift}
