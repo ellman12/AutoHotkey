@@ -5450,6 +5450,11 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*c?:! y::! Y
 :*c?:! z::! Z
 
+;NAME
+:*:@me::Elliott DuCharme
+:*:@fi::Elliott
+:*:@la::DuCharme
+
 ;EMAILS
 :*:dsuemail::Elliott.DuCharme@trojans.dsu.edu
 :*:maingmail::ellduc4@gmail.com
