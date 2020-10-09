@@ -224,7 +224,7 @@ global InsMonChoice := "Primary Mon"
 global CtrlInsMonChoice := "Secondary Mon"
 global ChrBookTypeMonChoice := "Primary Mon"
 
-CONTROL_PANEL_WIDTH := 290
+CONTROL_PANEL_WIDTH := 286
 CONTROL_PANEL_HEIGHT := 384
 
 ;************************************************new GUI****************************************************
@@ -235,16 +235,17 @@ GUI, CPanel:Margin, 3, 1
 ;Insert, Ctrl + Insert, and Chromebook Typing.
 GUI, CPanel:Font, s9 q5
 GUI, CPanel:Add, Text, xm+1 ym, Insert Monitor Choice
-GUI, CPanel:Add, DropDownList, xm ym+14 w100 vInsMonChoice, Primary Mon||Secondary Mon
+GUI, CPanel:Add, DDL, xm ym+14 w100 vInsMonChoice, Primary Mon||Secondary Mon
 
 GUI, CPanel:Add, Text, xp+150 ym, Ctrl + Insert Monitor Choice
-GUI, CPanel:Add, DropDownList, xp-1 ym+14 w100 vCtrlInsMonChoice, Primary Mon|Secondary Mon||
+GUI, CPanel:Add, DDL, xp-1 ym+14 w100 vCtrlInsMonChoice, Primary Mon|Secondary Mon||
 
 GUI, CPanel:Add, Text, xm+1 yp+27, Chromebook Typing Monitor
-GUI, CPanel:Add, DropDownList, xm yp+14 w100 vChrBookTypeMonChoice, Primary Mon||Secondary Mon|
+GUI, CPanel:Add, DDL, xm yp+14 w100 vChrBookTypeMonChoice, Primary Mon||Secondary Mon|
 
+;F3 Behavior.
 GUI, CPanel:Add, Text, x153 yp-14, F3 Behavior
-GUI, CPanel:Add, DropDownList, x152 y56 w97 vF3Mode, Google Chrome||VSCode
+GUI, CPanel:Add, DDL, x152 y56 w97 vF3Mode, Google Chrome||VSCode
 
 ;Default screen X and Y of battery icons; user can change them later in #o.
 if (A_ComputerName = "Elliott-Laptop") {
@@ -292,6 +293,23 @@ GUI, CPanel:Add, Edit, xp yp+14 w66 vWinWX, %WinWX%
 ;Y choice for the #w hotkey.
 GUI, CPanel:Add, Text, xp+71 yp-14, #W Screen Y
 GUI, CPanel:Add, Edit, xp yp+14 w66 vWinWY, %WinWY%
+
+;Custom Window Groups.
+GUI, CPanel:Add, Text, xm yp+30, F6:
+GUI, CPanel:Add, Text, xm+120 yp, F7:
+GUI, CPanel:Add, DDL, xm+17 yp-3 vF6Mode w94, Window Group||Window Hider
+
+GUI, CPanel:Add, Text, xm yp+26, F8:
+GUI, CPanel:Add, Text, xm+120 yp, F10:
+GUI, CPanel:Add, DDL, xm+17 yp-3 vF8Mode w94, Window Group|Window Hider||
+
+GUI, CPanel:Add, DDL, xm+143 yp-23 vF7Mode w94, Window Group||Window Hider
+GUI, CPanel:Add, DDL, xp yp+23 vF10Mode w94, Window Group|Window Hider||
+
+;Top Two Mouse Buttons.
+GUI, CPanel:Add, Text, xm yp+27, Front and Back Top Mouse Buttons Behavior
+GUI, CPanel:Add, DDL, xm yp+17 w87 vFrontMouseButtonBehavior, Double Click||F6|F7|F8|F10
+GUI, CPanel:Add, DDL, xm+90 yp w87 vBackMouseButtonBehavior, Double Click|F6||F7|F8|F10
 
 GUI, CPanel:Show, w%CONTROL_PANEL_WIDTH% h%CONTROL_PANEL_HEIGHT% x1090,MSR Control Panel
 
@@ -502,13 +520,6 @@ Send, {RShift}
 DllCall("SystemParametersInfo", Int,113, Int,0, UInt,1, Int,1)
 KeyWait, RShift
 DllCall("SystemParametersInfo", Int,113, Int,0, UInt,10, Int,1)
-return
-
-^!F23:: ;Top Front Mouse Button on Scimitar RGB.
-if (MouseButtonMode = "Double Click")
-	Send, {Click 2}
-else (MouseButtonMode = "Next F6 Window")
-	nextWinOrShowHideWins("F6", WindowGroupF6, CurrentWinF6)
 return
 
 ;****************************************GLOBAL K95 RGB HOTKEYS***************************************
