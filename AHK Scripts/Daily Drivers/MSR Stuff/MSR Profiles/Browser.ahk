@@ -11,10 +11,7 @@
 ; NextWindowF6()
 return
 
-;Mouse DPI Toggle
-^+F23::
-nextWinOrShowHideWins("F7", WindowGroupF7, CurrentWinF7)
-return
+
 
 ;Mouse G1
 ;"Holds" down Shift for scrolling horizontally.

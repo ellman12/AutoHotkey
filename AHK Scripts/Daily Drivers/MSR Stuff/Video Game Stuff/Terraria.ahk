@@ -5,13 +5,6 @@
 ;****************************************MOUSE ACTIONS***************************************
 
 #If currentProfile = "Terraria"
-;
-
-;Mouse DPI Toggle
-^+F23::
-nextWinOrShowHideWins("F7", WindowGroupF7, CurrentWinF7)
-return
-
 ;Mouse G1.
 ;Quick Buff.
 F13::

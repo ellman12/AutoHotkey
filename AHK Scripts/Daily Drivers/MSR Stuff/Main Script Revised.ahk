@@ -307,6 +307,9 @@ GUI, CPanel:Add, DDL, xm+143 yp-23 vF7Mode w94, Window Group||Window Hider
 GUI, CPanel:Add, DDL, xp yp+23 vF10Mode w94, Window Group|Window Hider||
 
 ;Top Two Mouse Buttons.
+FrontMouseButtonBehavior := "Double Click"
+BackMouseButtonBehavior := "F6"
+
 GUI, CPanel:Add, Text, xm yp+27, Front and Back Top Mouse Buttons Behavior
 GUI, CPanel:Add, DDL, xm yp+17 w87 vFrontMouseButtonBehavior, Double Click||F6|F7|F8|F10
 GUI, CPanel:Add, DDL, xm+90 yp w87 vBackMouseButtonBehavior, Double Click|F6||F7|F8|F10
@@ -520,6 +523,34 @@ Send, {RShift}
 DllCall("SystemParametersInfo", Int,113, Int,0, UInt,1, Int,1)
 KeyWait, RShift
 DllCall("SystemParametersInfo", Int,113, Int,0, UInt,10, Int,1)
+return
+
+;Top Front Mouse Button on Scimitar RGB.
+^!F23::
+if (FrontMouseButtonBehavior = "Double Click")
+	Send, {Click 2}
+else if (FrontMouseButtonBehavior = "F6")
+	nextWinOrShowHideWins("F6", WindowGroupF6, CurrentWinF6)
+else if (FrontMouseButtonBehavior = "F7")
+	nextWinOrShowHideWins("F7", WindowGroupF7, CurrentWinF7)
+else if (FrontMouseButtonBehavior = "F8")
+	nextWinOrShowHideWins("F8", WindowGroupF8, CurrentWinF8)
+else if (FrontMouseButtonBehavior = "F10")
+	nextWinOrShowHideWins("F10", WindowGroupF10, CurrentWinF10)
+return
+
+;Top Back Mouse Button on Scimitar RGB.
+^+F23::
+if (BackMouseButtonBehavior = "Double Click")
+	Send, {Click 2}
+else if (BackMouseButtonBehavior = "F6")
+	nextWinOrShowHideWins("F6", WindowGroupF6, CurrentWinF6)
+else if (BackMouseButtonBehavior = "F7")
+	nextWinOrShowHideWins("F7", WindowGroupF7, CurrentWinF7)
+else if (BackMouseButtonBehavior = "F8")
+	nextWinOrShowHideWins("F8", WindowGroupF8, CurrentWinF8)
+else if (BackMouseButtonBehavior = "F10")
+	nextWinOrShowHideWins("F10", WindowGroupF10, CurrentWinF10)
 return
 
 ;****************************************GLOBAL K95 RGB HOTKEYS***************************************

@@ -5,10 +5,7 @@
 #If currentProfile = "Factorio"
 
 
-;Mouse DPI Toggle
-^+F23::
-nextWinOrShowHideWins("F7", WindowGroupF7, CurrentWinF7)
-return
+
 
 ;Mouse G1
 F13::
