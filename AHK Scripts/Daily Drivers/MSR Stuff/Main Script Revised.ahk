@@ -224,7 +224,7 @@ global InsMonChoice := "Primary Mon"
 global CtrlInsMonChoice := "Secondary Mon"
 global ChrBookTypeMonChoice := "Primary Mon"
 
-CONTROL_PANEL_WIDTH := 410
+CONTROL_PANEL_WIDTH := 290
 CONTROL_PANEL_HEIGHT := 384
 
 ;************************************************new GUI****************************************************
@@ -233,15 +233,18 @@ GUI, CPanel:Color, Silver
 GUI, CPanel:Margin, 3, 1
 
 ;Insert, Ctrl + Insert, and Chromebook Typing.
-GUI, CPanel:Font, s11
-GUI, CPanel:Add, Text, xm+1 ym, Insert Hotkey Monitor Choice
-GUI, CPanel:Add, DropDownList, xm ym+18 w136 vInsMonChoice, Primary Mon||Secondary Mon
+GUI, CPanel:Font, s9 q5
+GUI, CPanel:Add, Text, xm+1 ym, Insert Monitor Choice
+GUI, CPanel:Add, DropDownList, xm ym+14 w100 vInsMonChoice, Primary Mon||Secondary Mon
 
-GUI, CPanel:Add, Text, xp+185 ym, Ctrl + Insert Hotkey Monitor Choice
-GUI, CPanel:Add, DropDownList, xm+185 ym+18 w136 vCtrlInsMonChoice, Primary Mon|Secondary Mon||
+GUI, CPanel:Add, Text, xp+150 ym, Ctrl + Insert Monitor Choice
+GUI, CPanel:Add, DropDownList, xp-1 ym+14 w100 vCtrlInsMonChoice, Primary Mon|Secondary Mon||
 
-GUI, CPanel:Add, Text, xm+1 yp+30, Chromebook Typing Monitor Choice
-GUI, CPanel:Add, DropDownList, xm yp+19 w136 vChrBookTypeMonChoice, Primary Mon||Secondary Mon|
+GUI, CPanel:Add, Text, xm+1 yp+27, Chromebook Typing Monitor
+GUI, CPanel:Add, DropDownList, xm yp+14 w100 vChrBookTypeMonChoice, Primary Mon||Secondary Mon|
+
+GUI, CPanel:Add, Text, x153 yp-14, F3 Behavior
+GUI, CPanel:Add, DropDownList, x152 y56 w97 vF3Mode, Google Chrome||VSCode
 
 ;Default screen X and Y of battery icons; user can change them later in #o.
 if (A_ComputerName = "Elliott-Laptop") {
@@ -261,12 +264,12 @@ if (A_ComputerName = "Elliott-Laptop") {
 }
 
 ;X choice for the #b hotkey.
-GUI, CPanel:Add, Text, xm yp+30, #B Screen X
-GUI, CPanel:Add, Edit, xm yp+19 w75 vlaptopBatteryIconX, %laptopBatteryIconX%
+GUI, CPanel:Add, Text, xm yp+27, #B Screen X
+GUI, CPanel:Add, Edit, xm yp+14 w62 vlaptopBatteryIconX, %laptopBatteryIconX%
 
 ;Y choice for the #b hotkey.
-GUI, CPanel:Add, Text, xp+78 yp-19, #B Screen Y
-GUI, CPanel:Add, Edit, xp yp+19 w75 vlaptopBatteryIconY, %laptopBatteryIconY%
+GUI, CPanel:Add, Text, xp+67 yp-14, #B Screen Y
+GUI, CPanel:Add, Edit, xp yp+14 w62 vlaptopBatteryIconY, %laptopBatteryIconY%
 
 ;Default screen X and Y of network icon; user can change them later in #o.
 if (A_ComputerName = "Elliott-Laptop") {
@@ -283,12 +286,12 @@ if (A_ComputerName = "Elliott-Laptop") {
 }
 
 ;X choice for the #w hotkey.
-GUI, CPanel:Add, Text, xp+93 yp-19, #W Screen X
-GUI, CPanel:Add, Edit, xp yp+19 w79 vWinWX, %WinWX%
+GUI, CPanel:Add, Text, xp+75 yp-14, #W Screen X
+GUI, CPanel:Add, Edit, xp yp+14 w66 vWinWX, %WinWX%
 
 ;Y choice for the #w hotkey.
-GUI, CPanel:Add, Text, xp+83 yp-19, #W Screen Y
-GUI, CPanel:Add, Edit, xp yp+19 w79 vWinWY, %WinWY%
+GUI, CPanel:Add, Text, xp+71 yp-14, #W Screen Y
+GUI, CPanel:Add, Edit, xp yp+14 w66 vWinWY, %WinWY%
 
 GUI, CPanel:Show, w%CONTROL_PANEL_WIDTH% h%CONTROL_PANEL_HEIGHT% x1090,MSR Control Panel
 
