@@ -224,7 +224,7 @@ global InsMonChoice := "Primary Mon"
 global CtrlInsMonChoice := "Secondary Mon"
 global ChrBookTypeMonChoice := "Primary Mon"
 
-CONTROL_PANEL_WIDTH := 485
+CONTROL_PANEL_WIDTH := 410
 CONTROL_PANEL_HEIGHT := 384
 
 ;************************************************new GUI****************************************************
@@ -234,13 +234,6 @@ GUI, CPanel:Margin, 3, 1
 
 ;Insert, Ctrl + Insert, and Chromebook Typing.
 GUI, CPanel:Font, s11
-; GUI, CPanel:Add, Text, xm+1 y3, Insert Hotkey Monitor Choice
-; GUI, CPanel:Add, Text, xp+185 yp, Ctrl + Insert Hotkey Monitor Choice
-; GUI, CPanel:Add, Text, xm+1 yp+46, Chromebook Typing Monitor Choice
-; GUI, CPanel:Add, DropDownList, xm y22 w136 vInsMonChoice, Primary Mon||Secondary Mon
-; GUI, CPanel:Add, DropDownList, xm+185 yp w136 vCtrlInsMonChoice, Primary Mon|Secondary Mon||
-; GUI, CPanel:Add, DropDownList, xm yp+46 w136 vChrBookTypeMonChoice, Primary Mon||Secondary Mon|
-
 GUI, CPanel:Add, Text, xm+1 ym, Insert Hotkey Monitor Choice
 GUI, CPanel:Add, DropDownList, xm ym+18 w136 vInsMonChoice, Primary Mon||Secondary Mon
 
@@ -252,50 +245,50 @@ GUI, CPanel:Add, DropDownList, xm yp+19 w136 vChrBookTypeMonChoice, Primary Mon|
 
 ;Default screen X and Y of battery icons; user can change them later in #o.
 if (A_ComputerName = "Elliott-Laptop") {
+    usingALaptop := true
 	laptopBatteryIconX := 1432
 	laptopBatteryIconY := 885
-    usingALaptop := true
 } else if (A_ComputerName = "Elliott-DSU-Lap") {
+	usingALaptop := true
 	laptopBatteryIconX := 1664
-	laptopBatteryIconY := 1049 ;This is WITHOUT the Ink Workspace button shown. If it's shown, it's 1618 and 1049.
-    usingALaptop := true
+	laptopBatteryIconY := 1049
 } else if (A_ComputerName = "Elliott-PC") {
 	usingALaptop := false
-	laptopBatteryIconX := NULL
-	laptopBatteryIconY := NULL
+	laptopBatteryIconX := "INVALID"
+	laptopBatteryIconY := "INVALID"
 } else {
 	MsgBox, 16, Error. Computer/laptop name not part of the script., Error. Computer/laptop name not part of the script. A_ComputerName is: %A_ComputerName%`n`nIf you're on a desktop computer this can be totally ignored.
 }
 
 ;X choice for the #b hotkey.
 GUI, CPanel:Add, Text, xm yp+30, #B Screen X
-GUI, CPanel:Add, Edit, xm yp+19 w100 vlaptopBatteryIconX, %laptopBatteryIconX%
+GUI, CPanel:Add, Edit, xm yp+19 w75 vlaptopBatteryIconX, %laptopBatteryIconX%
 
 ;Y choice for the #b hotkey.
-GUI, CPanel:Add, Text, xp+110 yp-19, #B Screen Y
-GUI, CPanel:Add, Edit, xp yp+19 w100 vlaptopBatteryIconY, %laptopBatteryIconY%
+GUI, CPanel:Add, Text, xp+78 yp-19, #B Screen Y
+GUI, CPanel:Add, Edit, xp yp+19 w75 vlaptopBatteryIconY, %laptopBatteryIconY%
 
 ;Default screen X and Y of network icon; user can change them later in #o.
 if (A_ComputerName = "Elliott-Laptop") {
-	WinWX :=
-	WinWY :=
+	WinWX := "UNKNOWN"
+	WinWY := "UNKNOWN"
 } else if (A_ComputerName = "Elliott-DSU-Lap") {
-	WinWX :=
-	WinWY :=
+	WinWX := "UNKNOWN"
+	WinWY := "UNKNOWN"
 } else if (A_ComputerName = "Elliott-PC") {
-	WinWX := 69
-	WinWY := 420
+	WinWX := 1443
+	WinWY := 1174
 } else {
 	MsgBox, 16, Error. Computer/laptop name not part of the script., Error. Computer/laptop name not part of the script. A_ComputerName is: %A_ComputerName%.
 }
 
 ;X choice for the #w hotkey.
-GUI, CPanel:Add, Text, xp+125 yp-19, #W Screen X
-GUI, CPanel:Add, Edit, xp yp+19 w100 vWinWX, %WinWX%
+GUI, CPanel:Add, Text, xp+93 yp-19, #W Screen X
+GUI, CPanel:Add, Edit, xp yp+19 w79 vWinWX, %WinWX%
 
 ;Y choice for the #w hotkey.
-GUI, CPanel:Add, Text, xp+110 yp-19, #W Screen Y
-GUI, CPanel:Add, Edit, xp yp+19 w100 vWinWY, %WinWY%
+GUI, CPanel:Add, Text, xp+83 yp-19, #W Screen Y
+GUI, CPanel:Add, Edit, xp yp+19 w79 vWinWY, %WinWY%
 
 GUI, CPanel:Show, w%CONTROL_PANEL_WIDTH% h%CONTROL_PANEL_HEIGHT% x1090,MSR Control Panel
 
@@ -494,7 +487,12 @@ return
 
 ;Opens Wi-Fi menu.
 #w::
-
+MouseGetPos, originalX, originalY
+MouseMove, %WinWX%, %WinWY%, 0
+Sleep 200
+Send, {Click}
+MouseMove, originalX, originalY
+return
 
 ~$RShift:: ;A "sniper" button, which slows the mouse pointer speed down to a crawl and still outputs the RShift key.
 Send, {RShift}
@@ -551,9 +549,11 @@ return
 
 #If usingALaptop = true
 #b:: ;Open battery menu.
+MouseGetPos, originalX, originalY
 MouseMove, %laptopBatteryIconX%, %laptopBatteryIconY%, 0
-Sleep 300
+Sleep 200
 Send, {Click}
+MouseMove, originalX, originalY
 return
 
 ~RShift::Send, {Media_Play_Pause}
