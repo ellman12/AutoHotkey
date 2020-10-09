@@ -8,8 +8,6 @@
 ;****************************************MOUSE ACTIONS***************************************
 
 #If currentProfile = "Sheets"
-
-
 ;Mouse G1
 ;For scrolling horizontally
 F13 & WheelUp::  ; Scroll left.

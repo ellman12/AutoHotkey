@@ -7,12 +7,6 @@
 
 ;****************************************MOUSE ACTIONS***************************************
 #If currentProfile = "Firefox" or currentProfile = "Chrome"
-^!F23::
-; NextWindowF6()
-return
-
-
-
 ;Mouse G1
 ;"Holds" down Shift for scrolling horizontally.
 F13::

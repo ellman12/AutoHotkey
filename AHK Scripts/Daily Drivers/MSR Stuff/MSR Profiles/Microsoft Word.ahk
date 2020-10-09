@@ -3,8 +3,6 @@
 ;****************************************MOUSE ACTIONS***************************************
 
 #If currentProfile = "Word"
-
-
 ;Mouse G1
 ;For scrolling horizontally.
 F13 & WheelUp::Send, {WheelLeft}

@@ -2,8 +2,6 @@
 
 ;****************************************MOUSE ACTIONS***************************************
 #If currentProfile = "VSCode"
-
-
 ;Mouse G1
 ;"Holds" down Shift for scrolling horizontally.
 F13::
