@@ -15,6 +15,8 @@ DetectHiddenWindows, Off
 #SingleInstance force
 #Persistent
 
+Menu, Tray, Icon, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Bedtime Script\Sleeping Emoji.png
+
 GUI, BedtimeGUI:Font, S36
 GUI, BedtimeGUI:Add, Text,,IT'S BEDTIME!!
 
