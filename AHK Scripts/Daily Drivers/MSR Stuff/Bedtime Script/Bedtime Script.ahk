@@ -43,9 +43,8 @@ Bedtime() {
 
     GUI, BedtimeGUI: +AlwaysOnTop ;This window always needs to stay on top.
 
-    FormatTime, CurrentTime,, Time
+    FormatTime, CurrentTime,, H:mm
 
-    ;This doesn't really work. How does one compare time values?
     if (CurrentTime >= BedtimeValue AND CurrentTime <= WakeUpTime) ;If the current time is between bedtime and wake up time, start the thing.
         GUI, BedtimeGUI:Show, w%A_ScreenWidth% h%A_ScreenHeight% ;Make it cover the whole screen.
     else
