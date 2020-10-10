@@ -15,8 +15,6 @@ DetectHiddenWindows, Off
 #SingleInstance force
 #Persistent
 
-#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\Tippy.ahk
-
 GUI, BedtimeGUI:Font, S36
 GUI, BedtimeGUI:Add, Text,,IT'S BEDTIME!!
 
@@ -35,18 +33,18 @@ Bedtime() {
 
     FileRead, BedtimeValue, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Bedtime Script\Bedtime.txt ;User can set the Bedtime to what they want in this file.
     if (ErrorLevel = 1)
-        MsgBox, 16, Something went wrong., Something went wrong while reading the "Bedtime" file. The script will now exit.
+        MsgBox, 16, Something went wrong., Something went wrong while reading the "Bedtime" file.
 
     FileRead, WakeUpTime, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Bedtime Script\WakeUpTime.txt ;When to turn the thing off.
     if (ErrorLevel = 1)
-        MsgBox, 16, Something went wrong., Something went wrong while reading the "WakeUpTime" file. The script will now exit.
+        MsgBox, 16, Something went wrong., Something went wrong while reading the "WakeUpTime" file.
 
     GUI, BedtimeGUI: +AlwaysOnTop ;This window always needs to stay on top.
 
     FormatTime, CurrentTime,, Time
 
-    ;For some reason, it only works with times like 10:00 PM, etc. If it's something like 9:55 PM, it won't work for some reason...?
-    if (currentTime >= BedtimeValue AND currentTime <= WakeUpTime) ;If the current time is between bedtime and wake up time, start the thing.
+    ;This doesn't really work. How does one compare time values?
+    if (CurrentTime >= BedtimeValue AND CurrentTime <= WakeUpTime) ;If the current time is between bedtime and wake up time, start the thing.
         GUI, BedtimeGUI:Show, w%A_ScreenWidth% h%A_ScreenHeight% ;Make it cover the whole screen.
     else
         GUI, BedtimeGUI:Hide
