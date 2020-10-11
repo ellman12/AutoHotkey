@@ -608,7 +608,7 @@ return
 !PGUP::SoundSet, +1
 !PGDN::SoundSet, -1
 
-#IfWinNotActive, ahk_exe explorer.exe ;Really only useful for laptops.
+#If !WinActive("ahk_exe explorer.exe") AND usingALaptop = true ;Really only useful for laptops.
 !Up::changeVolume(1)
 !Down::changeVolume(-1)
 #If
