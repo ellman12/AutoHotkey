@@ -227,29 +227,19 @@ return
 q::Send, ^#{Left}
 w::Send, ^#{Right}
 
-;Send Ctrl + A.
-a::Send, ^a
+a::Send, ^a ;Select all.
 
-; ;Sends the current time.
-; b::
-; FormatTime, formattedDateTime,, h:mm tt
-; SendInput, %formattedDateTime%
-; return
+;Pastes clipboard contents.
+b::Send, ^v
 
-;Sends Alt + F4.
-backspace::Send, !{F4}
+BackSpace::Send, !{F4} ;Sends Alt + F4.
 
-; ;Sends the current date and time.
-; c::
-; FormatTime, formattedDateTime,, M/d/yyyy h:mm tt
-; SendInput, %formattedDateTime%
-; return
+c::Send, ^c ;Copies text to clipboard.
 
 ; (Shift + Win + Left) Comma moves active window to 2nd monitor.
 ; SC033::Send, +#{Left}
 
-;Open the Desktop folder.
-d::Run, explorer %A_Desktop%
+d::Run, explorer %A_Desktop% ;Open the Desktop folder.
 
 ;Open AHK Documentation
 e::
@@ -412,11 +402,8 @@ Sleep 900
 Send, !e
 return
 
-; ;Sends the current date.
-; v::
-; FormatTime, formattedDateTime,, M/d/yyyy
-; SendInput, %formattedDateTime%
-; return
+;Cut to the clipboard.
+v::Send, ^x
 
 ;Redo.
 x::Send, ^y
