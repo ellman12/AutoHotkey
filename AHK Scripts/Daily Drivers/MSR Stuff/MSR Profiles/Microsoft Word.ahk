@@ -139,9 +139,8 @@ Send, ^#{Right}
 return
 
 ;****************************************MISC WORD ACTIONS***************************************
-;(Ctrl + S) save document.
-F5::
-Send, ^s
-return
+F5::Send, ^s ;Save document.
 
+^SC01B::Send, !hai ;Increase indent.
+^SC01A::Send, !hao ;Decrease indent.
 #If
