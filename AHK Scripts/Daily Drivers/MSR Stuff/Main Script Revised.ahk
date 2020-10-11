@@ -314,7 +314,7 @@ GUI, CPanel:Add, Text, xm yp+27, Front and Back Top Mouse Buttons Behavior
 GUI, CPanel:Add, DDL, xm yp+17 w87 vFrontMouseButtonBehavior, Double Click||F6|F7|F8|F10
 GUI, CPanel:Add, DDL, xm+90 yp w87 vBackMouseButtonBehavior, Double Click|F6||F7|F8|F10
 
-GUI, CPanel:Show, w%CONTROL_PANEL_WIDTH% h%CONTROL_PANEL_HEIGHT% x1090,MSR Control Panel
+; GUI, CPanel:Show, w%CONTROL_PANEL_WIDTH% h%CONTROL_PANEL_HEIGHT% x1090,MSR Control Panel
 
 ;****************************************MISC VARIABLES, INITIALIZATION, ETC*********************************
 global Num2And8Step := 3 ;When Num2 or Num8 pressed, how much to increase/decrease volume.
@@ -323,9 +323,9 @@ global systemMasterVolume ;Used for NumPad Media Control stuff.
 
 global programmingMode := false ;Toggle for Programming Mode: disabling certain hotkeys/hotstrings to make programming easier. ^!Insert is the hotkey.
 
-;Used for F9 and F11 on 2nd keeb for showing/hiding these programs. 1 = visible; 0 = not visible. Start at 0 because I think that makes more sense???
-global OutlookVisibilityToggle := 0
-global DiscordVisibilityToggle := 0
+;Used for F9 and F11 on 2nd keeb for showing/hiding these programs. 1 = visible; 0 = not visible.
+global OutlookVisibilityToggle := 1
+global DiscordVisibilityToggle := 1
 
 global F3Mode := "Google Chrome" ;Change in #o between this and VSCode.
 global MouseButtonMode := "Double Click" ;Change between this and Next F6 Window.
