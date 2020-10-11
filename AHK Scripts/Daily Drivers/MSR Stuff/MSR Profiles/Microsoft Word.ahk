@@ -141,6 +141,13 @@ return
 ;****************************************MISC WORD ACTIONS***************************************
 F5::Send, ^s ;Save document.
 
-^SC01B::Send, !hai ;Increase indent.
-^SC01A::Send, !hao ;Decrease indent.
+;Microsoft makes the process of assigning shortcuts to buttons in Word surprisingly easy.
+^SC01B::Send, !hai ;^] Increase indent. Shortcut copied from Google Docs.
+^SC01A::Send, !hao ;^[ Decrease indent.
+
+!PgUp::Send, !hkb ;Insert space before paragraph.
+!PgDn::Send, !hka ;Insert space after paragraph.
+
+; ^+7::Send, !hn ;Numbered list.
+; ^+8::Send, !hu ;Bulleted list.
 #If
