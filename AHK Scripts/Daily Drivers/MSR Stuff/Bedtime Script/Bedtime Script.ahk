@@ -24,7 +24,7 @@ GUI, BedtimeGUI:Font, S20
 GUI, BedtimeGUI:Add, Text,,Go to bed now, and you will have a good morning tomorrow.
 
 GUI, BedtimeGUI:Font, S11
-GUI, BedtimeGUI:Add, Button, w250 h50 gExtraTimeButton, Five extra minutes to save and close stuff, etc.
+GUI, BedtimeGUI:Add, Button, w250 h50 gExtraTimeButton, Five extra minutes.
 
 Loop {
     Bedtime()
@@ -52,10 +52,10 @@ Bedtime() {
 }
 
 ExtraTimeButton:
-    GuiControl, BedtimeGUI:Hide, Five
+    ; GuiControl, BedtimeGUI:Hide, Five
     GUI, BedtimeGUI:Hide
     SetTimer, Bedtime, Off
     Sleep 300000 ;5 minutes
     GUI, BedtimeGUI:Show, w%A_ScreenWidth% h%A_ScreenHeight% ;Show the GUI again.
-    SetTimer, Bedtime, On
+    ; SetTimer, Bedtime, On
 return
