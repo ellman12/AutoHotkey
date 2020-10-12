@@ -5553,3 +5553,5 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:scrolllock::ScrollLock
 :*:vscode::VSCode
 :*:yall::y'all
+:*:ai::AI
+:*:aai::artifical intelligence

@@ -45,50 +45,37 @@ MouseGetPos, mousePosX4, mousePosY4
 Tippy("F4 pointer saved", 1300)
 return
 
-;Run/activate Outlook.
-F9::
-OutlookVisibilityToggle := 1 ;Because it's visible now,
-
-if !WinExist("ahk_exe Outlook.exe")
-    Run, C:\Program Files\Microsoft Office\root\Office16\Outlook.exe
-else if !WinActive("ahk_exe Outlook.exe")
-    WinActivate ahk_exe Outlook.exe
+^F9::
+!F9::
+Run, C:\Program Files\Microsoft Office\root\Office16\Outlook.exe
 return
 
-;Show/hide Outlook.
-^F9::
+^F11::
+!F11::
+Run, C:\Users\Elliott\AppData\Local\Discord\app-0.0.308\Discord.exe
+return
+
+F9:: ;Show/hide Outlook.
+SetTitleMatchMode, 2 ;A window's title can contain WinTitle anywhere inside it to be a match.
 OutlookVisibilityToggle := !OutlookVisibilityToggle
 
-if (OutlookVisibilityToggle = "1") {
-    WinHide, ahk_exe Outlook.exe
-} else if (OutlookVisibilityToggle = "0") {
-    WinShow, ahk_exe Outlook.exe
-}
+if (OutlookVisibilityToggle = 1)
+    WinHide, - Outlook
+else
+    WinShow, - Outlook
 return
 
-;Run/show MS To Do.
-F10::
-Run, C:\Users\Elliott\Documents\Microsoft To Do
-return
+F10::Run, C:\Users\Elliott\Documents\Microsoft To Do ;Run/show MS To Do.
 
-;Run/show Discord.
-F11::
-DiscordVisibilityToggle := 1 ;Because it's visible now,
-
-if !WinExist("ahk_exe Discord.exe")
-    Run, C:\Users\Elliott\AppData\Local\Discord\app-0.0.308\Discord.exe
-else if !WinActive("ahk_exe Discord.exe")
-    WinActivate ahk_exe Discord.exe
-return
-
-;Show/hide Discord.
-^F11::
+F11:: ;Show/hide Discord.
+SetTitleMatchMode, 2 ;A window's title can contain WinTitle anywhere inside it to be a match.
 DiscordVisibilityToggle := !DiscordVisibilityToggle
 
-if (DiscordVisibilityToggle = "1") {
-    WinHide, ahk_exe Discord.exe
-} else if (DiscordVisibilityToggle = "0") {
-    WinShow, ahk_exe Discord.exe
+if (DiscordVisibilityToggle = 0) {
+    WinHide, - Discord
+} else {
+    WinShow, - Discord
+    WinActivate, - Discord
 }
 return
 
@@ -227,29 +214,19 @@ return
 q::Send, ^#{Left}
 w::Send, ^#{Right}
 
-;Send Ctrl + A.
-a::Send, ^a
+a::Send, ^a ;Select all.
 
-; ;Sends the current time.
-; b::
-; FormatTime, formattedDateTime,, h:mm tt
-; SendInput, %formattedDateTime%
-; return
+;Pastes clipboard contents.
+b::Send, ^v
 
-;Sends Alt + F4.
-backspace::Send, !{F4}
+BackSpace::Send, !{F4} ;Sends Alt + F4.
 
-; ;Sends the current date and time.
-; c::
-; FormatTime, formattedDateTime,, M/d/yyyy h:mm tt
-; SendInput, %formattedDateTime%
-; return
+c::Send, ^c ;Copies text to clipboard.
 
 ; (Shift + Win + Left) Comma moves active window to 2nd monitor.
 ; SC033::Send, +#{Left}
 
-;Open the Desktop folder.
-d::Run, explorer %A_Desktop%
+d::Run, explorer %A_Desktop% ;Open the Desktop folder.
 
 ;Open AHK Documentation
 e::
@@ -395,8 +372,10 @@ return
 ;Open Music folder.
 s::Run, explorer C:\Users\Elliott\Music
 
-;Suspends hotkeys in MSR.
-Space::Suspend
+Space:: ;Suspends all hotkeys for the specified number in milliseconds.
+SetTimer, setTimerLabel, 2500, On
+Suspend, On
+return
 
 ;Open Terraria Wiki
 t::
@@ -412,11 +391,8 @@ Sleep 900
 Send, !e
 return
 
-; ;Sends the current date.
-; v::
-; FormatTime, formattedDateTime,, M/d/yyyy
-; SendInput, %formattedDateTime%
-; return
+;Cut to the clipboard.
+v::Send, ^x
 
 ;Redo.
 x::Send, ^y

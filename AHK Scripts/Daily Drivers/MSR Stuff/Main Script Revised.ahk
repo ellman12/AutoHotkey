@@ -50,6 +50,7 @@ if the volume just got turned up quite a ways, give some kind of warning (large 
 bedtime script
 thing that after certain amount of time moves mouse pointer off screen. If it's moved by user put back to where it was. Have a #o thing to customize delay
 customize other top mouse button behavior
+remove extra unnecessary params in CWG
 */
 
 ;Pic of all these icons: https://diymediahome.org/wp-content/uploads/shell32_icons.jpg
@@ -314,7 +315,7 @@ GUI, CPanel:Add, Text, xm yp+27, Front and Back Top Mouse Buttons Behavior
 GUI, CPanel:Add, DDL, xm yp+17 w87 vFrontMouseButtonBehavior, Double Click||F6|F7|F8|F10
 GUI, CPanel:Add, DDL, xm+90 yp w87 vBackMouseButtonBehavior, Double Click|F6||F7|F8|F10
 
-GUI, CPanel:Show, w%CONTROL_PANEL_WIDTH% h%CONTROL_PANEL_HEIGHT% x1090,MSR Control Panel
+; GUI, CPanel:Show, w%CONTROL_PANEL_WIDTH% h%CONTROL_PANEL_HEIGHT% x1090,MSR Control Panel
 
 ;****************************************MISC VARIABLES, INITIALIZATION, ETC*********************************
 global Num2And8Step := 3 ;When Num2 or Num8 pressed, how much to increase/decrease volume.
@@ -323,9 +324,9 @@ global systemMasterVolume ;Used for NumPad Media Control stuff.
 
 global programmingMode := false ;Toggle for Programming Mode: disabling certain hotkeys/hotstrings to make programming easier. ^!Insert is the hotkey.
 
-;Used for F9 and F11 on 2nd keeb for showing/hiding these programs. 1 = visible; 0 = not visible. Start at 0 because I think that makes more sense???
-global OutlookVisibilityToggle := 0
-global DiscordVisibilityToggle := 0
+;Used for F9 and F11 on 2nd keeb for showing/hiding these programs. 1 = visible; 0 = not visible.
+global OutlookVisibilityToggle := 1
+global DiscordVisibilityToggle := 1
 
 global F3Mode := "Google Chrome" ;Change in #o between this and VSCode.
 global MouseButtonMode := "Double Click" ;Change between this and Next F6 Window.
@@ -454,7 +455,7 @@ Loop {
 
 ^CtrlBreak:: ;Technically Ctrl + Pause. Read about this here: https://www.autohotkey.com/docs/KeyList.htm#other
 #!p::
-Suspend, Toggle
+Suspend
 return
 
 Pause:: ;Pause key or Win + p suspends all hotkeys for the specified number in milliseconds.
@@ -608,7 +609,7 @@ return
 !PGUP::SoundSet, +1
 !PGDN::SoundSet, -1
 
-#IfWinNotActive, ahk_exe explorer.exe ;Really only useful for laptops.
+#If !WinActive("ahk_exe explorer.exe") AND usingALaptop = true ;Really only useful for laptops.
 !Up::changeVolume(1)
 !Down::changeVolume(-1)
 #If

@@ -1,5 +1,5 @@
-;This script allows me to run and do miscellaneous things that don't deserve their own (hot)key,
-; or things that would be messy and/or annoying to do via (hot)keys.
+;This script allows me to run and do miscellaneous things that don't deserve their own hotkey,
+;or things that would be messy and/or annoying to do via hotkeys.
 
 ^CapsLock::runCommand(runInputBoxText) ;Repeats previous command. Can also "repeat(?)" error/unknown commands.
 
@@ -258,6 +258,9 @@ Switch (cmdToRun) {
 
     ;Opens Desmos graphing calculator in Firefox.
     Case "des": Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.desmos.com/calculator
+
+    ;Opens the help .txt file for CWG.
+    Case "CWG": Run, notepad.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Misc. MSR Scripts\Run\Custom Window Groups Help.txt
 
     ;Opens the Google spreadsheet for this script in Chrome, which contains all of the commands in a table.
     Case "Help", "Help Sheet", "Sheet Help": Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://docs.google.com/spreadsheets/d/1vGHwAVQwkmzGGpM_xQJ86RGXfsBiBxDD089cu1u02eA/edit#gid=17759502
