@@ -23,7 +23,7 @@ CoordMode, Mouse, Screen
 
 
 ;https://www.google.com/search?client=firefox-b-1-d&q=AutoHotkey+get+if+mouse+moving
-/*
+
 mouseAutoMoveDelay := 5000
 mouseAutoMoveActive := false
 
@@ -33,54 +33,60 @@ Loop {
     MouseGetPos, secondMouseX, secondMouseY
 
     ;Basically, if the user has not moved the mouse during that delay, or it's only moved a tiny bit, move the pointer out of the way.
-    if (((firstMouseX = secondMouseX) OR (firstMouseX = (secondMouseX + 15)) OR (firstMouseX = (secondMouseX - 15))) AND ((firstMouseY = secondMouseY) OR (firstMouseY = (secondMouseY + 15)) OR (firstMouseY = (secondMouseY - 15)))) {
-        Tippy("Moving", 1000)
+    if ((firstMouseX = secondMouseX) AND (firstMouseY = secondMouseY)) {
+        Tippy("1st thing", 500)
+    } else if (((firstMouseX = secondMouseX) OR (firstMouseX = (secondMouseX >= 15)) OR (firstMouseX = (secondMouseX <= 15))) AND ((firstMouseY = secondMouseY) OR (firstMouseY = (secondMouseY >= 15)) OR (firstMouseY = (secondMouseY <= 15)))) {
+        Tippy("Moving back to OG pos", 500)
         MouseGetPos, originalMouseX, originalMouseY
         MouseMove, 1920, 540, 0
     } else {
-        Tippy("Not moving", 1000)
+        MouseMove, %originalMouseX%, %originalMouseY%
+        Tippy("Not moving", 500)
     }
 
-    Sleep, 600
-    MouseGetPos, firstMouseX, firstMouseY
-    Sleep, %mouseAutoMoveDelay%
-    MouseGetPos, secondMouseX, secondMouseY
+    ; Sleep, 600
+    ; MouseGetPos, firstMouseX, firstMouseY
+    ; Sleep, %mouseAutoMoveDelay%
+    ; MouseGetPos, secondMouseX, secondMouseY
 
-    if (((firstMouseX != secondMouseX) OR (firstMouseX != (secondMouseX + 15)) OR (firstMouseX != (secondMouseX - 15))) AND ((firstMouseY != secondMouseY) OR (firstMouseY != (secondMouseY + 15)) OR (firstMouseY != (secondMouseY - 15)))) {
-        MouseMove, %originalMouseX%, %originalMouseY%, 0
-    }
+    ; if (((firstMouseX != secondMouseX) OR (firstMouseX != (secondMouseX + 15)) OR (firstMouseX != (secondMouseX - 15))) AND ((firstMouseY != secondMouseY) OR (firstMouseY != (secondMouseY + 15)) OR (firstMouseY != (secondMouseY - 15)))) {
+    ;     MouseMove, %originalMouseX%, %originalMouseY%, 0
+    ; }
 
-    Sleep, %mouseAutoMoveDelay%
+    ; Sleep, %mouseAutoMoveDelay%
 }
 
 ;↑ disable auto moving mouse. Have a if for this if it's running or not.
 
 ; if ((firstMouseX = secondMouseX) AND (firstMouseY = secondMouseY)) {
 ;If the mouse has not moved for that delay, and thus the user is not using the mouse, move the pointer.
-*/
+/*
+SetTimer, label1, 100
+SetTimer, label2, 100
 
-Loop {
-
-    MouseGetPos, StartVarX, StartVarY
-    Sleep, 4000
-    MouseGetPos, CheckVarX, CheckVarY
-    if (StartVarX = CheckVarX) or (StartVarY = CheckVarY) { ;If the user hasn't moved the mouse, get it out of the way.
-        Tippy("Moving", 1000)
-            MouseGetPos, originalMouseX, originalMouseY
-            MouseMove, 2000, 540
-        } else {
-            Tippy("Not moving", 1000)
-        }
-
-    Sleep, 3000
-    MouseGetPos, StartVarX, StartVarY
-    Sleep, 4000
-    MouseGetPos, CheckVarX, CheckVarY
-
-    if (StartVarX != CheckVarX) or (StartVarY != CheckVarY) {
-        MouseMove, originalMouseX, originalMouseY
-        Tippy("hi", 300)
-    }
-
-
+label1:
+MouseGetPos, StartVarX, StartVarY
+Sleep, 4000
+MouseGetPos, CheckVarX, CheckVarY
+if (StartVarX = CheckVarX) or (StartVarY = CheckVarY) { ;If the user hasn't moved the mouse, get it out of the way.
+    Tippy("Moving", 1000)
+    MouseGetPos, originalMouseX, originalMouseY
+    MouseMove, 2000, 540
+} else {
+    Tippy("Not moving", 1000)
 }
+return
+
+label2:
+MouseGetPos, StartVarX, StartVarY
+Sleep, 700
+MouseGetPos, CheckVarX, CheckVarY
+
+if (StartVarX != CheckVarX) or (StartVarY != CheckVarY) {
+    MouseMove, originalMouseX, originalMouseY
+    Tippy("hi", 300)
+}
+return
+*/
+^ESC::Pause
++ESC::Reload

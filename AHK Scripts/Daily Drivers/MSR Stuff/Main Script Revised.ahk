@@ -25,8 +25,6 @@
 * best in separate files: the long files with (context-sensitive) hotkeys, as well as 'header' files.
 * The best things to have in other files are hotkeys, and that's it. This isn't too annoying TBH.
 
-* Here's how this giant script is laid out: https://imgur.com/R14NAWW
-
 * Important Acronyms, Contractions, Etc.:
 * MRS: Main Script Revised
 * TCT: Title Capitalization Tool
@@ -46,8 +44,6 @@
 ;///////////////////////////////////////////////////////////////////////
 
 /* TODO:
-if the volume just got turned up quite a ways, give some kind of warning (large Tippy, etc.) warning me to turn the volume down. Put in either Main or NumPad.#SingleInstance, Force
-bedtime script
 thing that after certain amount of time moves mouse pointer off screen. If it's moved by user put back to where it was. Have a #o thing to customize delay
 customize other top mouse button behavior
 remove extra unnecessary params in CWG
