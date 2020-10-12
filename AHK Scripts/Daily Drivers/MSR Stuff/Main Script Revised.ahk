@@ -396,17 +396,16 @@ Loop {
 
 		;This works so much better than having a bunch of ugly numLockToggled = 1 and scrollLockToggled = 0 things everywhere.
 		;These variables are used in NumPad Media Control.ahk.
-		if (numLockToggled = 1 and scrollLockToggled = 0) {
+		if (numLockToggled = 1 and scrollLockToggled = 0)
 			global numPadMode = "MusicBee"
-		} else if (numLockToggled = 1 and scrollLockToggled = 1) {
+		else if (numLockToggled = 1 and scrollLockToggled = 1)
 			global numPadMode = "YouTube"
-		} else if (numLockToggled = 0 and scrollLockToggled = 0) {
+		else if (numLockToggled = 0 and scrollLockToggled = 0)
 			global numPadMode = "Normal"
-		} else if (numLockToggled = 0 and scrollLockToggled = 1) {
+		else if (numLockToggled = 0 and scrollLockToggled = 1)
 			global numPadMode = "Dumbed-Down"
-		} else {
+		else
 			global numPadMode = "Normal"
-		}
 	}
 	Sleep 100 ;This sleep statement DRASTICALLY helps reduce the power and CPU usage of the MSR.
 }
