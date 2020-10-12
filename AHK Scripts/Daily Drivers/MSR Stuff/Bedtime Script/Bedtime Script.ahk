@@ -26,10 +26,16 @@ GUI, BedtimeGUI:Add, Text,,Go to bed now, and you will have a good morning tomor
 GUI, BedtimeGUI:Font, S11
 GUI, BedtimeGUI:Add, Button, w250 h50 gExtraTimeButton, Five extra minutes.
 
+GUI, BedtimeGUI:Add, Text,, Number of times button pressed:
+GUI, BedtimeGUI:Add, Edit, xp+210 yp-2 vnumOfButtonPresses w100, 0
+GuiControl, BedtimeGUI:Hide, numOfButtonPresses
+
 Loop {
     Bedtime()
     Sleep 1000
 }
+
+return
 
 Bedtime() {
 
@@ -42,7 +48,6 @@ Bedtime() {
         MsgBox, 16, Something went wrong., Something went wrong while reading the "WakeUpTime" file.
 
     GUI, BedtimeGUI: +AlwaysOnTop ;This window always needs to stay on top.
-
     FormatTime, CurrentTime,, H:mm
 
     if (CurrentTime >= BedtimeValue AND CurrentTime <= WakeUpTime) ;If the current time is between bedtime and wake up time, start the thing.
@@ -52,10 +57,10 @@ Bedtime() {
 }
 
 ExtraTimeButton:
-    ; GuiControl, BedtimeGUI:Hide, Five
     GUI, BedtimeGUI:Hide
     SetTimer, Bedtime, Off
     Sleep 300000 ;5 minutes
     GUI, BedtimeGUI:Show, w%A_ScreenWidth% h%A_ScreenHeight% ;Show the GUI again.
-    ; SetTimer, Bedtime, On
+    numOfButtonPresses++
+    GuiControl, BedtimeGUI:Show, numOfButtonPresses
 return
