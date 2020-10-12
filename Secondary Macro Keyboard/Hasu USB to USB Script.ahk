@@ -372,8 +372,10 @@ return
 ;Open Music folder.
 s::Run, explorer C:\Users\Elliott\Music
 
-;Suspends hotkeys in MSR.
-Space::Suspend
+Space:: ;Suspends all hotkeys for the specified number in milliseconds.
+SetTimer, setTimerLabel, 2500, On
+Suspend, On
+return
 
 ;Open Terraria Wiki
 t::

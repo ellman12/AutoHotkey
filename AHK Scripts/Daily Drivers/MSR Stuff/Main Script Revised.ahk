@@ -50,6 +50,7 @@ if the volume just got turned up quite a ways, give some kind of warning (large 
 bedtime script
 thing that after certain amount of time moves mouse pointer off screen. If it's moved by user put back to where it was. Have a #o thing to customize delay
 customize other top mouse button behavior
+remove extra unnecessary params in CWG
 */
 
 ;Pic of all these icons: https://diymediahome.org/wp-content/uploads/shell32_icons.jpg
@@ -454,7 +455,7 @@ Loop {
 
 ^CtrlBreak:: ;Technically Ctrl + Pause. Read about this here: https://www.autohotkey.com/docs/KeyList.htm#other
 #!p::
-Suspend, Toggle
+Suspend
 return
 
 Pause:: ;Pause key or Win + p suspends all hotkeys for the specified number in milliseconds.
