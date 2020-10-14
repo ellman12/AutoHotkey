@@ -1,6 +1,6 @@
 ;This script is the VSCode profile.
 
-;****************************************MOUSE ACTIONS***************************************
+;****************************************SCIMITAR RGB ACTIONS***************************************
 #If currentProfile = "VSCode"
 ;Mouse G1
 ;"Holds" down Shift for scrolling horizontally.
@@ -72,9 +72,7 @@ return
 
 ;Mouse G11
 ;Pushing F23 (G11) minimizes the current active window.
-F23::
-WinMinimize, A
-return
+F23::WinMinimize, A
 
 ;Mouse G12
 ;Reopen the last closed VSCode tab (file), and jump to it.
@@ -82,7 +80,7 @@ return
 Send, ^+t
 return
 
-;****************************************KEYBOARD ACTIONS***************************************
+;****************************************K95 RGB ACTIONS***************************************
 ;Keeb G1
 ; Comment out line in VSCode.
 ^F13::

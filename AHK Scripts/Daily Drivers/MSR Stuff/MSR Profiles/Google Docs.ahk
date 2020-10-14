@@ -5,7 +5,7 @@
 ;The Browser and Sheets scripts are like this too.
 */
 
-;****************************************MOUSE ACTIONS***************************************
+;****************************************SCIMITAR RGB ACTIONS***************************************
 #If currentProfile = "Docs"
 ;Mouse G1
 ;"Holds" down Shift for scrolling horizontally
@@ -75,9 +75,7 @@ return
 
 ;Mouse G11
 ;Pushing F23 (G11) minimizes the current active window
-F23::
-WinMinimize, A
-return
+F23::WinMinimize, A
 
 ;Mouse G12
 ;Reopen the last closed tab, and jump to it
@@ -85,7 +83,7 @@ return
 Send, ^+t
 return
 
-;****************************************KEYBOARD ACTIONS***************************************
+;****************************************K95 RGB ACTIONS***************************************
 ;Keeb G1
 ^F13::
 return

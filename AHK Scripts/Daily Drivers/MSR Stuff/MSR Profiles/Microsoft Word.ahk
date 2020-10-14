@@ -1,7 +1,6 @@
 ;This script is the Microsoft Word profile.
 
-;****************************************MOUSE ACTIONS***************************************
-
+;****************************************SCIMITAR RGB ACTIONS***************************************
 #If currentProfile = "Word"
 ;Mouse G1
 ;For scrolling horizontally.
@@ -40,22 +39,21 @@ return
 F21::
 return
 
-;Mouse G10: Alt + Tab
+;Mouse G10: Alt + Tab.
 F22::
 Send, !{Tab}
 return
 
 ;Mouse G11
-;Pushing F23 (G11) minimizes the current active window
-F23::
-WinMinimize, A
-return
+;Pushing F23 (G11) minimizes the current active window.
+F23::WinMinimize, A
 
 ;Mouse G12
 +F23::
 return
 
-;****************************************KEYBOARD ACTIONS***************************************
+;****************************************K95 RGB ACTIONS***************************************
+
 ;Keeb G1
 ^F13::
 return
@@ -105,13 +103,13 @@ return
 return
 
 ;Keeb G13
-;Closes a virtual desktop
+;Closes a virtual desktop.
 !F13::
 Send, ^#{F4}
 return
 
 ;Keeb G14
-;Creates a virtual desktop
+;Creates a virtual desktop.
 !F14::
 Send, ^#{d}
 return
@@ -121,19 +119,19 @@ return
 return
 
 ;Keeb G16
-;Does what Win + Tab does
+;Does what Win + Tab does.
 !F16::
 Send, #{Tab}
 return
 
 ;Keeb G17
-;Goes to the virtual desktop to the left
+;Goes to the virtual desktop to the left.
 !F17::
 Send, ^#{Left}
 return
 
 ;Keeb G18
-;Goes to the virtual desktop to the right
+;Goes to the virtual desktop to the right.
 !F18::
 Send, ^#{Right}
 return
