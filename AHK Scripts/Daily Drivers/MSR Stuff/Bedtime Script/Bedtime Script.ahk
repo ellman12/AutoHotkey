@@ -23,19 +23,18 @@ GUI, BedtimeGUI:Add, Text,,IT'S BEDTIME!!
 GUI, BedtimeGUI:Font, S20
 GUI, BedtimeGUI:Add, Text,,Go to bed now, and you will have a good morning tomorrow.
 
-GUI, BedtimeGUI:Font, S11
-GUI, BedtimeGUI:Add, Button, w250 h50 gExtraTimeButton, Five extra minutes.
+GUI, BedtimeGUI:Font, S20
+GUI, BedtimeGUI:Add, Button, w250 h50 gExtraTimeButton, Five Extra Minutes
 
 GUI, BedtimeGUI:Add, Text,, Number of times button pressed:
-GUI, BedtimeGUI:Add, Edit, xp+210 yp-2 vnumOfButtonPresses w100, 0
-GuiControl, BedtimeGUI:Hide, numOfButtonPresses
+GUI, BedtimeGUI:Add, Edit, xp+200 yp-2 vnumOfButtonPresses w100, 0
+
+numOfButtonPresses := 0
 
 Loop {
     Bedtime()
     Sleep 1000
 }
-
-return
 
 Bedtime() {
 
@@ -62,5 +61,5 @@ ExtraTimeButton:
     Sleep 300000 ;5 minutes
     GUI, BedtimeGUI:Show, w%A_ScreenWidth% h%A_ScreenHeight% ;Show the GUI again.
     numOfButtonPresses++
-    GuiControl, BedtimeGUI:Show, numOfButtonPresses
+    GuiControl, BedtimeGUI:,numOfButtonPresses, %numOfButtonPresses%
 return
