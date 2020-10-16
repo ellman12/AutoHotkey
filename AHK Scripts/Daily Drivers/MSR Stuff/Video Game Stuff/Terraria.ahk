@@ -2,7 +2,7 @@
 ;Terraria is... Weird. It doesn't except hotkeys like this: Send, q.
 ;You have to do it a different way.
 
-;****************************************MOUSE ACTIONS***************************************
+;****************************************SCIMITAR RGB ACTIONS***************************************
 
 #If currentProfile = "Terraria"
 ;Mouse G1.
@@ -91,7 +91,7 @@ return
 +F23::
 return
 
-;****************************************KEYBOARD ACTIONS***************************************
+;****************************************K95 RGB ACTIONS***************************************
 ;Keeb G1
 ^F13::
 return

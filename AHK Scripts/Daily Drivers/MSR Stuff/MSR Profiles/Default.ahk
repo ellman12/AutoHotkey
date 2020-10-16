@@ -1,6 +1,6 @@
 ;This script is the Default profile.
 
-;****************************************MOUSE ACTIONS***************************************
+;****************************************SCIMITAR RGB ACTIONS***************************************
 #If currentProfile = "Default"
 ;Mouse G1
 ;"Holds" down Shift for scrolling horizontally.
@@ -70,9 +70,7 @@ return
 
 ;Mouse G11
 ;Pushing F23 (G11) minimizes the current active window
-F23::
-WinMinimize, A
-return
+F23::WinMinimize, A
 
 ;Mouse G12
 ;Reopen the last closed Browser tab, and jump to it.
@@ -80,7 +78,7 @@ return
 Send, ^+t
 return
 
-;****************************************KEYBOARD ACTIONS***************************************
+;****************************************K95 RGB ACTIONS***************************************
 ;Keeb G1
 ^F13::
 return
