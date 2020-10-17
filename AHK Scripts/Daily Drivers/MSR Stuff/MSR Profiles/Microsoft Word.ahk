@@ -143,4 +143,42 @@ F5::Send, ^s ;Save document.
 
 ; ^+7::Send, !hn ;Numbered list.
 ; ^+8::Send, !hu ;Bulleted list.
+
+;^' Add quotes around selected text.
+^SC028::
+originalClipboard := Clipboard
+
+Send, ^c
+ClipWait, 2 ;Wait 2 seconds.
+if ErrorLevel {
+    MsgBox, The attempt to copy text onto the clipboard failed.
+    return
+}
+
+SendRaw, "
+Sleep 100
+Send, ^v
+Sleep 100
+SendRaw, "
+
+Clipboard := originalClipboard
+originalClipboard :=
+return
+
+;After copying an article title and then its link, press this hotkey to automatically add both using the ^k dialog box.
+#k::
+Send, ^k
+Sleep 200
+Send, ^v ;Paste link.
+Sleep 200
+Send, +{Tab 13} ;Move to text to display box.
+Sleep 200
+Send, #v ;Paste the title.
+Sleep 200
+Send, {Down}
+Sleep 200
+Send, {Enter}
+Sleep 200
+Send, {Enter}
+return
 #If
