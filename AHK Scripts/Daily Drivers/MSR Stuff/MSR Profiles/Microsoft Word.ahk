@@ -106,13 +106,11 @@ return
 ;Closes a virtual desktop.
 !F13::
 Send, ^#{F4}
-return
 
 ;Keeb G14
 ;Creates a virtual desktop.
 !F14::
 Send, ^#{d}
-return
 
 ;Keeb G15
 !F15::
@@ -122,19 +120,16 @@ return
 ;Does what Win + Tab does.
 !F16::
 Send, #{Tab}
-return
 
 ;Keeb G17
 ;Goes to the virtual desktop to the left.
 !F17::
 Send, ^#{Left}
-return
 
 ;Keeb G18
 ;Goes to the virtual desktop to the right.
 !F18::
 Send, ^#{Right}
-return
 
 ;****************************************MISC WORD ACTIONS***************************************
 F5::Send, ^s ;Save document.
