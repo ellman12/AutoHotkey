@@ -320,6 +320,8 @@ global systemMasterVolume ;Used for NumPad Media Control stuff.
 
 global programmingMode := false ;Toggle for Programming Mode: disabling certain hotkeys/hotstrings to make programming easier. ^!Insert is the hotkey.
 
+global hotstringsActiveToggle := true ;Determines if AutoCorrect hotstrings are active or not. Active by default, obviously.
+
 ;Used for F9 and F11 on 2nd keeb for showing/hiding these programs. 1 = visible; 0 = not visible.
 global OutlookVisibilityToggle := 1
 global DiscordVisibilityToggle := 1
@@ -479,14 +481,7 @@ sc029::Send, !{Tab} ;The grave accent key (that weird thing under the Tilde ~ sy
 #n::Run, Notepad ;Open Notepad.
 
 ;Toggle programming mode. Disables hotkeys/hotstrings that can be annoying when programming.
-^!Insert::
-programmingMode := !programmingMode
-
-if (programmingMode = 1)
-	Tippy("programmingMode On", 400)
-else
-	Tippy("programmingMode Off", 400)
-return
+^!Insert::BooleanToggle(programmingMode, "Programming Mode ON", "Programming Mode Off")
 
 Insert:: ;Moves mouse pointer as far off the screen as possible (on main display).
 MouseGetPos, mousePosX, mousePosY
