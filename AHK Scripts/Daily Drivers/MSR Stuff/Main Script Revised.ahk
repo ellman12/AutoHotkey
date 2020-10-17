@@ -319,8 +319,7 @@ global autoNumPadModeToggle := true ;If true, switch NumPad modes automatically.
 global systemMasterVolume ;Used for NumPad Media Control stuff.
 
 global programmingMode := false ;Toggle for Programming Mode: disabling certain hotkeys/hotstrings to make programming easier. ^!Insert is the hotkey.
-
-global hotstringsActiveToggle := true ;Determines if AutoCorrect hotstrings are active or not. Active by default, obviously.
+global hotstringsActiveToggle := true ;Determines if AutoCorrect hotstrings are active or not. Active by default, obviously. ^#Insert is the hotkey.
 
 ;Used for F9 and F11 on 2nd keeb for showing/hiding these programs. 1 = visible; 0 = not visible.
 global OutlookVisibilityToggle := 1
@@ -446,7 +445,17 @@ Loop {
 ;Shows you miscellaneous variables, toggles, etc.
 ^#BackSpace::MsgBox, 0, Misc. Variables`, Toggles`, etc., MSR Profile: %currentProfile%`n`nnumPadMode: %NumPadMode%`n`nautoNumPadModeToggle: %autoNumPadModeToggle%
 
-^Space::WinSet, AlwaysOnTop, Toggle, A ;Make active window AlwaysOnTop.
+^Space:: ;Make active window AlwaysOnTop, and tell the user if it is or not.
+WinSet, AlwaysOnTop, Toggle, A
+WinGet, onTop, ExStyle, A
+if (onTop & 0x8) { ; 0x8 is WS_EX_TOPMOST.
+	msg := activeWindowTitle . " is AlwaysOnTop"
+	Tippy(msg, 1000)
+} else {
+	msg := activeWindowTitle . " is no longer on top"
+	Tippy(msg, 1000)
+}
+return
 
 ^#s::Run, C:\Program Files\AutoHotkey\WindowSpy.ahk ;Run Window Spy.
 
