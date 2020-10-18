@@ -860,6 +860,7 @@ Loop %numVidsToDelete% {
 	Sleep 500
 }
 
+numVidsToDelete := 
 return
 ;**************************************************TEMPORARY**************************************************
 :*:hon comp::Honors: Composition II
