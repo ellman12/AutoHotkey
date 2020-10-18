@@ -833,7 +833,7 @@ EWD_MouseStartY := EWD_MouseY
 return
 
 ;**************************************************FUNCTIONS AND LABELS**************************************************
-;Used for the Reload hotkey and also for the 2nd keeb.
+;Used for the Reload hotkey and also for space bar on the 2nd keeb.
 ;Checking for if windows are hidden helps prevent them from getting indefinitely hidden and thus lost.
 reloadMSR() {
 	if (F6ShowHideToggle = 1)
@@ -849,6 +849,18 @@ reloadMSR() {
 }
 
 ;**************************************************EXPERIMENTAL**************************************************
+;Used for deleting videos from YouTube playlist. Asks you how many times to do it and then it starts doing its thing.
+^!+d::
+InputBox, numVidsToDelete, How many videos do you want to delete?, As soon as you hit enter`, the script will start deleting videos. Please position cursor over the first video's x button.
+
+Loop %numVidsToDelete% {
+	Send, {Escape} ;Get rid of stupid pop-up.
+	Sleep 500
+	Send, {Click}
+	Sleep 500
+}
+
+return
 ;**************************************************TEMPORARY**************************************************
 :*:hon comp::Honors: Composition II
 :*:hcomp::Honors Composition II
