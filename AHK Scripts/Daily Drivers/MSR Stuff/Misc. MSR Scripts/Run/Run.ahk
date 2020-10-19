@@ -326,6 +326,8 @@ Switch (cmdToRun) {
     Case "vs", "vs ahk":Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey
     Case "vs dsu":Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe C:\Users\Elliott\Documents\GitHub\DSU-CSC-250
 
+    Case "yt":Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.youtube.com/
+
     ;***********************************************TEMPORARY???***********************************************
     Case "kre":Send, Kind regards,{Enter 2}Elliott
     Case "kred":Send, Kind regards,{Enter 2}Elliott DuCharme
