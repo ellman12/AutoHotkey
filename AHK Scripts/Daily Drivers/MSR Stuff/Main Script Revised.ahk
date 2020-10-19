@@ -557,7 +557,7 @@ return
 InputBox, numVidsToDelete, How many videos do you want to delete?, As soon as you hit enter`, the script will start deleting videos. Please position cursor over the first video's x button.
 
 Loop %numVidsToDelete% {
-	Send, {Escape} ;Get rid of stupid pop-up.
+	Send, {Escape} ;Get rid of stupid annoying pop-up from YouTube.
 	Sleep 500
 	Send, {Click}
 	Sleep 500
