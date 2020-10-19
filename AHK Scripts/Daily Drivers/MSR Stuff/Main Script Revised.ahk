@@ -566,12 +566,12 @@ Loop %numVidsToDelete% {
 numVidsToDelete := ;Free up memory.
 return
 
-^+g:: ;Calculate percent grade on a homework assignment or whatever. So, for something like 40/50, you'd enter 40 and then 50.
+^+g:: ;Calculate percent grade on a homework assignment or whatever, then show result and letter grade equivalent. So, for something like 40/50, you'd enter 40 and then 50.
 InputBox, firstNum, Grade Percent Utility, What is the first number?,, 200, 150
 InputBox, secondNum, Grade Percent Utility, What is the second number?,, 200, 150
 
 result := round((firstNum/secondNum) * 100, 2)
-MsgBox, 0, Grade, You got %result%`%.
+MsgBox, 0, Grade, You got %result%`%.`n`nLetter Grade`tNumerical Grade`nA+`t`t97-100`nA`t`t94-96`nA-`t`t90-93`nB+`t`t87-89`nB`t`t84-86`nB-`t`t80-83`nC+`t`t77-79`nC`t`t74-76`nC-`t`t70-73`nD+`t`t67-69`nD`t`t64-66`nD-`t`t60-63`nF`t`t0-59
 
 firstNum :=
 secondNum :=
