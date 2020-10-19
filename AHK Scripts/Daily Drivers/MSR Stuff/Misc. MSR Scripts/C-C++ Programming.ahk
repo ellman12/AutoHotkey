@@ -41,6 +41,8 @@ return
 ;return
 
 :X:pr::Send, printf("");{Left 3}
+:X:sc::Send, scanf("`%");{Left 3}
+:X:fr::Send, for (int i = 0; i < `; i++){Left 4}
 
 ;Stuff for making Git cmd line stuff less repetitive.
 ;Used for cding to different GitHub repo folders.
