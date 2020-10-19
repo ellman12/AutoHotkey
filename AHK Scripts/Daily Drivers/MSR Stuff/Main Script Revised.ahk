@@ -319,6 +319,7 @@ global autoNumPadModeToggle := true ;If true, switch NumPad modes automatically.
 global systemMasterVolume ;Used for NumPad Media Control stuff.
 
 global programmingMode := false ;Toggle for Programming Mode: disabling certain hotkeys/hotstrings to make programming easier. ^!Insert is the hotkey.
+global hotstringsActiveToggle := true ;Determines if AutoCorrect hotstrings are active or not. Active by default, obviously. ^#Insert is the hotkey.
 
 ;Used for F9 and F11 on 2nd keeb for showing/hiding these programs. 1 = visible; 0 = not visible.
 global OutlookVisibilityToggle := 1
@@ -444,7 +445,17 @@ Loop {
 ;Shows you miscellaneous variables, toggles, etc.
 ^#BackSpace::MsgBox, 0, Misc. Variables`, Toggles`, etc., MSR Profile: %currentProfile%`n`nnumPadMode: %NumPadMode%`n`nautoNumPadModeToggle: %autoNumPadModeToggle%
 
-^Space::WinSet, AlwaysOnTop, Toggle, A ;Make active window AlwaysOnTop.
+^Space:: ;Make active window AlwaysOnTop, and tell the user if it is or not.
+WinSet, AlwaysOnTop, Toggle, A
+WinGet, onTop, ExStyle, A
+if (onTop & 0x8) { ; 0x8 is WS_EX_TOPMOST.
+	msg := activeWindowTitle . " is AlwaysOnTop"
+	Tippy(msg, 1000)
+} else {
+	msg := activeWindowTitle . " is no longer on top"
+	Tippy(msg, 1000)
+}
+return
 
 ^#s::Run, C:\Program Files\AutoHotkey\WindowSpy.ahk ;Run Window Spy.
 
@@ -479,14 +490,7 @@ sc029::Send, !{Tab} ;The grave accent key (that weird thing under the Tilde ~ sy
 #n::Run, Notepad ;Open Notepad.
 
 ;Toggle programming mode. Disables hotkeys/hotstrings that can be annoying when programming.
-^!Insert::
-programmingMode := !programmingMode
-
-if (programmingMode = 1)
-	Tippy("programmingMode On", 400)
-else
-	Tippy("programmingMode Off", 400)
-return
+^!Insert::BooleanToggle(programmingMode, "Programming Mode ON", "Programming Mode Off")
 
 Insert:: ;Moves mouse pointer as far off the screen as possible (on main display).
 MouseGetPos, mousePosX, mousePosY
@@ -547,6 +551,31 @@ else if (BackMouseButtonBehavior = "F8")
 	nextWinOrShowHideWins("F8", WindowGroupF8, CurrentWinF8)
 else if (BackMouseButtonBehavior = "F10")
 	nextWinOrShowHideWins("F10", WindowGroupF10, CurrentWinF10)
+return
+
+^!+d:: ;Used for deleting videos from YouTube playlist. Asks you how many times to do it and then it starts doing its thing.
+InputBox, numVidsToDelete, How many videos do you want to delete?, As soon as you hit enter`, the script will start deleting videos. Please position cursor over the first video's x button.
+
+Loop %numVidsToDelete% {
+	Send, {Escape} ;Get rid of stupid annoying pop-up from YouTube.
+	Sleep 500
+	Send, {Click}
+	Sleep 500
+}
+
+numVidsToDelete := ;Free up memory.
+return
+
+^!g:: ;Calculate percent grade on a homework assignment or whatever. So, for something like 40/50, you'd enter 40 and then 50.
+InputBox, firstNum, Grade Percent Utility, What is the first number?,, 200, 150
+InputBox, secondNum, Grade Percent Utility, What is the second number?,, 200, 150
+
+result := round((firstNum/secondNum) * 100, 2)
+MsgBox, 0, Grade, You got %result%`%.
+
+firstNum :=
+secondNum :=
+result :=
 return
 
 ;****************************************GLOBAL K95 RGB HOTKEYS***************************************
@@ -829,7 +858,7 @@ EWD_MouseStartY := EWD_MouseY
 return
 
 ;**************************************************FUNCTIONS AND LABELS**************************************************
-;Used for the Reload hotkey and also for the 2nd keeb.
+;Used for the Reload hotkey and also for space bar on the 2nd keeb.
 ;Checking for if windows are hidden helps prevent them from getting indefinitely hidden and thus lost.
 reloadMSR() {
 	if (F6ShowHideToggle = 1)

@@ -85,10 +85,8 @@ Hoty:
 Return
 */
 
-
-;------------------------------------------------------------------------------
+/*
 ; Win+H to enter misspelling correction.  It will be added to this script.
-;------------------------------------------------------------------------------
 #h::
 ; Get the selected text. The clipboard is used instead of "ControlGet Selected"
 ; as it works in more editors and word processors, java apps, etc. Save the
@@ -133,10 +131,13 @@ Loop % StrLen(Hotstring) + 4
     SendInput {Right}
 SetTimer, MoveCaret, Off
 return
+*/
+
+^#Insert::BooleanToggle(hotstringsActiveToggle, "Hotstrings are ACTIVE", "Hotstrings are NOT active") ;Toggle the hotstrings in this file to be active or not.
+
+#If hotstringsActiveToggle = true
 
 #Hotstring R  ; Set the default to be "raw mode" (might not actually be relied upon by anything yet).
-
-
 ;------------------------------------------------------------------------------
 ; Fix for -ign instead of -ing.
 ; Words to exclude: (could probably do this by return without rewrite)
@@ -602,7 +603,6 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::httpL::http:
 ::herf::href
 
-{
 ::avengence::a vengeance
 ::adbandon::abandon
 ::abandonned::abandoned
@@ -614,7 +614,6 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::baout::about
 ::abouta::about a
 ::aboutit::about it
-}
 ::aboutthe::about the
 ::abscence::absence
 ::absense::absence
@@ -5555,3 +5554,5 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:yall::y'all
 :*:ai::AI
 :*:aai::artifical intelligence
+
+#If

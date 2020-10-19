@@ -3,9 +3,11 @@
 
 ^CapsLock::runCommand(runInputBoxText) ;Repeats previous command. Can also "repeat(?)" error/unknown commands.
 
+*CapsLock::return ;Temporarily(?) removed on Saturday, October 17, 2020 at 8:10 PM because it was too annoying.
+
 ;Open the command InputBox, and then do what the user entered.
 !r::
-*CapsLock::
+; *CapsLock::
 
 InputBox, runInputBoxText, Type a Command,,, 200, 100
 if ErrorLevel = 1
