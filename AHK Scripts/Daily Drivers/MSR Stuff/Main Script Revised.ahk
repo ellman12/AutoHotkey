@@ -568,15 +568,9 @@ return
 
 ^!g:: ;Calculate percent grade on a homework assignment or whatever. So, for something like 40/50, you'd enter 40 and then 50.
 InputBox, firstNum, Grade Percent Utility, What is the first number?,, 200, 150
-IfMsgBox, Cancel
-	return
-
 InputBox, secondNum, Grade Percent Utility, What is the second number?,, 200, 150
-IfMsgBox, Cancel
-	return
 
 result := round((firstNum/secondNum) * 100, 2)
-
 MsgBox, 0, Grade, You got %result%`%.
 
 firstNum :=
