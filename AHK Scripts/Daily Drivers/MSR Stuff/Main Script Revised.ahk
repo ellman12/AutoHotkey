@@ -553,6 +553,37 @@ else if (BackMouseButtonBehavior = "F10")
 	nextWinOrShowHideWins("F10", WindowGroupF10, CurrentWinF10)
 return
 
+^!+d:: ;Used for deleting videos from YouTube playlist. Asks you how many times to do it and then it starts doing its thing.
+InputBox, numVidsToDelete, How many videos do you want to delete?, As soon as you hit enter`, the script will start deleting videos. Please position cursor over the first video's x button.
+
+Loop %numVidsToDelete% {
+	Send, {Escape} ;Get rid of stupid pop-up.
+	Sleep 500
+	Send, {Click}
+	Sleep 500
+}
+
+numVidsToDelete := ;Free up memory.
+return
+
+^!g:: ;Calculate percent grade on a homework assignment or whatever. So, for something like 40/50, you'd enter 40 and then 50.
+InputBox, firstNum, Grade Percent Utility, What is the first number?,, 200, 150
+IfMsgBox, Cancel
+	return
+
+InputBox, secondNum, Grade Percent Utility, What is the second number?,, 200, 150
+IfMsgBox, Cancel
+	return
+
+result := round((firstNum/secondNum) * 100, 2)
+
+MsgBox, 0, Grade, You got %result%`%.
+
+firstNum :=
+secondNum :=
+result :=
+return
+
 ;****************************************GLOBAL K95 RGB HOTKEYS***************************************
 ;These 3 hotkeys are sent by the iCUE software, which AutoHotkey detects.
 +F24::Send, ^c ;M1 on K95 RGB copies to the clipboard.
@@ -849,19 +880,6 @@ reloadMSR() {
 }
 
 ;**************************************************EXPERIMENTAL**************************************************
-;Used for deleting videos from YouTube playlist. Asks you how many times to do it and then it starts doing its thing.
-^!+d::
-InputBox, numVidsToDelete, How many videos do you want to delete?, As soon as you hit enter`, the script will start deleting videos. Please position cursor over the first video's x button.
-
-Loop %numVidsToDelete% {
-	Send, {Escape} ;Get rid of stupid pop-up.
-	Sleep 500
-	Send, {Click}
-	Sleep 500
-}
-
-numVidsToDelete := 
-return
 ;**************************************************TEMPORARY**************************************************
 :*:hon comp::Honors: Composition II
 :*:hcomp::Honors Composition II
