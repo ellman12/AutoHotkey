@@ -566,7 +566,7 @@ Loop %numVidsToDelete% {
 numVidsToDelete := ;Free up memory.
 return
 
-^!g:: ;Calculate percent grade on a homework assignment or whatever. So, for something like 40/50, you'd enter 40 and then 50.
+^+g:: ;Calculate percent grade on a homework assignment or whatever. So, for something like 40/50, you'd enter 40 and then 50.
 InputBox, firstNum, Grade Percent Utility, What is the first number?,, 200, 150
 InputBox, secondNum, Grade Percent Utility, What is the second number?,, 200, 150
 
