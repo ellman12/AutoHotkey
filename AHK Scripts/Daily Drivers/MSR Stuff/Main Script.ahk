@@ -1047,7 +1047,7 @@ return
 ; #If
 
 ;English papers.
-:*:ai::AI
+::ai::AI
 :*:aai::artificial intelligence
 :*:AaI::Artificial Intelligence
 ;~ :*:bc::breast cancer
