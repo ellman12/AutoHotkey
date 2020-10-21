@@ -886,7 +886,7 @@ reloadMSR() {
 :*:duloc::Duloc
 
 #IfWinActive, ahk_exe Zoom.exe
-RAlt::Send, #+s ;Snip & Sketch.
+; RAlt::Send, #+s ;Snip & Sketch.
 RCtrl::Send, #+s ;Snip & Sketch.
 
 $PrintScreen::Send, #{PrintScreen}
