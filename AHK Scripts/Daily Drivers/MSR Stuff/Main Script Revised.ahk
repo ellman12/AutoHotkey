@@ -234,7 +234,8 @@ global controlPanelGUIToggle := 0
 CONTROL_PANEL_WIDTH := 286
 CONTROL_PANEL_HEIGHT := 384
 
-GUI, CPanel:Show, w%CONTROL_PANEL_WIDTH% h%CONTROL_PANEL_HEIGHT% x1400,MSR Control Panel
+;Used for testing and adding new #o stuff.
+; GUI, CPanel:Show, w%CONTROL_PANEL_WIDTH% h%CONTROL_PANEL_HEIGHT% x1400,MSR Control Panel
 
 ;****************************************MISC VARIABLES, INITIALIZATION, ETC*********************************
 global Num2And8Step := 3 ;When Num2 or Num8 pressed, how much to increase/decrease volume.
