@@ -152,9 +152,9 @@ global ChrBookTypeMonChoice := "Primary Mon"
 
 ;F3 Behavior.
 GUI, CPanel:Add, Text, x153 yp-14, F3 Behavior
-GUI, CPanel:Add, DDL, x152 y56 w97 vF3Mode, Google Chrome||VSCode
+GUI, CPanel:Add, DDL, x152 y56 w97 vF3Behavior, Google Chrome||VSCode
 
-global F3Mode := "Google Chrome" ;Change in #o between this and VSCode.
+global F3Behavior := "Google Chrome" ;Change in #o between this and VSCode.
 
 ;Default screen X and Y of battery icons; user can change them later in #o.
 if (A_ComputerName = "Elliott-Laptop") {
@@ -223,7 +223,8 @@ GUI, CPanel:Add, Text, xm yp+27, Front and Back Top Mouse Buttons Behavior
 GUI, CPanel:Add, DDL, xm yp+17 w87 vFrontMouseButtonBehavior, Double Click||F6|F7|F8|F10
 GUI, CPanel:Add, DDL, xm+90 yp w87 vBackMouseButtonBehavior, Double Click|F6||F7|F8|F10
 
-; GUI, CPanel:Show, w%CONTROL_PANEL_WIDTH% h%CONTROL_PANEL_HEIGHT% x1090,MSR Control Panel
+GUI, CPanel:Add, Text, xm yp+27, F12 Behavior
+GUI, CPanel:Add, DDL, xm+90 yp w87 vF12Beavior, //list
 
 ;Toggle for showing or hiding the GUI.
 ;If it's 1, show the GUI; if it's 0, hide it.
@@ -232,6 +233,8 @@ global controlPanelGUIToggle := 0
 
 CONTROL_PANEL_WIDTH := 286
 CONTROL_PANEL_HEIGHT := 384
+
+GUI, CPanel:Show, w%CONTROL_PANEL_WIDTH% h%CONTROL_PANEL_HEIGHT% x1090,MSR Control Panel
 
 ;****************************************MISC VARIABLES, INITIALIZATION, ETC*********************************
 global Num2And8Step := 3 ;When Num2 or Num8 pressed, how much to increase/decrease volume.

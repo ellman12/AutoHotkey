@@ -70,7 +70,7 @@ return
 
 ;Switch to a window and go through tabs.
 F3::
-if (F3Mode = "Google Chrome") {
+if (F3Behavior = "Google Chrome") {
 
     IfWinNotExist, ahk_exe chrome.exe
         Run, chrome.exe
@@ -79,7 +79,7 @@ if (F3Mode = "Google Chrome") {
     else
         WinActivate ahk_exe chrome.exe
 
-} else if (F3Mode = "VSCode") {
+} else if (F3Behavior = "VSCode") {
 
     IfWinNotExist, ahk_exe chrome.exe
         Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code\Code.exe
@@ -92,7 +92,7 @@ return
 
 ;Same thing as F3, but reverse order (PGUP instead of PGDN).
 +F3::
-    if (F3Mode = "Google Chrome") {
+    if (F3Behavior = "Google Chrome") {
 
     IfWinNotExist, ahk_class Chrome_WidgetWin_1
         Run, chrome.exe
@@ -101,7 +101,7 @@ return
     else
         WinActivate ahk_exe chrome.exe
 
-} else if (F3Mode = "VSCode") {
+} else if (F3Behavior = "VSCode") {
 
     IfWinNotExist, ahk_class Chrome_WidgetWin_1
         Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code\Code.exe
@@ -115,7 +115,7 @@ return
 ;If a window doesn't exist, run the program.
 ;If windows do exist, switch between them.
 F4::
-    if (F3Mode = "Google Chrome") {
+    if (F3Behavior = "Google Chrome") {
         Process, Exist, chrome.exe
         if errorLevel = 0
             Run, chrome.exe
@@ -126,7 +126,7 @@ F4::
             else
                 WinActivate ahk_class Chrome_WidgetWin_1
         }
-    } else if (F3Mode = "VSCode") {
+    } else if (F3Behavior = "VSCode") {
         If errorLevel = 0
             Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code\Code.exe
         else {
