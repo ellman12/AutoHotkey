@@ -593,6 +593,9 @@ return
 
 ::i::I
 
+#If programmingMode = true
+F5::Send, #{F5} ;For compiling C code in VSCode.
+
 #IfWinActive Search ;When Cortana/Search is open.
 !s::Send, {Space}meaning
 
