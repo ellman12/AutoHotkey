@@ -130,101 +130,6 @@ Index := 0 ;Used as the name of the current gui cap window.
 ;*******************************MSR CONTROL PANEL INITIALIZATION******************************
 ;This is a GUI for MSR that allows the user to change how parts of the script work: stuff
 ; which probably couldn't really be done well with hotkeys.
-GUI, oldCPanel:+AlwaysOnTop
-GUI, oldCPanel:Color, Silver
-
-;Insert.
-GUI, oldCPanel:Font, s13
-GUI, oldCPanel:Add, Text, x5 y5,Insert Hotkey Monitor Choice
-GUI, oldCPanel:Font, s11
-GUI, oldCPanel:Add, DropDownList, x5 y30 w136 vInsMonChoice, Primary Mon||Secondary Mon
-
-;Ctrl + Insert.
-GUI, oldCPanel:Font, s13
-GUI, oldCPanel:Add, Text, x5 y60,Ctrl + Insert Hotkey Monitor Choice
-GUI, oldCPanel:Font, s11
-GUI, oldCPanel:Add, DropDownList, x5 y85 w136 vCtrlInsMonChoice, Primary Mon|Secondary Mon||
-
-;For Chromebook Typing, which monitor to send the mouse pointer too.
-GUI, oldCPanel:Font, s13
-GUI, oldCPanel:Add, Text, x5 y115,Chromebook Typing Monitor Choice
-GUI, oldCPanel:Font, s11
-GUI, oldCPanel:Add, DropDownList, x5 y140 w136 vChrBookTypeMonChoice, Primary Mon||Secondary Mon|
-
-;Default screen X and Y of battery icons; user can change them later in #o.
-if (A_ComputerName = "Elliott-Laptop") {
-	laptopBatteryIconX := 1432
-	laptopBatteryIconY := 885
-    usingALaptop := true
-} else if (A_ComputerName = "Elliott-DSU-Lap") {
-	laptopBatteryIconX := 1664
-	laptopBatteryIconY := 1049 ;This is WITHOUT the Ink Workspace button shown. If it's shown, it's 1618 and 1049.
-    usingALaptop := true
-} else if (A_ComputerName = "Elliott-PC") {
-	usingALaptop := false
-	laptopBatteryIconX := NULL
-	laptopBatteryIconY := NULL
-} else {
-	MsgBox, 16, Error. Computer/laptop name not part of the script., Error. Computer/laptop name not part of the script. A_ComputerName is: %A_ComputerName%`n`nIf you're on a desktop computer this can be totally ignored.
-}
-
-;X choice for the #b hotkey.
-GUI, oldCPanel:Font, s13
-GUI, oldCPanel:Add, Text, x5 y170,#B Screen X
-GUI, oldCPanel:Font, s11
-GUI, oldCPanel:Add, Edit, x5 y195 w100 vlaptopBatteryIconX, %laptopBatteryIconX%
-
-;Y choice for the #b hotkey.
-GUI, oldCPanel:Font, s13
-GUI, oldCPanel:Add, Text, x120 y170,#B Screen Y
-GUI, oldCPanel:Font, s11
-GUI, oldCPanel:Add, Edit, x120 y195 w100 vlaptopBatteryIconY, %laptopBatteryIconY%
-
-;For the Custom Window Group stuff.
-GUI, oldCPanel:Font, s13
-GUI, oldCPanel:Add, Text, x5 y225,Custom Window Groups
-
-GUI, oldCPanel:Font, s11
-GUI, oldCPanel:Add, Text, x5 y250,F6:
-GUI, oldCPanel:Add, DDL, vF6Mode w118 x25 y248,Window Group||Window Hider
-
-GUI, oldCPanel:Add, Text, x150 y250,F7:
-GUI, oldCPanel:Add, DDL, vF7Mode w118 x177 y248,Window Group||Window Hider
-
-GUI, oldCPanel:Add, Text, x5 y275,F8:
-GUI, oldCPanel:Add, DDL, vF8Mode w118 x25 y273,Window Group|Window Hider||
-
-GUI, oldCPanel:Add, Text, x150 y275,F10:
-GUI, oldCPanel:Add, DDL, vF10Mode w118 x177 y273,Window Group|Window Hider||
-
-;F3 Behavior.
-GUI, oldCPanel:Font, s13
-GUI, oldCPanel:Add, Text, x5 y303,F3 Behavior:
-
-GUI, oldCPanel:Font, s11
-GUI, oldCPanel:Add, DDL, vF3Mode w118 x102 y302, Google Chrome||VSCode
-
-;Front Top Mouse Button.
-GUI, oldCPanel:Font, s13
-GUI, oldCPanel:Add, Text, x4 y334,Top Mouse Button Behavior
-
-GUI, oldCPanel:Font, s11
-GUI, oldCPanel:Add, DDL, vMouseButtonMode w125 x5 y356, Double Click||Next F6 Window
-
-;Toggle for showing or hiding the GUI.
-;If it's 1, show the GUI; if it's 0, hide it.
-;Starts out as 0, so it only appears when the user wants it.
-global controlPanelGUIToggle := 0
-
-;Default values.
-global InsMonChoice := "Primary Mon"
-global CtrlInsMonChoice := "Secondary Mon"
-global ChrBookTypeMonChoice := "Primary Mon"
-
-CONTROL_PANEL_WIDTH := 286
-CONTROL_PANEL_HEIGHT := 384
-
-;************************************************new GUI****************************************************
 GUI, CPanel:+AlwaysOnTop
 GUI, CPanel:Color, Silver
 GUI, CPanel:Margin, 3, 1
@@ -239,6 +144,11 @@ GUI, CPanel:Add, DDL, xp-1 ym+14 w100 vCtrlInsMonChoice, Primary Mon|Secondary M
 
 GUI, CPanel:Add, Text, xm+1 yp+27, Chromebook Typing Monitor
 GUI, CPanel:Add, DDL, xm yp+14 w100 vChrBookTypeMonChoice, Primary Mon||Secondary Mon|
+
+;Default values.
+global InsMonChoice := "Primary Mon"
+global CtrlInsMonChoice := "Secondary Mon"
+global ChrBookTypeMonChoice := "Primary Mon"
 
 ;F3 Behavior.
 GUI, CPanel:Add, Text, x153 yp-14, F3 Behavior
@@ -312,6 +222,14 @@ GUI, CPanel:Add, DDL, xm yp+17 w87 vFrontMouseButtonBehavior, Double Click||F6|F
 GUI, CPanel:Add, DDL, xm+90 yp w87 vBackMouseButtonBehavior, Double Click|F6||F7|F8|F10
 
 ; GUI, CPanel:Show, w%CONTROL_PANEL_WIDTH% h%CONTROL_PANEL_HEIGHT% x1090,MSR Control Panel
+
+;Toggle for showing or hiding the GUI.
+;If it's 1, show the GUI; if it's 0, hide it.
+;Starts out as 0, so it only appears when the user wants it.
+global controlPanelGUIToggle := 0
+
+CONTROL_PANEL_WIDTH := 286
+CONTROL_PANEL_HEIGHT := 384
 
 ;****************************************MISC VARIABLES, INITIALIZATION, ETC*********************************
 global Num2And8Step := 3 ;When Num2 or Num8 pressed, how much to increase/decrease volume.
