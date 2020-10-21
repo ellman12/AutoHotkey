@@ -154,6 +154,8 @@ global ChrBookTypeMonChoice := "Primary Mon"
 GUI, CPanel:Add, Text, x153 yp-14, F3 Behavior
 GUI, CPanel:Add, DDL, x152 y56 w97 vF3Mode, Google Chrome||VSCode
 
+global F3Mode := "Google Chrome" ;Change in #o between this and VSCode.
+
 ;Default screen X and Y of battery icons; user can change them later in #o.
 if (A_ComputerName = "Elliott-Laptop") {
     usingALaptop := true
@@ -242,9 +244,6 @@ global hotstringsActiveToggle := true ;Determines if AutoCorrect hotstrings are 
 ;Used for F9 and F11 on 2nd keeb for showing/hiding these programs. 1 = visible; 0 = not visible.
 global OutlookVisibilityToggle := 1
 global DiscordVisibilityToggle := 1
-
-global F3Mode := "Google Chrome" ;Change in #o between this and VSCode.
-global MouseButtonMode := "Double Click" ;Change between this and Next F6 Window.
 
 ;The stuff in this loop needs to be running constantly.
 Loop {
