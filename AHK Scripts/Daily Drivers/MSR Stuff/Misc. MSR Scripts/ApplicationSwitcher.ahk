@@ -10,12 +10,8 @@ F1::
         if WinActive("ahk_exe firefox.exe")
             Send ^{PGDN}
         else {
-            ;WinRestore ahk_exe firefox.exe
-            WinActivatebottom ahk_exe firefox.exe
-            ;sometimes winactivate is not enough. the window is brought to the foreground, but not put into FOCUS.
-            ;the below code should fix that.
-            WinGet, hWnd, ID, ahk_class MozillaWindowClass
-            DllCall("SetForegroundWindow", UInt, hWnd)
+            GroupAdd, firefoxWins, ahk_class MozillaWindowClass
+            WinActivate ahk_class MozillaWindowClass
         }
     }
 return
@@ -47,9 +43,9 @@ F2::
             Run, C:\Program Files\Mozilla Firefox\firefox.exe
         else
         {
-            GroupAdd, taranfirefoxes, ahk_class MozillaWindowClass
+            GroupAdd, firefoxWins, ahk_class MozillaWindowClass
             if WinActive("ahk_class MozillaWindowClass")
-                GroupActivate, taranfirefoxes, r
+                GroupActivate, firefoxWins, R
             else
                 WinActivate ahk_class MozillaWindowClass
         }
