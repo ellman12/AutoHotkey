@@ -1,6 +1,0 @@
-Mode				  What It Does
-
-VSCode and Cmd Prompt (Default)	  Groups VSCode and Command Prompt windows together. ^F12 runs VSCode.
-Word				  Runs Word and switches between Word windows.
-Excel				  Runs Excel and switches between Excel windows.
-Word + Excel			  Groups Word and Excel windows.
