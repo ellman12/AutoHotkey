@@ -178,18 +178,66 @@ F9::
         Send !{left} ;alt left is the explorer shortcut to go "back" or "down" one folder level.
 return
 
-;Run Word if not exist, and then switch between windows.
-$F12::
-    if WinExist("ahk_class OpusApp") {
-        GroupAdd, taranwords, ahk_class OpusApp
-        if WinActive("ahk_class OpusApp")
-            GroupActivate, taranwords, r
+;Behavior is determined in #o.
+;Mode				                  What It Does
+;VSCode and Cmd Prompt (Default)	  Groups VSCode and Command Prompt windows together. ^F12 runs VSCode.
+;Word				                  Runs Word and switches between Word windows.
+;Excel				                  Runs Excel and switches between Excel windows.
+;Word + Excel		                  Groups Word and Excel windows.
+F12::
+Switch F12Behavior {
+
+Case "VSCode and Cmd Prompt":
+    if WinExist("ahk_exe Code.EXE") {
+        GroupAdd, VSCodeWins, ahk_exe Code.exe
+        if WinActive("ahk_exe Code.exe")
+            GroupActivate, VSCodeWins, R
         else
-            WinActivate ahk_class OpusApp
+            WinActivate ahk_exe Code.exe
+    } else {
+        Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code\Code.exe
+    }
+return
+
+Case "Word":
+    if WinExist("ahk_exe WINWORD.EXE") {
+        GroupAdd, wordWins, ahk_exe WINWORD.EXE
+        if WinActive("ahk_exe WINWORD.EXE")
+            GroupActivate, wordWins, R
+        else
+            WinActivate ahk_exe WINWORD.EXE
     } else {
         Run, C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE
     }
 return
+
+Case "Excel":
+    if WinExist("ahk_exe EXCEL.EXE") {
+        GroupAdd, excelWins, ahk_exe EXCEL.EXE
+        if WinActive("ahk_exe EXCEL.EXE")
+            GroupActivate, excelWins, R
+        else
+            WinActivate ahk_exe EXCEL.EXE
+    } else {
+        Run, C:\Program Files\Microsoft Office\root\Office16\EXCEL.EXE
+    }
+return
+
+Case "Word + Excel":
+    if WinExist("ahk_exe WINWORD.EXE")
+        GroupAdd, wordAndExcelWins, ahk_exe WINWORD.EXE
+    else
+        Run, C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE
+
+    if WinExist("ahk_exe EXCEL.EXE")
+        GroupAdd, wordAndExcelWins, ahk_exe EXCEL.EXE
+    else
+        Run, C:\Program Files\Microsoft Office\root\Office16\EXCEL.EXE
+    GroupActivate, wordAndExcelWins, R
+return
+
+}
+return ;End of F12.
 
 ;*******************HOTKEYS FOR MICROSOFT TO DO APP*******************
 ; #t:: In the Tasks menu, add a task and mark it due today. Or activate it. Or run it.
