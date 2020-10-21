@@ -886,6 +886,9 @@ reloadMSR() {
 :*:duloc::Duloc
 
 #IfWinActive, ahk_exe Zoom.exe
+RAlt::Send, #+s ;Snip & Sketch.
+RCtrl::Send, #+s ;Snip & Sketch.
+
 $PrintScreen::Send, #{PrintScreen}
 
 $CapsLock:: ;"Hide" the mouse pointer, and hide the Zoom meeting controls.
