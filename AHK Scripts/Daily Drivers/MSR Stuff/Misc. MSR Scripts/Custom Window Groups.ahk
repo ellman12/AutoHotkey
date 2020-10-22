@@ -239,5 +239,6 @@ showWinTitlesFx(Fx, WindowGroupArray, CurrentWin) {
 
     DetectHiddenWindows, Off
     MsgBox, 0, %Fx% Windows, CurrentWin%Fx% = %CurrentWin%`n`n%message%
-    message := ;Free memory.
+    currentTitle := ;Free memory.
+    message :=
 }
