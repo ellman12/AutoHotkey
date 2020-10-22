@@ -234,6 +234,8 @@ showWinTitlesFx(Fx, WindowGroupArray, CurrentWin) {
     for index, value in WindowGroupArray
     {
         WinGetTitle, currentTitle, ahk_id %value%
+        if (currentTitle = "") ;Skips windows that are in the array but that don't exist.
+            continue
         message .= "Window #" . Index . " = " . currentTitle . "`n`n"
     }
 
