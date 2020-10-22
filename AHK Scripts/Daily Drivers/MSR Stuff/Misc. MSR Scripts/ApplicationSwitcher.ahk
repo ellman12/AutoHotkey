@@ -184,15 +184,17 @@ F12::
 Switch F12Behavior {
 
 Case "VSCode and Cmd Prompt":
-    if WinExist("ahk_exe Code.EXE") {
-        GroupAdd, VSCodeWins, ahk_exe Code.exe
-        if WinActive("ahk_exe Code.exe")
-            GroupActivate, VSCodeWins, R
-        else
-            WinActivate ahk_exe Code.exe
-    } else {
+    if WinExist("ahk_exe Code.EXE")
+        GroupAdd, VSCodeAndTerminalWins, ahk_exe Code.exe
+    else
         Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code\Code.exe
-    }
+
+    if WinExist("ahk_exe cmd.exe")
+        GroupAdd, VSCodeAndTerminalWins, ahk_exe cmd.exe
+    else
+        Run, cmd.exe
+
+    GroupActivate, VSCodeAndTerminalWins, R
 return
 
 Case "Word":
