@@ -60,6 +60,12 @@ F10::nextWinOrShowHideWins("F10", WindowGroupF10, CurrentWinF10)
 !#F8::removeAndCloseAllWins("F8", WindowGroupF8, CurrentWinF8)
 !#F10::removeAndCloseAllWins("F10", WindowGroupF10, CurrentWinF10)
 
+; ^+#Fx:: Shows all the window titles in each array.
+^+#F6::showWinTitlesFx("F6", WindowGroupF6, CurrentWinF6)
+^+#F7::showWinTitlesFx("F7", WindowGroupF7, CurrentWinF7)
+^+#F8::showWinTitlesFx("F8", WindowGroupF8, CurrentWinF8)
+^+#F10::showWinTitlesFx("F10", WindowGroupF10, CurrentWinF10)
+
 ;**************************************************FUNCTIONS**************************************************
 ;Fx is either "F6", "F7", "F8", or "F10". The other param is the array to use. The Fx variable is just for the Tippy message.
 addWindowFx(Fx, ByRef WindowGroupArray) {
@@ -220,4 +226,18 @@ removeAndCloseAllWins(Fx, ByRef WindowGroupArray, ByRef CurrentWin) {
     CurrentWin := 1
     Tippy("All windows in " . A_Space . Fx . A_Space . "Group have been removed and closed.", 100)
     DetectHiddenWindows, Off
+}
+
+showWinTitlesFx(Fx, WindowGroupArray, CurrentWin) {
+    DetectHiddenWindows, On ;Needed for if windows are hidden (F8, etc.)
+
+    for index, value in WindowGroupArray
+    {
+        WinGetTitle, currentTitle, ahk_id %value%
+        message .= "Window #" . Index . " = " . currentTitle . "`n`n"
+    }
+
+    DetectHiddenWindows, Off
+    MsgBox, 0, %Fx% Windows, CurrentWin%Fx% = %CurrentWin%`n`n%message%
+    message := ;Free memory.
 }
