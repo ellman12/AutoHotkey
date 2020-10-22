@@ -17,33 +17,30 @@ SendMode Input
 F24::return ;This line is mandatory for proper functionality.
 
 ;Saving mouse pointer locations and returning to saved spots.
-F1::MouseMove, mousePosX1, mousePosY1, 0
-
 +F1::
 MouseGetPos, mousePosX1, mousePosY1
 Tippy("F1 pointer saved", 1300)
 return
-
-F2::MouseMove, mousePosX2, mousePosY2, 0
 
 +F2::
 MouseGetPos, mousePosX2, mousePosY2
 Tippy("F2 pointer saved", 1300)
 return
 
-F3::MouseMove, mousePosX3, mousePosY3, 0
-
 +F3::
 MouseGetPos, mousePosX3, mousePosY3
 Tippy("F3 pointer saved", 1300)
 return
 
-F4::MouseMove, mousePosX4, mousePosY4, 0
-
 +F4::
 MouseGetPos, mousePosX4, mousePosY4
 Tippy("F4 pointer saved", 1300)
 return
+
+F1::MouseMove, mousePosX1, mousePosY1, 0
+F2::MouseMove, mousePosX2, mousePosY2, 0
+F3::MouseMove, mousePosX3, mousePosY3, 0
+F4::MouseMove, mousePosX4, mousePosY4, 0
 
 ^F9::
 !F9::
@@ -55,27 +52,38 @@ return
 Run, C:\Users\Elliott\AppData\Local\Discord\app-0.0.308\Discord.exe
 return
 
+F10::Run, C:\Users\Elliott\Documents\Microsoft To Do ;Run/show MS To Do.
+
 F9:: ;Show/hide Outlook.
 SetTitleMatchMode, 2 ;A window's title can contain WinTitle anywhere inside it to be a match.
-OutlookVisibilityToggle := !OutlookVisibilityToggle
-
-if (OutlookVisibilityToggle = 1)
-    WinHide, - Outlook
+if (WinExist("- Outlook")) AND (!WinActive("- Outlook"))
+    WinActivate, - Outlook
 else
-    WinShow, - Outlook
+{
+    OutlookVisibilityToggle := !OutlookVisibilityToggle
+    if (OutlookVisibilityToggle = 1)
+        WinHide, - Outlook
+    else {
+        WinShow, - Outlook
+        WinActivate, - Outlook
+    }
+}
 return
-
-F10::Run, C:\Users\Elliott\Documents\Microsoft To Do ;Run/show MS To Do.
 
 F11:: ;Show/hide Discord.
 SetTitleMatchMode, 2 ;A window's title can contain WinTitle anywhere inside it to be a match.
-DiscordVisibilityToggle := !DiscordVisibilityToggle
-
-if (DiscordVisibilityToggle = 0) {
-    WinHide, - Discord
-} else {
-    WinShow, - Discord
+if (WinExist("- Discord")) AND (!WinActive("- Discord"))
     WinActivate, - Discord
+else
+{
+    DiscordVisibilityToggle := !DiscordVisibilityToggle
+
+    if (DiscordVisibilityToggle = 0) {
+        WinHide, - Discord
+    } else {
+        WinShow, - Discord
+        WinActivate, - Discord
+    }
 }
 return
 
