@@ -9,3 +9,4 @@ Fx:: Either next window or hide windows.
 #+Fx:: Previous window, regardless of mode.
 ^#Fx:: Remove all windows from the array, without closing them.
 !#Fx:: Remove all windows from the array, and close all of them.
+^+#Fx:: Shows all the window titles in each array.
