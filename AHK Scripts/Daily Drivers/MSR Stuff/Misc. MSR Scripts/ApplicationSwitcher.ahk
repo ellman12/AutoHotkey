@@ -78,7 +78,7 @@ F3Hotkey() {
 
     } else if (F3Behavior = "VSCode") {
 
-        IfWinNotExist, ahk_exe chrome.exe
+        IfWinNotExist, ahk_exe Code.exe
             Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code\Code.exe
         if WinActive("ahk_exe Code.exe")
             Send ^{PGDN}
@@ -90,7 +90,7 @@ return
 
 ;Same thing as F3, but reverse order (PGUP instead of PGDN).
 +F3::
-    if (F3Behavior = "Google Chrome") {
+if (F3Behavior = "Google Chrome") {
 
     IfWinNotExist, ahk_class Chrome_WidgetWin_1
         Run, chrome.exe
@@ -101,7 +101,7 @@ return
 
 } else if (F3Behavior = "VSCode") {
 
-    IfWinNotExist, ahk_class Chrome_WidgetWin_1
+    IfWinNotExist, ahk_exe Code.exe
         Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code\Code.exe
     if WinActive("ahk_exe Code.exe")
         Send ^{PGUP}
@@ -119,19 +119,21 @@ F4Hotkey() {
         if errorLevel = 0
             Run, chrome.exe
         else {
-            GroupAdd, taranchromes, ahk_class Chrome_WidgetWin_1
+            GroupAdd, chromeWins, ahk_class Chrome_WidgetWin_1
             if WinActive("ahk_class ahk_class Chrome_WidgetWin_1")
-                GroupActivate, taranchromes, r
+                GroupActivate, chromeWins, R
             else
                 WinActivate ahk_class Chrome_WidgetWin_1
         }
     } else if (F3Behavior = "VSCode") {
-        If errorLevel = 0
+       
+        If WinNotExist, Code.exe
             Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code\Code.exe
-        else {
-            GroupAdd, taranCodes, ahk_exe Code.exe
+        else
+        {
+            GroupAdd, codeWins, ahk_exe Code.exe
             if WinActive("ahk_exe Code.exe")
-                GroupActivate, taranCodes, r
+                GroupActivate, codeWins, R
             else
                 WinActivate ahk_exe Code.exe
         }
@@ -191,7 +193,7 @@ F12Hotkey() {
     Switch F12Behavior {
 
     Case "VSCode and Cmd Prompt":
-        if WinExist("ahk_exe Code.EXE")
+        if WinExist("ahk_exe Code.exe")
             GroupAdd, VSCodeAndTerminalWins, ahk_exe Code.exe
         else
             Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code\Code.exe
