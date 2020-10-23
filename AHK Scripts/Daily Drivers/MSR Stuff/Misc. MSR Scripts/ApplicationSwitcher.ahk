@@ -66,23 +66,25 @@ return
 
 ;Switch to a window and go through tabs.
 F3::
-if (F3Behavior = "Google Chrome") {
+F3Hotkey() {
+    if (F3Behavior = "Google Chrome") {
 
-    IfWinNotExist, ahk_exe chrome.exe
-        Run, chrome.exe
-    if WinActive("ahk_exe chrome.exe")
-        Send ^{PGDN}
-    else
-        WinActivate ahk_exe chrome.exe
+        IfWinNotExist, ahk_exe chrome.exe
+            Run, chrome.exe
+        if WinActive("ahk_exe chrome.exe")
+            Send ^{PGDN}
+        else
+            WinActivate ahk_exe chrome.exe
 
-} else if (F3Behavior = "VSCode") {
+    } else if (F3Behavior = "VSCode") {
 
-    IfWinNotExist, ahk_exe chrome.exe
-        Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code\Code.exe
-    if WinActive("ahk_exe Code.exe")
-        Send ^{PGDN}
-    else
-        WinActivate ahk_exe Code.exe
+        IfWinNotExist, ahk_exe chrome.exe
+            Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code\Code.exe
+        if WinActive("ahk_exe Code.exe")
+            Send ^{PGDN}
+        else
+            WinActivate ahk_exe Code.exe
+    }
 }
 return
 
@@ -111,6 +113,7 @@ return
 ;If a window doesn't exist, run the program.
 ;If windows do exist, switch between them.
 F4::
+F4Hotkey() {
     if (F3Behavior = "Google Chrome") {
         Process, Exist, chrome.exe
         if errorLevel = 0
@@ -133,6 +136,7 @@ F4::
                 WinActivate ahk_exe Code.exe
         }
     }
+}
 return
 
 ;Create a new normal Chrome window.
@@ -166,12 +170,14 @@ return
 ;Back button; does stuff in reverse.
 ;Ex. F9 in Firefox does the opposite of F1.
 F9::
+F9Hotkey() {
     if WinActive("ahk_exe firefox.exe")
         Send ^{PgUp}
-    if WinActive("ahk_class Chrome_WidgetWin_1")
+    else if WinActive("ahk_class Chrome_WidgetWin_1")
         Send ^+{tab}
-    if WinActive("ahk_exe explorer.exe")
+    else if WinActive("ahk_exe explorer.exe")
         Send !{left} ;alt left is the explorer shortcut to go "back" or "down" one folder level.
+}
 return
 
 ;Behavior is determined in #o.
@@ -181,59 +187,61 @@ return
 ;Excel				                  Runs Excel and switches between Excel windows.
 ;Word + Excel		                  Groups Word and Excel windows.
 F12::
-Switch F12Behavior {
+F12Hotkey() {
+    Switch F12Behavior {
 
-Case "VSCode and Cmd Prompt":
-    if WinExist("ahk_exe Code.EXE")
-        GroupAdd, VSCodeAndTerminalWins, ahk_exe Code.exe
-    else
-        Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code\Code.exe
-
-    if WinExist("ahk_exe cmd.exe")
-        GroupAdd, VSCodeAndTerminalWins, ahk_exe cmd.exe
-    else
-        Run, cmd.exe
-
-    GroupActivate, VSCodeAndTerminalWins, R
-return
-
-Case "Word":
-    if WinExist("ahk_exe WINWORD.EXE") {
-        GroupAdd, wordWins, ahk_exe WINWORD.EXE
-        if WinActive("ahk_exe WINWORD.EXE")
-            GroupActivate, wordWins, R
+    Case "VSCode and Cmd Prompt":
+        if WinExist("ahk_exe Code.EXE")
+            GroupAdd, VSCodeAndTerminalWins, ahk_exe Code.exe
         else
-            WinActivate ahk_exe WINWORD.EXE
-    } else {
-        Run, C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE
-    }
-return
+            Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code\Code.exe
 
-Case "Excel":
-    if WinExist("ahk_exe EXCEL.EXE") {
-        GroupAdd, excelWins, ahk_exe EXCEL.EXE
-        if WinActive("ahk_exe EXCEL.EXE")
-            GroupActivate, excelWins, R
+        if WinExist("ahk_exe cmd.exe")
+            GroupAdd, VSCodeAndTerminalWins, ahk_exe cmd.exe
         else
-            WinActivate ahk_exe EXCEL.EXE
-    } else {
-        Run, C:\Program Files\Microsoft Office\root\Office16\EXCEL.EXE
+            Run, cmd.exe
+
+        GroupActivate, VSCodeAndTerminalWins, R
+    return
+
+    Case "Word":
+        if WinExist("ahk_exe WINWORD.EXE") {
+            GroupAdd, wordWins, ahk_exe WINWORD.EXE
+            if WinActive("ahk_exe WINWORD.EXE")
+                GroupActivate, wordWins, R
+            else
+                WinActivate ahk_exe WINWORD.EXE
+        } else {
+            Run, C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE
+        }
+    return
+
+    Case "Excel":
+        if WinExist("ahk_exe EXCEL.EXE") {
+            GroupAdd, excelWins, ahk_exe EXCEL.EXE
+            if WinActive("ahk_exe EXCEL.EXE")
+                GroupActivate, excelWins, R
+            else
+                WinActivate ahk_exe EXCEL.EXE
+        } else {
+            Run, C:\Program Files\Microsoft Office\root\Office16\EXCEL.EXE
+        }
+    return
+
+    Case "Word + Excel":
+        if WinExist("ahk_exe WINWORD.EXE")
+            GroupAdd, wordAndExcelWins, ahk_exe WINWORD.EXE
+        else
+            Run, C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE
+
+        if WinExist("ahk_exe EXCEL.EXE")
+            GroupAdd, wordAndExcelWins, ahk_exe EXCEL.EXE
+        else
+            Run, C:\Program Files\Microsoft Office\root\Office16\EXCEL.EXE
+        GroupActivate, wordAndExcelWins, R
+    return
+
     }
-return
-
-Case "Word + Excel":
-    if WinExist("ahk_exe WINWORD.EXE")
-        GroupAdd, wordAndExcelWins, ahk_exe WINWORD.EXE
-    else
-        Run, C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE
-
-    if WinExist("ahk_exe EXCEL.EXE")
-        GroupAdd, wordAndExcelWins, ahk_exe EXCEL.EXE
-    else
-        Run, C:\Program Files\Microsoft Office\root\Office16\EXCEL.EXE
-    GroupActivate, wordAndExcelWins, R
-return
-
 }
 return ;End of F12.
 

@@ -219,8 +219,8 @@ FrontMouseButtonBehavior := "Double Click"
 BackMouseButtonBehavior := "F6"
 
 GUI, CPanel:Add, Text, xm yp+27, Front and Back Top Mouse Buttons Behavior
-GUI, CPanel:Add, DDL, xm yp+17 w87 vFrontMouseButtonBehavior, Double Click||F6|F7|F8|F10
-GUI, CPanel:Add, DDL, xm+90 yp w87 vBackMouseButtonBehavior, Double Click|F6||F7|F8|F10
+GUI, CPanel:Add, DDL, xm yp+17 w87 vFrontMouseButtonBehavior, Double Click||F1|F2|F3|F4|F6|F7|F8|F9|F10|F12
+GUI, CPanel:Add, DDL, xm+90 yp w87 vBackMouseButtonBehavior, Double Click|F1|F2|F3|F4|F6||F7|F8|F9|F10|F12
 
 GUI, CPanel:Add, Text, xm yp+27, F12 Behavior
 GUI, CPanel:Add, DDL, xm yp+17 w146 vF12Behavior, VSCode and Cmd Prompt||Word|Excel|Word + Excel|
@@ -446,34 +446,6 @@ KeyWait, RShift
 DllCall("SystemParametersInfo", Int,113, Int,0, UInt,10, Int,1)
 return
 
-;Top Front Mouse Button on Scimitar RGB.
-^!F23::
-if (FrontMouseButtonBehavior = "Double Click")
-	Send, {Click 2}
-else if (FrontMouseButtonBehavior = "F6")
-	nextWinOrShowHideWins("F6", WindowGroupF6, CurrentWinF6)
-else if (FrontMouseButtonBehavior = "F7")
-	nextWinOrShowHideWins("F7", WindowGroupF7, CurrentWinF7)
-else if (FrontMouseButtonBehavior = "F8")
-	nextWinOrShowHideWins("F8", WindowGroupF8, CurrentWinF8)
-else if (FrontMouseButtonBehavior = "F10")
-	nextWinOrShowHideWins("F10", WindowGroupF10, CurrentWinF10)
-return
-
-;Top Back Mouse Button on Scimitar RGB.
-^+F23::
-if (BackMouseButtonBehavior = "Double Click")
-	Send, {Click 2}
-else if (BackMouseButtonBehavior = "F6")
-	nextWinOrShowHideWins("F6", WindowGroupF6, CurrentWinF6)
-else if (BackMouseButtonBehavior = "F7")
-	nextWinOrShowHideWins("F7", WindowGroupF7, CurrentWinF7)
-else if (BackMouseButtonBehavior = "F8")
-	nextWinOrShowHideWins("F8", WindowGroupF8, CurrentWinF8)
-else if (BackMouseButtonBehavior = "F10")
-	nextWinOrShowHideWins("F10", WindowGroupF10, CurrentWinF10)
-return
-
 ^!+d:: ;Used for deleting videos from YouTube playlist. Asks you how many times to do it and then it starts doing its thing.
 InputBox, numVidsToDelete, How many videos do you want to delete?, As soon as you hit enter`, the script will start deleting videos. Please position cursor over the first video's x button.
 
@@ -499,11 +471,14 @@ secondNum :=
 result :=
 return
 
-;****************************************GLOBAL K95 RGB HOTKEYS***************************************
+;****************************************GLOBAL iCUE HOTKEYS***************************************
 ;These 3 hotkeys are sent by the iCUE software, which AutoHotkey detects.
 +F24::Send, ^c ;M1 on K95 RGB copies to the clipboard.
 +F21::Send, ^x ;M2 on K95 RGB cuts to the clipboard.
 +F22::Send, ^v ;M3 on K95 RGB pastes the clipboard.
+
+^!F23::topMouseButtons(FrontMouseButtonBehavior) ;Top Front Mouse Button on Scimitar RGB.
+^+F23::topMouseButtons(BackMouseButtonBehavior) ;Top Back Mouse Button on Scimitar RGB.
 
 ;****************************************CONTEXT-SENSITIVE HOTKEYS***************************************
 #If programmingMode = false
@@ -795,6 +770,36 @@ reloadMSR() {
 		MsgBox, 262160, Error. Can't Reload MSR., There are F10 windows hidden. Unhide them and then reload MSR.
 	else
 		Reload ;If no windows are hidden.
+}
+
+;Called by top 2 mouse buttons.
+topMouseButtons(buttonMode) {
+global
+
+	if (buttonMode = "Double Click")
+		Send, {Click 2}
+	else if (buttonMode = "F1")
+		switchToFirefoxAndBetweenTabs()
+	else if (buttonMode = "F2")
+		switchToOtherFirefoxWindows()
+	else if (buttonMode = "F3")
+		F3Hotkey()
+	else if (buttonMode = "F4")
+		F4Hotkey()
+	else if (buttonMode = "F6")
+		nextWinOrShowHideWins("F6", WindowGroupF6, CurrentWinF6)
+	else if (buttonMode = "F7")
+		nextWinOrShowHideWins("F7", WindowGroupF7, CurrentWinF7)
+	else if (buttonMode = "F8")
+		nextWinOrShowHideWins("F8", WindowGroupF8, CurrentWinF8)
+	else if (buttonMode = "F9")
+		F9Hotkey()
+	else if (buttonMode = "F10")
+		nextWinOrShowHideWins("F10", WindowGroupF10, CurrentWinF10)
+	else if (buttonMode = "F12")
+		F12Hotkey()
+	else
+		MsgBox, 262160, Error., That mouse button mode is not defined.
 }
 
 ;**************************************************EXPERIMENTAL**************************************************
