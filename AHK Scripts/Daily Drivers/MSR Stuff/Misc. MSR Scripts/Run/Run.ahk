@@ -5,7 +5,7 @@
 
 *CapsLock::return ;Temporarily(?) removed on Saturday, October 17, 2020 at 8:10 PM because it was too annoying.
 
-!CapsLock:: ;Tells you what the previous command is. Asks if you want to proceed or not.
+!CapsLock:: ;Tells you what the previous command is before running it (unlike ^CapsLock). Asks if you want to proceed or not.
 
 if (runInputBoxText = "") {
     Tippy("No previous Run command.", 2000)
