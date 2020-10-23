@@ -5,10 +5,8 @@
 
 *CapsLock::return ;Temporarily(?) removed on Saturday, October 17, 2020 at 8:10 PM because it was too annoying.
 
-;Open the command InputBox, and then do what the user entered.
+!CapsLock:: ;Tells you what the previous command is. Asks if you want to proceed or not.
 !r::
-; *CapsLock::
-
 InputBox, runInputBoxText, Type a Command,,, 200, 100
 if ErrorLevel = 1
     runCommand("1") ;ErrorLevel value for saying the user pressed Cancel/Escape.
@@ -41,6 +39,7 @@ Switch (cmdToRun) {
         MsgBox, 16, Unknown Command., Command entered: "%cmdToRun%" does not exist.
     return
 
+    ;Supposed to represent ErrorLevel value of 1.
     Case "1":Tippy("Cancel/Escape was pressed.", 500)
 
     ;***********************************************DATE***********************************************
