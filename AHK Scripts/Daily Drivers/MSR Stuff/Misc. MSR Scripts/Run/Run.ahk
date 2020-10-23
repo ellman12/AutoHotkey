@@ -6,6 +6,20 @@
 *CapsLock::return ;Temporarily(?) removed on Saturday, October 17, 2020 at 8:10 PM because it was too annoying.
 
 !CapsLock:: ;Tells you what the previous command is. Asks if you want to proceed or not.
+
+if (runInputBoxText = "") {
+    Tippy("No previous Run command.", 2000)
+    return
+}
+
+MsgBox, 36, Run Previous Run Command?, "%runInputBoxText%`"
+IfMsgBox, Yes
+    runCommand(runInputBoxText)
+IfMsgBox, No
+    return
+return
+
+;Open the command InputBox, and then does what the user entered.
 !r::
 InputBox, runInputBoxText, Type a Command,,, 200, 100
 if ErrorLevel = 1
@@ -34,7 +48,7 @@ Switch (cmdToRun) {
 
     Default:
     if cmdToRun = ;Mainly for the ^CapsLock command. If the user tries to repeat a command without having done a command before, it won't do anything.
-        Tippy("No Run command specified.", 2000)
+        Tippy("No previous Run command.", 2000)
     else
         MsgBox, 16, Unknown Command., Command entered: "%cmdToRun%" does not exist.
     return
