@@ -803,6 +803,23 @@ global
 }
 
 ;**************************************************EXPERIMENTAL**************************************************
+;For taking Screenshots during Calculus and other online classes. Snip and Sketch has to already be in Window snip mode, though.
+RCtrl::
+Send, #+s
+Sleep 800
+MouseMove, 2, 2, 0, R
+Send, {Click}
+Sleep 1000
+MouseMove, 1762, 914, 0
+Sleep 1000
+Send, {Click}
+Sleep 1000
+Send, ^s
+Sleep 1000
+Send, {Enter}
+Sleep 1000
+Send, !{F4}
+return
 ;**************************************************TEMPORARY**************************************************
 :*:hon comp::Honors: Composition II
 :*:hcomp::Honors Composition II
@@ -816,7 +833,7 @@ global
 
 #IfWinActive, ahk_exe Zoom.exe
 ; RAlt::Send, #+s ;Snip & Sketch.
-RCtrl::Send, #+s ;Snip & Sketch.
+; RCtrl::Send, #+s ;Snip & Sketch.
 
 $PrintScreen::Send, #{PrintScreen}
 
