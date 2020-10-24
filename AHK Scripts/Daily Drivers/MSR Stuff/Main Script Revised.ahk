@@ -803,6 +803,30 @@ global
 }
 
 ;**************************************************EXPERIMENTAL**************************************************
+;**************************************************TEMPORARY**************************************************
+:*:hon comp::Honors: Composition II
+:*:hcomp::Honors Composition II
+
+;For Pop Culture paper.
+:*:shrek::Shrek
+:*:fiona::Fiona
+:*:farquaad::Farquaad
+:*:lofa::Lord Farquaad
+:*:duloc::Duloc
+
+#If WinActive("ahk_exe Zoom.exe")
+; RAlt::Send, #+s ;Snip & Sketch.
+; RCtrl::Send, #+s ;Snip & Sketch.
+
+$PrintScreen::Send, #{PrintScreen}
+
+$CapsLock:: ;"Hide" the mouse pointer, and hide the Zoom meeting controls.
+MouseGetPos, mousePosX, mousePosY
+MouseMove, 1920, 540, 0
+Send, {LAlt}
+return
+
+#If WinActive("ahk_exe Zoom.exe") && usingALaptop = true
 ;For taking Screenshots during Calculus and other online classes. Snip and Sketch has to already be in Window snip mode, though.
 RCtrl::
 Send, #+s
@@ -819,27 +843,5 @@ Sleep 1000
 Send, {Enter}
 Sleep 1000
 Send, !{F4}
-return
-;**************************************************TEMPORARY**************************************************
-:*:hon comp::Honors: Composition II
-:*:hcomp::Honors Composition II
-
-;For Pop Culture paper.
-:*:shrek::Shrek
-:*:fiona::Fiona
-:*:farquaad::Farquaad
-:*:lofa::Lord Farquaad
-:*:duloc::Duloc
-
-#IfWinActive, ahk_exe Zoom.exe
-; RAlt::Send, #+s ;Snip & Sketch.
-; RCtrl::Send, #+s ;Snip & Sketch.
-
-$PrintScreen::Send, #{PrintScreen}
-
-$CapsLock:: ;"Hide" the mouse pointer, and hide the Zoom meeting controls.
-MouseGetPos, mousePosX, mousePosY
-MouseMove, 1920, 540, 0
-Send, {LAlt}
 return
 #If
