@@ -60,11 +60,11 @@ F10::nextWinOrShowHideWins("F10", WindowGroupF10, CurrentWinF10)
 !#F8::removeAndCloseAllWins("F8", WindowGroupF8, CurrentWinF8)
 !#F10::removeAndCloseAllWins("F10", WindowGroupF10, CurrentWinF10)
 
-; ^+#Fx:: Shows all the window titles in each array.
-^+#F6::showWinTitlesFx("F6", WindowGroupF6, CurrentWinF6)
-^+#F7::showWinTitlesFx("F7", WindowGroupF7, CurrentWinF7)
-^+#F8::showWinTitlesFx("F8", WindowGroupF8, CurrentWinF8)
-^+#F10::showWinTitlesFx("F10", WindowGroupF10, CurrentWinF10)
+; ^+Fx:: Shows all the window titles in each array.
+^+F6::showWinTitlesFx("F6", WindowGroupF6, CurrentWinF6)
+^+F7::showWinTitlesFx("F7", WindowGroupF7, CurrentWinF7)
+^+F8::showWinTitlesFx("F8", WindowGroupF8, CurrentWinF8)
+^+F10::showWinTitlesFx("F10", WindowGroupF10, CurrentWinF10)
 
 ;**************************************************FUNCTIONS**************************************************
 ;Fx is either "F6", "F7", "F8", or "F10". The other param is the array to use. The Fx variable is just for the Tippy message.
@@ -73,17 +73,14 @@ addWindowFx(Fx, ByRef WindowGroupArray) {
     for index, value in WindowGroupArray ;If the current ID is already in the array, don't add it.
         if (currentID = value)
             return
-
     WindowGroupArray.Push(currentID) ;If duplicate isn't found, add window ID to the array.
-    Tippy("Added to" . A_Space . Fx . A_Space . "Group.", 100)
 }
 
 removeWindowFx(Fx, ByRef WindowGroupArray) {
     WinGet, currentID, ID, A ;Active window ID.
-    for index, value in WindowGroupArray ;Loop through list and find the value to remove.
-        if (value != currentID) ;If it's not found, stop code flow because nothing needs to be added
-            return
-    WindowGroupArray.RemoveAt(index)
+    for index, value in WindowGroupArray
+        if (value = currentID)
+            WindowGroupArray.RemoveAt(index)
 }
 
 addAndHideWindowFx(Fx, ByRef WindowGroupArray) {
@@ -178,8 +175,8 @@ prevWindowFx(Fx, ByRef WindowGroupArray, ByRef CurrentWin) {
     else
         CurrentWin--
 
-    if (CurrentWin < WindowGroup.MinIndex())
-        CurrentWin := WindowGroup.MaxIndex()
+    if (CurrentWin < WindowGroupArray.MinIndex())
+        CurrentWin := WindowGroupArray.MaxIndex()
     WinActivate, % "ahk_id" WindowGroupArray[CurrentWin] ;Now activate the window based on CurrentWin.
 }
 
@@ -212,10 +209,9 @@ removeNonexistentWindows(ByRef WindowGroupArray) {
 }
 
 removeAllWins(Fx, ByRef WindowGroupArray, ByRef CurrentWin) {
-    ;Blank out the array. It's that simple.
-    WindowGroupArray :=
+    WindowGroupArray := ;Blank out the array. It's that simple.
     CurrentWin := 1
-    Tippy("All windows in " . A_Space . Fx . A_Space . "Group have been removed.", 100)
+    Tippy("All windows in " . Fx . " Group have been removed.", 3000)
 }
 
 removeAndCloseAllWins(Fx, ByRef WindowGroupArray, ByRef CurrentWin) {
@@ -224,7 +220,7 @@ removeAndCloseAllWins(Fx, ByRef WindowGroupArray, ByRef CurrentWin) {
         WinClose, % "ahk_id " value
     WindowGroupArray :=
     CurrentWin := 1
-    Tippy("All windows in " . A_Space . Fx . A_Space . "Group have been removed and closed.", 100)
+    Tippy("All windows in " . Fx . " Group have been removed and closed.", 3000)
     DetectHiddenWindows, Off
 }
 
