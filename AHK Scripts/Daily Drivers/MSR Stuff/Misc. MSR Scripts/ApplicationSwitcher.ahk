@@ -126,7 +126,7 @@ F4Hotkey() {
                 WinActivate ahk_class Chrome_WidgetWin_1
         }
     } else if (F3Behavior = "VSCode") {
-       
+
         If WinNotExist, Code.exe
             Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code\Code.exe
         else
@@ -200,8 +200,12 @@ F12Hotkey() {
 
         if WinExist("ahk_exe cmd.exe")
             GroupAdd, VSCodeAndTerminalWins, ahk_exe cmd.exe
-        else
-            Run, cmd.exe
+        else {
+            Run, C:\Users\Elliott\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\System Tools\Command Prompt
+            Sleep 1000
+            WinMaximize, Command Prompt
+            WinActivate, Command Prompt
+        }
 
         GroupActivate, VSCodeAndTerminalWins, R
     return
