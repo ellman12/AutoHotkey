@@ -223,8 +223,8 @@ GUI, CPanel:Add, DDL, xm yp+17 w87 vFrontMouseButtonBehavior, Double Click||F1|F
 GUI, CPanel:Add, DDL, xm+90 yp w87 vBackMouseButtonBehavior, Double Click|F1|F2|F3|F4|F6||F7|F8|F9|F10|F12
 
 GUI, CPanel:Add, Text, xm yp+27, F12 Behavior
-GUI, CPanel:Add, DDL, xm yp+17 w146 vF12Behavior, VSCode and Cmd Prompt||Word|Excel|Word + Excel|
-global F12Behavior := "VSCode and Cmd Prompt"
+GUI, CPanel:Add, DDL, xm yp+17 w146 vF12Behavior, Word||VSCode and Cmd Prompt|Excel|Word + Excel|
+global F12Behavior := "Word" ;Sets default behavior without having to first open the GUI.
 
 ;Toggle for showing or hiding the GUI.
 ;If it's 1, show the GUI; if it's 0, hide it.
