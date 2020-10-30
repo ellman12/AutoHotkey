@@ -42,15 +42,9 @@ F2::MouseMove, mousePosX2, mousePosY2, 0
 F3::MouseMove, mousePosX3, mousePosY3, 0
 F4::MouseMove, mousePosX4, mousePosY4, 0
 
-^F9::
-!F9::
-Run, C:\Program Files\Microsoft Office\root\Office16\Outlook.exe
-return
-
-^F11::
-!F11::
-Run, C:\Users\Elliott\AppData\Local\Discord\app-0.0.308\Discord.exe
-return
+^F9::Run, C:\Program Files\Microsoft Office\root\Office16\Outlook.exe
+^F11::Run, C:\Users\Elliott\AppData\Local\Discord\app-0.0.308\Discord.exe
+^F12:: Run, C:\Program Files (x86)\MusicBee\MusicBee.exe
 
 F10::
 if (WinExist("Microsoft To Do")) AND (!WinActive("Microsoft To Do"))
@@ -88,6 +82,23 @@ else
     } else {
         WinShow, - Discord
         WinActivate, - Discord
+    }
+}
+return
+
+F12:: ;Show/hide MusicBee.
+SetTitleMatchMode, 2 ;A window's title can contain WinTitle anywhere inside it to be a match.
+if (WinExist("- MusicBee")) AND (!WinActive("- MusicBee"))
+    WinActivate, - MusicBee
+else
+{
+    MusicBeeVisibilityToggle := !MusicBeeVisibilityToggle
+
+    if (MusicBeeVisibilityToggle = 0) {
+        WinHide, - MusicBee
+    } else {
+        WinShow, - MusicBee
+        WinActivate, - MusicBee
     }
 }
 return

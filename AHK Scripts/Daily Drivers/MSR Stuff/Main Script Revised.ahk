@@ -245,9 +245,10 @@ global systemMasterVolume ;Used for NumPad Media Control stuff.
 global programmingMode := false ;Toggle for Programming Mode: disabling certain hotkeys/hotstrings to make programming easier. ^!Insert is the hotkey.
 global hotstringsActiveToggle := true ;Determines if AutoCorrect hotstrings are active or not. Active by default, obviously. ^#Insert is the hotkey.
 
-;Used for F9 and F11 on 2nd keeb for showing/hiding these programs. 1 = visible; 0 = not visible.
+;Used for F9, F11, and F12 on 2nd keeb for showing/hiding these programs. 1 = visible; 0 = not visible.
 global OutlookVisibilityToggle := 1
 global DiscordVisibilityToggle := 1
+global MusicBeeVisibilityToggle := 1
 
 ;The stuff in this loop needs to be running constantly.
 Loop {
