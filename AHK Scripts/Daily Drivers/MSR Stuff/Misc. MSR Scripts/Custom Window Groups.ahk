@@ -209,7 +209,7 @@ removeNonexistentWindows(ByRef WindowGroupArray) {
 }
 
 removeAllWins(Fx, ByRef WindowGroupArray, ByRef CurrentWin) {
-    WindowGroupArray := ;Blank out the array. It's that simple.
+    WindowGroupArray := [] ;Blank out the array. It's that simple.
     CurrentWin := 1
     Tippy("All windows in " . Fx . " Group have been removed.", 3000)
 }

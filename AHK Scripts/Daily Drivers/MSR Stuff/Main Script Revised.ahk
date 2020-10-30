@@ -807,6 +807,10 @@ global
 :*:hon comp::Honors: Composition II
 :*:hcomp::Honors Composition II
 
+;Dell keyboard.
+Volume_Down::SoundSet, -2
+Volume_Up::SoundSet, +2
+
 ;For Pop Culture paper.
 :*:shrek::Shrek
 :*:fiona::Fiona
