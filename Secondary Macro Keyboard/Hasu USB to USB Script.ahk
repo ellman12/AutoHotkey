@@ -52,7 +52,12 @@ return
 Run, C:\Users\Elliott\AppData\Local\Discord\app-0.0.308\Discord.exe
 return
 
-F10::Run, C:\Users\Elliott\Documents\Microsoft To Do ;Run/show MS To Do.
+F10::
+if (WinExist("Microsoft To Do")) AND (!WinActive("Microsoft To Do"))
+    WinActivate, Microsoft To Do
+else
+    Run, C:\Users\Elliott\Documents\Microsoft To Do ;Run/show MS To Do.
+return
 
 F9:: ;Show/hide Outlook.
 SetTitleMatchMode, 2 ;A window's title can contain WinTitle anywhere inside it to be a match.
