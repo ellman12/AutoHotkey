@@ -5340,6 +5340,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::weve::we've
 ::werent::weren't
 ::whatd::what'd
+::whats::what's
 ::whatll::what'll
 ::whered::where'd
 ::wheres::where's
@@ -5355,10 +5356,6 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::youll::you'll
 ::youre::you're
 ::youve::you've
-
-;--------------------------------------------------------------------------------------------------------
-; Anything below this point was added to the script by the user via the Win+H hotkey (or by me, by hand).
-;--------------------------------------------------------------------------------------------------------
 
 ;Stuff that I took from an old file called "AutoCapitalize.ahk", and combined it into this script.
 ;There was no need for it to be in its own file; it was small and wasn't doing that much.
