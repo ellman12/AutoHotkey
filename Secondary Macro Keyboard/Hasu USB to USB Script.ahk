@@ -240,8 +240,7 @@ w::Send, ^#{Right}
 
 a::Send, ^a ;Select all.
 
-;Pastes clipboard contents.
-b::Send, ^v
+b::Send, ^v ;Pastes clipboard contents.
 
 BackSpace::Send, !{F4} ;Sends Alt + F4.
 
@@ -259,32 +258,27 @@ Sleep 1000
 Send, !s
 return
 
-;Kind Regards Macro.
-enter::Send, Kind regards`,{Enter 2}Elliott DuCharme
+enter::Send, Kind regards`,{Enter 2}Elliott DuCharme ;Kind Regards Macro.
 
 ;Open the spreadsheet.
 escape::Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://docs.google.com/spreadsheets/d/1vGHwAVQwkmzGGpM_xQJ86RGXfsBiBxDD089cu1u02eA/edit#gid=711563356
 
-;Open the AHK repo folder.
-f::Run, explorer C:\Users\Elliott\Documents\GitHub\AutoHotkey
+f::Run, explorer C:\Users\Elliott\Documents\GitHub\AutoHotkey ;Open the AHK repo folder.
 
-;Open the Documents folder.
-g::Run, explorer %A_MyDocuments%
+g::Run, explorer %A_MyDocuments% ;Open the Documents folder.
 
-;Open my user folder.
-h::Run, explorer C:\Users\Elliott\
+h::Run, explorer C:\Users\Elliott\ ;Open my user folder.
 
 ;Create a new Private Firefox window w/ Google Images.
 i::Run, C:\Program Files\Mozilla Firefox\firefox.exe -private-window https://images.google.com/
 
-;Open the C: drive.
-j::Run, explorer.exe "C:\"
+j::Run, explorer.exe "C:\" ;Open the C: drive.
 
-;Open the Downloads folder.
-k::Run, explorer.exe "C:\Users\Elliott\Downloads"
+k::Run, explorer.exe "C:\Users\Elliott\Downloads" ;Open the Downloads folder.
 
-;Open the G: drive.
-l::Run, explorer.exe "G:\"
+l::Run, explorer.exe "G:\" ;Open the G: drive.
+
+!l::Run, explorer.exe "B:\" ;Open the B:\ drive.
 
 SC027:: ; :/; key copies the selected word/text, and searches for it on Thesaurus.com.
 Send, ^c
