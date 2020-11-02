@@ -69,7 +69,19 @@ else
 }
 return
 
-F11:: ;Show/hide Discord.
+!F9:: ;Show/hide Outlook.
+SetTitleMatchMode, 2 ;A window's title can contain WinTitle anywhere inside it to be a match.
+OutlookVisibilityToggle := !OutlookVisibilityToggle
+
+if (OutlookVisibilityToggle = 0) {
+    WinHide, - Outlook
+} else {
+    WinShow, - Outlook
+    WinActivate, - Outlook
+}
+return
+
+F11:: ;Activate, and show/hide Discord.
 SetTitleMatchMode, 2 ;A window's title can contain WinTitle anywhere inside it to be a match.
 if (WinExist("- Discord")) AND (!WinActive("- Discord"))
     WinActivate, - Discord
@@ -86,7 +98,19 @@ else
 }
 return
 
-F12:: ;Show/hide MusicBee.
+!F11:: ;Show/hide Discord.
+SetTitleMatchMode, 2 ;A window's title can contain WinTitle anywhere inside it to be a match.
+DiscordVisibilityToggle := !DiscordVisibilityToggle
+
+if (DiscordVisibilityToggle = 0) {
+    WinHide, - Discord
+} else {
+    WinShow, - Discord
+    WinActivate, - Discord
+}
+return
+
+F12:: ;Activate, and show/hide MusicBee.
 SetTitleMatchMode, 2 ;A window's title can contain WinTitle anywhere inside it to be a match.
 if (WinExist("- MusicBee")) AND (!WinActive("- MusicBee"))
     WinActivate, - MusicBee
@@ -100,6 +124,18 @@ else
         WinShow, - MusicBee
         WinActivate, - MusicBee
     }
+}
+return
+
+!F12:: ;Show/hide MusicBee.
+SetTitleMatchMode, 2 ;A window's title can contain WinTitle anywhere inside it to be a match.
+MusicBeeVisibilityToggle := !MusicBeeVisibilityToggle
+
+if (MusicBeeVisibilityToggle = 0) {
+    WinHide, - MusicBee
+} else {
+    WinShow, - MusicBee
+    WinActivate, - MusicBee
 }
 return
 
