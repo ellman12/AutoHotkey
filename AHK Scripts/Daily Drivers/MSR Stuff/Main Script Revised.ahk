@@ -414,6 +414,18 @@ sc029::Send, !{Tab} ;The grave accent key (that weird thing under the Tilde ~ sy
 ;Toggle programming mode. Disables hotkeys/hotstrings that can be annoying when programming.
 ^!Insert::BooleanToggle(programmingMode, "Programming Mode ON", "Programming Mode Off")
 
+;Since Windows 10 annoyingly doesn't allow you to rearrange individual windows for a program on the Taskbar when their icons are expanded out, I made this fantastic workaround.
+;It will move the active window to the end of the "stack(?)" of windows.
+;E.g., you have 2 MSWord windows open: win1 and win2. By doing this, win1 would move to be after win2. Windows 10 doesn't allow this natively.
+#m::
+WinGetActiveTitle, winMTitle
+WinHide, %winMTitle%
+WinShow, %winMTitle%
+winMTitle := ;Free memory.
+return
+
+!Insert::MouseMove, mousePosX, mousePosY, 0 ;Moves mouse pointer back to where it was before pressing Insert or ^Insert (but not both).
+
 Insert:: ;Moves mouse pointer as far off the screen as possible (on main display).
 MouseGetPos, mousePosX, mousePosY
 if (InsMonChoice = "Primary Mon")
@@ -429,22 +441,19 @@ else if (CtrlInsMonChoice = "Secondary Mon")
 	MouseMove, -1920, 540, 0
 return
 
-!Insert::MouseMove, mousePosX, mousePosY, 0 ;Moves mouse pointer back to where it was before pressing Insert or ^Insert (but not both).
-
-;Opens Wi-Fi menu.
-#w::
-MouseGetPos, originalX, originalY
-MouseMove, %WinWX%, %WinWY%, 0
-Sleep 200
-Send, {Click}
-MouseMove, originalX, originalY
-return
-
 ~$RShift:: ;A "sniper" button, which slows the mouse pointer speed down to a crawl and still outputs the RShift key.
 Send, {RShift}
 DllCall("SystemParametersInfo", Int,113, Int,0, UInt,1, Int,1)
 KeyWait, RShift
 DllCall("SystemParametersInfo", Int,113, Int,0, UInt,10, Int,1)
+return
+
+#w:: ;Opens Wi-Fi menu.
+MouseGetPos, originalX, originalY
+MouseMove, %WinWX%, %WinWY%, 0
+Sleep 200
+Send, {Click}
+MouseMove, originalX, originalY
 return
 
 ^!+d:: ;Used for deleting videos from YouTube playlist. Asks you how many times to do it and then it starts doing its thing.
