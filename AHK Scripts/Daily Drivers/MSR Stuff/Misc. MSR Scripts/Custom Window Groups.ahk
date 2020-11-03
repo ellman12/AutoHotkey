@@ -137,7 +137,8 @@ nextWindowFx(ByRef WindowGroupArray, ByRef CurrentWin) {
         }
     }
 
-    ;I can't remember what this does unfortunately. I didn't make a comment about it when I made it.
+    ;If you switch to a different window that is not in the group, and you push the button to go to the next window, it'll take you back to the last window.
+    ;This is what the R thing with AHK's built-in groups does.
     if (activeWindowID != WindowGroupArray[CurrentWin] AND !inArray(activeWindowID, WindowGroupArray)) {
         WinActivate, % "ahk_id" WindowGroupArray[CurrentWin]
         return
@@ -187,7 +188,6 @@ prevWindowFx(ByRef WindowGroupArray, ByRef CurrentWin) {
         }
     }
 
-    ;I can't remember what this does unfortunately. I didn't make a comment about it when I made it.
     if (activeWindowID != WindowGroupArray[CurrentWin] AND !inArray(activeWindowID, WindowGroupArray)) {
         WinActivate, % "ahk_id" WindowGroupArray[CurrentWin]
         return
