@@ -61,10 +61,10 @@ F10::nextWinOrShowHideWins("F10", WindowGroupF10, CurrentWinF10)
 !#F10::removeAndCloseAllWins("F10", WindowGroupF10, CurrentWinF10)
 
 ; ^+Fx:: Shows all the window titles in each array.
-^+F6::showWinTitlesFx("F6", WindowGroupF6, CurrentWinF6)
-^+F7::showWinTitlesFx("F7", WindowGroupF7, CurrentWinF7)
-^+F8::showWinTitlesFx("F8", WindowGroupF8, CurrentWinF8)
-^+F10::showWinTitlesFx("F10", WindowGroupF10, CurrentWinF10)
+^+F6::showWinTitlesFx("F6", WindowGroupF6, CurrentWinF6, F6ShowHideToggle)
+^+F7::showWinTitlesFx("F7", WindowGroupF7, CurrentWinF7, F7ShowHideToggle)
+^+F8::showWinTitlesFx("F8", WindowGroupF8, CurrentWinF8, F8ShowHideToggle)
+^+F10::showWinTitlesFx("F10", WindowGroupF10, CurrentWinF10, F10ShowHideToggle)
 
 ;**************************************************FUNCTIONS**************************************************
 ;Fx is either "F6", "F7", "F8", or "F10". The other param is the array to use. The Fx variable is just for the Tippy message.
@@ -247,19 +247,23 @@ removeAndCloseAllWins(Fx, ByRef WindowGroupArray, ByRef CurrentWin) {
     DetectHiddenWindows, Off
 }
 
-showWinTitlesFx(Fx, WindowGroupArray, CurrentWin) {
+showWinTitlesFx(Fx, WindowGroupArray, CurrentWin, FxShowHideToggle) {
     DetectHiddenWindows, On ;Needed for if windows are hidden (F8, etc.)
 
-    for index, value in WindowGroupArray
+    if ((WindowGroupArray.Length() = 0))
+        message := "There are no windows in the " . Fx . " Group."
+    else ;List all the windows.
     {
-        WinGetTitle, currentTitle, ahk_id %value%
-        if (currentTitle = "") ;Skips windows that are in the array but that don't exist.
-            continue
-        message .= "Window #" . Index . " = " . currentTitle . "`n`n"
+        for index, value in WindowGroupArray
+        {
+            WinGetTitle, currentTitle, ahk_id %value%
+            if (currentTitle = "") ;Skips windows that are in the array but that don't exist.
+                continue
+            message .= "Window #" . Index . " = " . currentTitle . "`n`n"
+        }
     }
 
-    DetectHiddenWindows, Off
-    MsgBox, 0, %Fx% Windows, CurrentWin%Fx% = %CurrentWin%`n`n%message%
+    MsgBox, 0, %Fx% Windows, CurrentWin%Fx% = %CurrentWin%`n`n%Fx%ShowHideToggle = %F6ShowHideToggle%`n`n%message%
     currentTitle := ;Free memory.
     message :=
 }

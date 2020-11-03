@@ -80,12 +80,6 @@ global F7Mode := "Window Group"
 global F8Mode := "Window Hider"
 global F10Mode := "Window Hider"
 
-;Prevents losing windows when reloading the script with windows hidden.
-global F6WindowsHidden := false
-global F7WindowsHidden := false
-global F8WindowsHidden := false
-global F10WindowsHidden := false
-
 ;Declare these as 1 so the first time you press F8, it hides everything.
 ;If it's 1, hide windows; if it's 0, show windows.
 global F6ShowHideToggle := 0
@@ -775,6 +769,19 @@ reloadMSR() {
 	else
 		Reload ;If no windows are hidden.
 }
+
+;TODO: fix this bug
+;https://www.google.com/search?source=hp&ei=LaWhX4fyDoKMtAas97iQDA&q=autohotkey+get+if+window+hidden&oq=AutoHotkey+get+if+widow+hiddem&gs_lcp=CgZwc3ktYWIQAxgAMgcIIRAKEKABOggIABCxAxDJAzoCCC46BQgAELEDOgIIADoECAAQCjoOCAAQ6gIQtAIQmgEQ5QI6BQgAEMkDOgYIABAWEB46BQgAEM0COggIIRAWEB0QHjoFCCEQoAE6BQghEKsCUJQBWOEYYKMhaAFwAHgAgAHrAogBmxuSAQgwLjE1LjUuMZgBAKABAaoBB2d3cy13aXqwAQY&sclient=psy-ab
+; reloadMSR() {
+; 	if (F6ShowHideToggle = 1) {
+; 		If (Style & 0x10000000)  ; 0x10000000 is WS_VISIBLE
+; 			MsgBox, My Window is Visible
+; 	}
+
+
+; 	else
+; 		Reload
+; }
 
 ;Called by top 2 mouse button hotkeys.
 topMouseButtons(buttonMode) {
