@@ -128,6 +128,16 @@ showOrHideWindowsFx(ByRef WindowGroupArray, ByRef FxShowHideToggle) {
 nextWindowFx(ByRef WindowGroupArray, ByRef CurrentWin) {
     removeNonexistentWindows(WindowGroupArray)
 
+    ;Checks if there's 2 windows in the array. If so, acts like !Tab.
+    if (WindowGroupArray.MaxIndex() = 2)
+    {
+        if (activeWindowID != WindowGroupArray[CurrentWin] AND inArray(activeWindowID, WindowGroupArray)) {
+            WinActivate, % "ahk_id" WindowGroupArray[CurrentWin]
+            return
+        }
+    }
+
+    ;I can't remember what this does unfortunately. I didn't make a comment about it when I made it.
     if (activeWindowID != WindowGroupArray[CurrentWin] AND !inArray(activeWindowID, WindowGroupArray)) {
         WinActivate, % "ahk_id" WindowGroupArray[CurrentWin]
         return
@@ -168,6 +178,16 @@ global ;I'm not proud of this code, but it works.
 prevWindowFx(ByRef WindowGroupArray, ByRef CurrentWin) {
     removeNonexistentWindows(WindowGroupArray)
 
+    ;Checks if there's 2 windows in the array. If so, acts like !Tab.
+    if (WindowGroupArray.MaxIndex() = 2)
+    {
+        if (activeWindowID != WindowGroupArray[CurrentWin] AND inArray(activeWindowID, WindowGroupArray)) {
+            WinActivate, % "ahk_id" WindowGroupArray[CurrentWin]
+            return
+        }
+    }
+
+    ;I can't remember what this does unfortunately. I didn't make a comment about it when I made it.
     if (activeWindowID != WindowGroupArray[CurrentWin] AND !inArray(activeWindowID, WindowGroupArray)) {
         WinActivate, % "ahk_id" WindowGroupArray[CurrentWin]
         return
