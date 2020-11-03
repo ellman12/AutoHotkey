@@ -172,11 +172,15 @@ Switch (cmdToRun) {
     Case ">=": Send, {U+2265} ;≥
     Case "delta": Send, {U+0394} ;Δ
     Case "pi": Send, {U+03C0} ;π
-    Case "deg": Send, {U+00B0} ;°
     Case "micro": Send, {U+00B5} ;µ
     Case "inf": Send, {U+221E} ;∞
     Case "...": Send, {U+2026} ;…
     Case "theta": Send, {U+03B8} ;θ
+
+    ;Degree/temperature characters.
+    Case "deg": Send, {U+00B0} ;°
+    Case "degf": Send, {U+2109} ;℉
+    Case "degc": Send, {U+2103} ;℃
 
     ;Sends either an em or en dash.
     Case "en": Send, {U+2013} ;–
