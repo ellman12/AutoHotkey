@@ -1,19 +1,3 @@
-#NoEnv
-#MaxHotkeysPerInterval 999999999999999999999999999999999
-#HotkeyInterval 99999999999999999999999999999999999
-#KeyHistory 0
-ListLines Off
-Process, Priority, , A
-SetBatchLines, -1
-SetKeyDelay, -1, -1
-SetMouseDelay, -1
-SetDefaultMouseSpeed, 0
-SetWinDelay, -1
-SetControlDelay, -1
-SendMode Input
-DetectHiddenWindows, Off
-#SingleInstance force
-
 ;///////////////////////////////////////////////////////////////////////
 ;File: Main Script Revised.ahk
 ;///////////////////////////////////////////////////////////////////////
@@ -61,6 +45,22 @@ DetectHiddenWindows, Off
 
 ;Pic of all these icons: https://diymediahome.org/wp-content/uploads/shell32_icons.jpg
 Menu, Tray, Icon, shell32.dll, 233 ;Changes the icon to a cute little computer.
+
+#NoEnv
+#MaxHotkeysPerInterval 999999999999999999999999999999999
+#HotkeyInterval 99999999999999999999999999999999999
+#KeyHistory 0
+ListLines Off
+Process, Priority, , A
+SetBatchLines, -1
+SetKeyDelay, -1, -1
+SetMouseDelay, -1
+SetDefaultMouseSpeed, 0
+SetWinDelay, -1
+SetControlDelay, -1
+SendMode Input
+DetectHiddenWindows, Off
+#SingleInstance force
 
 ;**************************************************AUTO-EXECUTE**************************************************
 ;***********************************CUSTOM WINDOW GROUPS***********************************
