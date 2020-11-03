@@ -276,6 +276,11 @@ w::Send, ^#{Right}
 
 a::Send, ^a ;Select all.
 
+$^a:: ;Selects all and does Title Case thing from TCT.
+Send, ^a
+Gosub, ^!t
+return
+
 b::Send, ^v ;Pastes clipboard contents.
 
 BackSpace::Send, !{F4} ;Sends Alt + F4.
