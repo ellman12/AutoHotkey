@@ -46,7 +46,6 @@
 /* TODO:
 thing that after certain amount of time moves mouse pointer off screen. If it's moved by user put back to where it was. Have a #o thing to customize delay
 customize other top mouse button behavior
-remove extra unnecessary params in CWG
 */
 
 ;Pic of all these icons: https://diymediahome.org/wp-content/uploads/shell32_icons.jpg

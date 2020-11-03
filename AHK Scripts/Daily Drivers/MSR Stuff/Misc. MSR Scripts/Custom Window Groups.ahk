@@ -7,16 +7,16 @@
 
 ;**************************************************HOTKEYS**************************************************
 ; ^Fx:: Add the current window's ID to its respective array.
-^F6::addWindowFx("F6", WindowGroupF6)
-^F7::addWindowFx("F7", WindowGroupF7)
-^F8::addWindowFx("F8", WindowGroupF8)
-^F10::addWindowFx("F10", WindowGroupF10)
+^F6::addWindowFx(WindowGroupF6)
+^F7::addWindowFx(WindowGroupF7)
+^F8::addWindowFx(WindowGroupF8)
+^F10::addWindowFx(WindowGroupF10)
 
 ; ^!Fx:: Remove the current window from the array.
-^!F6::removeWindowFx("F6", WindowGroupF6)
-^!F7::removeWindowFx("F7", WindowGroupF7)
-^!F8::removeWindowFx("F8", WindowGroupF8)
-^!F10::removeWindowFx("F10", WindowGroupF10)
+^!F6::removeWindowFx(WindowGroupF6)
+^!F7::removeWindowFx(WindowGroupF7)
+^!F8::removeWindowFx(WindowGroupF8)
+^!F10::removeWindowFx(WindowGroupF10)
 
 ; !Fx:: Add the current window's ID to the array, and hide it right away. Only works when the array is in hide mode.
 !F6::addAndHideWindowFx("F6", WindowGroupF6)
@@ -37,16 +37,16 @@ F10::nextWinOrShowHideWins("F10", WindowGroupF10, CurrentWinF10)
 +F10::prevWinOrHideWins("F10", WindowGroupF10, CurrentWinF10)
 
 ; #Fx:: Next window, regardless of mode.
-#F6::nextWindowFx("F6", WindowGroupF6, CurrentWinF6)
-#F7::nextWindowFx("F7", WindowGroupF7, CurrentWinF7)
-#F8::nextWindowFx("F8", WindowGroupF8, CurrentWinF8)
-#F10::nextWindowFx("F10", WindowGroupF10, CurrentWinF10)
+#F6::nextWindowFx(WindowGroupF6, CurrentWinF6)
+#F7::nextWindowFx(WindowGroupF7, CurrentWinF7)
+#F8::nextWindowFx(WindowGroupF8, CurrentWinF8)
+#F10::nextWindowFx(WindowGroupF10, CurrentWinF10)
 
 ; #+Fx:: Previous window, regardless of mode.
-#+F6::prevWindowFx("F6", WindowGroupF6, CurrentWinF6)
-#+F7::prevWindowFx("F7", WindowGroupF7, CurrentWinF7)
-#+F8::prevWindowFx("F8", WindowGroupF8, CurrentWinF8)
-#+F10::prevWindowFx("F10", WindowGroupF10, CurrentWinF10)
+#+F6::prevWindowFx(WindowGroupF6, CurrentWinF6)
+#+F7::prevWindowFx(WindowGroupF7, CurrentWinF7)
+#+F8::prevWindowFx(WindowGroupF8, CurrentWinF8)
+#+F10::prevWindowFx(WindowGroupF10, CurrentWinF10)
 
 ; ^#Fx:: Remove all windows from the array, without closing them.
 ^#F6::removeAllWins("F6", WindowGroupF6, CurrentWinF6)
@@ -68,7 +68,7 @@ F10::nextWinOrShowHideWins("F10", WindowGroupF10, CurrentWinF10)
 
 ;**************************************************FUNCTIONS**************************************************
 ;Fx is either "F6", "F7", "F8", or "F10". The other param is the array to use. The Fx variable is just for the Tippy message.
-addWindowFx(Fx, ByRef WindowGroupArray) {
+addWindowFx(ByRef WindowGroupArray) {
     WinGet, currentID, ID, A ;Active window ID.
     for index, value in WindowGroupArray ;If the current ID is already in the array, don't add it.
         if (currentID = value)
@@ -76,7 +76,7 @@ addWindowFx(Fx, ByRef WindowGroupArray) {
     WindowGroupArray.Push(currentID) ;If duplicate isn't found, add window ID to the array.
 }
 
-removeWindowFx(Fx, ByRef WindowGroupArray) {
+removeWindowFx(ByRef WindowGroupArray) {
     WinGet, currentID, ID, A ;Active window ID.
     for index, value in WindowGroupArray
         if (value = currentID)
@@ -85,22 +85,25 @@ removeWindowFx(Fx, ByRef WindowGroupArray) {
 
 addAndHideWindowFx(Fx, ByRef WindowGroupArray) {
 
-    if (Fx = "F6" AND F6Mode = "Window Hider") {
+    if (Fx = "F6" AND F6Mode = "Window Hider")
+    {
         addWindowFx(Fx, WindowGroupArray)
         WinHide, % "ahk_id" activeWindowID
-        F6ShowHideToggle := 1
-    } else if (Fx = "F7" AND F7Mode = "Window Hider") {
+    }
+    else if (Fx = "F7" AND F7Mode = "Window Hider")
+    {
         addWindowFx(Fx, WindowGroupArray)
         WinHide, % "ahk_id" activeWindowID
-        F7ShowHideToggle := 1
-    } else if (Fx = "F8" AND F8Mode = "Window Hider") {
+    }
+    else if (Fx = "F8" AND F8Mode = "Window Hider")
+    {
         addWindowFx(Fx, WindowGroupArray)
         WinHide, % "ahk_id" activeWindowID
-        F8ShowHideToggle := 1
-    } else if (Fx = "F10" AND F10Mode = "Window Hider") {
+    }
+    else if (Fx = "F10" AND F10Mode = "Window Hider")
+    {
         addWindowFx(Fx, WindowGroupArray)
         WinHide, % "ahk_id" activeWindowID
-        F10ShowHideToggle := 1
     }
 }
 
@@ -122,7 +125,7 @@ showOrHideWindowsFx(ByRef WindowGroupArray, ByRef FxShowHideToggle) {
     }
 }
 
-nextWindowFx(Fx, ByRef WindowGroupArray, ByRef CurrentWin) {
+nextWindowFx(ByRef WindowGroupArray, ByRef CurrentWin) {
     removeNonexistentWindows(WindowGroupArray)
 
     if (activeWindowID != WindowGroupArray[CurrentWin] AND !inArray(activeWindowID, WindowGroupArray)) {
@@ -162,7 +165,7 @@ global ;I'm not proud of this code, but it works.
         showOrHideWindowsFx(WindowGroupF10, F10ShowHideToggle)
 }
 
-prevWindowFx(Fx, ByRef WindowGroupArray, ByRef CurrentWin) {
+prevWindowFx(ByRef WindowGroupArray, ByRef CurrentWin) {
     removeNonexistentWindows(WindowGroupArray)
 
     if (activeWindowID != WindowGroupArray[CurrentWin] AND !inArray(activeWindowID, WindowGroupArray)) {
