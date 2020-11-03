@@ -15,7 +15,7 @@ SplitPath, A_ScriptName, , , , thisscriptname
 CoordMode, ToolTip, Screen
 CoordMode, Mouse, Screen
 
-#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\Tippy.ahk
+#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\Tippy.ahk
 
 ; thing that after certain amount of time moves mouse pointer off screen. If it's moved by user put back to where it was. Have a #o thing to customize delay
 ;TODO: make sure it's actually working, and also have it return back to it's original position if the user nudges the mouse a bit.

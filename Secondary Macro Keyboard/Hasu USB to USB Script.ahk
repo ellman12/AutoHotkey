@@ -43,14 +43,14 @@ F3::MouseMove, mousePosX3, mousePosY3, 0
 F4::MouseMove, mousePosX4, mousePosY4, 0
 
 ^F9::Run, C:\Program Files\Microsoft Office\root\Office16\Outlook.exe
-^F11::Run, C:\Users\Elliott\AppData\Local\Discord\app-0.0.308\Discord.exe
+^F11::Run, C:\Users\%A_UserName%\AppData\Local\Discord\app-0.0.308\Discord.exe
 ^F12:: Run, C:\Program Files (x86)\MusicBee\MusicBee.exe
 
 F10::
 if (WinExist("Microsoft To Do")) AND (!WinActive("Microsoft To Do"))
     WinActivate, Microsoft To Do
 else
-    Run, C:\Users\Elliott\Documents\Microsoft To Do ;Run/show MS To Do.
+    Run, C:\Users\%A_UserName%\Documents\Microsoft To Do ;Run/show MS To Do.
 return
 
 F9:: ;Show/hide Outlook.
@@ -299,18 +299,18 @@ enter::Send, Kind regards`,{Enter 2}Elliott DuCharme ;Kind Regards Macro.
 ;Open the spreadsheet.
 escape::Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://docs.google.com/spreadsheets/d/1vGHwAVQwkmzGGpM_xQJ86RGXfsBiBxDD089cu1u02eA/edit#gid=711563356
 
-f::Run, explorer C:\Users\Elliott\Documents\GitHub\AutoHotkey ;Open the AHK repo folder.
+f::Run, explorer C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey ;Open the AHK repo folder.
 
 g::Run, explorer %A_MyDocuments% ;Open the Documents folder.
 
-h::Run, explorer C:\Users\Elliott\ ;Open my user folder.
+h::Run, explorer C:\Users\%A_UserName%\ ;Open my user folder.
 
 ;Create a new Private Firefox window w/ Google Images.
 i::Run, C:\Program Files\Mozilla Firefox\firefox.exe -private-window https://images.google.com/
 
 j::Run, explorer.exe "C:\" ;Open the C: drive.
 
-k::Run, explorer.exe "C:\Users\Elliott\Downloads" ;Open the Downloads folder.
+k::Run, explorer.exe "C:\Users\%A_UserName%\Downloads" ;Open the Downloads folder.
 
 l::Run, explorer.exe "G:\" ;Open the G: drive.
 
@@ -424,7 +424,7 @@ SC01B::
 return
 
 ;Open Music folder.
-s::Run, explorer C:\Users\Elliott\Music
+s::Run, explorer C:\Users\%A_UserName%\Music
 
 Space:: ;Suspends all hotkeys for the specified number in milliseconds.
 SetTimer, setTimerLabel, 2500, On

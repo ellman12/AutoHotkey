@@ -330,9 +330,9 @@ Loop {
 }
 
 ;Other files with many different hotkeys in them.
-#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\BooleanToggle.ahk
-#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\inArray.ahk
-#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\Tippy.ahk
+#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\BooleanToggle.ahk
+#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\inArray.ahk
+#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\Tippy.ahk
 
 #Include, %A_ScriptDir%\MSR Profiles\Browser.ahk
 #Include, %A_ScriptDir%\MSR Profiles\Default.ahk
@@ -354,7 +354,7 @@ Loop {
 #Include, %A_ScriptDir%\Video Game Stuff\Minecraft.ahk
 #Include, %A_ScriptDir%\Video Game Stuff\Terraria.ahk
 
-#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\Secondary Macro Keyboard\Hasu USB to USB Script.ahk
+#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\Secondary Macro Keyboard\Hasu USB to USB Script.ahk
 
 ;This is after the 2nd keeb script because if it is #Included before it and it's enabled it breaks the keys like j, k, l, a, etc.
 #Include, %A_ScriptDir%\Misc. MSR Scripts\Chromebook Typing.ahk

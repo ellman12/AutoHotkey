@@ -15,7 +15,7 @@ DetectHiddenWindows, Off
 #SingleInstance force
 #Persistent
 
-Menu, Tray, Icon, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Bedtime Script\Sleeping Emoji.png
+Menu, Tray, Icon, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Bedtime Script\Sleeping Emoji.png
 
 GUI, BedtimeGUI:Font, S36
 GUI, BedtimeGUI:Add, Text,,IT'S BEDTIME!!
@@ -38,11 +38,11 @@ Loop {
 
 Bedtime() {
 
-    FileRead, BedtimeValue, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Bedtime Script\Bedtime.txt ;User can set the Bedtime to what they want in this file.
+    FileRead, BedtimeValue, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Bedtime Script\Bedtime.txt ;User can set the Bedtime to what they want in this file.
     if (ErrorLevel = 1)
         MsgBox, 16, Something went wrong., Something went wrong while reading the "Bedtime" file.
 
-    FileRead, WakeUpTime, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Bedtime Script\WakeUpTime.txt ;When to turn the thing off.
+    FileRead, WakeUpTime, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Bedtime Script\WakeUpTime.txt ;When to turn the thing off.
     if (ErrorLevel = 1)
         MsgBox, 16, Something went wrong., Something went wrong while reading the "WakeUpTime" file.
 

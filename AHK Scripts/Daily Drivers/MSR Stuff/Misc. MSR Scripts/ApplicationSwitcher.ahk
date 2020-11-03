@@ -79,7 +79,7 @@ F3Hotkey() {
     } else if (F3Behavior = "VSCode") {
 
         IfWinNotExist, ahk_exe Code.exe
-            Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code\Code.exe
+            Run, C:\Users\%A_UserName%\AppData\Local\Programs\Microsoft VS Code\Code.exe
         if WinActive("ahk_exe Code.exe")
             Send ^{PGDN}
         else
@@ -102,7 +102,7 @@ if (F3Behavior = "Google Chrome") {
 } else if (F3Behavior = "VSCode") {
 
     IfWinNotExist, ahk_exe Code.exe
-        Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code\Code.exe
+        Run, C:\Users\%A_UserName%\AppData\Local\Programs\Microsoft VS Code\Code.exe
     if WinActive("ahk_exe Code.exe")
         Send ^{PGUP}
     else
@@ -128,7 +128,7 @@ F4Hotkey() {
     } else if (F3Behavior = "VSCode") {
 
         If WinNotExist, Code.exe
-            Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code\Code.exe
+            Run, C:\Users\%A_UserName%\AppData\Local\Programs\Microsoft VS Code\Code.exe
         else
         {
             GroupAdd, codeWins, ahk_exe Code.exe
@@ -196,12 +196,12 @@ F12Hotkey() {
         if WinExist("ahk_exe Code.exe")
             GroupAdd, VSCodeAndTerminalWins, ahk_exe Code.exe
         else
-            Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code\Code.exe
+            Run, C:\Users\%A_UserName%\AppData\Local\Programs\Microsoft VS Code\Code.exe
 
         if WinExist("ahk_exe cmd.exe")
             GroupAdd, VSCodeAndTerminalWins, ahk_exe cmd.exe
         else {
-            Run, C:\Users\Elliott\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\System Tools\Command Prompt
+            Run, C:\Users\%A_UserName%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\System Tools\Command Prompt
             Sleep 1000
             WinMaximize, Command Prompt
             WinActivate, Command Prompt
@@ -269,7 +269,7 @@ if WinActive("Microsoft To Do") { ;In the Tasks menu, add a task and mark it due
 } else if WinExist("Microsoft To Do") ;Activate it.
     WinActivate
 else {
-    Run, C:\Users\Elliott\Documents\Microsoft To Do ;Shortcut in Documents.
+    Run, C:\Users\%A_UserName%\Documents\Microsoft To Do ;Shortcut in Documents.
 }
 return
 
