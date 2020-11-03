@@ -87,22 +87,22 @@ addAndHideWindowFx(Fx, ByRef WindowGroupArray) {
 
     if (Fx = "F6" AND F6Mode = "Window Hider")
     {
-        addWindowFx(Fx, WindowGroupArray)
+        addWindowFx(WindowGroupArray)
         WinHide, % "ahk_id" activeWindowID
     }
     else if (Fx = "F7" AND F7Mode = "Window Hider")
     {
-        addWindowFx(Fx, WindowGroupArray)
+        addWindowFx(WindowGroupArray)
         WinHide, % "ahk_id" activeWindowID
     }
     else if (Fx = "F8" AND F8Mode = "Window Hider")
     {
-        addWindowFx(Fx, WindowGroupArray)
+        addWindowFx(WindowGroupArray)
         WinHide, % "ahk_id" activeWindowID
     }
     else if (Fx = "F10" AND F10Mode = "Window Hider")
     {
-        addWindowFx(Fx, WindowGroupArray)
+        addWindowFx(WindowGroupArray)
         WinHide, % "ahk_id" activeWindowID
     }
 }
@@ -148,19 +148,19 @@ nextWindowFx(ByRef WindowGroupArray, ByRef CurrentWin) {
 nextWinOrShowHideWins(Fx, ByRef WindowGroupArray, ByRef CurrentWin) {
 global ;I'm not proud of this code, but it works.
     if ((Fx = "F6") AND (F6Mode = "Window Group"))
-        nextWindowFx("F6", WindowGroupF6, CurrentWinF6)
+        nextWindowFx(WindowGroupF6, CurrentWinF6)
     else if ((Fx = "F6") AND (F6Mode = "Window Hider"))
         showOrHideWindowsFx(WindowGroupF6, F6ShowHideToggle)
     else if ((Fx = "F7") AND (F7Mode = "Window Group"))
-        nextWindowFx("F7", WindowGroupF7, CurrentWinF7)
+        nextWindowFx(WindowGroupF7, CurrentWinF7)
     else if ((Fx = "F7") AND (F7Mode = "Window Hider"))
         showOrHideWindowsFx(WindowGroupF7, F7ShowHideToggle)
     else if ((Fx = "F8") AND (F8Mode = "Window Group"))
-        nextWindowFx("F8", WindowGroupF8, CurrentWinF8)
+        nextWindowFx(WindowGroupF8, CurrentWinF8)
     else if ((Fx = "F8") AND (F8Mode = "Window Hider"))
         showOrHideWindowsFx(WindowGroupF8, F8ShowHideToggle)
     else if ((Fx = "F10") AND (F10Mode = "Window Group"))
-        nextWindowFx("F10", WindowGroupF10, CurrentWinF10)
+        nextWindowFx(WindowGroupF10, CurrentWinF10)
     else if ((Fx = "F10") AND (F10Mode = "Window Hider"))
         showOrHideWindowsFx(WindowGroupF10, F10ShowHideToggle)
 }
@@ -186,19 +186,19 @@ prevWindowFx(ByRef WindowGroupArray, ByRef CurrentWin) {
 prevWinOrHideWins(Fx, ByRef WindowGroupArray, ByRef CurrentWin) {
 global ;I'm not proud of this code, but it works.
     if ((Fx = "F6") AND (F6Mode = "Window Group"))
-        prevWindowFx("F6", WindowGroupF6, CurrentWinF6)
+        prevWindowFx(WindowGroupF6, CurrentWinF6)
     else if ((Fx = "F6") AND (F6Mode = "Window Hider"))
         showOrHideWindowsFx(WindowGroupF6, F6ShowHideToggle)
     else if ((Fx = "F7") AND (F7Mode = "Window Group"))
-        prevWindowFx("F7", WindowGroupF7, CurrentWinF7)
+        prevWindowFx(WindowGroupF7, CurrentWinF7)
     else if ((Fx = "F7") AND (F7Mode = "Window Hider"))
         showOrHideWindowsFx(WindowGroupF7, F7ShowHideToggle)
     else if ((Fx = "F8") AND (F8Mode = "Window Group"))
-        prevWindowFx("F8", WindowGroupF8, CurrentWinF8)
+        prevWindowFx(WindowGroupF8, CurrentWinF8)
     else if ((Fx = "F8") AND (F8Mode = "Window Hider"))
         showOrHideWindowsFx(WindowGroupF8, F8ShowHideToggle)
     else if ((Fx = "F10") AND (F10Mode = "Window Group"))
-        prevWindowFx("F10", WindowGroupF10, CurrentWinF10)
+        prevWindowFx(WindowGroupF10, CurrentWinF10)
     else if ((Fx = "F10") AND (F10Mode = "Window Hider"))
         showOrHideWindowsFx(WindowGroupF10, F10ShowHideToggle)
 }
