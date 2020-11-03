@@ -43,11 +43,6 @@
 */
 ;///////////////////////////////////////////////////////////////////////
 
-/* TODO:
-thing that after certain amount of time moves mouse pointer off screen. If it's moved by user put back to where it was. Have a #o thing to customize delay
-customize other top mouse button behavior
-*/
-
 ;Pic of all these icons: https://diymediahome.org/wp-content/uploads/shell32_icons.jpg
 Menu, Tray, Icon, shell32.dll, 233 ;Changes the icon to a cute little computer.
 
