@@ -414,7 +414,7 @@ sc029::Send, !{Tab} ;The grave accent key (that weird thing under the Tilde ~ sy
 ;Toggle programming mode. Disables hotkeys/hotstrings that can be annoying when programming.
 ^!Insert::BooleanToggle(programmingMode, "Programming Mode ON", "Programming Mode Off")
 
-;Since Windows 10 annoyingly doesn't allow you to rearrange individual windows for a program on the Taskbar when their icons are expanded out, I made this fantastic workaround.
+;Since Windows 10 annoyingly doesn't allow you to rearrange individual windows for a program on the Taskbar when their icons are expanded out (how I always have it), I made this fantastic workaround.
 ;It will move the active window to the end of the "stack(?)" of windows.
 ;E.g., you have 2 MSWord windows open: win1 and win2. By doing this, win1 would move to be after win2. Windows 10 doesn't allow this natively.
 #m::
