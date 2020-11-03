@@ -335,12 +335,14 @@ Switch (cmdToRun) {
     Case "Thes Chr":
     InputBox, Thes_ChrInputBox, Search for This Word on Thesaurus.com, Type the word you want to search on Thesaurus.com in Chrome.
     Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://www.thesaurus.com/browse/%Thes_ChrInputBox%
+    Thes_ChrInputBox :=
     return
 
     ;Open thesaurus.com in Firefox and search for the inputted word.
     Case "Thes", "Thes ff", "thes Firefox":
     InputBox, Thes_FFInputBox, Search for This Word on Thesaurus.com, Type the word you want to search on Thesaurus.com in Firefox.
     Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.thesaurus.com/browse/%Thes_FFInputBox%
+    Thes_FFInputBox :=
     return
 
     Case "vs", "vs ahk":Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey
