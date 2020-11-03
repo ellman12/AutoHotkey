@@ -773,7 +773,7 @@ reloadMSR() {
 		Reload ;If no windows are hidden.
 }
 
-;Called by top 2 mouse buttons.
+;Called by top 2 mouse button hotkeys.
 topMouseButtons(buttonMode) {
 global
 
