@@ -299,10 +299,10 @@ Sleep 1000
 Send, !s
 return
 
-enter::Send, Kind regards`,{Enter 2}Elliott DuCharme ;Kind Regards Macro.
+Enter::Send, Kind regards`,{Enter 2}Elliott DuCharme ;Kind Regards Macro.
 
 ;Open the spreadsheet.
-escape::Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://docs.google.com/spreadsheets/d/1vGHwAVQwkmzGGpM_xQJ86RGXfsBiBxDD089cu1u02eA/edit#gid=711563356
+Escape::Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://docs.google.com/spreadsheets/d/1vGHwAVQwkmzGGpM_xQJ86RGXfsBiBxDD089cu1u02eA/edit#gid=711563356
 
 f::Run, explorer C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey ;Open the AHK repo folder.
 
@@ -333,7 +333,7 @@ Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://www.t
 return
 
 ;Ctrl + Left. Common keeb shortcut for moving between words in text.
-left::Send, ^{Left}
+Left::Send, ^{Left}
 
 ;Left bracket -> Google Images Search for selected text in Private Firefox.
 SC01A::
@@ -407,7 +407,7 @@ SC034::Send, +#{Right}
 r::reloadMSR()
 
 ;Ctrl + Right. Common keeb shortcut for moving between words in text.
-right::Send, ^{Right}
+Right::Send, ^{Right}
 
 ;Right bracket Google Searches for selected text in Private Firefox.
 SC01B::
