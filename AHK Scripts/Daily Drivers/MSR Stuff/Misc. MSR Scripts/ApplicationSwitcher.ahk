@@ -4,52 +4,64 @@
 ;If a Firefox window does exist, switch to Chrome.
 ;If Firefox is active, send ^PGDN (switch between tabs).
 F1::
-    switchToFirefoxAndBetweenTabs() {
-        IfWinNotExist, ahk_class MozillaWindowClass
-            Run, C:\Program Files\Mozilla Firefox\firefox.exe
-        if WinActive("ahk_exe firefox.exe")
-            Send ^{PGDN}
-        else {
-            GroupAdd, firefoxWins, ahk_class MozillaWindowClass
-            WinActivate ahk_class MozillaWindowClass
-        }
+switchToFirefoxAndBetweenTabs() {
+    IfWinNotExist, ahk_class MozillaWindowClass
+        Run, C:\Program Files\Mozilla Firefox\firefox.exe
+    if WinActive("ahk_exe firefox.exe")
+        Send ^{PGDN}
+    else {
+        GroupAdd, firefoxWins, ahk_class MozillaWindowClass
+        WinActivate ahk_class MozillaWindowClass
     }
+}
 return
 
 ;Same thing as F1, but reverse order (PGUP instead of PGDN).
 +F1::
-    switchToFirefoxAndBetweenTabsReverse() {
-        IfWinNotExist, ahk_class MozillaWindowClass
-            Run, C:\Program Files\Mozilla Firefox\firefox.exe
-        if WinActive("ahk_exe firefox.exe")
-            Send ^{PGUP}
-        else {
-            ;WinRestore ahk_exe firefox.exe
-            WinActivatebottom ahk_exe firefox.exe
-            ;sometimes winactivate is not enough. the window is brought to the foreground, but not put into FOCUS.
-            ;the below code should fix that.
-            WinGet, hWnd, ID, ahk_class MozillaWindowClass
-            DllCall("SetForegroundWindow", UInt, hWnd)
-        }
+switchToFirefoxAndBetweenTabsReverse() {
+    IfWinNotExist, ahk_class MozillaWindowClass
+        Run, C:\Program Files\Mozilla Firefox\firefox.exe
+    if WinActive("ahk_exe firefox.exe")
+        Send ^{PGUP}
+    else {
+        ;WinRestore ahk_exe firefox.exe
+        WinActivatebottom ahk_exe firefox.exe
+        ;sometimes winactivate is not enough. the window is brought to the foreground, but not put into FOCUS.
+        ;the below code should fix that.
+        WinGet, hWnd, ID, ahk_class MozillaWindowClass
+        DllCall("SetForegroundWindow", UInt, hWnd)
     }
+}
+return
+
+;Opens a new Firefox window with Google.
+#F1::
+#F2::
+Run, C:\Program Files\Mozilla Firefox\firefox.exe "google.com"
+return
+
+;Opens a new Chrome window with Google.
+#F3::
+#F4::
+Run, chrome.exe "google.com"
 return
 
 ;If a Firefox window doesn't exist, run Firefox.
 ;If Firefox windows do exist, add them to a window
 ; group and switch between them.
 F2::
-    switchToOtherFirefoxWindows() {
-        If WinNotExist, ahk_class MozillaWindowClass
-            Run, C:\Program Files\Mozilla Firefox\firefox.exe
+switchToOtherFirefoxWindows() {
+    If WinNotExist, ahk_class MozillaWindowClass
+        Run, C:\Program Files\Mozilla Firefox\firefox.exe
+    else
+    {
+        GroupAdd, firefoxWins, ahk_class MozillaWindowClass
+        if WinActive("ahk_class MozillaWindowClass")
+            GroupActivate, firefoxWins, R
         else
-        {
-            GroupAdd, firefoxWins, ahk_class MozillaWindowClass
-            if WinActive("ahk_class MozillaWindowClass")
-                GroupActivate, firefoxWins, R
-            else
-                WinActivate ahk_class MozillaWindowClass
-        }
+            WinActivate ahk_class MozillaWindowClass
     }
+}
 return
 
 ;Create a new normal Firefox window.
