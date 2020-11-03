@@ -321,15 +321,18 @@ l::Run, explorer.exe "G:\" ;Open the G: drive.
 
 !l::Run, explorer.exe "B:\" ;Open the B:\ drive.
 
-SC027:: ; :/; key copies the selected word/text, and searches for it on Thesaurus.com.
+SC027:: ; ;/: key copies the selected word/text, and searches for it on Thesaurus.com. Doesn't work with multi-word things like "a lot".
 Send, ^c
 Sleep 50
 Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.thesaurus.com/browse/%Clipboard%
 return
 
-SC028:: ; "/' key opens thesaurus.com in Chrome and searches for the inputted word.
-InputBox, Thes_ChrInputBox, Search for This Word on Thesaurus.com, Type the word you want to search on Thesaurus.com in Chrome.
-Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://www.thesaurus.com/browse/%Thes_ChrInputBox%
+SC028:: ;" key opens thesaurus.com in Firefox and searches for the inputted word.
+InputBox, Thes_FFInputBox, Search for This Word on Thesaurus.com, Type the word you want to search for on Thesaurus.com in Firefox.,, 300, 160
+if (Thes_FFInputBox = "") ;If user presses Escape/Cancel, or enters nothing.
+    return
+Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.thesaurus.com/browse/%Thes_FFInputBox%
+Thes_FFInputBox :=
 return
 
 ;Ctrl + Left. Common keeb shortcut for moving between words in text.
