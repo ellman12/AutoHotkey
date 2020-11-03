@@ -172,11 +172,15 @@ Switch (cmdToRun) {
     Case ">=": Send, {U+2265} ;≥
     Case "delta": Send, {U+0394} ;Δ
     Case "pi": Send, {U+03C0} ;π
-    Case "deg": Send, {U+00B0} ;°
     Case "micro": Send, {U+00B5} ;µ
     Case "inf": Send, {U+221E} ;∞
     Case "...": Send, {U+2026} ;…
     Case "theta": Send, {U+03B8} ;θ
+
+    ;Degree/temperature characters.
+    Case "deg": Send, {U+00B0} ;°
+    Case "degf": Send, {U+2109} ;℉
+    Case "degc": Send, {U+2103} ;℃
 
     ;Sends either an em or en dash.
     Case "en": Send, {U+2013} ;–
@@ -277,6 +281,9 @@ Switch (cmdToRun) {
     ;Opens the help .txt file for CWG.
     Case "CWG": Run, notepad.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Misc. MSR Scripts\Run\Custom Window Groups Help.txt
 
+    ;Opens the help .txt file for the MS To Do hotkeys.
+    Case "todo", "to do": Run, notepad.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Misc. MSR Scripts\Run\MS To Do Help.txt
+
     ;Opens the Google spreadsheet for this script in Chrome, which contains all of the commands in a table.
     Case "Help", "Help Sheet", "Sheet Help": Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://docs.google.com/spreadsheets/d/1vGHwAVQwkmzGGpM_xQJ86RGXfsBiBxDD089cu1u02eA/edit#gid=17759502
 
@@ -328,12 +335,14 @@ Switch (cmdToRun) {
     Case "Thes Chr":
     InputBox, Thes_ChrInputBox, Search for This Word on Thesaurus.com, Type the word you want to search on Thesaurus.com in Chrome.
     Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://www.thesaurus.com/browse/%Thes_ChrInputBox%
+    Thes_ChrInputBox :=
     return
 
     ;Open thesaurus.com in Firefox and search for the inputted word.
     Case "Thes", "Thes ff", "thes Firefox":
     InputBox, Thes_FFInputBox, Search for This Word on Thesaurus.com, Type the word you want to search on Thesaurus.com in Firefox.
     Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.thesaurus.com/browse/%Thes_FFInputBox%
+    Thes_FFInputBox :=
     return
 
     Case "vs", "vs ahk":Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey

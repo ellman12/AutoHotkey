@@ -42,17 +42,16 @@ F2::MouseMove, mousePosX2, mousePosY2, 0
 F3::MouseMove, mousePosX3, mousePosY3, 0
 F4::MouseMove, mousePosX4, mousePosY4, 0
 
-^F9::
-!F9::
-Run, C:\Program Files\Microsoft Office\root\Office16\Outlook.exe
-return
+^F9::Run, C:\Program Files\Microsoft Office\root\Office16\Outlook.exe
+^F11::Run, C:\Users\%A_UserName%\AppData\Local\Discord\app-0.0.308\Discord.exe
+^F12:: Run, C:\Program Files (x86)\MusicBee\MusicBee.exe
 
-^F11::
-!F11::
-Run, C:\Users\Elliott\AppData\Local\Discord\app-0.0.308\Discord.exe
+F10::
+if (WinExist("Microsoft To Do")) AND (!WinActive("Microsoft To Do"))
+    WinActivate, Microsoft To Do
+else
+    Run, C:\Users\%A_UserName%\Documents\Microsoft To Do ;Run/show MS To Do.
 return
-
-F10::Run, C:\Users\Elliott\Documents\Microsoft To Do ;Run/show MS To Do.
 
 F9:: ;Show/hide Outlook.
 SetTitleMatchMode, 2 ;A window's title can contain WinTitle anywhere inside it to be a match.
@@ -70,7 +69,19 @@ else
 }
 return
 
-F11:: ;Show/hide Discord.
+!F9:: ;Show/hide Outlook.
+SetTitleMatchMode, 2 ;A window's title can contain WinTitle anywhere inside it to be a match.
+OutlookVisibilityToggle := !OutlookVisibilityToggle
+
+if (OutlookVisibilityToggle = 0) {
+    WinHide, - Outlook
+} else {
+    WinShow, - Outlook
+    WinActivate, - Outlook
+}
+return
+
+F11:: ;Activate, and show/hide Discord.
 SetTitleMatchMode, 2 ;A window's title can contain WinTitle anywhere inside it to be a match.
 if (WinExist("- Discord")) AND (!WinActive("- Discord"))
     WinActivate, - Discord
@@ -84,6 +95,47 @@ else
         WinShow, - Discord
         WinActivate, - Discord
     }
+}
+return
+
+!F11:: ;Show/hide Discord.
+SetTitleMatchMode, 2 ;A window's title can contain WinTitle anywhere inside it to be a match.
+DiscordVisibilityToggle := !DiscordVisibilityToggle
+
+if (DiscordVisibilityToggle = 0) {
+    WinHide, - Discord
+} else {
+    WinShow, - Discord
+    WinActivate, - Discord
+}
+return
+
+F12:: ;Activate, and show/hide MusicBee.
+SetTitleMatchMode, 2 ;A window's title can contain WinTitle anywhere inside it to be a match.
+if (WinExist("- MusicBee")) AND (!WinActive("- MusicBee"))
+    WinActivate, - MusicBee
+else
+{
+    MusicBeeVisibilityToggle := !MusicBeeVisibilityToggle
+
+    if (MusicBeeVisibilityToggle = 0) {
+        WinHide, - MusicBee
+    } else {
+        WinShow, - MusicBee
+        WinActivate, - MusicBee
+    }
+}
+return
+
+!F12:: ;Show/hide MusicBee.
+SetTitleMatchMode, 2 ;A window's title can contain WinTitle anywhere inside it to be a match.
+MusicBeeVisibilityToggle := !MusicBeeVisibilityToggle
+
+if (MusicBeeVisibilityToggle = 0) {
+    WinHide, - MusicBee
+} else {
+    WinShow, - MusicBee
+    WinActivate, - MusicBee
 }
 return
 
@@ -224,8 +276,12 @@ w::Send, ^#{Right}
 
 a::Send, ^a ;Select all.
 
-;Pastes clipboard contents.
-b::Send, ^v
+$^a:: ;Selects all and does Title Case thing from TCT.
+Send, ^a
+Gosub, ^!t
+return
+
+b::Send, ^v ;Pastes clipboard contents.
 
 BackSpace::Send, !{F4} ;Sends Alt + F4.
 
@@ -243,46 +299,44 @@ Sleep 1000
 Send, !s
 return
 
-;Kind Regards Macro.
-enter::Send, Kind regards`,{Enter 2}Elliott DuCharme
+Enter::Send, Kind regards`,{Enter 2}Elliott DuCharme ;Kind Regards Macro.
 
 ;Open the spreadsheet.
-escape::Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://docs.google.com/spreadsheets/d/1vGHwAVQwkmzGGpM_xQJ86RGXfsBiBxDD089cu1u02eA/edit#gid=711563356
+Escape::Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://docs.google.com/spreadsheets/d/1vGHwAVQwkmzGGpM_xQJ86RGXfsBiBxDD089cu1u02eA/edit#gid=711563356
 
-;Open the AHK repo folder.
-f::Run, explorer C:\Users\Elliott\Documents\GitHub\AutoHotkey
+f::Run, explorer C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey ;Open the AHK repo folder.
 
-;Open the Documents folder.
-g::Run, explorer %A_MyDocuments%
+g::Run, explorer %A_MyDocuments% ;Open the Documents folder.
 
-;Open my user folder.
-h::Run, explorer C:\Users\Elliott\
+h::Run, explorer C:\Users\%A_UserName%\ ;Open my user folder.
 
 ;Create a new Private Firefox window w/ Google Images.
 i::Run, C:\Program Files\Mozilla Firefox\firefox.exe -private-window https://images.google.com/
 
-;Open the C: drive.
-j::Run, explorer.exe "C:\"
+j::Run, explorer.exe "C:\" ;Open the C: drive.
 
-;Open the Downloads folder.
-k::Run, explorer.exe "C:\Users\Elliott\Downloads"
+k::Run, explorer.exe "C:\Users\%A_UserName%\Downloads" ;Open the Downloads folder.
 
-;Open the G: drive.
-l::Run, explorer.exe "G:\"
+l::Run, explorer.exe "G:\" ;Open the G: drive.
 
-SC027:: ; :/; key copies the selected word/text, and searches for it on Thesaurus.com.
+!l::Run, explorer.exe "B:\" ;Open the B:\ drive.
+
+SC027:: ; ;/: key copies the selected word/text, and searches for it on Thesaurus.com. Doesn't work with multi-word things like "a lot".
 Send, ^c
 Sleep 50
 Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.thesaurus.com/browse/%Clipboard%
 return
 
-SC028:: ; "/' key opens thesaurus.com in Chrome and searches for the inputted word.
-InputBox, Thes_ChrInputBox, Search for This Word on Thesaurus.com, Type the word you want to search on Thesaurus.com in Chrome.
-Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://www.thesaurus.com/browse/%Thes_ChrInputBox%
+SC028:: ;" key opens thesaurus.com in Firefox and searches for the inputted word.
+InputBox, Thes_FFInputBox, Search for This Word on Thesaurus.com, Type the word you want to search for on Thesaurus.com in Firefox.,, 300, 160
+if (Thes_FFInputBox = "") ;If user presses Escape/Cancel, or enters nothing.
+    return
+Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.thesaurus.com/browse/%Thes_FFInputBox%
+Thes_FFInputBox :=
 return
 
 ;Ctrl + Left. Common keeb shortcut for moving between words in text.
-left::Send, ^{Left}
+Left::Send, ^{Left}
 
 ;Left bracket -> Google Images Search for selected text in Private Firefox.
 SC01A::
@@ -356,7 +410,7 @@ SC034::Send, +#{Right}
 r::reloadMSR()
 
 ;Ctrl + Right. Common keeb shortcut for moving between words in text.
-right::Send, ^{Right}
+Right::Send, ^{Right}
 
 ;Right bracket Google Searches for selected text in Private Firefox.
 SC01B::
@@ -378,7 +432,7 @@ SC01B::
 return
 
 ;Open Music folder.
-s::Run, explorer C:\Users\Elliott\Music
+s::Run, explorer C:\Users\%A_UserName%\Music
 
 Space:: ;Suspends all hotkeys for the specified number in milliseconds.
 SetTimer, setTimerLabel, 2500, On

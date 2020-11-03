@@ -46,7 +46,6 @@
 /* TODO:
 thing that after certain amount of time moves mouse pointer off screen. If it's moved by user put back to where it was. Have a #o thing to customize delay
 customize other top mouse button behavior
-remove extra unnecessary params in CWG
 */
 
 ;Pic of all these icons: https://diymediahome.org/wp-content/uploads/shell32_icons.jpg
@@ -223,8 +222,8 @@ GUI, CPanel:Add, DDL, xm yp+17 w87 vFrontMouseButtonBehavior, Double Click||F1|F
 GUI, CPanel:Add, DDL, xm+90 yp w87 vBackMouseButtonBehavior, Double Click|F1|F2|F3|F4|F6||F7|F8|F9|F10|F12
 
 GUI, CPanel:Add, Text, xm yp+27, F12 Behavior
-GUI, CPanel:Add, DDL, xm yp+17 w146 vF12Behavior, VSCode and Cmd Prompt||Word|Excel|Word + Excel|
-global F12Behavior := "VSCode and Cmd Prompt"
+GUI, CPanel:Add, DDL, xm yp+17 w146 vF12Behavior, Word||VSCode and Cmd Prompt|Excel|Word + Excel|
+global F12Behavior := "Word" ;Sets default behavior without having to first open the GUI.
 
 ;Toggle for showing or hiding the GUI.
 ;If it's 1, show the GUI; if it's 0, hide it.
@@ -245,9 +244,10 @@ global systemMasterVolume ;Used for NumPad Media Control stuff.
 global programmingMode := false ;Toggle for Programming Mode: disabling certain hotkeys/hotstrings to make programming easier. ^!Insert is the hotkey.
 global hotstringsActiveToggle := true ;Determines if AutoCorrect hotstrings are active or not. Active by default, obviously. ^#Insert is the hotkey.
 
-;Used for F9 and F11 on 2nd keeb for showing/hiding these programs. 1 = visible; 0 = not visible.
+;Used for F9, F11, and F12 on 2nd keeb for showing/hiding these programs. 1 = visible; 0 = not visible.
 global OutlookVisibilityToggle := 1
 global DiscordVisibilityToggle := 1
+global MusicBeeVisibilityToggle := 1
 
 ;The stuff in this loop needs to be running constantly.
 Loop {
@@ -329,9 +329,9 @@ Loop {
 }
 
 ;Other files with many different hotkeys in them.
-#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\BooleanToggle.ahk
-#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\inArray.ahk
-#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\Tippy.ahk
+#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\BooleanToggle.ahk
+#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\inArray.ahk
+#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\Tippy.ahk
 
 #Include, %A_ScriptDir%\MSR Profiles\Browser.ahk
 #Include, %A_ScriptDir%\MSR Profiles\Default.ahk
@@ -353,7 +353,7 @@ Loop {
 #Include, %A_ScriptDir%\Video Game Stuff\Minecraft.ahk
 #Include, %A_ScriptDir%\Video Game Stuff\Terraria.ahk
 
-#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\Secondary Macro Keyboard\Hasu USB to USB Script.ahk
+#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\Secondary Macro Keyboard\Hasu USB to USB Script.ahk
 
 ;This is after the 2nd keeb script because if it is #Included before it and it's enabled it breaks the keys like j, k, l, a, etc.
 #Include, %A_ScriptDir%\Misc. MSR Scripts\Chromebook Typing.ahk
@@ -413,6 +413,18 @@ sc029::Send, !{Tab} ;The grave accent key (that weird thing under the Tilde ~ sy
 ;Toggle programming mode. Disables hotkeys/hotstrings that can be annoying when programming.
 ^!Insert::BooleanToggle(programmingMode, "Programming Mode ON", "Programming Mode Off")
 
+;Since Windows 10 annoyingly doesn't allow you to rearrange individual windows for a program on the Taskbar when their icons are expanded out (how I always have it), I made this fantastic workaround.
+;It will move the active window to the end of the "stack(?)" of windows.
+;E.g., you have 2 MSWord windows open: win1 and win2. By doing this, win1 would move to be after win2. Windows 10 doesn't allow this natively.
+#m::
+WinGetActiveTitle, winMTitle
+WinHide, %winMTitle%
+WinShow, %winMTitle%
+winMTitle := ;Free memory.
+return
+
+!Insert::MouseMove, mousePosX, mousePosY, 0 ;Moves mouse pointer back to where it was before pressing Insert or ^Insert (but not both).
+
 Insert:: ;Moves mouse pointer as far off the screen as possible (on main display).
 MouseGetPos, mousePosX, mousePosY
 if (InsMonChoice = "Primary Mon")
@@ -428,22 +440,19 @@ else if (CtrlInsMonChoice = "Secondary Mon")
 	MouseMove, -1920, 540, 0
 return
 
-!Insert::MouseMove, mousePosX, mousePosY, 0 ;Moves mouse pointer back to where it was before pressing Insert or ^Insert (but not both).
-
-;Opens Wi-Fi menu.
-#w::
-MouseGetPos, originalX, originalY
-MouseMove, %WinWX%, %WinWY%, 0
-Sleep 200
-Send, {Click}
-MouseMove, originalX, originalY
-return
-
 ~$RShift:: ;A "sniper" button, which slows the mouse pointer speed down to a crawl and still outputs the RShift key.
 Send, {RShift}
 DllCall("SystemParametersInfo", Int,113, Int,0, UInt,1, Int,1)
 KeyWait, RShift
 DllCall("SystemParametersInfo", Int,113, Int,0, UInt,10, Int,1)
+return
+
+#w:: ;Opens Wi-Fi menu.
+MouseGetPos, originalX, originalY
+MouseMove, %WinWX%, %WinWY%, 0
+Sleep 200
+Send, {Click}
+MouseMove, originalX, originalY
 return
 
 ^!+d:: ;Used for deleting videos from YouTube playlist. Asks you how many times to do it and then it starts doing its thing.
@@ -772,7 +781,7 @@ reloadMSR() {
 		Reload ;If no windows are hidden.
 }
 
-;Called by top 2 mouse buttons.
+;Called by top 2 mouse button hotkeys.
 topMouseButtons(buttonMode) {
 global
 
