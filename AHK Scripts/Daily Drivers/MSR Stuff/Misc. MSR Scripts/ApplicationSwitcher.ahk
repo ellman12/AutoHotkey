@@ -79,6 +79,8 @@ return
 ;Switch to a window and go through tabs.
 F3::
 F3Hotkey() {
+global
+
     if (F3Behavior = "Google Chrome") {
 
         IfWinNotExist, ahk_exe chrome.exe
