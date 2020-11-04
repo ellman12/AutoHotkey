@@ -140,7 +140,7 @@ global ChrBookTypeMonChoice := "Primary Mon"
 
 ;F3 Behavior.
 GUI, CPanel:Add, Text, x153 yp-14, F3 Behavior
-GUI, CPanel:Add, DDL, x152 y56 w97 vF3Behavior, Google Chrome||VSCode
+GUI, CPanel:Add, DDL, x152 y56 w100 vF3Behavior, Google Chrome||VSCode
 global F3Behavior := "Google Chrome" ;Change in #o between this and VSCode.
 
 ;Default screen X and Y of battery icons; user can change them later in #o.
