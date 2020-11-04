@@ -100,7 +100,7 @@ GUI, ECC:Color, Silver
 
 ;Toggle for showing or hiding the Clipboard GUI.
 ;If it's 1, show the GUI; if it's 0, hide it.
-;Starts out as 0, so it only appers when the user wants it.
+;Starts out as 0, so it only appears when the user wants it.
 showClipboardGUIToggle := 0
 
 ;*************Screen Clipper.ahk Initialization Stuff************
