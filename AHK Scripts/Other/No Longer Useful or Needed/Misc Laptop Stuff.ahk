@@ -135,7 +135,7 @@ Send, {BackSpace}
 return
 
 ;Bring up the Thesaurus in Word.
-;~ #IfWinActive "ahk_exe WINWORD.EXE"
+;~ #IfWinActive "ahk_exe WINWORD.exe"
 !PGUP::
 Send, {AppsKey}
 Sleep 160

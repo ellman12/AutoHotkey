@@ -1,4 +1,4 @@
-﻿;A lot of this code is taken from Taran Van Hemert from Linus Media Group. His video on this: https://www.youtube.com/watch?v=OqyQABySV8k
+;A lot of this code is taken from Taran Van Hemert from Linus Media Group. His video on this: https://www.youtube.com/watch?v=OqyQABySV8k
 
 ;If a Firefox window doesn't exist, run Firefox.
 ;If a Firefox window does exist, switch to Chrome.
@@ -223,39 +223,39 @@ F12Hotkey() {
     return
 
     Case "Word":
-        if WinExist("ahk_exe WINWORD.EXE") {
-            GroupAdd, wordWins, ahk_exe WINWORD.EXE
-            if WinActive("ahk_exe WINWORD.EXE")
+        if WinExist("ahk_exe WINWORD.exe") {
+            GroupAdd, wordWins, ahk_exe WINWORD.exe
+            if WinActive("ahk_exe WINWORD.exe")
                 GroupActivate, wordWins, R
             else
-                WinActivate ahk_exe WINWORD.EXE
+                WinActivate ahk_exe WINWORD.exe
         } else {
-            Run, C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE
+            Run, C:\Program Files\Microsoft Office\root\Office16\WINWORD.exe
         }
     return
 
     Case "Excel":
-        if WinExist("ahk_exe EXCEL.EXE") {
-            GroupAdd, excelWins, ahk_exe EXCEL.EXE
-            if WinActive("ahk_exe EXCEL.EXE")
+        if WinExist("ahk_exe EXCEL.exe") {
+            GroupAdd, excelWins, ahk_exe EXCEL.exe
+            if WinActive("ahk_exe EXCEL.exe")
                 GroupActivate, excelWins, R
             else
-                WinActivate ahk_exe EXCEL.EXE
+                WinActivate ahk_exe EXCEL.exe
         } else {
-            Run, C:\Program Files\Microsoft Office\root\Office16\EXCEL.EXE
+            Run, C:\Program Files\Microsoft Office\root\Office16\EXCEL.exe
         }
     return
 
     Case "Word + Excel":
-        if WinExist("ahk_exe WINWORD.EXE")
-            GroupAdd, wordAndExcelWins, ahk_exe WINWORD.EXE
+        if WinExist("ahk_exe WINWORD.exe")
+            GroupAdd, wordAndExcelWins, ahk_exe WINWORD.exe
         else
-            Run, C:\Program Files\Microsoft Office\root\Office16\WINWORD.EXE
+            Run, C:\Program Files\Microsoft Office\root\Office16\WINWORD.exe
 
-        if WinExist("ahk_exe EXCEL.EXE")
-            GroupAdd, wordAndExcelWins, ahk_exe EXCEL.EXE
+        if WinExist("ahk_exe EXCEL.exe")
+            GroupAdd, wordAndExcelWins, ahk_exe EXCEL.exe
         else
-            Run, C:\Program Files\Microsoft Office\root\Office16\EXCEL.EXE
+            Run, C:\Program Files\Microsoft Office\root\Office16\EXCEL.exe
         GroupActivate, wordAndExcelWins, R
     return
 

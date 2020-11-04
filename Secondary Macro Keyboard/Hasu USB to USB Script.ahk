@@ -148,7 +148,7 @@ return
 ;In File Explorer, size all columns to fit.
 ;In Firefox/Chrome go to tabs 1-8, or last tab (9).
 1::
-    IfWinActive, ahk_exe Explorer.EXE
+    IfWinActive, ahk_exe Explorer.exe
     {
         Send, !v ;Open View menu.
         Send, sf ;Alt code for sizing columns.
@@ -161,7 +161,7 @@ return
 
 ;In File Explorer, sort by name.
 2::
-    IfWinActive, ahk_exe Explorer.EXE
+    IfWinActive, ahk_exe Explorer.exe
     {
         Send, !v ;Open View menu.
         Send, o ;Alt code for opening sort by menu.
@@ -175,7 +175,7 @@ return
 
 ;In File Explorer, sort by date modified.
 3::
-IfWinActive, ahk_exe Explorer.EXE
+IfWinActive, ahk_exe Explorer.exe
     {
     Send, !v ;Open View menu.
     Send, o ;Alt code for opening sort by menu.
@@ -190,7 +190,7 @@ return
 
 ;In File Explorer, invert selection.
 4::
-IfWinActive, ahk_exe Explorer.EXE
+IfWinActive, ahk_exe Explorer.exe
 {
     Send, !h ;Open the Home menu.
     Send, si ;Alt code for invert selection.
@@ -203,7 +203,7 @@ return
 
 ;Rename an item in File Explorer.
 5::
-IfWinActive, ahk_exe Explorer.EXE
+IfWinActive, ahk_exe Explorer.exe
 {
     Send, !h
     Send, r
