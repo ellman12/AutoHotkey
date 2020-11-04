@@ -406,10 +406,8 @@ sc029::Send, !{Tab} ;The grave accent key (that weird thing under the Tilde ~ sy
 ;It will move the active window to the end of the "stack(?)" of windows.
 ;E.g., you have 2 MSWord windows open: win1 and win2. By doing this, win1 would move to be after win2. Windows 10 doesn't allow this natively.
 #m::
-WinGetActiveTitle, winMTitle
-WinHide, %winMTitle%
-WinShow, %winMTitle%
-winMTitle := ;Free memory.
+WinHide, A
+WinShow, A
 return
 
 !Insert::MouseMove, mousePosX, mousePosY, 0 ;Moves mouse pointer back to where it was before pressing Insert or ^Insert (but not both).
