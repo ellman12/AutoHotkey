@@ -1,4 +1,4 @@
-;A lot of this code is taken from Taran Van Hemert from Linus Media Group. His video on this: https://www.youtube.com/watch?v=OqyQABySV8k
+﻿;A lot of this code is taken from Taran Van Hemert from Linus Media Group. His video on this: https://www.youtube.com/watch?v=OqyQABySV8k
 
 ;If a Firefox window doesn't exist, run Firefox.
 ;If a Firefox window does exist, switch to Chrome.
@@ -165,21 +165,20 @@ return
 ;MR button on my K95 RGB keyboard.
 ;Used for activating and switching to File Explorer windows.
 ^F5::
-    switchToExplorer() {
-        IfWinNotExist, ahk_class CabinetWClass
-            Run, explorer.exe
-        GroupAdd, taranexplorers, ahk_class CabinetWClass
-        if WinActive("ahk_exe explorer.exe")
-            GroupActivate, taranexplorers, r
-        else
-            WinActivate ahk_class CabinetWClass ;you have to use WinActivatebottom if you didn't create a window group.
-    }
-
-    ;Creates a new File Explorer window.
-    ;Activated by holding down Shift and MR (Shift + Ctrl + F5).
-^+F5::
-    Run, explorer.exe
+switchToExplorer() {
+    IfWinNotExist, ahk_class CabinetWClass
+        Run, explorer.exe
+    GroupAdd, taranexplorers, ahk_class CabinetWClass
+    if WinActive("ahk_exe explorer.exe")
+        GroupActivate, taranexplorers, r
+    else
+        WinActivate ahk_class CabinetWClass ;you have to use WinActivatebottom if you didn't create a window group.
+}
 return
+
+;Creates a new File Explorer window.
+;Activated by holding down Shift and MR (Shift + Ctrl + F5).
+^+F5::Run, explorer.exe
 
 ;Back button; does stuff in reverse.
 ;Ex. F9 in Firefox does the opposite of F1.
@@ -228,21 +227,21 @@ F12Hotkey() {
             if WinActive("ahk_exe WINWORD.exe")
                 GroupActivate, wordWins, R
             else
-                WinActivate ahk_exe WINWORD.exe
+                WinActivate, ahk_exe WINWORD.exe
         } else {
             Run, C:\Program Files\Microsoft Office\root\Office16\WINWORD.exe
         }
     return
 
     Case "Excel":
-        if WinExist("ahk_exe EXCEL.exe") {
-            GroupAdd, excelWins, ahk_exe EXCEL.exe
-            if WinActive("ahk_exe EXCEL.exe")
+        if WinExist("ahk_exe Excel.exe") {
+            GroupAdd, excelWins, ahk_exe Excel.exe
+            if WinActive("ahk_exe Excel.exe")
                 GroupActivate, excelWins, R
             else
-                WinActivate ahk_exe EXCEL.exe
+                WinActivate ahk_exe Excel.exe
         } else {
-            Run, C:\Program Files\Microsoft Office\root\Office16\EXCEL.exe
+            Run, C:\Program Files\Microsoft Office\root\Office16\Excel.exe
         }
     return
 
@@ -252,11 +251,23 @@ F12Hotkey() {
         else
             Run, C:\Program Files\Microsoft Office\root\Office16\WINWORD.exe
 
-        if WinExist("ahk_exe EXCEL.exe")
-            GroupAdd, wordAndExcelWins, ahk_exe EXCEL.exe
+        if WinExist("ahk_exe Excel.exe")
+            GroupAdd, wordAndExcelWins, ahk_exe Excel.exe
         else
-            Run, C:\Program Files\Microsoft Office\root\Office16\EXCEL.exe
+            Run, C:\Program Files\Microsoft Office\root\Office16\Excel.exe
         GroupActivate, wordAndExcelWins, R
+    return
+
+    Case "Outlook":
+        if WinExist("ahk_exe Outlook.exe") {
+            GroupAdd, outlookWins, ahk_exe Outlook.exe
+            if WinActive("ahk_exe Outlook.exe")
+                GroupActivate, outlookWins, R
+            else
+                WinActivate, ahk_exe Outlook.exe
+        } else {
+            Run, C:\Program Files\Microsoft Office\root\Office16\Outlook.exe
+        }
     return
 
     }
