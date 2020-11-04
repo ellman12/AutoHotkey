@@ -42,9 +42,6 @@
 * Header 4: 9  *********
 */
 ;///////////////////////////////////////////////////////////////////////
-;TODO:
-; after closing GUI, store values in files
-; when open GUI, load file
 
 ;Pic of all these icons: https://diymediahome.org/wp-content/uploads/shell32_icons.jpg
 Menu, Tray, Icon, shell32.dll, 233 ;Changes the icon to a cute little computer.
@@ -831,7 +828,7 @@ global
 		MsgBox, 262160, Error., That mouse button mode is not defined.
 }
 
-writeConfigFile() {
+writeConfigFile() { ;Writes #o values to the config file.
 global
 	IniWrite, %InsMonChoice%, %MSRConfigPath%, MonitorChoices, InsMonChoiceIni
 	IniWrite, %CtrlInsMonChoice%, %MSRConfigPath%, MonitorChoices, CtrlInsMonChoice
@@ -853,7 +850,7 @@ global
 	; IniWrite, %WinWY%, %MSRConfigPath%, Miscellaneous, WinWY
 }
 
-readConfigFile() {
+readConfigFile() { ;Reads values from the ini file for #o.
 global
 	;Last parameter is default value if key can't be read.
 	IniRead, InsMonChoiceIni, %MSRConfigPath%, MonitorChoices, InsMonChoiceIni, Primary Mon
