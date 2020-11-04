@@ -1,0 +1,30 @@
+Text to Input	What It Does
+
+...		…
+u/r/d/l		↑ → ↓ ←
+/= / =/		≠
++- / -+		± / ∓
+<= / >=		≤ / ≥
+2mail		Sends secondary Gmail.
+approx		≈
+check		✓
+deg		°
+delta		Δ
+div		÷
+DSU		Sends DSU email.
+em/en		Inserts either an — or an –
+h1     		Inserts 35 * for header 1 for code sections.
+h2      	Inserts 20 * for header 2 for code sections.
+h3      	Inserts 14 * for header 3 for code sections.
+h4      	Inserts 9 * for header 4 for code sections.
+inf		∞
+int (top/bot)	∫ , ⌠, ⌡
+mail		Sends main Gmail.
+micro		µ
+mult		×
+pi		π
+sec		§
+sqrt		√
+t		Inserts 50 * for titles for code sections.
+theta		θ
+x		✗

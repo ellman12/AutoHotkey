@@ -1,0 +1,12 @@
+Fx is either F6, F7, F8, or F10.
+
+^Fx:: Add the current window's ID to its respective array.
+^!Fx:: Remove the current window from the array.
+!Fx:: Add the current window's ID to the array, and hide it right away. Only works when the array is in hide mode.
+Fx:: Either next window or hide windows.
++Fx:: Either previous window or hide windows.
+#Fx:: Next window, regardless of mode.
+#+Fx:: Previous window, regardless of mode.
+^#Fx:: Remove all windows from the array, without closing them.
+!#Fx:: Remove all windows from the array, and close all of them.
+^+Fx:: Shows all the window titles in each array.

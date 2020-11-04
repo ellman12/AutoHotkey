@@ -1,0 +1,8 @@
+Text to Input	What It Does
+
+Exit		Kills the current running script.
+rs		Restart PC.
+sd		Shut down PC.
+st		Get free space of all the drives in GB.
+z		Sleep PC.
+h		Hibernate PC.

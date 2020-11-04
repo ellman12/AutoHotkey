@@ -1,0 +1,16 @@
+Text to Input	What It Does
+
+da		Today's date (9/13/2020)
+da lo	        Sunday, September 13
+da lo t	        Monday, September 14
+da lo y	        Saturday, September 12, 2020
+da longest	Sunday, September 13, 2020
+da longest t	Monday, September 14, 2020
+da longest y	Saturday, September 12, 2020
+da sh	        Sun, Sep 13
+da sh t	        Mon, Sep 14
+da sh y	        Sat, Sep 12
+da t	        Tomorrow's date (9/14/20)
+da y	        Yeserday's date (9/12/20)
+dt	        9/13/2020 6:17 PM
+ti	        6:17 PM
