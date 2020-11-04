@@ -136,7 +136,7 @@ GUI, CPanel:Font, s9 q5
 GUI, CPanel:Add, Text, xm+1 ym, Insert Monitor Choice
 GUI, CPanel:Add, DDL, xm ym+14 w100 vInsMonChoice, Primary Mon|Secondary Mon
 
-MsgBox, %InsMonChoice%, %InsMonChoiceIni%
+; MsgBox, %InsMonChoice%, %InsMonChoiceIni%
 GuiControl, CPanel:, %InsMonChoice%, %InsMonChoiceIni%
 
 GUI, CPanel:Add, Text, xp+150 ym, Ctrl + Insert Monitor Choice
