@@ -288,15 +288,15 @@ Loop {
 		if InStr(activeWindowTitle, "- YouTube") {
 			SetNumLockState, On
 			SetScrollLockState, On
-			global numPadMode = "YouTube"
+			global numPadMode := "YouTube"
 		} else if InStr(activeWindowTitle, "- MediaSpace") {
 			SetNumLockState, Off
 			SetScrollLockState, On
-			global numPadMode = "Dumbed-Down"
+			global numPadMode := "Dumbed-Down"
 		} else {
 			SetNumLockState, On
 			SetScrollLockState, Off
-			global numPadMode = "MusicBee"
+			global numPadMode := "MusicBee"
 		}
 
 	} else {
@@ -304,15 +304,15 @@ Loop {
 		;This works so much better than having a bunch of ugly numLockToggled = 1 and scrollLockToggled = 0 things everywhere.
 		;These variables are used in NumPad Media Control.ahk.
 		if (numLockToggled = 1 and scrollLockToggled = 0)
-			global numPadMode = "MusicBee"
+			global numPadMode := "MusicBee"
 		else if (numLockToggled = 1 and scrollLockToggled = 1)
-			global numPadMode = "YouTube"
+			global numPadMode := "YouTube"
 		else if (numLockToggled = 0 and scrollLockToggled = 0)
-			global numPadMode = "Normal"
+			global numPadMode := "Normal"
 		else if (numLockToggled = 0 and scrollLockToggled = 1)
-			global numPadMode = "Dumbed-Down"
+			global numPadMode := "Dumbed-Down"
 		else
-			global numPadMode = "Normal"
+			global numPadMode := "Normal"
 	}
 	Sleep 100 ;This sleep statement DRASTICALLY helps reduce the power and CPU usage of the MSR.
 }
