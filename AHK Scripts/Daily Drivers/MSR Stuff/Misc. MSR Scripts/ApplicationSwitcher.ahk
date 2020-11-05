@@ -122,6 +122,8 @@ if (F3Behavior = "Google Chrome") {
         Send ^{PGUP}
     else
         WinActivate ahk_exe Code.exe
+} else {
+        MsgBox, 262160, F3 Hotkey Error, Undefined F3 Behavior.
 }
 return
 
