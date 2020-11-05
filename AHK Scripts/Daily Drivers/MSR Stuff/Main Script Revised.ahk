@@ -211,10 +211,6 @@ GuiControl, CPanel:ChooseString, F7Mode, %F7Mode%
 GUI, CPanel:Add, DDL, xp yp+23 vF10Mode w94, Window Group|Window Hider|
 GuiControl, CPanel:ChooseString, F10Mode, %F10Mode%
 
-;Top Two Mouse Buttons.
-FrontMouseButtonBehavior := "Double Click"
-BackMouseButtonBehavior := "F6"
-
 GUI, CPanel:Add, Text, xm yp+27, Front and Back Top Mouse Buttons Behavior
 GUI, CPanel:Add, DDL, xm yp+17 w87 vFrontMouseButtonBehavior, Double Click|F1|F2|F3|F4|F6|F7|F8|F9|F10|F12
 GuiControl, CPanel:ChooseString, FrontMouseButtonBehavior, %FrontMouseButtonBehavior%
@@ -232,7 +228,7 @@ GuiControl, CPanel:ChooseString, F12Behavior, %F12Behavior%
 global controlPanelGUIToggle := 0
 
 CONTROL_PANEL_WIDTH := 286
-CONTROL_PANEL_HEIGHT := 384
+CONTROL_PANEL_HEIGHT := 260
 
 ;Used for testing and adding new #o stuff.
 ; GUI, CPanel:Show, w%CONTROL_PANEL_WIDTH% h%CONTROL_PANEL_HEIGHT% x1400,MSR Control Panel
@@ -880,6 +876,8 @@ deleteConfigFile() {
 	FileDelete, %MSRConfigPath%
 	if (ErrorLevel != 0)
 		MsgBox, 262160, Something Happened, An error occurred while trying to delete the config file. Most likely the file doesn't exist and thus you tried to delete something that doesn't exist.
+	else
+		Tippy("Config File has been deleted.", 950)
 }
 
 ;**************************************************EXPERIMENTAL**************************************************
