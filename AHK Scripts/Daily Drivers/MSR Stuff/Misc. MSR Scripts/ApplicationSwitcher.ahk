@@ -80,7 +80,6 @@ return
 F3::
 F3Hotkey() {
 global
-
     if (F3Behavior = "Google Chrome") {
 
         IfWinNotExist, ahk_exe chrome.exe
@@ -98,6 +97,8 @@ global
             Send ^{PGDN}
         else
             WinActivate ahk_exe Code.exe
+    } else {
+        MsgBox, 262160, F3 Hotkey Error, Undefined F3 Behavior.
     }
 }
 return
@@ -128,6 +129,7 @@ return
 ;If windows do exist, switch between them.
 F4::
 F4Hotkey() {
+global
     if (F3Behavior = "Google Chrome") {
         Process, Exist, chrome.exe
         if errorLevel = 0
@@ -151,6 +153,8 @@ F4Hotkey() {
             else
                 WinActivate ahk_exe Code.exe
         }
+    } else {
+        MsgBox, 262160, F4 Hotkey Error, Undefined F4 Behavior.
     }
 }
 return
@@ -203,73 +207,78 @@ return
 ;Word + Excel		                  Groups Word and Excel windows.
 F12::
 F12Hotkey() {
-    Switch F12Behavior {
+global
+    Switch (F12Behavior) {
 
     Case "VSCode and Cmd Prompt":
-        if WinExist("ahk_exe Code.exe")
-            GroupAdd, VSCodeAndTerminalWins, ahk_exe Code.exe
-        else
-            Run, C:\Users\%A_UserName%\AppData\Local\Programs\Microsoft VS Code\Code.exe
+    if WinExist("ahk_exe Code.exe")
+        GroupAdd, VSCodeAndTerminalWins, ahk_exe Code.exe
+    else
+        Run, C:\Users\%A_UserName%\AppData\Local\Programs\Microsoft VS Code\Code.exe
 
-        if WinExist("ahk_exe cmd.exe")
-            GroupAdd, VSCodeAndTerminalWins, ahk_exe cmd.exe
-        else {
-            Run, C:\Users\%A_UserName%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\System Tools\Command Prompt
-            Sleep 1000
-            WinMaximize, Command Prompt
-            WinActivate, Command Prompt
-        }
+    if WinExist("ahk_exe cmd.exe")
+        GroupAdd, VSCodeAndTerminalWins, ahk_exe cmd.exe
+    else {
+        Run, C:\Users\%A_UserName%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\System Tools\Command Prompt
+        Sleep 1000
+        WinMaximize, Command Prompt
+        WinActivate, Command Prompt
+    }
 
-        GroupActivate, VSCodeAndTerminalWins, R
+    GroupActivate, VSCodeAndTerminalWins, R
     return
 
     Case "Word":
-        if WinExist("ahk_exe WINWORD.exe") {
-            GroupAdd, wordWins, ahk_exe WINWORD.exe
-            if WinActive("ahk_exe WINWORD.exe")
-                GroupActivate, wordWins, R
-            else
-                WinActivate, ahk_exe WINWORD.exe
-        } else {
-            Run, C:\Program Files\Microsoft Office\root\Office16\WINWORD.exe
-        }
+    if WinExist("ahk_exe WINWORD.exe") {
+        GroupAdd, wordWins, ahk_exe WINWORD.exe
+        if WinActive("ahk_exe WINWORD.exe")
+            GroupActivate, wordWins, R
+        else
+            WinActivate, ahk_exe WINWORD.exe
+    } else {
+        Run, C:\Program Files\Microsoft Office\root\Office16\WINWORD.exe
+    }
     return
 
     Case "Excel":
-        if WinExist("ahk_exe Excel.exe") {
-            GroupAdd, excelWins, ahk_exe Excel.exe
-            if WinActive("ahk_exe Excel.exe")
-                GroupActivate, excelWins, R
-            else
-                WinActivate ahk_exe Excel.exe
-        } else {
-            Run, C:\Program Files\Microsoft Office\root\Office16\Excel.exe
-        }
+    if WinExist("ahk_exe Excel.exe") {
+        GroupAdd, excelWins, ahk_exe Excel.exe
+        if WinActive("ahk_exe Excel.exe")
+            GroupActivate, excelWins, R
+        else
+            WinActivate ahk_exe Excel.exe
+    } else {
+        Run, C:\Program Files\Microsoft Office\root\Office16\Excel.exe
+    }
     return
 
     Case "Word + Excel":
-        if WinExist("ahk_exe WINWORD.exe")
-            GroupAdd, wordAndExcelWins, ahk_exe WINWORD.exe
-        else
-            Run, C:\Program Files\Microsoft Office\root\Office16\WINWORD.exe
+    if WinExist("ahk_exe WINWORD.exe")
+        GroupAdd, wordAndExcelWins, ahk_exe WINWORD.exe
+    else
+        Run, C:\Program Files\Microsoft Office\root\Office16\WINWORD.exe
 
-        if WinExist("ahk_exe Excel.exe")
-            GroupAdd, wordAndExcelWins, ahk_exe Excel.exe
-        else
-            Run, C:\Program Files\Microsoft Office\root\Office16\Excel.exe
-        GroupActivate, wordAndExcelWins, R
+    if WinExist("ahk_exe Excel.exe")
+        GroupAdd, wordAndExcelWins, ahk_exe Excel.exe
+    else
+        Run, C:\Program Files\Microsoft Office\root\Office16\Excel.exe
+    GroupActivate, wordAndExcelWins, R
     return
 
     Case "Outlook":
-        if WinExist("ahk_exe Outlook.exe") {
-            GroupAdd, outlookWins, ahk_exe Outlook.exe
-            if WinActive("ahk_exe Outlook.exe")
-                GroupActivate, outlookWins, R
-            else
-                WinActivate, ahk_exe Outlook.exe
-        } else {
-            Run, C:\Program Files\Microsoft Office\root\Office16\Outlook.exe
-        }
+    if WinExist("ahk_exe Outlook.exe") {
+        GroupAdd, outlookWins, ahk_exe Outlook.exe
+        if WinActive("ahk_exe Outlook.exe")
+            GroupActivate, outlookWins, R
+        else
+            WinActivate, ahk_exe Outlook.exe
+    } else {
+        Run, C:\Program Files\Microsoft Office\root\Office16\Outlook.exe
+    }
+    return
+
+    Default:
+    MsgBox, 262160, F12 Hotkey Error, Undefined F12 Behavior
     return
 
     }

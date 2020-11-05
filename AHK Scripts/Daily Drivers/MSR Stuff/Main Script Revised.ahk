@@ -132,20 +132,20 @@ GUI, CPanel:Margin, 3, 1
 GUI, CPanel:Font, s9 q5
 GUI, CPanel:Add, Text, xm+1 ym, Insert Monitor Choice
 GUI, CPanel:Add, DDL, xm ym+14 w100 vInsMonChoice, Primary Mon|Secondary Mon
-GuiControl, CPanel:ChooseString, InsMonChoice, %InsMonChoiceIni% ;These GuiControls are necessary to assign the GUI controls the values from the ini file.
+GuiControl, CPanel:ChooseString, InsMonChoice, %InsMonChoice% ;These GuiControls are necessary to assign the GUI controls the values from the ini file.
 
 GUI, CPanel:Add, Text, xp+150 ym, Ctrl + Insert Monitor Choice
 GUI, CPanel:Add, DDL, xp-1 ym+14 w100 vCtrlInsMonChoice, Primary Mon|Secondary Mon|
-GuiControl, CPanel:ChooseString, CtrlInsMonChoice, %CtrlInsMonChoiceIni%
+GuiControl, CPanel:ChooseString, CtrlInsMonChoice, %CtrlInsMonChoice%
 
 GUI, CPanel:Add, Text, xm+1 yp+27, Chromebook Typing Monitor
 GUI, CPanel:Add, DDL, xm yp+14 w100 vChrBookTypeMonChoice, Primary Mon|Secondary Mon|
-GuiControl, CPanel:ChooseString, ChrBookTypeMonChoice, %ChrBookTypeMonChoiceIni%
+GuiControl, CPanel:ChooseString, ChrBookTypeMonChoice, %ChrBookTypeMonChoice%
 
 ;F3 Behavior.
 GUI, CPanel:Add, Text, x153 yp-14, F3 Behavior
 GUI, CPanel:Add, DDL, x152 y56 w100 vF3Behavior, Google Chrome|VSCode
-GuiControl, CPanel:ChooseString, F3Behavior, %F3BehaviorIni%
+GuiControl, CPanel:ChooseString, F3Behavior, %F3Behavior%
 
 ;Default screen X and Y of battery icons; user can change them later in #o.
 if (A_ComputerName = "Elliott-Laptop") {
@@ -198,18 +198,18 @@ GUI, CPanel:Add, Edit, xp yp+14 w66 vWinWY, %WinWY%
 GUI, CPanel:Add, Text, xm yp+30, F6:
 GUI, CPanel:Add, Text, xm+120 yp, F7:
 GUI, CPanel:Add, DDL, xm+17 yp-3 vF6Mode w94, Window Group|Window Hider
-GuiControl, CPanel:ChooseString, F6Mode, %F6ModeIni%
+GuiControl, CPanel:ChooseString, F6Mode, %F6Mode%
 
 GUI, CPanel:Add, Text, xm yp+26, F8:
 GUI, CPanel:Add, Text, xm+120 yp, F10:
 GUI, CPanel:Add, DDL, xm+17 yp-3 vF8Mode w94, Window Group|Window Hider|
-GuiControl, CPanel:ChooseString, F8Mode, %F8ModeIni%
+GuiControl, CPanel:ChooseString, F8Mode, %F8Mode%
 
 GUI, CPanel:Add, DDL, xm+143 yp-23 vF7Mode w94, Window Group|Window Hider
-GuiControl, CPanel:ChooseString, F7Mode, %F7ModeIni%
+GuiControl, CPanel:ChooseString, F7Mode, %F7Mode%
 
 GUI, CPanel:Add, DDL, xp yp+23 vF10Mode w94, Window Group|Window Hider|
-GuiControl, CPanel:ChooseString, F10Mode, %F10ModeIni%
+GuiControl, CPanel:ChooseString, F10Mode, %F10Mode%
 
 ;Top Two Mouse Buttons.
 FrontMouseButtonBehavior := "Double Click"
@@ -217,14 +217,14 @@ BackMouseButtonBehavior := "F6"
 
 GUI, CPanel:Add, Text, xm yp+27, Front and Back Top Mouse Buttons Behavior
 GUI, CPanel:Add, DDL, xm yp+17 w87 vFrontMouseButtonBehavior, Double Click|F1|F2|F3|F4|F6|F7|F8|F9|F10|F12
-GuiControl, CPanel:ChooseString, FrontMouseButtonBehavior, %FrontMouseButtonBehaviorIni%
+GuiControl, CPanel:ChooseString, FrontMouseButtonBehavior, %FrontMouseButtonBehavior%
 
 GUI, CPanel:Add, DDL, xm+90 yp w87 vBackMouseButtonBehavior, Double Click|F1|F2|F3|F4|F6|F7|F8|F9|F10|F12
-GuiControl, CPanel:ChooseString, BackMouseButtonBehavior, %BackMouseButtonBehaviorIni%
+GuiControl, CPanel:ChooseString, BackMouseButtonBehavior, %BackMouseButtonBehavior%
 
 GUI, CPanel:Add, Text, xm yp+27, F12 Behavior
 GUI, CPanel:Add, DDL, xm yp+17 w146 vF12Behavior, Word|VSCode and Cmd Prompt|Excel|Word + Excel|Outlook|
-GuiControl, CPanel:ChooseString, F12Behavior, %F12BehaviorIni%
+GuiControl, CPanel:ChooseString, F12Behavior, %F12Behavior%
 
 ;Toggle for showing or hiding the GUI.
 ;If it's 1, show the GUI; if it's 0, hide it.
@@ -830,7 +830,7 @@ global
 
 writeConfigFile() { ;Writes #o values to the config file.
 global
-	IniWrite, %InsMonChoice%, %MSRConfigPath%, MonitorChoices, InsMonChoiceIni
+	IniWrite, %InsMonChoice%, %MSRConfigPath%, MonitorChoices, InsMonChoice
 	IniWrite, %CtrlInsMonChoice%, %MSRConfigPath%, MonitorChoices, CtrlInsMonChoice
 	IniWrite, %ChrBookTypeMonChoice%, %MSRConfigPath%, MonitorChoices, ChrBookTypeMonChoice
 
@@ -853,19 +853,19 @@ global
 readConfigFile() { ;Reads values from the ini file for #o.
 global
 	;Last parameter is default value if key can't be read.
-	IniRead, InsMonChoiceIni, %MSRConfigPath%, MonitorChoices, InsMonChoiceIni, Primary Mon
-	IniRead, CtrlInsMonChoiceIni, %MSRConfigPath%, MonitorChoices, CtrlInsMonChoice, Secondary Mon
-	IniRead, ChrBookTypeMonChoiceIni, %MSRConfigPath%, MonitorChoices, ChrBookTypeMonChoice, Primary Mon
+	IniRead, InsMonChoice, %MSRConfigPath%, MonitorChoices, InsMonChoice, Primary Mon
+	IniRead, CtrlInsMonChoice, %MSRConfigPath%, MonitorChoices, CtrlInsMonChoice, Secondary Mon
+	IniRead, ChrBookTypeMonChoice, %MSRConfigPath%, MonitorChoices, ChrBookTypeMonChoice, Primary Mon
 
-	IniRead, F3BehaviorIni, %MSRConfigPath%, Fx, F3Behavior, Google Chrome
-	IniRead, F6ModeIni, %MSRConfigPath%, Fx, F6Mode, Window Group
-	IniRead, F7ModeIni, %MSRConfigPath%, Fx, F7Mode, Window Group
-	IniRead, F8ModeIni, %MSRConfigPath%, Fx, F8Mode, Window Hider
-	IniRead, F10ModeIni, %MSRConfigPath%, Fx, F10Mode, Window Hider
-	IniRead, F12BehaviorIni, %MSRConfigPath%, Fx, F12Behavior, Word
+	IniRead, F3Behavior, %MSRConfigPath%, Fx, F3Behavior, Google Chrome
+	IniRead, F6Mode, %MSRConfigPath%, Fx, F6Mode, Window Group
+	IniRead, F7Mode, %MSRConfigPath%, Fx, F7Mode, Window Group
+	IniRead, F8Mode, %MSRConfigPath%, Fx, F8Mode, Window Hider
+	IniRead, F10Mode, %MSRConfigPath%, Fx, F10Mode, Window Hider
+	IniRead, F12Behavior, %MSRConfigPath%, Fx, F12Behavior, Word
 
-	IniRead, FrontMouseButtonBehaviorIni, %MSRConfigPath%, MouseButtons, FrontMouseButtonBehavior, Double Click
-	IniRead, BackMouseButtonBehaviorIni, %MSRConfigPath%, MouseButtons, BackMouseButtonBehavior, F6
+	IniRead, FrontMouseButtonBehavior, %MSRConfigPath%, MouseButtons, FrontMouseButtonBehavior, Double Click
+	IniRead, BackMouseButtonBehavior, %MSRConfigPath%, MouseButtons, BackMouseButtonBehavior, F6
 
 	; IniRead, laptopBatteryIconX, %MSRConfigPath%, Miscellaneous, laptopBatteryIconX
 	; IniRead, laptopBatteryIconY, %MSRConfigPath%, Miscellaneous, laptopBatteryIconY
