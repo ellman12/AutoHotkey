@@ -411,8 +411,7 @@ sc029::Send, !{Tab} ;The grave accent key (that weird thing under the Tilde ~ sy
 
 #n::Run, Notepad ;Open Notepad.
 
-;Used if you want to reset the config file. Because IniRead allows you to set default values in case there's an error, those default values will be used, allowing this to actually work really easily.
-#+r::FileDelete, %MSRConfigPath%
+#+r::deleteConfigFile()
 
 ;Toggle programming mode. Disables hotkeys/hotstrings that can be annoying when programming.
 ^!Insert::BooleanToggle(programmingMode, "Programming Mode ON", "Programming Mode Off")
@@ -874,6 +873,13 @@ global
 	; IniRead, laptopBatteryIconY, %MSRConfigPath%, Miscellaneous, laptopBatteryIconY
 	; IniRead, WinWX, %MSRConfigPath%, Miscellaneous, WinWX
 	; IniRead, WinWY, %MSRConfigPath%, Miscellaneous, WinWY
+}
+
+;Used if you want to reset the config file. Because IniRead allows you to set default values in case there's an error, those default values will be used, allowing this to actually work really easily.
+deleteConfigFile() {
+	FileDelete, %MSRConfigPath%
+	if (ErrorLevel != 0)
+		MsgBox, 262160, Something Happened, An error occurred while trying to delete the config file. Most likely the file doesn't exist and thus you tried to delete something that doesn't exist.
 }
 
 ;**************************************************EXPERIMENTAL**************************************************
