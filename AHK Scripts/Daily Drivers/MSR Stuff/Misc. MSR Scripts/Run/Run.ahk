@@ -259,7 +259,7 @@ Switch (cmdToRun) {
     Send, {Right}r
     return
 
-    Case "ini del": FileDelete, %MSRConfigPath% ;Used if you want to reset the config file. Because IniRead allows you to set default values in case there's an error, those default values will be used.
+    Case "ini del": FileDelete, %MSRConfigPath% ;Used if you want to reset the config file. Because IniRead allows you to set default values in case there's an error, those default values will be used, allowing this to actually work really easily.
 
     Case "task failed":MsgBox, 64, Windows XP, Task failed successfully. ;Yes.
 
