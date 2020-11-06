@@ -21,13 +21,11 @@ blockInputToggle := false
 !p::
 blockInputToggle := !blockInputToggle
 
-if (blockInputToggle = true) {
+if (blockInputToggle = true)
     MsgBox, 64, Input Is Now Blocked, Input Is Now Blocked. Use Alt + P to disable., 1
-    BlockInput, On
-} else if (blockInputToggle = false) {
+else if (blockInputToggle = false)
     MsgBox, 64, Input Is No Longer Blocked, Input Is No Longer Blocked., 1
-    BlockInput, Off
-} else
+else
     MsgBox, 16, , Something happened.
 return
 
