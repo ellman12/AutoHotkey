@@ -144,14 +144,14 @@ numpadAdd::
 numpadEnter::
 numpadDot::
 
-LButton::
-MButton::
-RButton::
-XButton1::
-XButton2::
-WheelDown::
-WheelUp::
-WheelLeft::
-WheelRight::
+; LButton::
+; MButton::
+; RButton::
+; XButton1::
+; XButton2::
+; WheelDown::
+; WheelUp::
+; WheelLeft::
+; WheelRight::
 return
 #If
