@@ -61,10 +61,10 @@ F10::nextWinOrShowHideWins("F10", WindowGroupF10, CurrentWinF10)
 ^#F10::writeGroupToFile("F10", WindowGroupF10)
 
 ; !#Fx:: Reads the IDs from the corresponding .txt file.
-!#F6::readGroupFromFile("F6", WindowGroup)
-!#F7::readGroupFromFile("F7", WindowGroup)
-!#F8::readGroupFromFile("F8", WindowGroup)
-!#F10::readGroupFromFile("F10", WindowGroup)
+!#F6::readGroupFromFile("F6", WindowGroupF6)
+!#F7::readGroupFromFile("F7", WindowGroupF7)
+!#F8::readGroupFromFile("F8", WindowGroupF8)
+!#F10::readGroupFromFile("F10", WindowGroupF10)
 
 ; ^+#Fx:: Remove all windows from the array, without closing them.
 ^+#F6::removeAllWins("F6", WindowGroupF6, CurrentWinF6)
@@ -281,6 +281,7 @@ showWinTitlesFx(Fx, WindowGroupArray, CurrentWin, FxShowHideToggle) {
 }
 
 writeGroupToFile(Fx, WindowGroupArray) { ;Stores a group in a .txt file for later use.
+
     FileDelete, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\%Fx%.txt ;Reset/overwrite file.
 
     for index, value in WindowGroupArray ;Append values to the file.
@@ -288,10 +289,13 @@ writeGroupToFile(Fx, WindowGroupArray) { ;Stores a group in a .txt file for late
         valueToAppend := value . A_Space
         FileAppend, %valueToAppend%, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\%Fx%.txt
     }
+
+    Tippy("The " . Fx . " Group has been saved to disk.", 1000)
 }
 
 readGroupFromFile(Fx, ByRef WindowGroupArray) { ;Retrieves that group from the file.
 
     FileRead, groupFileContents, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\%Fx%.txt
     WindowGroupArray := StrSplit(groupFileContents, A_Space) ;Split up the file and store in the passed-in array. The delimiter is spaces because they're easiest to work with.
+    Tippy("The " . Fx . " Group has been restored from disk.", 1000)
 }
