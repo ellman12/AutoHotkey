@@ -244,12 +244,14 @@ removeNonexistentWindows(ByRef WindowGroupArray) {
 }
 
 removeAllWins(Fx, ByRef WindowGroupArray, ByRef CurrentWin) {
+    FileDelete, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\%Fx%.txt ;Reset/overwrite file.
     WindowGroupArray := [] ;Blank out the array. It's that simple.
     CurrentWin := 1
     Tippy("All windows in " . Fx . " Group have been removed.", 4000)
 }
 
 removeAndCloseAllWins(Fx, ByRef WindowGroupArray, ByRef CurrentWin) {
+    FileDelete, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\%Fx%.txt ;Reset/overwrite file.
     DetectHiddenWindows, On
     for index, value in WindowGroupArray
         WinClose, % "ahk_id " value
