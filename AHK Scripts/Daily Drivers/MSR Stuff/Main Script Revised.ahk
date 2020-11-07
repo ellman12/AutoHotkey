@@ -358,7 +358,7 @@ Loop {
 ;****************************************MISC HOTKEYS***************************************
 ^#r::reloadMSR() ;Reload MSR. If any windows are hidden, don't allow it to Reload until they're unhidden.
 
-!#r::Reload ;Force Reload the script, even if there are windows hidden (or if the script says there is, but there actually isn't).
+!#r::Reload ;Force Reload the script.
 
 ;Shows you miscellaneous variables, toggles, etc.
 ^#BackSpace::MsgBox, 0, Misc. Variables`, Toggles`, etc., MSR Profile: %currentProfile%`n`nnumPadMode: %NumPadMode%`n`nautoNumPadModeToggle: %autoNumPadModeToggle%
@@ -768,21 +768,14 @@ EWD_MouseStartY := EWD_MouseY
 return
 
 ;**************************************************FUNCTIONS AND LABELS**************************************************
-;Used for the Reload hotkey and also for space bar on the 2nd keeb.
-;Writes file to disk to guarantee they won't be lost if they're hidden and the script reloads.
+;Used for the Reload hotkey (^#r) and also for space bar on the 2nd keeb.
+;Writes file to disk to guarantee they won't be lost if they're hidden and the script reloads. Also for convenience whilst editing the script, etc.
 reloadMSR() {
-global
-
-	if (F6ShowHideToggle = 1)
-		writeGroupToFile("F6", WindowGroupF6)
-	else if (F7ShowHideToggle = 1)
-		writeGroupToFile("F7", WindowGroupF7)
-	else if (F8ShowHideToggle = 1)
-		writeGroupToFile("F8", WindowGroupF8)
-	else if (F10ShowHideToggle = 1)
-		writeGroupToFile("F10", WindowGroupF10)
-	else
-		Reload ;If no windows are hidden.
+	writeGroupToFile("F6", WindowGroupF6, 1)
+	writeGroupToFile("F7", WindowGroupF7, 1)
+	writeGroupToFile("F8", WindowGroupF8, 1)
+	writeGroupToFile("F10", WindowGroupF10, 1)
+	Reload ;If no windows are hidden.
 }
 
 ;Called by top 2 mouse button hotkeys.
