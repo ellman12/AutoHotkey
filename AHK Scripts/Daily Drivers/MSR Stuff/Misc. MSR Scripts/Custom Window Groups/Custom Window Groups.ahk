@@ -258,7 +258,6 @@ removeAndCloseAllWins(Fx, ByRef WindowGroupArray, ByRef CurrentWin) {
     WindowGroupArray :=
     CurrentWin := 1
     Tippy("All windows in " . Fx . " Group have been removed and closed.", 4000)
-    DetectHiddenWindows, Off
 }
 
 showWinTitlesFx(Fx, WindowGroupArray, CurrentWin, FxShowHideToggle) {
@@ -282,9 +281,10 @@ showWinTitlesFx(Fx, WindowGroupArray, CurrentWin, FxShowHideToggle) {
     message :=
 }
 
-writeGroupToFile(Fx, WindowGroupArray) { ;Stores a group in a .txt file for later use.
+;Stores a group in a .txt file for later use. calledOnExit is used for the Reload function so the user isn't bombarded with MsgBoxes on every reload. 0 = false; 1 = true.
+writeGroupToFile(Fx, WindowGroupArray, calledOnExit := 1) {
 
-    if (WindowGroupArray.Length() = 0) {
+    if ((WindowGroupArray.Length() = 0) AND (calledOnExit = 0)) {
         MsgBox, 262160, Error, This array has no elements in it.
         return
     }
@@ -297,7 +297,8 @@ writeGroupToFile(Fx, WindowGroupArray) { ;Stores a group in a .txt file for late
         FileAppend, %valueToAppend%, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\%Fx% Group.txt
     }
 
-    Tippy("The " . Fx . " Group has been saved to disk.", 1000)
+    if (calledOnExit = 0)
+        Tippy("The " . Fx . " Group has been saved to disk.", 1000)
     valueToAppend := ;Free.
 }
 
