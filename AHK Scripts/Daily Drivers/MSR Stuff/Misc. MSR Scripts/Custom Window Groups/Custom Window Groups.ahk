@@ -48,23 +48,35 @@ F10::nextWinOrShowHideWins("F10", WindowGroupF10, CurrentWinF10)
 #+F8::prevWindowFx(WindowGroupF8, CurrentWinF8)
 #+F10::prevWindowFx(WindowGroupF10, CurrentWinF10)
 
-; ^#Fx:: Remove all windows from the array, without closing them.
-^#F6::removeAllWins("F6", WindowGroupF6, CurrentWinF6)
-^#F7::removeAllWins("F7", WindowGroupF7, CurrentWinF7)
-^#F8::removeAllWins("F8", WindowGroupF8, CurrentWinF8)
-^#F10::removeAllWins("F10", WindowGroupF10, CurrentWinF10)
-
-; !#Fx:: Remove all windows from the array, and close all of them.
-!#F6::removeAndCloseAllWins("F6", WindowGroupF6, CurrentWinF6)
-!#F7::removeAndCloseAllWins("F7", WindowGroupF7, CurrentWinF7)
-!#F8::removeAndCloseAllWins("F8", WindowGroupF8, CurrentWinF8)
-!#F10::removeAndCloseAllWins("F10", WindowGroupF10, CurrentWinF10)
-
 ; ^+Fx:: Shows all the window titles in each array.
 ^+F6::showWinTitlesFx("F6", WindowGroupF6, CurrentWinF6, F6ShowHideToggle)
 ^+F7::showWinTitlesFx("F7", WindowGroupF7, CurrentWinF7, F7ShowHideToggle)
 ^+F8::showWinTitlesFx("F8", WindowGroupF8, CurrentWinF8, F8ShowHideToggle)
 ^+F10::showWinTitlesFx("F10", WindowGroupF10, CurrentWinF10, F10ShowHideToggle)
+
+; ^#Fx:: Writes all the window IDs to the corresponding .txt file.
+^#F6::writeGroupToFile("F6", WindowGroupF6)
+^#F7::writeGroupToFile("F7", WindowGroupF7)
+^#F8::writeGroupToFile("F8", WindowGroupF8)
+^#F10::writeGroupToFile("F10", WindowGroupF10)
+
+; !#Fx:: Reads the IDs from the corresponding .txt file.
+!#F6::readGroupFromFile("F6", WindowGroup)
+!#F7::readGroupFromFile("F7", WindowGroup)
+!#F8::readGroupFromFile("F8", WindowGroup)
+!#F10::readGroupFromFile("F10", WindowGroup)
+
+; ^+#Fx:: Remove all windows from the array, without closing them.
+^+#F6::removeAllWins("F6", WindowGroupF6, CurrentWinF6)
+^+#F7::removeAllWins("F7", WindowGroupF7, CurrentWinF7)
+^+#F8::removeAllWins("F8", WindowGroupF8, CurrentWinF8)
+^+#F10::removeAllWins("F10", WindowGroupF10, CurrentWinF10)
+
+; !#Fx:: Remove all windows from the array, and close all of them.
+!+#F6::removeAndCloseAllWins("F6", WindowGroupF6, CurrentWinF6)
+!+#F7::removeAndCloseAllWins("F7", WindowGroupF7, CurrentWinF7)
+!+#F8::removeAndCloseAllWins("F8", WindowGroupF8, CurrentWinF8)
+!+#F10::removeAndCloseAllWins("F10", WindowGroupF10, CurrentWinF10)
 
 ;**************************************************FUNCTIONS**************************************************
 ;Fx is either "F6", "F7", "F8", or "F10". The other param is the array to use. The Fx variable is just for the Tippy message.
@@ -234,7 +246,7 @@ removeNonexistentWindows(ByRef WindowGroupArray) {
 removeAllWins(Fx, ByRef WindowGroupArray, ByRef CurrentWin) {
     WindowGroupArray := [] ;Blank out the array. It's that simple.
     CurrentWin := 1
-    Tippy("All windows in " . Fx . " Group have been removed.", 3000)
+    Tippy("All windows in " . Fx . " Group have been removed.", 4000)
 }
 
 removeAndCloseAllWins(Fx, ByRef WindowGroupArray, ByRef CurrentWin) {
@@ -243,7 +255,7 @@ removeAndCloseAllWins(Fx, ByRef WindowGroupArray, ByRef CurrentWin) {
         WinClose, % "ahk_id " value
     WindowGroupArray :=
     CurrentWin := 1
-    Tippy("All windows in " . Fx . " Group have been removed and closed.", 3000)
+    Tippy("All windows in " . Fx . " Group have been removed and closed.", 4000)
     DetectHiddenWindows, Off
 }
 
@@ -266,4 +278,20 @@ showWinTitlesFx(Fx, WindowGroupArray, CurrentWin, FxShowHideToggle) {
     MsgBox, 0, %Fx% Windows, CurrentWin%Fx% = %CurrentWin%`n`n%Fx%ShowHideToggle = %F6ShowHideToggle%`n`n%message%
     currentTitle := ;Free memory.
     message :=
+}
+
+writeGroupToFile(Fx, WindowGroupArray) { ;Stores a group in a .txt file for later use.
+    FileDelete, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\%Fx%.txt ;Reset/overwrite file.
+
+    for index, value in WindowGroupArray ;Append values to the file.
+    {
+        valueToAppend := value . A_Space
+        FileAppend, %valueToAppend%, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\%Fx%.txt
+    }
+}
+
+readGroupFromFile(Fx, ByRef WindowGroupArray) { ;Retrieves that group from the file.
+
+    FileRead, groupFileContents, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\%Fx%.txt
+    WindowGroupArray := StrSplit(groupFileContents, A_Space) ;Split up the file and store in the passed-in array. The delimiter is spaces because they're easiest to work with.
 }

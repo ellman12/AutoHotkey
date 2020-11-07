@@ -341,7 +341,7 @@ Loop {
 #Include, %A_ScriptDir%\Misc. MSR Scripts\ApplicationSwitcher.ahk
 #Include, %A_ScriptDir%\Misc. MSR Scripts\AutoCorrect.ahk
 #Include, %A_ScriptDir%\Misc. MSR Scripts\C-C++ Programming.ahk
-#Include, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups.ahk
+#Include, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\Custom Window Groups.ahk
 #Include, %A_ScriptDir%\Misc. MSR Scripts\NumPad Media Control.ahk
 #Include, %A_ScriptDir%\Misc. MSR Scripts\Run\Run.ahk
 
