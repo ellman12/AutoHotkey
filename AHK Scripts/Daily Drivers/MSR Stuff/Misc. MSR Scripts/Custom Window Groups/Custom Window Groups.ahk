@@ -287,7 +287,7 @@ writeGroupToFile(Fx, WindowGroupArray) { ;Stores a group in a .txt file for late
         return
     }
 
-    FileDelete, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\%Fx%.txt ;Reset/overwrite file.
+    FileDelete, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\%Fx% Group.txt ;Reset/overwrite file.
 
     for index, value in WindowGroupArray ;Append values to the file.
     {
