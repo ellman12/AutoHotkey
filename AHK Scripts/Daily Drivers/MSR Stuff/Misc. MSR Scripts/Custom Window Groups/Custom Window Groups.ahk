@@ -282,20 +282,27 @@ showWinTitlesFx(Fx, WindowGroupArray, CurrentWin, FxShowHideToggle) {
 
 writeGroupToFile(Fx, WindowGroupArray) { ;Stores a group in a .txt file for later use.
 
+    if (WindowGroupArray.Length() = 0) {
+        MsgBox, 262160, Error, This array has no elements in it.
+        return
+    }
+
     FileDelete, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\%Fx%.txt ;Reset/overwrite file.
 
     for index, value in WindowGroupArray ;Append values to the file.
     {
         valueToAppend := value . A_Space
-        FileAppend, %valueToAppend%, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\%Fx%.txt
+        FileAppend, %valueToAppend%, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\%Fx% Group.txt
     }
 
     Tippy("The " . Fx . " Group has been saved to disk.", 1000)
+    valueToAppend := ;Free.
 }
 
 readGroupFromFile(Fx, ByRef WindowGroupArray) { ;Retrieves that group from the file.
 
-    FileRead, groupFileContents, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\%Fx%.txt
+    FileRead, groupFileContents, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\%Fx% Group.txt
     WindowGroupArray := StrSplit(groupFileContents, A_Space) ;Split up the file and store in the passed-in array. The delimiter is spaces because they're easiest to work with.
     Tippy("The " . Fx . " Group has been restored from disk.", 1000)
+    groupFileContents := ;Free.
 }

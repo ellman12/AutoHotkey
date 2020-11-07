@@ -769,32 +769,21 @@ return
 
 ;**************************************************FUNCTIONS AND LABELS**************************************************
 ;Used for the Reload hotkey and also for space bar on the 2nd keeb.
-;Checking for if windows are hidden helps prevent them from getting indefinitely hidden and thus lost.
+;Writes file to disk to guarantee they won't be lost if they're hidden and the script reloads.
 reloadMSR() {
+global
+
 	if (F6ShowHideToggle = 1)
-		MsgBox, 262160, Error. Can't Reload MSR., There are F6 windows hidden. Unhide them and then reload MSR.
+		writeGroupToFile("F6", WindowGroupF6)
 	else if (F7ShowHideToggle = 1)
-		MsgBox, 262160, Error. Can't Reload MSR., There are F7 windows hidden. Unhide them and then reload MSR.
+		writeGroupToFile("F7", WindowGroupF7)
 	else if (F8ShowHideToggle = 1)
-		MsgBox, 262160, Error. Can't Reload MSR., There are F8 windows hidden. Unhide them and then reload MSR.
+		writeGroupToFile("F8", WindowGroupF8)
 	else if (F10ShowHideToggle = 1)
-		MsgBox, 262160, Error. Can't Reload MSR., There are F10 windows hidden. Unhide them and then reload MSR.
+		writeGroupToFile("F10", WindowGroupF10)
 	else
 		Reload ;If no windows are hidden.
 }
-
-;TODO: fix this bug
-;https://www.google.com/search?source=hp&ei=LaWhX4fyDoKMtAas97iQDA&q=autohotkey+get+if+window+hidden&oq=AutoHotkey+get+if+widow+hiddem&gs_lcp=CgZwc3ktYWIQAxgAMgcIIRAKEKABOggIABCxAxDJAzoCCC46BQgAELEDOgIIADoECAAQCjoOCAAQ6gIQtAIQmgEQ5QI6BQgAEMkDOgYIABAWEB46BQgAEM0COggIIRAWEB0QHjoFCCEQoAE6BQghEKsCUJQBWOEYYKMhaAFwAHgAgAHrAogBmxuSAQgwLjE1LjUuMZgBAKABAaoBB2d3cy13aXqwAQY&sclient=psy-ab
-; reloadMSR() {
-; 	if (F6ShowHideToggle = 1) {
-; 		If (Style & 0x10000000)  ; 0x10000000 is WS_VISIBLE
-; 			MsgBox, My Window is Visible
-; 	}
-
-
-; 	else
-; 		Reload
-; }
 
 ;Called by top 2 mouse button hotkeys.
 topMouseButtons(buttonMode) {
