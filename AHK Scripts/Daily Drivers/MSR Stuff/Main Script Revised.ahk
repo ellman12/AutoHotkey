@@ -368,6 +368,14 @@ Loop {
 
 +#r::deleteConfigFile() ;Delete .ini file.
 
+^!r:: ;Reload and delete the CWG files (basically what ^#r used to be).
+FileDelete, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\F6 Group.txt
+FileDelete, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\F7 Group.txt
+FileDelete, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\F8 Group.txt
+FileDelete, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\F10 Group.txt
+Reload
+return
+
 ;Shows you miscellaneous variables, toggles, etc.
 ^#BackSpace::MsgBox, 0, Misc. Variables`, Toggles`, etc., MSR Profile: %currentProfile%`n`nnumPadMode: %NumPadMode%`n`nautoNumPadModeToggle: %autoNumPadModeToggle%
 
