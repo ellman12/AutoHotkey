@@ -360,6 +360,8 @@ Loop {
 
 !#r::Reload ;Force Reload the script.
 
+#+r::deleteConfigFile()
+
 ; ^!r:: TODO: figure out how to have the script auto-load CWG txt files on startup.
 
 ;Shows you miscellaneous variables, toggles, etc.
@@ -409,8 +411,6 @@ sc029::Send, !{Tab} ;The grave accent key (that weird thing under the Tilde ~ sy
 !SC00D::WinMaximize, A ;Alt + +.
 
 #n::Run, Notepad ;Open Notepad.
-
-#+r::deleteConfigFile()
 
 ;Toggle programming mode. Disables hotkeys/hotstrings that can be annoying when programming.
 ^!Insert::BooleanToggle(programmingMode, "Programming Mode ON", "Programming Mode Off")
