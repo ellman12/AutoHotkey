@@ -360,6 +360,8 @@ Loop {
 
 !#r::Reload ;Force Reload the script.
 
+; ^!r:: TODO: figure out how to have the script auto-load CWG txt files on startup.
+
 ;Shows you miscellaneous variables, toggles, etc.
 ^#BackSpace::MsgBox, 0, Misc. Variables`, Toggles`, etc., MSR Profile: %currentProfile%`n`nnumPadMode: %NumPadMode%`n`nautoNumPadModeToggle: %autoNumPadModeToggle%
 
@@ -367,12 +369,13 @@ Loop {
 WinSet, AlwaysOnTop, Toggle, A
 WinGet, onTop, ExStyle, A
 if (onTop & 0x8) { ; 0x8 is WS_EX_TOPMOST.
-	msg := activeWindowTitle . " is AlwaysOnTop"
-	Tippy(msg, 1000)
+	message := activeWindowTitle . " is AlwaysOnTop"
+	Tippy(message, 1000)
 } else {
-	msg := activeWindowTitle . " is no longer on top"
-	Tippy(msg, 1000)
+	message := activeWindowTitle . " is no longer on top"
+	Tippy(message, 1000)
 }
+message := ;Free.
 return
 
 ^#s::Run, C:\Program Files\AutoHotkey\WindowSpy.ahk ;Run Window Spy.
