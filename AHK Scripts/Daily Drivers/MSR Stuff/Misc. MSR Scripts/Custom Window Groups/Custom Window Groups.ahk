@@ -55,10 +55,10 @@ F10::nextWinOrShowHideWins("F10", WindowGroupF10, CurrentWinF10)
 ^+F10::showWinTitlesFx("F10", WindowGroupF10, CurrentWinF10, F10ShowHideToggle)
 
 ; ^#Fx:: Writes all the window IDs to the corresponding .txt file.
-^#F6::writeGroupToFile("F6", WindowGroupF6)
-^#F7::writeGroupToFile("F7", WindowGroupF7)
-^#F8::writeGroupToFile("F8", WindowGroupF8)
-^#F10::writeGroupToFile("F10", WindowGroupF10)
+^#F6::writeGroupToFile("F6", WindowGroupF6, 0)
+^#F7::writeGroupToFile("F7", WindowGroupF7, 0)
+^#F8::writeGroupToFile("F8", WindowGroupF8, 0)
+^#F10::writeGroupToFile("F10", WindowGroupF10, 0)
 
 ; !#Fx:: Reads the IDs from the corresponding .txt file.
 !#F6::readGroupFromFile("F6", WindowGroupF6)
@@ -282,7 +282,7 @@ showWinTitlesFx(Fx, WindowGroupArray, CurrentWin, FxShowHideToggle) {
 }
 
 ;Stores a group in a .txt file for later use. calledOnExit is used for the Reload function so the user isn't bombarded with MsgBoxes on every reload. 0 = false; 1 = true.
-writeGroupToFile(Fx, WindowGroupArray, calledOnExit := 1) {
+writeGroupToFile(Fx, WindowGroupArray, calledOnExit) {
 
     if ((WindowGroupArray.Length() = 0) AND (calledOnExit = 0)) {
         MsgBox, 262160, Error, This array has no elements in it.
