@@ -302,10 +302,13 @@ writeGroupToFile(Fx, WindowGroupArray, calledOnExit := 1) {
     valueToAppend := ;Free.
 }
 
-readGroupFromFile(Fx, ByRef WindowGroupArray) { ;Retrieves that group from the file.
+;Retrieves that group from the file. Added calledOnStartup so when the script starts up and calls this 4 times, those Tippys aren't there every single time. Similar to calledOnExit; optional paramater as well.
+readGroupFromFile(Fx, ByRef WindowGroupArray, calledOnStartup := 1) {
 
     FileRead, groupFileContents, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\%Fx% Group.txt
     WindowGroupArray := StrSplit(groupFileContents, A_Space) ;Split up the file and store in the passed-in array. The delimiter is spaces because they're easiest to work with.
-    Tippy("The " . Fx . " Group has been restored from disk.", 1000)
     groupFileContents := ;Free.
+
+    if (calledOnStartup = 0)
+        Tippy("The " . Fx . " Group has been restored from disk.", 1000)
 }

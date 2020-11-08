@@ -87,6 +87,12 @@ global F7ShowHideToggle := 0
 global F8ShowHideToggle := 0
 global F10ShowHideToggle := 0
 
+;Load the files if they contain any IDs.
+readGroupFromFile("F6", WindowGroupF6, 1)
+readGroupFromFile("F7", WindowGroupF7, 1)
+readGroupFromFile("F8", WindowGroupF8, 1)
+readGroupFromFile("F10", WindowGroupF10, 1)
+
 ;*******************************EDIT CLIPBOARD CONTENT INITIALIZATION******************************
 GUI, ECC:Font, s12
 GUI, ECC:Add, Button, gclipboardFinishButton x4 y2 w80,&Finish
@@ -361,8 +367,6 @@ Loop {
 !#r::Reload ;Force Reload the script.
 
 #+r::deleteConfigFile()
-
-; ^!r:: TODO: figure out how to have the script auto-load CWG txt files on startup.
 
 ;Shows you miscellaneous variables, toggles, etc.
 ^#BackSpace::MsgBox, 0, Misc. Variables`, Toggles`, etc., MSR Profile: %currentProfile%`n`nnumPadMode: %NumPadMode%`n`nautoNumPadModeToggle: %autoNumPadModeToggle%
