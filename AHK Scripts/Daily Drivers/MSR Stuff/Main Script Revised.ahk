@@ -356,7 +356,7 @@ Loop {
 #Include, %A_ScriptDir%\Misc. MSR Scripts\Chromebook Typing.ahk
 
 ;****************************************MISC HOTKEYS***************************************
-^#r::reloadMSR() ;Reload MSR. If any windows are hidden, don't allow it to Reload until they're unhidden.
+^#r::reloadMSR() ;Reload MSR.
 
 !#r::Reload ;Force Reload the script.
 
