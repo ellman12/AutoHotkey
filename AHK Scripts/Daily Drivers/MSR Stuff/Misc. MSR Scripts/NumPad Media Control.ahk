@@ -236,10 +236,10 @@ changeVolume(ud) { ;Called by NumPadAdd and NumPadEnter.
 	SoundSet, % vol * (1 + ud * p / 100)
 }
 
-;Used for NumPadSub. Checks to see if SavedNumMinusVol is 0 or NULL. If so, it won't "restore" it.
+;Used for NumPadSub. Checks to see if SavedNumMinusVol is 0 or NULL. If so, it will save the current volume. It used to make a MsgBox appear telling you a volume level hasn't been saved.
 restoreSavedVolume() {
 	if ((SavedNumMinusVol = 0) OR (SavedNumMinusVol = NULL)) {
-		MsgBox, 262160, Error. SavedNumMinusVol is either 0 or NULL., Please use ^NumPadSub to save a volume level first.
+		Gosub, ^NumPadSub
 		return
 	} else
 		SoundSet, %SavedNumMinusVol% ;Restore the saved volume level from ^NumPadSub.
