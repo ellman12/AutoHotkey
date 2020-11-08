@@ -368,7 +368,7 @@ Loop {
 
 +#r::deleteConfigFile() ;Delete .ini file.
 
-^!r:: ;Reload and delete the CWG files (basically what ^#r used to be).
+^!r:: ;Delete the CWG files and then reload script (basically what ^#r used to be). Useful if I want to restart the script without restoring the CWG arrays.
 FileDelete, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\F6 Group.txt
 FileDelete, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\F7 Group.txt
 FileDelete, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\F8 Group.txt
