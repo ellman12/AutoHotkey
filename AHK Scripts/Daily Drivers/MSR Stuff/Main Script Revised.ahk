@@ -492,6 +492,37 @@ if (onTop & 0x8) { ; 0x8 is WS_EX_TOPMOST.
 message := ;Free.
 return
 
+#+d:: ;Recycle the most recently created file or folder in the Downloads folder.
+Loop, Files, C:\Users\%A_UserName%\Downloads\*.*, FD ;FD = Include Files and Directories
+{
+    ;Loops through this directory, and if it encounters a file/folder that is newer than the previously encountered one,
+    ; make that the one to potentially delete.
+    if (A_LoopFileTimeModified > currentMaxCreationDate)
+    {
+        currentMaxCreationDate := A_LoopFileTimeModified
+        thingToDelete := A_LoopFileName
+		thingToDeleteFileExt := A_LoopFileExt
+    }
+}
+
+if (thingToDeleteFileExt == "") { ;If it's a folder, don't tack on an extension thing in the prompt asking if you for sure want to delete it.
+	message = Recycle folder "%thingToDelete%"?
+} else {
+	message = Recycle file "%thingToDelete%.%A_LoopFileExt%"?
+}
+
+MsgBox, 262180, Recycle Latest Thing in Downloads Folder, %Message%
+IfMsgBox, No
+    return
+
+FileRecycle, C:\Users\Elliott\Downloads\%thingToDelete%
+if (ErrorLevel == 1)
+    MsgBox, 262160, Error, An error occurred while trying to recycle "%thingToDelete%".
+
+currentMaxCreationDate := ;Free memory.
+thingToDelete :=
+return
+
 ;****************************************GLOBAL iCUE HOTKEYS***************************************
 ;These 3 hotkeys are sent by the iCUE software, which AutoHotkey detects.
 +F24::Send, ^c ;M1 on K95 RGB copies to the clipboard.
@@ -878,31 +909,6 @@ deleteConfigFile() {
 }
 
 ;**************************************************EXPERIMENTAL**************************************************
-;Putting this here for now for testing.
-#+d:: ;Delete the most recently created file or folder in the Downloads folder.
-Loop, Files, C:\Users\%A_UserName%\Downloads\*.*, FD ;FD = Include Files and Directories
-{
-    ;Loops through this directory, and if it encounters a file/folder that is newer than the previously encountered one,
-    ; make that the one to potentially delete.
-    if (A_LoopFileTimeModified > currentMaxCreationDate)
-    {
-        currentMaxCreationDate := A_LoopFileTimeModified
-        fileToPotentiallyDelete := A_LoopFileName
-    }
-}
-
-MsgBox, 262180, Recycle Latest File in Downloads Folder, "%fileToPotentiallyDelete%" will be recycled. Proceed?
-IfMsgBox, No
-    return
-
-FileRecycle, C:\Users\Elliott\Downloads\%fileToPotentiallyDelete%
-if (ErrorLevel == 0)
-    MsgBox, 262160, Error, An error occurred while trying to recycle "%fileToPotentiallyDelete%".
-
-currentMaxCreationDate := ;Free memory.
-fileToPotentiallyDelete :=
-return
-
 ;**************************************************TEMPORARY**************************************************
 :*:hon comp::Honors: Composition II
 :*:hcomp::Honors Composition II
