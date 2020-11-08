@@ -371,19 +371,6 @@ Loop {
 ;Shows you miscellaneous variables, toggles, etc.
 ^#BackSpace::MsgBox, 0, Misc. Variables`, Toggles`, etc., MSR Profile: %currentProfile%`n`nnumPadMode: %NumPadMode%`n`nautoNumPadModeToggle: %autoNumPadModeToggle%
 
-^Space:: ;Make active window AlwaysOnTop, and tell the user if it is or not.
-WinSet, AlwaysOnTop, Toggle, A
-WinGet, onTop, ExStyle, A
-if (onTop & 0x8) { ; 0x8 is WS_EX_TOPMOST.
-	message := activeWindowTitle . " is AlwaysOnTop"
-	Tippy(message, 1000)
-} else {
-	message := activeWindowTitle . " is no longer on top"
-	Tippy(message, 1000)
-}
-message := ;Free.
-return
-
 ^#s::Run, C:\Program Files\AutoHotkey\WindowSpy.ahk ;Run Window Spy.
 
 ^CtrlBreak:: ;Technically Ctrl + Pause. Read about this here: https://www.autohotkey.com/docs/KeyList.htm#other
@@ -482,6 +469,19 @@ MsgBox, 0, Grade, You got %result%`%.`n`nLetter Grade`tNumerical Grade`nA+`t`t97
 firstNum :=
 secondNum :=
 result :=
+return
+
+^Space:: ;Make active window AlwaysOnTop, and tell the user if it is or not.
+WinSet, AlwaysOnTop, Toggle, A
+WinGet, onTop, ExStyle, A
+if (onTop & 0x8) { ; 0x8 is WS_EX_TOPMOST.
+	message := activeWindowTitle . " is AlwaysOnTop"
+	Tippy(message, 1000)
+} else {
+	message := activeWindowTitle . " is no longer on top"
+	Tippy(message, 1000)
+}
+message := ;Free.
 return
 
 ;****************************************GLOBAL iCUE HOTKEYS***************************************
