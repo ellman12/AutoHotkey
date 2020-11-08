@@ -87,7 +87,7 @@ global F7ShowHideToggle := 0
 global F8ShowHideToggle := 0
 global F10ShowHideToggle := 0
 
-;Load the files if they contain any IDs.
+;Load the files so user doesn't have to if there's stuff in them.
 readGroupFromFile("F6", WindowGroupF6, 1)
 readGroupFromFile("F7", WindowGroupF7, 1)
 readGroupFromFile("F8", WindowGroupF8, 1)
@@ -366,7 +366,7 @@ Loop {
 
 !#r::Reload ;Force Reload the script.
 
-#+r::deleteConfigFile()
++#r::deleteConfigFile() ;Delete .ini file.
 
 ;Shows you miscellaneous variables, toggles, etc.
 ^#BackSpace::MsgBox, 0, Misc. Variables`, Toggles`, etc., MSR Profile: %currentProfile%`n`nnumPadMode: %NumPadMode%`n`nautoNumPadModeToggle: %autoNumPadModeToggle%
