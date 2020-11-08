@@ -907,16 +907,9 @@ return
 :*:hon comp::Honors: Composition II
 :*:hcomp::Honors Composition II
 
-;Dell keyboard.
+;For Dell keyboard.
 Volume_Down::SoundSet, -2
 Volume_Up::SoundSet, +2
-
-;For Pop Culture paper.
-:*:shrek::Shrek
-:*:fiona::Fiona
-:*:farquaad::Farquaad
-:*:lofa::Lord Farquaad
-:*:duloc::Duloc
 
 #If WinActive("ahk_exe Zoom.exe")
 ; RAlt::Send, #+s ;Snip & Sketch.
