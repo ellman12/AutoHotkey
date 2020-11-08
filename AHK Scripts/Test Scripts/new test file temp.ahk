@@ -12,26 +12,26 @@ SplitPath, A_ScriptName, , , , thisscriptname
 ; SetKeyDelay, -1, -1 ; Remove short delay done automatically after every keystroke sent by Send or ControlSend
 ; SetMouseDelay, -1 ; Remove short delay done automatically after Click and MouseMove/Click/Drag
 
-FileList := ""
-FileArray := []
-LowestCreationTime := ""
-
-Loop, Files, C:\Users\Elliott\Downloads\*.*, FD  ; Include Files and Directories
+F11::
+Loop, Files, C:\Users\Elliott\Downloads\*.*, FD ;FD = Include Files and Directories
 {
-    FileList .= A_LoopFileTimeModified . A_LoopFileName "`n"
+    ;Loops through this directory, and if it encounters a file/folder that is newer than the previously encountered one,
+    ; make that the one to potentially delete.
+    if (A_LoopFileTimeModified > currentMaxCreationDate)
+    {
+        currentMaxCreationDate := A_LoopFileTimeModified
+        fileToPotentiallyDelete := A_LoopFileName
+    }
 }
 
-Sort, FileList, N R ; Sort by date.
-MsgBox, %FileList%
+MsgBox, 262180, Recycle Latest File in Downloads Folder, "%fileToPotentiallyDelete%" will be recycled. Proceed?
+IfMsgBox, No
+    return
 
-FileArray := StrSplit(FileList, "`n")
-fileName := SubStr(FileArray, StartingPos [, Length])
+FileRecycle, C:\Users\Elliott\Downloads\%fileToPotentiallyDelete%
+if (ErrorLevel == 0)
+    MsgBox, 262160, Error, An error occurred while trying to recycle "%fileToPotentiallyDelete%".
 
-for index, value in FileArray
-{
-    MsgBox %index% at %value%
-    fileName :=
-    FileRecycle, %value%
-    if ErrorLevel = 1
-        MsgBox, Error
-}
+currentMaxCreationDate := ;Free memory.
+fileToPotentiallyDelete :=
+return

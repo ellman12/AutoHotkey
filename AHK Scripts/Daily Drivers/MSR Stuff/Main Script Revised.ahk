@@ -878,6 +878,31 @@ deleteConfigFile() {
 }
 
 ;**************************************************EXPERIMENTAL**************************************************
+;Putting this here for now for testing.
+#+d:: ;Delete the most recently created file or folder in the Downloads folder.
+Loop, Files, C:\Users\%A_UserName%\Downloads\*.*, FD ;FD = Include Files and Directories
+{
+    ;Loops through this directory, and if it encounters a file/folder that is newer than the previously encountered one,
+    ; make that the one to potentially delete.
+    if (A_LoopFileTimeModified > currentMaxCreationDate)
+    {
+        currentMaxCreationDate := A_LoopFileTimeModified
+        fileToPotentiallyDelete := A_LoopFileName
+    }
+}
+
+MsgBox, 262180, Recycle Latest File in Downloads Folder, "%fileToPotentiallyDelete%" will be recycled. Proceed?
+IfMsgBox, No
+    return
+
+FileRecycle, C:\Users\Elliott\Downloads\%fileToPotentiallyDelete%
+if (ErrorLevel == 0)
+    MsgBox, 262160, Error, An error occurred while trying to recycle "%fileToPotentiallyDelete%".
+
+currentMaxCreationDate := ;Free memory.
+fileToPotentiallyDelete :=
+return
+
 ;**************************************************TEMPORARY**************************************************
 :*:hon comp::Honors: Composition II
 :*:hcomp::Honors Composition II
