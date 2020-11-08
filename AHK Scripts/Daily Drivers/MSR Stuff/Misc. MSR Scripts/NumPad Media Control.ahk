@@ -12,7 +12,7 @@ Tippy(message, 1400)
 return
 
 ;Change the step value of NumPad 2 and NumPad 8.
-!NumpadSub::InputBox, Num2And8Step, Input Num2 and Num8 step value, Input Num2 and Num8 step value. Current value: %Num2And8Step%., , , , , , , , %Num2And8Step%
+!NumPadSub::InputBox, Num2And8Step, Input Num2 and Num8 step value, Input Num2 and Num8 step value. Current value: %Num2And8Step%., , , , , , , , %Num2And8Step%
 
 ^Pause:: ;autoNumPadModeToggle hotkey. Technically ^NumLock. https://www.autohotkey.com/docs/KeyList.htm#numpad
 autoNumPadModeToggle := !autoNumPadModeToggle
