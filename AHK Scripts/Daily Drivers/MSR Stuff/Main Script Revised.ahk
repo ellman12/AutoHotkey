@@ -356,7 +356,7 @@ Loop {
 #Include, %A_ScriptDir%\Misc. MSR Scripts\Chromebook Typing.ahk
 
 ;****************************************MISC HOTKEYS***************************************
-^#r::reloadMSR() ;Reload MSR.
+^#r::reloadMSR()
 
 !#r::Reload ;Force Reload the script.
 
