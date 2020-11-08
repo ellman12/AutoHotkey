@@ -129,7 +129,7 @@ showOrHideWindowsFx(ByRef WindowGroupArray, ByRef FxShowHideToggle) {
 
         for index, value in WindowGroupArray
             WinShow, % "ahk_id " value
-        WinActivate, , % "ahk_id " value
+        WinActivate, % "ahk_id " value
 
     } else {
         for index, value in WindowGroupArray
