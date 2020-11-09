@@ -366,8 +366,8 @@ Send, {Right}
 Send, {Down}
 return
 
-; ;Open Notepad.
-; n::Run, notepad.exe
+; ;Open Google Calendar.
+n::Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://calendar.google.com/calendar/u/0/r
 
 ;Shift + End.
 NumPad1::Send, +{End}
