@@ -366,7 +366,7 @@ Send, {Right}
 Send, {Down}
 return
 
-; ;Open Google Calendar.
+;Open Google Calendar.
 n::Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://calendar.google.com/calendar/u/0/r
 
 ;Shift + End.
