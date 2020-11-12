@@ -3,7 +3,7 @@
 
 ^CapsLock::runCommand(runInputBoxText) ;Repeats previous command. Can also "repeat(?)" error/unknown commands.
 
-*CapsLock::return ;Temporarily(?) removed on Saturday, October 17, 2020 at 8:10 PM because it was too annoying.
+; *CapsLock::return ;Temporarily(?) removed on Saturday, October 17, 2020 at 8:10 PM because it was too annoying.
 
 !CapsLock:: ;Tells you what the previous command is before running it (unlike ^CapsLock). Asks if you want to proceed or not.
 
