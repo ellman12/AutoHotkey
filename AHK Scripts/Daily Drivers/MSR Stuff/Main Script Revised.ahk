@@ -513,45 +513,11 @@ Clipboard := originalClipboard
 originalClipboard :=
 return
 
-#+d:: ;Recycle the most recently created file or folder in the Downloads folder.
-Loop, Files, C:\Users\%A_UserName%\Downloads\*.*, FD ;FD = Include Files and Directories
-{
+;Recycle the most recently created file or folder in the Downloads folder.
+#+d::deleteMostRecentItemInFolder("Downloads")
 
-    ;Loops through this directory, and if it encounters a file/folder that is newer than the previously encountered one,
-    ; make that the one to potentially delete.
-    if (A_LoopFileTimeModified > currentMaxCreationDate)
-    {
-        currentMaxCreationDate := A_LoopFileTimeModified
-        thingToDelete := A_LoopFileName
-		thingToDeleteFileExt := A_LoopFileExt
-    }
-
-}
-
-if (thingToDelete == "") ;If the folder is empty.
-{
-	MsgBox, 262160, Error., No more items in Downloads folder. The current thread will now exit.
-	return
-}
-
-if (thingToDeleteFileExt == "") { ;If it's a folder, don't tack on an extension thing in the prompt asking if you for sure want to delete it.
-	message = Recycle folder "%thingToDelete%"?
-} else {
-	message = Recycle file "%thingToDelete%.%A_LoopFileExt%"?
-}
-
-MsgBox, 262180, Recycle Latest Thing in Downloads Folder, %Message%
-IfMsgBox, No
-    return
-
-FileRecycle, C:\Users\%A_UserName%\Downloads\%thingToDelete%
-if (ErrorLevel == 1)
-    MsgBox, 262160, Error, An error occurred while trying to recycle "%thingToDelete%".
-
-currentMaxCreationDate := ;Free memory.
-thingToDelete :=
-thingToDeleteFileExt :=
-return
+;Same thing but for Desktop.
+#!+d::deleteMostRecentItemInFolder("Desktop")
 
 ;****************************************GLOBAL iCUE HOTKEYS***************************************
 ;These 3 hotkeys are sent by the iCUE software, which AutoHotkey detects.
@@ -843,7 +809,7 @@ EWD_MouseStartX := EWD_MouseX  ; Update for the next timer-call to this subrouti
 EWD_MouseStartY := EWD_MouseY
 return
 
-;**************************************************FUNCTIONS AND LABELS**************************************************
+;**************************************************MSR FUNCTIONS AND LABELS**************************************************
 ;Used for the Reload hotkey (^#r) and also for space bar on the 2nd keeb.
 ;Writes file to disk to guarantee they won't be lost if they're hidden and the script reloads. Also for convenience whilst editing the script, etc.
 reloadMSR() {
@@ -936,6 +902,45 @@ deleteConfigFile() {
 		MsgBox, 262160, Something Happened, An error occurred while trying to delete the config file. Most likely the file doesn't exist and thus you tried to delete something that doesn't exist.
 	else
 		Tippy("Config File has been deleted.", 950)
+}
+
+deleteMostRecentItemInFolder(folderName)
+{
+	Loop, Files, C:\Users\%A_UserName%\%folderName%\*.*, FD ;FD = Include Files and Directories
+	{
+		;Loops through this directory, and if it encounters a file/folder that is newer than the previously encountered one,
+		; make that the one to potentially delete.
+		if (A_LoopFileTimeModified > currentMaxCreationDate)
+		{
+			currentMaxCreationDate := A_LoopFileTimeModified
+			thingToDelete := A_LoopFileName
+			thingToDeleteFileExt := A_LoopFileExt
+		}
+	}
+
+	if (thingToDelete == "") ;If the folder is empty.
+	{
+		MsgBox, 262160, Error., No more items in %folderName% folder. The current thread will now exit.
+		return
+	}
+
+	if (thingToDeleteFileExt == "") { ;If it's a folder, don't tack on an extension thing in the prompt asking if you for sure want to delete it.
+		message = Recycle folder "%thingToDelete%"?
+	} else {
+		message = Recycle file "%thingToDelete%.%A_LoopFileExt%"?
+	}
+
+	MsgBox, 262180, Recycle Latest Thing in %folderName% Folder, %Message%
+	IfMsgBox, No
+		return
+
+	FileRecycle, C:\Users\%A_UserName%\%folderName%\%thingToDelete%
+	if (ErrorLevel == 1)
+		MsgBox, 262160, Error, An error occurred while trying to recycle "%thingToDelete%".
+
+	currentMaxCreationDate := ;Free memory.
+	thingToDelete :=
+	thingToDeleteFileExt :=
 }
 
 ;**************************************************EXPERIMENTAL**************************************************
