@@ -1,9 +1,6 @@
-#NoEnv
-SendMode Input
+;These things are not by me, but I'm not sure if they're needed, so I'm keeping them in.
 #InstallKeybdHook
-;#InstallMouseHook ;<--You'll want to use this if you have scripts that use the mouse.
 #UseHook On
-#SingleInstance force ;only one instance of this script may run at a time!
 #MaxHotkeysPerInterval 2000
 
 ;;The lines below are optional. Delete them if you need to.
@@ -12,7 +9,6 @@ SendMode Input
 #MenuMaskKey vk07 ;https://autohotkey.com/boards/viewtopic.php?f=76&t=57683
 #WinActivateForce ;https://autohotkey.com/docs/commands/_WinActivateForce.htm ;prevent taskbar flashing.
 
-;The Hasu USB to USB Controller Converter somehow separates the 2nd keyboard from the others.
 #if (GetKeyState("F24", "P")) ;<--Everything after this line will only happen on the secondary keyboard that uses F24.
 F24::return ;This line is mandatory for proper functionality.
 
