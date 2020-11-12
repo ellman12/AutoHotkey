@@ -5551,5 +5551,6 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:yall::y'all
 ::ai::AI
 :*:aai::artifical intelligence
+:*:msgbox::MsgBox
 
 #If
