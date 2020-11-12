@@ -542,6 +542,7 @@ if (ErrorLevel == 1)
 
 currentMaxCreationDate := ;Free memory.
 thingToDelete :=
+thingToDeleteFileExt :=
 return
 
 ;****************************************GLOBAL iCUE HOTKEYS***************************************
