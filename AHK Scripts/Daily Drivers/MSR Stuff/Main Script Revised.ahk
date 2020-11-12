@@ -544,7 +544,7 @@ MsgBox, 262180, Recycle Latest Thing in Downloads Folder, %Message%
 IfMsgBox, No
     return
 
-FileRecycle, C:\Users\Elliott\Downloads\%thingToDelete%
+FileRecycle, C:\Users\%A_UserName%\Downloads\%thingToDelete%
 if (ErrorLevel == 1)
     MsgBox, 262160, Error, An error occurred while trying to recycle "%thingToDelete%".
 
