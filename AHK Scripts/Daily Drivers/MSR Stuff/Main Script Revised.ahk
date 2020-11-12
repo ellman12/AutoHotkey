@@ -516,6 +516,7 @@ return
 #+d:: ;Recycle the most recently created file or folder in the Downloads folder.
 Loop, Files, C:\Users\%A_UserName%\Downloads\*.*, FD ;FD = Include Files and Directories
 {
+
     ;Loops through this directory, and if it encounters a file/folder that is newer than the previously encountered one,
     ; make that the one to potentially delete.
     if (A_LoopFileTimeModified > currentMaxCreationDate)
@@ -524,6 +525,13 @@ Loop, Files, C:\Users\%A_UserName%\Downloads\*.*, FD ;FD = Include Files and Dir
         thingToDelete := A_LoopFileName
 		thingToDeleteFileExt := A_LoopFileExt
     }
+
+}
+
+if (thingToDelete == "") ;If the folder is empty.
+{
+	MsgBox, 262160, Error., No more items in Downloads folder. The current thread will now exit.
+	return
 }
 
 if (thingToDeleteFileExt == "") { ;If it's a folder, don't tack on an extension thing in the prompt asking if you for sure want to delete it.
