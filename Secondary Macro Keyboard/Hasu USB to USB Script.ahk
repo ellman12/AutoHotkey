@@ -37,10 +37,10 @@ MouseGetPos, mousePosX4, mousePosY4
 Tippy("F4 pointer saved", 1300)
 return
 
-F1::MouseMove, mousePosX1, mousePosY1, 0
-F2::MouseMove, mousePosX2, mousePosY2, 0
-F3::MouseMove, mousePosX3, mousePosY3, 0
-F4::MouseMove, mousePosX4, mousePosY4, 0
+F1::F1ThruF4MouseMove("F1", mousePosX1, mousePosY1)
+F2::F1ThruF4MouseMove("F2", mousePosX2, mousePosY2)
+F3::F1ThruF4MouseMove("F3", mousePosX3, mousePosY3)
+F4::F1ThruF4MouseMove("F4", mousePosX4, mousePosY4)
 
 ^F9::Run, C:\Program Files\Microsoft Office\root\Office16\Outlook.exe
 ^F11::Run, C:\Users\%A_UserName%\AppData\Local\Discord\app-0.0.308\Discord.exe
@@ -489,7 +489,16 @@ z::Send, ^z
 SC070::Lshift
 SC07D::Rshift
 
-;***************FUNCTIONS FOR THE 2ND KEEB***************
+;***************FUNCTIONS AND LABELS FOR THE 2ND KEEB***************
+F1ThruF4MouseMove(Fx, mousePosX, mousePosY)
+{
+    if ((mousePosX == "") AND (mousePosY == "")) {
+        MsgBox, 262160, Error. You must save X and Y first., Use Shift + %Fx% to save the X and Y.
+        return
+    } else
+        MouseMove, mousePosX, mousePosY, 0
+}
+
 GoogleSearch:
    StringReplace, searchQuery, searchQuery, `r`n, %A_Space%, All
    Loop
