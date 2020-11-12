@@ -492,6 +492,27 @@ if (onTop & 0x8) { ; 0x8 is WS_EX_TOPMOST.
 message := ;Free.
 return
 
+;^' Add quotes around selected text.
+^SC028::
+originalClipboard := Clipboard
+
+Send, ^c
+ClipWait, 2 ;Wait 2 seconds.
+if ErrorLevel {
+    MsgBox, The attempt to copy text onto the clipboard failed.
+    return
+}
+
+SendRaw, "
+Sleep 100
+Send, ^v
+Sleep 100
+SendRaw, "
+
+Clipboard := originalClipboard
+originalClipboard :=
+return
+
 #+d:: ;Recycle the most recently created file or folder in the Downloads folder.
 Loop, Files, C:\Users\%A_UserName%\Downloads\*.*, FD ;FD = Include Files and Directories
 {
