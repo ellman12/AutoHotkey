@@ -901,6 +901,7 @@ deleteConfigFile() {
 		Tippy("Config File has been deleted.", 950)
 }
 
+;Used or #+d and ^#+d hotkeys.
 deleteMostRecentItemInFolder(folderName)
 {
 	Loop, Files, C:\Users\%A_UserName%\%folderName%\*.*, FD ;FD = Include Files and Directories
@@ -924,7 +925,7 @@ deleteMostRecentItemInFolder(folderName)
 	if (thingToDeleteFileExt == "") ;If it's a folder, don't tack on an extension thing in the prompt asking if you for sure want to delete it.
 		message = Recycle folder "%thingToDelete%"?
 	else
-		message = Recycle file "%thingToDelete%.%thingToDeleteFileExt%"?
+		message = Recycle file "%thingToDelete%"?
 
 	MsgBox, 262180, Recycle Latest Thing in %folderName% Folder?, %message%
 	IfMsgBox, No
