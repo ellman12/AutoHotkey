@@ -414,6 +414,9 @@ sc029::Send, !{Tab} ;The grave accent key (that weird thing under the Tilde ~ sy
 ;Toggle programming mode. Disables hotkeys/hotstrings that can be annoying when programming.
 ^!Insert::BooleanToggle(programmingMode, "Programming Mode ON", "Programming Mode Off")
 
+#+d::deleteMostRecentItemInFolder("Downloads") ;Recycle the most recently created file or folder in the Downloads folder.
+^#+d::deleteMostRecentItemInFolder("Desktop") ;Same thing but for Desktop folder.
+
 ;Since Windows 10 annoyingly doesn't allow you to rearrange individual windows for a program on the Taskbar when their icons are expanded out (how I always have it), I made this fantastic workaround.
 ;It will move the active window to the end of the "stack(?)" of windows.
 ;E.g., you have 2 MSWord windows open: win1 and win2. By doing this, win1 would move to be after win2. Windows 10 doesn't allow this natively.
@@ -512,12 +515,6 @@ SendRaw, "
 Clipboard := originalClipboard
 originalClipboard :=
 return
-
-;Recycle the most recently created file or folder in the Downloads folder.
-#+d::deleteMostRecentItemInFolder("Downloads")
-
-;Same thing but for Desktop.
-#!+d::deleteMostRecentItemInFolder("Desktop")
 
 ;****************************************GLOBAL iCUE HOTKEYS***************************************
 ;These 3 hotkeys are sent by the iCUE software, which AutoHotkey detects.
@@ -924,13 +921,12 @@ deleteMostRecentItemInFolder(folderName)
 		return
 	}
 
-	if (thingToDeleteFileExt == "") { ;If it's a folder, don't tack on an extension thing in the prompt asking if you for sure want to delete it.
+	if (thingToDeleteFileExt == "") ;If it's a folder, don't tack on an extension thing in the prompt asking if you for sure want to delete it.
 		message = Recycle folder "%thingToDelete%"?
-	} else {
-		message = Recycle file "%thingToDelete%.%A_LoopFileExt%"?
-	}
+	else
+		message = Recycle file "%thingToDelete%.%thingToDeleteFileExt%"?
 
-	MsgBox, 262180, Recycle Latest Thing in %folderName% Folder, %Message%
+	MsgBox, 262180, Recycle Latest Thing in %folderName% Folder?, %message%
 	IfMsgBox, No
 		return
 
