@@ -3,7 +3,6 @@
 #UseHook On
 #MaxHotkeysPerInterval 2000
 
-;;The lines below are optional. Delete them if you need to.
 #HotkeyModifierTimeout 60 ; https://autohotkey.com/docs/commands/_HotkeyModifierTimeout.htm
 ; #KeyHistory 200 ; https://autohotkey.com/docs/commands/_KeyHistory.htm ; useful for debugging.
 #MenuMaskKey vk07 ;https://autohotkey.com/boards/viewtopic.php?f=76&t=57683
