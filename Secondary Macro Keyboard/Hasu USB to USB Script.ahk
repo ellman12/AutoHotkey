@@ -488,7 +488,7 @@ SC07D::Rshift
 F1ThruF4MouseMove(Fx, mousePosX, mousePosY)
 {
     if ((mousePosX == "") AND (mousePosY == "")) {
-        MsgBox, 262160, Error. You must save X and Y first., Use Shift + %Fx% to save the X and Y.
+        MsgBox, 262160, Error. You must save %Fx%'s X and Y first., Use Shift + %Fx% to save the X and Y for %Fx%.
         return
     } else
         MouseMove, mousePosX, mousePosY, 0
