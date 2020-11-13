@@ -1,13 +1,15 @@
 ;This script allows me to run and do miscellaneous things that don't deserve their own hotkey,
-;or things that would be messy and/or annoying to do via hotkeys.
+;or things that would be messy and/or annoying to do via hotkeys, such as inserting symbols, dates, the time, etc.
 
-^CapsLock::runCommand(runInputBoxText) ;Repeats previous command. Can also "repeat(?)" error/unknown commands.
+;Put this here because I think it just fits here.
+;This annoying key is disabled. However, it can be used to trigger 2nd keyboard hotkeys even without having the 2nd keeb physically in front of me.
+*CapsLock::return
 
-*CapsLock::return ;Temporarily(?) removed on Saturday, October 17, 2020 at 8:10 PM because it was too annoying.
+^CapsLock::runCommand(runInputBoxText) ;Repeats previous command. Useful when you specifically know what the previous command is.
 
 !CapsLock:: ;Tells you what the previous command is before running it (unlike ^CapsLock). Asks if you want to proceed or not.
-
-if (runInputBoxText = "") {
+if (runInputBoxText == "")
+{
     Tippy("No previous Run command.", 2000)
     return
 }
@@ -17,12 +19,13 @@ IfMsgBox, Yes
     runCommand(runInputBoxText)
 IfMsgBox, No
     return
+
 return
 
 ;Open the command InputBox, and then does what the user entered.
 !r::
 InputBox, runInputBoxText, Type a Command,,, 200, 100
-if ErrorLevel = 1
+if (ErrorLevel == 1)
     runCommand("1") ;ErrorLevel value for saying the user pressed Cancel/Escape.
 else
     runCommand(runInputBoxText)
