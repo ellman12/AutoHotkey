@@ -45,7 +45,8 @@ getTmrDate() {
     formattedDateTime += +1, days
 }
 
-runCommand(cmdToRun) { ;Function that runs the specified command.
+;Function that runs the specified command.
+runCommand(cmdToRun) {
 
 Switch (cmdToRun) {
 
