@@ -8,7 +8,7 @@
 #MenuMaskKey vk07 ;https://autohotkey.com/boards/viewtopic.php?f=76&t=57683
 #WinActivateForce ;https://autohotkey.com/docs/commands/_WinActivateForce.htm ;prevent taskbar flashing.
 
-#if (GetKeyState("F24", "P")) OR (GetKeyState("CapsLock", "P")) ;Only run these if a 2nd keyboard key is pressed OR CapsLock is pressed down.
+#if (GetKeyState("F24", "P")) OR (GetKeyState("CapsLock", "P")) ;Only allow these hotkeys if a 2nd keyboard key is pressed OR CapsLock is pressed down.
 F24::return ;This line is mandatory for proper functionality.
 
 ;Saving mouse pointer locations and returning to saved spots.
