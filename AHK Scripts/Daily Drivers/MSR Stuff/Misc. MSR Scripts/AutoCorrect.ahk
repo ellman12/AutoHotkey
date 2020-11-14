@@ -5548,5 +5548,6 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::ai::AI
 :*:aai::artifical intelligence
 :*:msgbox::MsgBox
+:*:inputbox::InputBox
 
 #If
