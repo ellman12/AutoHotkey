@@ -807,7 +807,7 @@ reloadMSR() {
 	writeGroupToFile("F7", WindowGroupF7, 1)
 	writeGroupToFile("F8", WindowGroupF8, 1)
 	writeGroupToFile("F10", WindowGroupF10, 1)
-	Reload ;If no windows are hidden.
+	Reload
 }
 
 ;Called by top 2 mouse button hotkeys.
