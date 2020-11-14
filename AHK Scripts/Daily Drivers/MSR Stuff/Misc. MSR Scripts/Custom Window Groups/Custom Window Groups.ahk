@@ -309,7 +309,7 @@ winGroupBackupDump(Fx, WindowGroupArray) {
     for index, value in WindowGroupArray ;Append values to the file.
     {
         valueToAppend := value . A_Space ;Space is the delimiter here.
-        FileAppend, %valueToAppend%, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\%Fx% Dumps\%Fx% Group %formattedDateTime%.tmp
+        FileAppend, %valueToAppend%, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\%Fx% Dumps\%Fx% Group Dump %formattedDateTime%.tmp
     }
 
     valueToAppend := "" ;Free.
