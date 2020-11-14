@@ -20,16 +20,23 @@ IfMsgBox, Yes
 IfMsgBox, No
     return
 
-return
+return ;End of !CapsLock.
 
 ;Open the command InputBox, and then does what the user entered.
 !r::
-InputBox, runInputBoxText, Type a Command,,, 200, 100
+if (runInputBoxText == "")
+    message := "No previous command."
+else
+    message = Prev cmd: "%runInputBoxText%"
+
+InputBox, runInputBoxText, Type a Command, %message%,, 200, 130
 if (ErrorLevel == 1)
     runCommand("1") ;ErrorLevel value for saying the user pressed Cancel/Escape.
 else
     runCommand(runInputBoxText)
-return ;End of !r and CapsLock.
+
+message := ""
+return ;End of !r.
 
 ;Function used for sending yesterday's date in different formats.
 getYesterdayDate() {
