@@ -918,7 +918,7 @@ deleteMostRecentItemInFolder(folderName)
 	{
 		;Loops through this directory, and if it encounters a file/folder that is newer than the previously encountered one,
 		; make that the one to potentially delete.
-		if (A_LoopFileTimeModified > currentMaxCreationDate)
+		if ((A_LoopFileTimeModified > currentMaxCreationDate) AND (not in ".tmp.drivedownload")) ;TODO: this not in thing will need testing...
 		{
 			currentMaxCreationDate := A_LoopFileTimeModified
 			thingToDelete := A_LoopFileName
