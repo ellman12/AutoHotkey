@@ -364,6 +364,9 @@ return
 ;Open Google Calendar.
 n::Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://calendar.google.com/calendar/u/0/r
 
+;Sick of doing this a million times in Run...
+/::SendRaw, Elliott.DuCharme@trojans.dsu.edu
+
 ;Shift + End.
 NumPad1::Send, +{End}
 NumpadEnd::Send, +{End}
