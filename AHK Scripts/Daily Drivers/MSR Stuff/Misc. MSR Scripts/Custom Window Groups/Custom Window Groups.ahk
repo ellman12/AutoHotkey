@@ -54,17 +54,17 @@ F10::nextWinOrShowHideWins("F10", WindowGroupF10, CurrentWinF10)
 ^+F8::showWinTitlesFx("F8", WindowGroupF8, CurrentWinF8, F8ShowHideToggle)
 ^+F10::showWinTitlesFx("F10", WindowGroupF10, CurrentWinF10, F10ShowHideToggle)
 
-; ^#Fx:: Writes all the window IDs to the corresponding .txt file.
+; ^#Fx:: Writes all the window IDs to the corresponding .tmp file.
 ^#F6::writeGroupToFile("F6", WindowGroupF6, 0)
 ^#F7::writeGroupToFile("F7", WindowGroupF7, 0)
 ^#F8::writeGroupToFile("F8", WindowGroupF8, 0)
 ^#F10::writeGroupToFile("F10", WindowGroupF10, 0)
 
-; !#Fx:: Reads the IDs from the corresponding .txt file.
-!#F6::readGroupFromFile("F6", WindowGroupF6)
-!#F7::readGroupFromFile("F7", WindowGroupF7)
-!#F8::readGroupFromFile("F8", WindowGroupF8)
-!#F10::readGroupFromFile("F10", WindowGroupF10)
+; !#Fx:: Reads the IDs from the corresponding .tmp file.
+!#F6::selectAndLoadIDFile("F6", WindowGroupF6)
+!#F7::selectAndLoadIDFile("F7", WindowGroupF7)
+!#F8::selectAndLoadIDFile("F8", WindowGroupF8)
+!#F10::selectAndLoadIDFile("F10", WindowGroupF10)
 
 ; ^+#Fx:: Remove all windows from the array, without closing them.
 ^+#F6::removeAllWins("F6", WindowGroupF6, CurrentWinF6)
@@ -244,14 +244,14 @@ removeNonexistentWindows(ByRef WindowGroupArray) {
 }
 
 removeAllWins(Fx, ByRef WindowGroupArray, ByRef CurrentWin) {
-    FileDelete, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\%Fx%.txt ;Reset/overwrite file.
+    FileDelete, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\%Fx%.tmp ;Reset/overwrite file.
     WindowGroupArray := [] ;Blank out the array. It's that simple.
     CurrentWin := 1
     Tippy("All windows in " . Fx . " Group have been removed.", 4000)
 }
 
 removeAndCloseAllWins(Fx, ByRef WindowGroupArray, ByRef CurrentWin) {
-    FileDelete, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\%Fx%.txt ;Reset/overwrite file.
+    FileDelete, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\%Fx%.tmp ;Reset/overwrite file.
     DetectHiddenWindows, On
     for index, value in WindowGroupArray
         WinClose, % "ahk_id " value
@@ -281,7 +281,7 @@ showWinTitlesFx(Fx, WindowGroupArray, CurrentWin, FxShowHideToggle) {
     message :=
 }
 
-;Stores a group in a .txt file for later use. calledOnExit is used for the Reload function so the user isn't bombarded with MsgBoxes on every reload. 0 = false; 1 = true.
+;Stores a group in a .tmp file for later use. calledOnExit is used for the Reload function so the user isn't bombarded with MsgBoxes on every reload. 0 = false; 1 = true.
 writeGroupToFile(Fx, WindowGroupArray, calledOnExit) {
 
     if ((WindowGroupArray.Length() = 0) AND (calledOnExit = 0)) {
@@ -299,13 +299,12 @@ writeGroupToFile(Fx, WindowGroupArray, calledOnExit) {
 
     if (calledOnExit = 0)
         Tippy("The " . Fx . " Group has been saved to disk.", 1000)
-    valueToAppend := ;Free.
 }
 
 ;Retrieves that group from the file. Added calledOnStartup so when the script starts up and calls this 4 times, those Tippys aren't there every single time. Similar to calledOnExit; optional parameter as well.
 readGroupFromFile(Fx, ByRef WindowGroupArray, calledOnStartup := 1) {
 
-    FileRead, groupFileContents, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\%Fx% Group.txt
+    FileRead, groupFileContents, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\%Fx% Group.tmp
     WindowGroupArray := StrSplit(groupFileContents, A_Space) ;Split up the file and store in the passed-in array. The delimiter is spaces because they're easiest to work with.
     groupFileContents := ;Free.
 
@@ -322,12 +321,17 @@ winGroupBackupDump(Fx, WindowGroupArray) {
         valueToAppend := value . A_Space ;Space is the delimiter here.
         FileAppend, %valueToAppend%, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\%Fx% Dumps\%Fx% Group Dump %formattedDateTime%.tmp
     }
-
-    valueToAppend := "" ;Free.
-    formattedDateTime := ""
 }
 
-;Retrieves that group from the file. Added calledOnStartup so when the script starts up and calls this 4 times, those Tippys aren't there every single time. Similar to calledOnExit; optional parameter as well.
-readGroupFromFile(Fx, ByRef WindowGroupArray, calledOnStartup := 1) {
+;Used for loading a group with a chosen .tmp file of IDs.
+selectAndLoadIDFile(Fx, ByRef WindowGroupArray) {
+    FileSelectFile, chosenFilePath,, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\, Choose a .tmp file to load into %Fx%.
+    if (chosenFilePath == "")
+    {
+        Tippy("No file chosen to load into " . Fx, 2000)
+        return
+    }
 
+    FileRead, groupFileContents, %chosenFilePath%
+    WindowGroupArray := StrSplit(groupFileContents, A_Space) ;Split up the file and store in the passed-in array. The delimiter is spaces because they're easiest to work with.
 }
