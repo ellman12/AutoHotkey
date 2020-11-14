@@ -813,11 +813,19 @@ reloadMSR() {
 }
 
 onExitLabel:
-winGroupBackupDump("F6", WindowGroupF6)
-winGroupBackupDump("F7", WindowGroupF7)
-winGroupBackupDump("F8", WindowGroupF8)
-winGroupBackupDump("F10", WindowGroupF10)
+if A_ExitReason not in Reload ;TODO: This might need to be adjusted and/or removed... Lots of testing needs to happen.
+	dumpAllCWGGroups()
 ExitApp
+
+#F11:: ;Force the script to create a dump of the IDs.
+dumpAllCWGGroups()
+{
+	winGroupBackupDump("F6", WindowGroupF6)
+	winGroupBackupDump("F7", WindowGroupF7)
+	winGroupBackupDump("F8", WindowGroupF8)
+	winGroupBackupDump("F10", WindowGroupF10)
+}
+return
 
 ;Called by top 2 mouse button hotkeys.
 topMouseButtons(buttonMode) {
