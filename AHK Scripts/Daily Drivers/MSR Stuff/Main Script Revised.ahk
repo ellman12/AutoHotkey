@@ -495,26 +495,17 @@ if (onTop & 0x8) { ; 0x8 is WS_EX_TOPMOST.
 message := ;Free.
 return
 
-;^' Add quotes around selected text.
-^SC028::
-originalClipboard := Clipboard
+;***********************************ADD CHARS AROUND TEXT***********************************
+^SC028::addCharAroundText("""") ;^' Add double quotes around selected text.
+^+SC028::addCharAroundText("'") ;^+' Add single quotes around selected text.
 
-Send, ^c
-ClipWait, 2 ;Wait 2 seconds.
-if ErrorLevel {
-    MsgBox, The attempt to copy text onto the clipboard failed.
-    return
-}
+;Add brackets around selected text.
+^+<::
+^+>::addCharAroundText("<", ">")
 
-SendRaw, "
-Sleep 100
-Send, ^v
-Sleep 100
-SendRaw, "
-
-Clipboard := originalClipboard
-originalClipboard :=
-return
+;Add () around selected text.
+^+(::
+^+)::addCharAroundText("(", ")")
 
 ;****************************************GLOBAL iCUE HOTKEYS***************************************
 ;These 3 hotkeys are sent by the iCUE software, which AutoHotkey detects.
@@ -938,6 +929,27 @@ deleteMostRecentItemInFolder(folderName)
 	currentMaxCreationDate := ;Free memory.
 	thingToDelete :=
 	thingToDeleteFileExt :=
+}
+
+addCharAroundText(character, optional2ndChar := "") ;optional2ndChar is only used for things like <> or (), where there are 2 different characters, instead of something like "", which doesn't require the parameter.
+{
+	originalClipboard := ClipboardAll ;Restore this later.
+
+	Send, ^c
+	ClipWait, 2 ;Wait 2 seconds.
+
+	Send, %character%
+	Sleep 100
+	Send, ^v
+	Sleep 100
+
+	if (optional2ndChar != "") ;Determine if there's another character to the pair to add to the end, like for (), <>, etc.
+		Send, %optional2ndChar%
+	else
+		Send, %character%
+
+	Clipboard := originalClipboard ;Restore.
+	originalClipboard := "" ;Free because could potentially be huge.
 }
 
 ;**************************************************EXPERIMENTAL**************************************************
