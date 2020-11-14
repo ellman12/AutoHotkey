@@ -317,7 +317,7 @@ global
     formattedDateTime := ""
 }
 
-;Retrieves that group from the file. Added calledOnStartup so when the script starts up and calls this 4 times, those Tippys aren't there every single time. Similar to calledOnExit; optional paramater as well.
+;Retrieves that group from the file. Added calledOnStartup so when the script starts up and calls this 4 times, those Tippys aren't there every single time. Similar to calledOnExit; optional parameter as well.
 readGroupFromFile(Fx, ByRef WindowGroupArray, calledOnStartup := 1) {
 
     FileRead, groupFileContents, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\%Fx% Group.txt
