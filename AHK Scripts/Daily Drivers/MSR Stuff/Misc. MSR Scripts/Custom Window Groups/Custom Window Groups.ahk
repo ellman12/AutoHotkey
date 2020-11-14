@@ -304,7 +304,6 @@ writeGroupToFile(Fx, WindowGroupArray, calledOnExit) {
 
 ;Dump the window group array in a .tmp file with the Fx, date, and time as the file name.
 winGroupBackupDump(Fx, WindowGroupArray) {
-global
     FormatTime, formattedDateTime,, M-d-yyyy h;mm;ss tt ;Part of the file name.
 
     for index, value in WindowGroupArray ;Append values to the file.
