@@ -16,6 +16,15 @@ currentVD := 1 ;The one the user is on at the moment.
 totalVDs := 1 ;Start at one since there's always guaranteed to be 1.
 ;TODO: add this to an ini file.
 
+;Still retain their normal function, but integrate it into this.
+~^#F4::totalVDs--
+~^#Left::currentVD--
+
+~^#d::
+totalVDs++
+currentVD := totalVDs ;Assign the current one to the max amount.
+return
+
 $^#Right::
 currentVD++
 if (currentVD > totalVDs)
@@ -26,30 +35,3 @@ if (currentVD > totalVDs)
 else
     Send, ^#{Right}
 return
-
-;Still retain their normal function, but integrate it into this.
-~^#F4::totalVDs--
-
-~^#d::
-totalVDs++
-currentVD := totalVDs ;Assign the current one to the max amount.
-return
-
-
-; ^#Left::
-; originalVDAmount := currentVDAmount
-; currentVDAmount--
-
-; if (currentVDAmount == 1) ;Don't "remove" a VD that doesn't exist.
-;     return
-
-; if (currentVDAmount < originalVDAmount)
-; {
-;     Send, ^#{F4}
-; }
-; else
-;     Send, ^#{Left}
-
-; MsgBox, %currentVDAmount%
-; originalVDAmount :=
-; return
