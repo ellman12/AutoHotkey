@@ -30,14 +30,16 @@ else
     message = Prev cmd: "%runInputBoxText%"
 
 InputBox, runInputBoxText, Type a Command, %message%,, 200, 130
-if (ErrorLevel == 1)
-    runCommand("1") ;ErrorLevel value for saying the user pressed Cancel/Escape.
+
+if ((ErrorLevel == 1) AND (runInputBoxText == "")) ;ErrorLevel value for saying the user pressed Cancel/Escape.
+    runCommand("1")
 else
     runCommand(runInputBoxText)
 
 message := ""
 return ;End of !r.
 
+;***********************************FUNCTIONS***********************************
 ;Function used for sending yesterday's date in different formats.
 getYesterdayDate() {
     global
