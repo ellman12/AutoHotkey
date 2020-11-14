@@ -578,7 +578,7 @@ return
 ;Inspiration and code for this: https://autohotkey.com/board/topic/57888-title-case/ and https://autohotkey.com/board/topic/123994-capitalize-a-title/
 ^!t:: ;Converts text to Title Case.
   Send, ^c ;Copy text, and wait a bit so it can actually process that.
-  Sleep 45
+  ClipWait, 3
 
   ;Makes the title in AHK's "Title Case", which in reality just capitalizes the first letter of each word.
   StringUpper, NewTitle, Clipboard, T
@@ -593,7 +593,7 @@ return
 
 ^!u:: ;Converts text to UPPER CASE.
 	Send, ^c
-	Sleep 45
+	ClipWait, 3 ;Wait 3 seconds.
 	StringUpper, NewTitle, Clipboard
 	Clipboard := NewTitle
 	Send, ^v
@@ -601,7 +601,7 @@ return
 
 ^!l:: ;Converts text to lower case.
 	Send, ^c
-	Sleep 45
+	ClipWait, 3
 	StringLower, NewTitle, Clipboard
 	Clipboard := NewTitle
 	Send, ^v
@@ -609,7 +609,7 @@ return
 
 ^!s:: ;Converts text to sentence case.
 	Send, ^c
-	Sleep 45
+	ClipWait, 3
 	StringLower, NewTitle, Clipboard
 	NewTitle := RegExReplace(Clipboard, "((?:^|[.!?]\s+)[a-z])", "$u1")
 	Clipboard := NewTitle
@@ -618,7 +618,7 @@ return
 
 ^!f:: ;Converts text to First Letter Capitalization.
 	Send, ^c
-	Sleep 45
+	ClipWait, 3
 	StringUpper, NewTitle, Clipboard, T
 	Clipboard := NewTitle
 	Send, ^v
@@ -634,7 +634,7 @@ return
 	altCaseToggle := 0
 
 	Send, ^c
-	Sleep, 50
+	ClipWait, 3
 
 	;Loop through the contents of the Clipboard, and toggle between cases.
 	Loop, Parse, Clipboard
@@ -664,11 +664,11 @@ return
 return
 
 ^!+a:: ;Convert text to AlT cAsE, with the first letter being UPPER case.
-	finalString :=
+	finalString := ""
 	altCaseToggle := 1
 
 	Send, ^c
-	Sleep, 50
+	ClipWait, 3
 
 	;Loop through the contents of the Clipboard, and toggle between cases.
 	Loop, Parse, Clipboard
@@ -694,12 +694,13 @@ return
 
 	Clipboard := finalString
 	Send, ^v
+	finalString := ""
 return
 
 ^+s:: ;A d d s   a   s p a c e   b e t w e e n   l e t t e r s .
-	finalString :=
+	finalString := ""
 	Send, ^c
-	Sleep, 50
+	ClipWait, 3
 
 	;Loop through the contents of the Clipboard, and toggle between cases.
 	Loop, Parse, Clipboard
@@ -707,6 +708,7 @@ return
 
 	Clipboard := finalString
 	Send, ^v
+	finalString := ""
 return
 
 ;*****************************EDIT CLIPBOARD CONTENT GUI BEHAVIOR******************************
