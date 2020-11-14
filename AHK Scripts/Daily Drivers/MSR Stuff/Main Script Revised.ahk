@@ -62,6 +62,8 @@ SendMode Input
 DetectHiddenWindows, Off
 #SingleInstance force
 
+OnExit, onExitLabel ;Dump CWG groups to a .tmp file with a timestamp in case needed later.
+
 ;**************************************************AUTO-EXECUTE**************************************************
 ;***********************************CUSTOM WINDOW GROUPS***********************************
 ;Tracks all the window IDs for the custom groups.
@@ -809,6 +811,13 @@ reloadMSR() {
 	writeGroupToFile("F10", WindowGroupF10, 1)
 	Reload
 }
+
+onExitLabel:
+winGroupBackupDump("F6", WindowGroupF6)
+winGroupBackupDump("F7", WindowGroupF7)
+winGroupBackupDump("F8", WindowGroupF8)
+winGroupBackupDump("F10", WindowGroupF10)
+ExitApp
 
 ;Called by top 2 mouse button hotkeys.
 topMouseButtons(buttonMode) {

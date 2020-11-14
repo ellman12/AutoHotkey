@@ -289,17 +289,32 @@ writeGroupToFile(Fx, WindowGroupArray, calledOnExit) {
         return
     }
 
-    FileDelete, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\%Fx% Group.txt ;Reset/overwrite file.
+    FileDelete, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\%Fx% Group.tmp ;Reset/overwrite file.
 
     for index, value in WindowGroupArray ;Append values to the file.
     {
         valueToAppend := value . A_Space
-        FileAppend, %valueToAppend%, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\%Fx% Group.txt
+        FileAppend, %valueToAppend%, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\%Fx% Group.tmp
     }
 
     if (calledOnExit = 0)
         Tippy("The " . Fx . " Group has been saved to disk.", 1000)
     valueToAppend := ;Free.
+}
+
+;Dump the window group array in a .tmp file with the Fx, date, and time as the file name.
+winGroupBackupDump(Fx, WindowGroupArray) {
+global
+    FormatTime, formattedDateTime,, M-d-yyyy h;mm;ss tt ;Part of the file name.
+
+    for index, value in WindowGroupArray ;Append values to the file.
+    {
+        valueToAppend := value . A_Space ;Space is the delimiter here.
+        FileAppend, %valueToAppend%, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\%Fx% Dumps\%Fx% Group %formattedDateTime%.tmp
+    }
+
+    valueToAppend := "" ;Free.
+    formattedDateTime := ""
 }
 
 ;Retrieves that group from the file. Added calledOnStartup so when the script starts up and calls this 4 times, those Tippys aren't there every single time. Similar to calledOnExit; optional paramater as well.
