@@ -276,6 +276,17 @@ Switch (cmdToRun) {
 
     Case "task failed":MsgBox, 64, Windows XP, Task failed successfully. ;Yes.
 
+    ;Look through the entire repo and recycle any .tmp files to aid in cleanup.
+    Case "tmp clr", "clr tmp":
+    Loop, Files, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\*, DFR
+    {
+        if (A_LoopFileExt == "tmp")
+            FileRecycle, %A_LoopFileLongPath%
+            if ErrorLevel = 1
+                MsgBox error
+    }
+    return
+
     ;**************************************************OPEN**************************************************
     ;Opens Google Calendar in Firefox.
     Case "cal":Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://calendar.google.com/calendar/u/0/r
