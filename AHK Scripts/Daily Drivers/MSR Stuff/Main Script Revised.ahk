@@ -468,8 +468,6 @@ Loop %numVidsToDelete% {
 	Send, {Click}
 	Sleep 500
 }
-
-numVidsToDelete := ;Free up memory.
 return
 
 ^+g:: ;Calculate percent grade on a homework assignment or whatever, then show result and letter grade equivalent. So, for something like 40/50, you'd enter 40 and then 50.
@@ -478,10 +476,6 @@ InputBox, secondNum, Grade Percent Utility, What is the second number?,, 200, 15
 
 result := round((firstNum/secondNum) * 100, 2)
 MsgBox, 0, Grade, You got %result%`%.`n`nLetter Grade`tNumerical Grade`nA+`t`t97-100`nA`t`t94-96`nA-`t`t90-93`nB+`t`t87-89`nB`t`t84-86`nB-`t`t80-83`nC+`t`t77-79`nC`t`t74-76`nC-`t`t70-73`nD+`t`t67-69`nD`t`t64-66`nD-`t`t60-63`nF`t`t0-59
-
-firstNum :=
-secondNum :=
-result :=
 return
 
 ^Space:: ;Make active window AlwaysOnTop, and tell the user if it is or not.
@@ -494,7 +488,6 @@ if (onTop & 0x8) { ; 0x8 is WS_EX_TOPMOST.
 	message := activeWindowTitle . " is no longer on top"
 	Tippy(message, 1000)
 }
-message := ;Free.
 return
 
 ;***********************************ADD CHARS AROUND TEXT***********************************
@@ -945,10 +938,6 @@ deleteMostRecentItemInFolder(folderName)
 	FileRecycle, C:\Users\%A_UserName%\%folderName%\%thingToDelete%
 	if (ErrorLevel == 1)
 		MsgBox, 262160, Error, An error occurred while trying to recycle "%thingToDelete%".
-
-	currentMaxCreationDate := ;Free memory.
-	thingToDelete :=
-	thingToDeleteFileExt :=
 }
 
 addCharAroundText(character, optional2ndChar := "") ;optional2ndChar is only used for things like <> or (), where there are 2 different characters, instead of something like "", which doesn't require the parameter.
