@@ -255,7 +255,7 @@ global DiscordVisibilityToggle := 1
 global MusicBeeVisibilityToggle := 1
 
 global currentWinOMode := 1
-global WIN_O_MAX_MODE := 3 ;How many modes are actually defined in the Switch statement.
+global WIN_O_MAX_MODE := 3 ;How many modes (-1) are actually defined in the Switch statement.
 
 ;The stuff in this loop needs to be running constantly.
 Loop {
@@ -470,10 +470,10 @@ if (currentWinOMode > WIN_O_MAX_MODE)
 switchWinOMode()
 return
 
-!#Left::
+!#Left:: ;TODO: this doesn't really work... :/
 currentWinOMode--
-if (WIN_O_MAX_MODE < currentWinOMode)
-	currentWinOMode := 1
+if (WIN_O_MAX_MODE > currentWinOMode)
+	currentWinOMode := WIN_O_MAX_MODE
 switchWinOMode()
 return
 
@@ -979,8 +979,9 @@ addCharAroundText(character, optional2ndChar := "") ;optional2ndChar is only use
 	originalClipboard := "" ;Free because could potentially be huge.
 }
 
-;Used for !#Right d !#Left.
+;Used for !#Right and !#Left.
 switchWinOMode() {
+	Tippy(currentWinOMode, 400)
 	Switch (currentWinOMode)
 	{
 		Case 1:
@@ -994,8 +995,8 @@ switchWinOMode() {
 		return
 
 		Case 3:
-		; GuiControl, CPanel:, FrontMouseButtonBehavior,
-		; GuiControl, CPanel:, BackMouseButtonBehavior,
+		GuiControl, CPanel:ChooseString, FrontMouseButtonBehavior, F2
+		GuiControl, CPanel:ChooseString, BackMouseButtonBehavior, F12
 		return
 	}
 }
