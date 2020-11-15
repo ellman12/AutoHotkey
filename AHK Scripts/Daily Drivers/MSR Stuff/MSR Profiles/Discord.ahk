@@ -1,9 +1,8 @@
-;This script is the _________________ profile.
-
+;This script is the Discord profile.
 
 ;****************************************SCIMITAR RGB ACTIONS***************************************
 
-#If currentProfile = ""
+#If currentProfile == "Discord"
 ;Mouse G1
 F13::
 return
