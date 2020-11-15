@@ -717,6 +717,7 @@ return
 ;Toggles between showing and hiding the Clipboard GUI.
 #c::
 GuiControl, ECC:,clipboardBoxText, %Clipboard%
+GuiControl, ECC:Focus, clipboardBoxText
 
 showClipboardGUIToggle := !showClipboardGUIToggle
 
