@@ -981,22 +981,24 @@ addCharAroundText(character, optional2ndChar := "") ;optional2ndChar is only use
 
 ;Used for !#Right and !#Left.
 switchWinOMode() {
-	Tippy(currentWinOMode, 400)
 	Switch (currentWinOMode)
 	{
 		Case 1:
 		GuiControl, CPanel:ChooseString, FrontMouseButtonBehavior, Double Click
 		GuiControl, CPanel:ChooseString, BackMouseButtonBehavior, F6
+		Tippy("Double Click and F6", 290)
 		return
 
 		Case 2:
 		GuiControl, CPanel:ChooseString, FrontMouseButtonBehavior, F6
 		GuiControl, CPanel:ChooseString, BackMouseButtonBehavior, F7
+		Tippy("F6 and F7", 290)
 		return
 
 		Case 3:
 		GuiControl, CPanel:ChooseString, FrontMouseButtonBehavior, F2
 		GuiControl, CPanel:ChooseString, BackMouseButtonBehavior, F12
+		Tippy("F2 and F12", 290)
 		return
 	}
 }
