@@ -7,21 +7,6 @@
 
 ^CapsLock::runCommand(runInputBoxText) ;Repeats previous command. Useful when you specifically know what the previous command is.
 
-!CapsLock:: ;Tells you what the previous command is before running it (unlike ^CapsLock). Asks if you want to proceed or not.
-if (runInputBoxText == "")
-{
-    Tippy("No previous Run command.", 2000)
-    return
-}
-
-MsgBox, 36, Run Previous Run Command?, "%runInputBoxText%`"
-IfMsgBox, Yes
-    runCommand(runInputBoxText)
-IfMsgBox, No
-    return
-
-return ;End of !CapsLock.
-
 ;Open the command InputBox, and then does what the user entered.
 !r::
 if (runInputBoxText == "")
@@ -29,14 +14,12 @@ if (runInputBoxText == "")
 else
     message = Prev cmd: "%runInputBoxText%"
 
-InputBox, runInputBoxText, Type a Command, %message%,, 200, 130
+InputBox, runInputBoxText, Type a Command, %message%,, 200, 130,,,,, %runInputBoxText%
 
 if ((ErrorLevel == 1) AND (runInputBoxText == "")) ;ErrorLevel value for saying the user pressed Cancel/Escape.
     runCommand("1")
 else
     runCommand(runInputBoxText)
-
-message := ""
 return ;End of !r.
 
 ;***********************************FUNCTIONS***********************************
