@@ -170,21 +170,21 @@ nextWindowFx(ByRef WindowGroupArray, ByRef CurrentWin) {
 
 nextWinOrShowHideWins(Fx, ByRef WindowGroupArray, ByRef CurrentWin) {
 global ;I'm not proud of this code, but it works.
-    if ((Fx = "F6") AND (F6Mode = "Window Group"))
+    if ((Fx == "F6") AND (F6Mode == "Window Group"))
         nextWindowFx(WindowGroupF6, CurrentWinF6)
-    else if ((Fx = "F6") AND (F6Mode = "Window Hider"))
+    else if ((Fx == "F6") AND (F6Mode == "Window Hider"))
         showOrHideWindowsFx(WindowGroupF6, F6ShowHideToggle)
-    else if ((Fx = "F7") AND (F7Mode = "Window Group"))
+    else if ((Fx == "F7") AND (F7Mode == "Window Group"))
         nextWindowFx(WindowGroupF7, CurrentWinF7)
-    else if ((Fx = "F7") AND (F7Mode = "Window Hider"))
+    else if ((Fx == "F7") AND (F7Mode == "Window Hider"))
         showOrHideWindowsFx(WindowGroupF7, F7ShowHideToggle)
-    else if ((Fx = "F8") AND (F8Mode = "Window Group"))
+    else if ((Fx == "F8") AND (F8Mode == "Window Group"))
         nextWindowFx(WindowGroupF8, CurrentWinF8)
-    else if ((Fx = "F8") AND (F8Mode = "Window Hider"))
+    else if ((Fx == "F8") AND (F8Mode == "Window Hider"))
         showOrHideWindowsFx(WindowGroupF8, F8ShowHideToggle)
-    else if ((Fx = "F10") AND (F10Mode = "Window Group"))
+    else if ((Fx == "F10") AND (F10Mode == "Window Group"))
         nextWindowFx(WindowGroupF10, CurrentWinF10)
-    else if ((Fx = "F10") AND (F10Mode = "Window Hider"))
+    else if ((Fx == "F10") AND (F10Mode == "Window Hider"))
         showOrHideWindowsFx(WindowGroupF10, F10ShowHideToggle)
 }
 
@@ -192,7 +192,7 @@ prevWindowFx(ByRef WindowGroupArray, ByRef CurrentWin) {
     removeNonexistentWindows(WindowGroupArray)
 
     ;Checks if there's 2 windows in the array. If so, acts like !Tab.
-    if (WindowGroupArray.MaxIndex() = 2)
+    if (WindowGroupArray.MaxIndex() == 2)
     {
         if (activeWindowID != WindowGroupArray[CurrentWin] AND inArray(activeWindowID, WindowGroupArray)) {
             WinActivate, % "ahk_id" WindowGroupArray[CurrentWin]
