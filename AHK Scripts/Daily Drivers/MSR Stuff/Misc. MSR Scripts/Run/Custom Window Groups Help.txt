@@ -8,7 +8,7 @@ Fx:: Either next window or hide windows.
 #Fx:: Next window, regardless of mode.
 #+Fx:: Previous window, regardless of mode.
 ^+Fx:: Shows all the window titles in each array.
-^#Fx:: Writes all the window IDs to the corresponding .txt file.
-!#Fx:: Reads the IDs from the corresponding .txt file.
+^#Fx:: Writes all the window IDs to the corresponding .tmp file.
+!#Fx:: Reads the IDs from the corresponding .tmp file.
 ^+#Fx:: Remove all windows from the array, without closing them.
 !+#Fx:: Remove all windows from the array, and close all of them.

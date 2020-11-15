@@ -60,7 +60,7 @@ F10::nextWinOrShowHideWins("F10", WindowGroupF10, CurrentWinF10)
 ^#F8::writeGroupToFile("F8", WindowGroupF8, 0)
 ^#F10::writeGroupToFile("F10", WindowGroupF10, 0)
 
-; !#Fx:: Reads the IDs from the corresponding .tmp file.
+; !#Fx:: Allows you to pick any ID .tmp file to load into the corresponding Group.
 !#F6::selectAndLoadIDFile("F6", WindowGroupF6)
 !#F7::selectAndLoadIDFile("F7", WindowGroupF7)
 !#F8::selectAndLoadIDFile("F8", WindowGroupF8)
