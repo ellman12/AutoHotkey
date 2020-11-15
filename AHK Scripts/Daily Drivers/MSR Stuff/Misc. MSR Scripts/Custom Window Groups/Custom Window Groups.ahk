@@ -91,28 +91,28 @@ addWindowFx(ByRef WindowGroupArray) {
 removeWindowFx(ByRef WindowGroupArray) {
     WinGet, currentID, ID, A ;Active window ID.
     for index, value in WindowGroupArray
-        if (value = currentID)
+        if (value == currentID)
             WindowGroupArray.RemoveAt(index)
 }
 
 addAndHideWindowFx(Fx, ByRef WindowGroupArray) {
 
-    if (Fx = "F6" AND F6Mode = "Window Hider")
+    if (Fx == "F6" AND F6Mode == "Window Hider")
     {
         addWindowFx(WindowGroupArray)
         WinHide, % "ahk_id" activeWindowID
     }
-    else if (Fx = "F7" AND F7Mode = "Window Hider")
+    else if (Fx == "F7" AND F7Mode == "Window Hider")
     {
         addWindowFx(WindowGroupArray)
         WinHide, % "ahk_id" activeWindowID
     }
-    else if (Fx = "F8" AND F8Mode = "Window Hider")
+    else if (Fx == "F8" AND F8Mode == "Window Hider")
     {
         addWindowFx(WindowGroupArray)
         WinHide, % "ahk_id" activeWindowID
     }
-    else if (Fx = "F10" AND F10Mode = "Window Hider")
+    else if (Fx == "F10" AND F10Mode == "Window Hider")
     {
         addWindowFx(WindowGroupArray)
         WinHide, % "ahk_id" activeWindowID
@@ -205,7 +205,7 @@ prevWindowFx(ByRef WindowGroupArray, ByRef CurrentWin) {
         return
     }
 
-    if (activeWindowID = WindowGroupArray[CurrentWin - 1])
+    if (activeWindowID == WindowGroupArray[CurrentWin - 1])
         CurrentWin -= 2 ;Skip the window that is already active.
     else
         CurrentWin--
@@ -217,21 +217,21 @@ prevWindowFx(ByRef WindowGroupArray, ByRef CurrentWin) {
 
 prevWinOrHideWins(Fx, ByRef WindowGroupArray, ByRef CurrentWin) {
 global ;I'm not proud of this code, but it works.
-    if ((Fx = "F6") AND (F6Mode = "Window Group"))
+    if ((Fx == "F6") AND (F6Mode == "Window Group"))
         prevWindowFx(WindowGroupF6, CurrentWinF6)
-    else if ((Fx = "F6") AND (F6Mode = "Window Hider"))
+    else if ((Fx == "F6") AND (F6Mode == "Window Hider"))
         showOrHideWindowsFx(WindowGroupF6, F6ShowHideToggle)
-    else if ((Fx = "F7") AND (F7Mode = "Window Group"))
+    else if ((Fx == "F7") AND (F7Mode == "Window Group"))
         prevWindowFx(WindowGroupF7, CurrentWinF7)
-    else if ((Fx = "F7") AND (F7Mode = "Window Hider"))
+    else if ((Fx == "F7") AND (F7Mode == "Window Hider"))
         showOrHideWindowsFx(WindowGroupF7, F7ShowHideToggle)
-    else if ((Fx = "F8") AND (F8Mode = "Window Group"))
+    else if ((Fx == "F8") AND (F8Mode == "Window Group"))
         prevWindowFx(WindowGroupF8, CurrentWinF8)
-    else if ((Fx = "F8") AND (F8Mode = "Window Hider"))
+    else if ((Fx == "F8") AND (F8Mode == "Window Hider"))
         showOrHideWindowsFx(WindowGroupF8, F8ShowHideToggle)
-    else if ((Fx = "F10") AND (F10Mode = "Window Group"))
+    else if ((Fx == "F10") AND (F10Mode == "Window Group"))
         prevWindowFx(WindowGroupF10, CurrentWinF10)
-    else if ((Fx = "F10") AND (F10Mode = "Window Hider"))
+    else if ((Fx == "F10") AND (F10Mode == "Window Hider"))
         showOrHideWindowsFx(WindowGroupF10, F10ShowHideToggle)
 }
 
@@ -263,28 +263,26 @@ removeAndCloseAllWins(Fx, ByRef WindowGroupArray, ByRef CurrentWin) {
 showWinTitlesFx(Fx, WindowGroupArray, CurrentWin, FxShowHideToggle) {
     DetectHiddenWindows, On ;Needed for if windows are hidden (F8, etc.)
 
-    if ((WindowGroupArray.Length() = 0))
+    if ((WindowGroupArray.Length() == 0))
         message := "There are no windows in the " . Fx . " Group."
     else ;List all the windows.
     {
         for index, value in WindowGroupArray
         {
             WinGetTitle, currentTitle, ahk_id %value%
-            if (currentTitle = "") ;Skips windows that are in the array but that don't exist.
+            if (currentTitle == "") ;Skips windows that are in the array but that don't exist.
                 continue
             message .= "Window #" . Index . " = " . currentTitle . "`n`n"
         }
     }
 
     MsgBox, 0, %Fx% Windows, CurrentWin%Fx% = %CurrentWin%`n`n%Fx%ShowHideToggle = %F6ShowHideToggle%`n`n%message%
-    currentTitle := ;Free memory.
-    message :=
 }
 
 ;Stores a group in a .tmp file for later use. calledOnExit is used for the Reload function so the user isn't bombarded with MsgBoxes on every reload. 0 = false; 1 = true.
 writeGroupToFile(Fx, WindowGroupArray, calledOnExit) {
 
-    if ((WindowGroupArray.Length() = 0) AND (calledOnExit = 0)) {
+    if ((WindowGroupArray.Length() == 0) AND (calledOnExit == 0)) {
         MsgBox, 262160, Error, This array has no elements in it.
         return
     }
@@ -297,7 +295,7 @@ writeGroupToFile(Fx, WindowGroupArray, calledOnExit) {
         FileAppend, %valueToAppend%, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\%Fx% Group.tmp
     }
 
-    if (calledOnExit = 0)
+    if (calledOnExit == 0)
         Tippy("The " . Fx . " Group has been saved to disk.", 1000)
 }
 
@@ -308,7 +306,7 @@ readGroupFromFile(Fx, ByRef WindowGroupArray, calledOnStartup := 1) {
     WindowGroupArray := StrSplit(groupFileContents, A_Space) ;Split up the file and store in the passed-in array. The delimiter is spaces because they're easiest to work with.
     groupFileContents := ;Free.
 
-    if (calledOnStartup = 0)
+    if (calledOnStartup == 0)
         Tippy("The " . Fx . " Group has been restored from disk.", 1000)
 }
 
