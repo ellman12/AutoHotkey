@@ -1,5 +1,8 @@
 ;This script is the Discord profile.
 
+;https://support.discord.com/hc/en-us/articles/225977308--Windows-Discord-Hotkeys
+;https://www.reddit.com/r/discordapp/comments/7v31hg/full_list_of_shortcuts_in_case_you_didnt_know_them/
+
 ;****************************************SCIMITAR RGB ACTIONS***************************************
 
 #If currentProfile == "Discord"
