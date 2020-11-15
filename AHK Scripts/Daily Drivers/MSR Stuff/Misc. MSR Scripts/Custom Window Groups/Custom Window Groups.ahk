@@ -96,7 +96,6 @@ removeWindowFx(ByRef WindowGroupArray) {
 }
 
 addAndHideWindowFx(Fx, ByRef WindowGroupArray) {
-
     if (Fx == "F6" AND F6Mode == "Window Hider")
     {
         addWindowFx(WindowGroupArray)
@@ -125,13 +124,15 @@ showOrHideWindowsFx(ByRef WindowGroupArray, ByRef FxShowHideToggle) {
     ;If it's 1, hide windows; if it's 0, it shows windows.
     FxShowHideToggle := !FxShowHideToggle
 
-    if (FxShowHideToggle = 1) {
-
+    if (FxShowHideToggle = 1)
+    {
         for index, value in WindowGroupArray
+        {
             WinShow, % "ahk_id " value
-        WinActivate, % "ahk_id " value
-
-    } else {
+            WinActivate, % "ahk_id " value
+        }
+    }
+    else {
         for index, value in WindowGroupArray
             WinHide, % "ahk_id " value
     }
@@ -143,7 +144,8 @@ nextWindowFx(ByRef WindowGroupArray, ByRef CurrentWin) {
     ;Checks if there's 2 windows in the array. If so, acts like !Tab.
     if (WindowGroupArray.MaxIndex() = 2)
     {
-        if (activeWindowID != WindowGroupArray[CurrentWin] AND inArray(activeWindowID, WindowGroupArray)) {
+        if (activeWindowID != WindowGroupArray[CurrentWin] AND inArray(activeWindowID, WindowGroupArray))
+        {
             WinActivate, % "ahk_id" WindowGroupArray[CurrentWin]
             return
         }
@@ -151,7 +153,8 @@ nextWindowFx(ByRef WindowGroupArray, ByRef CurrentWin) {
 
     ;If you switch to a different window that is not in the group, and you push the button to go to the next window, it'll take you back to the last window.
     ;This is what the R thing with AHK's built-in groups does.
-    if (activeWindowID != WindowGroupArray[CurrentWin] AND !inArray(activeWindowID, WindowGroupArray)) {
+    if (activeWindowID != WindowGroupArray[CurrentWin] AND !inArray(activeWindowID, WindowGroupArray))
+    {
         WinActivate, % "ahk_id" WindowGroupArray[CurrentWin]
         return
     }
@@ -200,7 +203,8 @@ prevWindowFx(ByRef WindowGroupArray, ByRef CurrentWin) {
         }
     }
 
-    if (activeWindowID != WindowGroupArray[CurrentWin] AND !inArray(activeWindowID, WindowGroupArray)) {
+    if (activeWindowID != WindowGroupArray[CurrentWin] AND !inArray(activeWindowID, WindowGroupArray))
+    {
         WinActivate, % "ahk_id" WindowGroupArray[CurrentWin]
         return
     }
