@@ -254,6 +254,9 @@ global OutlookVisibilityToggle := 1
 global DiscordVisibilityToggle := 1
 global MusicBeeVisibilityToggle := 1
 
+global currentWinOMode := 1
+global WIN_O_MAX_MODE := 3 ;How many modes are actually defined in the Switch statement.
+
 ;The stuff in this loop needs to be running constantly.
 Loop {
 	global activeWindowTitle
@@ -457,6 +460,21 @@ MouseMove, %WinWX%, %WinWY%, 0
 Sleep 200
 Send, {Click}
 MouseMove, originalX, originalY
+return
+
+;Easily switch the mode for the 2 top mouse buttons, without having to open the GUI.
+!#Right::
+currentWinOMode++
+if (currentWinOMode > WIN_O_MAX_MODE)
+	currentWinOMode := 1
+switchWinOMode()
+return
+
+!#Left::
+currentWinOMode--
+if (WIN_O_MAX_MODE < currentWinOMode)
+	currentWinOMode := 1
+switchWinOMode()
 return
 
 ^!+d:: ;Used for deleting videos from YouTube playlist. Asks you how many times to do it and then it starts doing its thing.
@@ -959,6 +977,27 @@ addCharAroundText(character, optional2ndChar := "") ;optional2ndChar is only use
 
 	Clipboard := originalClipboard ;Restore.
 	originalClipboard := "" ;Free because could potentially be huge.
+}
+
+;Used for !#Right d !#Left.
+switchWinOMode() {
+	Switch (currentWinOMode)
+	{
+		Case 1:
+		GuiControl, CPanel:ChooseString, FrontMouseButtonBehavior, Double Click
+		GuiControl, CPanel:ChooseString, BackMouseButtonBehavior, F6
+		return
+
+		Case 2:
+		GuiControl, CPanel:ChooseString, FrontMouseButtonBehavior, F6
+		GuiControl, CPanel:ChooseString, BackMouseButtonBehavior, F7
+		return
+
+		Case 3:
+		; GuiControl, CPanel:, FrontMouseButtonBehavior,
+		; GuiControl, CPanel:, BackMouseButtonBehavior,
+		return
+	}
 }
 
 ;**************************************************EXPERIMENTAL**************************************************
