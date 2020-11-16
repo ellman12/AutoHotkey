@@ -838,6 +838,7 @@ dumpAllCWGGroups()
 	winGroupBackupDump("F7", WindowGroupF7)
 	winGroupBackupDump("F8", WindowGroupF8)
 	winGroupBackupDump("F10", WindowGroupF10)
+	Tippy("Group dump files have been created", 1300)
 }
 return
 
