@@ -287,8 +287,8 @@ Loop {
 		currentProfile := "Word"
 	else if Instr(activeWindowTitle, " - Visual Studio Code")
 		currentProfile := "VSCode"
-	else if InStr(activeWindowTitle, "Discord")
-		currentProfile := "Discord"
+	; else if InStr(activeWindowTitle, "Discord")
+		; currentProfile := "Discord"
 	else if Instr(activeWindowTitle, "Factorio 1.")
 		currentProfile := "Factorio"
 	else if Instr(activeWindowTitle, "Minecraft 1.1")
