@@ -124,6 +124,7 @@ return
 !F18::Send, ^#{Right}
 
 ;****************************************MISC EXCEL ACTIONS***************************************
+$F2::Send, {F2} ;Edit cell contents.
 F5::Send, ^s ;Save document.
 
 #If
