@@ -144,6 +144,9 @@ F5::Send, ^s ;Save document.
 ; ^+7::Send, !hn ;Numbered list.
 ; ^+8::Send, !hu ;Bulleted list.
 
+^!r::Send, !wr ;Show/hide the ruler.
+!s:: Send, !ws1 ;Toggle the split feature in Word.
+
 ;After copying an article title and then its link, press this hotkey to automatically add both using the ^k dialog box.
 #k::
 Send, ^k

@@ -128,7 +128,7 @@ Index := 0 ;Used as the name of the current gui cap window.
 
 ;***********************************READ INI FILE***********************************
 ;File path for config .ini file.
-global MSRConfigPath := "C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\MSRConfig.ini"
+global MSRConfigPath := "C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\MSRConfig.ini"
 
 readConfigFile() ;Read in the values so the controls will know what to be on start-up.
 

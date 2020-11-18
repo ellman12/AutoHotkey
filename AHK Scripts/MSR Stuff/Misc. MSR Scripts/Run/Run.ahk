@@ -291,26 +291,26 @@ Switch (cmdToRun) {
     Case "des": Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.desmos.com/calculator
 
     ;Opens the help .txt file for CWG.
-    Case "CWG": Run, notepad.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Misc. MSR Scripts\Run\Custom Window Groups Help.txt
+    Case "CWG": Run, notepad.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Misc. MSR Scripts\Run\Custom Window Groups Help.txt
 
     ;Opens the help .txt file for the MS To Do hotkeys.
-    Case "todo", "to do": Run, notepad.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Misc. MSR Scripts\Run\MS To Do Help.txt
+    Case "todo", "to do": Run, notepad.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Misc. MSR Scripts\Run\MS To Do Help.txt
 
     ;Opens the Google spreadsheet for this script in Chrome, which contains all of the commands in a table.
     Case "Help", "Help Sheet", "Sheet Help": Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://docs.google.com/spreadsheets/d/1vGHwAVQwkmzGGpM_xQJ86RGXfsBiBxDD089cu1u02eA/edit#gid=17759502
 
     ;Help <category> things.
-    Case "Help Date", "Date Help":Run, notepad.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Misc. MSR Scripts\Run\Run Date Help.txt
+    Case "Help Date", "Date Help":Run, notepad.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Misc. MSR Scripts\Run\Run Date Help.txt
 
-    Case "Help Ins", "Ins Help", "Help Insert", "Insert Help":Run, notepad.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Misc. MSR Scripts\Run\Run Insert Help.txt
+    Case "Help Ins", "Ins Help", "Help Insert", "Insert Help":Run, notepad.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Misc. MSR Scripts\Run\Run Insert Help.txt
 
-    Case "Help Misc", "Help Misc.", "Misc Help", "Misc. Help":Run, notepad.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Misc. MSR Scripts\Run\Run Misc. Help.txt
+    Case "Help Misc", "Help Misc.", "Misc Help", "Misc. Help":Run, notepad.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Misc. MSR Scripts\Run\Run Misc. Help.txt
 
-    Case "Help Open", "Open Help":Run, notepad.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Misc. MSR Scripts\Run\Run Open Help.txt
+    Case "Help Open", "Open Help":Run, notepad.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Misc. MSR Scripts\Run\Run Open Help.txt
 
-    Case "30":Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\30 Clipboards Script\30 Clipboards.ahk
-    Case "CN", "Num", "NumPad":Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Custom NumPad\Custom NumPad.ahk
-    Case "MB":Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Daily Drivers\MSR Stuff\Misc. MSR Scripts\MsgBox Creator.ahk
+    Case "30":Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\30 Clipboards Script\30 Clipboards.ahk
+    Case "CN", "Num", "NumPad":Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Custom NumPad\Custom NumPad.ahk
+    Case "MB":Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Misc. MSR Scripts\MsgBox Creator.ahk
 
     ;Open the documentation in either Firefox or Chrome.
     Case "docu", "docu ff":
