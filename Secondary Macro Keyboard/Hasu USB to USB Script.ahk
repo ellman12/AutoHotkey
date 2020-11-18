@@ -271,9 +271,9 @@ w::Send, ^#{Right}
 
 a::Send, ^a ;Select all.
 
-$^a:: ;Selects all and does Title Case thing from TCT.
+$^a:: ;Selects all and does Title Case thing from TC.
 Send, ^a
-Gosub, ^!t
+GoSub, ^!t
 return
 
 b::Send, ^v ;Pastes clipboard contents.
