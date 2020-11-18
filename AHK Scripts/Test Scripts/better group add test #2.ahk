@@ -5,20 +5,19 @@ SetWorkingDir, %A_ScriptDir%
 
 ;A test to try and group windows falling under a certain rule in a better way than GroupAdd.
 
-wordGroup := []
-currentWin := 1
+#!F5:: ;Add windows to a custom group (array) by doing this hotkey in a window. E.g., do this in Word and you'll group Word windows.
+wordGroup := [] ;Reallocate this array, since the
+CurrentWin := 0
 
-#!F5::
-SetTitleMatchMode, 2
-WinGetTitle, activeTitle, A
-WinGet, windowList, List, ahk_exe activeTitle
+WinGet, activeProcessName, ProcessName, A ;Get the name of the window's .exe
 
-MsgBox, %windowList%
-Loop % windowList ;Put the items from the pseudo-array into an actual array. This works because the pseudo-array without ny %% is equal to how many elements there are in it: https://www.autohotkey.com/docs/misc/Arrays.htm#pseudo
+WinGet, windowList, List, ahk_exe %activeProcessName% ;Get pseudo-array of window IDs. https://www.autohotkey.com/docs/commands/WinGet.htm#List
+
+Loop % windowList ;Put the items from the pseudo-array into an actual array. This works because the pseudo-array without any % is equal to how many elements there are in it: https://www.autohotkey.com/docs/misc/Arrays.htm#pseudo
 {
     wordGroup.push(windowList%A_Index%)
-    ; windowList := ;Free because it's no longer needed.
 }
+windowList := ;Free because it's no longer needed.
 return
 
 #F5::
