@@ -8,13 +8,18 @@ SetWorkingDir, %A_ScriptDir%
 wordGroup := []
 currentWin := 1
 
-WinGet, wordWinsList, List, ahk_exe WINWORD.EXE
+#!F5::
+SetTitleMatchMode, 2
+WinGetTitle, activeTitle, A
+WinGet, windowList, List, ahk_exe activeTitle
 
-Loop % wordWinsList ;Put the items from the pseudo-array into an actual array. This works because the pseudo-array without ny %% is equal to how many elements there are in it: https://www.autohotkey.com/docs/misc/Arrays.htm#pseudo
+MsgBox, %windowList%
+Loop % windowList ;Put the items from the pseudo-array into an actual array. This works because the pseudo-array without ny %% is equal to how many elements there are in it: https://www.autohotkey.com/docs/misc/Arrays.htm#pseudo
 {
-    wordGroup.push(wordWinsList%A_Index%)
-    ; wordWinsList := ;Free because it's no longer needed.
+    wordGroup.push(windowList%A_Index%)
+    ; windowList := ;Free because it's no longer needed.
 }
+return
 
 #F5::
 currentWin++
