@@ -49,9 +49,12 @@ else
 return
 
 F9:: ;Show/hide Outlook.
+DetectHiddenWindows, On
 SetTitleMatchMode, 2 ;A window's title can contain WinTitle anywhere inside it to be a match.
 if (WinExist("- Outlook")) AND (!WinActive("- Outlook"))
     WinActivate, - Outlook
+else if !WinExist("- Outlook") AND (!WinActive("- Outlook"))
+    Run, C:\Program Files\Microsoft Office\root\Office16\Outlook.exe
 else
 {
     OutlookVisibilityToggle := !OutlookVisibilityToggle
@@ -68,18 +71,21 @@ return
 SetTitleMatchMode, 2 ;A window's title can contain WinTitle anywhere inside it to be a match.
 OutlookVisibilityToggle := !OutlookVisibilityToggle
 
-if (OutlookVisibilityToggle = 0) {
+if (OutlookVisibilityToggle = 0)
     WinHide, - Outlook
-} else {
+else {
     WinShow, - Outlook
     WinActivate, - Outlook
 }
 return
 
 F11:: ;Activate, and show/hide Discord.
+DetectHiddenWindows, On
 SetTitleMatchMode, 2 ;A window's title can contain WinTitle anywhere inside it to be a match.
-if (WinExist("- Discord")) AND (!WinActive("- Discord"))
+if (WinExist("Discord")) AND (!WinActive("Discord"))
     WinActivate, - Discord
+else if !WinExist("Discord") AND (!WinActive("Discord"))
+    Run, C:\Users\%A_UserName%\AppData\Local\Discord\app-0.0.308\Discord.exe
 else
 {
     DiscordVisibilityToggle := !DiscordVisibilityToggle
