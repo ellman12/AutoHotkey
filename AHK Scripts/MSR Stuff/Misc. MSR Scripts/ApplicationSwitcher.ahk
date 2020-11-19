@@ -1,4 +1,4 @@
-;A lot of this code is taken from Taran Van Hemert from Linus Media Group. His video on this: https://www.youtube.com/watch?v=OqyQABySV8k
+﻿;A lot of this code is taken from Taran Van Hemert from Linus Media Group. His video on this: https://www.youtube.com/watch?v=OqyQABySV8k
 
 ;If a Firefox window doesn't exist, run Firefox.
 ;If a Firefox window does exist, switch to Chrome.
@@ -207,6 +207,7 @@ return
 ;Word				                  Runs Word and switches between Word windows.
 ;Excel				                  Runs Excel and switches between Excel windows.
 ;Word + Excel		                  Groups Word and Excel windows.
+/*
 F12::
 F12Hotkey() {
 global
@@ -286,6 +287,30 @@ global
     }
 }
 return ;End of F12.
+*/
+
+F12Hotkey(){
+    ;temp
+}
+;**************************************************TESTING THIS**************************************************
+
+#F12:: ;Add windows to a custom group (array) by doing this hotkey in a window. E.g., do this in Word and you'll group Word windows.
+F12Group := [] ;Reallocate/redefine this array, since it's probably changing size.
+CurrentWin := 0
+
+WinGet, activeProcessName, ProcessName, A ;Get the name of the window's .exe
+
+WinGet, windowList, List, ahk_exe %activeProcessName% ;Get pseudo-array of window IDs. https://www.autohotkey.com/docs/commands/WinGet.htm#List
+
+Loop % windowList ;Put the items from the pseudo-array into an actual array. This works because the pseudo-array without any % is equal to how many elements there are in it: https://www.autohotkey.com/docs/misc/Arrays.htm#pseudo
+{
+    F12Group.push(windowList%A_Index%)
+}
+windowList := ;Free because it's no longer needed.
+return
+
+;So, I think the best/only way to get windows in order from left→right is so minimize all but the first window, then call the #F12 hotkey. Then they should get added in order I think...?
+F12::nextWindowFx(F12Group, CurrentWin)
 
 ;*******************HOTKEYS FOR MICROSOFT TO DO APP*******************
 ; #t:: In the Tasks menu, add a task and mark it due today. Or activate To Do. Or run To Do.
