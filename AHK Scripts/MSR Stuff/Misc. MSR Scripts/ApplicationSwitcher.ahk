@@ -293,7 +293,7 @@ F12Hotkey(){
     ;temp
 }
 ;**************************************************TESTING THIS**************************************************
-
+;TODO: Maybe a way to check 2 apps for stuff like Word + Excel?
 #F12:: ;Add windows to a custom group (array) by doing this hotkey in a window. E.g., do this in Word and you'll group Word windows.
 F12Group := [] ;Reallocate/redefine this array, since it's probably changing size.
 CurrentWin := 0
