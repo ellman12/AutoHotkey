@@ -1,4 +1,4 @@
-﻿;A lot of this code is taken from Taran Van Hemert from Linus Media Group. His video on this: https://www.youtube.com/watch?v=OqyQABySV8k
+;A lot of this code is taken from Taran Van Hemert from Linus Media Group. His video on this: https://www.youtube.com/watch?v=OqyQABySV8k
 
 ;If a Firefox window doesn't exist, run Firefox.
 ;If a Firefox window does exist, switch to Chrome.
@@ -288,7 +288,7 @@ global
 return ;End of F12.
 
 ;*******************HOTKEYS FOR MICROSOFT TO DO APP*******************
-; #t:: In the Tasks menu, add a task and mark it due today. Or activate it. Or run it.
+; #t:: In the Tasks menu, add a task and mark it due today. Or activate To Do. Or run To Do.
 
 ;*****HOTKEYS FOR THE TASKS MENU*****
 ; !#t:: Add a task and mark it due tomorrow.
