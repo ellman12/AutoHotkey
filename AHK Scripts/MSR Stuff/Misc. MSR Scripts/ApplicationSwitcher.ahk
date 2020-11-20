@@ -310,7 +310,12 @@ windowList := ;Free because it's no longer needed.
 return
 
 ;So, I think the best/only way to get windows in order from left→right is so minimize all but the first window, then call the #F12 hotkey. Then they should get added in order I think...?
-F12::nextWindowFx(F12Group, CurrentWin)
+F12::
+if (F12Group.Length() == "")
+    GoSub, #F12
+else
+    nextWindowFx(F12Group, CurrentWin) ;DOESN'T WORK???
+return
 
 ;*******************HOTKEYS FOR MICROSOFT TO DO APP*******************
 ; #t:: In the Tasks menu, add a task and mark it due today. Or activate To Do. Or run To Do.
