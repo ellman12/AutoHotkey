@@ -16,8 +16,8 @@ else
 
 InputBox, runInputBoxText, Type a Command, %message%,, 200, 130,,,,, %runInputBoxText%
 
-if ((ErrorLevel == 1) AND (runInputBoxText == "")) ;ErrorLevel value for saying the user pressed Cancel/Escape.
-    runCommand("1")
+if (ErrorLevel == 1)
+    Tippy("Cancel/Escape was pressed.", 500)
 else
     runCommand(runInputBoxText)
 return ;End of !r.
@@ -48,9 +48,6 @@ Switch (cmdToRun) {
     else
         MsgBox, 16, Unknown Command., Command entered: "%cmdToRun%" does not exist.
     return
-
-    ;Supposed to represent ErrorLevel value of 1.
-    Case "1":Tippy("Cancel/Escape was pressed.", 500)
 
     ;***********************************************DATE***********************************************
     ;********************DATE STUFF FOR YESTERDAY********************
