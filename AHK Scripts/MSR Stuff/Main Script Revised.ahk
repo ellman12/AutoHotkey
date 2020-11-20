@@ -95,7 +95,7 @@ readGroupFromFile("F7", WindowGroupF7, 1)
 readGroupFromFile("F8", WindowGroupF8, 1)
 readGroupFromFile("F10", WindowGroupF10, 1)
 
-;*******************************EDIT CLIPBOARD CONTENT INITIALIZATION******************************
+;***********************************EDIT CLIPBOARD CONTENT INITIALIZATION***********************************
 GUI, ECC:Font, s12
 GUI, ECC:Add, Button, gclipboardFinishButton x4 y2 w80,&Finish
 
@@ -111,7 +111,7 @@ GUI, ECC:Color, Silver
 ;Starts out as 0, so it only appears when the user wants it.
 showClipboardGUIToggle := 0
 
-;*************Screen Clipper.ahk Initialization Stuff************
+;***********************************SCREEN CLIPPER.AHK INITIALIZATION STUFF***********************************
 Hotkey, #s, CreateCapWindow, On ;Take a screen clip with the Screen Clipper script.
 SaveToFile := 1 ;Set this to 1 to save all clips with a unique name , Set it to 0 to overwrite the saved clip every time a new clip is made.
 ShowCloseButton := 1 ;Set this to 1 to show a small close button in the top right corner of the clip. Set this to 0 to keep the close button, but not show it.
@@ -123,12 +123,19 @@ SetWorkingDir, %A_ScriptDir%\Screen Clipper Script\Saved Clips ;Set the saved cl
 Handles := [] ;Create an array to hold the name of the different gui's.
 Index := 0 ;Used as the name of the current gui cap window.
 
-;*******************************MSR CONTROL PANEL INITIALIZATION******************************
-;This is a GUI for MSR that allows the user to change how parts of the script work.
+;***********************************QUICK CODE INITIALIZATION***********************************
+global QuickCodeGUIVisibility := 0 ;0 = hidden, 1 = shown
 
-;***********************************READ INI FILE***********************************
+GUI, QuickCodeGUI:+AlwaysOnTop
+GUI, QuickCodeGUI:Font, s9
+GUI, QuickCodeGUI:Add, Text, x3 y3, Enter code to run:
+GUI, QuickCodeGUI:Add, Edit, vQuickCodeEdit xp-2 y20 w196 h190
+GUI, QuickCodeGUI:Add, Button, xp y215 gQuickCodeDoneButton, &Done
+
+;***********************************MSR CONTROL PANEL INITIALIZATION***********************************
+;This is a GUI for MSR that allows the user to change how parts of the script work.
 ;File path for config .ini file.
-global MSRConfigPath := "C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\MSRConfig.ini"
+global MSR_CONFIG_PATH := "C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\MSRConfig.ini"
 
 readConfigFile() ;Read in the values so the controls will know what to be on start-up.
 
@@ -235,8 +242,8 @@ GuiControl, CPanel:ChooseString, F12Behavior, %F12Behavior%
 ;Starts out as 0, so it only appears when the user wants it.
 global controlPanelGUIToggle := 0
 
-CONTROL_PANEL_WIDTH := 286
-CONTROL_PANEL_HEIGHT := 260
+global CONTROL_PANEL_WIDTH := 286
+global CONTROL_PANEL_HEIGHT := 260
 
 ;Used for testing and adding new #o stuff.
 ; GUI, CPanel:Show, w%CONTROL_PANEL_WIDTH% h%CONTROL_PANEL_HEIGHT% x1400,MSR Control Panel
@@ -338,7 +345,7 @@ Loop {
 	Sleep 100 ;This sleep statement DRASTICALLY helps reduce the power and CPU usage of the MSR.
 }
 
-;Other files with many different hotkeys and other things in them.
+;Other files with many different hotkeys and hotstrings and other things in them.
 #Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\BooleanToggle.ahk
 #Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\inArray.ahk
 #Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\Tippy.ahk
@@ -352,6 +359,7 @@ Loop {
 #Include, %A_ScriptDir%\MSR Profiles\VSCode.ahk
 
 #Include, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\Custom Window Groups.ahk
+#Include, %A_ScriptDir%\Misc. MSR Scripts\Quick Code\Quick Code.ahk
 #Include, %A_ScriptDir%\Misc. MSR Scripts\Run\Run.ahk
 #Include, %A_ScriptDir%\Misc. MSR Scripts\ApplicationSwitcher.ahk
 #Include, %A_ScriptDir%\Misc. MSR Scripts\AutoCorrect.ahk
@@ -701,52 +709,52 @@ global
 
 writeConfigFile() { ;Writes #o values to the config file.
 global
-	IniWrite, %InsMonChoice%, %MSRConfigPath%, MonitorChoices, InsMonChoice
-	IniWrite, %CtrlInsMonChoice%, %MSRConfigPath%, MonitorChoices, CtrlInsMonChoice
-	IniWrite, %ChrBookTypeMonChoice%, %MSRConfigPath%, MonitorChoices, ChrBookTypeMonChoice
+	IniWrite, %InsMonChoice%, %MSR_CONFIG_PATH%, MonitorChoices, InsMonChoice
+	IniWrite, %CtrlInsMonChoice%, %MSR_CONFIG_PATH%, MonitorChoices, CtrlInsMonChoice
+	IniWrite, %ChrBookTypeMonChoice%, %MSR_CONFIG_PATH%, MonitorChoices, ChrBookTypeMonChoice
 
-	IniWrite, %F3Behavior%, %MSRConfigPath%, Fx, F3Behavior
-	IniWrite, %F6Mode%, %MSRConfigPath%, Fx, F6Mode
-	IniWrite, %F7Mode%, %MSRConfigPath%, Fx, F7Mode
-	IniWrite, %F8Mode%, %MSRConfigPath%, Fx, F8Mode
-	IniWrite, %F10Mode%, %MSRConfigPath%, Fx, F10Mode
-	IniWrite, %F12Behavior%, %MSRConfigPath%, Fx, F12Behavior
+	IniWrite, %F3Behavior%, %MSR_CONFIG_PATH%, Fx, F3Behavior
+	IniWrite, %F6Mode%, %MSR_CONFIG_PATH%, Fx, F6Mode
+	IniWrite, %F7Mode%, %MSR_CONFIG_PATH%, Fx, F7Mode
+	IniWrite, %F8Mode%, %MSR_CONFIG_PATH%, Fx, F8Mode
+	IniWrite, %F10Mode%, %MSR_CONFIG_PATH%, Fx, F10Mode
+	IniWrite, %F12Behavior%, %MSR_CONFIG_PATH%, Fx, F12Behavior
 
-	IniWrite, %FrontMouseButtonBehavior%, %MSRConfigPath%, MouseButtons, FrontMouseButtonBehavior
-	IniWrite, %BackMouseButtonBehavior%, %MSRConfigPath%, MouseButtons, BackMouseButtonBehavior
+	IniWrite, %FrontMouseButtonBehavior%, %MSR_CONFIG_PATH%, MouseButtons, FrontMouseButtonBehavior
+	IniWrite, %BackMouseButtonBehavior%, %MSR_CONFIG_PATH%, MouseButtons, BackMouseButtonBehavior
 
-	; IniWrite, %laptopBatteryIconX%, %MSRConfigPath%, Miscellaneous, laptopBatteryIconX
-	; IniWrite, %laptopBatteryIconY%, %MSRConfigPath%, Miscellaneous, laptopBatteryIconY
-	; IniWrite, %WinWX%, %MSRConfigPath%, Miscellaneous, WinWX
-	; IniWrite, %WinWY%, %MSRConfigPath%, Miscellaneous, WinWY
+	; IniWrite, %laptopBatteryIconX%, %MSR_CONFIG_PATH%, Miscellaneous, laptopBatteryIconX
+	; IniWrite, %laptopBatteryIconY%, %MSR_CONFIG_PATH%, Miscellaneous, laptopBatteryIconY
+	; IniWrite, %WinWX%, %MSR_CONFIG_PATH%, Miscellaneous, WinWX
+	; IniWrite, %WinWY%, %MSR_CONFIG_PATH%, Miscellaneous, WinWY
 }
 
 readConfigFile() { ;Reads values from the ini file for #o.
 global
 	;Last parameter is default value if key can't be read.
-	IniRead, InsMonChoice, %MSRConfigPath%, MonitorChoices, InsMonChoice, Primary Mon
-	IniRead, CtrlInsMonChoice, %MSRConfigPath%, MonitorChoices, CtrlInsMonChoice, Secondary Mon
-	IniRead, ChrBookTypeMonChoice, %MSRConfigPath%, MonitorChoices, ChrBookTypeMonChoice, Primary Mon
+	IniRead, InsMonChoice, %MSR_CONFIG_PATH%, MonitorChoices, InsMonChoice, Primary Mon
+	IniRead, CtrlInsMonChoice, %MSR_CONFIG_PATH%, MonitorChoices, CtrlInsMonChoice, Secondary Mon
+	IniRead, ChrBookTypeMonChoice, %MSR_CONFIG_PATH%, MonitorChoices, ChrBookTypeMonChoice, Primary Mon
 
-	IniRead, F3Behavior, %MSRConfigPath%, Fx, F3Behavior, Google Chrome
-	IniRead, F6Mode, %MSRConfigPath%, Fx, F6Mode, Window Group
-	IniRead, F7Mode, %MSRConfigPath%, Fx, F7Mode, Window Group
-	IniRead, F8Mode, %MSRConfigPath%, Fx, F8Mode, Window Hider
-	IniRead, F10Mode, %MSRConfigPath%, Fx, F10Mode, Window Hider
-	IniRead, F12Behavior, %MSRConfigPath%, Fx, F12Behavior, Word
+	IniRead, F3Behavior, %MSR_CONFIG_PATH%, Fx, F3Behavior, Google Chrome
+	IniRead, F6Mode, %MSR_CONFIG_PATH%, Fx, F6Mode, Window Group
+	IniRead, F7Mode, %MSR_CONFIG_PATH%, Fx, F7Mode, Window Group
+	IniRead, F8Mode, %MSR_CONFIG_PATH%, Fx, F8Mode, Window Hider
+	IniRead, F10Mode, %MSR_CONFIG_PATH%, Fx, F10Mode, Window Hider
+	IniRead, F12Behavior, %MSR_CONFIG_PATH%, Fx, F12Behavior, Word
 
-	IniRead, FrontMouseButtonBehavior, %MSRConfigPath%, MouseButtons, FrontMouseButtonBehavior, Double Click
-	IniRead, BackMouseButtonBehavior, %MSRConfigPath%, MouseButtons, BackMouseButtonBehavior, F6
+	IniRead, FrontMouseButtonBehavior, %MSR_CONFIG_PATH%, MouseButtons, FrontMouseButtonBehavior, Double Click
+	IniRead, BackMouseButtonBehavior, %MSR_CONFIG_PATH%, MouseButtons, BackMouseButtonBehavior, F6
 
-	; IniRead, laptopBatteryIconX, %MSRConfigPath%, Miscellaneous, laptopBatteryIconX
-	; IniRead, laptopBatteryIconY, %MSRConfigPath%, Miscellaneous, laptopBatteryIconY
-	; IniRead, WinWX, %MSRConfigPath%, Miscellaneous, WinWX
-	; IniRead, WinWY, %MSRConfigPath%, Miscellaneous, WinWY
+	; IniRead, laptopBatteryIconX, %MSR_CONFIG_PATH%, Miscellaneous, laptopBatteryIconX
+	; IniRead, laptopBatteryIconY, %MSR_CONFIG_PATH%, Miscellaneous, laptopBatteryIconY
+	; IniRead, WinWX, %MSR_CONFIG_PATH%, Miscellaneous, WinWX
+	; IniRead, WinWY, %MSR_CONFIG_PATH%, Miscellaneous, WinWY
 }
 
 ;Used if you want to reset the config file. Because IniRead allows you to set default values in case there's an error, those default values will be used, allowing this to actually work really easily.
 deleteConfigFile() {
-	FileDelete, %MSRConfigPath%
+	FileDelete, %MSR_CONFIG_PATH%
 	if (ErrorLevel != 0)
 		MsgBox, 262160, Something Happened, An error occurred while trying to delete the config file. Most likely the file doesn't exist and thus you tried to delete something that doesn't exist.
 	else
