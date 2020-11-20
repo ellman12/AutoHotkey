@@ -9,7 +9,7 @@ QuickCodeDoneButton:
         Tippy("Nothing entered in Quick Code GUI.", 1000)
     else
     {
-        FileDelete, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Misc. MSR Scripts\Quick Code\Temp Script.ahk ;Reset (overwrite) the file.
+        FileRecycle, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Misc. MSR Scripts\Quick Code\Temp Script.ahk ;Reset (overwrite) the file.
         FileAppend, %QuickCodeEdit%, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Misc. MSR Scripts\Quick Code\Temp Script.ahk
 
         GoSub, #+q ;Close the script to avoid the annoying thing about an instance already running.
