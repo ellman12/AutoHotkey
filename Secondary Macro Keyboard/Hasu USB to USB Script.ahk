@@ -83,7 +83,7 @@ F11:: ;Activate, and show/hide Discord.
 DetectHiddenWindows, On
 SetTitleMatchMode, 2 ;A window's title can contain WinTitle anywhere inside it to be a match.
 if (WinExist("Discord")) AND (!WinActive("Discord"))
-    WinActivate, - Discord
+    WinActivate, Discord
 else if !WinExist("Discord") AND (!WinActive("Discord"))
     Run, C:\Users\%A_UserName%\AppData\Local\Discord\app-0.0.308\Discord.exe
 else
@@ -91,10 +91,10 @@ else
     DiscordVisibilityToggle := !DiscordVisibilityToggle
 
     if (DiscordVisibilityToggle = 0) {
-        WinHide, - Discord
+        WinHide, Discord
     } else {
-        WinShow, - Discord
-        WinActivate, - Discord
+        WinShow, Discord
+        WinActivate, Discord
     }
 }
 return
