@@ -76,12 +76,6 @@ global CurrentWinF8 := 1
 global WindowGroupF10 := []
 global CurrentWinF10 := 1
 
-;These can be changed in #o, but set them to their normal, default values.
-global F6Mode := "Window Group"
-global F7Mode := "Window Group"
-global F8Mode := "Window Hider"
-global F10Mode := "Window Hider"
-
 ;Declare these as 1 so the first time you press F8, it hides everything.
 ;If it's 1, hide windows; if it's 0, show windows.
 global F6ShowHideToggle := 0
@@ -176,7 +170,7 @@ if (A_ComputerName = "Elliott-Laptop") {
 	laptopBatteryIconX := "INVALID"
 	laptopBatteryIconY := "INVALID"
 } else {
-	MsgBox, 16, Error. Computer/laptop name not part of the script., Error. Computer/laptop name not part of the script. A_ComputerName is: %A_ComputerName%`n`nIf you're on a desktop computer this can be totally ignored.
+	MsgBox, 16, Error. Computer/laptop name not part of the script., Error. Computer/laptop name not part of the script. Computer/laptop name is: %A_ComputerName%
 }
 
 ;X choice for the #b hotkey.
