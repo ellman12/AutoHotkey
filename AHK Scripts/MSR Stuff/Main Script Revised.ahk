@@ -123,8 +123,8 @@ global QuickCodeGUIVisibility := 0 ;0 = hidden, 1 = shown
 GUI, QuickCodeGUI:+AlwaysOnTop
 GUI, QuickCodeGUI:Font, s9
 GUI, QuickCodeGUI:Add, Text, x3 y3, Enter code to run:
-GUI, QuickCodeGUI:Add, Edit, vQuickCodeEdit xp-2 y20 w196 h190
-GUI, QuickCodeGUI:Add, Button, xp y215 gQuickCodeDoneButton, &Done
+GUI, QuickCodeGUI:Add, Edit, vQuickCodeEdit xp-2 y20 w196 h189
+GUI, QuickCodeGUI:Add, Button, xp y212 gQuickCodeDoneButton, &Done
 
 ;***********************************MSR CONTROL PANEL INITIALIZATION***********************************
 ;This is a GUI for MSR that allows the user to change how parts of the script work.

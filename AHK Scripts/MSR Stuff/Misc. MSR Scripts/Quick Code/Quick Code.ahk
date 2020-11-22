@@ -35,3 +35,11 @@ return
     SendMessage, 0x44, 0x405, 0, , Temp Script.ahk - AutoHotkey v
     WinClose, ahk_pid %ErrorLevel%
 return
+
+QuickCodeGUIGUIClose:
+QuickCodeGUIVisibility := !QuickCodeGUIVisibility
+if (QuickCodeGUIVisibility == 1)
+    GUI, QuickCodeGUI:Show, w200 h238, Quick Code
+else
+    GUI, QuickCodeGUI:Hide
+return
