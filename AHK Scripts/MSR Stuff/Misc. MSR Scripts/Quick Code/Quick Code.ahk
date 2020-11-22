@@ -22,11 +22,7 @@ return
     FileRead, tempScriptContents, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Misc. MSR Scripts\Quick Code\Temp Script.ahk
     GuiControl, QuickCodeGUI:, QuickCodeEdit, %tempScriptContents%
 
-    QuickCodeGUIVisibility := !QuickCodeGUIVisibility
-    if (QuickCodeGUIVisibility == 1)
-        GUI, QuickCodeGUI:Show, w200 h238, Quick Code
-    else
-        GUI, QuickCodeGUI:Hide
+    toggleGUI(QuickCodeGUIVisibility, "QuickCodeGUI", 200, 238, "Quick Code")
 return
 
 #+q:: ;Close Temp Script.ahk. https://www.autohotkey.com/docs/commands/PostMessage.htm#ExPID
@@ -37,9 +33,5 @@ return
 return
 
 QuickCodeGUIGUIClose:
-QuickCodeGUIVisibility := !QuickCodeGUIVisibility
-if (QuickCodeGUIVisibility == 1)
-    GUI, QuickCodeGUI:Show, w200 h238, Quick Code
-else
-    GUI, QuickCodeGUI:Hide
+toggleGUI(QuickCodeGUIVisibility, "QuickCodeGUI", 200, 238, "Quick Code")
 return
