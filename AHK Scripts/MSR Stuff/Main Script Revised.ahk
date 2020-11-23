@@ -598,13 +598,7 @@ return
 #c::
 GuiControl, ECC:,clipboardBoxText, %Clipboard%
 GuiControl, ECC:Focus, clipboardBoxText
-
-showClipboardGUIToggle := !showClipboardGUIToggle
-
-if (showClipboardGUIToggle = 1)
-	GUI, ECC:Show, w650 h400,Clipboard Edit
-else
-	GUI, ECC:Hide
+toggleGUI(showClipboardGUIToggle, "ECC", 650, 400, "Clipboard Edit")
 return
 
 ECCGuiClose:
