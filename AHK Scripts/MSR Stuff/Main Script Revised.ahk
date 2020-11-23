@@ -339,7 +339,7 @@ Loop {
 	Sleep 100 ;This sleep statement DRASTICALLY helps reduce the power and CPU usage of the MSR.
 }
 
-;Other files with many different hotkeys and hotstrings and other things in them.
+;Other files with many different hotkeys, hotstrings and other things in them.
 #Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\BooleanToggle.ahk
 #Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\inArray.ahk
 #Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\'Header Files'\Tippy.ahk
