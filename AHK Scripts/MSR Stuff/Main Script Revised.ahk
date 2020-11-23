@@ -241,7 +241,7 @@ GuiControl, CPanel:, G3Scrolls, %G3Scrolls%
 global controlPanelGUIToggle := 0
 
 global CONTROL_PANEL_WIDTH := 286
-global CONTROL_PANEL_HEIGHT := 280
+global CONTROL_PANEL_HEIGHT := 266
 
 ;Used for testing and adding new #o stuff. Commented out normally because it doesn't need to appear at startup.
 ; GUI, CPanel:Show, w%CONTROL_PANEL_WIDTH% h%CONTROL_PANEL_HEIGHT% x1300,MSR Control Panel
