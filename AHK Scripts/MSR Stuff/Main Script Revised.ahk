@@ -343,7 +343,7 @@ Loop {
 	Sleep 100 ;This sleep statement DRASTICALLY helps reduce the power and CPU usage of the MSR.
 }
 
-;Other files with many different hotkeys, hotstrings and other things in them.
+;Other files with many different hotkeys, hotstrings, and other things in them.
 #Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\Header Files\BooleanToggle.ahk
 #Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\Header Files\inArray.ahk
 #Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\Header Files\Tippy.ahk
@@ -368,6 +368,7 @@ Loop {
 #Include, %A_ScriptDir%\Misc. MSR Scripts\Title Capitalization.ahk
 
 #Include, %A_ScriptDir%\Screen Clipper Script\Screen Clipper.ahk
+
 #Include, %A_ScriptDir%\Video Game Stuff\Factorio.ahk
 #Include, %A_ScriptDir%\Video Game Stuff\Minecraft.ahk
 #Include, %A_ScriptDir%\Video Game Stuff\Terraria.ahk
