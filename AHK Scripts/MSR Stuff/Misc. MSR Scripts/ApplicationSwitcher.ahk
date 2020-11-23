@@ -312,9 +312,12 @@ return
 ;So, I think the best/only way to get windows in order from left→right is so minimize all but the first window, then call the #F12 hotkey. Then they should get added in order I think...?
 F12::
 if (F12Group.Length() == "")
+{
     GoSub, #F12
+    tippy("Grouping these windows into F12", 950)
+}
 else
-    nextWindowFx(F12Group, CurrentWin) ;DOESN'T WORK???
+    nextWindowFx(F12Group, CurrentWin)
 return
 
 ;*******************HOTKEYS FOR MICROSOFT TO DO APP*******************
