@@ -227,9 +227,13 @@ GuiControl, CPanel:ChooseString, FrontMouseButtonBehavior, %FrontMouseButtonBeha
 GUI, CPanel:Add, DDL, xm+90 yp w87 vBackMouseButtonBehavior, Double Click|F1|F2|F3|F4|F6|F7|F8|F9|F10|F12
 GuiControl, CPanel:ChooseString, BackMouseButtonBehavior, %BackMouseButtonBehavior%
 
-GUI, CPanel:Add, Text, xm yp+27, F12 Behavior
-GUI, CPanel:Add, DDL, xm yp+17 w146 vF12Behavior, Word|VSCode and Cmd Prompt|Excel|Word + Excel|Outlook|
+GUI, CPanel:Add, Text, xm yp+28, F12 Behavior:
+GUI, CPanel:Add, DDL, xp+68 yp-3 w146 vF12Behavior, Word|VSCode and Cmd Prompt|Excel|Word + Excel|Outlook|
 GuiControl, CPanel:ChooseString, F12Behavior, %F12Behavior%
+
+GUI, CPanel:Add, Text, xm yp+28, G3 Scrolls Per Hotkey:
+GUI, CPanel:Add, Edit, xm+108 yp-1 w20 h17 vG3Scrolls, %G3Scrolls%
+GuiControl, CPanel:, G3Scrolls, %G3Scrolls%
 
 ;Toggle for showing or hiding the GUI.
 ;If it's 1, show the GUI; if it's 0, hide it.
@@ -237,10 +241,10 @@ GuiControl, CPanel:ChooseString, F12Behavior, %F12Behavior%
 global controlPanelGUIToggle := 0
 
 global CONTROL_PANEL_WIDTH := 286
-global CONTROL_PANEL_HEIGHT := 260
+global CONTROL_PANEL_HEIGHT := 280
 
-;Used for testing and adding new #o stuff.
-; GUI, CPanel:Show, w%CONTROL_PANEL_WIDTH% h%CONTROL_PANEL_HEIGHT% x1400,MSR Control Panel
+;Used for testing and adding new #o stuff. Commented out normally because it doesn't need to appear at startup.
+; GUI, CPanel:Show, w%CONTROL_PANEL_WIDTH% h%CONTROL_PANEL_HEIGHT% x1300,MSR Control Panel
 
 ;****************************************MISC VARIABLES, INITIALIZATION, ETC*********************************
 global Num2And8Step := 3 ;When Num2 or Num8 pressed, how much to increase/decrease volume.
@@ -559,10 +563,10 @@ return
 
 #If currentProfile != "Terraria"
 ;Scroll down faster by holding down the G3 key on Scimitar Pro RGB.
-F15 & WheelDown::Send, {WheelDown 8}
+F15 & WheelDown::Send, {WheelDown %G3Scrolls%}
 
 ;Scroll up faster by holding down the G3 key on Scimitar Pro RGB.
-F15 & WheelUp::Send, {WheelUp 8}
+F15 & WheelUp::Send, {WheelUp %G3Scrolls%}
 
 ;A way to make the mouse move faster while Mouse G3 and the Right Button are held down.
 ;It's basically the complete opposite of the sniper button.
@@ -712,15 +716,12 @@ global
 	IniWrite, %FrontMouseButtonBehavior%, %MSR_CONFIG_PATH%, MouseButtons, FrontMouseButtonBehavior
 	IniWrite, %BackMouseButtonBehavior%, %MSR_CONFIG_PATH%, MouseButtons, BackMouseButtonBehavior
 
-	; IniWrite, %laptopBatteryIconX%, %MSR_CONFIG_PATH%, Miscellaneous, laptopBatteryIconX
-	; IniWrite, %laptopBatteryIconY%, %MSR_CONFIG_PATH%, Miscellaneous, laptopBatteryIconY
-	; IniWrite, %WinWX%, %MSR_CONFIG_PATH%, Miscellaneous, WinWX
-	; IniWrite, %WinWY%, %MSR_CONFIG_PATH%, Miscellaneous, WinWY
+	IniWrite, %G3Scrolls%, %MSR_CONFIG_PATH%, Miscellaneous, G3Scrolls
 }
 
 readConfigFile() { ;Reads values from the ini file for #o.
 global
-	;Last parameter is default value if key can't be read.
+	;Last parameter is default value if key can't be read (their default values basically).
 	IniRead, InsMonChoice, %MSR_CONFIG_PATH%, MonitorChoices, InsMonChoice, Primary Mon
 	IniRead, CtrlInsMonChoice, %MSR_CONFIG_PATH%, MonitorChoices, CtrlInsMonChoice, Secondary Mon
 	IniRead, ChrBookTypeMonChoice, %MSR_CONFIG_PATH%, MonitorChoices, ChrBookTypeMonChoice, Primary Mon
@@ -735,10 +736,7 @@ global
 	IniRead, FrontMouseButtonBehavior, %MSR_CONFIG_PATH%, MouseButtons, FrontMouseButtonBehavior, Double Click
 	IniRead, BackMouseButtonBehavior, %MSR_CONFIG_PATH%, MouseButtons, BackMouseButtonBehavior, F6
 
-	; IniRead, laptopBatteryIconX, %MSR_CONFIG_PATH%, Miscellaneous, laptopBatteryIconX
-	; IniRead, laptopBatteryIconY, %MSR_CONFIG_PATH%, Miscellaneous, laptopBatteryIconY
-	; IniRead, WinWX, %MSR_CONFIG_PATH%, Miscellaneous, WinWX
-	; IniRead, WinWY, %MSR_CONFIG_PATH%, Miscellaneous, WinWY
+	IniRead, G3Scrolls, %MSR_CONFIG_PATH%, Miscellaneous, G3Scrolls, 8
 }
 
 ;Used if you want to reset the config file. Because IniRead allows you to set default values in case there's an error, those default values will be used, allowing this to actually work really easily.
