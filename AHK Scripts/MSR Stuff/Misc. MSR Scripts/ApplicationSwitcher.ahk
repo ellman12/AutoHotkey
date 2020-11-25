@@ -304,20 +304,15 @@ WinGet, windowList, List, ahk_exe %activeProcessName% ;Get pseudo-array of windo
 
 Loop % windowList ;Put the items from the pseudo-array into an actual array. This works because the pseudo-array without any % is equal to how many elements there are in it: https://www.autohotkey.com/docs/misc/Arrays.htm#pseudo
 {
-    F12Group.push(windowList%A_Index%)
+    ; F12Group.push(windowList%A_Index%)
+    addWindowFx(F12Group)
 }
 windowList := ;Free because it's no longer needed.
 return
 
 ;So, I think the best/only way to get windows in order from left→right is so minimize all but the first window, then call the #F12 hotkey. Then they should get added in order I think...?
 F12::
-if (F12Group.Length() == "")
-{
-    GoSub, #F12
-    tippy("Grouping these windows into F12", 950)
-}
-else
-    nextWindowFx(F12Group, CurrentWin)
+nextWindowFx(F12Group, CurrentWin)
 return
 
 ;*******************HOTKEYS FOR MICROSOFT TO DO APP*******************
