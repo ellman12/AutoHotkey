@@ -186,7 +186,6 @@ Switch (cmdToRun) {
 
     ;Emails.
     Case "2mail": Send, bobb71013@gmail.com
-    Case "DSU": Send, Elliott.DuCharme@trojans.dsu.edu
     Case "mail": Send, ellduc4@gmail.com
 
     ;Arrows.
@@ -252,34 +251,22 @@ Switch (cmdToRun) {
     Send, {Right}r
     return
 
-    Case "ini del": deleteConfigFile()
-
     Case "task failed":MsgBox, 64, Windows XP, Task failed successfully. ;Yes.
 
-    ;Look through the entire repo and recycle any .tmp files to aid in cleanup.
+    ;Look through the entire repo and recycle any .tmp files.
     Case "tmp clr", "clr tmp":
     Loop, Files, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\*, DFR
     {
         if (A_LoopFileExt == "tmp")
             FileRecycle, %A_LoopFileLongPath%
             if ErrorLevel = 1
-                MsgBox error
+                MsgBox, 262160, Error, Something happened while recycling a .tmp file in %A_LoopFileLongPath%
     }
     return
 
     ;**************************************************OPEN**************************************************
-    ;Opens Google Calendar in Firefox.
-    Case "cal":Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://calendar.google.com/calendar/u/0/r
-
     Case "bin": Run, ::{645ff040-5081-101b-9f08-00aa002f954e} ;Open Recycle Bin.
     Case "ctrl pan": Run, ::{21ec2020-3aea-1069-a2dd-08002b30309d} ;Open Control Panel.
-
-    ;Copies the selected word/text, and search for it on Thesaurus.com.
-    Case "cthe":
-    Send, ^c
-    Sleep 35
-    Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.thesaurus.com/browse/%Clipboard%
-    return
 
     ;Opens my Math Notes album in Google Photos.
     Case "math":Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://photos.google.com/share/AF1QipPJWlaAritAARM-nFHMzvyGtSvGSkp-vcZDMFIc2IlNfaDX6-LEO6E-wVHJU-fBFg?key=S01rOFpZUmx0WGtsQ2VQdGlsM3ZIRHdsZWpOSkpR
@@ -293,34 +280,9 @@ Switch (cmdToRun) {
     ;Opens the help .txt file for the MS To Do hotkeys.
     Case "todo", "to do": Run, notepad.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Misc. MSR Scripts\Run\MS To Do Help.txt
 
-    ;Opens the Google spreadsheet for this script in Chrome, which contains all of the commands in a table.
-    Case "Help", "Help Sheet", "Sheet Help": Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://docs.google.com/spreadsheets/d/1vGHwAVQwkmzGGpM_xQJ86RGXfsBiBxDD089cu1u02eA/edit#gid=17759502
-
-    ;Help <category> things.
-    Case "Help Date", "Date Help":Run, notepad.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Misc. MSR Scripts\Run\Run Date Help.txt
-
-    Case "Help Ins", "Ins Help", "Help Insert", "Insert Help":Run, notepad.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Misc. MSR Scripts\Run\Run Insert Help.txt
-
-    Case "Help Misc", "Help Misc.", "Misc Help", "Misc. Help":Run, notepad.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Misc. MSR Scripts\Run\Run Misc. Help.txt
-
-    Case "Help Open", "Open Help":Run, notepad.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Misc. MSR Scripts\Run\Run Open Help.txt
-
     Case "30":Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\30 Clipboards Script\30 Clipboards.ahk
     Case "CN", "Num", "NumPad":Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Custom NumPad\Custom NumPad.ahk
     Case "MB":Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Misc. MSR Scripts\MsgBox Creator.ahk
-
-    ;Open the documentation in either Firefox or Chrome.
-    Case "docu", "docu ff":
-    RunWait, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.autohotkey.com/docs/AutoHotkey.htm
-    Sleep 1000
-    Send, !s
-    return
-
-    Case "docu chr":
-    RunWait, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://www.autohotkey.com/docs/AutoHotkey.htm
-    Sleep 1000
-    Send, !s
-    return
 
     ;Opens the current tab in Chrome.
     Case "op in chr":
@@ -354,50 +316,12 @@ Switch (cmdToRun) {
     Thes_FFInputBox :=
     return
 
-    Case "vs", "vs ahk":Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey
+    Case "vs":Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey
     Case "vs dsu":Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe C:\Users\Elliott\Documents\GitHub\DSU-CSC-250
 
     ;Open YouTube website.
     Case "yt", "yt ff", "yt Firefox":Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.youtube.com/
     Case "yt chr":Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://www.youtube.com/
-
-    ;***********************************************TEMPORARY???***********************************************
-    Case "kre":Send, Kind regards,{Enter 2}Elliott
-    Case "kred":Send, Kind regards,{Enter 2}Elliott DuCharme
-
-    ;Searches for the selected text in a private Firefox window with Google Images.
-    ;This is taken from the 2nd keeb script.
-    Case "pr i":
-        BlockInput, on
-        prevClipboard = %clipboard%
-        clipboard =
-        Send, ^c
-        BlockInput, off
-        ClipWait, 2
-        if ErrorLevel = 0
-        {
-            searchQuery=%clipboard%
-            GoSub, GoogleImagesSearch
-        }
-        clipboard = %prevClipboard%
-    return
-
-    ;Searches for the selected text in a private Firefox window with Google.
-    ;This is taken from the 2nd keeb script.
-    Case "pr", "pr g":
-        BlockInput, on
-        prevClipboard = %clipboard%
-        clipboard =
-        Send, ^c
-        BlockInput, off
-        ClipWait, 2
-        if ErrorLevel = 0
-        {
-            searchQuery=%clipboard%
-            GoSub, GoogleSearch
-        }
-        clipboard = %prevClipboard%
-    return
 
     }
 }
