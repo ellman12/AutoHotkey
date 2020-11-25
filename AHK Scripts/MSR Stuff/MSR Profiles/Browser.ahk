@@ -1,9 +1,6 @@
-/*
 ;This script is for both Firefox and Chrome.
 ;Since they're so similar, I just decided to combine them into one file.
 ;If an action is specific to only one browser, I will accommodate for that.
-;The Docs and Sheets profiles are like this, too.
-*/
 
 ;****************************************SCIMITAR RGB ACTIONS***************************************
 #If currentProfile = "Firefox" or currentProfile = "Chrome"
@@ -17,11 +14,8 @@ return
 
 ;Mouse G2
 ;(Ctrl + Tab) Jump to the Next Open Tab.
-F14::
-Send, ^{Tab}
-return
+F14::Send, ^{Tab}
 
-;Mouse G3
 ;While G3 is held, make the mouse pointer faster.
 ;When it's not being held, it's normal speed.
 *F15::
@@ -34,44 +28,30 @@ return
 
 ;Mouse G4
 ;Open new tab.
-F16::
-Send, ^t
-return
+F16::Send, ^t
 
 ;Mouse G5
 ;Go one tab to the right.
-F17::
-Send, ^{PGDN}
-return
+F17::Send, ^{PGDN}
 
 ;Mouse G6
 ;Next page in History.
-F18::
-Send, !{Right}
-return
+F18::Send, !{Right}
 
 ;Mouse G7
 ;Close tab.
-F19::
-Send, ^w
-return
+F19::Send, ^w
 
 ;Mouse G8
 ;Go one tab to the left.
-F20::
-Send, ^{PGUP}
-return
+F20::Send, ^{PGUP}
 
 ;Mouse G9
 ;Previous page in History.
-F21::
-Send, !{Left}
-return
+F21::Send, !{Left}
 
 ;Mouse G10: Alt + Tab
-F22::
-Send, !{Tab}
-return
+F22::Send, !{Tab}
 
 ;Mouse G11
 ;Pushing F23 (G11) minimizes the current active window.
@@ -90,9 +70,7 @@ return
 
 ;Keeb G2
 ;Reopen the last closed tab, and jump to it
-^F14::
-Send, ^+t
-return
+^F14::Send, ^+t
 
 ;Keeb G3
 ;Improved Sleep Macro + Manual Enter
@@ -145,63 +123,43 @@ return
 
 ;Keeb G8
 ;Ctrl + Page Up (Go one Tab to the Left)
-^F20::
-Send, ^{PGUP}
-return
+^F20::Send, ^{PGUP}
 
 ;Keeb G9
 ;Ctrl + Page Down (Go one Tab to the Right)
-^F21::
-Send, ^{PGDN}
-return
+^F21::Send, ^{PGDN}
 
 ;Keeb G11
 ;Close browser tab
-^F23::
-Send, ^w
-return
+^F23::Send, ^w
 
 ;Keeb G12
 ;Open browser tab
-!F23::
-Send, ^t
-return
+!F23::Send, ^t
 
 ;Keeb G13
 ;Closes a virtual desktop
-!F13::
-Send, ^#{F4}
-return
+!F13::Send, ^#{F4}
 
 ;Keeb G14
 ;Creates a virtual desktop
-!F14::
-Send, ^#{d}
-return
+!F14::Send, ^#{d}
 
 ;Keeb G15
 ;Meaning + Enter (for defining words on Google)
-!F15::
-Send, {Space}meaning{Enter}
-return
+!F15::Send, {Space}meaning{Enter}
 
 ;Keeb G16
 ;Does what Win + Tab does
-!F16::
-Send, #{Tab}
-return
+!F16::Send, #{Tab}
 
 ;Keeb G17
 ;Goes to the virtual desktop to the left
-!F17::
-Send, ^#{Left}
-return
+!F17::Send, ^#{Left}
 
 ;Keeb G18
 ;Goes to the virtual desktop to the right
-!F18::
-Send, ^#{Right}
-return
+!F18::Send, ^#{Right}
 
 #If currentProfile = "Firefox"
 
