@@ -40,9 +40,7 @@ F21::
 return
 
 ;Mouse G10: Alt + Tab.
-F22::
-Send, !{Tab}
-return
+F22::Send, !{Tab}
 
 ;Mouse G11
 ;Pushing F23 (G11) minimizes the current active window.
@@ -109,8 +107,7 @@ Send, ^#{F4}
 
 ;Keeb G14
 ;Creates a virtual desktop.
-!F14::
-Send, ^#{d}
+!F14::Send, ^#{d}
 
 ;Keeb G15
 !F15::

@@ -54,7 +54,7 @@ F22::Send, !{Tab}
 F23::WinMinimize, A
 
 ;Mouse G12
-;Reopen the last closed Browser tab, and jump to it.
+;Reopen the last closed tab, and jump to it.
 +F23::Send, ^+t
 
 ;****************************************K95 RGB ACTIONS***************************************
@@ -67,13 +67,7 @@ return
 return
 
 ;Keeb G3
-;Improved Sleep Macro + Manual Enter
 ^F15::
-Send, #x
-Sleep, 250
-Send, {Up 2}
-Send, {Right}
-Send, {Down}
 return
 
 ;Keeb G4
@@ -101,8 +95,7 @@ return
 ^F21::Send, +{Delete}
 
 ;Keeb G10
-;Open a new Incognito Chrome window/tab and goes to google.com
-^F22::Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" -incognito http://www.google.com/
+^F22::return
 
 ;Keeb G11
 ;Enables/disables Bluetooth.

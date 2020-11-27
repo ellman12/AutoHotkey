@@ -94,24 +94,14 @@ return
 ;****************************************K95 RGB ACTIONS***************************************
 ;Keeb G1
 ;Open delete menu
-^F13::
-Send, ^!-
-return
+^F13::Send, ^!-
 
 ;Keeb G2
 ;Reopen the last closed tab, and jump to it
-^F14::
-Send, ^+t
-return
+^F14::Send, ^+t
 
 ;Keeb G3
-;Improved Sleep Macro + Manual Enter
 ^F15::
-Send, #x
-Sleep, 250
-Send, {Up 2}
-Send, {Right}
-Send, {Down}
 return
 
 ;Keeb G4
@@ -134,9 +124,7 @@ return
 
 ;Keeb G5
 ;Paste without formatting
-^F17::
-Send, ^+v
-return
+^F17::Send, ^+v
 
 ;Keeb G6
 ;Automatic Google Lookup
@@ -149,21 +137,15 @@ return
 
 ;Keeb G7
 ;Open insert menu
-^F19::
-Send, ^!=
-return
+^F19::Send, ^!=
 
 ;Keeb G8
 ;Ctrl + Page Up (Go one Tab to the Left)
-^F20::
-Send, ^{PGUP}
-return
+^F20::Send, ^{PGUP}
 
 ;Keeb G9
 ;Ctrl + Page Down (Go one Tab to the Right)
-^F21::
-Send, ^{PGDN}
-return
+^F21::Send, ^{PGDN}
 
 ;Keeb G10
 ;Automatic Google Lookup in Incognito
@@ -187,15 +169,11 @@ return
 
 ;Keeb G11
 ;Search the menus in Docs and Sheets
-^F23::
-Send, !/
-return
+^F23::Send, !/
 
 ;Keeb G12
-;Open browser tab
-!F23::
-Send, ^t
-return
+;New browser tab
+!F23::Send, ^t
 
 ;Keeb G13
 !F13::
@@ -203,32 +181,22 @@ return
 
 ;Keeb G14
 ;Previous sheet
-!F14::
-Send, ^+{PGUP}
-return
+!F14::Send, ^+{PGUP}
 
 ;Keeb G15
 ;Next sheet
-!F15::
-Send, ^+{PGDN}
-return
+!F15::Send, ^+{PGDN}
 
 ;Keeb G16
 ;Does what Win + Tab does
-!F16::
-Send, #{Tab}
-return
+!F16::Send, #{Tab}
 
 ;Keeb G17
 ;Goes to the virtual desktop to the left
-!F17::
-Send, ^#{Left}
-return
+!F17::Send, ^#{Left}
 
 ;Keeb G18
 ;Goes to the virtual desktop to the right
-!F18::
-Send, ^#{Right}
-return
+!F18::Send, ^#{Right}
 
 #If

@@ -19,8 +19,6 @@ F14::Send, ^{Tab}
 ;While G3 is held, make the mouse pointer faster.
 ;When it's not being held, it's normal speed.
 *F15::
-;IDK how these things work, but the 17 and 10 are the mouse speeds.
-;Found this stuff online somewhere.
 DllCall("SystemParametersInfo", Int,113, Int,0, UInt,17, Int,1)
 KeyWait, F15
 DllCall("SystemParametersInfo", Int,113, Int,0, UInt,10, Int,1)
@@ -59,9 +57,7 @@ F23::WinMinimize, A
 
 ;Mouse G12
 ;Reopen the last closed Browser tab, and jump to it.
-+F23::
-Send, ^+t
-return
++F23::Send, ^+t
 
 ;****************************************K95 RGB ACTIONS***************************************
 ;Keeb G1
@@ -73,17 +69,11 @@ return
 ^F14::Send, ^+t
 
 ;Keeb G3
-;Improved Sleep Macro + Manual Enter
 ^F15::
-Send, #x
-Sleep, 250
-Send, {Up 2}
-Send, {Right}
-Send, {Down}
 return
 
 ;Keeb G5
-;Pin/unpin Firefox tabs.
+;Pin/unpin tab(s).
 ^F17::
 if WinActive("ahk_exe firefox.exe") {
     Send, !d
@@ -134,7 +124,7 @@ return
 ^F23::Send, ^w
 
 ;Keeb G12
-;Open browser tab
+;New browser tab
 !F23::Send, ^t
 
 ;Keeb G13
@@ -162,7 +152,6 @@ return
 !F18::Send, ^#{Right}
 
 #If currentProfile = "Firefox"
-
 ;Keeb G4
 ;Open Incognito Window and goes to Google (Firefox)
 ^F16::
@@ -183,7 +172,6 @@ Send, ^v{Enter}
 return
 
 #If currentProfile = "Chrome"
-
 ;Keeb G4 (Chrome)
 ;Open Incognito Window and goes to Google (Chrome)
 ^F16::

@@ -95,13 +95,7 @@ Send, ^+t
 return
 
 ;Keeb G3
-;Improved Sleep Macro + Manual Enter
 ^F15::
-Send, #x
-Sleep, 250
-Send, {Up 2}
-Send, {Right}
-Send, {Down}
 return
 
 ;Keeb G4
