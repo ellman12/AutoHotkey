@@ -41,14 +41,14 @@ F23::WinMinimize, A
 +F23::Send, ^+t
 
 ;****************************************K95 RGB ACTIONS***************************************
-;Keeb G1: comment out line
-^F13::Send, ^/
+;Keeb G1: jump to matching bracket
+^F13::Send, ^+\
 
-;Keeb G2: delete line
-^F14::Send, ^+k
+;Keeb G2: comment out line
+^F14::Send, ^/
 
-;Keeb G3: jump to matching bracket
-^F15::Send, ^+\
+;Keeb G3: delete line
+^F15::Send, ^+k
 
 ;Keeb G4: Toggle bookmark on the current line
 ^F16::Send, ^!k
