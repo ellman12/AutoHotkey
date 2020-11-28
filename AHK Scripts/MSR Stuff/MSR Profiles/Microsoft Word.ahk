@@ -99,8 +99,7 @@ return
 
 ;Keeb G13
 ;Closes a virtual desktop.
-!F13::
-Send, ^#{F4}
+!F13::Send, ^#{F4}
 
 ;Keeb G14
 ;Creates a virtual desktop.
