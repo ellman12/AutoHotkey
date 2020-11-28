@@ -1,7 +1,6 @@
 ;****************************************SCIMITAR RGB ACTIONS***************************************
 #If currentProfile == "VSCode"
-;Mouse G1
-;Horizontal scroll
+;Mouse G1: horizontal scroll
 F13::
 Send, {Shift down}
 KeyWait, F13
@@ -12,12 +11,10 @@ return
 F14::Send, ^{Tab}
 
 ;Mouse G3
-F15::
-return
+F15::return
 
 ;Mouse G4
-F16::
-return
+F16::return
 
 ;Mouse G5: tab to the right
 F17::Send, ^{PGDN}
@@ -44,67 +41,58 @@ F23::WinMinimize, A
 +F23::Send, ^+t
 
 ;****************************************K95 RGB ACTIONS***************************************
-;Keeb G1
-^F13::return
+;Keeb G1: comment out line
+^F13::Send, ^/
 
 ;Keeb G2: delete line
 ^F14::Send, ^+k
 
-;Keeb G3: Fold region
-^F15::Send, ^+[
+;Keeb G3: jump to matching bracket
+^F15::Send, ^+\
 
-;Keeb G4: jump to matching bracket.
-^F16::
-return
+;Keeb G4: Toggle bookmark on the current line
+^F16::Send, ^!k
 
-;Keeb G5
-^F17::return
+;Keeb G5: previous bookmark
+^F17::Send, !p
 
-;Keeb G6: Unfold region.
-^F18::Send, ^+]
+;Keeb G6: next bookmark
+^F18::Send, !n
 
-;Keeb G7
-^F19::
-return
+;Keeb G7: Copy line up
+^F19::Send, +!{Up}
 
-;Keeb G8
-^F20::
+;Keeb G8: Add cursor above
+^F20::Send, ^!{Up}
 
-;Keeb G9
-^F21::
+;Keeb G9: Move line up
+^F21::Send, !{Up}
 
-;Keeb G10
-;(Ctrl + Alt + K) Toggle bookmark on the current line.
-^F22::Send, ^!k
+;Keeb G10: copy line down
+^F22::Send, +!{Down}
 
-;Keeb G11
-;(Ctrl + J) Jump to previous Bookmark.
-^F23::Send, ^j
+;Keeb G11: add cursor below
+^F23::Send, ^!{Down}
 
-;Keeb G12
-;(Ctrl + L) Jump to next Bookmark.
-!F23::Send, ^l
+;Keeb G12: Move line down
+!F23::Send, !{Down}
 
-;Keeb G13: Closes a virtual desktop
-!F13::Send, ^#{F4}
+;Keeb G13: toggle fold
+!F13::Send, ^#l
 
-;Keeb G14: Creates a virtual desktop
-!F14::Send, ^#{d}
+;Keeb G14: outdent lines
+!F14::Send, ^[
 
-;Keeb G15
-!F15::
-return
+;Keeb G15: indent lines
+!F15::Send, ^]
 
-;Keeb G16
-;Does what Win + Tab does.
+;Keeb G16: Win + Tab
 !F16::Send, #{Tab}
 
-;Keeb G17
-;Goes to the virtual desktop to the left.
+;Keeb G17: virtual desktop to the left.
 !F17::Send, ^#{Left}
 
-;Keeb G18
-;Goes to the virtual desktop to the right.
+;Keeb G18: virtual desktop to the right.
 !F18::Send, ^#{Right}
 
 #If
