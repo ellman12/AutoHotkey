@@ -55,35 +55,7 @@ $NumPadPgup::return
 $NumPadDiv::SoundSet, -1
 $NumPadMult::SoundSet, +1
 
-;Allows the user to save the current volume level, and then return to it later.
-;A good use case for this is if you need to greatly increase the volume to hear something in another application,
-; and don't want to accidentally blow your ears out when resuming playback of your music or something else.
-; NumPadSub::
-;     KeyWait, NumPadSub
-;     KeyWait, NumPadSub, D T0.1
-; 	if ErrorLevel ;Timed out. I.e., single press.
-; 	{
-; 		;Save if not already set.
-; 		if (savedNumMinusVol == "")
-; 		{
-; 			SoundGet, savedNumMinusVol
-; 			return
-; 		}
-
-; 		;Restore Volume.
-; 		SoundSet, savedNumMinusVol
-
-; 		return
-; 	}
-; 	else ;Double press.
-; 	{
-; 		;Save volume if a double press. https://www.autohotkey.com/docs/commands/KeyWait.htm#ExDouble
-; 		SoundGet, savedNumMinusVol
-; 	}
-; return
-
 NumPadSub::saveAndRestoreVolumeLevel()
-
 }
 
 ;If NumLock is On and ScrollLock is On.
