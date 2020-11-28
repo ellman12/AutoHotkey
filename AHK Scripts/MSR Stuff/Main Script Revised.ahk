@@ -246,6 +246,9 @@ global CONTROL_PANEL_HEIGHT := 266
 ;Used for testing and adding new #o stuff. Commented out normally because it doesn't need to appear at startup.
 ; GUI, CPanel:Show, w%CONTROL_PANEL_WIDTH% h%CONTROL_PANEL_HEIGHT% x1300,MSR Control Panel
 
+global currentWinOMode := 1
+global WIN_O_MAX_MODE := 3 ;How many modes (-1) are actually defined in the Switch statement.
+
 ;****************************************MISC VARIABLES, INITIALIZATION, ETC*********************************
 global Num2And8Step := 3 ;When Num2 or Num8 pressed, how much to increase/decrease volume.
 global autoNumPadModeToggle := true ;If true, switch NumPad modes automatically. If false user manually controls it.
@@ -258,9 +261,6 @@ global hotstringsActiveToggle := true ;Determines if AutoCorrect hotstrings are 
 global OutlookVisibilityToggle := 1
 global DiscordVisibilityToggle := 1
 global MusicBeeVisibilityToggle := 1
-
-global currentWinOMode := 1
-global WIN_O_MAX_MODE := 3 ;How many modes (-1) are actually defined in the Switch statement.
 
 ;The stuff in this loop needs to be running constantly.
 Loop {
