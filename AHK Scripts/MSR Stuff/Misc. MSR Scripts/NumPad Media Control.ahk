@@ -235,16 +235,21 @@ saveAndRestoreVolumeLevel()
 	if ErrorLevel ;Timed out. I.e., single press.
 	{
 		;Save if not already set.
-		if (savedNumMinusVol == "")
+		if (savedNumMinusVol == "") {
 			SoundGet, savedNumMinusVol
+			Tippy("Saving volume", 600)
+			return
+		}
 
 		;Restore Volume.
 		SoundSet, savedNumMinusVol
+		Tippy("Restoring volume", 600)
 	}
 	else ;Double press.
 	{
 		;Save volume if a double press.
 		SoundGet, savedNumMinusVol
+		Tippy("Saving volume", 600)
 	}
 }
 
