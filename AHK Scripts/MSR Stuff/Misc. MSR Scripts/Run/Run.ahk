@@ -223,36 +223,16 @@ Switch (cmdToRun) {
     Case "Exit": ExitApp
 
     ;Sleep PC.
-    Case "z":
-    Send, #x
-    Sleep, 250
-    Send, {Up 2}
-    Send, {Right}s
-    return
+    Case "z":sleepPC("s")
 
     ;Hibernate PC.
-    Case "h":
-    Send, #x
-    Sleep, 250
-    Send, {Up 2}
-    Send, {Right}h
-    return
+    Case "h":sleepPC("h")
 
     ;Shut down PC.
-    Case "sd":
-    Send, #x
-    Sleep, 250
-    Send, {Up 2}
-    Send, {Right}
-    return
+    Case "sd":sleepPC("u")
 
     ;Restart PC.
-    Case "rs":
-    Send, #x
-    Sleep, 250
-    Send, {Up 2}
-    Send, {Right}r
-    return
+    Case "rs":sleepPC("r")
 
     Case "task failed":MsgBox, 64, Windows XP, Task failed successfully. ;Yes.
 

@@ -358,14 +358,7 @@ SC01A::
     clipboard = %prevClipboard%
 return
 
-;Sleep PC (+ manual Enter).
-m::
-Send, #x
-Sleep, 250
-Send, {Up 2}
-Send, {Right}
-Send, {Down}
-return
+m::sleepPC("s") ;Sleep PC (+ manual Enter).
 
 ;Open Google Calendar.
 n::Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://calendar.google.com/calendar/u/0/r

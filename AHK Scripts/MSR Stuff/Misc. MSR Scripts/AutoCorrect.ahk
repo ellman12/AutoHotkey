@@ -133,7 +133,7 @@ SetTimer, MoveCaret, Off
 return
 */
 
-^#Insert::BooleanToggle(hotstringsActiveToggle, "Hotstrings are ACTIVE", "Hotstrings are NOT active") ;Toggle the hotstrings in this file to be active or not.
+^#Insert::booleanToggle(hotstringsActiveToggle, "Hotstrings are ACTIVE", "Hotstrings are NOT active") ;Toggle the hotstrings in this file to be active or not.
 
 #If hotstringsActiveToggle = true
 

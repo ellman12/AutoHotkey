@@ -262,6 +262,9 @@ global OutlookVisibilityToggle := 1
 global DiscordVisibilityToggle := 1
 global MusicBeeVisibilityToggle := 1
 
+;If a long process is running, don't allow any sleep macros to run because that will potentially interrupt the process. 0 = not running; 1 = running.
+global preventSleepToggle := 0
+
 ;The stuff in this loop needs to be running constantly.
 Loop {
 	global activeWindowTitle
@@ -344,7 +347,7 @@ Loop {
 }
 
 ;Other files with many different hotkeys, hotstrings, and other things in them.
-#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\Header Files\BooleanToggle.ahk
+#Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\Header Files\booleanToggle.ahk
 #Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\Header Files\inArray.ahk
 #Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\Header Files\Tippy.ahk
 #Include, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\Header Files\toggleGUI.ahk
@@ -430,7 +433,7 @@ sc029::Send, !{Tab} ;The grave accent key (that weird thing under the Tilde ~ sy
 #n::Run, Notepad ;Open Notepad.
 
 ;Toggle programming mode. Disables hotkeys/hotstrings that can be annoying when programming.
-^!Insert::BooleanToggle(programmingMode, "Programming Mode ON", "Programming Mode Off")
+^!Insert::booleanToggle(programmingMode, "Programming Mode ON", "Programming Mode Off")
 
 #+d::deleteMostRecentItemInFolder("Downloads") ;Recycle the most recently created file or folder in the Downloads folder.
 ^#+d::deleteMostRecentItemInFolder("Desktop") ;Same thing but for Desktop folder.
@@ -520,6 +523,25 @@ if (onTop & 0x8) { ; 0x8 is WS_EX_TOPMOST.
 	Tippy(message, 1000)
 }
 return
+
+;***********************************DISABLE/ENABLE SLEEP MACROS***********************************
+!s::booleanToggle(preventSleepToggle, "Sleep macros disabled", "Sleep macros enabled", 900)
+
+;Check if the user has disabled sleep macros in MSR because a long process is running and they don't want to accidentally sleep and thus interrupt said process.
+;The parameter is the single character corresponding to the different options in the #x menu.
+sleepPC(winXAltChar)
+{
+	global
+	if (preventSleepToggle == 1)
+    {
+        MsgBox, 262160, Error. Cannot put PC to sleep at this time., If there are no long processes running`, disable the toggle with (Alt + s) to allow the PC to sleep, shutdown, hibernate, etc.
+        return
+    }
+    Send, #x
+    Sleep, 250
+    Send, {Up 2}
+    Send, {Right}%winXAltChar%
+}
 
 ;***********************************ADD CHARS AROUND TEXT***********************************
 ^SC028::addCharAroundText("""") ;^' Add double quotes around selected text.
