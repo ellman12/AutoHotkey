@@ -16,12 +16,8 @@ return
 ;(Ctrl + Tab) Jump to the Next Open Tab.
 F14::Send, ^{Tab}
 
-;While G3 is held, make the mouse pointer faster.
-;When it's not being held, it's normal speed.
-*F15::
-DllCall("SystemParametersInfo", Int,113, Int,0, UInt,17, Int,1)
-KeyWait, F15
-DllCall("SystemParametersInfo", Int,113, Int,0, UInt,10, Int,1)
+;Mouse G3
+F15::
 return
 
 ;Mouse G4

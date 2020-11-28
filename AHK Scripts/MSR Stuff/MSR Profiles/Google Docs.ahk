@@ -22,14 +22,7 @@ Send, ^{Tab}
 return
 
 ;Mouse G3
-*F15::
-;While G3 is held, make the mouse pointer faster.
-;When it's not being held, it's normal speed.
-;IDK how these things work, but the 17 and 10 are the mouse speeds.
-;Found this stuff online somewhere.
-DllCall("SystemParametersInfo", Int,113, Int,0, UInt,17, Int,1)
-KeyWait, F15
-DllCall("SystemParametersInfo", Int,113, Int,0, UInt,10, Int,1)
+F15::
 return
 
 ;Mouse G4
