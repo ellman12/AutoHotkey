@@ -54,10 +54,6 @@ return
 ;Reopen the last closed tab, and jump to it
 ^F14::Send, ^+t
 
-;Keeb G3
-^F15::
-return
-
 ;Keeb G5
 ;Pin/unpin tab(s).
 ^F17::
@@ -133,8 +129,17 @@ return
 !F18::Send, ^#{Right}
 
 #If currentProfile == "Firefox"
-;Keeb G4
-;Open Incognito Window and goes to Google (Firefox)
+;Keeb G3: show/hide bookmarks bar. https://support.mozilla.org/en-US/questions/800789
+^F15::
+Send, !v
+Sleep 30
+Send, t
+Sleep 30
+Send, b
+Sleep 30
+return
+
+;Keeb G4: Open Incognito Window and goes to Google (Firefox)
 ^F16::
 Send, ^+p
 Sleep 500
@@ -153,6 +158,9 @@ Send, ^v{Enter}
 return
 
 #If currentProfile == "Chrome"
+;Keeb G3: show/hide bookmarks bar
+^F15::Send, ^+b
+
 ;Keeb G4 (Chrome)
 ;Open Incognito Window and goes to Google (Chrome)
 ^F16::
