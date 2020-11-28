@@ -46,7 +46,10 @@ Switch (cmdToRun) {
     if cmdToRun = ;Mainly for the ^CapsLock command. If the user tries to repeat a command without having done a command before, it won't do anything.
         Tippy("No previous Run command.", 2000)
     else
+    {
         MsgBox, 16, Unknown Command., Command entered: "%cmdToRun%" does not exist.
+        Gosub, !r ;Have the user try again.
+    }
     return
 
     ;***********************************************DATE***********************************************
