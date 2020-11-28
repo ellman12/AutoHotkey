@@ -1,5 +1,5 @@
 ;****************************************SCIMITAR RGB ACTIONS***************************************
-#If currentProfile === "Discord"
+#If currentProfile == "Discord"
 ;Mouse G1
 ;Horizontal scroll
 F13::
