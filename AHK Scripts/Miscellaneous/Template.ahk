@@ -3,7 +3,7 @@
 
 ;****************************************SCIMITAR RGB ACTIONS***************************************
 
-#If currentProfile = ""
+#If currentProfile == ""
 ;Mouse G1
 F13::
 return

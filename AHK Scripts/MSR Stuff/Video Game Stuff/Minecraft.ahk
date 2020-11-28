@@ -1,7 +1,7 @@
 ;This script is the Minecraft profile.
 
 ;****************************************SCIMITAR RGB ACTIONS***************************************
-#If currentProfile = "Minecraft"
+#If currentProfile == "Minecraft"
 ;Mouse Profile Switch button
 ^!F23::
 return

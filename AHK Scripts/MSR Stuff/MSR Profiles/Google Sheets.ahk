@@ -1,13 +1,6 @@
-/*
-;This script is Google Sheets for both Firefox and Chrome.
-;Since they would be almost the same, having two separate scripts would be pointless.
-;If an action is specific to only one browser, I will accommodate for that.
-;The Browser and Docs scripts are like this too.
-*/
-
 ;****************************************SCIMITAR RGB ACTIONS***************************************
 
-#If currentProfile = "Sheets"
+#If currentProfile == "Sheets"
 ;Mouse G1
 ;For scrolling horizontally
 F13 & WheelUp::  ; Scroll left.
@@ -180,16 +173,13 @@ return
 ;Next sheet
 !F15::Send, ^+{PGDN}
 
-;Keeb G16
-;Does what Win + Tab does
+;Keeb G16: Does what Win + Tab does
 !F16::Send, #{Tab}
 
-;Keeb G17
-;Goes to the virtual desktop to the left
+;Keeb G17: Goes to the virtual desktop to the left
 !F17::Send, ^#{Left}
 
-;Keeb G18
-;Goes to the virtual desktop to the right
+;Keeb G18: Goes to the virtual desktop to the right
 !F18::Send, ^#{Right}
 
 #If

@@ -292,8 +292,8 @@ Loop {
 		currentProfile := "Word"
 	else if Instr(activeWindowTitle, " - Visual Studio Code")
 		currentProfile := "VSCode"
-	; else if InStr(activeWindowTitle, "Discord")
-		; currentProfile := "Discord"
+	else if InStr(activeWindowTitle, "Discord")
+		currentProfile := "Discord"
 	else if Instr(activeWindowTitle, "Factorio 1.")
 		currentProfile := "Factorio"
 	else if Instr(activeWindowTitle, "Minecraft 1.1")
@@ -351,6 +351,7 @@ Loop {
 
 #Include, %A_ScriptDir%\MSR Profiles\Browser.ahk
 #Include, %A_ScriptDir%\MSR Profiles\Default.ahk
+#Include, %A_ScriptDir%\MSR Profiles\Discord.ahk
 #Include, %A_ScriptDir%\MSR Profiles\Google Docs.ahk
 #Include, %A_ScriptDir%\MSR Profiles\Google Sheets.ahk
 #Include, %A_ScriptDir%\MSR Profiles\Microsoft Excel.ahk

@@ -1,13 +1,11 @@
-;This script is the Discord profile.
-
-;https://support.discord.com/hc/en-us/articles/225977308--Windows-Discord-Hotkeys
-;https://www.reddit.com/r/discordapp/comments/7v31hg/full_list_of_shortcuts_in_case_you_didnt_know_them/
-
 ;****************************************SCIMITAR RGB ACTIONS***************************************
-
-#If currentProfile == "Discord"
+#If currentProfile === "Discord"
 ;Mouse G1
+;Horizontal scroll
 F13::
+Send, {Shift down}
+KeyWait, F13
+Send, {Shift up}
 return
 
 ;Mouse G2
@@ -18,54 +16,43 @@ return
 F15::
 return
 
-;Mouse G4
-F16::
-return
+;Mouse G4: Up in the server list
+F16::Send, ^!{Up}
 
-;Mouse G5
-F17::
-return
+;Mouse G5: Up in the channels list
+F17::Send, !{Up}
 
-;Mouse G6
-F18::
-return
+;Mouse G6: Navigate up in unread text channels
+F18::Send, !+{Up}
 
-;Mouse G7
-F19::
-return
+;Mouse G7: Down in the server list
+F19::Send, ^!{Down}
 
-;Mouse G8
-F20::
-return
+;Mouse G8: Down in the channels list
+F20::Send, !{Down}
 
-;Mouse G9
-F21::
-return
+;Mouse G9: Navigate down in unread text channels
+F21::Send, !+{Down}
 
-;Mouse G10
-F22::
-return
+;Mouse G10: Alt + Tab
+F22::Send, !{Tab}
 
-;Mouse G11
-F23::
-return
+;Mouse G11: minimize the current active window
+F23::WinMinimize, A
 
 ;Mouse G12
 +F23::
 return
 
 ;****************************************K95 RGB ACTIONS***************************************
-;Keeb G1
-^F13::
-return
+;Keeb G1: Mark server as read
+^F13::Send, +{Esc}
 
-;Keeb G2
-^F14::
-return
+;Keeb G2: Mark channel as read
+^F14::Send, {Esc}
 
-;Keeb G3
-^F15::
-return
+;Keeb G3: Toggle between last server and DMs
+^F15::Send, ^!{Right}
 
 ;Keeb G4
 ^F16::
@@ -79,52 +66,40 @@ return
 ^F18::
 return
 
-;Keeb G7
-^F19::
-return
+;Keeb G7: Up in the server list
+^F19::Send, ^!{Up}
 
-;Keeb G8
-^F20::
-return
+;Keeb G8: Up in the channels list
+^F20::Send, !{Up}
 
-;Keeb G9
-^F21::
-return
+;Keeb G9: Navigate up in unread text channels
+^F21::Send, !+{Up}
 
-;Keeb G10
-^F22::
-return
+;Keeb G10: Down in the server list
+^F22::Send, ^!{Down}
 
-;Keeb G11
-^F23::
-return
+;Keeb G11: Down in the channels list
+^F23::Send, !{Down}
 
-;Keeb G12
-!F23::
-return
+;Keeb G12: Navigate down in unread text channels
+!F23::Send, !+{Down}
 
-;Keeb G13
-!F13::
-return
+;Keeb G13: Closes a virtual desktop
+!F13::Send, ^#{F4}
 
-;Keeb G14
-!F14::
-return
+;Keeb G14: Creates a virtual desktop
+!F14::Send, ^#{d}
 
-;Keeb G15
-!F15::
-return
+;Keeb G15: Meaning + Enter (for defining words on Google)
+!F15::Send, {Space}meaning{Enter}
 
-;Keeb G16
-!F16::
-return
+;Keeb G16: Does what Win + Tab does
+!F16::Send, #{Tab}
 
-;Keeb G17
-!F17::
-return
+;Keeb G17: Goes to the virtual desktop to the left
+!F17::Send, ^#{Left}
 
-;Keeb G18
-!F18::
-return
+;Keeb G18: Goes to the virtual desktop to the right
+!F18::Send, ^#{Right}
 
 #If

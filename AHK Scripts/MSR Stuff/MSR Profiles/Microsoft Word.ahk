@@ -1,9 +1,7 @@
-;This script is the Microsoft Word profile.
-
 ;****************************************SCIMITAR RGB ACTIONS***************************************
-#If currentProfile = "Word"
+#If currentProfile == "Word"
 ;Mouse G1
-;For scrolling horizontally.
+;Horizontal scroll
 F13 & WheelUp::Send, {WheelLeft}
 F13 & WheelDown::Send, {WheelRight}
 
@@ -42,8 +40,7 @@ return
 ;Mouse G10: Alt + Tab.
 F22::Send, !{Tab}
 
-;Mouse G11
-;Pushing F23 (G11) minimizes the current active window.
+;Mouse G11: minimize the current active window
 F23::WinMinimize, A
 
 ;Mouse G12

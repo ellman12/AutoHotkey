@@ -4,7 +4,7 @@
 
 ;****************************************SCIMITAR RGB ACTIONS***************************************
 
-#If currentProfile = "Terraria"
+#If currentProfile == "Terraria"
 ;Mouse G1.
 ;Quick Buff.
 F13::

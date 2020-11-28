@@ -1,9 +1,9 @@
 ;This script is the Default profile—the one for no particular program.
 
 ;****************************************SCIMITAR RGB ACTIONS***************************************
-#If currentProfile = "Default"
+#If currentProfile == "Default"
 ;Mouse G1
-;"Holds" down Shift for scrolling horizontally.
+;Horizontal scroll
 F13::
 Send, {Shift down}
 KeyWait, F13
@@ -111,28 +111,23 @@ return
 !F23::
 return
 
-;Keeb G13
-;Closes a virtual desktop
+;Keeb G13: Closes a virtual desktop
 !F13::Send, ^#{F4}
 
-;Keeb G14
-;Creates a virtual desktop
+;Keeb G14: Creates a virtual desktop
 !F14::Send, ^#{d}
 
 ;Keeb G15
 !F15::
 return
 
-;Keeb G16
-;Does what Win + Tab does
+;Keeb G16: Does what Win + Tab does
 !F16::Send, #{Tab}
 
-;Keeb G17
-;Goes to the virtual desktop to the left
+;Keeb G17: Goes to the virtual desktop to the left
 !F17::Send, ^#{Left}
 
-;Keeb G18
-;Goes to the virtual desktop to the right
+;Keeb G18: Goes to the virtual desktop to the right
 !F18::Send, ^#{Right}
 
 #If

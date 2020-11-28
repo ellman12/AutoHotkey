@@ -1,9 +1,7 @@
-;This script is the Microsoft Excel profile.
-
 ;****************************************SCIMITAR RGB ACTIONS***************************************
-#If currentProfile = "Excel"
+#If currentProfile == "Excel"
 ;Mouse G1
-;For scrolling horizontally.
+;Horizontal scroll
 F13 & WheelUp::Send, {WheelLeft}
 F13 & WheelDown::Send, {WheelRight}
 
@@ -15,13 +13,11 @@ return
 F15::
 return
 
-;Mouse G4
-F16::
-return
+;Mouse G4: new sheet
+F16::Send, +{F11}
 
-;Mouse G5
-F17::
-return
+;Mouse G5: sheet to the right
+F17::Send, ^{PGDN}
 
 ;Mouse G6
 F18::
@@ -31,9 +27,8 @@ return
 F19::
 return
 
-;Mouse G8
-F20::
-return
+;Mouse G8: sheet to the left
+F20::Send, ^{PGUP}
 
 ;Mouse G9
 F21::
@@ -42,8 +37,7 @@ return
 ;Mouse G10: Alt + Tab.
 F22::Send, !{Tab}
 
-;Mouse G11
-;Pushing F23 (G11) minimizes the current active window.
+;Mouse G11: minimize the current active window
 F23::WinMinimize, A
 
 ;Mouse G12

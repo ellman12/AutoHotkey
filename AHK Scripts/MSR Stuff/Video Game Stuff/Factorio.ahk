@@ -2,7 +2,7 @@
 
 ;****************************************SCIMITAR RGB ACTIONS***************************************
 
-#If currentProfile = "Factorio"
+#If currentProfile == "Factorio"
 
 
 
