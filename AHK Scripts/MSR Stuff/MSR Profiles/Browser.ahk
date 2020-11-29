@@ -127,9 +127,33 @@ return
 #If currentProfile == "Firefox"
 ;Keeb G1: Close multiple tabs.
 ;This relies on a Firefox extension for this. Find it here: https://addons.mozilla.org/en-US/firefox/addon/close-tabs-shortcuts/
-^F13::Send, +!{F2} ;If no modifiers, close tabs to the right.
-^+F13::Send, +!{F1} ;If Shift pressed, close tabs to the left.
-^!F13::Send, +!{F3} ;If Alt pressed, close other tabs. This was changed by me from its default shortcut.
+; ^F13::Send, +!{F2} ;If no modifiers, close tabs to the right.
+; ^+F13::Send, +!{F1} ;If Shift pressed, close tabs to the left.
+; ^!F13::Send, +!{F3} ;If Alt pressed, close other tabs. This was changed by me from its default shortcut.
+
+;https://autohotkey.com/board/topic/28635-triple-click/?p=183227
+;Keeb G1: Close tabs to the right. Double tap = tabs to the left. Triple tap = other tabs.
+^F13::
+TIME = 250 ; The max amount of time between hotkey presses.
+
+if ((A_ThisHotkey = A_PriorHotkey) AND (A_TimeSincePriorHotkey < TIME))
+	numOfTaps++
+else ;If no extra taps.
+	numOfTaps = 1
+
+SetTimer, determineNumOfTaps, %TIME%
+return
+
+determineNumOfTaps:
+SetTimer, determineNumOfTaps, Off
+
+if (numOfTaps == 1)
+    Send, +!{F2} ;Close tabs to the right.
+else if (numOfTaps == 2)
+    Send, +!{F1} ;Close tabs to the left.
+else if (numOfTaps == 3)
+    Send, +!{F3} ;Close other tabs. This was changed by me from its default shortcut.
+return
 
 ;Keeb G3: show/hide bookmarks bar. https://support.mozilla.org/en-US/questions/800789
 ^F15::
