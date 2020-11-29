@@ -46,11 +46,6 @@ F23::WinMinimize, A
 +F23::Send, ^+t
 
 ;****************************************K95 RGB ACTIONS***************************************
-;Keeb G1: Close tabs to the right. Hold Shift for tabs to the Left; hold Alt for other tabs.
-^F13::
-if (GetKeyState()
-return
-
 ;Keeb G2
 ;Reopen the last closed tab, and jump to it
 ^F14::Send, ^+t
@@ -130,6 +125,12 @@ return
 !F18::Send, ^#{Right}
 
 #If currentProfile == "Firefox"
+;Keeb G1: Close multiple tabs.
+;This relies on a Firefox extension for this. Find it here: https://addons.mozilla.org/en-US/firefox/addon/close-tabs-shortcuts/
+^F13::Send, +!{F2} ;If no modifiers, close tabs to the right.
+^+F13::Send, +!{F1} ;If Shift pressed, close tabs to the left.
+^!F13::Send, +!{F3} ;If Alt pressed, close other tabs. This was changed by me from its default shortcut.
+
 ;Keeb G3: show/hide bookmarks bar. https://support.mozilla.org/en-US/questions/800789
 ^F15::
 Send, !v
