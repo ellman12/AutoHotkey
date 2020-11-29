@@ -720,8 +720,6 @@ global
 		nextWinOrShowHideWins("F10", WindowGroupF10, CurrentWinF10)
 	else if (buttonMode = "F12")
 		F12Hotkey()
-	else
-		MsgBox, 262160, Error., That mouse button mode is not defined.
 }
 
 writeConfigFile() { ;Writes #o values to the config file.
