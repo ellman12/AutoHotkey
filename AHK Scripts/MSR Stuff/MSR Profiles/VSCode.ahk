@@ -1,5 +1,6 @@
 ;****************************************SCIMITAR RGB ACTIONS***************************************
-#If currentProfile == "VSCode"
+;Actions regardless of open file type.
+#If currentProfile == "Generic VSCode" OR currentProfile == "AutoHotkey VSCode" OR currentProfile == "C VSCode" OR currentProfile == "Python VSCode"
 ;Mouse G1: horizontal scroll
 F13::
 Send, {Shift down}
@@ -41,8 +42,15 @@ F23::WinMinimize, A
 +F23::Send, ^+t
 
 ;****************************************K95 RGB ACTIONS***************************************
-;Keeb G1: jump to matching bracket
-^F13::Send, ^+\
+;Keeb G1: Single tap for Git Push; double tap for Git Pull.
+^F13::
+KeyWait, F13
+KeyWait, F13, D T0.1
+if ErrorLevel ;Timed out. I.e., single press. Git push
+    Send, ^!p
+else ;Double press = Git Pull
+    Send, +!p
+return
 
 ;Keeb G2: comment out line
 ^F14::Send, ^/
@@ -62,20 +70,31 @@ F23::WinMinimize, A
 ;Keeb G7: Copy line up
 ^F19::Send, +!{Up}
 
-;Keeb G8: Add cursor above
-^F20::Send, ^!{Up}
+;Keeb G8: Move line up
+^F20::Send, !{Up}
 
-;Keeb G9: Move line up
-^F21::Send, !{Up}
+;Keeb G9: Print functions for different languages
+^F21::
+switch (currentProfile) {
+    case "AutoHotkey VSCode":Send, MsgBox`,{Space}
+    case "C VSCode":Send, printf("");{Left 3}
+    case "Python VSCode":Send, print(""){Left 2}
+    default:MsgBox, 262160, Unknown VSCode Sub Profile, This current language is not defined for this hotkey.
+}
+return
 
-;Keeb G10: copy line down
-^F22::Send, +!{Down}
+^F22::Send, +!{Down} ;Keeb G10: Copy line down
+^F23::Send, !{Down} ;Keeb G11: Move line down
 
-;Keeb G11: add cursor below
-^F23::Send, ^!{Down}
-
-;Keeb G12: Move line down
-!F23::Send, !{Down}
+;Keeb G12: Input functions for different languages
+!F23::
+switch (currentProfile) {
+    case "AutoHotkey VSCode":Send, InputBox`,{Space}
+    case "C VSCode":Send, scanf("`%");{Left 3}
+    case "Python VSCode":Send, input(""){Left 2}
+    default:MsgBox, 262160, Unknown VSCode Sub Profile, This current language is not defined for this hotkey.
+}
+return
 
 ;Keeb G13: toggle fold
 !F13::Send, ^#l
@@ -86,9 +105,8 @@ F23::WinMinimize, A
 ;Keeb G15: indent lines
 !F15::Send, ^]
 
-;Keeb G16: todo
-!F16::Send, #{Tab} ;Print function.
-^+F16::return ;Input function.
+;Keeb G16: Jump to either the next bracket or matching bracket
+!F16::Send, ^+\
 
 ;Keeb G17: virtual desktop to the left.
 !F17::Send, ^#{Left}

@@ -273,7 +273,7 @@ Loop {
 	global activeWindowID
 	WinGet, activeWindowID, ID, A
 
-	if InStr(activeWindowTitle, "Mozilla Firefox")
+	if InStr(activeWindowTitle, "Mozilla Firefox") ;Some profiles, like Firefox, Chrome, and VSCode have "sub modes", like Docs, Sheets, etc.
 		if InStr(activeWindowTitle, " - Google Docs")
 			currentProfile := "Docs"
 		else if InStr(activeWindowTitle, " - Google Sheets")
@@ -289,12 +289,20 @@ Loop {
 		else
 			currentProfile := "Chrome"
 
+	else if Instr(activeWindowTitle, " - Visual Studio Code")
+		if InStr(activeWindowTitle, ".ahk")
+			currentProfile := "AutoHotkey VSCode"
+		else if InStr(activeWindowTitle, ".c")
+			currentProfile := "C VSCode"
+		else if InStr(activeWindowTitle, ".py")
+			currentProfile := "Python VSCode"
+		else
+			currentProfile := "Generic VSCode"
+
 	else if InStr(activeWindowTitle, " - Excel")
 		currentProfile := "Excel"
 	else if InStr(activeWindowTitle, " - Word")
 		currentProfile := "Word"
-	else if Instr(activeWindowTitle, " - Visual Studio Code")
-		currentProfile := "VSCode"
 	else if InStr(activeWindowTitle, "Discord")
 		currentProfile := "Discord"
 	else if Instr(activeWindowTitle, "Factorio 1.")
