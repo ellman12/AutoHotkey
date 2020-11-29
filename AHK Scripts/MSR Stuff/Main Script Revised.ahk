@@ -859,13 +859,6 @@ global
 
 ;**************************************************EXPERIMENTAL**************************************************
 ;**************************************************TEMPORARY**************************************************
-:*:hon comp::Honors: Composition II
-:*:hcomp::Honors Composition II
-
-;For Dell keyboard.
-Volume_Down::SoundSet, -2
-Volume_Up::SoundSet, +2
-
 #If WinActive("ahk_exe Zoom.exe")
 ; RAlt::Send, #+s ;Snip & Sketch.
 ; RCtrl::Send, #+s ;Snip & Sketch.
