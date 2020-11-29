@@ -86,8 +86,9 @@ F23::WinMinimize, A
 ;Keeb G15: indent lines
 !F15::Send, ^]
 
-;Keeb G16: Win + Tab
-!F16::Send, #{Tab}
+;Keeb G16: todo
+!F16::Send, #{Tab} ;Print function.
+^+F16::return ;Input function.
 
 ;Keeb G17: virtual desktop to the left.
 !F17::Send, ^#{Left}
