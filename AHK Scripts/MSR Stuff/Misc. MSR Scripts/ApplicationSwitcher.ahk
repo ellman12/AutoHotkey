@@ -295,9 +295,6 @@ F12Hotkey(){
 ;**************************************************TESTING THIS**************************************************
 ;TODO: Maybe a way to check 2 apps for stuff like Word + Excel?
 #F12:: ;Add windows to a custom group (array) by doing this hotkey in a window. E.g., do this in Word and you'll group Word windows.
-F12Group := [] ;Reallocate/redefine this array, since it's probably changing size.
-CurrentWin := 0
-
 WinGet, activeProcessName, ProcessName, A ;Get the name of the window's .exe
 
 WinGet, windowList, List, ahk_exe %activeProcessName% ;Get pseudo-array of window IDs. https://www.autohotkey.com/docs/commands/WinGet.htm#List
@@ -308,11 +305,13 @@ Loop % windowList ;Put the items from the pseudo-array into an actual array. Thi
     addWindowFx(F12Group)
 }
 windowList := ;Free because it's no longer needed.
+MsgBox, % F12Group.Length()
 return
 
 ;So, I think the best/only way to get windows in order from left→right is so minimize all but the first window, then call the #F12 hotkey. Then they should get added in order I think...?
 F12::
-nextWindowFx(F12Group, CurrentWin)
+MsgBox, % F12Group.Length()
+nextWindowFx(F12Group, CurrentWinF12)
 return
 
 ;*******************HOTKEYS FOR MICROSOFT TO DO APP*******************

@@ -89,6 +89,9 @@ readGroupFromFile("F7", WindowGroupF7, 1)
 readGroupFromFile("F8", WindowGroupF8, 1)
 readGroupFromFile("F10", WindowGroupF10, 1)
 
+global F12Group := []
+global CurrentWinF12 := 1
+
 ;***********************************EDIT CLIPBOARD CONTENT INITIALIZATION***********************************
 GUI, ECC:Font, s12
 GUI, ECC:Add, Button, gclipboardFinishButton x4 y2 w80,&Finish
