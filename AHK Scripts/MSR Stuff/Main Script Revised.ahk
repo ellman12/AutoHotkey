@@ -306,7 +306,7 @@ Loop {
 	else
 		currentProfile := "Default"
 
-	;For the NumPad stuff.
+	;********************FOR THE NUMPAD STUFF********************
 	global numLockToggled := GetKeyState("NumLock", "T")
 	global scrollLockToggled := GetKeyState("ScrollLock", "T")
 
@@ -343,7 +343,7 @@ Loop {
 		else
 			global numPadMode := "Normal"
 	}
-	Sleep 100 ;This sleep statement DRASTICALLY helps reduce the power and CPU usage of the MSR.
+	Sleep 100 ;This sleep statement DRASTICALLY helps reduce the power and CPU usage of MSR.
 }
 
 ;Other files with many different hotkeys, hotstrings, and other things in them.
