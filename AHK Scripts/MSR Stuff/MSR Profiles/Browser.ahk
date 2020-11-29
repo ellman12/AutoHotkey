@@ -46,8 +46,9 @@ F23::WinMinimize, A
 +F23::Send, ^+t
 
 ;****************************************K95 RGB ACTIONS***************************************
-;Keeb G1
+;Keeb G1: Close tabs to the right. Hold Shift for tabs to the Left; hold Alt for other tabs.
 ^F13::
+if (GetKeyState()
 return
 
 ;Keeb G2
