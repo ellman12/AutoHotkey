@@ -134,18 +134,16 @@ return
 ;https://autohotkey.com/board/topic/28635-triple-click/?p=183227
 ;Keeb G1: Close tabs to the right. Double tap = tabs to the left. Triple tap = other tabs.
 ^F13::
-TIME = 250 ; The max amount of time between hotkey presses.
-
-if ((A_ThisHotkey = A_PriorHotkey) AND (A_TimeSincePriorHotkey < TIME))
+if ((A_ThisHotkey = A_PriorHotkey) AND (A_TimeSincePriorHotkey < 250))
 	numOfTaps++
 else ;If no extra taps.
 	numOfTaps = 1
 
-SetTimer, determineNumOfTaps, %TIME%
+SetTimer, determineNumOfTapsBrowserG1, 250
 return
 
-determineNumOfTaps:
-SetTimer, determineNumOfTaps, Off
+determineNumOfTapsBrowserG1:
+SetTimer, determineNumOfTapsBrowserG1, Off
 
 if (numOfTaps == 1)
     Send, +!{F2} ;Close tabs to the right.

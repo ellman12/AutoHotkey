@@ -44,17 +44,28 @@ F23::WinMinimize, A
 ;****************************************K95 RGB ACTIONS***************************************
 ;Keeb G1: Single tap for Git Push; double tap for Git Pull.
 ^F13::
-KeyWait, F13
-KeyWait, F13, D T0.1
-if ErrorLevel ;Timed out. I.e., single press. Git Push
+if ((A_ThisHotkey = A_PriorHotkey) AND (A_TimeSincePriorHotkey < 250))
+	numOfTaps++
+else ;If no extra taps.
+	numOfTaps = 1
+
+SetTimer, determineNumOfTapsVSCodeG1, 250
+return
+
+determineNumOfTapsVSCodeG1:
+SetTimer, determineNumOfTapsVSCodeG1, Off
+
+if (numOfTaps == 1)
+    Send, ^{Enter}
+else if (numOfTaps == 2)
 {
     Send, ^!p
     Tippy("Git Push", 800)
 }
-else ;Double press = Git Pull
+else if (numOfTaps == 3)
 {
-    Send, +!p
-    Tippy("Git Pull", 800)
+    Send, ^!p
+    Tippy("Git Push", 800)
 }
 return
 
