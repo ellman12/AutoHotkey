@@ -73,17 +73,14 @@ return
 ^F18::
 return
 
-;Keeb G7
-^F19::
-return
+;Keeb G7: bold
+^F19::Send, ^b
 
-;Keeb G8
-^F20::
-return
+;Keeb G8: italic
+^F20::Send, ^i
 
-;Keeb G9
-^F21::
-return
+;Keeb G9: underline
+^F21::Send, ^u
 
 ;Keeb G10
 ^F22::
