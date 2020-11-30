@@ -60,12 +60,12 @@ if (numOfTaps == 1)
 else if (numOfTaps == 2)
 {
     Send, ^!p
-    Tippy("Git Push", 800)
+    Tippy("Git Push", 900)
 }
 else if (numOfTaps == 3)
 {
     Send, ^!p
-    Tippy("Git Push", 800)
+    Tippy("Git Push", 900)
 }
 return
 
