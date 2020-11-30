@@ -13,6 +13,7 @@ SetControlDelay, -1
 SendMode Input
 DetectHiddenWindows, Off
 #SingleInstance force
+#NoTrayIcon
 #Persistent
 
 Menu, Tray, Icon, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Bedtime Script\Sleeping Emoji.png

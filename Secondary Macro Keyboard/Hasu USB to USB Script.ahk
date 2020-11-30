@@ -275,18 +275,18 @@ return
 q::Send, ^#{Left}
 w::Send, ^#{Right}
 
-a::Send, ^a ;Select all.
+a::Send, ^a
 
 $^a:: ;Selects all and does Title Case thing from TC.
 Send, ^a
 GoSub, ^!t
 return
 
-b::Send, ^v ;Pastes clipboard contents.
+b::Send, ^v
 
-BackSpace::Send, !{F4} ;Sends Alt + F4.
+BackSpace::Send, !{F4}
 
-c::Send, ^c ;Copies text to clipboard.
+c::Send, ^c
 
 ; (Shift + Win + Left) Comma moves active window to 2nd monitor.
 ; SC033::Send, +#{Left}
@@ -317,7 +317,7 @@ j::Run, explorer.exe "C:\" ;Open the C: drive.
 k::Run, explorer.exe "C:\Users\%A_UserName%\Downloads" ;Open the Downloads folder.
 !k::Run, explorer.exe "C:\Users\%A_UserName%\Videos" ;Open the Videos folder.
 
-l::Run, explorer.exe "G:\" ;Open the G: drive.
+l::Run, explorer.exe "G:\" ;Open the G:\ drive.
 
 !l::Run, explorer.exe "B:\" ;Open the B:\ drive.
 
