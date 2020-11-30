@@ -64,7 +64,7 @@ else if (numOfTaps == 2)
 }
 else if (numOfTaps == 3)
 {
-    Send, ^!p
+    Send, +!p
     Tippy("Git Pull", 900)
 }
 return
