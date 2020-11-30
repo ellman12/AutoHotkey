@@ -7,7 +7,7 @@ All of my AutoHotkey and iCUE stuff.
 2017/2018—Actually figure out how to use the terrible and unintuitive Corsair software. Start looking into how I can use the software.<br>
 October 8, 2019—My first repo created: this one. Also, AutoHotkey scripts existed a little bit before then I think, but they were extremely rough and terrible.<br>
 May 29, 2019—Replace M65 with Scimitar Pro RGB (bigger, more comfortable, 14 extra buttons).<br>
-*//I'm sure there's more and if so I'll add them here.*
+*//I'm sure there's more and if I think of them I'll add them here.*
 
 **Explanation/Bio:**<br>
 AutoHotkey has completely changed my workflow and way of going about doing tasks on a computer. In addition to making my work easier, it has also helped me to learn and practice many important programming conventions and skills, such as DRY (Don't Repeat Yourself), KISS (Keep It Simple, Stupid), planning before programming, and how to use git and GitHub professionally and smartly. Amazing language.
