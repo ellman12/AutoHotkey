@@ -3,10 +3,10 @@
 All of my AutoHotkey and iCUE stuff.
 
 **Brief History (From What I Can Remember/find):**<br>
-2015/2016—acquire K95 RGB and M65 mouse.
-2017/2018—Actually figure out how to use the terrible and unintuitive Corsair software. Start looking into how I can use the software.
-Octobver 8, 2019—My first repo created: this one. Also, AutoHotkey scripts existed before then, but were extremely rough and terrible.
-May 29, 2019—Replace M65 with Scimitar Pro RGB (bigger, more comfortable, 14 extra buttons).
+2015/2016—acquire K95 RGB and M65 mouse.<br>
+2017/2018—Actually figure out how to use the terrible and unintuitive Corsair software. Start looking into how I can use the software.<br>
+Octobver 8, 2019—My first repo created: this one. Also, AutoHotkey scripts existed before then, but were extremely rough and terrible.<br>
+May 29, 2019—Replace M65 with Scimitar Pro RGB (bigger, more comfortable, 14 extra buttons).<br>
 *//I'm sure there's more and if so I'll add them here.*
 
 **Explanation/Bio:**<br>
