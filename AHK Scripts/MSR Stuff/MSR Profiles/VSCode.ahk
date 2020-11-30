@@ -46,10 +46,16 @@ F23::WinMinimize, A
 ^F13::
 KeyWait, F13
 KeyWait, F13, D T0.1
-if ErrorLevel ;Timed out. I.e., single press. Git push
+if ErrorLevel ;Timed out. I.e., single press. Git Push
+{
     Send, ^!p
+    Tippy("Git Push", 800)
+}
 else ;Double press = Git Pull
+{
     Send, +!p
+    Tippy("Git Pull", 800)
+}
 return
 
 ;Keeb G2: comment out line
