@@ -376,7 +376,10 @@ Loop {
 #Include, %A_ScriptDir%\Misc. MSR Scripts\Quick Code\Quick Code.ahk
 #Include, %A_ScriptDir%\Misc. MSR Scripts\Run\Run.ahk
 #Include, %A_ScriptDir%\Misc. MSR Scripts\ApplicationSwitcher.ahk
+
 #Include, %A_ScriptDir%\Misc. MSR Scripts\AutoCorrect.ahk
+#If ;See the end of the AutoCorrect file. This needs to be here to end the giant #If block in there. Moved to here to avoid messing up when the #h hotkey appends to that file.
+
 #Include, %A_ScriptDir%\Misc. MSR Scripts\C-C++ Programming.ahk
 #Include, %A_ScriptDir%\Misc. MSR Scripts\Easy Window Dragging.ahk
 #Include, %A_ScriptDir%\Misc. MSR Scripts\NumPad Media Control.ahk
