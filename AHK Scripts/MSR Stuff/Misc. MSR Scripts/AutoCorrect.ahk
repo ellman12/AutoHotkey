@@ -103,7 +103,7 @@ InputBox, Hotstring, New Hotstring, Provide the corrected word on the right side
 if ErrorLevel <> 0  ; The user pressed Cancel.
     return
 ; Otherwise, add the hotstring and reload the script:
-FileAppend, `n%Hotstring%, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Misc. MSR Scripts\AutoCorrect.ahk  ; Put a `n at the beginning in case file lacks a blank line at its end.
+FileAppend, `n%Hotstring%, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Misc. MSR Scripts\AutoCorrect.ahk  ; Put a `n at the beginning in case file lacks a blank line at its end.
 Reload
 Sleep 200 ; If successful, the reload will close this instance during the Sleep, so the line below will never be reached.
 MsgBox, 4,, The hotstring just added appears to be improperly formatted.  Would you like to open the script for editing? Note that the bad hotstring is at the bottom of the script.
@@ -5537,3 +5537,4 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:msgbox::MsgBox
 :*:inputbox::InputBox
 ::og::of
+:*:om::on
