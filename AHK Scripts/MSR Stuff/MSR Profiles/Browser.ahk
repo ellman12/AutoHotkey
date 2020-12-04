@@ -146,11 +146,20 @@ determineNumOfTapsBrowserG1:
 SetTimer, determineNumOfTapsBrowserG1, Off
 
 if (numOfTaps == 1)
+{
     Send, +!{F2} ;Close tabs to the right.
+    Tippy("Close tabs to the right", 900)
+}
 else if (numOfTaps == 2)
+{
     Send, +!{F1} ;Close tabs to the left.
+    Tippy("Close tabs to the left", 900)
+}
 else if (numOfTaps == 3)
+{
     Send, +!{F3} ;Close other tabs. This was changed by me from its default shortcut.
+    Tippy("Close other tabs", 900)
+}
 return
 
 ;Keeb G3: show/hide bookmarks bar. https://support.mozilla.org/en-US/questions/800789
