@@ -98,7 +98,7 @@ Clipboard = %ClipboardOld%  ; Restore previous contents of clipboard.
 ; This will move the InputBox's caret to a more friendly position:
 SetTimer, MoveCaret, 10
 ; Show the InputBox, providing the default hotstring:
-InputBox, Hotstring, New Hotstring, Provide the corrected word on the right side. You can also edit the left side if you wish.`n`nExample entry:`n::teh::the,,,,,,,, ::%Hotstring%::%Hotstring%
+InputBox, Hotstring, New Hotstring, Provide the corrected word on the right side. You can also edit the left side if you wish.`n`nExample entry:`n::teh::the,,,,,,,, ::%Hotstring%::
 
 if ErrorLevel <> 0  ; The user pressed Cancel.
     return
@@ -5538,3 +5538,8 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:inputbox::InputBox
 ::og::of
 :*:om::on
+:*:qw::w
+:*:/.::.
+:*?:`;s::`'s
+::bslsnce::balance
+:*:nm::n
