@@ -78,18 +78,22 @@ GUI, ACGUI:+AlwaysOnTop
 GUI, ACGUI:Font, s13
 GUI, ACGUI:Add, Text, x4 y4, Incorrect Word
 GUI, ACGUI:Add, Text, x145 yp, Correct Word
-GUI, ACGUI:Add, Text, x4 y60, Hotstring Options
 
-GUI, ACGUI:Add, Edit, x4 y25 gACSubmit vIncorrectEdit w130
-GUI, ACGUI:Add, Edit, x145 yp gACSubmit vCorrectEdit w130
+GUI, ACGUI:Add, Edit, x4 y25 vIncorrectEdit w130
+GUI, ACGUI:Add, Edit, x145 yp vCorrectEdit w130
+
+GUI, ACGUI:Add, Button, x4 yp+34 w55 h29 gACFinishButton, &Finish
+
+GUI, ACGUI:Add, Text, x4 y+4, Hotstring Options
 
 GUI, ACGUI:Font, s11
-GUI, ACGUI:Add, Checkbox, x4 y83 gACSubmit vStarCheck, *: Ending char not needed.
-GUI, ACGUI:Add, Checkbox, x4 yp+17 gACSubmit vQuestionCheck, ?: Trigger when inside another word.
-GUI, ACGUI:Add, Checkbox, x4 yp+17 gACSubmit vXCheck, X: Execute text instead of replace.
+GUI, ACGUI:Add, Checkbox, x4 y115 vStarCheck, *: Ending char not needed.
+GUI, ACGUI:Add, Checkbox, x4 yp+17 vQuestionCheck, ?: Trigger when inside another word.
+GUI, ACGUI:Add, Checkbox, x4 yp+17 vXCheck, X: Execute text instead of replace.
 
 GUI, ACGUI:Font, s13
-GUI, ACGUI:Add, Button, x4 yp+22 w55 h29 gACFinishButton, &Finish
+
+toggleGUI(ACGUIToggle, "ACGUI", ACGUI_WIDTH, ACGUI_HEIGHT, "hi")
 
 ;***********************************CUSTOM WINDOW GROUPS***********************************
 ;Tracks all the window IDs for the custom groups.
@@ -666,10 +670,6 @@ return
 toggleGUI(ACGUIToggle, "ACGUI", ACGUI_WIDTH, ACGUI_HEIGHT, "New AC Hotstring")
 GuiControl, ACGUI: Focus, IncorrectEdit
 WinActivate, New AC Hotstring
-return
-
-ACSubmit:
-GUI, ACGUI:Submit, NoHide
 return
 
 ACFinishButton:
