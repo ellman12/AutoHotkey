@@ -91,6 +91,8 @@ GUI, ACGUI:Add, Checkbox, x4 yp+17 vXCheck, X: Execute text instead of replace.
 GUI, ACGUI:Font, s13
 GUI, ACGUI:Add, Button, x4 yp+22 w55 h29 gACFinishButton, &Finish
 
+toggleGUI(ACGUIToggle, "ACGUI", ACGUI_WIDTH, ACGUI_HEIGHT, "New AC Hotstring")
+
 ;***********************************CUSTOM WINDOW GROUPS***********************************
 ;Tracks all the window IDs for the custom groups.
 global WindowGroupF6 := [] ;Stores Window IDs.
