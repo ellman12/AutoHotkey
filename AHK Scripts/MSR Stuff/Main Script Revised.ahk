@@ -91,10 +91,6 @@ GUI, ACGUI:Add, Checkbox, x4 y115 vStarCheck, *: Ending char not needed.
 GUI, ACGUI:Add, Checkbox, x4 yp+17 vQuestionCheck, ?: Trigger when inside another word.
 GUI, ACGUI:Add, Checkbox, x4 yp+17 vXCheck, X: Execute text instead of replace.
 
-GUI, ACGUI:Font, s13
-
-toggleGUI(ACGUIToggle, "ACGUI", ACGUI_WIDTH, ACGUI_HEIGHT, "hi")
-
 ;***********************************CUSTOM WINDOW GROUPS***********************************
 ;Tracks all the window IDs for the custom groups.
 global WindowGroupF6 := [] ;Stores Window IDs.
