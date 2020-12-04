@@ -96,6 +96,7 @@ removeWindowFx(ByRef WindowGroupArray) {
 }
 
 addAndHideWindowFx(Fx, ByRef WindowGroupArray) {
+global
     if (Fx == "F6" AND F6Mode == "Window Hider")
     {
         addWindowFx(WindowGroupArray)
@@ -116,6 +117,8 @@ addAndHideWindowFx(Fx, ByRef WindowGroupArray) {
         addWindowFx(WindowGroupArray)
         WinHide, % "ahk_id" activeWindowID
     }
+    else
+        MsgBox, 262160, Error. Wrong Fx Mode, Please set the desired Fx mode to Window Hider to do this.
 }
 
 showOrHideWindowsFx(ByRef WindowGroupArray, ByRef FxShowHideToggle) {
