@@ -672,6 +672,11 @@ GuiControl, ACGUI: Focus, IncorrectEdit
 WinActivate, New AC Hotstring
 return
 
+ACGUIGUIClose:
+ACGUIGUIEscape:
+toggleGUI(ACGUIToggle, "ACGUI", ACGUI_WIDTH, ACGUI_HEIGHT, "New AC Hotstring")
+return
+
 ACFinishButton:
 	GUI, ACGUI:Submit
 
