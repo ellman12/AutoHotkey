@@ -65,6 +65,32 @@ DetectHiddenWindows, Off
 OnExit, onExitLabel ;Dump CWG groups to a .tmp file with a timestamp in case needed later.
 
 ;**************************************************AUTO-EXECUTE**************************************************
+;***********************************AUTOCORRECT GUI***********************************
+;If it's 1, show the GUI; if it's 0, hide it.
+global ACGUIToggle := 0
+
+global ACGUI_WIDTH := 279
+global ACGUI_HEIGHT := 170
+
+GUI, ACGUI:Color, Silver
+GUI, ACGUI:+AlwaysOnTop
+
+GUI, ACGUI:Font, s13
+GUI, ACGUI:Add, Text, x4 y4, Incorrect Word
+GUI, ACGUI:Add, Text, x145 yp, Correct Word
+GUI, ACGUI:Add, Text, x4 y60, Hotstring Options
+
+GUI, ACGUI:Add, Edit, x4 y25 gACSubmit vIncorrectEdit w130
+GUI, ACGUI:Add, Edit, x145 yp gACSubmit vCorrectEdit w130
+
+GUI, ACGUI:Font, s11
+GUI, ACGUI:Add, Checkbox, x4 y83 gACSubmit vStarCheck, *: Ending char not needed.
+GUI, ACGUI:Add, Checkbox, x4 yp+17 gACSubmit vQuestionCheck, ?: Trigger when inside another word.
+GUI, ACGUI:Add, Checkbox, x4 yp+17 gACSubmit vXCheck, X: Execute text instead of replace.
+
+GUI, ACGUI:Font, s13
+GUI, ACGUI:Add, Button, x4 yp+22 w55 h29 gACFinishButton, &Finish
+
 ;***********************************CUSTOM WINDOW GROUPS***********************************
 ;Tracks all the window IDs for the custom groups.
 global WindowGroupF6 := [] ;Stores Window IDs.
@@ -634,6 +660,37 @@ return
 !Up::changeVolume(1)
 !Down::changeVolume(-1)
 #If
+
+;*****************************AUTOCORRECT GUI BEHAVIOR******************************
+#h::
+toggleGUI(ACGUIToggle, "ACGUI", ACGUI_WIDTH, ACGUI_HEIGHT, "New AC Hotstring")
+GuiControl, ACGUI: Focus, IncorrectEdit
+WinActivate, New AC Hotstring
+return
+
+ACSubmit:
+GUI, ACGUI:Submit, NoHide
+return
+
+ACFinishButton:
+	GUI, ACGUI:Submit
+
+	NewHotstring := ":"
+
+	if (StarCheck = 1)
+		NewHotstring := NewHotstring . "*"
+
+	if (QuestionCheck = 1)
+		NewHotstring := NewHotstring . "?"
+
+	if (XCheck = 1)
+		NewHotstring := NewHotstring . "X"
+
+	NewHotstring := NewHotstring . ":" . IncorrectEdit . "::" . CorrectEdit
+
+	FileAppend, `n%NewHotstring%, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Misc. MSR Scripts\AutoCorrect.ahk  ; Put a `n at the beginning in case file lacks a blank line at its end.
+	Reload ;Apply the changes.
+return
 
 ;*****************************EDIT CLIPBOARD CONTENT GUI BEHAVIOR******************************
 ;Toggles between showing and hiding the Clipboard GUI.
