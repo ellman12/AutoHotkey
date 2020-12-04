@@ -676,6 +676,12 @@ return
 ACFinishButton:
 	GUI, ACGUI:Submit
 
+	if (IncorrectEdit == "") OR (CorrectEdit == "")
+	{
+		MsgBox, 262160, Both the Incorrect and Correct fields are required, Both the Incorrect and Correct fields are required. Please fill in both fields to create a new hotstring.
+		return
+	}
+
 	NewHotstring := ":"
 
 	if (StarCheck = 1)
