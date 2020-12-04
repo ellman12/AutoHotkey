@@ -539,7 +539,7 @@ if (onTop & 0x8) { ; 0x8 is WS_EX_TOPMOST.
 return
 
 ;***********************************DISABLE/ENABLE SLEEP MACROS***********************************
-!s::booleanToggle(preventSleepToggle, "Sleep macros disabled", "Sleep macros enabled", 900)
+!+s::booleanToggle(preventSleepToggle, "Sleep macros disabled", "Sleep macros enabled", 900)
 
 ;Check if the user has disabled sleep macros in MSR because a long process is running and they don't want to accidentally sleep and thus interrupt said process.
 ;The parameter is the single character corresponding to the different options in the #x menu.
