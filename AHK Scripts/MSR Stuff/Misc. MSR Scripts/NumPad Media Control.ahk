@@ -14,11 +14,11 @@ return
 ;If NumLock is On and ScrollLock is Off. This mode makes listening to music much easier and thus much more enjoyable.
 #If numPadMode = "MusicBee" and !(getKeyState("F24", "P"))
 {
-$NumPad0::return
-$NumPadIns::return
-
-$NumPadDot::return
-$NumPadDel::return
+;VD to the left/right.
+$NumPad0::
+$NumPadIns::Send, ^#{Left}
+$NumPadDot::
+$NumPadDel::Send, ^#{Right}
 
 $NumPad1::return
 $NumPadEnd::return
@@ -61,12 +61,11 @@ NumPadSub::saveAndRestoreVolumeLevel()
 ;If NumLock is On and ScrollLock is On.
 #If numPadMode = "YouTube" and !(getKeyState("F24", "P"))
 {
-$NumPad0::return
-$NumPadIns::return
-
-;Toggle captions.
-$NumPadDot::Send, c
-$NumPadDel::Send, c
+;VD to the left/right.
+$NumPad0::
+$NumPadIns::Send, ^#{Left}
+$NumPadDot::
+$NumPadDel::Send, ^#{Right}
 
 ;Mute.
 $NumPad1::Send, m
@@ -113,7 +112,7 @@ $NumPadMult::SoundSet, +1
 NumPadSub::saveAndRestoreVolumeLevel()
 }
 
-;If NumLock is Off and ScrollLock is On/Off. All keys in "Normal" mode behave like they normally would.
+;If NumLock is Off and ScrollLock is On/Off. All keys in "Normal" mode behave like they normally would, albeit with NumLock enabled.
 #If numPadMode = "Normal" and !(getKeyState("F24", "P"))
 {
 $NumPad0::Send, {NumPad0}
@@ -163,12 +162,11 @@ $NumPadSub::Send, {NumPadSub}
 ;Those have been transformed into ones that should work with most lower-budget and lower-quality video players.
 #If numPadMode = "Dumbed-Down" and !(getKeyState("F24", "P"))
 {
-$NumPad0::return
-$NumPadIns::return
-
-;Toggle captions.
-$NumPadDot::Send, c
-$NumPadDel::Send, c
+;VD to the left/right.
+$NumPad0::
+$NumPadIns::Send, ^#{Left}
+$NumPadDot::
+$NumPadDel::Send, ^#{Right}
 
 ;Mute.
 $NumPad1::Send, m
