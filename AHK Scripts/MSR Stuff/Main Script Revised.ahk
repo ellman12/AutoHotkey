@@ -258,9 +258,10 @@ global currentWinOMode := 1
 global WIN_O_MAX_MODE := 3 ;How many modes (-1) are actually defined in the Switch statement.
 
 ;****************************************MISC VARIABLES, INITIALIZATION, ETC*********************************
+global activeWindowTitle, activeWindowID
+
 global Num2And8Step := 3 ;When Num2 or Num8 pressed, how much to increase/decrease volume.
 global autoNumPadModeToggle := true ;If true, switch NumPad modes automatically. If false user manually controls it.
-global systemMasterVolume ;Used for NumPad Media Control stuff.
 
 global programmingMode := false ;Toggle for Programming Mode: disabling certain hotkeys/hotstrings to make programming easier. ^!Insert is the hotkey.
 global hotstringsActiveToggle := true ;Determines if AutoCorrect hotstrings are active or not. Active by default, obviously. ^#Insert is the hotkey.
@@ -275,10 +276,7 @@ global preventSleepToggle := 0
 
 ;The stuff in this loop needs to be running constantly.
 Loop {
-	global activeWindowTitle
 	WinGetActiveTitle, activeWindowTitle
-
-	global activeWindowID
 	WinGet, activeWindowID, ID, A
 
 	if InStr(activeWindowTitle, "Mozilla Firefox") ;Some profiles, like Firefox, Chrome, and VSCode have "sub modes", like Docs, Sheets, etc.
@@ -325,15 +323,13 @@ Loop {
 	;********************FOR THE NUMPAD STUFF********************
 	;If the auto-numpad toggle is true, set the toggles automatically.
 	if (autoNumPadModeToggle = true) {
-
 		if InStr(activeWindowTitle, "- YouTube") {
 			SetNumLockState, On
 			SetScrollLockState, On
-		} else {
+		} else { ;Set it to MusicBee mode: the default (and also most commonly used) mode.
 			SetNumLockState, Off
 			SetScrollLockState, Off
 		}
-
 	}
 	Sleep 100 ;This sleep statement DRASTICALLY helps reduce the power and CPU usage of MSR.
 }
