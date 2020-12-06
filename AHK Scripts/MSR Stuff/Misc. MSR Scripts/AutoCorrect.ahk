@@ -5497,3 +5497,4 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:numpad::NumPad
 ::id::I'd
 :*:usb::USB
+:*:musicbee::MusicBee
