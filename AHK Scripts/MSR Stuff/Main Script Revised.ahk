@@ -795,8 +795,9 @@ global
 
 	IniWrite, %FrontMouseButtonBehavior%, %MSR_CONFIG_PATH%, MouseButtons, FrontMouseButtonBehavior
 	IniWrite, %BackMouseButtonBehavior%, %MSR_CONFIG_PATH%, MouseButtons, BackMouseButtonBehavior
+	IniWrite, %G3Scrolls%, %MSR_CONFIG_PATH%, MouseButtons, G3Scrolls
 
-	IniWrite, %G3Scrolls%, %MSR_CONFIG_PATH%, Miscellaneous, G3Scrolls
+	; IniWrite, %G3Scrolls%, %MSR_CONFIG_PATH%, Miscellaneous, G3Scrolls
 }
 
 readConfigFile() { ;Reads values from the ini file for #o.
@@ -815,8 +816,9 @@ global
 
 	IniRead, FrontMouseButtonBehavior, %MSR_CONFIG_PATH%, MouseButtons, FrontMouseButtonBehavior, Double Click
 	IniRead, BackMouseButtonBehavior, %MSR_CONFIG_PATH%, MouseButtons, BackMouseButtonBehavior, F6
+	IniRead, G3Scrolls, %MSR_CONFIG_PATH%, MouseButtons, G3Scrolls, 8
 
-	IniRead, G3Scrolls, %MSR_CONFIG_PATH%, Miscellaneous, G3Scrolls, 8
+	; IniRead, G3Scrolls, %MSR_CONFIG_PATH%, Miscellaneous, G3Scrolls, 8
 }
 
 ;Used if you want to reset the config file. Because IniRead allows you to set default values in case there's an error, those default values will be used, allowing this to actually work really easily.
