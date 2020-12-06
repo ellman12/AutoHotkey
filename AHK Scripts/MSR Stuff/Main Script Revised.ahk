@@ -262,6 +262,7 @@ global activeWindowTitle, activeWindowID
 
 global Num2And8Step := 3 ;When Num2 or Num8 pressed, how much to increase/decrease volume.
 global autoNumPadModeToggle := true ;If true, switch NumPad modes automatically. If false user manually controls it.
+global savedNumMinusVol ;For NumPadSub hotkey
 
 global programmingMode := false ;Toggle for Programming Mode: disabling certain hotkeys/hotstrings to make programming easier. ^!Insert is the hotkey.
 global hotstringsActiveToggle := true ;Determines if AutoCorrect hotstrings are active or not. Active by default, obviously. ^#Insert is the hotkey.
@@ -769,10 +770,10 @@ global
 	IniWrite, %BackMouseButtonBehavior%, %MSR_CONFIG_PATH%, MouseButtons, BackMouseButtonBehavior
 	IniWrite, %G3Scrolls%, %MSR_CONFIG_PATH%, MouseButtons, G3Scrolls
 
-	; IniWrite, %G3Scrolls%, %MSR_CONFIG_PATH%, Miscellaneous, G3Scrolls
+	IniWrite, %savedNumMinusVol%, %MSR_CONFIG_PATH%, Miscellaneous, savedNumMinusVol
 }
 
-readConfigFile() { ;Reads values from the ini file for #o.
+readConfigFile() { ;Reads values from the ini file for #o (really only for the script startup).
 global
 	;Last parameter is default value if key can't be read (their default values basically).
 	IniRead, InsMonChoice, %MSR_CONFIG_PATH%, MonitorChoices, InsMonChoice, Primary Mon
@@ -790,7 +791,7 @@ global
 	IniRead, BackMouseButtonBehavior, %MSR_CONFIG_PATH%, MouseButtons, BackMouseButtonBehavior, F6
 	IniRead, G3Scrolls, %MSR_CONFIG_PATH%, MouseButtons, G3Scrolls, 8
 
-	; IniRead, G3Scrolls, %MSR_CONFIG_PATH%, Miscellaneous, G3Scrolls, 8
+	IniRead, savedNumMinusVol, %MSR_CONFIG_PATH%, Miscellaneous, savedNumMinusVol
 }
 
 ;Used if you want to reset the config file. Because IniRead allows you to set default values in case there's an error, those default values will be used, allowing this to actually work really easily.

@@ -228,8 +228,6 @@ changeVolume(ud) { ;Called by NumPadAdd and NumPadEnter.
 ;https://www.autohotkey.com/boards/viewtopic.php?f=76&t=10067
 saveAndRestoreVolumeLevel()
 {
-	static savedNumMinusVol ;Retains its value between calls, and also stays local.
-
     KeyWait, NumPadSub
     KeyWait, NumPadSub, D T0.1
 	if ErrorLevel ;Timed out. I.e., single press.
@@ -251,6 +249,7 @@ saveAndRestoreVolumeLevel()
 		SoundGet, savedNumMinusVol
 		Tippy("Saving volume", 600)
 	}
+	IniWrite, %savedNumMinusVol%, %MSR_CONFIG_PATH%, Miscellaneous, savedNumMinusVol
 }
 
 fullVolumeTippy() {
