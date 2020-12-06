@@ -5496,3 +5496,4 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::og::of
 :*:numpad::NumPad
 :*:id::I'd
+:*:usb::USB

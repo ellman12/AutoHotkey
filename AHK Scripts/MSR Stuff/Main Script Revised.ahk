@@ -3,28 +3,7 @@
 ;///////////////////////////////////////////////////////////////////////
 ;Programmer: Elliott DuCharme
 ;///////////////////////////////////////////////////////////////////////
-;Comments: Development started on Thursday, September 24, 2020.
 /*
-* Fed up with the mess that was my original Main Script.ahk file, I
-* decided to revise and improve it.
-* This new script seeks to keep all the good of the old file (good
-* organization via sections, etc), and get rid of the bad.
-* There are less #Includes, which ironically makes the code easier to
-* maintain and add to. The #Include statement in AutoHotkey is
-* extremely weird and doesn't work that great in my opinion. This is probably
-* because, according to the documentation: "A script behaves as though the
-* included file's contents are physically present at the exact position of
-* the #Include directive (as though a copy-and-paste were done from the
-* included file). Consequently, it generally cannot merge two isolated
-* scripts together into one functioning script." I wish I had realized this
-* when I started the script...
-
-* Trying to have code like GUI creation, hotkeys, etc. in a separate file is
-* very unpredictable and often doesn't work and wastes my time trying to
-* figure out why it doesn't work. The only #Includes are the things that work
-* best in separate files: the long files with (context-sensitive) hotkeys, as well as 'header' files.
-* The best things to have in other files are hotkeys, and that's it. This isn't too annoying TBH.
-
 * Important Acronyms, Contractions, Etc.:
 * MRS: Main Script Revised
 * TC: Title Capitalization
@@ -409,6 +388,7 @@ Loop {
 #Include, %A_ScriptDir%\Misc. MSR Scripts\C-C++ Programming.ahk
 #Include, %A_ScriptDir%\Misc. MSR Scripts\Easy Window Dragging.ahk
 #Include, %A_ScriptDir%\Misc. MSR Scripts\NumPad Media Control.ahk
+#Include, %A_ScriptDir%\Misc. MSR Scripts\Print Screen Modifier Key.ahk
 #Include, %A_ScriptDir%\Misc. MSR Scripts\Title Capitalization.ahk
 
 #Include, %A_ScriptDir%\Screen Clipper Script\Screen Clipper.ahk
