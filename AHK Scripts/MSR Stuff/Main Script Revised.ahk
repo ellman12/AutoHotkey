@@ -323,41 +323,17 @@ Loop {
 		currentProfile := "Default"
 
 	;********************FOR THE NUMPAD STUFF********************
-	global numLockToggled := GetKeyState("NumLock", "T")
-	global scrollLockToggled := GetKeyState("ScrollLock", "T")
-
-	;If the auto-numpad toggle is true, sets the numPadMode automatically.
-	;Else, leave it to the user to do it manually.
+	;If the auto-numpad toggle is true, set the toggles automatically.
 	if (autoNumPadModeToggle = true) {
 
 		if InStr(activeWindowTitle, "- YouTube") {
 			SetNumLockState, On
 			SetScrollLockState, On
-			global numPadMode := "YouTube"
-		} else if InStr(activeWindowTitle, "- MediaSpace") {
-			SetNumLockState, Off
-			SetScrollLockState, On
-			global numPadMode := "Dumbed-Down"
 		} else {
 			SetNumLockState, Off
 			SetScrollLockState, Off
-			global numPadMode := "MusicBee"
 		}
 
-	} else {
-
-		;This works so much better than having a bunch of ugly numLockToggled = 1 and scrollLockToggled = 0 things everywhere.
-		;These variables are used in NumPad Media Control.ahk.
-		if (numLockToggled = 0 and scrollLockToggled = 0)
-			global numPadMode := "MusicBee"
-		else if (numLockToggled = 1 and scrollLockToggled = 1)
-			global numPadMode := "YouTube"
-		else if (numLockToggled = 0 and scrollLockToggled = 0)
-			global numPadMode := "Normal"
-		else if (numLockToggled = 0 and scrollLockToggled = 1)
-			global numPadMode := "Dumbed-Down"
-		else
-			global numPadMode := "Normal"
 	}
 	Sleep 100 ;This sleep statement DRASTICALLY helps reduce the power and CPU usage of MSR.
 }
@@ -418,7 +394,7 @@ Reload
 return
 
 ;Shows you miscellaneous variables, toggles, etc.
-^#BackSpace::MsgBox, 0, Misc. Variables`, Toggles`, etc., MSR Profile: %currentProfile%`n`nnumPadMode: %NumPadMode%`n`nautoNumPadModeToggle: %autoNumPadModeToggle%
+^#BackSpace::MsgBox, 0, Misc. Variables`, Toggles`, etc., MSR Profile: %currentProfile%`n`nautoNumPadModeToggle: %autoNumPadModeToggle%
 
 ^#s::Run, C:\Program Files\AutoHotkey\WindowSpy.ahk ;Run Window Spy.
 

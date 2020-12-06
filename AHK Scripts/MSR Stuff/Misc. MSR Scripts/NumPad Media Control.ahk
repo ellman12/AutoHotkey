@@ -1,4 +1,5 @@
 ;Extremely useful groups of hotkeys that make the historically and typically useless NumPad control music, YouTube, and more depending on what's active at the moment. Can also be overridden by the user if they want.
+;The #If (!GetKeyState("NumLock", "T") and !GetKeyState("ScrollLock", "T")) is so the 2nd keeb NumPad things don't overlap with these.
 
 ;Change the step value of NumPad 2 and NumPad 8.
 !NumPadSub::InputBox, Num2And8Step, Input Num2 and Num8 step value, Input Num2 and Num8 step value. Current value: %Num2And8Step%., , , , , , , , %Num2And8Step%
@@ -11,8 +12,8 @@ else
 	Tippy("NumPad is controlled by you now.", 2000)
 return
 
-;If NumLock is On and ScrollLock is Off. This mode makes listening to music much easier and thus much more enjoyable.
-#If numPadMode = "MusicBee" and !(getKeyState("F24", "P"))
+;If NumLock is Off and ScrollLock is Off: MusicBee mode.
+#If (!GetKeyState("NumLock", "T") and !GetKeyState("ScrollLock", "T")) and !(getKeyState("F24", "P"))
 {
 ;VD to the left/right.
 $NumPad0::
@@ -58,8 +59,8 @@ $NumPadMult::SoundSet, +1
 NumPadSub::saveAndRestoreVolumeLevel()
 }
 
-;If NumLock is On and ScrollLock is On.
-#If numPadMode = "YouTube" and !(getKeyState("F24", "P"))
+;If NumLock is On and ScrollLock is On: YouTube mode.
+#If (GetKeyState("NumLock", "T") and GetKeyState("ScrollLock", "T")) and !(getKeyState("F24", "P"))
 {
 ;VD to the left/right.
 $NumPad0::
@@ -112,8 +113,8 @@ $NumPadMult::SoundSet, +1
 NumPadSub::saveAndRestoreVolumeLevel()
 }
 
-;If NumLock is Off and ScrollLock is On/Off. All keys in "Normal" mode behave like they normally would, albeit with NumLock enabled.
-#If numPadMode = "Normal" and !(getKeyState("F24", "P"))
+;If NumLock is Off and ScrollLock is Off: normal mode.
+#If (!GetKeyState("NumLock", "T") and !GetKeyState("ScrollLock", "T")) and !(getKeyState("F24", "P"))
 {
 $NumPad0::Send, {NumPad0}
 $NumPadIns::Send, {NumPad0}
@@ -157,10 +158,11 @@ $NumPadMult::Send, {NumPadMult}
 $NumPadSub::Send, {NumPadSub}
 }
 
-;If NumLock is Off and ScrollLock is On.
+;If NumLock is Off and ScrollLock is On: Dumbed-down mode.
 ;Designed for use with video sites that aren't YouTube and that have worse interfaces than YT, as well as less useful shortcuts like j, k, l, etc.
 ;Those have been transformed into ones that should work with most lower-budget and lower-quality video players.
-#If numPadMode = "Dumbed-Down" and !(getKeyState("F24", "P"))
+; #If (numLockToggled = 0 and scrollLockToggled = 1) and !(getKeyState("F24", "P"))
+#If (!GetKeyState("NumLock", "T") and GetKeyState("ScrollLock", "T")) and !(getKeyState("F24", "P"))
 {
 ;VD to the left/right.
 $NumPad0::
