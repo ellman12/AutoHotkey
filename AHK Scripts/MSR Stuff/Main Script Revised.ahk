@@ -339,7 +339,7 @@ Loop {
 			SetScrollLockState, On
 			global numPadMode := "Dumbed-Down"
 		} else {
-			SetNumLockState, On
+			SetNumLockState, Off
 			SetScrollLockState, Off
 			global numPadMode := "MusicBee"
 		}
@@ -348,7 +348,7 @@ Loop {
 
 		;This works so much better than having a bunch of ugly numLockToggled = 1 and scrollLockToggled = 0 things everywhere.
 		;These variables are used in NumPad Media Control.ahk.
-		if (numLockToggled = 1 and scrollLockToggled = 0)
+		if (numLockToggled = 0 and scrollLockToggled = 0)
 			global numPadMode := "MusicBee"
 		else if (numLockToggled = 1 and scrollLockToggled = 1)
 			global numPadMode := "YouTube"
