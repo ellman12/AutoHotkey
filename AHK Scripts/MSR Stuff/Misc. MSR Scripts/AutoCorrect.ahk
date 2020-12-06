@@ -5428,7 +5428,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:kl::l
 :*:/.::.
 
-;Misc hotstrings I've added over time.
+;Misc hotstrings I've added over time, either manually or through #h.
 :*:opportuniuties::opportunities
 :*:comp sci::computer science
 :*:alkso::also
@@ -5495,5 +5495,5 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:nm::n
 ::og::of
 :*:numpad::NumPad
-:*:id::I'd
+::id::I'd
 :*:usb::USB
