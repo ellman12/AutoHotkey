@@ -5428,6 +5428,12 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:kl::l
 :*:/.::.
 
+;This simulates a feature on phones where you double tap space and it inserts a period.
+~Space::
+if (A_PriorKey = "Space")
+    Send, {Backspace 2}.{Space}
+return
+
 ;Misc hotstrings I've added over time, either manually or through #h.
 :*:opportuniuties::opportunities
 :*:comp sci::computer science
@@ -5498,3 +5504,4 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::id::I'd
 :*:usb::USB
 :*:musicbee::MusicBee
+::ac::AutoCorrect
