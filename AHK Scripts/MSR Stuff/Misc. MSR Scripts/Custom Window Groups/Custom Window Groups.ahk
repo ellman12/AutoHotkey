@@ -124,10 +124,6 @@ global
 showOrHideWindowsFx(ByRef WindowGroupArray, ByRef FxShowHideToggle) {
     removeNonexistentWindows(WindowGroupArray)
 
-    ;Idea here was/is to restore the previous window upon showing previously hidden windows. Not sure if I want to implement this or not.
-    ; WinGet, prevActiveWindow, ID, A
-    ; WinGetActiveTitle, title
-
     ;If it's 1, hide windows; if it's 0, it shows windows.
     FxShowHideToggle := !FxShowHideToggle
 
@@ -137,13 +133,12 @@ showOrHideWindowsFx(ByRef WindowGroupArray, ByRef FxShowHideToggle) {
         {
             WinShow, % "ahk_id " value
             WinActivate, % "ahk_id " value
-            ; WinActivate, % "ahk_id" %prevActiveWindow%
-            ; WinActivate, %title%
         }
     }
     else {
         for index, value in WindowGroupArray
             WinHide, % "ahk_id " value
+        Send, !{Tab} ;Go back to the previous window. When hiding Fx windows, no other windows would be active, which was annoying. This fixes that.
     }
 }
 
