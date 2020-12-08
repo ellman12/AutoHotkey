@@ -71,6 +71,8 @@ GUI, ACGUI:Add, Checkbox, x4 yp+17 vXCheck, X: Execute text instead of replace.
 GUI, ACGUI:Font, s13
 GUI, ACGUI:Add, Button, x4 yp+22 w55 h29 gACFinishButton, &Finish
 
+GUI, ACGUI:Add, Edit, x60 yp w55 h29 vACOptions
+
 ;***********************************CUSTOM WINDOW GROUPS***********************************
 ;Tracks all the window IDs for the custom groups.
 global WindowGroupF6 := [] ;Stores Window IDs.
@@ -637,13 +639,24 @@ return
 #If
 
 ;*****************************AUTOCORRECT GUI BEHAVIOR******************************
+; Send, ^a ;Highlight all, just in case it could make the user's life marginally easier.
+
 #h::
-Send, ^c
-originalClipboard := Clipboard
+originalClipboard := ClipboardAll
+Clipboard := ;Must start off blank for detection to work.
+Send ^c
+
 toggleGUI(ACGUIToggle, "ACGUI", ACGUI_WIDTH, ACGUI_HEIGHT, "New AC Hotstring")
-GuiControl, ACGUI: Focus, IncorrectEdit
-GuiControl, ACGUI:, IncorrectEdit, %Clipboard%
+
+if (Clipboard = "") {
+	GuiControl, ACGUI: Focus, IncorrectEdit
+} else {
+	GuiControl, ACGUI:, IncorrectEdit, %Clipboard%
+	GuiControl, ACGUI: Focus, CorrectEdit
+}
+
 WinActivate, New AC Hotstring
+
 Clipboard := originalClipboard
 return
 
@@ -671,6 +684,9 @@ ACFinishButton:
 
 	if (XCheck = 1)
 		NewHotstring := NewHotstring . "X"
+
+	if (ACOptions != "") ;If there's actually stuff in this.
+		NewHotstring := NewHotstring . ACOptions
 
 	NewHotstring := NewHotstring . ":" . IncorrectEdit . "::" . CorrectEdit
 

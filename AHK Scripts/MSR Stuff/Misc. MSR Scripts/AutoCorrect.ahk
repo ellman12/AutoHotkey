@@ -5507,3 +5507,5 @@ return
 :*:musicbee::MusicBee
 ::ac::AutoCorrect
 :*:roomates::roommates
+::VD::virtual desktop
+::VDs::virtual desktops
