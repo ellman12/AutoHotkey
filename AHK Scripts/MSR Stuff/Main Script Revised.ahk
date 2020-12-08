@@ -549,6 +549,27 @@ sleepPC(winXAltChar)
 ^+(::
 ^+)::addCharAroundText("(", ")")
 
+addCharAroundText(character, optional2ndChar := "") ;optional2ndChar is only used for things like <> or (), where there are 2 different characters, instead of something like "", which doesn't require the parameter.
+{
+	originalClipboard := ClipboardAll ;Restore this later.
+
+	Send, ^c
+	ClipWait, 2 ;Wait 2 seconds.
+
+	Send, %character%
+	Sleep 100
+	Send, ^v
+	Sleep 100
+
+	if (optional2ndChar != "") ;Determine if there's another character to the pair to add to the end, like for (), <>, etc.
+		Send, %optional2ndChar%
+	else
+		Send, %character%
+
+	Clipboard := originalClipboard ;Restore.
+	originalClipboard := "" ;Free because could potentially be huge.
+}
+
 ;****************************************GLOBAL iCUE HOTKEYS***************************************
 ;These 3 hotkeys are sent by the iCUE software, which AutoHotkey detects.
 +F24::Send, ^c ;M1 on K95 RGB copies to the clipboard.
@@ -841,27 +862,6 @@ deleteMostRecentItemInFolder(folderName)
 	FileRecycle, C:\Users\%A_UserName%\%folderName%\%thingToDelete%
 	if (ErrorLevel == 1)
 		MsgBox, 262160, Error, An error occurred while trying to recycle "%thingToDelete%".
-}
-
-addCharAroundText(character, optional2ndChar := "") ;optional2ndChar is only used for things like <> or (), where there are 2 different characters, instead of something like "", which doesn't require the parameter.
-{
-	originalClipboard := ClipboardAll ;Restore this later.
-
-	Send, ^c
-	ClipWait, 2 ;Wait 2 seconds.
-
-	Send, %character%
-	Sleep 100
-	Send, ^v
-	Sleep 100
-
-	if (optional2ndChar != "") ;Determine if there's another character to the pair to add to the end, like for (), <>, etc.
-		Send, %optional2ndChar%
-	else
-		Send, %character%
-
-	Clipboard := originalClipboard ;Restore.
-	originalClipboard := "" ;Free because could potentially be huge.
 }
 
 ;Used for !#Right and !#Left.

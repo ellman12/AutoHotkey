@@ -5505,5 +5505,5 @@ return
 ::id::I'd
 :*:usb::USB
 :*:musicbee::MusicBee
-:*:ac::AutoCorrect
+::ac::AutoCorrect
 :*:roomates::roommates
