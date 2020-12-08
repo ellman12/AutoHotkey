@@ -45,6 +45,7 @@ OnExit, onExitLabel ;Dump CWG groups to a .tmp file with a timestamp in case nee
 
 ;**************************************************AUTO-EXECUTE**************************************************
 ;***********************************AUTOCORRECT GUI***********************************
+;This GUI is a greatly improved version of a similar feature originally in the original script.
 ;If it's 1, show the GUI; if it's 0, hide it.
 global ACGUIToggle := 0
 
@@ -616,9 +617,13 @@ return
 
 ;*****************************AUTOCORRECT GUI BEHAVIOR******************************
 #h::
+Send, ^c
+originalClipboard := Clipboard
 toggleGUI(ACGUIToggle, "ACGUI", ACGUI_WIDTH, ACGUI_HEIGHT, "New AC Hotstring")
 GuiControl, ACGUI: Focus, IncorrectEdit
+GuiControl, ACGUI:, IncorrectEdit, %Clipboard%
 WinActivate, New AC Hotstring
+Clipboard := originalClipboard
 return
 
 ACGUIGUIClose:

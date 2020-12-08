@@ -5427,6 +5427,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:io::o
 :*:kl::l
 :*:/.::.
+::>::?
 
 ;This simulates a feature on phones where you double tap space and it inserts a period.
 ~Space::
@@ -5504,4 +5505,5 @@ return
 ::id::I'd
 :*:usb::USB
 :*:musicbee::MusicBee
-::ac::AutoCorrect
+:*:ac::AutoCorrect
+:*:roomates::roommates
