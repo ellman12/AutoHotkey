@@ -639,8 +639,6 @@ return
 #If
 
 ;*****************************AUTOCORRECT GUI BEHAVIOR******************************
-; Send, ^a ;Highlight all, just in case it could make the user's life marginally easier.
-
 #h::
 originalClipboard := ClipboardAll
 Clipboard := ;Must start off blank for detection to work.

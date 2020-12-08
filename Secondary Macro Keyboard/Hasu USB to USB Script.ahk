@@ -300,7 +300,8 @@ Sleep 1000
 Send, !s
 return
 
-Enter::Send, Kind regards`,{Enter 2}Elliott DuCharme ;Kind Regards Macro.
+Enter::Send, Kind regards`,{Enter 2}Elliott DuCharme
++Enter::Send, Thank you.{Enter 2}Kind regards`,{Enter 2}Elliott DuCharme
 
 Escape::Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\Everything AutoHotkey.xlsx ;Open the "Everything AutoHotkey" spreadsheet.
 
