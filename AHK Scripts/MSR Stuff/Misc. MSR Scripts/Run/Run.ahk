@@ -247,6 +247,21 @@ Switch (cmdToRun) {
     }
     return
 
+    ; ;Usually used for swapping 2 different lines/sections/blocks of code.
+    ; Case "swap":
+    ; Clipboard :=
+    ; ToolTip, Copy the first item(s).
+    ; ClipWait
+    ; firstClipboard := Clipboard
+
+    ; Clipboard :=
+    ; ToolTip, Copy the second item(s).
+    ; ClipWait
+    ; secondClipboard := Clipboard
+
+    ; ToolTip, Paste the second
+    ; return
+
     ;**************************************************OPEN**************************************************
     Case "bin": Run, ::{645ff040-5081-101b-9f08-00aa002f954e} ;Open Recycle Bin.
     Case "ctrl pan": Run, ::{21ec2020-3aea-1069-a2dd-08002b30309d} ;Open Control Panel.

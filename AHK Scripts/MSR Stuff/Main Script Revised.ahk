@@ -646,9 +646,9 @@ Send ^c
 
 toggleGUI(ACGUIToggle, "ACGUI", ACGUI_WIDTH, ACGUI_HEIGHT, "New AC Hotstring")
 
-if (Clipboard = "") {
+if (Clipboard = "")
 	GuiControl, ACGUI: Focus, IncorrectEdit
-} else {
+else {
 	GuiControl, ACGUI:, IncorrectEdit, %Clipboard%
 	GuiControl, ACGUI: Focus, CorrectEdit
 }
