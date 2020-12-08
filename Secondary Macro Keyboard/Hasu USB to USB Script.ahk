@@ -358,7 +358,7 @@ SC01A::
     clipboard = %prevClipboard%
 return
 
-m::sleepPC("s") ;Sleep PC (+ manual Enter).
+m::sleepPC() ;Open Windows sleep, hibernate, etc. menu.
 
 ;Open Google Calendar.
 n::Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://calendar.google.com/calendar/u/0/r

@@ -5509,3 +5509,4 @@ return
 :*:roomates::roommates
 ::VD::virtual desktop
 ::VDs::virtual desktops
+::hekp::help

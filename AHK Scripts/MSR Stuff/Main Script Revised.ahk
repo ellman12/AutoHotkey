@@ -525,7 +525,7 @@ return
 
 ;Check if the user has disabled sleep macros in MSR because a long process is running and they don't want to accidentally sleep and thus interrupt said process.
 ;The parameter is the single character corresponding to the different options in the #x menu.
-sleepPC(winXAltChar)
+sleepPC(winXAltChar := "")
 {
 	global
 	if (preventSleepToggle == 1)
