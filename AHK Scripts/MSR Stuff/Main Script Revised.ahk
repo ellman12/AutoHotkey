@@ -200,8 +200,8 @@ if (A_ComputerName = "Elliott-Laptop") {
 	WinWX := 1704
 	WinWY := 1051
 } else if (A_ComputerName = "Elliott-PC") {
-	WinWX := 1443
-	WinWY := 1174
+	WinWX := 1763
+	WinWY := 1056
 } else {
 	MsgBox, 16, Error. Computer/laptop name not part of the script., Error. Computer/laptop name not part of the script. A_ComputerName is: %A_ComputerName%.
 }
