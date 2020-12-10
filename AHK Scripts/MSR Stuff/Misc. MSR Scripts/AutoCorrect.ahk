@@ -5517,3 +5517,5 @@ return
 :*:byu::by
 ::strenghtned::strengthened
 ::python::Python
+::jhj::jhsjj
+:*:scriot::script

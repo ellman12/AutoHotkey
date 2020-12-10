@@ -680,7 +680,7 @@ ACGUIGUIEscape:
 toggleGUI(ACGUIToggle, "ACGUI", ACGUI_WIDTH, ACGUI_HEIGHT, "New AC Hotstring")
 return
 
-ACFinishButton:
+ACFinishButton: ;Where the hotstring is created and added to the script.
 	GUI, ACGUI:Submit
 
 	if (IncorrectEdit == "") OR (CorrectEdit == "")
@@ -689,7 +689,7 @@ ACFinishButton:
 		return
 	}
 
-	NewHotstring := ":"
+	NewHotstring := ":" ;Start of the new hotstring.
 
 	if (StarCheck = 1)
 		NewHotstring := NewHotstring . "*"
@@ -706,7 +706,7 @@ ACFinishButton:
 	NewHotstring := NewHotstring . ":" . IncorrectEdit . "::" . CorrectEdit
 
 	FileAppend, `n%NewHotstring%, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Misc. MSR Scripts\AutoCorrect.ahk  ; Put a `n at the beginning in case file lacks a blank line at its end.
-	Reload ;Apply the changes.
+	reloadMSR() ;Apply the new hotstring.
 return
 
 ;*****************************EDIT CLIPBOARD CONTENT GUI BEHAVIOR******************************
@@ -768,7 +768,7 @@ reloadMSR() {
 
 onExitLabel:
 if A_ExitReason not in Reload ;TODO: This might need to be adjusted and/or removed... Lots of testing needs to happen.
-	dumpAllCWGGroups()
+	dumpAllCWGGroups() ;The reason for the "not in Reload" is so the user doesn't get that Tippy every single time when Reloading.
 ExitApp
 
 #F11:: ;Force the script to create a dump of the IDs.
