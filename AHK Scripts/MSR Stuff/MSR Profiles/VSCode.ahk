@@ -131,4 +131,19 @@ return
 ;Keeb G18: virtual desktop to the right.
 !F18::Send, ^#{Right}
 
+#If currentProfile == "Python VSCode"
+F5::Send, #{F5} ;C and Python sharing this shortcut should hopefully work....
++Enter::Send, `:{Enter}
+
+#If currentProfile == "C VSCode"
+F5::Send, #{F5} ;For compiling C code.
+
+; #If "VSCode" not in currentProfile OR programmingMode = false
+#If programmingMode = false
+\::
+Send, ^+{Left}
+Send, {BackSpace}
+return
+
+::i::I
 #If

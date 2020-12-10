@@ -581,18 +581,35 @@ addCharAroundText(character, optional2ndChar := "") ;optional2ndChar is only use
 ^!F23::topMouseButtons(FrontMouseButtonBehavior) ;Top Front Mouse Button on Scimitar RGB.
 ^+F23::topMouseButtons(BackMouseButtonBehavior) ;Top Back Mouse Button on Scimitar RGB.
 
+;Called by top 2 mouse button hotkeys.
+topMouseButtons(buttonMode) {
+global
+
+	if (buttonMode = "Double Click")
+		Send, {Click 2}
+	else if (buttonMode = "F1")
+		switchToFirefoxAndBetweenTabs()
+	else if (buttonMode = "F2")
+		switchToOtherFirefoxWindows()
+	else if (buttonMode = "F3")
+		F3Hotkey()
+	else if (buttonMode = "F4")
+		F4Hotkey()
+	else if (buttonMode = "F6")
+		nextWinOrShowHideWins("F6", WindowGroupF6, CurrentWinF6)
+	else if (buttonMode = "F7")
+		nextWinOrShowHideWins("F7", WindowGroupF7, CurrentWinF7)
+	else if (buttonMode = "F8")
+		nextWinOrShowHideWins("F8", WindowGroupF8, CurrentWinF8)
+	else if (buttonMode = "F9")
+		F9Hotkey()
+	else if (buttonMode = "F10")
+		nextWinOrShowHideWins("F10", WindowGroupF10, CurrentWinF10)
+	else if (buttonMode = "F12")
+		F12Hotkey()
+}
+
 ;****************************************CONTEXT-SENSITIVE HOTKEYS***************************************
-#If programmingMode = false
-\::
-Send, ^+{Left}
-Send, {BackSpace}
-return
-
-::i::I
-
-#If programmingMode = true
-F5::Send, #{F5} ;For compiling C code in VSCode.
-
 #IfWinActive Cortana ;When Cortana/Search is open.
 !s::Send, {Space}meaning
 
@@ -764,34 +781,6 @@ dumpAllCWGGroups()
 	Tippy("Group dump files have been created", 1300)
 }
 return
-
-;Called by top 2 mouse button hotkeys.
-topMouseButtons(buttonMode) {
-global
-
-	if (buttonMode = "Double Click")
-		Send, {Click 2}
-	else if (buttonMode = "F1")
-		switchToFirefoxAndBetweenTabs()
-	else if (buttonMode = "F2")
-		switchToOtherFirefoxWindows()
-	else if (buttonMode = "F3")
-		F3Hotkey()
-	else if (buttonMode = "F4")
-		F4Hotkey()
-	else if (buttonMode = "F6")
-		nextWinOrShowHideWins("F6", WindowGroupF6, CurrentWinF6)
-	else if (buttonMode = "F7")
-		nextWinOrShowHideWins("F7", WindowGroupF7, CurrentWinF7)
-	else if (buttonMode = "F8")
-		nextWinOrShowHideWins("F8", WindowGroupF8, CurrentWinF8)
-	else if (buttonMode = "F9")
-		F9Hotkey()
-	else if (buttonMode = "F10")
-		nextWinOrShowHideWins("F10", WindowGroupF10, CurrentWinF10)
-	else if (buttonMode = "F12")
-		F12Hotkey()
-}
 
 writeConfigFile() { ;Writes #o values to the config file.
 global

@@ -5510,3 +5510,10 @@ return
 ::VD::virtual desktop
 ::VDs::virtual desktops
 ::hekp::help
+:*:isp::ISP
+::ctap::crap
+::yeards::years
+:*:cwg::CWG
+:*:byu::by
+::strenghtned::strengthened
+::python::Python

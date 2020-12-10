@@ -58,9 +58,10 @@ else if !WinExist("- Outlook") AND (!WinActive("- Outlook"))
 else
 {
     OutlookVisibilityToggle := !OutlookVisibilityToggle
-    if (OutlookVisibilityToggle = 1)
+    if (OutlookVisibilityToggle = 1) {
         WinHide, - Outlook
-    else {
+        Send, !{Tab} ;Go back to the previous window.
+    } else {
         WinShow, - Outlook
         WinActivate, - Outlook
     }
@@ -71,9 +72,10 @@ return
 SetTitleMatchMode, 2 ;A window's title can contain WinTitle anywhere inside it to be a match.
 OutlookVisibilityToggle := !OutlookVisibilityToggle
 
-if (OutlookVisibilityToggle = 0)
+if (OutlookVisibilityToggle = 0) {
     WinHide, - Outlook
-else {
+    Send, !{Tab} ;Go back to the previous window.
+} else {
     WinShow, - Outlook
     WinActivate, - Outlook
 }
@@ -92,6 +94,7 @@ else
 
     if (DiscordVisibilityToggle = 0) {
         WinHide, Discord
+        Send, !{Tab} ;Go back to the previous window.
     } else {
         WinShow, Discord
         WinActivate, Discord
@@ -105,6 +108,7 @@ DiscordVisibilityToggle := !DiscordVisibilityToggle
 
 if (DiscordVisibilityToggle = 0) {
     WinHide, - Discord
+    Send, !{Tab} ;Go back to the previous window.
 } else {
     WinShow, - Discord
     WinActivate, - Discord
@@ -121,6 +125,7 @@ else
 
     if (MusicBeeVisibilityToggle = 0) {
         WinHide, - MusicBee
+        Send, !{Tab} ;Go back to the previous window.
     } else {
         WinShow, - MusicBee
         WinActivate, - MusicBee
@@ -134,6 +139,7 @@ MusicBeeVisibilityToggle := !MusicBeeVisibilityToggle
 
 if (MusicBeeVisibilityToggle = 0) {
     WinHide, - MusicBee
+    Send, !{Tab} ;Go back to the previous window.
 } else {
     WinShow, - MusicBee
     WinActivate, - MusicBee
