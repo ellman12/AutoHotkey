@@ -434,8 +434,8 @@ SC01B::
     clipboard = %prevClipboard%
 return
 
-;Open Music folder.
-s::Run, explorer C:\Users\%A_UserName%\Music
+s::Run, explorer C:\Users\%A_UserName%\Music ;Open Music folder.
+^s::Run, explorer C:\Users\%A_UserName%\Pictures\Memes ;Opens memes folder.
 
 Space:: ;Suspends all hotkeys for the specified number in milliseconds.
 SetTimer, setTimerLabel, 2500, On
