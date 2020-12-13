@@ -767,7 +767,7 @@ reloadMSR() {
 }
 
 onExitLabel:
-if A_ExitReason not in Reload ;TODO: This might need to be adjusted and/or removed... Lots of testing needs to happen.
+if A_ExitReason not in Reload ;When the script exits in any way besides Reloading, generate dump files. Think like a Blue Screen of Death: that creates a dump of the memory for later use.
 	dumpAllCWGGroups() ;The reason for the "not in Reload" is so the user doesn't get that Tippy every single time when Reloading.
 ExitApp
 
