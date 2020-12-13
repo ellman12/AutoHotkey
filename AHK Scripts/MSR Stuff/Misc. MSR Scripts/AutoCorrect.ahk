@@ -5429,11 +5429,16 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:/.::.
 ::>::?
 
-;This simulates a feature on phones where you double tap space and it inserts a period.
-~Space::
-if (A_PriorKey = "Space")
-    Send, {Backspace 2}.{Space}
-return
+; ;This simulates a feature on phones where you double tap Space and it inserts a period. https://www.autohotkey.com/docs/commands/KeyWait.htm#ExDouble
+; ~Space::
+; if (A_PriorHotkey != "~Space" or A_TimeSincePriorHotkey > 1000)
+; {
+;     ;Too much time between presses, so this isn't a double-press.
+;     KeyWait, Space
+;     return
+; }
+; Send, {Backspace 2}.{Space}
+; return
 
 ;Misc hotstrings I've added over time, either manually or through #h.
 :*:opportuniuties::opportunities
