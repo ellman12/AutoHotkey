@@ -5524,3 +5524,4 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::python::Python
 ::jhj::jhsjj
 :*:scriot::script
+:*:sql::SQL
