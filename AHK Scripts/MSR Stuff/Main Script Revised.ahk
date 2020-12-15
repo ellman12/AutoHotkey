@@ -505,7 +505,7 @@ InputBox, firstNum, Grade Percent Utility, What is the first number?,, 200, 150
 InputBox, secondNum, Grade Percent Utility, What is the second number?,, 200, 150
 
 result := round((firstNum/secondNum) * 100, 2)
-MsgBox, 0, Grade, You got %result%`%.`n`nLetter Grade`tNumerical Grade`nA+`t`t97-100`nA`t`t94-96`nA-`t`t90-93`nB+`t`t87-89`nB`t`t84-86`nB-`t`t80-83`nC+`t`t77-79`nC`t`t74-76`nC-`t`t70-73`nD+`t`t67-69`nD`t`t64-66`nD-`t`t60-63`nF`t`t0-59
+MsgBox, 0, Grade, You got %result%`%.`n`nA+`t97-100`nA`t94-96`nA-`t90-93`nB+`t87-89`nB`t84-86`nB-`t80-83`nC+`t77-79`nC`t74-76`nC-`t70-73`nD+`t67-69`nD`t64-66`nD-`t60-63`nF`t0-59
 return
 
 ^Space:: ;Make active window AlwaysOnTop, and tell the user if it is or not.
@@ -519,6 +519,9 @@ if (onTop & 0x8) { ; 0x8 is WS_EX_TOPMOST.
 	Tippy(message, 1000)
 }
 return
+
+;Shows just the letter/number grades part of the MsgBox from ^+g.
+!+g::MsgBox, 0, Letter/Number Grade Chart, A+`t97-100`nA`t94-96`nA-`t90-93`nB+`t87-89`nB`t84-86`nB-`t80-83`nC+`t77-79`nC`t74-76`nC-`t70-73`nD+`t67-69`nD`t64-66`nD-`t60-63`nF`t0-59
 
 ;***********************************DISABLE/ENABLE SLEEP MACROS***********************************
 !+s::booleanToggle(preventSleepToggle, "Sleep macros disabled", "Sleep macros enabled", 900)

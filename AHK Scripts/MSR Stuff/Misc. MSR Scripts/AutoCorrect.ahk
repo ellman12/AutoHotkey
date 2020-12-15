@@ -5502,7 +5502,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:om::on
 :*:qw::w
 :*:/.::.
-:*?:`;s::`'s
+::;s::'s
 ::bslsnce::balance
 :*:nm::n
 ::og::of
