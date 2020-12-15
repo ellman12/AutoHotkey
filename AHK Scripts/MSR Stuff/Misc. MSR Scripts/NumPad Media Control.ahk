@@ -12,7 +12,7 @@ else
 	Tippy("NumPad is controlled by you now.", 2000)
 return
 
-;If NumLock is Off and ScrollLock is Off: MusicBee mode.
+;If NumLock is Off and ScrollLock is Off: MusicBee Mode.
 #If (!GetKeyState("NumLock", "T") and !GetKeyState("ScrollLock", "T")) and !(getKeyState("F24", "P"))
 {
 ;VD to the left/right.
@@ -59,7 +59,7 @@ $NumPadMult::SoundSet, +1
 NumPadSub::saveAndRestoreVolumeLevel()
 }
 
-;If NumLock is On and ScrollLock is On: YouTube mode.
+;If NumLock is On and ScrollLock is On: YouTube Mode.
 #If (GetKeyState("NumLock", "T") and GetKeyState("ScrollLock", "T")) and !(getKeyState("F24", "P"))
 {
 ;VD to the left/right.
@@ -68,9 +68,9 @@ $NumPadIns::Send, ^#{Left}
 $NumPadDot::
 $NumPadDel::Send, ^#{Right}
 
-;Mute.
-$NumPad1::Send, m
-$NumPadEnd::Send, m
+;Captions
+$NumPad1::Send, c
+$NumPadEnd::Send, c
 
 ;Turns the volume down according to the "Num2And8Step" variable.
 $NumPad2::SoundSet, -%Num2And8Step%
@@ -113,7 +113,7 @@ $NumPadMult::SoundSet, +1
 NumPadSub::saveAndRestoreVolumeLevel()
 }
 
-;If NumLock is Off and ScrollLock is Off: normal mode.
+;If NumLock is Off and ScrollLock is Off: Normal Mode.
 #If (!GetKeyState("NumLock", "T") and !GetKeyState("ScrollLock", "T")) and !(getKeyState("F24", "P"))
 {
 $NumPad0::Send, {NumPad0}
@@ -158,7 +158,7 @@ $NumPadMult::Send, {NumPadMult}
 $NumPadSub::Send, {NumPadSub}
 }
 
-;If NumLock is Off and ScrollLock is On: Dumbed-down mode.
+;If NumLock is Off and ScrollLock is On: Dumbed-down Mode.
 ;Designed for use with video sites that aren't YouTube and that have worse interfaces than YT, as well as less useful shortcuts like j, k, l, etc.
 ;Those have been transformed into ones that should work with most lower-budget and lower-quality video players.
 ; #If (numLockToggled = 0 and scrollLockToggled = 1) and !(getKeyState("F24", "P"))
