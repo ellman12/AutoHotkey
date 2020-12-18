@@ -1,4 +1,4 @@
-; #t:: In the Tasks menu, add a task and mark it due today. Or activate it. Or run To Do.
-; !#t:: In tasks menu, add a task and mark it due tomorrow.
-; +#t:: Add a task in My Day and mark it due today.
-; !+#t:: Add a task in My Day and mark it due tomorrow.
+#t:: In the Tasks menu, add a task and mark it due today. Or activate it. Or run To Do.
+!#t:: In tasks menu, add a task and mark it due tomorrow.
+#+t:: Add a task in My Day and mark it due today.
+!#+t:: Add a task in My Day and mark it due tomorrow.

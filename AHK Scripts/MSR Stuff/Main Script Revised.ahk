@@ -232,10 +232,10 @@ GUI, CPanel:Add, DDL, xp yp+23 vF10Mode w94, Window Group|Window Hider|
 GuiControl, CPanel:ChooseString, F10Mode, %F10Mode%
 
 GUI, CPanel:Add, Text, xm yp+27, Front and Back Top Mouse Buttons Behavior
-GUI, CPanel:Add, DDL, xm yp+17 w87 vFrontMouseButtonBehavior, Double Click|F1|F2|F3|F4|F6|F7|F8|F9|F10|F12
+GUI, CPanel:Add, DDL, xm yp+17 w87 vFrontMouseButtonBehavior, Double Click|F1|F2|F3|F4|F6|F7|F8|F10|F12
 GuiControl, CPanel:ChooseString, FrontMouseButtonBehavior, %FrontMouseButtonBehavior%
 
-GUI, CPanel:Add, DDL, xm+90 yp w87 vBackMouseButtonBehavior, Double Click|F1|F2|F3|F4|F6|F7|F8|F9|F10|F12
+GUI, CPanel:Add, DDL, xm+90 yp w87 vBackMouseButtonBehavior, Double Click|F1|F2|F3|F4|F6|F7|F8|F10|F12
 GuiControl, CPanel:ChooseString, BackMouseButtonBehavior, %BackMouseButtonBehavior%
 
 GUI, CPanel:Add, Text, xm yp+28, F12 Behavior:
@@ -357,6 +357,7 @@ Loop {
 #Include, %A_ScriptDir%\Misc. MSR Scripts\Quick Code\Quick Code.ahk
 #Include, %A_ScriptDir%\Misc. MSR Scripts\Run\Run.ahk
 #Include, %A_ScriptDir%\Misc. MSR Scripts\ApplicationSwitcher.ahk
+#Include, %A_ScriptDir%\Misc. MSR Scripts\Add Chars Around Text.ahk
 
 #Include, %A_ScriptDir%\Misc. MSR Scripts\AutoCorrect.ahk
 #If ;See the end of the AutoCorrect file. This needs to be here to end the giant #If block in there. Moved to here to avoid messing up when the #h hotkey appends to that file.
@@ -394,8 +395,6 @@ return
 ;Shows you miscellaneous variables, toggles, etc.
 ^#BackSpace::MsgBox, 0, Misc. Variables`, Toggles`, etc., MSR Profile: %currentProfile%`n`nautoNumPadModeToggle: %autoNumPadModeToggle%
 
-^#s::Run, C:\Program Files\AutoHotkey\WindowSpy.ahk ;Run Window Spy.
-
 ^CtrlBreak:: ;Technically Ctrl + Pause. Read about this here: https://www.autohotkey.com/docs/KeyList.htm#other
 #!p::
 Suspend
@@ -414,23 +413,16 @@ return
 
 ^\::Send, \ ;This key normally deletes a word. This hotkey allows you to insert a \ without having to suspend hotkeys.
 
-sc029::Send, !{Tab} ;The grave accent key (that weird thing under the Tilde ~ symbol) sends Alt + Tab.
+#n::Run, Notepad ;Open Notepad.
 
+sc029::Send, !{Tab} ;The grave accent key (that weird thing under the Tilde ~ symbol) sends Alt + Tab.
 ^sc029::Send, `` ;Holding Ctrl and pushing the grave accent key inserts the grave accent symbol: `.
 
-^+sc029::Send, ~ ;Holding Ctrl and Shift and pushing the grave accent key inserts the tilde symbol: ~.
-
 !SC00C::WinMinimize, A ;Alt + -
-
 !SC00D::WinMaximize, A ;Alt + +.
-
-#n::Run, Notepad ;Open Notepad.
 
 ;Toggle programming mode. Disables hotkeys/hotstrings that can be annoying when programming.
 ^!Insert::booleanToggle(programmingMode, "Programming Mode ON", "Programming Mode Off")
-
-#+d::deleteMostRecentItemInFolder("Downloads") ;Recycle the most recently created file or folder in the Downloads folder.
-^#+d::deleteMostRecentItemInFolder("Desktop") ;Same thing but for Desktop folder.
 
 ;Since Windows 10 annoyingly doesn't allow you to rearrange individual windows for a program on the Taskbar when their icons are expanded out (how I always have it), I made this fantastic workaround.
 ;It will move the active window to the end of the "stack(?)" of windows.
@@ -464,12 +456,36 @@ KeyWait, RShift
 DllCall("SystemParametersInfo", Int,113, Int,0, UInt,10, Int,1)
 return
 
-#w:: ;Opens Wi-Fi menu.
+#w:: ;Opens Wi-Fi/network menu.
 MouseGetPos, originalX, originalY
 MouseMove, %WinWX%, %WinWY%, 0
 Sleep 200
 Send, {Click}
 MouseMove, originalX, originalY
+return
+
+^+g:: ;Calculate percent grade on a homework assignment or whatever, then show result and letter grade equivalent. So, for something like 40/50, you'd enter 40 and then 50.
+InputBox, firstNum, Grade Percent Utility, What is the first number?,, 200, 150
+InputBox, secondNum, Grade Percent Utility, What is the second number?,, 200, 150
+
+result := round((firstNum/secondNum) * 100, 2)
+MsgBox, 0, Grade, You got %result%`%.`n`nA+`t97-100`nA`t94-96`nA-`t90-93`nB+`t87-89`nB`t84-86`nB-`t80-83`nC+`t77-79`nC`t74-76`nC-`t70-73`nD+`t67-69`nD`t64-66`nD-`t60-63`nF`t0-59
+return
+
+;Shows just the letter/number grades part of the MsgBox from ^+g.
+!+g::MsgBox, 0, Letter/Number Grade Chart, A+`t97-100`nA`t94-96`nA-`t90-93`nB+`t87-89`nB`t84-86`nB-`t80-83`nC+`t77-79`nC`t74-76`nC-`t70-73`nD+`t67-69`nD`t64-66`nD-`t60-63`nF`t0-59
+
+;Make active window AlwaysOnTop, and tell the user if it is or not.
+^Space::
+WinSet, AlwaysOnTop, Toggle, A
+WinGet, onTop, ExStyle, A
+if (onTop & 0x8) { ; 0x8 is WS_EX_TOPMOST.
+	message := activeWindowTitle . " is AlwaysOnTop"
+	Tippy(message, 1000)
+} else {
+	message := activeWindowTitle . " is no longer on top"
+	Tippy(message, 1000)
+}
 return
 
 ;Easily switch the mode for the 2 top mouse buttons, without having to open the GUI.
@@ -487,39 +503,36 @@ if (WIN_O_MAX_MODE > currentWinOMode)
 switchWinOMode()
 return
 
-^!+d:: ;Used for deleting videos from YouTube playlist. Asks you how many times to do it and then it starts doing its thing.
-InputBox, numVidsToDelete, How many videos do you want to delete?, As soon as you hit enter`, the script will start deleting videos. Please position cursor over the first video's x button.
+;Used for !#Right and !#Left.
+switchWinOMode() {
+global
+	Switch (currentWinOMode)
+	{
+		Case 1:
+		GuiControl, CPanel:ChooseString, FrontMouseButtonBehavior, Double Click
+		GuiControl, CPanel:ChooseString, BackMouseButtonBehavior, F6
+		FrontMouseButtonBehavior := "Double Click"
+		BackMouseButtonBehavior := "F6"
+		Tippy("Double Click and F6", 290)
+		return
 
-Loop %numVidsToDelete% {
-	Send, {Escape} ;Get rid of stupid annoying pop-up from YouTube.
-	Sleep 500
-	Send, {Click}
-	Sleep 500
+		Case 2:
+		GuiControl, CPanel:ChooseString, FrontMouseButtonBehavior, F6
+		GuiControl, CPanel:ChooseString, BackMouseButtonBehavior, F7
+		FrontMouseButtonBehavior := "F6"
+		BackMouseButtonBehavior := "F7"
+		Tippy("F6 and F7", 290)
+		return
+
+		Case 3:
+		GuiControl, CPanel:ChooseString, FrontMouseButtonBehavior, F2
+		GuiControl, CPanel:ChooseString, BackMouseButtonBehavior, F12
+		FrontMouseButtonBehavior := "F2"
+		BackMouseButtonBehavior := "F12"
+		Tippy("F2 and F12", 290)
+		return
+	}
 }
-return
-
-^+g:: ;Calculate percent grade on a homework assignment or whatever, then show result and letter grade equivalent. So, for something like 40/50, you'd enter 40 and then 50.
-InputBox, firstNum, Grade Percent Utility, What is the first number?,, 200, 150
-InputBox, secondNum, Grade Percent Utility, What is the second number?,, 200, 150
-
-result := round((firstNum/secondNum) * 100, 2)
-MsgBox, 0, Grade, You got %result%`%.`n`nA+`t97-100`nA`t94-96`nA-`t90-93`nB+`t87-89`nB`t84-86`nB-`t80-83`nC+`t77-79`nC`t74-76`nC-`t70-73`nD+`t67-69`nD`t64-66`nD-`t60-63`nF`t0-59
-return
-
-^Space:: ;Make active window AlwaysOnTop, and tell the user if it is or not.
-WinSet, AlwaysOnTop, Toggle, A
-WinGet, onTop, ExStyle, A
-if (onTop & 0x8) { ; 0x8 is WS_EX_TOPMOST.
-	message := activeWindowTitle . " is AlwaysOnTop"
-	Tippy(message, 1000)
-} else {
-	message := activeWindowTitle . " is no longer on top"
-	Tippy(message, 1000)
-}
-return
-
-;Shows just the letter/number grades part of the MsgBox from ^+g.
-!+g::MsgBox, 0, Letter/Number Grade Chart, A+`t97-100`nA`t94-96`nA-`t90-93`nB+`t87-89`nB`t84-86`nB-`t80-83`nC+`t77-79`nC`t74-76`nC-`t70-73`nD+`t67-69`nD`t64-66`nD-`t60-63`nF`t0-59
 
 ;***********************************DISABLE/ENABLE SLEEP MACROS***********************************
 !+s::booleanToggle(preventSleepToggle, "Sleep macros disabled", "Sleep macros enabled", 900)
@@ -538,39 +551,6 @@ sleepPC(winXAltChar := "")
     Sleep, 250
     Send, {Up 2}
     Send, {Right}%winXAltChar%
-}
-
-;***********************************ADD CHARS AROUND TEXT***********************************
-^SC028::addCharAroundText("""") ;^' Add double quotes around selected text.
-^+SC028::addCharAroundText("'") ;^+' Add single quotes around selected text.
-
-;Add brackets around selected text.
-^+<::
-^+>::addCharAroundText("<", ">")
-
-;Add () around selected text.
-^+(::
-^+)::addCharAroundText("(", ")")
-
-addCharAroundText(character, optional2ndChar := "") ;optional2ndChar is only used for things like <> or (), where there are 2 different characters, instead of something like "", which doesn't require the parameter.
-{
-	originalClipboard := ClipboardAll ;Restore this later.
-
-	Send, ^c
-	ClipWait, 2 ;Wait 2 seconds.
-
-	Send, %character%
-	Sleep 100
-	Send, ^v
-	Sleep 100
-
-	if (optional2ndChar != "") ;Determine if there's another character to the pair to add to the end, like for (), <>, etc.
-		Send, %optional2ndChar%
-	else
-		Send, %character%
-
-	Clipboard := originalClipboard ;Restore.
-	originalClipboard := "" ;Free because could potentially be huge.
 }
 
 ;****************************************GLOBAL iCUE HOTKEYS***************************************
@@ -602,8 +582,6 @@ global
 		nextWinOrShowHideWins("F7", WindowGroupF7, CurrentWinF7)
 	else if (buttonMode = "F8")
 		nextWinOrShowHideWins("F8", WindowGroupF8, CurrentWinF8)
-	else if (buttonMode = "F9")
-		F9Hotkey()
 	else if (buttonMode = "F10")
 		nextWinOrShowHideWins("F10", WindowGroupF10, CurrentWinF10)
 	else if (buttonMode = "F12")
@@ -620,11 +598,10 @@ Sleep 300
 Send, {LWin}
 return
 
-#If currentProfile != "Terraria"
-;Scroll down faster by holding down the G3 key on Scimitar Pro RGB.
-F15 & WheelDown::Send, {WheelDown %G3Scrolls%}
+#If currentProfile != "Terraria" ;Terraria profile uses G3 (F15) for quick mana.
 
-;Scroll up faster by holding down the G3 key on Scimitar Pro RGB.
+;Scroll up/down faster by holding down the G3 key on Scimitar Pro RGB.
+F15 & WheelDown::Send, {WheelDown %G3Scrolls%} ;Set this in #o.
 F15 & WheelUp::Send, {WheelUp %G3Scrolls%}
 
 ;A way to make the mouse move faster while Mouse G3 and the Right Button are held down.
@@ -644,10 +621,6 @@ Send, {Click}
 MouseMove, originalX, originalY
 return
 
-~RShift::Send, {Media_Play_Pause}
-^!Left::Send, {Media_Prev}
-^!Right::Send, {Media_Next}
-
 !PGUP::SoundSet, +1
 !PGDN::SoundSet, -1
 
@@ -655,6 +628,55 @@ return
 !Up::changeVolume(1)
 !Down::changeVolume(-1)
 #If
+
+;***********************************RARELY USED BUT STILL USEFUL***********************************
+^!+d:: ;Used for deleting videos from YouTube playlist. Asks you how many to delete and then it starts doing its thing.
+InputBox, numVidsToDelete, How many videos do you want to delete?, As soon as you hit enter`, the script will start deleting videos. Please position cursor over the first video's x button.
+
+Loop %numVidsToDelete% {
+	Send, {Escape} ;Get rid of stupid annoying pop-up from YouTube.
+	Sleep 500
+	Send, {Click}
+	Sleep 500
+}
+return
+
+#+d::deleteMostRecentItemInFolder("Downloads") ;Recycle the most recently created file or folder in the Downloads folder.
+^#+d::deleteMostRecentItemInFolder("Desktop") ;Same thing but for Desktop folder.
+
+deleteMostRecentItemInFolder(folderName)
+{
+	Loop, Files, C:\Users\%A_UserName%\%folderName%\*.*, FD ;FD = Include Files and Directories
+	{
+		;Loops through this directory, and if it encounters a file/folder that is newer than the previously encountered one,
+		; make that the one to potentially delete.
+		if ((A_LoopFileTimeModified > currentMaxCreationDate) AND (A_LoopFileName != ".tmp.drivedownload"))
+		{
+			currentMaxCreationDate := A_LoopFileTimeModified
+			thingToDelete := A_LoopFileName
+			thingToDeleteFileExt := A_LoopFileExt
+		}
+	}
+
+	if (thingToDelete == "") ;If the folder is empty.
+	{
+		MsgBox, 262160, Error., No more items in %folderName% folder. The current thread will now exit.
+		return
+	}
+
+	if (thingToDeleteFileExt == "") ;If it's a folder, don't tack on an extension thing in the prompt asking if you for sure want to delete it.
+		message = Recycle folder "%thingToDelete%"?
+	else
+		message = Recycle file "%thingToDelete%"?
+
+	MsgBox, 262180, Recycle Latest Thing in %folderName% Folder?, %message%
+	IfMsgBox, No
+		return
+
+	FileRecycle, C:\Users\%A_UserName%\%folderName%\%thingToDelete%
+	if (ErrorLevel == 1)
+		MsgBox, 262160, Error, An error occurred while trying to recycle "%thingToDelete%".
+}
 
 ;*****************************AUTOCORRECT GUI BEHAVIOR******************************
 #h::
@@ -772,7 +794,7 @@ if A_ExitReason not in Reload ;When the script exits in any way besides Reloadin
 	dumpAllCWGGroups() ;The reason for the "not in Reload" is so the user doesn't get that Tippy every single time when Reloading.
 ExitApp
 
-#F11:: ;Force the script to create a dump of the IDs.
+;Create a dump of the CWG IDs.
 dumpAllCWGGroups()
 {
 	winGroupBackupDump("F6", WindowGroupF6)
@@ -831,72 +853,6 @@ deleteConfigFile() {
 		MsgBox, 262160, Something Happened, An error occurred while trying to delete the config file. Most likely the file doesn't exist and thus you tried to delete something that doesn't exist.
 	else
 		Tippy("Config File has been deleted.", 950)
-}
-
-;Used or #+d and ^#+d hotkeys.
-deleteMostRecentItemInFolder(folderName)
-{
-	Loop, Files, C:\Users\%A_UserName%\%folderName%\*.*, FD ;FD = Include Files and Directories
-	{
-		;Loops through this directory, and if it encounters a file/folder that is newer than the previously encountered one,
-		; make that the one to potentially delete.
-		if ((A_LoopFileTimeModified > currentMaxCreationDate) AND (A_LoopFileName != ".tmp.drivedownload"))
-		{
-			currentMaxCreationDate := A_LoopFileTimeModified
-			thingToDelete := A_LoopFileName
-			thingToDeleteFileExt := A_LoopFileExt
-		}
-	}
-
-	if (thingToDelete == "") ;If the folder is empty.
-	{
-		MsgBox, 262160, Error., No more items in %folderName% folder. The current thread will now exit.
-		return
-	}
-
-	if (thingToDeleteFileExt == "") ;If it's a folder, don't tack on an extension thing in the prompt asking if you for sure want to delete it.
-		message = Recycle folder "%thingToDelete%"?
-	else
-		message = Recycle file "%thingToDelete%"?
-
-	MsgBox, 262180, Recycle Latest Thing in %folderName% Folder?, %message%
-	IfMsgBox, No
-		return
-
-	FileRecycle, C:\Users\%A_UserName%\%folderName%\%thingToDelete%
-	if (ErrorLevel == 1)
-		MsgBox, 262160, Error, An error occurred while trying to recycle "%thingToDelete%".
-}
-
-;Used for !#Right and !#Left.
-switchWinOMode() {
-global
-	Switch (currentWinOMode)
-	{
-		Case 1:
-		GuiControl, CPanel:ChooseString, FrontMouseButtonBehavior, Double Click
-		GuiControl, CPanel:ChooseString, BackMouseButtonBehavior, F6
-		FrontMouseButtonBehavior := "Double Click"
-		BackMouseButtonBehavior := "F6"
-		Tippy("Double Click and F6", 290)
-		return
-
-		Case 2:
-		GuiControl, CPanel:ChooseString, FrontMouseButtonBehavior, F6
-		GuiControl, CPanel:ChooseString, BackMouseButtonBehavior, F7
-		FrontMouseButtonBehavior := "F6"
-		BackMouseButtonBehavior := "F7"
-		Tippy("F6 and F7", 290)
-		return
-
-		Case 3:
-		GuiControl, CPanel:ChooseString, FrontMouseButtonBehavior, F2
-		GuiControl, CPanel:ChooseString, BackMouseButtonBehavior, F12
-		FrontMouseButtonBehavior := "F2"
-		BackMouseButtonBehavior := "F12"
-		Tippy("F2 and F12", 290)
-		return
-	}
 }
 
 ;**************************************************EXPERIMENTAL**************************************************

@@ -12,4 +12,3 @@ Fx:: Either next window or hide windows.
 !#Fx:: Reads the IDs from the corresponding .tmp file.
 ^+#Fx:: Remove all windows from the array, without closing them.
 !+#Fx:: Remove all windows from the array, and close all of them.
-#F11:: Dump all groups to a .tmp file with a timestamp.

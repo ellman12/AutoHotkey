@@ -5527,3 +5527,5 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:sql::SQL
 :*:yt::YT
 :*:msr::MSR
+:*:icue::iCUE
+:*:google::Google

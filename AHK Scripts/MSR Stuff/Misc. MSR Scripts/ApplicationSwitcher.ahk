@@ -1,4 +1,4 @@
-;A lot of this code is taken from Taran Van Hemert from Linus Media Group. His video on this: https://www.youtube.com/watch?v=OqyQABySV8k
+﻿;A lot of this code is taken from Taran Van Hemert from Linus Media Group. His video on this: https://www.youtube.com/watch?v=OqyQABySV8k
 ;A lot of my ideas can also be attributed to him as well.
 
 ;If a Firefox window doesn't exist, run Firefox.
@@ -319,10 +319,10 @@ return
 !#t::createMSToDoTask(1, 1)
 
 ;Add a task in My Day and mark it due today.
-+#t::createMSToDoTask(2, 0)
+#+t::createMSToDoTask(2, 0)
 
 ;Add a task in My Day and mark it due tomorrow.
-!+#t::createMSToDoTask(2, 1)
+!#+t::createMSToDoTask(2, 1)
 #If
 
 ;Used for creating tasks in MS To Do.
