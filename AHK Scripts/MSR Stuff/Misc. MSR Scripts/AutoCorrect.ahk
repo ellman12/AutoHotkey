@@ -813,8 +813,8 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::ancestory::ancestry
 ::ancilliary::ancillary
 ::adn::and
-::anbd::and
-::anmd::and
+:*:anbd::and
+:*:anmd::and
 ::andone::and one
 ::andt he::and the
 ::andteh::and the
@@ -5526,3 +5526,5 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:scriot::script
 :*:sql::SQL
 :*:yt::YT
+:*:wirth::with
+:*:tweo::two
