@@ -2,12 +2,12 @@
 
 ;****************************************SCIMITAR RGB ACTIONS***************************************
 #If currentProfile == "Default"
-;Mouse G1
+    ;Mouse G1
 ;Horizontal scroll
 F13::
-Send, {Shift down}
-KeyWait, F13
-Send, {Shift up}
+    Send, {Shift down}
+    KeyWait, F13
+    Send, {Shift up}
 return
 
 ;Mouse G2
@@ -96,15 +96,15 @@ return
 ;Keeb G11
 ;Enables/disables Bluetooth.
 ^F23::
-Send, #a
-Sleep, 1100
-Send, {Tab 2}
-Sleep 200
-Send, {Down 2}
-Sleep 654
-Send, {Enter}
-Sleep 900
-Send, #a
+    Send, #a
+    Sleep, 1100
+    Send, {Tab 2}
+    Sleep 200
+    Send, {Down 2}
+    Sleep 654
+    Send, {Enter}
+    Sleep 900
+    Send, #a
 return
 
 ;Keeb G12
@@ -124,10 +124,7 @@ return
 ;Keeb G16: Does what Win + Tab does
 !F16::Send, #{Tab}
 
-;Keeb G17: Goes to the virtual desktop to the left
-!F17::Send, ^#{Left}
-
-;Keeb G18: Goes to the virtual desktop to the right
-!F18::Send, ^#{Right}
+!F17::return
+!F18::return
 
 #If

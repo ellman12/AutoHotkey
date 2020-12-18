@@ -5528,3 +5528,6 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:yt::YT
 :*:wirth::with
 :*:tweo::two
+:*:msr::MSR
+:*:icue::iCUE
+:*:google::Google
