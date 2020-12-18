@@ -1,4 +1,5 @@
-﻿;A lot of this code is taken from Taran Van Hemert from Linus Media Group. His video on this: https://www.youtube.com/watch?v=OqyQABySV8k
+;A lot of this code is taken from Taran Van Hemert from Linus Media Group. His video on this: https://www.youtube.com/watch?v=OqyQABySV8k
+;A lot of my ideas can also be attributed to him as well.
 
 ;If a Firefox window doesn't exist, run Firefox.
 ;If a Firefox window does exist, switch to Chrome.
@@ -188,19 +189,6 @@ return
 ;Activated by holding down Shift and MR (Shift + Ctrl + F5).
 ^+F5::Run, explorer.exe
 
-;Back button; does stuff in reverse.
-;Ex. F9 in Firefox does the opposite of F1.
-F9::
-F9Hotkey() {
-    if WinActive("ahk_exe firefox.exe")
-        Send ^{PgUp}
-    else if WinActive("ahk_class Chrome_WidgetWin_1")
-        Send ^+{tab}
-    else if WinActive("ahk_exe explorer.exe")
-        Send !{left} ;alt left is the explorer shortcut to go "back" or "down" one folder level.
-}
-return
-
 ;Behavior is determined in #o.
 ;Mode				                  What It Does
 ;VSCode and Cmd Prompt (Default)	  Groups VSCode and Command Prompt windows together. ^F12 runs VSCode.
@@ -315,16 +303,6 @@ nextWindowFx(F12Group, CurrentWinF12)
 return
 
 ;*******************HOTKEYS FOR MICROSOFT TO DO APP*******************
-; #t:: In the Tasks menu, add a task and mark it due today. Or activate To Do. Or run To Do.
-
-;*****HOTKEYS FOR THE TASKS MENU*****
-; !#t:: Add a task and mark it due tomorrow.
-; +#t:: Add a task and mark it due today.
-
-;*****HOTKEYS FOR THE MY DAY MENU*****
-; +#t:: Add a task and mark it due today.
-; !+#t:: Add a task and mark it due tomorrow.
-
 #t::
 Sleep 200
 if WinActive("Microsoft To Do") { ;In the Tasks menu, add a task and mark it due today.
@@ -337,15 +315,13 @@ else {
 return
 
 #IfWinActive, Microsoft To Do
-;*****HOTKEYS FOR THE TASKS MENU*****
-;Add a task and mark it due tomorrow.
+;In tasks menu, add a task and mark it due tomorrow.
 !#t::createMSToDoTask(1, 1)
 
-;*****HOTKEYS FOR THE MY DAY MENU*****
-;Add a task and mark it due today.
+;Add a task in My Day and mark it due today.
 +#t::createMSToDoTask(2, 0)
 
-;Add a task and mark it due tomorrow.
+;Add a task in My Day and mark it due tomorrow.
 !+#t::createMSToDoTask(2, 1)
 #If
 
