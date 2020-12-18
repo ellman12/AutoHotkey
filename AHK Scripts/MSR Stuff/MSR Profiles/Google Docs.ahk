@@ -192,17 +192,8 @@ return
 Send, #{Tab}
 return
 
-;Keeb G17
-;Goes to the virtual desktop to the left
-!F17::
-Send, ^#{Left}
-return
-
-;Keeb G18
-;Goes to the virtual desktop to the right
-!F18::
-Send, ^#{Right}
-return
+!F17::return
+!F18::return
 
 ;****************************************MISC DOCS ACTIONS***************************************
 ;Correct to.

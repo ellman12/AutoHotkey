@@ -125,11 +125,8 @@ return
 ;Keeb G16: Jump to either the next bracket or matching bracket
 !F16::Send, ^+\
 
-;Keeb G17: virtual desktop to the left.
-!F17::Send, ^#{Left}
-
-;Keeb G18: virtual desktop to the right.
-!F18::Send, ^#{Right}
+!F17::return
+!F18::return
 
 #If currentProfile == "Python VSCode"
 F5::Send, #{F5} ;C and Python sharing this shortcut should hopefully work....

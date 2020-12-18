@@ -118,11 +118,8 @@ return
 ;Keeb G16: Does what Win + Tab does
 !F16::Send, #{Tab}
 
-;Keeb G17: Goes to the virtual desktop to the left
-!F17::Send, ^#{Left}
-
-;Keeb G18: Goes to the virtual desktop to the right
-!F18::Send, ^#{Right}
+!F17::return
+!F18::return
 
 #If currentProfile == "Firefox"
 ;Keeb G1: Close multiple tabs.
