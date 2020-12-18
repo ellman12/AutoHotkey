@@ -11,9 +11,9 @@
 * Keeb: keyboard
 * CWG: Custom Window Groups
 * ApplSwitch: ApplicationSwitcher
-* Chr Typing: Chromebook Typing.
+* Chr Typing: Chromebook Typing
 
-* Conventions for the number of * for a title/header. These can be inserted via Run.ahk.
+* Conventions for the number of * for a title/header. These can be inserted via Run.ahk
 * Title:    50 **************************************************
 * Header 1: 35 ***********************************
 * Header 2: 20 ********************
