@@ -779,24 +779,13 @@ controlPanelGUIToggle := !controlPanelGUIToggle
 return
 
 ;**************************************************MSR FUNCTIONS AND LABELS**************************************************
-;Used for the Reload hotkey (^#r) and also for space bar on the 2nd keeb.
-;Writes file to disk to guarantee they won't be lost if they're hidden and the script reloads. Also for convenience whilst editing the script, etc.
-reloadMSR() {
-	writeGroupToFile("F6", WindowGroupF6, 1)
-	writeGroupToFile("F7", WindowGroupF7, 1)
-	writeGroupToFile("F8", WindowGroupF8, 1)
-	writeGroupToFile("F10", WindowGroupF10, 1)
-	Reload
-}
-
 onExitLabel:
 if A_ExitReason not in Reload ;When the script exits in any way besides Reloading, generate dump files. Think like a Blue Screen of Death: that creates a dump of the memory for later use.
 	dumpAllCWGGroups() ;The reason for the "not in Reload" is so the user doesn't get that Tippy every single time when Reloading.
 ExitApp
 
 ;Create a dump of the CWG IDs.
-dumpAllCWGGroups()
-{
+dumpAllCWGGroups() {
 	winGroupBackupDump("F6", WindowGroupF6)
 	winGroupBackupDump("F7", WindowGroupF7)
 	winGroupBackupDump("F8", WindowGroupF8)
@@ -804,6 +793,16 @@ dumpAllCWGGroups()
 	Tippy("Group dump files have been created", 1300)
 }
 return
+
+;Used for the Reload hotkey ^#r, and also for #h when it reloads the script after creating a new hotstring.
+;Writes CWG groups to disk to guarantee they won't be lost if they're hidden and the script reloads. Also for convenience whilst editing the script, etc. so that the groups are automatically repopulated.
+reloadMSR() {
+	writeGroupToFile("F6", WindowGroupF6, 1)
+	writeGroupToFile("F7", WindowGroupF7, 1)
+	writeGroupToFile("F8", WindowGroupF8, 1)
+	writeGroupToFile("F10", WindowGroupF10, 1)
+	Reload
+}
 
 writeConfigFile() { ;Writes #o values to the config file.
 global
