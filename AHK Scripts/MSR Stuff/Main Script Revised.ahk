@@ -232,10 +232,10 @@ GUI, CPanel:Add, DDL, xp yp+23 vF10Mode w94, Window Group|Window Hider|
 GuiControl, CPanel:ChooseString, F10Mode, %F10Mode%
 
 GUI, CPanel:Add, Text, xm yp+27, Front and Back Top Mouse Buttons Behavior
-GUI, CPanel:Add, DDL, xm yp+17 w87 vFrontMouseButtonBehavior, Double Click|F1|F2|F3|F4|F6|F7|F8|F10|F12
+GUI, CPanel:Add, DDL, xm yp+17 w87 vFrontMouseButtonBehavior, Double Click|Triple Click|F1|F2|F3|F4|F6|F7|F8|F10|F12
 GuiControl, CPanel:ChooseString, FrontMouseButtonBehavior, %FrontMouseButtonBehavior%
 
-GUI, CPanel:Add, DDL, xm+90 yp w87 vBackMouseButtonBehavior, Double Click|F1|F2|F3|F4|F6|F7|F8|F10|F12
+GUI, CPanel:Add, DDL, xm+90 yp w87 vBackMouseButtonBehavior, Double Click|Triple Click|F1|F2|F3|F4|F6|F7|F8|F10|F12
 GuiControl, CPanel:ChooseString, BackMouseButtonBehavior, %BackMouseButtonBehavior%
 
 GUI, CPanel:Add, Text, xm yp+28, F12 Behavior:
@@ -568,6 +568,8 @@ global
 
 	if (buttonMode = "Double Click")
 		Send, {Click 2}
+	else if (buttonMode = "Triple Click")
+		Send, {Click 3}
 	else if (buttonMode = "F1")
 		switchToFirefoxAndBetweenTabs()
 	else if (buttonMode = "F2")
