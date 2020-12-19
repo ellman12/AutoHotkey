@@ -5522,7 +5522,6 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:byu::by
 ::strenghtned::strengthened
 ::python::Python
-::jhj::jhsjj
 :*:scriot::script
 :*:sql::SQL
 :*:yt::YT
