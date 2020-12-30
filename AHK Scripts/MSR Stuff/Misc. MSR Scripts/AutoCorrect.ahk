@@ -5530,6 +5530,11 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:msr::MSR
 :*:icue::iCUE
 :*:google::Google
-
 ::suire::sure
 ::gonme::gone
+::citry::city
+:*:idkk::I don't know
+:*:lego::Lego
+:*:ok::OK
+::tho::though
+:*:hdd::HDD

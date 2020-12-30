@@ -5,7 +5,12 @@
 ;This annoying key is disabled. However, it can be used to trigger 2nd keyboard hotkeys even without having the 2nd keeb physically in front of me.
 *CapsLock::return
 
-^CapsLock::runCommand(runInputBoxText) ;Repeats previous command. Useful when you specifically know what the previous command is.
+^CapsLock:: ;Repeats previous command. Useful when you specifically know what the previous command is.
+if (runInputBoxText in z,h,sd,rs) ;Disable accidentally telling the PC to sleep.
+    Tippy("Sleep macros are disabled for ^CapsLock...", 1300)
+else
+    runCommand(runInputBoxText)
+return
 
 ;Open the command InputBox, and then does what the user entered.
 !r::
@@ -54,7 +59,7 @@ Switch (cmdToRun) {
 
     ;***********************************************DATE***********************************************
     ;********************DATE STUFF FOR YESTERDAY********************
-    Case "da y": ;9/11/200
+    Case "da y": ;9/11/20
     getYesterdayDate()
     FormatTime, formattedDateTime, %formattedDateTime%, M/d/yy ;9/12/20
     SendInput, %formattedDateTime%
