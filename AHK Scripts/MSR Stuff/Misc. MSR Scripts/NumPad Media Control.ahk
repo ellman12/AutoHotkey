@@ -63,9 +63,9 @@ NumPadSub::saveAndRestoreVolumeLevel()
 #If (GetKeyState("NumLock", "T") and GetKeyState("ScrollLock", "T")) and !(getKeyState("F24", "P"))
 {
 ;VD to the left/right.
-$NumPad0::
+$NumPad0::Send, ^#{Left}
 $NumPadIns::Send, ^#{Left}
-$NumPadDot::
+$NumPadDot::Send, ^#{Right}
 $NumPadDel::Send, ^#{Right}
 
 ;Captions

@@ -50,6 +50,11 @@ Switch (cmdToRun) {
     Default:
     if cmdToRun = ;Mainly for the ^CapsLock command. If the user tries to repeat a command without having done a command before, it won't do anything.
         Tippy("No previous Run command.", 2000)
+    else if (cmdToRun in "YT")
+    {
+        args := SubStr(cmdToRun, 3)
+        Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Misc. MSR Scripts\Run\YT.ahk %args%
+    }
     else
     {
         MsgBox, 16, Unknown Command., Command entered: "%cmdToRun%" does not exist.
@@ -324,7 +329,7 @@ Switch (cmdToRun) {
     Case "vs py": Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe C:\Users\Elliott\Documents\GitHub\Python-3-Projects
 
     ;Open YouTube website.
-    Case "yt", "yt ff", "yt Firefox":Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.youtube.com/
+    ; Case "yt", "yt ff", "yt Firefox":Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.youtube.com/
     Case "yt chr":Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://www.youtube.com/
 
     }
