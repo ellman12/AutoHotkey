@@ -16,6 +16,7 @@ DetectHiddenWindows, Off
 
 ;Specifying just "YT" should make the command behave like it used to.
 ;1 controls if new tab/window, 2 controls private window or not, 3 is a search term.
+;TODO: consider making the search term the first arg
 
 if (A_Args[1] = "t") AND (A_Args[2] = "p")
 {

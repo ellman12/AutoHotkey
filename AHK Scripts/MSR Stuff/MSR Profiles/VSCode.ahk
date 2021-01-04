@@ -105,10 +105,10 @@ return
 
 ;Keeb G12: Input functions for different languages
 !F23::
-switch (currentProfile) {
-    case "AutoHotkey VSCode":Send, InputBox`,{Space}
-    case "C VSCode":Send, scanf("`%");{Left 3}
-    case "Python VSCode":Send, input(""){Left 2}
+Switch (currentProfile) {
+    Case "AutoHotkey VSCode":Send, InputBox`,{Space}
+    Case "C VSCode":Send, scanf("`%");{Left 3}
+    Case "Python VSCode":Send, input(""){Left 2}
     default:MsgBox, 262160, Unknown VSCode Sub Profile, This current language is not defined for this hotkey.
 }
 return
@@ -127,6 +127,15 @@ return
 
 !F17::return
 !F18::return
+
+!/:: ;Adds comment character(s) at current cursor position.
+Switch (currentProfile) {
+    Case "AutoHotkey VSCode":Send, `;{Space}
+    Case "C VSCode":Send, //{Space}
+    Case "Python VSCode":Send, {#}{Space}
+    default:MsgBox, 262160, Unknown VSCode Sub Profile, This current language is not defined for this hotkey.
+}
+return
 
 #If currentProfile == "Python VSCode"
 F5::Send, #{F5} ;C and Python sharing this shortcut should hopefully work....
