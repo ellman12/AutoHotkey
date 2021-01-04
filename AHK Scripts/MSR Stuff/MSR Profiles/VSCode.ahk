@@ -137,6 +137,15 @@ Switch (currentProfile) {
 }
 return
 
+#/:: ;Same thing as !/, but adds an extra space before the comment character(s).
+Switch (currentProfile) {
+    Case "AutoHotkey VSCode":Send, {Space}`;{Space}
+    Case "C VSCode":Send, {Space}//{Space}
+    Case "Python VSCode":Send, {Space}{#}{Space}
+    default:MsgBox, 262160, Unknown VSCode Sub Profile, This current language is not defined for this hotkey.
+}
+return
+
 #If currentProfile == "Python VSCode"
 F5::Send, #{F5} ;C and Python sharing this shortcut should hopefully work....
 +Enter::Send, `:{Enter}
