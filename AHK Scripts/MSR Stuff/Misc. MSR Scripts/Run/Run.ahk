@@ -50,7 +50,7 @@ Switch (cmdToRun) {
     Default:
     if cmdToRun = ;Mainly for the ^CapsLock command. If the user tries to repeat a command without having done a command before, it won't do anything.
         Tippy("No previous Run command.", 2000)
-    else if (cmdToRun in "YT")
+    else if InStr(cmdToRun, "YT")
     {
         args := SubStr(cmdToRun, 3)
         Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Misc. MSR Scripts\Run\YT.ahk %args%
