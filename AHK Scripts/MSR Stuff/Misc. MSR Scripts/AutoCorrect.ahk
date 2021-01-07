@@ -5542,3 +5542,4 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::repttive::repetitive
 ::punlic::public
 ::ncie::nice
+::keeb::keyboard

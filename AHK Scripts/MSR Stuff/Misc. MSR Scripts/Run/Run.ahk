@@ -215,6 +215,9 @@ Switch (cmdToRun) {
     Case "h4":Send, {* 9}
 
     ;**************************************************MISC**************************************************
+    Case "/":Clipboard := StrReplace(Clipboard, "\", "/") ;Replace '\' in the Clipboard with '/'.
+    Case "\":Clipboard := StrReplace(Clipboard, "/", "\") ;Vice versa.
+
     ;Get free space in GB(ish) of all the drives.
     Case "st":
         DriveGet, OutputVar, List, Fixed ; get drive letters
