@@ -288,14 +288,7 @@ Send, ^a
 GoSub, ^!t
 return
 
-b::Send, ^v
-
 BackSpace::Send, !{F4}
-
-c::Send, ^c
-
-; (Shift + Win + Left) Comma moves active window to 2nd monitor.
-; SC033::Send, +#{Left}
 
 d::Run, explorer %A_Desktop% ;Open the Desktop folder.
 
@@ -369,7 +362,6 @@ m::sleepPC() ;Open Windows sleep, hibernate, etc. menu.
 ;Open Google Calendar.
 n::Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://calendar.google.com/calendar/u/0/r
 
-;Sick of doing this a million times in Run...
 /::SendRaw, Elliott.DuCharme@trojans.dsu.edu
 
 ;Shift + End.
@@ -435,18 +427,11 @@ SC01B::
 return
 
 s::Run, explorer C:\Users\%A_UserName%\Music ;Open Music folder.
-^s::Run, explorer C:\Users\%A_UserName%\Pictures\Memes ;Opens memes folder.
+^s::Run, explorer C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\Other\Memes ;Opens memes folder.
 
 Space:: ;Suspends all hotkeys for the specified number in milliseconds.
 SetTimer, setTimerLabel, 2500, On
 Suspend, On
-return
-
-;Open Terraria Wiki
-t::
-RunWait, "C:\Program Files\Mozilla Firefox\firefox.exe" https://terraria.gamepedia.com/Terraria_Wiki
-Sleep 2000
-Send, !+f ;Open the search bar.
 return
 
 ;Unzip a single .zip file in File Explorer.
@@ -456,31 +441,11 @@ Sleep 900
 Send, !e
 return
 
-;Cut to the clipboard.
-v::Send, ^x
-
 ;Redo.
 x::Send, ^y
 
-;Paste a link in Gmail, and make it blue and clickable too.
-;7/18/2020 1:26 PM removed because Gmail does this automatically (I think?) after sending an email.
-; y::
-; Send, ^k
-; Sleep 150
-; Send, ^v
-; Sleep 150
-; Send, {Tab 2}
-; Sleep 150
-; Send, ^v
-; Sleep 150
-; Send, {Enter}
-; return
-
 ;Undo.
 z::Send, ^z
-
-; #if (GetKeyState("F24", "P")) AND (GetKeyState("Space", "P"))
-; F24::return
 
 #if
 
