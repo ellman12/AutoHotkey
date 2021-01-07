@@ -5543,3 +5543,4 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::punlic::public
 ::ncie::nice
 ::keeb::keyboard
+:*:csc::CSC
