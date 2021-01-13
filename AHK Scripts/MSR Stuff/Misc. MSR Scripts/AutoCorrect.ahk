@@ -5545,3 +5545,6 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::keeb::keyboard
 :*:csc::CSC
 ::phomes::phones
+:*:html::HTML
+::iut::it
+::whys::why's

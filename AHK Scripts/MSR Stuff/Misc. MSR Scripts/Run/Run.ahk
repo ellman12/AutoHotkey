@@ -260,6 +260,14 @@ Switch (cmdToRun) {
     }
     return
 
+    Case "FAR": ;Stands for Find and Replace.
+    InputBox, textToSearch, Search where?, Enter the text to search.
+    InputBox, find, Find what?, Enter text to search for.
+    InputBox, replace, Find what?, Enter text to replace "%find%" with, and then store to the Clipboard.
+    newStr := StrReplace(textToSearch, find, replace)
+    Clipboard := newStr
+    return
+
     ; ;Usually used for swapping 2 different lines/sections/blocks of code.
     ; Case "swap":
     ; Clipboard :=
