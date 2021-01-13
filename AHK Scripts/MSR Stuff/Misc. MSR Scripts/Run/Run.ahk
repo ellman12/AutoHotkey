@@ -261,9 +261,18 @@ Switch (cmdToRun) {
     return
 
     Case "FAR": ;Stands for Find and Replace.
-    InputBox, textToSearch, Search where?, Enter the text to search.
+    InputBox, textToSearch, Search what?, Enter the text to search.
+    if ErrorLevel = 1
+        return
+
     InputBox, find, Find what?, Enter text to search for.
+    if ErrorLevel = 1
+        return
+
     InputBox, replace, Find what?, Enter text to replace "%find%" with, and then store to the Clipboard.
+    if ErrorLevel = 1
+        return
+
     newStr := StrReplace(textToSearch, find, replace)
     Clipboard := newStr
     return
