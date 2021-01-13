@@ -214,6 +214,9 @@ Switch (cmdToRun) {
     Case "h3":Send, {* 14}
     Case "h4":Send, {* 9}
 
+    ;Sends the contents of the Clipboard.
+    Case "paste":SendRaw, %Clipboard%
+
     ;**************************************************MISC**************************************************
     Case "/":Clipboard := StrReplace(Clipboard, "\", "/") ;Replace '\' in the Clipboard with '/'.
     Case "\":Clipboard := StrReplace(Clipboard, "/", "\") ;Vice versa.
