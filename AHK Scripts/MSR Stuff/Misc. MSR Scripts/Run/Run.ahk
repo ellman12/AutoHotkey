@@ -52,7 +52,7 @@ Switch (cmdToRun) {
         Tippy("No previous Run command.", 2000)
     else if InStr(cmdToRun, "YT")
     {
-        args := SubStr(cmdToRun, 3)
+        args := SubStr(cmdToRun, 3) ;Cut out this part and pass in the rest as args.
         Run, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Misc. MSR Scripts\Run\YT.ahk %args%
     }
     else

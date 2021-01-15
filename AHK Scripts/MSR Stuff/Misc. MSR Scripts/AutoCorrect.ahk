@@ -5548,3 +5548,6 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:html::HTML
 ::iut::it
 ::whys::why's
+::onedrie::OneDrive
+::d2l::D2L
+:*:url::URL
