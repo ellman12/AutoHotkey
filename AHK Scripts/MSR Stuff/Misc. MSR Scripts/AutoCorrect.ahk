@@ -5543,7 +5543,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::punlic::public
 ::ncie::nice
 ::keeb::keyboard
-:*:csc::CSC
+::csc::CSC
 ::phomes::phones
 :*:html::HTML
 ::iut::it
@@ -5551,3 +5551,9 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::onedrie::OneDrive
 ::d2l::D2L
 :*:url::URL
+:*:tmr::tomorrow
+::mak::make
+::ut::it
+::pss::PSS
+::psss::Photos Storage Server
+:*:donme::done

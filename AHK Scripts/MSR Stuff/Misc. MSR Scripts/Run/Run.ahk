@@ -348,7 +348,15 @@ Switch (cmdToRun) {
     return
 
     Case "vs":Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey
+
     Case "vs dsu":Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe C:\Users\Elliott\Documents\GitHub\Computer-Science-Classes
+
+    ;TEMP
+    Case "234": Run, C:\Users\Elliott|AppData\Local\Programs\Microsoft VS Code/Code.exe C:\Users\Elliott\Documents\GitHub\Computer-Science-Classes\Year 1 Semester 2\CSC 234 Software Security
+    Case "260": Run, C:\Users\Elliott|AppData\Local\Programs\Microsoft VS Code/Code.exe C:\Users\Elliott\Documents\GitHub\Computer-Science-Classes\Year 1 Semester 2\CSC 260 Object Oriented Design
+    Case "300": Run, C:\Users\Elliott|AppData\Local\Programs\Microsoft VS Code/Code.exe C:\Users\Elliott\Documents\GitHub\Computer-Science-Classes\Year 1 Semester 2\CSC 300 Data Structures
+    Case "328": Run, C:\Users\Elliott|AppData\Local\Programs\Microsoft VS Code/Code.exe C:\Users\Elliott\Documents\GitHub\Computer-Science-Classes\Year 1 Semester 2\CSC 328 Operating Environments
+
     Case "vs py": Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe C:\Users\Elliott\Documents\GitHub\Python-3-Projects
     Case "vs pss": Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe C:\Users\Elliott\Documents\GitHub\Photos-Storage-Server
 
