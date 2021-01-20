@@ -41,6 +41,7 @@ return
 ;return
 
 :X:pr::Send, printf("");{Left 3}
+:X:pln::Send, printf("\n");{Left 5}
 :X:sc::Send, scanf("`%");{Left 3}
 
 ::fr::
