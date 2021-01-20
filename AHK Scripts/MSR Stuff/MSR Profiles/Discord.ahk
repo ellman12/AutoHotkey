@@ -8,31 +8,29 @@ F13::
     Send, {Shift up}
 return
 
-;Mouse G2
-F14::
-return
+;Mouse G2: Down in the server list
+F14::Send, ^!{Down}
 
-;Mouse G3
-F15::
-return
+;Mouse G3: Up in the server list
+F15::Send, ^!{Up}
 
-;Mouse G4: Up in the server list
-F16::Send, ^!{Up}
+;Mouse G4: Up in the channels list
+F16::Send, !{Up}
 
-;Mouse G5: Up in the channels list
-F17::Send, !{Up}
+;Mouse G5: Up in unread text channels
+F17::Send, !+{Up}
 
-;Mouse G6: Navigate up in unread text channels
-F18::Send, !+{Up}
+;Mouse G6: Next page in history
+F18::Send, !{Right}
 
-;Mouse G7: Down in the server list
-F19::Send, ^!{Down}
+;Mouse G7: Down in the channels list
+F19::Send, !{Down}
 
-;Mouse G8: Down in the channels list
-F20::Send, !{Down}
+;Mouse G8: Down in unread text channels
+F20::Send, !+{Down}
 
-;Mouse G9: Navigate down in unread text channels
-F21::Send, !+{Down}
+;Mouse G9: Previous page in history
+F21::Send, !{Left}
 
 ;Mouse G10: Alt + Tab
 F22::Send, !{Tab}
@@ -41,8 +39,7 @@ F22::Send, !{Tab}
 F23::WinMinimize, A
 
 ;Mouse G12
-+F23::
-return
++F23::return
 
 ;****************************************K95 RGB ACTIONS***************************************
 ;Keeb G1: Mark server as read

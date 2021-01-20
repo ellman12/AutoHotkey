@@ -5427,7 +5427,6 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:io::o
 :*:kl::l
 :*:/.::.
-::>::?
 
 ; ;This simulates a feature on phones where you double tap Space and it inserts a period. https://www.autohotkey.com/docs/commands/KeyWait.htm#ExDouble
 ; ~Space::
