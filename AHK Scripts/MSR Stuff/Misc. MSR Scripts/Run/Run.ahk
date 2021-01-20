@@ -361,6 +361,8 @@ Switch (cmdToRun) {
     Case "vs 328": Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe "C:\Users\Elliott\Documents\GitHub\Computer-Science-Classes\Year 1 Semester 2\CSC 328 Operating Environments"
     Case "328":Run, "C:\Users\Elliott\Documents\GitHub\Computer-Science-Classes\Year 1 Semester 2\CSC 328 Operating Environments"
 
+    Case "282":Run, C:\Users\Elliott\Desktop\MATH 282 Math of Games
+
     Case "vs py": Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe C:\Users\Elliott\Documents\GitHub\Python-3-Projects
     Case "vs pss": Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe C:\Users\Elliott\Documents\GitHub\Photos-Storage-Server
 
