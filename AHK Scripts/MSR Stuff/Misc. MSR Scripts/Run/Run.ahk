@@ -337,21 +337,24 @@ Switch (cmdToRun) {
     Case "Thes Chr":
     InputBox, Thes_ChrInputBox, Search for This Word on Thesaurus.com, Type the word you want to search on Thesaurus.com in Chrome.
     Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://www.thesaurus.com/browse/%Thes_ChrInputBox%
-    Thes_ChrInputBox :=
     return
 
     ;Open thesaurus.com in Firefox and search for the inputted word.
     Case "Thes", "Thes ff", "thes Firefox":
     InputBox, Thes_FFInputBox, Search for This Word on Thesaurus.com, Type the word you want to search on Thesaurus.com in Firefox.
     Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.thesaurus.com/browse/%Thes_FFInputBox%
-    Thes_FFInputBox :=
     return
 
     Case "vs":Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey
-
     Case "vs dsu":Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe C:\Users\Elliott\Documents\GitHub\Computer-Science-Classes
+    Case "vs py": Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe C:\Users\Elliott\Documents\GitHub\Python-3-Projects
+    Case "vs pss": Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe C:\Users\Elliott\Documents\GitHub\Photos-Storage-Server
 
-    ;TEMP
+    ;Open YouTube website.
+    ; Case "yt", "yt ff", "yt Firefox":Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.youtube.com/
+    Case "yt chr":Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://www.youtube.com/
+    
+    ;**************************************************TEMP**************************************************
     Case "vs 234": Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe "C:\Users\Elliott\Documents\GitHub\Computer-Science-Classes\Year 1 Semester 2\CSC 234 Software Security"
     Case "234":Run, "C:\Users\Elliott\Documents\GitHub\Computer-Science-Classes\Year 1 Semester 2\CSC 234 Software Security"
     Case "vs 260": Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe "C:\Users\Elliott\Documents\GitHub\Computer-Science-Classes\Year 1 Semester 2\CSC 260 Object Oriented Design"
@@ -362,13 +365,12 @@ Switch (cmdToRun) {
     Case "328":Run, "C:\Users\Elliott\Documents\GitHub\Computer-Science-Classes\Year 1 Semester 2\CSC 328 Operating Environments"
 
     Case "282":Run, C:\Users\Elliott\Desktop\MATH 282 Math of Games
-
-    Case "vs py": Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe C:\Users\Elliott\Documents\GitHub\Python-3-Projects
-    Case "vs pss": Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe C:\Users\Elliott\Documents\GitHub\Photos-Storage-Server
-
-    ;Open YouTube website.
-    ; Case "yt", "yt ff", "yt Firefox":Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.youtube.com/
-    Case "yt chr":Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://www.youtube.com/
-
+    
+    ;Attendance
+    Case "att":
+    InputBox, attendanceCode, Attendance Code, Enter attendance code,, 200, 130,,,,, %runInputBoxText%
+    if (attendanceCode != "")
+        Run, https://inclass.today/%attendanceCode%
+    return
     }
 }
