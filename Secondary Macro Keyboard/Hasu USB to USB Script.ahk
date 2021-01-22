@@ -48,6 +48,27 @@ else
     Run, C:\Users\%A_UserName%\Documents\Microsoft To Do ;Run/show MS To Do.
 return
 
+F5:: ;Run, and activate or show/hide Memes folder.
+DetectHiddenWindows, On
+SetTitleMatchMode, 2 ;A window's title can contain WinTitle anywhere inside it to be a match.
+; if (WinExist("Memes")) AND (!WinActive("Memes"))
+;     WinActivate, Memes
+if !WinExist("Memes") AND (!WinActive("Memes"))
+    Run, C:/Users/%A_UserName%/Documents/GitHub/AutoHotkey/Other/Memes
+else
+{
+    MemesVisibilityToggle := !MemesVisibilityToggle
+
+    if (MemesVisibilityToggle = 0) {
+        WinHide, Memes
+        Send, !{Tab} ;Go back to the previous window.
+    } else {
+        WinShow, Memes
+        WinActivate, Memes
+    }
+}
+return
+
 F9:: ;Show/hide Outlook.
 DetectHiddenWindows, On
 SetTitleMatchMode, 2 ;A window's title can contain WinTitle anywhere inside it to be a match.

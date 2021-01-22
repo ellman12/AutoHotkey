@@ -5556,3 +5556,6 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::pss::PSS
 ::psss::Photos Storage Server
 :*:donme::done
+::steam::Steam
+::discord::Discord
+::zoom::Zoom
