@@ -889,6 +889,5 @@ Send, {Enter}
 Sleep 1000
 Send, !{F4}
 return
-#If
 
 :*:pw::csc-328

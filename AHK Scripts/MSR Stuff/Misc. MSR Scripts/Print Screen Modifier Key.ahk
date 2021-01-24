@@ -3,6 +3,6 @@
 
 #If GetKeyState("PrintScreen", "P")
 PrintScreen::return ;Disables its normal functionality.
-; CapsLock::MsgBox
-; ^!t::MsgBox
+
+t::Send, {U+1F914} ;🤔
 #If
