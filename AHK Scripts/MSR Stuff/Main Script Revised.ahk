@@ -861,6 +861,10 @@ deleteConfigFile() {
 }
 
 ;**************************************************EXPERIMENTAL**************************************************
+;Volume wheel up/down on K95 RGB does log volume scaling.
+^!F22::changeVolume(1)
+^+F22::changeVolume(-1)
+
 ;**************************************************TEMPORARY**************************************************
 #If WinActive("ahk_exe Zoom.exe")
 ; RAlt::Send, #+s ;Snip & Sketch.
