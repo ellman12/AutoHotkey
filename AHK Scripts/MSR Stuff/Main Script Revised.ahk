@@ -310,6 +310,8 @@ Loop {
 		else
 			currentProfile := "Generic VSCode"
 
+	else if Instr(activeWindowTitle, "Microsoft Visual Studio")
+		currentProfile := "Visual Studio"
 	else if InStr(activeWindowTitle, " - Excel")
 		currentProfile := "Excel"
 	else if InStr(activeWindowTitle, " - Word")
@@ -352,6 +354,7 @@ Loop {
 #Include, %A_ScriptDir%\MSR Profiles\Google Sheets.ahk
 #Include, %A_ScriptDir%\MSR Profiles\Microsoft Excel.ahk
 #Include, %A_ScriptDir%\MSR Profiles\Microsoft Word.ahk
+#Include, %A_ScriptDir%\MSR Profiles\Visual Studio.ahk
 #Include, %A_ScriptDir%\MSR Profiles\VSCode.ahk
 
 #Include, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\Custom Window Groups.ahk
