@@ -1,5 +1,4 @@
 ;****************************************SCIMITAR RGB ACTIONS***************************************
-
 #If currentProfile == "Visual Studio"
 ;Mouse G1
 ;Horizontal scroll
