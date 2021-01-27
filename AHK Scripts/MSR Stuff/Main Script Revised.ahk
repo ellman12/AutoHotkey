@@ -900,3 +900,39 @@ return
 #If
 
 :*X:pw::Send, csc-328{Enter}
+
+; ;Click the 'Download As FLAC' button.
+; RCtrl::
+; loopAmt = 10 ;Total is 205
+; Loop %loopAmt% {
+; 	Send, {Click}
+; 	Sleep 800
+; 	Send, {Space}
+; 	Sleep 100
+; 	Send, ^{PgDn}
+; 	Sleep 800
+; }
+
+; Send, ^{PgDn 2}
+; Send, ^{PgUp}
+; return
+
+; RAlt:: ;Save the file
+; loopAmt = 10 ;Total is 205
+; Loop %loopAmt% {
+; 	MouseClick, right, 294, 637
+; 	Sleep 900
+; 	Send, v ;Save audio as
+; 	Sleep 1800
+; 	; WinActivate, Enter name of file to save to…
+; 	MouseClick, Left, 527, 442
+; 	Sleep 1100
+; 	Send, {Home}{Delete 5}
+; 	Sleep 1900
+; 	; Send, !{s}
+; 	MouseClick, Left, 597, 445
+; 	Sleep 1050
+; 	Send, ^w
+; 	Sleep 900
+; }
+; return
