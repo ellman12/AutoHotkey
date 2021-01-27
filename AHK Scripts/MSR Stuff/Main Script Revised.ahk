@@ -899,4 +899,4 @@ return
 
 #If
 
-:*:pw::csc-328
+:*X:pw::Send, csc-328{Enter}
