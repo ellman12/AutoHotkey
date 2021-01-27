@@ -4,5 +4,7 @@
 #If GetKeyState("PrintScreen", "P")
 PrintScreen::return ;Disables its normal functionality.
 
+;My commonly used emojis.
 t::Send, {U+1F914} ;🤔
+u::Send, {U+1F44D} ;👍
 #If
