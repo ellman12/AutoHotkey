@@ -5564,3 +5564,4 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::cmd::command
 :*:cd..::cd ..
 ::worjks::works
+:*:shownb::shown
