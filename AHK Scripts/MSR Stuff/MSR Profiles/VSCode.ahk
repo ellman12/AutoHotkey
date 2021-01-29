@@ -152,6 +152,7 @@ F5::Send, #{F5} ;C and Python sharing this shortcut should hopefully work....
 
 #If currentProfile == "C VSCode"
 F5::Send, #{F5} ;For compiling C code.
+:*:null::NULL
 
 ; #If "VSCode" not in currentProfile OR programmingMode = false
 #If programmingMode = false

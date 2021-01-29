@@ -5565,3 +5565,4 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:cd..::cd ..
 ::worjks::works
 :*:shownb::shown
+::css::CSS
