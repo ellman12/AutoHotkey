@@ -5566,3 +5566,4 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::worjks::works
 :*:shownb::shown
 ::css::CSS
+::vm::VM

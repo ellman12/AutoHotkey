@@ -279,6 +279,10 @@ global MusicBeeVisibilityToggle := 1
 ;If a long process is running, don't allow any sleep macros to run because that will potentially interrupt the process. 0 = not running; 1 = running.
 global preventSleepToggle := 0
 
+;Used for Ctrl W.ahk
+ctrlWTitles := []
+ctrlWIDs := []
+
 ;The stuff in this loop needs to be running constantly.
 Loop {
 	WinGetActiveTitle, activeWindowTitle
@@ -367,6 +371,7 @@ Loop {
 #If ;See the end of the AutoCorrect file. This needs to be here to end the giant #If block in there. Moved to here to avoid messing up when the #h hotkey appends to that file.
 
 #Include, %A_ScriptDir%\Misc. MSR Scripts\C-C++ Programming.ahk
+#Include, %A_ScriptDir%\Misc. MSR Scripts\Ctrl W.ahk
 #Include, %A_ScriptDir%\Misc. MSR Scripts\Easy Window Dragging.ahk
 #Include, %A_ScriptDir%\Misc. MSR Scripts\NumPad Media Control.ahk
 #Include, %A_ScriptDir%\Misc. MSR Scripts\Print Screen Modifier Key.ahk
