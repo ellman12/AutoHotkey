@@ -1,6 +1,6 @@
 # AutoHotkey
 
-All of my AutoHotkey and iCUE stuff.
+All of my AutoHotkey and iCUE stuff. Start with the file "Main Script Revised.ahk"
 
 **Brief History (From What I Can Remember/find):**<br>
 2015/2016—acquire K95 RGB and M65 mouse.<br>
