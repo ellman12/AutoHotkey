@@ -284,7 +284,7 @@ showWinTitlesFx(Fx, WindowGroupArray, CurrentWin, FxShowHideToggle) {
         }
     }
 
-    MsgBox, 0, %Fx% Windows, CurrentWin%Fx% = %CurrentWin%`n`n%Fx%ShowHideToggle = %F6ShowHideToggle%`n`n%message%
+    MsgBox, 0, %Fx% Windows, CurrentWin%Fx% = %CurrentWin%`n`n%Fx%ShowHideToggle = %FxShowHideToggle%`n`n%message%
 }
 
 ;Stores a group in a .tmp file for later use. calledOnExit is used for the Reload function so the user isn't bombarded with Tippys on every reload. 0 = false; 1 = true.
