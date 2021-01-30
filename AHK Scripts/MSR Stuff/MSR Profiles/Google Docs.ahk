@@ -36,11 +36,8 @@ F18::
 Send, !{Right}
 return
 
-;Mouse G7
-;Close browser tab
-F19::
-Send, ^w
-return
+;Mouse G7: Close browser tab
+F19::Gosub, $^w
 
 ;Mouse G8
 ;Go one tab to the left

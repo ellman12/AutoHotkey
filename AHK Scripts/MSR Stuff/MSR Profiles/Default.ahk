@@ -32,7 +32,7 @@ F18::Send, !{Right}
 
 ;Mouse G7
 ;Close tab.
-F19::Send, ^w
+F19::Gosub, $^w
 
 ;Mouse G8
 ;Go one tab to the left.

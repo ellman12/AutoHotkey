@@ -21,7 +21,7 @@ F17::Send, ^{PGDN}
 F18::return
 
 ;Mouse G7: close tab
-F19::Send, ^w
+F19::Gosub, $^w
 
 ;Mouse G8: tab to the left
 F20::Send, ^{PGUP}

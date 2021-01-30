@@ -41,7 +41,7 @@ SendMode Input
 DetectHiddenWindows, Off
 #SingleInstance force
 
-OnExit, onExitLabel ;Dump CWG groups to a .tmp file with a timestamp in case needed later.
+OnExit, onExitLabel ;Dump groups to a .tmp file with a timestamp in case needed later.
 
 ;**************************************************AUTO-EXECUTE**************************************************
 ;***********************************AUTOCORRECT GUI***********************************
@@ -96,6 +96,13 @@ readGroupFromFile("F6", WindowGroupF6, 1)
 readGroupFromFile("F7", WindowGroupF7, 1)
 readGroupFromFile("F8", WindowGroupF8, 1)
 readGroupFromFile("F10", WindowGroupF10, 1)
+
+;Used for Ctrl W.ahk
+global ctrlWTitles := []
+global ctrlWIDs := []
+
+readCtrlWFile("Ctrl W Titles", ctrlWTitles, "`n", 1)
+readCtrlWFile("Ctrl W IDs", ctrlWIDs, "`n", 1)
 
 global F12Group := []
 global CurrentWinF12 := 1
@@ -279,10 +286,6 @@ global MusicBeeVisibilityToggle := 1
 ;If a long process is running, don't allow any sleep macros to run because that will potentially interrupt the process. 0 = not running; 1 = running.
 global preventSleepToggle := 0
 
-;Used for Ctrl W.ahk
-ctrlWTitles := []
-ctrlWIDs := []
-
 ;The stuff in this loop needs to be running constantly.
 Loop {
 	WinGetActiveTitle, activeWindowTitle
@@ -371,7 +374,7 @@ Loop {
 #If ;See the end of the AutoCorrect file. This needs to be here to end the giant #If block in there. Moved to here to avoid messing up when the #h hotkey appends to that file.
 
 #Include, %A_ScriptDir%\Misc. MSR Scripts\C-C++ Programming.ahk
-#Include, %A_ScriptDir%\Misc. MSR Scripts\Ctrl W.ahk
+#Include, %A_ScriptDir%\Misc. MSR Scripts\Ctrl W\Ctrl W.ahk
 #Include, %A_ScriptDir%\Misc. MSR Scripts\Easy Window Dragging.ahk
 #Include, %A_ScriptDir%\Misc. MSR Scripts\NumPad Media Control.ahk
 #Include, %A_ScriptDir%\Misc. MSR Scripts\Print Screen Modifier Key.ahk
@@ -398,6 +401,8 @@ FileDelete, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\F6 Group.tmp
 FileDelete, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\F7 Group.tmp
 FileDelete, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\F8 Group.tmp
 FileDelete, %A_ScriptDir%\Misc. MSR Scripts\Custom Window Groups\F10 Group.tmp
+FileDelete, %A_ScriptDir%\Misc. MSR Scripts\Ctrl W\Ctrl W Titles.tmp
+FileDelete, %A_ScriptDir%\Misc. MSR Scripts\Ctrl W\Ctrl W IDs.tmp
 Reload
 return
 
@@ -792,15 +797,18 @@ return
 ;**************************************************MSR FUNCTIONS AND LABELS**************************************************
 onExitLabel:
 if A_ExitReason not in Reload ;When the script exits in any way besides Reloading, generate dump files. Think like a Blue Screen of Death: that creates a dump of the memory for later use.
-	dumpAllCWGGroups() ;The reason for the "not in Reload" is so the user doesn't get that Tippy every single time when Reloading.
+	dumpAllGroups() ;The reason for the "not in Reload" is so the user doesn't get that Tippy every single time when Reloading.
 ExitApp
 
 ;Create a dump of the CWG IDs.
-dumpAllCWGGroups() {
+dumpAllGroups() {
 	winGroupBackupDump("F6", WindowGroupF6)
 	winGroupBackupDump("F7", WindowGroupF7)
 	winGroupBackupDump("F8", WindowGroupF8)
 	winGroupBackupDump("F10", WindowGroupF10)
+
+	ctrlWGroupBackup("Ctrl W Titles", ctrlWTitles, "`n")
+	ctrlWGroupBackup("Ctrl W IDs", ctrlWIDs, "`n")
 	Tippy("Group dump files have been created", 1300)
 }
 return
@@ -812,6 +820,9 @@ reloadMSR() {
 	writeGroupToFile("F7", WindowGroupF7, 1)
 	writeGroupToFile("F8", WindowGroupF8, 1)
 	writeGroupToFile("F10", WindowGroupF10, 1)
+
+	ctrlWGroupToFile("Ctrl W Titles", ctrlWTitles, 1, "`n")
+	ctrlWGroupToFile("Ctrl W IDs", ctrlWIDs, 1, "`n")
 	Reload
 }
 
