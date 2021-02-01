@@ -55,12 +55,16 @@ F23::WinMinimize, A
 ^F16::
 return
 
-;Keeb G5
+;Keeb G5: Add a thinking reaction to latest message
 ^F17::
+SendRaw, +:t
+Send, {Enter}
 return
 
-;Keeb G6
+;Keeb G6: Add a thumbs up reaction to latest message
 ^F18::
+SendRaw, +:+
+Send, {Enter}
 return
 
 ;Keeb G7: Up in the server list

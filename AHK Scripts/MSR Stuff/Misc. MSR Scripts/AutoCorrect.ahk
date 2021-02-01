@@ -5567,3 +5567,5 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:shownb::shown
 ::css::CSS
 ::vm::VM
+::etc::etc.
+::th e::the
