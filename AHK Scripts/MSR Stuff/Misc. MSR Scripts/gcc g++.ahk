@@ -1,8 +1,10 @@
 ;Automate compiling and running command line C/C++ code.
-;TODO:
-;Show/hide GUI and change stuff in runtime
-;Do more testing before adding to MSR.
 #SingleInstance, force
+
+#include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\Header Files\toggleGUI.ahk
+
+; global gccgppGUIToggle := 0
+global gccgppGUIToggle := 1
 
 GUI, gccgpp:+AlwaysOnTop
 GUI, gccgpp:Color, Silver
@@ -25,7 +27,7 @@ GUI, gccgpp:Add, Radio, vUsingExternal, External Terminal
 
 GUI, gccgpp:Add, Button, xp+140 yp-10 gDoneButton, &Done
 
-GUI, gccgpp:Show, w195 h180 x1300,gcc g++
+GUI, gccgpp:Show, w198 h180 x1300,gcc g++
 return
 
 DoneButton:
@@ -36,6 +38,11 @@ return
 
 AppsKey::compileAndRun(File1)
 !AppsKey::compileAndRun(File2)
+
+#AppsKey::
+GUI, gccgpp:Submit, NoHide
+toggleGUI(gccgppGUIToggle, "gccgpp", 198, 180, "gcc g++")
+return
 
 compileAndRun(filename)
 {
