@@ -1,4 +1,7 @@
 ;Automate compiling and running command line C/C++ code.
+;TODO:
+;Show/hide GUI and change stuff in runtime
+;Do more testing before adding to MSR.
 #SingleInstance, force
 
 GUI, gccgpp:+AlwaysOnTop
