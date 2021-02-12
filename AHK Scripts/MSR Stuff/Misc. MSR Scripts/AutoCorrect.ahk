@@ -5569,3 +5569,24 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::vm::VM
 ::etc::etc.
 ::th e::the
+::rn::right now
+::retrn::return
+::hw::homework
+::abouyt::about
+::reak::real
+:*:checjk::check
+:*:rly::really
+::vehavior::behavior
+::froma::from a
+::yey::yet
+:*:berrer::better
+:*:butons::buttons
+:*:probs::probably
+:*:wiat::wait
+::audo::audio
+:*:gnt::GNT
+:*?:cass::class
+::cpp::C++
+::c++::C++
+:*:appt::appointment
+:*:hait::hair
