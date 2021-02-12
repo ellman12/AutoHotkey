@@ -1,6 +1,6 @@
 ;****************************************SCIMITAR RGB ACTIONS***************************************
 ;Actions regardless of open file type.
-#If currentProfile == "Generic VSCode" OR currentProfile == "AutoHotkey VSCode" OR currentProfile == "C VSCode" OR currentProfile == "Python VSCode"
+#If currentProfile == "Generic VSCode" OR currentProfile == "AutoHotkey VSCode" OR currentProfile == "C VSCode" OR currentProfile == "C++ VSCode" OR currentProfile == "Python VSCode"
 ;Mouse G1: horizontal scroll
 F13::
 Send, {Shift down}
@@ -42,7 +42,7 @@ F23::WinMinimize, A
 +F23::Send, ^+t
 
 ;****************************************K95 RGB ACTIONS***************************************
-;Keeb G1: Single tap for Git Push; double tap for Git Pull.
+;Keeb G1: Single tap for Git Commit; double tap for Git Push, triple tap for pull.
 ^F13::
 if ((A_ThisHotkey = A_PriorHotkey) AND (A_TimeSincePriorHotkey < 250))
 	numOfTaps++
@@ -94,6 +94,7 @@ return
 ^F21::
 switch (currentProfile) {
     case "AutoHotkey VSCode":Send, MsgBox`,{Space}
+    case "C++ VSCode":Send, cout <<  << endl;{Left 9}
     case "C VSCode":Send, printf("");{Left 3}
     case "Python VSCode":Send, print(""){Left 2}
     default:MsgBox, 262160, Unknown VSCode Sub Profile, This current language is not defined for this hotkey.
@@ -107,6 +108,7 @@ return
 !F23::
 Switch (currentProfile) {
     Case "AutoHotkey VSCode":Send, InputBox`,{Space}
+    case "C++ VSCode":Send, cin >> `;{Left}
     Case "C VSCode":Send, scanf("`%");{Left 3}
     Case "Python VSCode":Send, input(""){Left 2}
     default:MsgBox, 262160, Unknown VSCode Sub Profile, This current language is not defined for this hotkey.
@@ -126,12 +128,14 @@ return
 !F16::Send, ^+\
 
 !F17::return
-!F18::return
+
+;Clear line
+!F18::Send, {Home}+{End}{Delete}
 
 !/:: ;Adds comment character(s) at current cursor position.
 Switch (currentProfile) {
     Case "AutoHotkey VSCode":Send, `;{Space}
-    Case "C VSCode":Send, //{Space}
+    Case "C VSCode", "C++ VSCode":Send, //{Space}
     Case "Python VSCode":Send, {#}{Space}
     default:MsgBox, 262160, Unknown VSCode Sub Profile, This current language is not defined for this hotkey.
 }
@@ -140,7 +144,7 @@ return
 #/:: ;Same thing as !/, but adds an extra space before the comment character(s).
 Switch (currentProfile) {
     Case "AutoHotkey VSCode":Send, {Space}`;{Space}
-    Case "C VSCode":Send, {Space}//{Space}
+    Case "C VSCode", "C++ VSCode":Send, {Space}//{Space}
     Case "Python VSCode":Send, {Space}{#}{Space}
     default:MsgBox, 262160, Unknown VSCode Sub Profile, This current language is not defined for this hotkey.
 }
@@ -150,16 +154,16 @@ return
 F5::Send, #{F5} ;C and Python sharing this shortcut should hopefully work....
 +Enter::Send, `:{Enter}
 
-#If currentProfile == "C VSCode"
+#If currentProfile == "C VSCode" OR currentProfile == "C++ VSCode"
 F5::Send, #{F5} ;For compiling C code.
 :*:null::NULL
 
-; #If "VSCode" not in currentProfile OR programmingMode = false
 #If programmingMode = false
 \::
 Send, ^+{Left}
 Send, {BackSpace}
 return
 
+#If programmingMode = false AND !(currentProfile == "Generic VSCode" OR currentProfile == "AutoHotkey VSCode" OR currentProfile == "C VSCode" OR currentProfile == "C++ VSCode" OR currentProfile == "Python VSCode")
 ::i::I
 #If

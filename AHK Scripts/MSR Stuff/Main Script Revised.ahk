@@ -310,6 +310,8 @@ Loop {
 	else if Instr(activeWindowTitle, " - Visual Studio Code")
 		if InStr(activeWindowTitle, ".ahk")
 			currentProfile := "AutoHotkey VSCode"
+		else if InStr(activeWindowTitle, ".cpp")
+			currentProfile := "C++ VSCode"
 		else if InStr(activeWindowTitle, ".c")
 			currentProfile := "C VSCode"
 		else if InStr(activeWindowTitle, ".py")

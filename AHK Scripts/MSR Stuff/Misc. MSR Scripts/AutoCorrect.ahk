@@ -5586,7 +5586,10 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::audo::audio
 :*:gnt::GNT
 :*?:cass::class
-::cpp::C++
+; ::cpp::C++
 ::c++::C++
 :*:appt::appointment
 :*:hait::hair
+::c==::C++
+:*:gpp::g++
+:*:g==::g++
