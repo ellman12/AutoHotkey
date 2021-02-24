@@ -161,12 +161,29 @@ Switch (cmdToRun) {
     FormatTime, formattedDateTime, %formattedDateTime%, dddd, MMMM d, yyyy ;Monday, September 14, 2020
     SendInput, %formattedDateTime%
     return
-
+    
     ;**************************************************INSERT**************************************************
+    ;Titles/headers.
+    Case "t":Send, {* 50}
+    Case "h1":Send, {* 35}
+    Case "h2":Send, {* 20}
+    Case "h3":Send, {* 14}
+    Case "h4":Send, {* 9}
+    
+    ;Emails.
+    Case "2mail": Send, bobb71013@gmail.com
+    Case "mail": Send, ellduc4@gmail.com
+
+    ;Sends the contents of the Clipboard.
+    Case "paste":SendRaw, %Clipboard%
+
+    ;**************************************************SYMBOLS**************************************************
     ;Lots of misc. math symbols.
     Case "+-": Send, {U+00B1} ;±
     Case "-+": Send, {U+2213} ;∓
-    Case "mult": Send, {U+00D7} ;×
+    Case "mult", "mult1": Send, {U+00D7} ;×
+    Case "mult2":Send, {U+22C5} ;⋅
+    ; Case "mult3":Send, {U+00B7} ;·
     Case "div": Send, {U+00F7} ;÷
     Case "sqrt": Send, {U+221A} ;√
     Case "int": Send, {U+222B} ;∫
@@ -193,29 +210,17 @@ Switch (cmdToRun) {
     Case "em": Send, {U+2014} ;—
 
     ;Misc.
-    Case "sec": Send, {U+00A7} ;§
+    Case "cent1":Send, {U+00A2} ;¢
+    Case "cent2":Send, {U+FFE0} ;￠
     Case "check": Send, {U+2713} ;✓
+    Case "sec": Send, {U+00A7} ;§
     Case "x": Send, {U+2717} ;✗
-
-    ;Emails.
-    Case "2mail": Send, bobb71013@gmail.com
-    Case "mail": Send, ellduc4@gmail.com
-
+       
     ;Arrows.
     Case "u", "up": Send, {U+2191} ;↑
     Case "r", "right": Send, {U+2192} ;→
     Case "d", "down": Send, {U+2193} ;↓
     Case "l", "left": Send, {U+2190} ;←
-
-    ;Titles/headers.
-    Case "t":Send, {* 50}
-    Case "h1":Send, {* 35}
-    Case "h2":Send, {* 20}
-    Case "h3":Send, {* 14}
-    Case "h4":Send, {* 9}
-
-    ;Sends the contents of the Clipboard.
-    Case "paste":SendRaw, %Clipboard%
 
     ;**************************************************MISC**************************************************
     Case "/":Clipboard := StrReplace(Clipboard, "\", "/") ;Replace '\' in the Clipboard with '/'.
