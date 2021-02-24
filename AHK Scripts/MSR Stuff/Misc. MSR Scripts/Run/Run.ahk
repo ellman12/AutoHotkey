@@ -210,7 +210,7 @@ Switch (cmdToRun) {
     Case "em": Send, {U+2014} ;—
 
     ;Misc.
-    Case "cent1":Send, {U+00A2} ;¢
+    Case "cent", "cent1":Send, {U+00A2} ;¢
     Case "cent2":Send, {U+FFE0} ;￠
     Case "check": Send, {U+2713} ;✓
     Case "sec": Send, {U+00A7} ;§
