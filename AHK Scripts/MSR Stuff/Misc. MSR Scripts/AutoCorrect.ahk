@@ -5593,3 +5593,13 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::c==::C++
 :*:gpp::g++
 :*:g==::g++
+:*:ouit::out
+:*:vulbnerabilit::vulnerability
+::ouse::house
+:*:ntfs::NTFS
+:*:psss::Photos Storage Server
+:*:shouldi::should I
+::ig::I guess
+:*:thnk::think
+::llines::lines
+:*:defaulkt::default
