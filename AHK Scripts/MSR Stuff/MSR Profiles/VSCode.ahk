@@ -127,7 +127,8 @@ return
 ;Keeb G16: Jump to either the next bracket or matching bracket
 !F16::Send, ^+\
 
-!F17::return
+;Comment out block
+!F17::Send, !+{Right 4}^/
 
 ;Clear line
 !F18::Send, {Home}+{End}{Delete}
