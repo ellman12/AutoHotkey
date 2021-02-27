@@ -386,6 +386,7 @@ Switch (cmdToRun) {
         InputBox, dice2, Dice 2 Value, Pair %A_Index% of %dicePairs%`, Value of Dice 2,, 200, 130
         finalString .= "(" . dice1 . ", " . dice2 . "), "
     }
+    StringTrimRight, finalString, finalString, 2 ;Remove trailing comma
     Clipboard := finalString
     return
     }
