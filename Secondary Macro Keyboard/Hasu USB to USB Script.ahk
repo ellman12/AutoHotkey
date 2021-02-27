@@ -384,6 +384,7 @@ m::sleepPC() ;Open Windows sleep, hibernate, etc. menu.
 n::Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://calendar.google.com/calendar/u/0/r
 
 /::SendRaw, Elliott.DuCharme@trojans.dsu.edu
+^/::SendRaw, Elliott.DuCharme
 
 ;Shift + End.
 NumPad1::Send, +{End}
