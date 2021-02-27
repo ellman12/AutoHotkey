@@ -373,9 +373,20 @@ Switch (cmdToRun) {
     
     ;Attendance
     Case "att":
-    InputBox, attendanceCode, Attendance Code, Enter attendance code,, 200, 130,,,,, %runInputBoxText%
+    InputBox, attendanceCode, Attendance Code, Enter attendance code,, 200, 130
     if (attendanceCode != "")
         Run, https://inclass.today/%attendanceCode%
+    return
+    
+    ;Used to enter lists of dice pairs, like this: (2, 6), (6, 2), (3, 5), (5, 3), (4, 4)
+    Case "dice":
+    InputBox, dicePairs, How many dice pairs?, Enter amount of dice pairs,, 200, 130
+    Loop %dicePairs% {
+        InputBox, dice1, Dice 1 Value, Pair %A_Index% of %dicePairs%`, Value of Dice 1,, 200, 130
+        InputBox, dice2, Dice 2 Value, Pair %A_Index% of %dicePairs%`, Value of Dice 2,, 200, 130
+        finalString .= "(" . dice1 . ", " . dice2 . "), "
+    }
+    Clipboard := finalString
     return
     }
 }

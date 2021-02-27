@@ -5603,3 +5603,4 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:thnk::think
 ::llines::lines
 :*:defaulkt::default
+:*:workj::work
