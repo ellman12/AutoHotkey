@@ -75,6 +75,7 @@ return
 ;Keeb G3: delete line
 ^F15::Send, ^+k
 
+/*
 ;Keeb G4: Toggle bookmark on the current line
 ^F16::Send, ^!k
 
@@ -83,6 +84,16 @@ return
 
 ;Keeb G6: next bookmark
 ^F18::Send, !n
+*/
+
+;Keeb G4: Previous bookmark
+^F16::Send, !p
+
+;Keeb G5: Next bookmark
+^F17::Send, !n
+
+;Keeb G6: Format code
+^F18::Send, !+f
 
 ;Keeb G7: Copy line up
 ^F19::Send, +!{Up}
