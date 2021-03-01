@@ -13,3 +13,5 @@ May 29, 2019—Replace M65 with Scimitar Pro RGB (bigger, more comfortable, 14 e
 AutoHotkey has completely changed my workflow and way of going about doing tasks on a computer. In addition to making my work easier, it has also helped me to learn and practice many important programming conventions and skills, such as DRY (Don't Repeat Yourself), KISS (Keep It Simple, Stupid), planning before programming, and how to use git and GitHub professionally and smartly. Amazing language.
 
 There really isn't an end goal with this repository. It's all about making using a computer easier for myself. It started around 2017/2018 with pretty simple iCUE profiles for making things easier and it's just grown from there after I learned about AutoHotkey from this video (I think): https://www.youtube.com/watch?v=Arn8ExQ2Gjg. I am always thinking of and coming up with new ideas and try to find better ways of doing things—both in terms of programming and general computer-related tasks. People are often amazed and blown away at all of my AutoHotkey things
+
+This is my magnum opus.
