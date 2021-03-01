@@ -115,8 +115,18 @@ Switch (currentProfile) {
 }
 return
 
-;Keeb G13: toggle fold
-!F13::Send, ^#l
+; ;Keeb G13: toggle fold
+; !F13::Send, ^#l
+
+;Keeb G13: Add {}, format, and add newline
+!F13::
+Send, {End}+{Home}
+SendRaw, {
+Send, !+f
+
+Sleep 100
+Send, {End}{Up}{End}{Enter} ;Add new line before }
+return
 
 ;Keeb G14: outdent lines
 !F14::Send, ^[

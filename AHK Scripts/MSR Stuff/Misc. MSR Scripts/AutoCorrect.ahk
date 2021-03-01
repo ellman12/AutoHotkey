@@ -5604,3 +5604,10 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::llines::lines
 :*:defaulkt::default
 :*:workj::work
+:*:thje::the
+:*:thjke::the
+:*:lmkk::let me know
+::fir::for
+:*:resulkt::result
+:*?:sone::some
+:*:sefmentation::segmentation
