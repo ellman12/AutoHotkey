@@ -6,7 +6,7 @@
 *CapsLock::return
 
 ^CapsLock:: ;Repeats previous command. Useful when you specifically know what the previous command is.
-if (runInputBoxText in z,h,sd,rs) ;Disable accidentally telling the PC to sleep.
+if runInputBoxText in z,h,sd,rs ;Disable accidentally telling the PC to sleep.
     Tippy("Sleep macros are disabled for ^CapsLock...", 1300)
 else
     runCommand(runInputBoxText)
