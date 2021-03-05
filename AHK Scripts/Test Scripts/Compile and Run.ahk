@@ -70,7 +70,26 @@ GUI, CR:Add, ComboBox, xp+65 yp w55 vprgmExt2, out||exe
 GUI, CR:Add, DDL, xp+60 yp w76 vEnvDDL2, VSCode||External Terminal
 
 ;***********************************FILE3***********************************
+;Compiler
+GUI, CR:Add, ComboBox, xm yp+25 w56 vcompChoice3, gcc|g++||
 
+;Filename
+GUI, CR:Add, Edit, xp+58 yp w63 vfilename3, !AppKey
+
+;Extension
+GUI, CR:Add, Edit, xp+65 yp w36 vfileExt3, cpp
+
+;&&
+GUI, CR:Font, s12 q5
+GUI, CR:Add, Text, xp+38 yp, &&&&
+
+;Program (Executable) Name and Extension
+GUI, CR:Font, s10 q5
+GUI, CR:Add, Edit, xp+24 yp w63 vprgmName3, a
+GUI, CR:Add, ComboBox, xp+65 yp w55 vprgmExt3, out||exe
+
+; ;Environment
+GUI, CR:Add, DDL, xp+60 yp w76 vEnvDDL3, VSCode||External Terminal
 
 GUI, CR:Show, w%CR_GUI_WDTH% h%CR_GUI_HEIGHT% x1200 y700, Compile and Run
 F5::Reload
