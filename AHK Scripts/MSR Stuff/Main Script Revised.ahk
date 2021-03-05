@@ -169,8 +169,8 @@ GUI, CPanel:Add, Text, xm+1 yp+27, Chromebook Typing Monitor
 GUI, CPanel:Add, DDL, xm yp+14 w100 vChrBookTypeMonChoice, Primary Mon|Secondary Mon|
 GuiControl, CPanel:ChooseString, ChrBookTypeMonChoice, %ChrBookTypeMonChoice%
 
-;F3 Behavior.
-GUI, CPanel:Add, Text, x153 yp-14, F3 Behavior
+;F3/F4 Behavior.
+GUI, CPanel:Add, Text, x153 yp-14, F3/F4 Behavior
 GUI, CPanel:Add, DDL, x152 y56 w100 vF3Behavior, Google Chrome|VSCode
 GuiControl, CPanel:ChooseString, F3Behavior, %F3Behavior%
 
