@@ -238,6 +238,7 @@ GuiControl, CPanel:ChooseString, F7Mode, %F7Mode%
 GUI, CPanel:Add, DDL, xp yp+23 vF10Mode w94, Window Group|Window Hider|
 GuiControl, CPanel:ChooseString, F10Mode, %F10Mode%
 
+;Front and Back Top Mouse Buttons Behavior
 GUI, CPanel:Add, Text, xm yp+27, Front and Back Top Mouse Buttons Behavior
 GUI, CPanel:Add, DDL, xm yp+17 w87 vFrontMouseButtonBehavior, Double Click|Triple Click|F1|F2|F3|F4|F6|F7|F8|F10|F12
 GuiControl, CPanel:ChooseString, FrontMouseButtonBehavior, %FrontMouseButtonBehavior%
@@ -245,13 +246,19 @@ GuiControl, CPanel:ChooseString, FrontMouseButtonBehavior, %FrontMouseButtonBeha
 GUI, CPanel:Add, DDL, xm+90 yp w87 vBackMouseButtonBehavior, Double Click|Triple Click|F1|F2|F3|F4|F6|F7|F8|F10|F12
 GuiControl, CPanel:ChooseString, BackMouseButtonBehavior, %BackMouseButtonBehavior%
 
+;F12 Behavior
 GUI, CPanel:Add, Text, xm yp+28, F12 Behavior:
 GUI, CPanel:Add, DDL, xp+68 yp-3 w146 vF12Behavior, Word|VSCode and Cmd Prompt|Excel|Word + Excel|Outlook|
 GuiControl, CPanel:ChooseString, F12Behavior, %F12Behavior%
 
+;G3 Scrolls Per Hotkey
 GUI, CPanel:Add, Text, xm yp+28, G3 Scrolls Per Hotkey:
 GUI, CPanel:Add, Edit, xm+108 yp-1 w20 h17 vG3Scrolls, %G3Scrolls%
-GuiControl, CPanel:, G3Scrolls, %G3Scrolls%
+
+;Double Slash hotstringsActiveToggle
+GUI, CPanel:Add, Text, xp+25 yp+1, // -> ? \n:
+GUI, CPanel:Add, Edit, xp+50 yp-1 w30 h17 vdoubleSlashToggled, %doubleSlashToggled% ;Set to either "true" or "1"
+GuiControl, CPanel:, doubleSlashToggled, %doubleSlashToggled%
 
 ;Toggle for showing or hiding the GUI.
 ;If it's 1, show the GUI; if it's 0, hide it.
@@ -261,8 +268,8 @@ global controlPanelGUIToggle := 0
 global CONTROL_PANEL_WIDTH := 286
 global CONTROL_PANEL_HEIGHT := 266
 
-;Used for testing and adding new #o stuff. Commented out normally because it doesn't need to appear at startup.
-; GUI, CPanel:Show, w%CONTROL_PANEL_WIDTH% h%CONTROL_PANEL_HEIGHT% x1300,MSR Control Panel
+;Used for testing and adding new #o stuff. Commented out normally because it doesn't need to appear at startup. Makes testing easier.
+GUI, CPanel:Show, w%CONTROL_PANEL_WIDTH% h%CONTROL_PANEL_HEIGHT% x1300,MSR Control Panel
 
 global currentWinOMode := 1
 global WIN_O_MAX_MODE := 3 ;How many modes (-1) are actually defined in the Switch statement.
@@ -285,6 +292,9 @@ global MusicBeeVisibilityToggle := 1
 
 ;If a long process is running, don't allow any sleep macros to run because that will potentially interrupt the process. 0 = not running; 1 = running.
 global preventSleepToggle := 0
+
+;Toggle if typing // sends ?{Enter} (useful for messaging services).
+global doubleSlashToggled := false
 
 ;The stuff in this loop needs to be running constantly.
 Loop {
@@ -607,6 +617,9 @@ global
 }
 
 ;****************************************CONTEXT-SENSITIVE HOTKEYS***************************************
+#If, doubleSlashToggled = "true" OR doubleSlashToggled = 1
+:*X://::Send, ?{Enter}
+
 #IfWinActive Cortana ;When Cortana/Search is open.
 !s::Send, {Space}meaning
 
@@ -846,6 +859,7 @@ global
 	IniWrite, %G3Scrolls%, %MSR_CONFIG_PATH%, MouseButtons, G3Scrolls
 
 	IniWrite, %savedNumMinusVol%, %MSR_CONFIG_PATH%, Miscellaneous, savedNumMinusVol
+	IniWrite, %doubleSlashToggled%, %MSR_CONFIG_PATH%, Miscellaneous, doubleSlashToggled
 }
 
 readConfigFile() { ;Reads values from the ini file for #o (really only for the script startup).
@@ -867,6 +881,7 @@ global
 	IniRead, G3Scrolls, %MSR_CONFIG_PATH%, MouseButtons, G3Scrolls, 8
 
 	IniRead, savedNumMinusVol, %MSR_CONFIG_PATH%, Miscellaneous, savedNumMinusVol
+	IniRead, doubleSlashToggled, %MSR_CONFIG_PATH%, Miscellaneous, doubleSlashToggled, false
 }
 
 ;Used if you want to reset the config file. Because IniRead allows you to set default values in case there's an error, those default values will be used, allowing this to actually work really easily.
@@ -882,8 +897,6 @@ deleteConfigFile() {
 ;Volume wheel up/down on K95 RGB does log volume scaling.
 ^!F22::changeVolume(1)
 ^+F22::changeVolume(-1)
-
-; :*X://::Send, ?{Enter}
 
 ;**************************************************TEMPORARY**************************************************
 :*X:psw::Send, csc-328{Enter}
