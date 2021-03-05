@@ -14,7 +14,7 @@ return
 
 ;Open the command InputBox, and then does what the user entered.
 !r::
-if (runInputBoxText == "")
+if ((runInputBoxText == "") OR (runInputBoxText == "ERROR"))
     message := "No previous command."
 else
     message = Prev cmd: "%runInputBoxText%"

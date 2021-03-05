@@ -870,6 +870,7 @@ global
 	IniWrite, %savedNumMinusVol%, %MSR_CONFIG_PATH%, Miscellaneous, savedNumMinusVol
 	IniWrite, %doubleSlashToggled%, %MSR_CONFIG_PATH%, Miscellaneous, doubleSlashToggled
 	IniWrite, %suspendTippyToggled%, %MSR_CONFIG_PATH%, Miscellaneous, suspendTippyToggled
+	IniWrite, %runInputBoxText%, %MSR_CONFIG_PATH%, Miscellaneous, runInputBoxText
 }
 
 readConfigFile() { ;Reads values from the ini file for #o (really only for the script startup).
@@ -893,6 +894,7 @@ global
 	IniRead, savedNumMinusVol, %MSR_CONFIG_PATH%, Miscellaneous, savedNumMinusVol
 	IniRead, doubleSlashToggled, %MSR_CONFIG_PATH%, Miscellaneous, doubleSlashToggled, false
 	IniRead, suspendTippyToggled, %MSR_CONFIG_PATH%, Miscellaneous, suspendTippyToggled, true
+	IniRead, runInputBoxText, %MSR_CONFIG_PATH%, Miscellaneous, runInputBoxText
 }
 
 ;Used if you want to reset the config file. Because IniRead allows you to set default values in case there's an error, those default values will be used, allowing this to actually work really easily.
