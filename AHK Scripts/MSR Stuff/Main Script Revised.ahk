@@ -145,7 +145,7 @@ GUI, QuickCodeGUI:Add, Edit, vQuickCodeEdit xp-2 y20 w196 h189
 GUI, QuickCodeGUI:Add, Button, xp y212 gQuickCodeDoneButton, &Done
 
 ;***********************************MSR CONTROL PANEL INITIALIZATION***********************************
-;This is a GUI for MSR that allows the user to change how parts of the script work.
+;This is a GUI for MSR that allows the user to change how parts of the script work at runtime.
 ;File path for config .ini file.
 global MSR_CONFIG_PATH := "C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\MSRConfig.ini"
 
@@ -192,12 +192,12 @@ if (A_ComputerName = "Elliott-Laptop") {
 }
 
 ;X choice for the #b hotkey.
-GUI, CPanel:Add, Text, xm yp+27, #B Screen X
-GUI, CPanel:Add, Edit, xm yp+14 w62 vlaptopBatteryIconX, %laptopBatteryIconX%
+; GUI, CPanel:Add, Text, xm yp+27, #B Screen X
+; GUI, CPanel:Add, Edit, xm yp+14 w62 vlaptopBatteryIconX, %laptopBatteryIconX%
 
 ;Y choice for the #b hotkey.
-GUI, CPanel:Add, Text, xp+67 yp-14, #B Screen Y
-GUI, CPanel:Add, Edit, xp yp+14 w62 vlaptopBatteryIconY, %laptopBatteryIconY%
+; GUI, CPanel:Add, Text, xp+67 yp-14, #B Screen Y
+; GUI, CPanel:Add, Edit, xp yp+14 w62 vlaptopBatteryIconY, %laptopBatteryIconY%
 
 ;Default screen X and Y of network icon; user can change them later in #o.
 if (A_ComputerName = "Elliott-Laptop") {
@@ -214,12 +214,12 @@ if (A_ComputerName = "Elliott-Laptop") {
 }
 
 ;X choice for the #w hotkey.
-GUI, CPanel:Add, Text, xp+75 yp-14, #W Screen X
-GUI, CPanel:Add, Edit, xp yp+14 w66 vWinWX, %WinWX%
+; GUI, CPanel:Add, Text, xp+75 yp-14, #W Screen X
+; GUI, CPanel:Add, Edit, xp yp+14 w66 vWinWX, %WinWX%
 
 ;Y choice for the #w hotkey.
-GUI, CPanel:Add, Text, xp+71 yp-14, #W Screen Y
-GUI, CPanel:Add, Edit, xp yp+14 w66 vWinWY, %WinWY%
+; GUI, CPanel:Add, Text, xp+71 yp-14, #W Screen Y
+; GUI, CPanel:Add, Edit, xp yp+14 w66 vWinWY, %WinWY%
 
 ;Custom Window Groups.
 GUI, CPanel:Add, Text, xm yp+30, F6:
