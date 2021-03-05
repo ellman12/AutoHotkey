@@ -2,9 +2,11 @@
 SendMode Input
 SetWorkingDir, %A_ScriptDir%
 
+;TODO: add other 2 files
+
 global CRGUIVisibility := 0
 
-global CR_GUI_WDTH := 600
+global CR_GUI_WDTH := 415
 global CR_GUI_HEIGHT := 200
 
 ;CR = Compile and Run
@@ -52,7 +54,7 @@ GUI, CR:Add, ComboBox, xp+10 yp+13 w49 vprgmExt1, out||exe
 
 ;Environment
 GUI, CR:Add, Text, xp+59 ym, Environment
-GUI, CR:Add, DDL, xp yp+18 w74 vEnvDDL1, VSCode||External Terminal
-; GUI, CR:Add, Radio, vVSCode1 Checked, VSCode
+GUI, CR:Add, DDL, xp yp+18 w76 vEnvDDL1, VSCode||External Terminal
+
 
 ^r::Reload
