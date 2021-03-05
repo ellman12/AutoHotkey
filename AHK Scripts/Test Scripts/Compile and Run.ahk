@@ -32,7 +32,7 @@ GUI, CR:Add, Edit, xp yp+18 w63 vfilename1, AppsKey
 GUI, CR:Font, s10 q5
 GUI, CR:Add, Text, xp+65 ym, Ext
 GUI, CR:Font, s10 q5
-GUI, CR:Add, Edit, xp+1 yp+18 w36 vfileExt1, cpp
+GUI, CR:Add, Edit, xp yp+18 w36 vfileExt1, cpp
 
 ;&&
 GUI, CR:Font, s12 q5
@@ -74,7 +74,7 @@ GUI, CR:Add, Text, xp+38 yp, &&&&
 
 ;Program (Executable) Name and Extension
 GUI, CR:Font, s10 q5
-GUI, CR:Add, Edit, xp+24 yp w63 vprgmName2, a
+GUI, CR:Add, Edit, xp+23 yp w63 vprgmName2, a
 GUI, CR:Add, ComboBox, xp+65 yp w55 vprgmExt2, out||exe
 
 ; ;Environment
@@ -102,7 +102,7 @@ GUI, CR:Add, Text, xp+38 yp, &&&&
 
 ;Program (Executable) Name and Extension
 GUI, CR:Font, s10 q5
-GUI, CR:Add, Edit, xp+24 yp w63 vprgmName3, a
+GUI, CR:Add, Edit, xp+23 yp w63 vprgmName3, a
 GUI, CR:Add, ComboBox, xp+65 yp w55 vprgmExt3, out||exe
 
 ; ;Environment
