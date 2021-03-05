@@ -2,6 +2,8 @@
 SendMode Input
 SetWorkingDir, %A_ScriptDir%
 
+#Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\Header Files\toggleGUI.ahk
+
 ;TODO
 ;toggle GUI
 ;hotkeys + stuff they do
@@ -111,3 +113,5 @@ GUI, CR:Show, w%CR_GUI_WDTH% h%CR_GUI_HEIGHT% x1100 y700, Compile and Run
 
 F5::Reload
 ^r::Reload
+
+#AppsKey::toggleGUI(CRGUIVisibility, "CR", CR_GUI_WDTH, CR_GUI_HEIGHT, "Compile and Run")
