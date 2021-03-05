@@ -3,14 +3,13 @@ SendMode Input
 SetWorkingDir, %A_ScriptDir%
 
 ;TODO: add other 2 files
-;TODO: big enough for 1 file by default
 
 ;toggle GUI
 
 global CRGUIVisibility := 0
 
 global CR_GUI_WDTH := 396
-global CR_GUI_HEIGHT := 200
+global CR_GUI_HEIGHT := 45
 
 ;CR = Compile and Run
 GUI, CR:+AlwaysOnTop +Resize ;Resize the left side of the GUI to expose optional controls
