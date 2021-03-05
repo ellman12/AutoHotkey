@@ -45,6 +45,34 @@ DetectHiddenWindows, Off
 OnExit, onExitLabel ;Dump groups to a .tmp file with a timestamp in case needed later.
 
 ;**************************************************AUTO-EXECUTE**************************************************
+;***********************************WIN B AND WIN W INITIALIZATION***********************************
+if (A_ComputerName = "Elliott-Laptop") {
+    usingALaptop := true
+	laptopBatteryIconX := 1432
+	laptopBatteryIconY := 885
+} else if (A_ComputerName = "Elliott-DSU-Lap") {
+	usingALaptop := true
+	laptopBatteryIconX := 1664
+	laptopBatteryIconY := 1049
+} else if (A_ComputerName = "Elliott-PC") {
+	usingALaptop := false
+} else {
+	MsgBox, 16, Error. Computer/laptop name not part of the script., Error. Computer/laptop name not part of the script. Computer/laptop name is: %A_ComputerName%
+}
+
+if (A_ComputerName = "Elliott-Laptop") {
+	WinWX := "UNKNOWN"
+	WinWY := "UNKNOWN"
+} else if (A_ComputerName = "Elliott-DSU-Lap") {
+	WinWX := 1704
+	WinWY := 1051
+} else if (A_ComputerName = "Elliott-PC") {
+	WinWX := 1763
+	WinWY := 1056
+} else {
+	MsgBox, 16, Error. Computer/laptop name not part of the script., Error. Computer/laptop name not part of the script. A_ComputerName is: %A_ComputerName%.
+}
+
 ;***********************************AUTOCORRECT GUI***********************************
 ;This GUI is a greatly improved version of a similar feature originally in the original script.
 ;If it's 1, show the GUI; if it's 0, hide it.
@@ -171,53 +199,6 @@ GuiControl, CPanel:ChooseString, ChrBookTypeMonChoice, %ChrBookTypeMonChoice%
 GUI, CPanel:Add, Text, x153 yp-14, F3/F4 Behavior
 GUI, CPanel:Add, DDL, x152 y56 w100 vF3Behavior, Google Chrome|VSCode
 GuiControl, CPanel:ChooseString, F3Behavior, %F3Behavior%
-
-;Default screen X and Y of battery icons; user can change them later in #o.
-if (A_ComputerName = "Elliott-Laptop") {
-    usingALaptop := true
-	laptopBatteryIconX := 1432
-	laptopBatteryIconY := 885
-} else if (A_ComputerName = "Elliott-DSU-Lap") {
-	usingALaptop := true
-	laptopBatteryIconX := 1664
-	laptopBatteryIconY := 1049
-} else if (A_ComputerName = "Elliott-PC") {
-	usingALaptop := false
-	laptopBatteryIconX := "INVALID"
-	laptopBatteryIconY := "INVALID"
-} else {
-	MsgBox, 16, Error. Computer/laptop name not part of the script., Error. Computer/laptop name not part of the script. Computer/laptop name is: %A_ComputerName%
-}
-
-;X choice for the #b hotkey.
-; GUI, CPanel:Add, Text, xm yp+27, #B Screen X
-; GUI, CPanel:Add, Edit, xm yp+14 w62 vlaptopBatteryIconX, %laptopBatteryIconX%
-
-;Y choice for the #b hotkey.
-; GUI, CPanel:Add, Text, xp+67 yp-14, #B Screen Y
-; GUI, CPanel:Add, Edit, xp yp+14 w62 vlaptopBatteryIconY, %laptopBatteryIconY%
-
-;Default screen X and Y of network icon; user can change them later in #o.
-if (A_ComputerName = "Elliott-Laptop") {
-	WinWX := "UNKNOWN"
-	WinWY := "UNKNOWN"
-} else if (A_ComputerName = "Elliott-DSU-Lap") {
-	WinWX := 1704
-	WinWY := 1051
-} else if (A_ComputerName = "Elliott-PC") {
-	WinWX := 1763
-	WinWY := 1056
-} else {
-	MsgBox, 16, Error. Computer/laptop name not part of the script., Error. Computer/laptop name not part of the script. A_ComputerName is: %A_ComputerName%.
-}
-
-;X choice for the #w hotkey.
-; GUI, CPanel:Add, Text, xp+75 yp-14, #W Screen X
-; GUI, CPanel:Add, Edit, xp yp+14 w66 vWinWX, %WinWX%
-
-;Y choice for the #w hotkey.
-; GUI, CPanel:Add, Text, xp+71 yp-14, #W Screen Y
-; GUI, CPanel:Add, Edit, xp yp+14 w66 vWinWY, %WinWY%
 
 ;Custom Window Groups.
 GUI, CPanel:Add, Text, xm yp+30, F6:
