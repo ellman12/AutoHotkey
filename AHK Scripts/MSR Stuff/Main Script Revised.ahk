@@ -256,9 +256,12 @@ GUI, CPanel:Add, Text, xm yp+28, G3 Scrolls Per Hotkey:
 GUI, CPanel:Add, Edit, xm+108 yp-1 w20 h17 vG3Scrolls, %G3Scrolls%
 
 ;Double Slash hotstringsActiveToggle
-GUI, CPanel:Add, Text, xp+25 yp+1, // -> ? \n:
-GUI, CPanel:Add, Edit, xp+50 yp-1 w30 h17 vdoubleSlashToggled, %doubleSlashToggled% ;Set to either "true" or "1"
+GUI, CPanel:Add, Checkbox, xp+28 yp+2 vdoubleSlashToggled, // -> ? \n
 GuiControl, CPanel:, doubleSlashToggled, %doubleSlashToggled%
+
+;Temp suspend Tippy message
+GUI, CPanel:Add, Checkbox, xm yp+18 vsuspendTippyToggled, #P Tippy Toggle
+GuiControl, CPanel:, suspendTippyToggled, %suspendTippyToggled%
 
 ;Toggle for showing or hiding the GUI.
 ;If it's 1, show the GUI; if it's 0, hide it.
@@ -266,7 +269,7 @@ GuiControl, CPanel:, doubleSlashToggled, %doubleSlashToggled%
 global controlPanelGUIToggle := 0
 
 global CONTROL_PANEL_WIDTH := 286
-global CONTROL_PANEL_HEIGHT := 266
+global CONTROL_PANEL_HEIGHT := 284
 
 ;Used for testing and adding new #o stuff. Commented out normally because it doesn't need to appear at startup. Makes testing easier.
 GUI, CPanel:Show, w%CONTROL_PANEL_WIDTH% h%CONTROL_PANEL_HEIGHT% x1300,MSR Control Panel
@@ -295,6 +298,9 @@ global preventSleepToggle := 0
 
 ;Toggle if typing // sends ?{Enter} (useful for messaging services).
 global doubleSlashToggled := false
+
+;Toggle Tippy that appears when temporarily suspending hotkeys
+global suspendTippyToggled := true
 
 ;The stuff in this loop needs to be running constantly.
 Loop {
@@ -428,6 +434,8 @@ return
 
 Pause:: ;Pause key or Win + p suspends all hotkeys for the specified number in milliseconds.
 #p::
+if (suspendTippyToggled = 1)
+	ToolTip, Suspended...
 SetTimer, setTimerLabel, 2500, On
 Suspend, On
 return
@@ -435,6 +443,7 @@ return
 setTimerLabel:
 Suspend, Off
 SetTimer, setTimerLabel, Off
+ToolTip
 return
 
 ^\::Send, \ ;This key normally deletes a word. This hotkey allows you to insert a \ without having to suspend hotkeys.
@@ -617,7 +626,7 @@ global
 }
 
 ;****************************************CONTEXT-SENSITIVE HOTKEYS***************************************
-#If, doubleSlashToggled = "true" OR doubleSlashToggled = 1
+#If, doubleSlashToggled = 1
 :*X://::Send, ?{Enter}
 
 #IfWinActive Cortana ;When Cortana/Search is open.
@@ -860,6 +869,7 @@ global
 
 	IniWrite, %savedNumMinusVol%, %MSR_CONFIG_PATH%, Miscellaneous, savedNumMinusVol
 	IniWrite, %doubleSlashToggled%, %MSR_CONFIG_PATH%, Miscellaneous, doubleSlashToggled
+	IniWrite, %suspendTippyToggled%, %MSR_CONFIG_PATH%, Miscellaneous, suspendTippyToggled
 }
 
 readConfigFile() { ;Reads values from the ini file for #o (really only for the script startup).
@@ -882,6 +892,7 @@ global
 
 	IniRead, savedNumMinusVol, %MSR_CONFIG_PATH%, Miscellaneous, savedNumMinusVol
 	IniRead, doubleSlashToggled, %MSR_CONFIG_PATH%, Miscellaneous, doubleSlashToggled, false
+	IniRead, suspendTippyToggled, %MSR_CONFIG_PATH%, Miscellaneous, suspendTippyToggled, true
 }
 
 ;Used if you want to reset the config file. Because IniRead allows you to set default values in case there's an error, those default values will be used, allowing this to actually work really easily.
