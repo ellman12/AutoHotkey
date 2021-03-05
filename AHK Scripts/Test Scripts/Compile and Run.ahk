@@ -2,21 +2,21 @@
 SendMode Input
 SetWorkingDir, %A_ScriptDir%
 
-;TODO: add other 2 files
-
 ;toggle GUI
 
 global CRGUIVisibility := 0
 
-global CR_GUI_WDTH := 396
-global CR_GUI_HEIGHT := 45
+; global CR_GUI_WDTH := 396
+; global CR_GUI_HEIGHT := 45
+global CR_GUI_WDTH := 630
+global CR_GUI_HEIGHT := 100
 
 ;CR = Compile and Run
 GUI, CR:+AlwaysOnTop +Resize ;Resize the left side of the GUI to expose optional controls
 GUI, CR:Color, Silver
 GUI, CR:Margin, 4, 1
 
-;***********************************FILE1***********************************
+;***********************************FILE1 + HEADER***********************************
 ;Compiler
 GUI, CR:Font, s10 q5
 GUI, CR:Add, Text, xm ym, Compiler
@@ -46,6 +46,11 @@ GUI, CR:Add, ComboBox, xp+65 yp w55 vprgmExt1, out||exe
 GUI, CR:Add, Text, xp+60 ym, Environment
 GUI, CR:Add, DDL, xp yp+19 w76 vEnvDDL1, VSCode||External Terminal
 
+;Compiler and Program Args (Both Optional)
+GUI, CR:Add, Checkbox, xp+84 ym vcompArgs, Comp Args
+GUI, CR:Add, Edit, xp yp+18 w85 vcomp1Args
+GuiControl, CR:Disable, comp1Args
+
 ;***********************************FILE2***********************************
 ;Compiler
 GUI, CR:Add, ComboBox, xm yp+25 w56 vcompChoice2, gcc|g++||
@@ -67,6 +72,10 @@ GUI, CR:Add, ComboBox, xp+65 yp w55 vprgmExt2, out||exe
 
 ; ;Environment
 GUI, CR:Add, DDL, xp+60 yp w76 vEnvDDL2, VSCode||External Terminal
+
+;Compiler and Program Args (Both Optional)
+GUI, CR:Add, Edit, xp+84 yp w85 vcomp2Args
+GuiControl, CR:Disable, comp2Args
 
 ;***********************************FILE3***********************************
 ;Compiler
@@ -90,6 +99,10 @@ GUI, CR:Add, ComboBox, xp+65 yp w55 vprgmExt3, out||exe
 ; ;Environment
 GUI, CR:Add, DDL, xp+60 yp w76 vEnvDDL3, VSCode||External Terminal
 
-GUI, CR:Show, w%CR_GUI_WDTH% h%CR_GUI_HEIGHT% x1200 y700, Compile and Run
+;Compiler and Program Args (Both Optional)
+GUI, CR:Add, Edit, xp+84 yp w85 vcomp3Args
+GuiControl, CR:Disable, comp3Args
+
+GUI, CR:Show, w%CR_GUI_WDTH% h%CR_GUI_HEIGHT% x1100 y700, Compile and Run
 F5::Reload
 ^r::Reload
