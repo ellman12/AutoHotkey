@@ -256,11 +256,11 @@ GUI, CPanel:Add, Text, xm yp+28, G3 Scrolls Per Hotkey:
 GUI, CPanel:Add, Edit, xm+108 yp-1 w20 h17 vG3Scrolls, %G3Scrolls%
 
 ;Double Slash hotstringsActiveToggle
-GUI, CPanel:Add, Checkbox, xp+28 yp+2 vdoubleSlashToggled, // -> ? \n
+GUI, CPanel:Add, Checkbox, xp+25 yp+2 vdoubleSlashToggled, // -> ? \n
 GuiControl, CPanel:, doubleSlashToggled, %doubleSlashToggled%
 
 ;Temp suspend Tippy message
-GUI, CPanel:Add, Checkbox, xm yp+18 vsuspendTippyToggled, #P Tippy Toggle
+GUI, CPanel:Add, Checkbox, xp+57 yp vsuspendTippyToggled, #P Tippy Toggle
 GuiControl, CPanel:, suspendTippyToggled, %suspendTippyToggled%
 
 ;Toggle for showing or hiding the GUI.
@@ -268,7 +268,7 @@ GuiControl, CPanel:, suspendTippyToggled, %suspendTippyToggled%
 ;Starts out as 0, so it only appears when the user wants it.
 global controlPanelGUIToggle := 0
 
-global CONTROL_PANEL_WIDTH := 286
+global CONTROL_PANEL_WIDTH := 291
 global CONTROL_PANEL_HEIGHT := 284
 
 ;Used for testing and adding new #o stuff. Commented out normally because it doesn't need to appear at startup. Makes testing easier.
@@ -893,7 +893,7 @@ global
 
 	IniRead, savedNumMinusVol, %MSR_CONFIG_PATH%, Miscellaneous, savedNumMinusVol
 	IniRead, doubleSlashToggled, %MSR_CONFIG_PATH%, Miscellaneous, doubleSlashToggled, false
-	IniRead, suspendTippyToggled, %MSR_CONFIG_PATH%, Miscellaneous, suspendTippyToggled, true
+	IniRead, suspendTippyToggled, %MSR_CONFIG_PATH%, Miscellaneous, suspendTippyToggled, false
 	IniRead, runInputBoxText, %MSR_CONFIG_PATH%, Miscellaneous, runInputBoxText
 }
 
