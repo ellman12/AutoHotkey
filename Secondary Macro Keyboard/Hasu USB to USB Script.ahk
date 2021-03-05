@@ -361,21 +361,20 @@ Left::Send, ^{Left}
 
 ;Left bracket -> Google Images Search for selected text in Private Firefox.
 SC01A::
-    ; Send, ^c
-    ; Sleep 200
-    ; Run, C:\Program Files\Mozilla Firefox\firefox.exe -private-window https://www.google.com/search?tbm=isch&q=%Clipboard%
-    BlockInput, on
-    prevClipboard = %clipboard%
-    clipboard =
-    Send, ^c
-    BlockInput, off
-    ClipWait, 2
-    if ErrorLevel = 0
-    {
-        searchQuery=%clipboard%
-        GoSub, GoogleImagesSearch
-    }
-    clipboard = %prevClipboard%
+BlockInput, on
+prevClipboard = %clipboard%
+clipboard =
+Send, ^c
+BlockInput, off
+ClipWait, 0.2
+if ErrorLevel = 0
+{
+    searchQuery=%clipboard%
+    GoSub, GoogleImagesSearch
+}
+else ;If can't find text just do what i does.
+    Run, C:\Program Files\Mozilla Firefox\firefox.exe -private-window https://images.google.com/
+clipboard = %prevClipboard%
 return
 
 m::sleepPC() ;Open Windows sleep, hibernate, etc. menu.
@@ -429,23 +428,22 @@ r::reloadMSR()
 ;Ctrl + Right. Common keeb shortcut for moving between words in text.
 Right::Send, ^{Right}
 
-;Right bracket Google Searches for selected text in Private Firefox.
+;Right bracket -> Google Search for selected text in Private Firefox.
 SC01B::
-    ; Send, ^c
-    ; Sleep 200
-    ; Run, C:\Program Files\Mozilla Firefox\firefox.exe -private-window http://www.google.com/search?q=`%22%clipboard%`%22
-    BlockInput, on
-    prevClipboard = %clipboard%
-    clipboard =
-    Send, ^c
-    BlockInput, off
-    ClipWait, 2
-    if ErrorLevel = 0
-    {
-        searchQuery=%clipboard%
-        GoSub, GoogleSearch
-    }
-    clipboard = %prevClipboard%
+BlockInput, on
+prevClipboard = %clipboard%
+clipboard =
+Send, ^c
+BlockInput, off
+ClipWait, 0.2
+if ErrorLevel = 0
+{
+    searchQuery = %clipboard%
+    GoSub, GoogleSearch
+}
+else ;If can't find text just do what p does.
+    Run, C:\Program Files\Mozilla Firefox\firefox.exe -private-window https://www.google.com/
+clipboard = %prevClipboard%
 return
 
 s::Run, explorer C:\Users\%A_UserName%\Music ;Open Music folder.
@@ -507,7 +505,7 @@ GoogleSearch:
          noExtraSpaces=0
       }
       If (noExtraSpaces=1)
-         break
+        break
    }
    StringReplace, searchQuery, searchQuery, \, `%5C, All
    StringReplace, searchQuery, searchQuery, %A_Space%, +, All
