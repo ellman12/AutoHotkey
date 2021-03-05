@@ -261,19 +261,59 @@ GuiControl, CPanel:, doubleSlashToggled, %doubleSlashToggled%
 GUI, CPanel:Add, Checkbox, xp+57 yp vsuspendTippyToggled, #P Tippy Toggle
 GuiControl, CPanel:, suspendTippyToggled, %suspendTippyToggled%
 
+;Matching Pairs
+GUI, CPanel:Add, Checkbox, xm yp+24 vmatchPairsToggled, Toggle Matching Pairs
+GuiControl, CPanel:, matchPairsToggled, %matchPairsToggled%
+
+GUI, CPanel:Font, s8 q5
+GUI, CPanel:Add, Button, xp+130 yp-3 gMatchPairsButton, Matching Pairs Toggles
+GUI, CPanel:Font, s9 q5
+
 ;Toggle for showing or hiding the GUI.
 ;If it's 1, show the GUI; if it's 0, hide it.
 ;Starts out as 0, so it only appears when the user wants it.
 global controlPanelGUIToggle := 0
 
 global CONTROL_PANEL_WIDTH := 291
-global CONTROL_PANEL_HEIGHT := 284
+global CONTROL_PANEL_HEIGHT := 250
 
 ;Used for testing and adding new #o stuff. Commented out normally because it doesn't need to appear at startup. Makes testing easier.
-GUI, CPanel:Show, w%CONTROL_PANEL_WIDTH% h%CONTROL_PANEL_HEIGHT% x1300,MSR Control Panel
+; GUI, CPanel:Show, w%CONTROL_PANEL_WIDTH% h%CONTROL_PANEL_HEIGHT% x1300,MSR Control Panel
 
 global currentWinOMode := 1
 global WIN_O_MAX_MODE := 3 ;How many modes (-1) are actually defined in the Switch statement.
+
+;***********************************MATCHING PAIRS GUI***********************************
+;This is technically part of MSR Control Panel
+global MP_GUI_WIDTH := 133
+global MP_GUI_HEIGHT := 123
+
+GUI, MP:+AlwaysOnTop
+GUI, MP:Color, Silver
+GUI, MP:Margin, 3, 1
+GUI, MP:+AlwaysOnTop
+
+GUI, MP:Font, s8 q5
+GUI, MP:Add, Button, x1 ym gCheckAllButton, Check All
+GUI, MP:Add, Button, xp+60 ym gUncheckAllButton, Uncheck All
+
+GUI, MP:Font, s10 q5
+GUI, MP:Add, Checkbox, xm yp+22 vsingleQuotesToggled, ' ' Single Quotes
+GuiControl, MP:, singleQuotesToggled, %singleQuotesToggled%
+
+GUI, MP:Add, Checkbox, xm yp+20 vdoubleQuotesToggled, " " Double Quotes
+GuiControl, MP:, doubleQuotesToggled, %doubleQuotesToggled%
+
+GUI, MP:Add, Checkbox, xm yp+20 vparenthesesToggled, () Parentheses
+GuiControl, MP:, parenthesesToggled, %parenthesesToggled%
+
+GUI, MP:Add, Checkbox, xm yp+20 vsquareBracketsToggled, [] Square Brackets
+GuiControl, MP:, squareBracketsToggled, %squareBracketsToggled%
+
+GUI, MP:Add, Checkbox, xm yp+20 vcurlyBracketsToggled, {} Curly Brackets
+GuiControl, MP:, curlyBracketsToggled, %curlyBracketsToggled%
+
+global matchPairsGUIToggled := 0
 
 ;****************************************MISC VARIABLES, INITIALIZATION, ETC*********************************
 global activeWindowTitle, activeWindowID
@@ -299,6 +339,8 @@ global doubleSlashToggled := false
 
 ;Toggle Tippy that appears when temporarily suspending hotkeys
 global suspendTippyToggled := true
+
+global matchPairsToggled := false
 
 ;The stuff in this loop needs to be running constantly.
 Loop {
@@ -392,6 +434,7 @@ Loop {
 #Include, %A_ScriptDir%\Misc. MSR Scripts\C-C++ Programming.ahk
 #Include, %A_ScriptDir%\Misc. MSR Scripts\Ctrl W\Ctrl W.ahk
 #Include, %A_ScriptDir%\Misc. MSR Scripts\Easy Window Dragging.ahk
+#Include, %A_ScriptDir%\Misc. MSR Scripts\Matching Pairs.ahk
 #Include, %A_ScriptDir%\Misc. MSR Scripts\NumPad Media Control.ahk
 #Include, %A_ScriptDir%\Misc. MSR Scripts\Print Screen Modifier Key.ahk
 #Include, %A_ScriptDir%\Misc. MSR Scripts\Title Capitalization.ahk
@@ -809,11 +852,39 @@ return
 
 CPanelGuiClose:
 CPanelGuiEscape:
-GUI, CPanel:Submit
+	GUI, CPanel:Submit
 
-writeConfigFile()
+	writeConfigFile()
 
-controlPanelGUIToggle := !controlPanelGUIToggle
+	controlPanelGUIToggle := !controlPanelGUIToggle
+return
+
+MatchPairsButton:
+	toggleGUI(matchPairsToggled, "MP", MP_GUI_WIDTH, MP_GUI_HEIGHT, "Matching Pairs Toggles")
+return
+
+;*****************************************MATCHING PAIRS GUI BEHAVIOR*********************************
+MPGuiClose:
+MPGuiEscape:
+GuiControl, MP:Focus, Check All
+GUI, MP:Submit
+matchPairsGUIToggled := !matchPairsGUIToggled
+return
+
+checkMPBoxes(bool) {
+	GuiControl, MP:, singleQuotesToggled, %bool%
+	GuiControl, MP:, doubleQuotesToggled, %bool%
+	GuiControl, MP:, parenthesesToggled, %bool%
+	GuiControl, MP:, squareBracketsToggled, %bool%
+	GuiControl, MP:, curlyBracketsToggled, %bool%
+}
+
+CheckAllButton:
+checkMPBoxes(1)
+return
+
+UncheckAllButton:
+checkMPBoxes(0)
 return
 
 ;**************************************************MSR FUNCTIONS AND LABELS**************************************************
@@ -868,7 +939,13 @@ global
 	IniWrite, %savedNumMinusVol%, %MSR_CONFIG_PATH%, Miscellaneous, savedNumMinusVol
 	IniWrite, %doubleSlashToggled%, %MSR_CONFIG_PATH%, Miscellaneous, doubleSlashToggled
 	IniWrite, %suspendTippyToggled%, %MSR_CONFIG_PATH%, Miscellaneous, suspendTippyToggled
-	IniWrite, %runInputBoxText%, %MSR_CONFIG_PATH%, Miscellaneous, runInputBoxText
+	
+	IniWrite, %matchPairsToggled%, %MSR_CONFIG_PATH%, Matching Pairs, matchPairsToggled
+	IniWrite, %singleQuotesToggled%, %MSR_CONFIG_PATH%, Matching Pairs, singleQuotesToggled
+	IniWrite, %doubleQuotesToggled%, %MSR_CONFIG_PATH%, Matching Pairs, doubleQuotesToggled
+	IniWrite, %parenthesesToggled%, %MSR_CONFIG_PATH%, Matching Pairs, parenthesesToggled
+	IniWrite, %squareBracketsToggled%, %MSR_CONFIG_PATH%, Matching Pairs, squareBracketsToggled
+	IniWrite, %curlyBracketsToggled%, %MSR_CONFIG_PATH%, Matching Pairs, curlyBracketsToggled
 }
 
 readConfigFile() { ;Reads values from the ini file for #o (really only for the script startup).
@@ -893,6 +970,13 @@ global
 	IniRead, doubleSlashToggled, %MSR_CONFIG_PATH%, Miscellaneous, doubleSlashToggled, false
 	IniRead, suspendTippyToggled, %MSR_CONFIG_PATH%, Miscellaneous, suspendTippyToggled, false
 	IniRead, runInputBoxText, %MSR_CONFIG_PATH%, Miscellaneous, runInputBoxText
+
+	IniRead, matchPairsToggled, %MSR_CONFIG_PATH%, Matching Pairs, matchPairsToggled, false
+	IniRead, singleQuotesToggled, %MSR_CONFIG_PATH%, Matching Pairs, singleQuotesToggled, false
+	IniRead, doubleQuotesToggled, %MSR_CONFIG_PATH%, Matching Pairs, doubleQuotesToggled, false
+	IniRead, parenthesesToggled, %MSR_CONFIG_PATH%, Matching Pairs, parenthesesToggled, false
+	IniRead, squareBracketsToggled, %MSR_CONFIG_PATH%, Matching Pairs, squareBracketsToggled, false
+	IniRead, curlyBracketsToggled, %MSR_CONFIG_PATH%, Matching Pairs, curlyBracketsToggled, false
 }
 
 ;Used if you want to reset the config file. Because IniRead allows you to set default values in case there's an error, those default values will be used, allowing this to actually work really easily.
