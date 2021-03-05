@@ -12,6 +12,7 @@
 * CWG: Custom Window Groups
 * ApplSwitch: ApplicationSwitcher
 * Chr Typing: Chromebook Typing
+* MP: Matching Pairs
 
 * Conventions for the number of * for a title/header. These can be inserted via Run.ahk
 * Title:    50 **************************************************
@@ -103,9 +104,6 @@ global ctrlWIDs := []
 
 readCtrlWFile("Ctrl W Titles", ctrlWTitles, "`n", 1)
 readCtrlWFile("Ctrl W IDs", ctrlWIDs, "`n", 1)
-
-global F12Group := []
-global CurrentWinF12 := 1
 
 ;***********************************EDIT CLIPBOARD CONTENT INITIALIZATION***********************************
 GUI, ECC:Font, s12
@@ -880,7 +878,7 @@ global
 	IniRead, CtrlInsMonChoice, %MSR_CONFIG_PATH%, MonitorChoices, CtrlInsMonChoice, Secondary Mon
 	IniRead, ChrBookTypeMonChoice, %MSR_CONFIG_PATH%, MonitorChoices, ChrBookTypeMonChoice, Primary Mon
 
-	IniRead, F3Behavior, %MSR_CONFIG_PATH%, Fx, F3Behavior, Google Chrome
+	IniRead, F3Behavior, %MSR_CONFIG_PATH%, Fx, F3Behavior, VSCode
 	IniRead, F6Mode, %MSR_CONFIG_PATH%, Fx, F6Mode, Window Group
 	IniRead, F7Mode, %MSR_CONFIG_PATH%, Fx, F7Mode, Window Group
 	IniRead, F8Mode, %MSR_CONFIG_PATH%, Fx, F8Mode, Window Hider
