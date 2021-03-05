@@ -2,18 +2,21 @@
 SendMode Input
 SetWorkingDir, %A_ScriptDir%
 
+;TODO
 ;toggle GUI
+;GUI logic (checkboxes, etc)
+;hotkeys + stuff they do
 
 global CRGUIVisibility := 0
 
 ;The GUI starts at the perfect width and height to enter in 1 file. If more are needed, expand the GUI by clicking and dragging.
-global CR_GUI_WDTH := 396
+global CR_GUI_WDTH := 394
 global CR_GUI_HEIGHT := 45
 
 ;CR = Compile and Run
 GUI, CR:+AlwaysOnTop +Resize ;Resize the left side of the GUI to expose optional controls
 GUI, CR:Color, Silver
-GUI, CR:Margin, 4, 1
+GUI, CR:Margin, 2, 1
 
 ;***********************************FILE1 + HEADER***********************************
 ;Compiler
@@ -112,5 +115,7 @@ GuiControl, CR:Disable, comp3Args
 GuiControl, CR:Disable, prog3Args
 
 GUI, CR:Show, w%CR_GUI_WDTH% h%CR_GUI_HEIGHT% x1100 y700, Compile and Run
+
+
 F5::Reload
 ^r::Reload
