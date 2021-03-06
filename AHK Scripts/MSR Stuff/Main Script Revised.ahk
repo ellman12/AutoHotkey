@@ -930,6 +930,7 @@ global
 	IniWrite, %savedNumMinusVol%, %MSR_CONFIG_PATH%, Miscellaneous, savedNumMinusVol
 	IniWrite, %doubleSlashToggled%, %MSR_CONFIG_PATH%, Miscellaneous, doubleSlashToggled
 	IniWrite, %suspendTippyToggled%, %MSR_CONFIG_PATH%, Miscellaneous, suspendTippyToggled
+	IniWrite, %runInputBoxText%, %MSR_CONFIG_PATH%, Miscellaneous, runInputBoxText
 
 	IniWrite, %matchPairsToggled%, %MSR_CONFIG_PATH%, Matching Pairs, matchPairsToggled
 	IniWrite, %singleQuotesToggled%, %MSR_CONFIG_PATH%, Matching Pairs, singleQuotesToggled
