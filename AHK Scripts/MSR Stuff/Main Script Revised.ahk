@@ -101,7 +101,7 @@ GUI, ACGUI:Font, s13 q5
 GUI, ACGUI:Add, Button, x4 yp+22 w55 h29 gACFinishButton, &Finish
 
 GUI, ACGUI:Font, s9 q5
-GUI, ACGUI:Add, Edit, xp+58 yp+4 w107 vACOptions ;Additional, rarely-used Hotstring options like 'C', etc.
+GUI, ACGUI:Add, Edit, xp+58 yp+4 w107 vACOptions, Extra Options ;Additional, rarely-used Hotstring options like 'C', etc.
 GUI, ACGUI:Add, Edit, xp+110 yp w107 vtmpStringComment, Temporary?
 
 toggleGUI(ACGUIToggle, "ACGUI", ACGUI_WIDTH, ACGUI_HEIGHT, "title lol")
