@@ -790,12 +790,19 @@ ACFinishButton: ;Where the hotstring is created and added to the script.
 	if (XCheck = 1)
 		NewHotstring := NewHotstring . "X"
 
-	if (ACOptions != "") ;If there's actually stuff in this.
+	if (ACOptions != "Extra Options") ;If there's actually stuff in this.
 		NewHotstring := NewHotstring . ACOptions
 
 	NewHotstring := NewHotstring . ":" . IncorrectEdit . "::" . CorrectEdit
 
-	FileAppend, `n%NewHotstring%, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Misc. MSR Scripts\AutoCorrect.ahk  ; Put a `n at the beginning in case file lacks a blank line at its end.
+	if (tmpStringComment = "Temporary?")
+		FileAppend, %NewHotstring%`n, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Misc. MSR Scripts\AutoCorrect.ahk ; Put a `n at the beginning in case file lacks a blank line at its end.
+	else
+	{
+		FormatTime, formattedDateTime,, ddd, MMM d, yyyy h:mm tt
+		msg := ";" . tmpStringComment . " " . formattedDateTime
+		FileAppend, %NewHotstring% %msg%`n, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Misc. MSR Scripts\Temp Hotstrings.ahk
+	}
 	reloadMSR() ;Apply the new hotstring.
 return
 
@@ -925,7 +932,7 @@ global
 	IniWrite, %savedNumMinusVol%, %MSR_CONFIG_PATH%, Miscellaneous, savedNumMinusVol
 	IniWrite, %doubleSlashToggled%, %MSR_CONFIG_PATH%, Miscellaneous, doubleSlashToggled
 	IniWrite, %suspendTippyToggled%, %MSR_CONFIG_PATH%, Miscellaneous, suspendTippyToggled
-	
+
 	IniWrite, %matchPairsToggled%, %MSR_CONFIG_PATH%, Matching Pairs, matchPairsToggled
 	IniWrite, %singleQuotesToggled%, %MSR_CONFIG_PATH%, Matching Pairs, singleQuotesToggled
 	IniWrite, %doubleQuotesToggled%, %MSR_CONFIG_PATH%, Matching Pairs, doubleQuotesToggled
