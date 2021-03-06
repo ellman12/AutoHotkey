@@ -79,7 +79,7 @@ if (A_ComputerName = "Elliott-Laptop") {
 global ACGUIToggle := 0
 
 global ACGUI_WIDTH := 279
-global ACGUI_HEIGHT := 170
+global ACGUI_HEIGHT := 173
 
 GUI, ACGUI:Color, Silver
 GUI, ACGUI:+AlwaysOnTop
@@ -94,13 +94,15 @@ GUI, ACGUI:Add, Edit, x145 yp vCorrectEdit w130
 
 GUI, ACGUI:Font, s11
 GUI, ACGUI:Add, Checkbox, x4 y83 vStarCheck, *: Ending char not needed.
-GUI, ACGUI:Add, Checkbox, x4 yp+17 vQuestionCheck, ?: Trigger when inside another word.
-GUI, ACGUI:Add, Checkbox, x4 yp+17 vXCheck, X: Execute text instead of replace.
+GUI, ACGUI:Add, Checkbox, x4 yp+18 vQuestionCheck, ?: Trigger when inside another word.
+GUI, ACGUI:Add, Checkbox, x4 yp+18 vXCheck, X: Execute text instead of replace.
 
 GUI, ACGUI:Font, s13
 GUI, ACGUI:Add, Button, x4 yp+22 w55 h29 gACFinishButton, &Finish
 
-GUI, ACGUI:Add, Edit, x60 yp w55 h29 vACOptions
+GUI, ACGUI:Add, Edit, x62 yp w55 h29 vACOptions ;Additional and extra rarely-used Hotstring options like 'C', etc.
+
+toggleGUI(ACGUIToggle, "ACGUI", ACGUI_WIDTH, ACGUI_HEIGHT, "title lol")
 
 ;***********************************CUSTOM WINDOW GROUPS***********************************
 ;Tracks all the window IDs for the custom groups.
@@ -410,6 +412,7 @@ Loop {
 #Include, %A_ScriptDir%\Misc. MSR Scripts\Add Chars Around Text.ahk
 
 #Include, %A_ScriptDir%\Misc. MSR Scripts\AutoCorrect.ahk
+#Include, %A_ScriptDir%\Misc. MSR Scripts\Temp Hotstrings.ahk
 #If ;See the end of the AutoCorrect file. This needs to be here to end the giant #If block in there. Moved to here to avoid messing up when the #h hotkey appends to that file.
 
 #Include, %A_ScriptDir%\Misc. MSR Scripts\C-C++ Programming.ahk
