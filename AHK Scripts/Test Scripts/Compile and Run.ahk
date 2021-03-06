@@ -4,11 +4,6 @@ SetWorkingDir, %A_ScriptDir%
 
 #Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\Header Files\toggleGUI.ahk
 
-;TODO
-;toggle GUI
-;hotkeys + stuff they do
-;delete reload hotkeys
-
 global CR_GUI_WDTH := 574
 global CR_GUI_HEIGHT := 96
 global CRGUIVisibility := 0
@@ -121,14 +116,22 @@ AppsKey::compileAndRun(compChoice1, filename1, fileExt1, prgmName1, prgmExt1, En
 
 compileAndRun(compiler, filename, ext, prgmName, prgmExt, environment, compArgs, prgmArgs)
 {
-    finalCmd := compiler . " " . compArgs . " " . filename . "." . ext . " && "
+    finalCmd := compiler . " "
+    
+    if (compArgs != "")
+        finalCmd .= compArgs . " "
+    
+    finalCmd .= filename . "." . ext . "&&"
     
     if (prgmExt = "out")
-        finalCmd .= "./" . prgmName . "." . prgmExt . " " . prgmArgs
+        finalCmd .= "./" . prgmName . "." . prgmExt
     else if (prgmExt = "exe")
-        finalCmd .= prgmName . " " . prgmArgs
+        finalCmd .= prgmName
+        
+    if (prgmArgs != "")
+        finalCmd .=  . " " . prgmArgs
     
-    if (environment = "VSCode")
+    if (environment = "VSCode") ;Click into the VSCode Integrated Terminal
     {
         MouseMove, 900, A_ScreenHeight - 100, 0
         Send, {Click}
@@ -136,5 +139,3 @@ compileAndRun(compiler, filename, ext, prgmName, prgmExt, environment, compArgs,
     Send, {Raw}%finalCmd%
     Send, {Enter}
 }
-
-^r::Reload
