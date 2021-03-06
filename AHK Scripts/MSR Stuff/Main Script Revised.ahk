@@ -78,7 +78,7 @@ if (A_ComputerName = "Elliott-Laptop") {
 ;If it's 1, show the GUI; if it's 0, hide it.
 global ACGUIToggle := 0
 
-global ACGUI_WIDTH := 279
+global ACGUI_WIDTH := 284
 global ACGUI_HEIGHT := 173
 
 GUI, ACGUI:Color, Silver
@@ -92,15 +92,17 @@ GUI, ACGUI:Add, Text, x4 y60, Hotstring Options
 GUI, ACGUI:Add, Edit, x4 y25 vIncorrectEdit w130
 GUI, ACGUI:Add, Edit, x145 yp vCorrectEdit w130
 
-GUI, ACGUI:Font, s11
+GUI, ACGUI:Font, s11 q5
 GUI, ACGUI:Add, Checkbox, x4 y83 vStarCheck, *: Ending char not needed.
 GUI, ACGUI:Add, Checkbox, x4 yp+18 vQuestionCheck, ?: Trigger when inside another word.
 GUI, ACGUI:Add, Checkbox, x4 yp+18 vXCheck, X: Execute text instead of replace.
 
-GUI, ACGUI:Font, s13
+GUI, ACGUI:Font, s13 q5
 GUI, ACGUI:Add, Button, x4 yp+22 w55 h29 gACFinishButton, &Finish
 
-GUI, ACGUI:Add, Edit, x62 yp w55 h29 vACOptions ;Additional and extra rarely-used Hotstring options like 'C', etc.
+GUI, ACGUI:Font, s9 q5
+GUI, ACGUI:Add, Edit, xp+58 yp+4 w107 vACOptions ;Additional, rarely-used Hotstring options like 'C', etc.
+GUI, ACGUI:Add, Edit, xp+110 yp w107 vtmpStringComment, Temporary?
 
 toggleGUI(ACGUIToggle, "ACGUI", ACGUI_WIDTH, ACGUI_HEIGHT, "title lol")
 
