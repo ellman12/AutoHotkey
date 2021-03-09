@@ -4,10 +4,6 @@ SetWorkingDir, %A_ScriptDir%
 
 #Include, C:\Users\Elliott\Documents\GitHub\AutoHotkey\AHK Scripts\Miscellaneous\Header Files\toggleGUI.ahk
 
-;TODO
-;toggle GUI
-;hotkeys + stuff they do
-
 global CR_GUI_WDTH := 574
 global CR_GUI_HEIGHT := 96
 global CRGUIVisibility := 0
@@ -48,11 +44,9 @@ GUI, CR:Add, Text, xp+60 ym, Environment
 GUI, CR:Add, DDL, xp yp+19 w76 vEnvDDL1, VSCode||External Terminal
 
 ;Compiler and Program Args (Both Optional)
-; GUI, CR:Add, Checkbox, xp+84 ym vcompArgsToggled, Comp Args
 GUI, CR:Add, Text, xp+84 ym, Comp Args
 GUI, CR:Add, Edit, xp yp+18 w85 vcomp1Args
 
-; GUI, CR:Add, Checkbox, xp+90 ym vprogArgsToggled, Prog Args
 GUI, CR:Add, Text, xp+90 ym, Prog Args
 GUI, CR:Add, Edit, xp yp+18 w85 vprog1Args
 
@@ -110,8 +104,38 @@ GUI, CR:Add, Edit, xp+90 yp w85 vprog3Args
 
 GUI, CR:Show, w%CR_GUI_WDTH% h%CR_GUI_HEIGHT% x1100 y700, Compile and Run
 
+;***********************************HOTKEYS***********************************
+#AppsKey::
+GUI, CR:Submit, NoHide
+toggleGUI(CRGUIVisibility, "CR", CR_GUI_WDTH, CR_GUI_HEIGHT, "Compile and Run")
+return
 
-F5::Reload
-^r::Reload
+AppsKey::compileAndRun(compChoice1, filename1, fileExt1, prgmName1, prgmExt1, EnvDDL1, comp1Args, prog1Args)
+^AppsKey::compileAndRun(compChoice2, filename2, fileExt2, prgmName2, prgmExt2, EnvDDL2, comp2Args, prog2Args)
+!AppsKey::compileAndRun(compChoice3, filename3, fileExt3, prgmName3, prgmExt3, EnvDDL3, comp3Args, prog3Args)
 
-#AppsKey::toggleGUI(CRGUIVisibility, "CR", CR_GUI_WDTH, CR_GUI_HEIGHT, "Compile and Run")
+compileAndRun(compiler, filename, ext, prgmName, prgmExt, environment, compArgs, prgmArgs)
+{
+    finalCmd := compiler . " "
+    
+    if (compArgs != "")
+        finalCmd .= compArgs . " "
+    
+    finalCmd .= filename . "." . ext . "&&"
+    
+    if (prgmExt = "out")
+        finalCmd .= "./" . prgmName . "." . prgmExt
+    else if (prgmExt = "exe")
+        finalCmd .= prgmName
+        
+    if (prgmArgs != "")
+        finalCmd .=  . " " . prgmArgs
+    
+    if (environment = "VSCode") ;Click into the VSCode Integrated Terminal
+    {
+        MouseMove, 900, A_ScreenHeight - 100, 0
+        Send, {Click}
+    }
+    Send, {Raw}%finalCmd%
+    Send, {Enter}
+}

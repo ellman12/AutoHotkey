@@ -301,6 +301,12 @@ Switch (cmdToRun) {
     ; return
 
     ;**************************************************OPEN**************************************************
+    Case "CR":Run, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Misc. MSR Scripts\Compile and Run.ahk
+    Case "CR cl":
+    DetectHiddenWindows, On
+    WinClose, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Misc. MSR Scripts\Compile and Run.ahk 
+    return
+    
     Case "bin": Run, ::{645ff040-5081-101b-9f08-00aa002f954e} ;Open Recycle Bin.
     Case "ctrl pan": Run, ::{21ec2020-3aea-1069-a2dd-08002b30309d} ;Open Control Panel.
 

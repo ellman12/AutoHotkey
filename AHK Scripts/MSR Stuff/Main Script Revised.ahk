@@ -78,8 +78,8 @@ if (A_ComputerName = "Elliott-Laptop") {
 ;If it's 1, show the GUI; if it's 0, hide it.
 global ACGUIToggle := 0
 
-global ACGUI_WIDTH := 279
-global ACGUI_HEIGHT := 170
+global ACGUI_WIDTH := 284
+global ACGUI_HEIGHT := 173
 
 GUI, ACGUI:Color, Silver
 GUI, ACGUI:+AlwaysOnTop
@@ -92,15 +92,17 @@ GUI, ACGUI:Add, Text, x4 y60, Hotstring Options
 GUI, ACGUI:Add, Edit, x4 y25 vIncorrectEdit w130
 GUI, ACGUI:Add, Edit, x145 yp vCorrectEdit w130
 
-GUI, ACGUI:Font, s11
+GUI, ACGUI:Font, s11 q5
 GUI, ACGUI:Add, Checkbox, x4 y83 vStarCheck, *: Ending char not needed.
-GUI, ACGUI:Add, Checkbox, x4 yp+17 vQuestionCheck, ?: Trigger when inside another word.
-GUI, ACGUI:Add, Checkbox, x4 yp+17 vXCheck, X: Execute text instead of replace.
+GUI, ACGUI:Add, Checkbox, x4 yp+18 vQuestionCheck, ?: Trigger when inside another word.
+GUI, ACGUI:Add, Checkbox, x4 yp+18 vXCheck, X: Execute text instead of replace.
 
-GUI, ACGUI:Font, s13
+GUI, ACGUI:Font, s13 q5
 GUI, ACGUI:Add, Button, x4 yp+22 w55 h29 gACFinishButton, &Finish
 
-GUI, ACGUI:Add, Edit, x60 yp w55 h29 vACOptions
+GUI, ACGUI:Font, s9 q5
+GUI, ACGUI:Add, Edit, xp+58 yp+4 w107 vACOptions, Extra Options ;Additional, rarely-used Hotstring options like 'C', etc.
+GUI, ACGUI:Add, Edit, xp+110 yp w107 vtmpStringComment, Temporary?
 
 ;***********************************CUSTOM WINDOW GROUPS***********************************
 ;Tracks all the window IDs for the custom groups.
@@ -410,6 +412,7 @@ Loop {
 #Include, %A_ScriptDir%\Misc. MSR Scripts\Add Chars Around Text.ahk
 
 #Include, %A_ScriptDir%\Misc. MSR Scripts\AutoCorrect.ahk
+#Include, %A_ScriptDir%\Misc. MSR Scripts\Temp Hotstrings.ahk
 #If ;See the end of the AutoCorrect file. This needs to be here to end the giant #If block in there. Moved to here to avoid messing up when the #h hotkey appends to that file.
 
 #Include, %A_ScriptDir%\Misc. MSR Scripts\C-C++ Programming.ahk
@@ -811,12 +814,19 @@ ACFinishButton: ;Where the hotstring is created and added to the script.
 	if (XCheck = 1)
 		NewHotstring := NewHotstring . "X"
 
-	if (ACOptions != "") ;If there's actually stuff in this.
+	if (ACOptions != "Extra Options") ;If there's actually stuff in this.
 		NewHotstring := NewHotstring . ACOptions
 
 	NewHotstring := NewHotstring . ":" . IncorrectEdit . "::" . CorrectEdit
 
-	FileAppend, `n%NewHotstring%, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Misc. MSR Scripts\AutoCorrect.ahk  ; Put a `n at the beginning in case file lacks a blank line at its end.
+	if (tmpStringComment = "Temporary?")
+		FileAppend, %NewHotstring%`n, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Misc. MSR Scripts\AutoCorrect.ahk ; Put a `n at the beginning in case file lacks a blank line at its end.
+	else
+	{
+		FormatTime, formattedDateTime,, ddd, MMM d, yyyy h:mm tt
+		msg := ";" . tmpStringComment . " " . formattedDateTime
+		FileAppend, %NewHotstring% %msg%`n, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Misc. MSR Scripts\Temp Hotstrings.ahk
+	}
 	reloadMSR() ;Apply the new hotstring.
 return
 
