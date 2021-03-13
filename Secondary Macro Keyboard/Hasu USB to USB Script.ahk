@@ -299,8 +299,18 @@ else
     Send, ^-
 return
 
-q::Send, ^#{Left}
-w::Send, ^#{Right}
+; q::Send, ^#{Left}
+; w::Send, ^#{Right}
+
+q::
+Send, {Ctrl Up}
+Send, ^c
+return
+
+w::
+Send, {Ctrl Up}
+Send, ^v
+return
 
 a::Send, ^a
 
