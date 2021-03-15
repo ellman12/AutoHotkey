@@ -743,6 +743,32 @@ deleteMostRecentItemInFolder(folderName)
 		MsgBox, 262160, Error, An error occurred while trying to recycle "%thingToDelete%".
 }
 
+/*
+Used for mass downloading music tracks from this website: https://downloads.khinsider.com/
+Here's how to use it:
+1. Use the Snap Links extension to open several tabs at once
+2. Test and make sure the screen coordinates are all correct (test a single track at a time)
+3. That's it. Just don't open too many tabs at once, or else it won't work properly because your browser will seriously slow down.
+*/
+; RAlt::
+; InputBox, loopAmt, Num of tabs, Enter num of tabs,, 200, 130,,,,, 13
+; Sleep 600
+; Loop %loopAmt% {
+; 	MouseClick, Right, 751, 347
+; 	Sleep 300
+; 	Send, k
+; 	Sleep 1500
+; 	MouseClick, Left, 137, 439
+; 	Sleep 1100
+; 	Send, {Delete 5}
+; 	Sleep 1200
+; 	MouseClick, Left, 769, 506
+; 	Sleep 1050
+; 	Send, ^w
+; 	Sleep 900
+; }
+; return
+
 ;*****************************AUTOCORRECT GUI BEHAVIOR******************************
 #h::
 originalClipboard := ClipboardAll
@@ -930,7 +956,6 @@ global
 	IniWrite, %savedNumMinusVol%, %MSR_CONFIG_PATH%, Miscellaneous, savedNumMinusVol
 	IniWrite, %doubleSlashToggled%, %MSR_CONFIG_PATH%, Miscellaneous, doubleSlashToggled
 	IniWrite, %suspendTippyToggled%, %MSR_CONFIG_PATH%, Miscellaneous, suspendTippyToggled
-	IniWrite, %runInputBoxText%, %MSR_CONFIG_PATH%, Miscellaneous, runInputBoxText
 
 	IniWrite, %matchPairsToggled%, %MSR_CONFIG_PATH%, Matching Pairs, matchPairsToggled
 	IniWrite, %singleQuotesToggled%, %MSR_CONFIG_PATH%, Matching Pairs, singleQuotesToggled
@@ -1024,40 +1049,4 @@ return
 ; Sleep 1000
 ; Send, !{F4}
 ; return
-
 ; #If
-; ;Click the 'Download As FLAC' button.
-; RCtrl::
-; loopAmt = 10 ;Total is 205
-; Loop %loopAmt% {
-; 	Send, {Click}
-; 	Sleep 800
-; 	Send, {Space}
-; 	Sleep 100
-; 	Send, ^{PgDn}
-; 	Sleep 800
-; }
-
-; Send, ^{PgDn 2}
-; Send, ^{PgUp}
-; return
-
-; RAlt:: ;Save the file
-; loopAmt = 10 ;Total is 205
-; Loop %loopAmt% {
-; 	MouseClick, right, 294, 637
-; 	Sleep 900
-; 	Send, v ;Save audio as
-; 	Sleep 1800
-; 	; WinActivate, Enter name of file to save to…
-; 	MouseClick, Left, 527, 442
-; 	Sleep 1100
-; 	Send, {Home}{Delete 5}
-; 	Sleep 1900
-; 	; Send, !{s}
-; 	MouseClick, Left, 597, 445
-; 	Sleep 1050
-; 	Send, ^w
-; 	Sleep 900
-; }
-; return
