@@ -180,6 +180,15 @@ F5::Send, #{F5} ;C and Python sharing this shortcut should hopefully work....
 F5::Send, #{F5} ;For compiling C code.
 :*:null::NULL
 
+:X:pr::Send, printf("");{Left 3}
+:X:pln::Send, printf("\n");{Left 5}
+:X:sc::Send, scanf("`%");{Left 3}
+
+::fr::
+SendRaw, for (int i = 0; i < `; i`+`+)
+Send, {Left 6}
+return
+
 #If programmingMode = false
 \::
 Send, ^+{Left}
