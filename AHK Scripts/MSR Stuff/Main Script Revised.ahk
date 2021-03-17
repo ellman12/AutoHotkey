@@ -318,7 +318,7 @@ global MusicBeeVisibilityToggle := 1
 global preventSleepToggle := 0
 
 ;Toggle if typing // sends ?{Enter} (useful for messaging services).
-global doubleSlashToggled := false
+global doubleSlashToggled := true
 
 ;Toggle Tippy that appears when temporarily suspending hotkeys
 global suspendTippyToggled := true
@@ -652,7 +652,7 @@ global
 
 ;****************************************CONTEXT-SENSITIVE HOTKEYS***************************************
 #If, doubleSlashToggled = 1
-:*X://::Send, ?{Enter}
+:*?X://::Send, ?{Enter}
 
 #IfWinActive Cortana ;When Cortana/Search is open.
 !s::Send, {Space}meaning
