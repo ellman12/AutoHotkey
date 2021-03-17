@@ -1011,13 +1011,8 @@ deleteConfigFile() {
 ^+F22::changeVolume(-1)
 
 ;**************************************************TEMPORARY**************************************************
-:*X:psw::Send, csc-328{Enter}
+:*X:pw::Send, csc-328{Enter}
 :*X:apw::Send, Administrator{Tab}csc-328{Enter} ;Signing into VM.
-
-:*:pw::
-FileRead, password, C:\Users\Elliott\Videos\passwd.txt
-Send, %password%{Enter}
-return
 
 #If WinActive("ahk_exe Zoom.exe")
 ; RAlt::Send, #+s ;Snip & Sketch.
