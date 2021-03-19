@@ -121,7 +121,7 @@ compileAndRun(compiler, filename, ext, prgmName, prgmExt, environment, compArgs,
     if (compArgs != "")
         finalCmd .= compArgs . " "
     
-    finalCmd .= filename . "." . ext . "&&"
+    finalCmd .= """" . filename . "." . ext . """" . "&&"
     
     if (prgmExt = "out")
         finalCmd .= "./" . prgmName . "." . prgmExt
