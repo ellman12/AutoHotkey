@@ -318,7 +318,7 @@ global MusicBeeVisibilityToggle := 1
 global preventSleepToggle := 0
 
 ;Toggle if typing // sends ?{Enter} (useful for messaging services).
-global doubleSlashToggled := false
+global doubleSlashToggled := true
 
 ;Toggle Tippy that appears when temporarily suspending hotkeys
 global suspendTippyToggled := true
@@ -652,7 +652,7 @@ global
 
 ;****************************************CONTEXT-SENSITIVE HOTKEYS***************************************
 #If, doubleSlashToggled = 1
-:*X://::Send, ?{Enter}
+:*?X://::Send, ?{Enter}
 
 #IfWinActive Cortana ;When Cortana/Search is open.
 !s::Send, {Space}meaning
@@ -1011,13 +1011,8 @@ deleteConfigFile() {
 ^+F22::changeVolume(-1)
 
 ;**************************************************TEMPORARY**************************************************
-:*X:psw::Send, csc-328{Enter}
+:*X:pw::Send, csc-328{Enter}
 :*X:apw::Send, Administrator{Tab}csc-328{Enter} ;Signing into VM.
-
-:*:pw::
-FileRead, password, C:\Users\Elliott\Videos\passwd.txt
-Send, %password%{Enter}
-return
 
 #If WinActive("ahk_exe Zoom.exe")
 ; RAlt::Send, #+s ;Snip & Sketch.
