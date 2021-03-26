@@ -129,14 +129,23 @@ return
 ; ;Keeb G13: toggle fold
 ; !F13::Send, ^#l
 
-;Keeb G13: Add {}, format, and add newline
+;Keeb G13: Add {}, format, and add newline before line
 !F13::
 Send, {End}+{Home}
 SendRaw, {
 Send, !+f
 
 Sleep 100
-Send, {End}{Up}{End}{Enter} ;Add new line before }
+Send, {End}{Up}{End}{Enter} ;Add new line after {
+return
+
++!F13:: ;Same thing but new line after
+Send, {End}+{Home}
+SendRaw, {
+Send, !+f
+
+Sleep 100
+Send, {End}{End}{Enter} ;Add new line before }
 return
 
 ;Keeb G14: outdent lines
