@@ -89,8 +89,10 @@ return
 ;Keeb G4: Previous bookmark
 ^F16::Send, !p
 
-;Keeb G5: Next bookmark
-^F17::Send, !n
+; Keeb G5: Next bookmark
+; ^F17::Send, !n
+
+^F17::Send, ^{Tab}
 
 ;Keeb G6: Format code
 ^F18::Send, !+f
