@@ -25,4 +25,5 @@ Right::moveAndClick(RIGHT_X, RIGHT_Y)
 moveAndClick(x, y)
 {
     MouseMove, x, y, 0
+    Send, {Click}
 }

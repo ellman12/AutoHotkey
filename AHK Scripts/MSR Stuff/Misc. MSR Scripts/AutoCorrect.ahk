@@ -5614,3 +5614,4 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:ablke::able
 :*:shouls::should
 :*:amnd::and
+::ummer::summer
