@@ -618,6 +618,9 @@ sleepPC(winXAltChar := "")
 +F24::Send, ^c ;M1 on K95 RGB copies to the clipboard.
 +F21::Send, ^x ;M2 on K95 RGB cuts to the clipboard.
 +F22::Send, ^v ;M3 on K95 RGB pastes the clipboard.
+; +F22::
+; Send, %Clipboard%
+; return
 
 ^!F23::topMouseButtons(FrontMouseButtonBehavior) ;Top Front Mouse Button on Scimitar RGB.
 ^+F23::topMouseButtons(BackMouseButtonBehavior) ;Top Back Mouse Button on Scimitar RGB.
@@ -652,7 +655,7 @@ global
 
 ;****************************************CONTEXT-SENSITIVE HOTKEYS***************************************
 #If, doubleSlashToggled = 1
-:*?X://::Send, ?{Enter}
+; :*?X://::Send, ?{Enter}
 
 #IfWinActive Cortana ;When Cortana/Search is open.
 !s::Send, {Space}meaning

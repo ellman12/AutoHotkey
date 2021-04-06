@@ -5424,7 +5424,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:fg::f
 :*:gf::g
 :*:rt::r
-:*:io::o
+; :*:io::o
 :*:kl::l
 :*:/.::.
 
@@ -5614,3 +5614,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:ablke::able
 :*:shouls::should
 :*:amnd::and
+:*:hellom::hello
+:*:abke::able
+:*:thsn::than
+:*:returnl::return

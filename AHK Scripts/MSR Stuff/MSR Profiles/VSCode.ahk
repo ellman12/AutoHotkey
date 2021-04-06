@@ -182,11 +182,11 @@ Switch (currentProfile) {
 return
 
 #If currentProfile == "Python VSCode"
-F5::Send, #{F5} ;C and Python sharing this shortcut should hopefully work....
+; F5::Send, #{F5} ;C and Python sharing this shortcut should hopefully work....
 +Enter::Send, `:{Enter}
 
 #If currentProfile == "C VSCode" OR currentProfile == "C++ VSCode"
-F5::Send, #{F5} ;For compiling C code.
+; F5::Send, #{F5} ;For compiling C code.
 :*:null::NULL
 
 :X:pr::Send, printf("");{Left 3}
