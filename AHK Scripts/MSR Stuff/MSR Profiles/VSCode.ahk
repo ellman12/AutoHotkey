@@ -44,29 +44,9 @@ F23::WinMinimize, A
 ;****************************************K95 RGB ACTIONS***************************************
 ;Keeb G1: Single tap for Git Commit; double tap for Git Push, triple tap for pull.
 ^F13::
-if ((A_ThisHotkey = A_PriorHotkey) AND (A_TimeSincePriorHotkey < 250))
-	numOfTaps++
-else ;If no extra taps.
-	numOfTaps = 1
-
-SetTimer, determineNumOfTapsVSCodeG1, 250
-return
-
-determineNumOfTapsVSCodeG1:
-SetTimer, determineNumOfTapsVSCodeG1, Off
-
-if (numOfTaps == 1)
-    Send, ^{Enter}
-else if (numOfTaps == 2)
-{
-    Send, ^!p
-    Tippy("Git Push", 900)
-}
-else if (numOfTaps == 3)
-{
-    Send, +!p
-    Tippy("Git Pull", 900)
-}
+Send, +!p ;Pull (custom shortcut I configured in VSCode I believe)
+Sleep 1000
+Send, ^!p ;Push (same thing I think)
 return
 
 ;Keeb G2: comment out line

@@ -5619,3 +5619,17 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:thsn::than
 :*:returnl::return
 ::ummer::summer
+:*:fakse::false
+::pgg::PGG
+::layour::layout
+::afaik::as far as I know
+:*:thar::that
+:*:wany::want
+::leabe::leave
+::tp::to
+::yp::to
+::bur::but
+:*:amd::and
+:*:thiung::thing
+:*:bothj::both
+:*:dweal::deal
