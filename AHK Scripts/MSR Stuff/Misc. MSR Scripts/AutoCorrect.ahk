@@ -5633,3 +5633,8 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:thiung::thing
 :*:bothj::both
 :*:dweal::deal
+::gert::get
+::mch::much
+::hve::have
+::whenm::when
+::incrememnts::increments

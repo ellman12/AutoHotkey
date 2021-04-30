@@ -669,12 +669,16 @@ return
 #If currentProfile != "Terraria" ;Terraria profile uses G3 (F15) for quick mana.
 
 ;Scroll up/down faster by holding down the G3 key on Scimitar Pro RGB.
-F15 & WheelDown::Send, {WheelDown %G3Scrolls%} ;Set this in #o.
-F15 & WheelUp::Send, {WheelUp %G3Scrolls%}
+; F15 & WheelDown::Send, {WheelDown %G3Scrolls%} ;Set this in #o.
+; F15 & WheelUp::Send, {WheelUp %G3Scrolls%}
+#If GetKeyState("F15", "P")
+$WheelDown::Send, {WheelDown %G3Scrolls%} ;Set this in #o.
+$WheelUp::Send, {WheelUp %G3Scrolls%}
 
 ;A way to make the mouse move faster while Mouse G3 and the Right Button are held down.
 ;It's basically the complete opposite of the sniper button.
-F15 & RButton::
+; F15 & RButton::
+RButton::
 DllCall("SystemParametersInfo", Int,113, Int,0, UInt,17, Int,1)
 KeyWait, RButton
 DllCall("SystemParametersInfo", Int,113, Int,0, UInt,10, Int,1)
@@ -1013,6 +1017,10 @@ deleteConfigFile() {
 ^!F22::changeVolume(1)
 ^+F22::changeVolume(-1)
 
+$*ScrollLock:: ;If a modifier key is stuck, send the key up signal
+Send, {CtrlUp}{AltUp}{LWinUp}{RWinUp}{ShiftUp}
+return
+
 ;**************************************************TEMPORARY**************************************************
 :*X:pw::Send, csc-328{Enter}
 :*X:apw::Send, Administrator{Tab}csc-328{Enter} ;Signing into VM.
@@ -1028,6 +1036,7 @@ MouseGetPos, mousePosX, mousePosY
 MouseMove, 1920, 540, 0
 Send, {LAlt}
 return
+#If
 
 ; #If WinActive("ahk_exe Zoom.exe") && usingALaptop = true
 ; ; For taking Screenshots during Calculus and other online classes. Snip and Sketch has to already be in Window snip mode, though.
