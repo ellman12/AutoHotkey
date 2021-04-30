@@ -141,7 +141,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :?:n;t::n't
 :?:;ll::'ll
 :?:;re::'re
-:?:;ve::'ve
+; :?:;ve::'ve
 ::sice::since  ; Must precede the following line!
 :?:sice::sive
 :?:t eh:: the
@@ -5638,3 +5638,4 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::hve::have
 ::whenm::when
 ::incrememnts::increments
+::uo::up
