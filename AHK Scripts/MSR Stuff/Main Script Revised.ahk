@@ -657,7 +657,7 @@ global
 #If, doubleSlashToggled = 1
 ; :*?X://::Send, ?{Enter}
 
-#IfWinActive Cortana ;When Cortana/Search is open.
+#IfWinActive Search ;When Cortana/Search is open.
 !s::Send, {Space}meaning
 
 RWin::
