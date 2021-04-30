@@ -395,5 +395,29 @@ Switch (cmdToRun) {
     StringTrimRight, finalString, finalString, 2 ;Remove trailing comma
     Clipboard := finalString
     return
+
+    Case "grade": ;Calculate class grade by entering in points earned and then max possible points
+    totalPointsEarned := 0 ;E.g., if you got 17/20, this would be 17
+    totalMaxPoints := 0 ;and this would be 20
+
+    while (ErrorLevel != 1)
+    {
+        InputBox, pointsEarned, Enter Points Earned, Enter points earned for assignment %A_Index%,, 200, 150,,,,
+        totalPointsEarned += pointsEarned
+    }
+
+    MsgBox, 262144, Total Points Earned, %totalPointsEarned%
+    ErrorLevel := 0 ;Reset for next loop
+
+    while (ErrorLevel != 1)
+    {
+        InputBox, maxPoints, Enter Max Points, Enter max points for assignment %A_Index%,, 200, 150,,,,
+        totalMaxPoints += maxPoints
+    }
+    MsgBox, 262144, Max Points, %totalMaxPoints%
+
+    result := round((totalPointsEarned/totalMaxPoints) * 100, 2)
+    MsgBox, 0, Grade, You got %result%`%.`n`nA+`t97-100`nA`t94-96`nA-`t90-93`nB+`t87-89`nB`t84-86`nB-`t80-83`nC+`t77-79`nC`t74-76`nC-`t70-73`nD+`t67-69`nD`t64-66`nD-`t60-63`nF`t0-59
+    return
     }
 }
