@@ -1,6 +1,15 @@
 ;Extremely useful groups of hotkeys that make the historically and typically useless NumPad control music, YouTube, and more depending on what's active at the moment. Can also be overridden by the user if they want.
 ;The #If (!GetKeyState("NumLock", "T") and !GetKeyState("ScrollLock", "T")) is so the 2nd keeb NumPad things don't overlap with these.
 
+^NumpadSub::
+SoundGet, systemMasterVolume
+InputBox, systemMasterVolume, Input Custom Volume, Input a custom volume. Current volume: %systemMasterVolume%.,, 200, 150,,,,, %systemMasterVolume%
+if ErrorLevel = 1
+	Tippy("CANCEL/Escape was pressed", 0.95)
+else
+	SoundSet, %systemMasterVolume%
+return
+
 ;Change the step value of NumPad 2 and NumPad 8.
 !NumPadSub::InputBox, Num2And8Step, Input Num2 and Num8 step value, Input Num2 and Num8 step value. Current value: %Num2And8Step%., , , , , , , , %Num2And8Step%
 
