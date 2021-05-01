@@ -360,10 +360,14 @@ Switch (cmdToRun) {
     Case "vs dsu":Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe C:\Users\Elliott\Documents\GitHub\Computer-Science-Classes
     Case "vs py": Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe C:\Users\Elliott\Documents\GitHub\Python-3-Projects
     Case "vs pss": Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe C:\Users\Elliott\Documents\GitHub\Photos-Storage-Server
+    Case "vs none": Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe
 
     ;Open YouTube website.
     ; Case "yt", "yt ff", "yt Firefox":Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.youtube.com/
     Case "yt chr":Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://www.youtube.com/
+
+    ;Run Folder Copy (FC): https://github.com/ellman12/Folder-Copy
+    Case "fc":Run, C:\Users\Elliott\Documents\GitHub\Folder-Copy\src\fc.py
 
     ;**************************************************TEMP**************************************************
     Case "vs 234": Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe "C:\Users\Elliott\Documents\GitHub\Computer-Science-Classes\Year 1 Semester 2\CSC 234 Software Security"
