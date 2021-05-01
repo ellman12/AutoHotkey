@@ -8,8 +8,14 @@ PrintScreen::return ;Disables its normal functionality.
 t::Send, {U+1F914} ;🤔
 u::Send, {U+1F44D} ;👍
 
-d::
-FormatTime, formattedDateTime,, M/d/yyyy h:mm tt ;9/13/2020 6:05 PM
+c:: ;Time (clock)
+FormatTime, formattedDateTime,, h:mm tt
 SendInput, %formattedDateTime%
 return
+
+d:: ;Short (d)ate
+FormatTime, formattedDateTime,, M/d/yyyy
+SendInput, %formattedDateTime%
+return
+
 #If
