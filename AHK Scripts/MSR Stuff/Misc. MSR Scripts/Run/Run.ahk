@@ -367,7 +367,15 @@ Switch (cmdToRun) {
     Case "yt chr":Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://www.youtube.com/
 
     ;Run Folder Copy (FC): https://github.com/ellman12/Folder-Copy
-    Case "fc":Run, C:\Users\Elliott\Documents\GitHub\Folder-Copy\src\fc.py
+    Case "fc":
+    MsgBox, 262180, Clear FC Folder First?, Do you want to empty the FC backup folder before running FC?
+    IfMsgBox, Yes
+    {
+        FileRemoveDir, C:\Users\Elliott\Videos\Temporary Stuff\fc backups, 1
+        FileCreateDir, C:\Users\Elliott\Videos\Temporary Stuff\fc backups
+    }
+    Run, C:\Users\Elliott\Documents\GitHub\Folder-Copy\src\fc.py
+    return
 
     ;**************************************************TEMP**************************************************
     Case "vs 234": Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe "C:\Users\Elliott\Documents\GitHub\Computer-Science-Classes\Year 1 Semester 2\CSC 234 Software Security"
