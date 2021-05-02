@@ -374,7 +374,8 @@ Switch (cmdToRun) {
         FileRemoveDir, C:\Users\Elliott\Videos\Temporary Stuff\fc backups, 1
         FileCreateDir, C:\Users\Elliott\Videos\Temporary Stuff\fc backups
     }
-    Run, C:\Users\Elliott\Documents\GitHub\Folder-Copy\src\fc.py
+    RunWait, C:\Users\Elliott\Documents\GitHub\Folder-Copy\src\fc.py
+    Run, explorer.exe C:\Users\Elliott\Videos\Temporary Stuff\fc backups
     return
 
     ;**************************************************TEMP**************************************************
