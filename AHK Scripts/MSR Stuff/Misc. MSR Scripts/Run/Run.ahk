@@ -415,7 +415,7 @@ Switch (cmdToRun) {
 
     while (ErrorLevel != 1)
     {
-        InputBox, pointsEarned, Enter Points Earned, Enter points earned for assignment %A_Index%,, 200, 150,,,,
+        InputBox, pointsEarned, Enter Points Earned, Enter points earned for assignment %A_Index%. Last entry: %pointsEarned%,, 200, 150,,,,
         totalPointsEarned += pointsEarned
     }
 
@@ -424,7 +424,7 @@ Switch (cmdToRun) {
 
     while (ErrorLevel != 1)
     {
-        InputBox, maxPoints, Enter Max Points, Enter max points for assignment %A_Index%,, 200, 150,,,,
+        InputBox, maxPoints, Enter Max Points, Enter max points for assignment %A_Index%. Last entry: %maxPoints%,, 200, 150,,,,
         totalMaxPoints += maxPoints
     }
     MsgBox, 262144, Max Points, %totalMaxPoints%

@@ -5639,3 +5639,4 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::whenm::when
 ::incrememnts::increments
 ::uo::up
+::noy::not
