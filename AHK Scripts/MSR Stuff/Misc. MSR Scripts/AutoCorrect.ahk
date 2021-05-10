@@ -5509,7 +5509,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ; ::id::I'd
 :*:usb::USB
 :*:musicbee::MusicBee
-::ac::AutoCorrect
+; ::ac::AutoCorrect
 :*:roomates::roommates
 ::VD::virtual desktop
 ::VDs::virtual desktops
@@ -5561,7 +5561,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::zoom::Zoom
 ::vs::VS
 :*:rgb::RGB
-::cmd::command
+; ::cmd::command
 :*:cd..::cd ..
 ::worjks::works
 :*:shownb::shown
