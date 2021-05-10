@@ -1,6 +1,6 @@
 # AutoHotkey
 
-All of my AutoHotkey and iCUE stuff. If you're new here start with the file "Main Script Revised.ahk". It's the big main file that links most of the other scripts in this repo together.
+All of my AutoHotkey and iCUE stuff. If you're new here start with the file "Main Script Revised.ahk". It's the big main file that links most of the other scripts in this repo together. There are also some other smaller scripts scattered throughout. Have a look around.
 
 **Brief History (From What I Can Remember/find):**<br>
 2015/2016—acquire K95 RGB and M65 mouse.<br>
