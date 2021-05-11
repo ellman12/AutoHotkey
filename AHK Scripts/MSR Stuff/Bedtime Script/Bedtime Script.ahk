@@ -63,4 +63,14 @@ ExtraTimeButton:
     GUI, BedtimeGUI:Show, w%A_ScreenWidth% h%A_ScreenHeight% ;Show the GUI again.
     numOfButtonPresses++
     GuiControl, BedtimeGUI:,numOfButtonPresses, %numOfButtonPresses%
+
+    if (numOfButtonPresses >= 5)
+    {
+        MsgBox, Last one before script forces you to go to bed!
+    }
+
+    if (numOfButtonPresses >= 6)
+    {
+        GuiControl, BedtimeGUI:Hide, numOfButtonPresses
+    }
 return
