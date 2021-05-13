@@ -355,11 +355,14 @@ Loop {
 			currentProfile := "C VSCode"
 		else if InStr(activeWindowTitle, ".py")
 			currentProfile := "Python VSCode"
+		else if InStr(activeWindowTitle, ".cs")
+			currentProfile := "C# VSCode"
 		else
 			currentProfile := "Generic VSCode"
 
 	else if Instr(activeWindowTitle, "Microsoft Visual Studio")
-		currentProfile := "Visual Studio"
+		; currentProfile := "Visual Studio"
+		currentProfile := "C# VSCode"
 	else if InStr(activeWindowTitle, " - Excel")
 		currentProfile := "Excel"
 	else if InStr(activeWindowTitle, " - Word")

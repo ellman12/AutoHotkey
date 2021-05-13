@@ -1,6 +1,6 @@
 ;****************************************SCIMITAR RGB ACTIONS***************************************
 ;Actions regardless of open file type.
-#If currentProfile == "Generic VSCode" OR currentProfile == "AutoHotkey VSCode" OR currentProfile == "C VSCode" OR currentProfile == "C++ VSCode" OR currentProfile == "Python VSCode"
+#If currentProfile == "Generic VSCode" OR currentProfile == "AutoHotkey VSCode" OR currentProfile == "C VSCode" OR currentProfile == "C++ VSCode" OR currentProfile == "Python VSCode" OR currentProfile == "C# VSCode"
 ;Mouse G1: horizontal scroll
 F13::
 Send, {Shift down}
@@ -42,12 +42,8 @@ F23::WinMinimize, A
 +F23::Send, ^+t
 
 ;****************************************K95 RGB ACTIONS***************************************
-;Keeb G1: Single tap for Git Commit; double tap for Git Push, triple tap for pull.
-^F13::
-Send, +!p ;Pull (custom shortcut I configured in VSCode I believe)
-Sleep 1000
-Send, ^!p ;Push (same thing I think)
-return
+;Keeb G1: Next Bookmark
+^F13::Send, !n
 
 ;Keeb G2: comment out line
 ^F14::Send, ^/
@@ -55,23 +51,10 @@ return
 ;Keeb G3: delete line
 ^F15::Send, ^+k
 
-/*
-;Keeb G4: Toggle bookmark on the current line
-^F16::Send, ^!k
-
-;Keeb G5: previous bookmark
-^F17::Send, !p
-
-;Keeb G6: next bookmark
-^F18::Send, !n
-*/
-
 ;Keeb G4: Previous bookmark
 ^F16::Send, !p
 
-; Keeb G5: Next bookmark
-; ^F17::Send, !n
-
+;Keyboard G5: Ctrl Tab
 ^F17::Send, ^{Tab}
 
 ;Keeb G6: Format code
@@ -90,6 +73,7 @@ switch (currentProfile) {
     case "C++ VSCode":Send, cout <<  << endl;{Left 9}
     case "C VSCode":Send, printf("");{Left 3}
     case "Python VSCode":Send, print(""){Left 2}
+    Case "C# VSCode":Send, Console.WriteLine("");{Left 3}
     default:MsgBox, 262160, Unknown VSCode Sub Profile, This current language is not defined for this hotkey.
 }
 return
@@ -104,12 +88,10 @@ Switch (currentProfile) {
     case "C++ VSCode":Send, cin >> `;{Left}
     Case "C VSCode":Send, scanf("`%");{Left 3}
     Case "Python VSCode":Send, input(""){Left 2}
+    Case "C# VSCode":Send, Console.ReadLine();{Left 2}
     default:MsgBox, 262160, Unknown VSCode Sub Profile, This current language is not defined for this hotkey.
 }
 return
-
-; ;Keeb G13: toggle fold
-; !F13::Send, ^#l
 
 ;Keeb G13: Add {}, format, and add newline before line
 !F13::
