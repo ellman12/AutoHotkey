@@ -369,8 +369,6 @@ Loop {
 		currentProfile := "Word"
 	else if InStr(activeWindowTitle, "Discord")
 		currentProfile := "Discord"
-	else if Instr(activeWindowTitle, "Factorio 1.")
-		currentProfile := "Factorio"
 	else if Instr(activeWindowTitle, "Minecraft 1.1")
 		currentProfile := "Minecraft"
 	else if Instr(activeWindowTitle, "Terraria")
