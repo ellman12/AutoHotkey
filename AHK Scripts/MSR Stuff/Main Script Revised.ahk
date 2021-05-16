@@ -426,7 +426,6 @@ Loop {
 
 #Include, %A_ScriptDir%\Screen Clipper Script\Screen Clipper.ahk
 
-#Include, %A_ScriptDir%\Video Game Stuff\Factorio.ahk
 #Include, %A_ScriptDir%\Video Game Stuff\Minecraft.ahk
 #Include, %A_ScriptDir%\Video Game Stuff\Terraria.ahk
 
