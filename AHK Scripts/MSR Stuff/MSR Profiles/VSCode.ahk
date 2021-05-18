@@ -20,8 +20,8 @@ F16::return
 ;Mouse G5: tab to the right
 F17::Send, ^{PGDN}
 
-;Mouse G6: delete line(s)
-F18::Send, ^+k
+;Mouse G6: forward in history
+F18::Send, !{Right}
 
 ;Mouse G7: close tab
 F19::Gosub, $^w
@@ -29,8 +29,8 @@ F19::Gosub, $^w
 ;Mouse G8: tab to the left
 F20::Send, ^{PGUP}
 
-;Mouse G9: comment out line
-F21::Send, ^/
+;Mouse G9: backwards in history
+F21::Send, !{Left}
 
 ;Mouse G10: Alt + Tab
 F22::Send, !{Tab}
