@@ -5640,3 +5640,4 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::incrememnts::increments
 ::uo::up
 ::noy::not
+:*:c#::C#
