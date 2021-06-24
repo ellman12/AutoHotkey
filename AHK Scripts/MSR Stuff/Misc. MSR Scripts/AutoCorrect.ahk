@@ -5641,3 +5641,15 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::uo::up
 ::noy::not
 :*:c#::C#
+::te::the
+::surfave::surface
+::sun::Sun
+:*:viking::Viking
+::u.s.::U.S.
+:*:mars::Mars
+::nasa::NASA::nars::Mars
+::martian::Martian
+:*:nasa::NASA
+::whatr::what
+::habe::have
+::venus::Venus

@@ -371,11 +371,11 @@ Switch (cmdToRun) {
     MsgBox, 262180, Clear FC Folder First?, Do you want to empty the FC backup folder before running FC?
     IfMsgBox, Yes
     {
-        FileRemoveDir, C:\Users\Elliott\Videos\Temporary Stuff\fc backups, 1
-        FileCreateDir, C:\Users\Elliott\Videos\Temporary Stuff\fc backups
+        FileRemoveDir, B:\fc backups, 1
+        FileCreateDir, B:\fc backups
     }
     RunWait, C:\Users\Elliott\Documents\GitHub\Folder-Copy\src\fc.py
-    Run, explorer.exe C:\Users\Elliott\Videos\Temporary Stuff\fc backups
+    Run, explorer.exe B:\fc backups
     return
 
     ;**************************************************TEMP**************************************************
