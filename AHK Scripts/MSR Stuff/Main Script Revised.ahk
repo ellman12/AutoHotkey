@@ -757,6 +757,7 @@ Here's how to use it:
 2. Test and make sure the screen coordinates are all correct (test a single track at a time)
 3. That's it. Just don't open too many tabs at once, or else it won't work properly because your browser will seriously slow down.
 */
+
 ;~ RAlt::
 ;~ InputBox, loopAmt, Num of tabs, Enter num of tabs,, 200, 130,,,,, 13
 ;~ Sleep 600
