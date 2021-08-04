@@ -285,28 +285,7 @@ Switch (cmdToRun) {
     Clipboard := newStr
     return
 
-    ; ;Usually used for swapping 2 different lines/sections/blocks of code.
-    ; Case "swap":
-    ; Clipboard :=
-    ; ToolTip, Copy the first item(s).
-    ; ClipWait
-    ; firstClipboard := Clipboard
-
-    ; Clipboard :=
-    ; ToolTip, Copy the second item(s).
-    ; ClipWait
-    ; secondClipboard := Clipboard
-
-    ; ToolTip, Paste the second
-    ; return
-
     ;**************************************************OPEN**************************************************
-    Case "CR":Run, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Misc. MSR Scripts\Compile and Run.ahk
-    Case "CR cl":
-    DetectHiddenWindows, On
-    WinClose, C:\Users\%A_UserName%\Documents\GitHub\AutoHotkey\AHK Scripts\MSR Stuff\Misc. MSR Scripts\Compile and Run.ahk
-    return
-
     Case "bin": Run, ::{645ff040-5081-101b-9f08-00aa002f954e} ;Open Recycle Bin.
     Case "ctrl pan": Run, ::{21ec2020-3aea-1069-a2dd-08002b30309d} ;Open Control Panel.
 
@@ -357,45 +336,9 @@ Switch (cmdToRun) {
     return
 
     Case "vs":Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe C:\Users\Elliott\Documents\GitHub\AutoHotkey
-    Case "vs dsu":Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe C:\Users\Elliott\Documents\GitHub\Computer-Science-Classes
     Case "vs py": Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe C:\Users\Elliott\Documents\GitHub\Python-3-Projects
     Case "vs pss": Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe C:\Users\Elliott\Documents\GitHub\Photos-Storage-Server
     Case "vs none": Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe
-
-    ;Open YouTube website.
-    ; Case "yt", "yt ff", "yt Firefox":Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://www.youtube.com/
-    Case "yt chr":Run, "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" https://www.youtube.com/
-
-    ;Run Folder Copy (FC): https://github.com/ellman12/Folder-Copy
-    Case "fc":
-    MsgBox, 262180, Clear FC Folder First?, Do you want to empty the FC backup folder before running FC?
-    IfMsgBox, Yes
-    {
-        FileRemoveDir, B:\fc backups, 1
-        FileCreateDir, B:\fc backups
-    }
-    RunWait, C:\Users\Elliott\Documents\GitHub\Folder-Copy\src\fc.py
-    Run, explorer.exe B:\fc backups
-    return
-
-    ;**************************************************TEMP**************************************************
-    Case "vs 234": Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe "C:\Users\Elliott\Documents\GitHub\Computer-Science-Classes\Year 1 Semester 2\CSC 234 Software Security"
-    Case "234":Run, "C:\Users\Elliott\Documents\GitHub\Computer-Science-Classes\Year 1 Semester 2\CSC 234 Software Security"
-    Case "vs 260": Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe "C:\Users\Elliott\Documents\GitHub\Computer-Science-Classes\Year 1 Semester 2\CSC 260 Object Oriented Design"
-    Case "260":Run, "C:\Users\Elliott\Documents\GitHub\Computer-Science-Classes\Year 1 Semester 2\CSC 260 Object Oriented Design"
-    Case "vs 300": Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe "C:\Users\Elliott\Documents\GitHub\Computer-Science-Classes\Year 1 Semester 2\CSC 300 Data Structures"
-    Case "300":Run, "C:\Users\Elliott\Documents\GitHub\Computer-Science-Classes\Year 1 Semester 2\CSC 300 Data Structures"
-    Case "vs 328": Run, C:\Users\Elliott\AppData\Local\Programs\Microsoft VS Code/Code.exe "C:\Users\Elliott\Documents\GitHub\Computer-Science-Classes\Year 1 Semester 2\CSC 328 Operating Environments"
-    Case "328":Run, "C:\Users\Elliott\Documents\GitHub\Computer-Science-Classes\Year 1 Semester 2\CSC 328 Operating Environments"
-
-    Case "282":Run, C:\Users\Elliott\Documents\GitHub\Computer-Science-Classes\Year 1 Semester 2\MATH 282 Math of Games
-
-    ;Attendance
-    Case "att":
-    InputBox, attendanceCode, Attendance Code, Enter attendance code,, 200, 130
-    if (attendanceCode != "")
-        Run, https://inclass.today/%attendanceCode%
-    return
 
     ;Used to enter lists of dice pairs, like this: (2, 6), (6, 2), (3, 5), (5, 3), (4, 4)
     Case "dice":
