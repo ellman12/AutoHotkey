@@ -15,7 +15,7 @@ F15::return
 F16::return
 
 ;Mouse G5: tab to the right
-F17::Send, ^!{PGDN}
+F17::Send, ^{PGDN}
 
 ;Mouse G6: forward in history
 F18::Send, !{Right}
