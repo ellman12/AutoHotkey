@@ -5653,3 +5653,4 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::whatr::what
 ::habe::have
 ::venus::Venus
+:*:gbp::GBP
