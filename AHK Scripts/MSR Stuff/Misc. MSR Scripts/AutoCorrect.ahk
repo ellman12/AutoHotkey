@@ -1,4 +1,4 @@
-﻿;------------------------------------------------------------------------------
+;------------------------------------------------------------------------------
 ; CHANGELOG:
 ;
 ; Sep 13 2007: Added more misspellings.
@@ -5471,7 +5471,6 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:ethan::Ethan
 :*:sophia::Sophia
 :*:ducharme::DuCharme
-:*:gui::GUI
 ::custoemr::customer
 ::ed::Elliott DuCharme
 :*:iphone::iPhone

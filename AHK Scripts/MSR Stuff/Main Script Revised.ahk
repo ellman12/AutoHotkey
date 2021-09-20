@@ -1021,8 +1021,8 @@ Send, {CtrlUp}{AltUp}{LWinUp}{RWinUp}{ShiftUp}
 return
 
 ;**************************************************TEMPORARY**************************************************
-:*X:pw::Send, csc-328{Enter}
-:*X:apw::Send, Administrator{Tab}csc-328{Enter} ;Signing into VM.
+:*X:pw::Send, csc-285{Enter}
+:*X:apw::Send, Administrator{Tab}csc-285{Enter} ;Signing into VM.
 
 #If WinActive("ahk_exe Zoom.exe")
 ; RAlt::Send, #+s ;Snip & Sketch.
