@@ -393,9 +393,6 @@ m::sleepPC() ;Open Windows sleep, hibernate, etc. menu.
 ;Open Google Calendar.
 n::Run, "C:\Program Files\Mozilla Firefox\firefox.exe" https://calendar.google.com/calendar/u/0/r
 
-/::SendRaw, Elliott.DuCharme@trojans.dsu.edu
-^/::SendRaw, Elliott.DuCharme
-
 ;Shift + End.
 NumPad1::Send, +{End}
 NumpadEnd::Send, +{End}
@@ -477,6 +474,13 @@ x::Send, ^y
 
 ;Undo.
 z::Send, ^z
+
+;***************TEMP***************
+/::SendRaw, Elliott.DuCharme@trojans.dsu.edu
+^/::SendRaw, Elliott.DuCharme
+
+;On PC, open Google Drive where school stuff is
+AppsKey::Run, explorer D:\Other computers\My PC\DSU Year 2 Semester 1
 
 #if
 
