@@ -5152,8 +5152,6 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ;~ ::repatition::repetition, repartition
 ;~ ::residuum::residuüm
 ;~ ::restraunt::restraint, restaurant
-::resume::résumé
-::resumes::résumés
 ;~ ::rigeur::rigueur, rigour, rigor
 ;~ ::role::rôle
 ;~ ::rose::rosé
