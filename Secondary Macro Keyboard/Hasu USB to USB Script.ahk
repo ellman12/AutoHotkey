@@ -37,6 +37,11 @@ F2::F1ThruF4MouseMove("F2", mousePosX2, mousePosY2)
 F3::F1ThruF4MouseMove("F3", mousePosX3, mousePosY3)
 F4::F1ThruF4MouseMove("F4", mousePosX4, mousePosY4)
 
+F6::altTabGroupAdd(WindowGroupF6)
+F7::altTabGroupAdd(WindowGroupF7)
+F8::altTabGroupAdd(WindowGroupF8)
+F10::altTabGroupAdd(WindowGroupF10)
+
 ^F9::Run, C:\Program Files\Microsoft Office\root\Office16\Outlook.exe
 ^F11::Run, C:\Users\Elliott\AppData\Local\Discord\Update.exe --processStart Discord.exe
 ^F12:: Run, C:\Program Files (x86)\MusicBee\MusicBee.exe

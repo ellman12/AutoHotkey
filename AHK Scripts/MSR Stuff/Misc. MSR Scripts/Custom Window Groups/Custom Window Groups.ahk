@@ -341,3 +341,14 @@ selectAndLoadIDFile(Fx, ByRef WindowGroupArray) {
     FileRead, groupFileContents, %chosenFilePath%
     WindowGroupArray := StrSplit(groupFileContents, A_Space) ;Split up the file and store in the passed-in array. The delimiter is spaces because they're easiest to work with.
 }
+
+;Adds the 2 alt tab windows to an Fx group
+altTabGroupAdd(ByRef WindowGroupArray) {
+    addWindowFx(WindowGroupArray)
+    Sleep 100
+    Send, !{Tab}
+    Sleep 100
+    addWindowFx(WindowGroupArray)
+    Sleep 100
+    Send, !{Tab}
+}
