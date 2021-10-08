@@ -61,50 +61,21 @@ else
 }
 return
 
-!F9:: ;Show/hide Outlook.
-SetTitleMatchMode, 2 ;A window's title can contain WinTitle anywhere inside it to be a match.
-OutlookVisibilityToggle := !OutlookVisibilityToggle
-
-if (OutlookVisibilityToggle = 0) {
-    WinHide, - Outlook
-    Send, !{Tab} ;Go back to the previous window.
-} else {
-    WinShow, - Outlook
-    WinActivate, - Outlook
-}
-return
-
 F11:: ;Activate, and show/hide Discord.
 DetectHiddenWindows, On
 SetTitleMatchMode, 2 ;A window's title can contain WinTitle anywhere inside it to be a match.
-if (WinExist("Discord")) AND (!WinActive("Discord"))
+WinGet, Style, Style, Discord ;0x10000000 is WS_VISIBLE. https://www.autohotkey.com/board/topic/58933-how-to-check-if-a-window-is-hidden/
+if (WinExist("Discord")) AND (!WinActive("Discord") AND not Style & 0x10000000)
+{
+    WinShow, Discord
     WinActivate, Discord
+}
 else if !WinExist("Discord") AND (!WinActive("Discord"))
     Run, C:\Users\Elliott\AppData\Local\Discord\Update.exe --processStart Discord.exe
 else
 {
-    DiscordVisibilityToggle := !DiscordVisibilityToggle
-
-    if (DiscordVisibilityToggle = 0) {
-        WinHide, Discord
-        Send, !{Tab} ;Go back to the previous window.
-    } else {
-        WinShow, Discord
-        WinActivate, Discord
-    }
-}
-return
-
-!F11:: ;Show/hide Discord.
-SetTitleMatchMode, 2 ;A window's title can contain WinTitle anywhere inside it to be a match.
-DiscordVisibilityToggle := !DiscordVisibilityToggle
-
-if (DiscordVisibilityToggle = 0) {
-    WinHide, - Discord
+    WinHide, Discord
     Send, !{Tab} ;Go back to the previous window.
-} else {
-    WinShow, - Discord
-    WinActivate, - Discord
 }
 return
 
@@ -123,19 +94,6 @@ else
         WinShow, - MusicBee
         WinActivate, - MusicBee
     }
-}
-return
-
-!F12:: ;Show/hide MusicBee.
-SetTitleMatchMode, 2 ;A window's title can contain WinTitle anywhere inside it to be a match.
-MusicBeeVisibilityToggle := !MusicBeeVisibilityToggle
-
-if (MusicBeeVisibilityToggle = 0) {
-    WinHide, - MusicBee
-    Send, !{Tab} ;Go back to the previous window.
-} else {
-    WinShow, - MusicBee
-    WinActivate, - MusicBee
 }
 return
 
