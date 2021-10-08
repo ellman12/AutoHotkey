@@ -38,36 +38,8 @@ F3::F1ThruF4MouseMove("F3", mousePosX3, mousePosY3)
 F4::F1ThruF4MouseMove("F4", mousePosX4, mousePosY4)
 
 ^F9::Run, C:\Program Files\Microsoft Office\root\Office16\Outlook.exe
-^F11::Run, C:\Users\%A_UserName%\AppData\Local\Discord\app-0.0.308\Discord.exe
+^F11::Run, C:\Users\Elliott\AppData\Local\Discord\Update.exe --processStart Discord.exe
 ^F12:: Run, C:\Program Files (x86)\MusicBee\MusicBee.exe
-
-F10::
-if (WinExist("Microsoft To Do")) AND (!WinActive("Microsoft To Do"))
-    WinActivate, Microsoft To Do
-else
-    Run, C:\Users\%A_UserName%\Documents\Microsoft To Do ;Run/show MS To Do.
-return
-
-F5:: ;Run, and activate or show/hide Memes folder.
-DetectHiddenWindows, On
-SetTitleMatchMode, 2 ;A window's title can contain WinTitle anywhere inside it to be a match.
-; if (WinExist("Memes")) AND (!WinActive("Memes"))
-;     WinActivate, Memes
-if !WinExist("Memes") AND (!WinActive("Memes"))
-    Run, C:/Users/%A_UserName%/Documents/GitHub/AutoHotkey/Other/Memes
-else
-{
-    MemesVisibilityToggle := !MemesVisibilityToggle
-
-    if (MemesVisibilityToggle = 0) {
-        WinHide, Memes
-        Send, !{Tab} ;Go back to the previous window.
-    } else {
-        WinShow, Memes
-        WinActivate, Memes
-    }
-}
-return
 
 F9:: ;Show/hide Outlook.
 DetectHiddenWindows, On
@@ -108,7 +80,7 @@ SetTitleMatchMode, 2 ;A window's title can contain WinTitle anywhere inside it t
 if (WinExist("Discord")) AND (!WinActive("Discord"))
     WinActivate, Discord
 else if !WinExist("Discord") AND (!WinActive("Discord"))
-    Run, C:\Users\%A_UserName%\AppData\Local\Discord\app-0.0.308\Discord.exe
+    Run, C:\Users\Elliott\AppData\Local\Discord\Update.exe --processStart Discord.exe
 else
 {
     DiscordVisibilityToggle := !DiscordVisibilityToggle
