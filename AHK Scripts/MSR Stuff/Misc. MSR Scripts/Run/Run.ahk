@@ -241,6 +241,13 @@ Switch (cmdToRun) {
         MsgBox, 0, Drive Stats, Drive Stats`n`n%Total%
     return
 
+    ;Trims whitespace and newlines in Clipboard
+    Case "trim":
+    Clipboard := Trim(Clipboard)
+    Clipboard := StrReplace(Clipboard, "`r")
+    Clipboard := StrReplace(Clipboard, "`n")
+    return
+
     Case "Exit": ExitApp
 
     ;Sleep PC.
