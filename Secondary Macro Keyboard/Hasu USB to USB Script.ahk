@@ -419,7 +419,7 @@ Send, {Enter}
 Sleep, 1000
 SendRaw, elliott.ducharme@trojans.dsu.edu
 Send, {Tab}
-FileRead, passwd, "C:\Users\Elliott\Videos\passwd"
+FileRead, passwd, C:\Users\Elliott\Videos\passwd
 SendRaw, %passwd%
 Send, {Enter}
 return
