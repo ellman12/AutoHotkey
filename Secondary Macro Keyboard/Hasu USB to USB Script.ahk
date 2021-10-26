@@ -411,8 +411,18 @@ x::Send, ^y
 z::Send, ^z
 
 ;***************TEMP***************
-/::SendRaw, Elliott.DuCharme@trojans.dsu.edu
-^/::SendRaw, Elliott.DuCharme
+/::SendRaw, elliott.ducharme@trojans.dsu.edu
+^/::SendRaw, elliott.ducharme
+Insert::
+SendRaw, @dsu.edu
+Send, {Enter}
+Sleep, 1000
+SendRaw, elliott.ducharme@trojans.dsu.edu
+Send, {Tab}
+FileRead, passwd, C:\Users\Elliott\Documents\GitHub\AutoHotkey\passwd
+SendRaw, %passwd%
+Send, {Enter}
+return
 
 ;On PC, open Google Drive where school stuff is
 AppsKey::Run, explorer D:\Other computers\My PC\DSU Year 2 Semester 1
