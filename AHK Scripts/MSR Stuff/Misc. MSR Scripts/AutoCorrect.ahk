@@ -5495,7 +5495,6 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 :*:yall::y'all
 :*:msgbox::MsgBox
 :*:inputbox::InputBox
-:*:om::on
 :*:qw::w
 :*:/.::.
 ::;s::'s
@@ -5637,7 +5636,7 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::incrememnts::increments
 ::uo::up
 ::noy::not
-:*:c#::C#
+::c#::C#
 ::te::the
 ::surfave::surface
 ::sun::Sun
@@ -5651,3 +5650,4 @@ return  ; This makes the above hotstrings do nothing so that they override the i
 ::habe::have
 ::venus::Venus
 :*:gbp::GBP
+::snd::and
