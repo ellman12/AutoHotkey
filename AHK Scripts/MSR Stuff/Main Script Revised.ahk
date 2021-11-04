@@ -1054,3 +1054,7 @@ return
 ; Send, !{F4}
 ; return
 ; #If
+
+#If WinActive("pgAdmin 4")
+^/::Send, ^+/
+#If
