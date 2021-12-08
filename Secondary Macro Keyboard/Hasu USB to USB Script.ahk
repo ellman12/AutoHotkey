@@ -425,7 +425,7 @@ Send, {Enter}
 return
 
 ;On PC, open Google Drive where school stuff is
-AppsKey::Run, explorer D:\Other computers\My PC\DSU Year 2 Semester 1
+AppsKey::Run, explorer G:\Other computers\My PC\DSU Year 2 Semester 1
 
 #if
 
