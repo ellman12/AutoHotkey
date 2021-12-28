@@ -27,6 +27,7 @@
 Menu, Tray, Icon, shell32.dll, 233 ;Changes the icon to a cute little computer.
 
 #NoEnv
+#UseHook
 #MaxHotkeysPerInterval 999999999999999999999999999999999
 #HotkeyInterval 99999999999999999999999999999999999
 #KeyHistory 0
