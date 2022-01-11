@@ -1,5 +1,8 @@
 # AutoHotkey
 
+## **Has now been replaced with [AutoHotkey-V2](https://github.com/ellman12/AutoHotkey-V2): a new and greatly improved repository of scripts**
+### Old README text that is staying for historical reasons ↓
+
 All of my AutoHotkey and iCUE stuff. If you're new here start with the file "Main Script Revised.ahk". It's the big main file that links most of the other scripts in this repo together. There are also some other smaller scripts scattered throughout. Have a look around.
 
 **Brief History (From What I Can Remember/find):**<br>
